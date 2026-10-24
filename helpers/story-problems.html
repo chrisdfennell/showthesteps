@@ -12243,6 +12243,9 @@
       var L = A.L,
         n = function(r) { return (L.match(r) || []).length; };
       var go = function(page, name, what, note) { return { page: page, name: name, what: what, note: note || "" }; };
+      // "Ms. Novak is 5 years younger than Ms. Novak": one name for two people, so there's no telling which is which
+      var same = /\b((?:(?:Mr|Mrs|Ms|Dr|Miss)\.\s+)?[A-Z][a-z]+)\s+(?:is|was|has|had)\b[^.?!]*?\b(?:older|younger|taller|shorter|heavier|lighter|more|less|fewer)\b[^.?!]*?\bthan\s+\1\b/.exec(A.D);
+      if (same) return go(null, null, "a story that uses one name for two people", "It compares " + same[1] + " with " + same[1] + ". If they are two different people, give one of them another name (or a letter, like A and B) and try again.");
       if (/\bpiecewise\b/.test(L)) return go("functions.html", "The Function Machine", "a piecewise function");
       if (/\bnormally distributed\b|\bnormal (?:distribution|curve)\b|\bstandard deviation\b|\bz-?scores?\b|\bbell curve\b/.test(L)) return go("college-statistics.html", "The Bell Curve", "a normal-curve problem");
       if (/\bprobability\b|\bchances? (?:of|that)\b|\bodds\b|\bat random\b|\brandomly\b|\bp\s*\(/.test(L))
