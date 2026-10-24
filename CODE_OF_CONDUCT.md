@@ -36,7 +36,7 @@ This Code of Conduct applies within all community spaces, and also applies when 
 
 ## Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the community leaders responsible for enforcement at the maintainer, privately, through GitHub: use [a private security advisory](https://github.com/chrisdfennell/arithmetic-helpers/security/advisories/new) for anything sensitive, or [open an issue](https://github.com/chrisdfennell/arithmetic-helpers/issues/new/choose) otherwise. All complaints will be reviewed and investigated promptly and fairly.
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the community leaders responsible for enforcement at the maintainer, privately, through GitHub: use [a private security advisory](https://github.com/chrisdfennell/showthesteps/security/advisories/new) for anything sensitive, or [open an issue](https://github.com/chrisdfennell/showthesteps/issues/new/choose) otherwise. All complaints will be reviewed and investigated promptly and fairly.
 
 All community leaders are obligated to respect the privacy and security of the reporter of any incident.
 

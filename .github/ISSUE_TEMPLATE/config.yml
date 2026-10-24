@@ -4,5 +4,5 @@ contact_links:
     url: https://showthesteps.org/
     about: Try a problem first; every page shows the steps and can check your answer.
   - name: Report a security problem privately
-    url: https://github.com/chrisdfennell/arithmetic-helpers/security/advisories/new
+    url: https://github.com/chrisdfennell/showthesteps/security/advisories/new
     about: Please don't open a public issue for security problems.

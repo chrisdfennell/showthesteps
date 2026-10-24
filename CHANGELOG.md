@@ -1,6 +1,6 @@
 # Changelog
 
-Every push to `main` is versioned and released automatically (see [Versioning & releases](README.md#versioning-and-releases) in the README), so the full list of changes for each version is on the **[Releases page](https://github.com/chrisdfennell/arithmetic-helpers/releases)**.
+Every push to `main` is versioned and released automatically (see [Versioning & releases](README.md#versioning-and-releases) in the README), so the full list of changes for each version is on the **[Releases page](https://github.com/chrisdfennell/showthesteps/releases)**.
 
 How the version number moves:
 

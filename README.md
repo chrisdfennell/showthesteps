@@ -14,16 +14,16 @@
 
 <p align="center">
   <a href="https://showthesteps.org/"><img src="https://img.shields.io/badge/live%20site-showthesteps.org-2f6f5e" alt="Live site"></a>
-  <a href="https://github.com/chrisdfennell/arithmetic-helpers/releases"><img src="https://img.shields.io/github/v/release/chrisdfennell/arithmetic-helpers?label=version" alt="Latest version"></a>
-  <a href="https://github.com/chrisdfennell/arithmetic-helpers/actions/workflows/release.yml"><img src="https://github.com/chrisdfennell/arithmetic-helpers/actions/workflows/release.yml/badge.svg" alt="Release and deploy workflow status"></a>
-  <a href="https://github.com/chrisdfennell/arithmetic-helpers/actions/workflows/test.yml"><img src="https://github.com/chrisdfennell/arithmetic-helpers/actions/workflows/test.yml/badge.svg" alt="Self-test workflow status"></a>
+  <a href="https://github.com/chrisdfennell/showthesteps/releases"><img src="https://img.shields.io/github/v/release/chrisdfennell/showthesteps?label=version" alt="Latest version"></a>
+  <a href="https://github.com/chrisdfennell/showthesteps/actions/workflows/release.yml"><img src="https://github.com/chrisdfennell/showthesteps/actions/workflows/release.yml/badge.svg" alt="Release and deploy workflow status"></a>
+  <a href="https://github.com/chrisdfennell/showthesteps/actions/workflows/test.yml"><img src="https://github.com/chrisdfennell/showthesteps/actions/workflows/test.yml/badge.svg" alt="Self-test workflow status"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-CC%20BY--NC%204.0-lightgrey" alt="License: CC BY-NC 4.0"></a>
   <br>
   <a href="#how-its-built"><img src="https://img.shields.io/badge/build%20step-none-brightgreen" alt="No build step"></a>
   <a href="#install-it-as-an-app"><img src="https://img.shields.io/badge/works%20offline-installable-5a4fcf" alt="Works offline and installs as an app"></a>
   <a href="#how-its-built"><img src="https://img.shields.io/badge/vanilla%20JS-ES5-f0db4f" alt="Vanilla JavaScript (ES5)"></a>
   <a href="https://showthesteps.org/tests/self-test"><img src="https://img.shields.io/badge/self--test-22%2C000%2B%20checks-success" alt="Self-test: more than 22,000 checks"></a>
-  <a href="https://github.com/chrisdfennell/arithmetic-helpers/commits/main"><img src="https://img.shields.io/github/last-commit/chrisdfennell/arithmetic-helpers" alt="Last commit"></a>
+  <a href="https://github.com/chrisdfennell/showthesteps/commits/main"><img src="https://img.shields.io/github/last-commit/chrisdfennell/showthesteps" alt="Last commit"></a>
 </p>
 
 <p align="center">
@@ -530,7 +530,7 @@ How big the site is, counted from the files themselves (the code is kept formatt
 
 ## Versioning and releases
 
-Every push to `main` is versioned automatically by GitHub Actions ([`release.yml`](https://github.com/chrisdfennell/arithmetic-helpers/actions/workflows/release.yml)):
+Every push to `main` is versioned automatically by GitHub Actions ([`release.yml`](https://github.com/chrisdfennell/showthesteps/actions/workflows/release.yml)):
 
 | The commit | Bumps |
 | --- | --- |
@@ -538,7 +538,7 @@ Every push to `main` is versioned automatically by GitHub Actions ([`release.yml
 | anything else | the patch version (1.4.**1**) |
 | **`[major]`** in the commit body | the major version (**2**.0.0) |
 
-Each version gets a git tag `vX.Y.Z`, a [GitHub Release](https://github.com/chrisdfennell/arithmetic-helpers/releases) listing the commit subjects, and is stamped into the site: the footer shows the version, and the offline cache renews itself so installed copies pick up the new pages.
+Each version gets a git tag `vX.Y.Z`, a [GitHub Release](https://github.com/chrisdfennell/showthesteps/releases) listing the commit subjects, and is stamped into the site: the footer shows the version, and the offline cache renews itself so installed copies pick up the new pages.
 
 ## Privacy
 

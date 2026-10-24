@@ -1,14 +1,14 @@
 # Contributing
 
-Thanks for helping! The most useful thing anyone can do is **tell us when a page gets a problem wrong, or explains a step in a confusing way**: use the ["Wrong answer or confusing step" form](https://github.com/chrisdfennell/arithmetic-helpers/issues/new/choose) and paste the page's link (every page's address holds the exact problem on screen, and **Copy link** copies it).
+Thanks for helping! The most useful thing anyone can do is **tell us when a page gets a problem wrong, or explains a step in a confusing way**: use the ["Wrong answer or confusing step" form](https://github.com/chrisdfennell/showthesteps/issues/new/choose) and paste the page's link (every page's address holds the exact problem on screen, and **Copy link** copies it).
 
 ## Running it locally
 
 There's nothing to install and no build step: every page is plain HTML and JavaScript.
 
 ```sh
-git clone https://github.com/chrisdfennell/arithmetic-helpers.git
-cd arithmetic-helpers
+git clone https://github.com/chrisdfennell/showthesteps.git
+cd showthesteps
 python -m http.server 8000
 ```
 
