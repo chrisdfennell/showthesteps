@@ -11103,6 +11103,8 @@
         // so much per hour, for so many hours: "travels at 58 miles per hour. How far in 6 hours?" — equal groups
         var rq = A.use.filter(function(t) { return (t.k === "n" || t.k === "$") && !t.inQ && /^\s*(?:(?:[a-z]+\s+){0,2}?(?:per|an?|each|every)\s+(hour|minute)\b|(mph|km\/h|kph)\b)/.test(t.after); }),
           dq = ds.filter(function(t) { return t.inQ; });
+        // the time can be in the story too: "travels 60 miles per hour for 3 hours. How far does it go?"
+        if (!dq.length && rq.length === 1 && ds.length === 1) dq = ds;
         if (rq.length === 1 && dq.length === 1 && ns.length + ms.length === 1 && /\bhow (?:far|many|much)\b/.test(A.Q)) {
           var rm0 = /^\s*(?:((?:[a-z]+\s+){0,2}?)(?:per|an?|each|every)\s+(hour|minute)\b|(mph|km\/h|kph)\b)/.exec(rq[0].after),
             hr = rm0[3] || rm0[2] === "hour";
@@ -12280,6 +12282,14 @@
       if (!asksAmount(A) && !eqRead(A)) return { fail: "noamount", A: A };
       var P = classify(A);
       if (!P) return { fail: "kind", A: A };
+      // a plain joining/taking-away reading can't answer "what fraction is left?" or "how much money are 3 quarters and
+      // 4 dimes?": say so rather than answer in slices or coins
+      if (/^(?:join|separate|parts|compare|groups)$/.test(P.type)) {
+        if (/\bwhat\s+(?:fraction|part)\b/i.test(A.Q))
+          return { fail: "elsewhere", A: A, ew: { page: null, name: null, what: "a “what fraction” question", note: "Its answer is a fraction: the part the question asks about over the whole (the slices left over all the slices). This page doesn’t work those out yet; the Fraction Bar can simplify the fraction once you have it." } };
+        if (/\b(?:quarters?|dimes?|nickels?|pennies|penny)\b/i.test(A.L) && /\bhow\s+much\s+(?:money|is\s+(?:that|it|this))\b|\bhow\s+many\s+cents\b|\bvalue\b|\bworth\b/i.test(A.Q))
+          return { fail: "elsewhere", A: A, ew: { page: null, name: null, what: "adding up coins", note: "Add what the coins are worth (a quarter is 25¢, a dime 10¢, a nickel 5¢, a penny 1¢). The Place Value Chart’s Money tab does this coin by coin: type just the coins there, like “3 quarters 4 dimes”." } };
+      }
       markExtras(A, P);
       return { P: P, A: A };
     }
