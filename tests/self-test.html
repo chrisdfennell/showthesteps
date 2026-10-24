@@ -15,9 +15,7 @@
 <meta property="og:image:alt" content="Show The Steps: every step, written out.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..800&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
 <style>
   :root {
     --paper: #EDEFEC;
@@ -579,6 +577,10 @@
       { page: "money-math.html", name: "The Money Jar" },
       { page: "unit-conversions.html", name: "The Measuring Tape" },
       { page: "aviation.html", name: "The Flight Computer" },
+      { page: "nursing.html", name: "The Dose Calculator" },
+      { page: "carpentry.html", name: "The Framing Square" },
+      { page: "electrical.html", name: "The Circuit Board" },
+      { page: "cooking.html", name: "The Recipe Card" },
       { page: "counting.html", name: "The Counting Tree" },
       { page: "number-sense.html", name: "The Place Value Chart" }, { page: "quadratics.html", name: "The Area Box" },
       { page: "logarithms.html", name: "The Log Ladder" }, { page: "sequences.html", name: "The Number Staircase" },
@@ -587,9 +589,13 @@
       // not step-by-step helpers: each has its own checks (TOOLS below)
       { page: "flashcards.html", name: "The Flash Cards", kind: "cards" },
       { page: "reference.html", name: "Reference sheets", kind: "tool" }, { page: "results.html", name: "Class results", kind: "tool" },
+      { page: "worksheet.html", name: "The Worksheet Maker", kind: "tool" }, { page: "practice.html", name: "Practice sets & assignments", kind: "tool" },
+      { page: "skills.html", name: "Skill map", kind: "tool" },
       { page: "daily.html", name: "Problem of the day", kind: "tool" }, { page: "qr.js", name: "QR codes (qr.js)", kind: "tool" },
+      { page: "embed.js", name: "Embed on another website (embed.js)", kind: "tool" },
       { page: "keypad", name: "Math keys (tools.js)", kind: "tool" },
-      { page: "tutor.html", name: "Tutor me (tutor.js)", kind: "tool" }
+      { page: "tutor.html", name: "Tutor me (tutor.js)", kind: "tool" },
+      { page: "play.html", name: "Play (play.js)", kind: "tool" }
     ];
 
     /* problems with known answers: open the link, and every value must show in the answer */
@@ -660,6 +666,180 @@
         ["mode=units&v=15&from=c&to=f", ["59"]],
         ["mode=units&v=40&from=gal&to=lb&fuel=avgas", ["240"]],
         ["mode=units&v=300&from=lb&to=gal&fuel=jet", ["44.78"]]
+      ],
+      "nursing.html": [
+        ["q=" + encodeURIComponent("15 mg/kg for a 44 lb child"), ["20", "300"]],
+        ["q=" + encodeURIComponent("40 mg/kg/day divided q8h for 33 lb, max 500 mg/dose"), ["15", "600", "200", "~within"]],
+        ["q=" + encodeURIComponent("safe range 25-50 mg/kg/day for 22 lb, ordered 125 mg q8h"), ["10", "250", "500", "~safe"]],
+        ["q=" + encodeURIComponent("0.1 mg/kg for 72 kg, available 10 mg/mL"), ["7.2", "0.72"]],
+        ["q=" + encodeURIComponent("5 mcg/kg/min for 70 kg"), ["350", "21000", "21"]],
+        ["mode=weight&dose=20&du=mg&per=dose&wt=50&wu=lb", ["22.7", "454"]],
+        ["mode=weight&dose=10&du=mg&per=dose&wt=30&wu=kg&max=250&mu=mg&mper=dose", ["300", "~over"]],
+        ["q=" + encodeURIComponent("Ordered 250 mg, available 125 mg per 5 mL"), ["10"]],
+        ["q=" + encodeURIComponent("ordered 0.5 g, tablets are 250 mg"), ["2"]],
+        ["q=" + encodeURIComponent("ordered 0.3 mg, available 400 mcg per mL"), ["0.75"]],
+        ["mode=dose&d=1.5&du=mg&h=1&hu=mg&q=1&qu=tab&sc=1", ["~1½ tablets"]],
+        ["mode=dose&d=62.5&du=mg&h=125&hu=mg&q=5&qu=mL", ["2.5"]],
+        ["mode=dose&d=0.75&du=mg&h=0.5&hu=mg&q=1&qu=tab&sc=0", ["1.5", "~pharmacist"]],
+        ["q=" + encodeURIComponent("cefazolin 1 g in 50 mL over 30 minutes"), ["100"]],
+        ["q=" + encodeURIComponent("1000 mL over 8 hours"), ["125"]],
+        ["q=" + encodeURIComponent("1 L over 6 hr"), ["167"]],
+        ["q=" + encodeURIComponent("dopamine 5 mcg/kg/min for 70 kg, 400 mg in 250 mL"), ["13.1"]],
+        ["q=" + encodeURIComponent("running at 15 mL/hr, 400 mg in 250 mL, 80 kg, how many mcg/kg/min"), ["5"]],
+        ["mode=rate&task=dose&dose=2&du=mg&per=hr&amt=100&au=mg&bag=250", ["5"]],
+        ["q=" + encodeURIComponent("500 mL over 4 hours drop factor 15"), ["31"]],
+        ["q=" + encodeURIComponent("125 mL/hr with 20 gtt/mL"), ["42"]],
+        ["mode=drip&v=1000&t=480&df=10", ["21"]],
+        ["q=" + encodeURIComponent("1000 mL at 125 mL/hr started at 0700"), ["8", "1500"]],
+        ["q=" + encodeURIComponent("250 mL at 30 mL/hr started at 2200"), ["8", "20", "0620"]],
+        ["mode=time&v=500&rt=80", ["6", "15"]],
+        ["q=" + encodeURIComponent("1:1000 epinephrine 0.3 mg how many mL"), ["0.3"]],
+        ["q=" + encodeURIComponent("grams of dextrose in 1000 mL D5W"), ["50"]],
+        ["q=" + encodeURIComponent("dilute 50% dextrose to make 500 mL of 10%"), ["100", "400"]],
+        ["q=" + encodeURIComponent("reconstitute 1 g with 3.4 mL to make 250 mg/mL, give 500 mg"), ["2"]],
+        ["mode=conc&task=strength&amt=2&au=g&vol=500", ["0.004", "4"]],
+        ["q=" + encodeURIComponent("heparin 25,000 units in 250 mL at 1,000 units/hr"), ["10"]],
+        ["q=" + encodeURIComponent("heparin 25,000 units in 500 mL, bolus 80 units/kg, then 18 units/kg/hr for 85 kg"), ["30.6", "1530", "6800"]],
+        ["q=" + encodeURIComponent("heparin 25,000 units in 500 mL at 18 mL/hr, how many units/hr"), ["900"]],
+        ["q=" + encodeURIComponent("15 units of U-100 insulin"), ["0.15", "15"]],
+        ["q=" + encodeURIComponent("0.25 mg to mcg"), ["250"]],
+        ["q=" + encodeURIComponent("101.3 °F to °C"), ["38.5"]],
+        ["mode=convert&v=150&from=lb&to=kg", ["68.2"]],
+        ["mode=convert&v=10&from=mL&to=tbsp", ["0.67"]],
+        ["q=" + encodeURIComponent("BSA 160 cm 60 kg"), ["1.63"]],
+        ["q=" + encodeURIComponent("BSA 64 in 150 lb, 100 mg/m²"), ["1.75", "175"]]
+      ],
+      "carpentry.html": [
+        ["q=" + encodeURIComponent("5' 7 3/8\" + 2' 9 5/8\""), ["8", "5", "101"]],
+        ["mode=tape&task=add&t=8ft2in,-3ft7-1/2in", ["4", "6 1/2", "54 1/2"]],
+        ["q=" + encodeURIComponent("half of 7' 5 3/8\""), ["3", "8 11/16", "44 11/16"]],
+        ["mode=tape&task=dec&x=3.7&u=in", ["3 11/16"]],
+        ["mode=tape&task=dec&x=12.65&u=ft", ["12", "7 13/16", "151 13/16"]],
+        ["mode=tape&task=frac&a=3-11/16in", ["3.6875"]],
+        ["q=" + encodeURIComponent("27 1/2\" + 19 3/4\" + 31 5/16\""), ["6", "6 9/16", "78 9/16"]],
+        ["q=" + encodeURIComponent("board feet 2x6 12 ft"), ["12"]],
+        ["mode=lumber&t=2&w=4&l=8ft&n=10&price=3.98&per=each", ["53 1/3", "39.80"]],
+        ["mode=lumber&t=2&w=10&l=16ft&n=1&price=1.25&per=bf", ["26 2/3", "33.33"]],
+        ["mode=lumber&t=2&w=6&l=8ft&n=1&price=9.50&per=bf&hw=1", ["8", "76"]],
+        ["q=" + encodeURIComponent("total rise 104 inches"), ["14", "7 7/16", "13", "10 1/2"]],
+        ["mode=stairs&rise=106in&max=7-1/2in&tread=11in", ["15", "7 1/16", "14", "12", "6 15/16"]],
+        ["mode=stairs&rise=30in", ["4", "7 1/2", "3", "2", "6"]],
+        ["q=" + encodeURIComponent("6/12 pitch run 12 feet rafter length"), ["13", "5", "6", "26.6"]],
+        ["mode=roof&task=rafter&p=8&span=24ft&oh=12in", ["15", "7 1/2", "14", "5 1/16", "8", "33.7"]],
+        ["mode=roof&task=rafter&p=4&run=14ft6in&oh=18in", ["16", "10 3/8", "4", "10", "18.4"]],
+        ["mode=roof&task=angle&p=7", ["30.3"]],
+        ["mode=roof&task=pitch&ang=30", ["6.93"]],
+        ["q=" + encodeURIComponent("is it square 6 8 10"), ["~yes", "10"]],
+        ["mode=square&task=check&a=9ft&b=12ft&c=15ft1/2in", ["~no", "15", "1/2"]],
+        ["mode=square&task=diag&a=12ft&b=16ft", ["20"]],
+        ["mode=square&task=345&k=4&u=ft", ["12", "16", "20"]],
+        ["mode=square&task=diags&d1=24ft3in&d2=24ft5in", ["~no", "2", "24", "4"]],
+        ["q=" + encodeURIComponent("studs 16 on center 14 ft wall"), ["12", "11", "8"]],
+        ["mode=spacing&task=oc&len=20ft&oc=24in&what=joists", ["11"]],
+        ["mode=spacing&task=bal&span=72in&w=1-1/2in&gap=4in", ["13", "3 3/4", "5.25"]],
+        ["q=" + encodeURIComponent("tile 12 by 15 feet 10% waste"), ["180", "198"]],
+        ["mode=area&task=sheets&len=12ft&wid=16ft&waste=10", ["192", "211.2", "7"]],
+        ["mode=area&task=tile&len=10ft&wid=12ft&waste=15&tl=12in&tw=12in", ["120", "138"]],
+        ["mode=area&task=paint&len=12ft&wid=14ft&ht=8ft&coats=2&cov=350", ["3", "416", "2.38"]],
+        ["mode=area&task=floor&len=14ft6in&wid=11ft3in&waste=8&box=22", ["163.13", "176.18", "9"]],
+        ["q=" + encodeURIComponent("slab 20 by 24 feet 4 inches thick concrete"), ["5.93", "160"]],
+        ["mode=concrete&task=footing&len=40ft&wid=16in&th=8in", ["1.32", "35.56"]],
+        ["mode=concrete&task=posts&n=8&dia=10in&dep=36in&bag=80", ["0.48", "13.09", "22"]],
+        ["mode=concrete&task=slab&len=10ft&wid=12ft&th=4in&bag=80", ["1.48", "40", "67"]],
+        ["q=" + encodeURIComponent("miter angle hexagon frame"), ["30", "120", "6"]],
+        ["mode=angles&task=miter&n=8", ["22.5", "135"]],
+        ["mode=angles&task=corner&a=135", ["22.5"]],
+        ["mode=angles&task=crown&a=90&spring=38", ["31.6", "33.9", "45"]],
+        ["mode=angles&task=slope&pct=2", ["1.15", "2"]],
+        ["mode=angles&task=slope&rpf=1/4in", ["1.19", "2.08"]],
+        ["mode=angles&task=slope&deg=5", ["8.75"]]
+      ],
+      "electrical.html": [
+        ["q=" + encodeURIComponent("12 V across 4 ohms"), ["3"]],
+        ["mode=ohm&i=2&r=220", ["440"]],
+        ["mode=ohm&v=9&i=30m", ["300"]],
+        ["q=" + encodeURIComponent("5 V across 4.7k"), ["1.064"]],
+        ["mode=ohm&v=12&r=220", ["54.55"]],
+        ["q=" + encodeURIComponent("100 W bulb on 120 V"), ["833.3", "144"]],
+        ["mode=power&i=2&r=10", ["40", "20"]],
+        ["q=" + encodeURIComponent("1500 W to kW"), ["1.5"]],
+        ["q=" + encodeURIComponent("2 hp to watts"), ["1492"]],
+        ["mode=power&v=24&r=8", ["72", "3"]],
+        ["mode=power&p=1k&r=10", ["10", "100"]],
+        ["q=" + encodeURIComponent("resistors 100 220 470 in parallel"), ["59.98"]],
+        ["mode=resistors&net=s(100,220,470)", ["790"]],
+        ["mode=resistors&net=s(p(100,220),470)&v=12", ["538.75", "22.27"]],
+        ["q=" + encodeURIComponent("10k | 10k | 10k"), ["3.333"]],
+        ["mode=resistors&net=p(1k,2.2k)&v=12", ["687.5", "17.45"]],
+        ["q=" + encodeURIComponent("voltage drop 12 AWG copper 100 ft 16 A 120 V"), ["6.336", "5.28", "113.664"]],
+        ["mode=drop&awg=10&mat=al&len=150&i=20&v=240", ["12.24", "5.1", "227.76"]],
+        ["mode=drop&awg=4/0&mat=al&len=300&i=150&v=480&ph=3", ["7.794", "1.62"]],
+        ["mode=drop&awg=6&mat=cu&len=200&i=50&v=240", ["9.82", "4.09"]],
+        ["q=" + encodeURIComponent("1500 W heater and 800 W microwave on a 20 A 120 V circuit"), ["19.17", "16"]],
+        ["q=" + encodeURIComponent("how many 100 W bulbs on a 15 A 120 V circuit"), ["14"]],
+        ["mode=load&task=count&each=100&v=120&brk=15&cont=0", ["18"]],
+        ["mode=load&task=total&a=12&v=120&brk=15", ["12"]],
+        ["q=" + encodeURIComponent("1500 W heater 8 hours a day at $0.15 per kWh"), ["1.8", "54", "657"]],
+        ["mode=energy&w=60&h=5&rate=0.12", ["0.04", "1.08", "13.14"]],
+        ["mode=energy&w=9&h=6&rate=0.13&n=10", ["0.07", "2.11", "25.62"]],
+        ["q=" + encodeURIComponent("brown black red gold"), ["1", "5"]],
+        ["mode=color&bands=yellow-violet-orange-gold", ["47", "5"]],
+        ["mode=color&bands=red-red-black-black-brown", ["220", "1"]],
+        ["q=" + encodeURIComponent("4.7k 5%"), ["~yellow violet red gold"]],
+        ["mode=color&r=47k&tol=1&n=5", ["~yellow violet black red brown"]],
+        ["q=" + encodeURIComponent("RC time constant 10k 100 uF"), ["1", "5"]],
+        ["mode=rc&task=s&c=10u,22u", ["6.875"]],
+        ["mode=rc&task=charge&r=10k&c=100u&vs=12&t=2", ["10.38"]],
+        ["mode=rc&task=discharge&r=1k&c=470u&vs=9&t=500m", ["3.106"]],
+        ["mode=rc&task=time&r=10k&c=100u&vs=12&vt=9", ["1.386"]],
+        ["mode=rc&task=p&c=10u,22u,47u", ["79"]],
+        ["q=" + encodeURIComponent("170 V peak to RMS"), ["120.2"]],
+        ["mode=ac&task=wave&x=120&u=V&from=rms&to=pk", ["169.7"]],
+        ["q=" + encodeURIComponent("period of 60 Hz"), ["16.67"]],
+        ["mode=ac&task=3ph&v=480&i=50&pf=0.85", ["35.33", "41.57"]],
+        ["mode=ac&task=3phi&v=208&p=10k&pf=0.9", ["30.84"]]
+      ],
+      "cooking.html": [
+        ["q=" + encodeURIComponent("2/3 cup sugar times 3"), ["2"]],
+        ["q=" + encodeURIComponent("scale 4 servings to 10"), ["5/2"]],
+        ["mode=scale&from=4&to=10&items=2~cup~flour%7C3/4~tsp~salt%7C3/2~cup~milk%7C2~~eggs%7C3~tbsp~butter", ["5", "1 7/8", "3 3/4", "7 1/2"]],
+        ["q=" + encodeURIComponent("1 tsp vanilla times 2/3"), ["5/8"]],
+        ["q=" + encodeURIComponent("8 tbsp butter times 3"), ["1 1/2"]],
+        ["q=" + encodeURIComponent("3 eggs times 1/2"), ["1 1/2"]],
+        ["q=" + encodeURIComponent("double\n1 1/2 cups flour\n3/4 tsp baking soda\n1/3 cup oil"), ["3", "1 1/2", "2/3"]],
+        ["q=" + encodeURIComponent("1 1/2 cups to tablespoons"), ["24"]],
+        ["q=" + encodeURIComponent("24 tsp to cups"), ["1/2"]],
+        ["q=" + encodeURIComponent("1 tsp to tbsp"), ["1/3"]],
+        ["q=" + encodeURIComponent("2 cups to mL"), ["473.2"]],
+        ["q=" + encodeURIComponent("how many cups in a gallon"), ["16"]],
+        ["q=" + encodeURIComponent("250 g flour to cups"), ["2"]],
+        ["q=" + encodeURIComponent("2 cups sugar in grams"), ["400"]],
+        ["q=" + encodeURIComponent("1 stick butter in grams"), ["113"]],
+        ["q=" + encodeURIComponent("3/4 cup honey to grams"), ["255"]],
+        ["q=" + encodeURIComponent("500 g rice to cups"), ["2.7"]],
+        ["q=" + encodeURIComponent("bread 500 g flour 70% hydration"), ["350", "850"]],
+        ["q=" + encodeURIComponent("1000 g dough 65% hydration 2% salt 1% yeast"), ["595", "387", "12", "6"]],
+        ["q=" + encodeURIComponent("500 g flour, 350 g water, 10 g salt, 5 g yeast"), ["70", "2", "1"]],
+        ["q=" + encodeURIComponent("flour $3.49 for 5 lb, 2 cups per recipe cost"), ["0.38"]],
+        ["q=" + encodeURIComponent("plate cost $3.20 sells for $12"), ["26.7"]],
+        ["q=" + encodeURIComponent("recipe cost $18.40 for 8 servings, menu price $9"), ["2.3", "25.6"]],
+        ["q=" + encodeURIComponent("plate cost $3.60 target 30%"), ["12"]],
+        ["q=" + encodeURIComponent("350 F to C"), ["176.7", "180"]],
+        ["q=" + encodeURIComponent("180 C to F"), ["356", "350"]],
+        ["q=" + encodeURIComponent("gas mark 6"), ["400"]],
+        ["q=" + encodeURIComponent("400 F to gas mark"), ["6"]],
+        ["q=" + encodeURIComponent("425 F convection"), ["400"]],
+        ["q=" + encodeURIComponent("roast 6 lb at 20 minutes per pound ready by 6:30 pm"), ["~4:30 pm", "2"]],
+        ["q=" + encodeURIComponent("turkey 14 lb at 13 minutes per pound rest 30 minutes ready by 5 pm"), ["~1:28 pm", "~3 h 2 min"]],
+        ["q=" + encodeURIComponent("2 kg roast at 40 min per kg plus 20 minutes"), ["~1 h 40 min"]],
+        ["q=" + encodeURIComponent("9 inch round to 8 inch square"), ["63.6", "64", "1.01"]],
+        ["q=" + encodeURIComponent("8x8 to 9x13"), ["64", "117", "1.83"]],
+        ["q=" + encodeURIComponent("brine 5% salt 2 liters water"), ["100"]],
+        ["q=" + encodeURIComponent("vinaigrette 3:1 for 1 cup"), ["3/4", "1/4"]],
+        ["q=" + encodeURIComponent("vinaigrette with 1/2 cup oil"), ["~2 tbsp + 2 tsp"]],
+        ["q=" + encodeURIComponent("coffee 1:16 for 500 mL water"), ["31.3"]],
+        ["q=" + encodeURIComponent("salt 1.5% of 800 g pork"), ["12"]],
+        ["q=" + encodeURIComponent("2 cups rice 1:2 water"), ["4"]]
       ],
       "money-math.html": [
         ["mode=compound&task=amount&p=5000&r=4&n=12&t=10", ["7454.16", "2454.16"]],
@@ -1584,6 +1764,143 @@
         ["mode=turns&task=glide&ratio=9&alt=6000", ["10.2"], "wrong"],
         ["mode=units&v=120&from=kt&to=mph", ["138.09"], "right"],
         ["mode=units&v=120&from=kt&to=mph", ["104.28"], "wrong"]
+      ],
+      "nursing.html": [
+        ["q=" + encodeURIComponent("15 mg/kg for a 44 lb child"), ["20", "300"], "right"],
+        ["q=" + encodeURIComponent("15 mg/kg for a 44 lb child"), ["96.8", "300"], "wrong"],
+        ["q=" + encodeURIComponent("safe range 25-50 mg/kg/day for 22 lb, ordered 125 mg q8h"), ["10", "250", "500", "yes"], "right"],
+        ["q=" + encodeURIComponent("safe range 25-50 mg/kg/day for 22 lb, ordered 125 mg q8h"), ["10", "250", "500", "no"], "wrong"],
+        ["mode=dose&d=250&du=mg&h=125&hu=mg&q=5&qu=mL", ["10"], "right"],
+        ["mode=dose&d=250&du=mg&h=125&hu=mg&q=5&qu=mL", ["2.5"], "wrong"],
+        ["mode=dose&d=0.125&du=mg&h=0.25&hu=mg&q=1&qu=tab&sc=1", ["1/2"], "right"],
+        ["mode=dose&d=0.125&du=mg&h=0.25&hu=mg&q=1&qu=tab&sc=1", ["2"], "wrong"],
+        ["mode=rate&task=vol&v=1000&t=480", ["125"], "right"],
+        ["mode=rate&task=vol&v=1000&t=480", ["2.08"], "wrong"],
+        ["mode=rate&task=dose&dose=5&du=mcg&per=kgmin&wt=70&wu=kg&amt=400&au=mg&bag=250", ["13.1"], "right"],
+        ["mode=rate&task=dose&dose=5&du=mcg&per=kgmin&wt=70&wu=kg&amt=400&au=mg&bag=250", ["0.22"], "wrong"],
+        ["mode=drip&v=500&t=240&df=15", ["31"], "right"],
+        ["mode=drip&v=500&t=240&df=15", ["2"], "wrong"],
+        ["mode=time&v=250&rt=30&start=1320", ["8:20", "0620"], "right"],
+        ["mode=time&v=250&rt=30&start=1320", ["8:33", "0620"], "wrong"],
+        ["mode=conc&task=ratio&r=1000&d=0.3&du=mg", ["0.3"], "right"],
+        ["mode=conc&task=ratio&r=1000&d=0.3&du=mg", ["3"], "wrong"],
+        ["mode=units&task=rate&dose=1000&per=hr&amt=25000&bag=250", ["10"], "right"],
+        ["mode=units&task=rate&dose=1000&per=hr&amt=25000&bag=250", ["100"], "wrong"],
+        ["mode=units&task=dose&d=15&h=100&q=1&ins=1", ["0.15"], "right"],
+        ["mode=units&task=dose&d=15&h=100&q=1&ins=1", ["1.5"], "wrong"],
+        ["mode=convert&v=0.25&from=mg&to=mcg", ["250"], "right"],
+        ["mode=convert&v=0.25&from=mg&to=mcg", ["0.00025"], "wrong"],
+        ["mode=bsa&ht=160&hu=cm&wt=60&wu=kg", ["1.63"], "right"],
+        ["mode=bsa&ht=160&hu=cm&wt=60&wu=kg", ["2.67"], "wrong"]
+      ],
+      "carpentry.html": [
+        ["mode=tape&task=add&t=5ft7-3/8in,2ft9-5/8in", ["8' 5\""], "right"],
+        ["mode=tape&task=add&t=5ft7-3/8in,2ft9-5/8in", ["101\""], "right"],
+        ["mode=tape&task=add&t=5ft7-3/8in,2ft9-5/8in", ["7' 17\""], "simplify"],
+        ["mode=tape&task=add&t=5ft7-3/8in,2ft9-5/8in", ["7' 16 8/16\""], "wrong"],
+        ["mode=tape&task=add&t=8ft2in,-3ft7-1/2in", ["4' 6 1/2\""], "right"],
+        ["mode=tape&task=add&t=8ft2in,-3ft7-1/2in", ["5' 5 1/2\""], "wrong"],
+        ["mode=tape&task=half&a=7ft5-3/8in", ["3' 8 11/16\""], "right"],
+        ["mode=tape&task=half&a=7ft5-3/8in", ["3' 2 11/16\""], "wrong"],
+        ["mode=tape&task=dec&x=3.7&u=in", ["3 11/16"], "right"],
+        ["mode=tape&task=dec&x=3.7&u=in", ["3 7/10"], "wrong"],
+        ["mode=lumber&t=2&w=6&l=12ft&n=1", ["12"], "right"],
+        ["mode=lumber&t=2&w=6&l=12ft&n=1", ["144"], "wrong"],
+        ["mode=lumber&t=2&w=4&l=8ft&n=10&price=3.98&per=each", ["53 1/3", "$39.80"], "right"],
+        ["mode=lumber&t=2&w=4&l=8ft&n=10&price=3.98&per=each", ["5.33", "39.80"], "wrong"],
+        ["mode=stairs&rise=104in", ["14", "7 7/16", "10' 10\""], "right"],
+        ["mode=stairs&rise=104in", ["13", "8", "10' 10\""], "wrong"],
+        ["mode=roof&task=rafter&p=6&run=12ft", ["13' 5\"", "6'"], "right"],
+        ["mode=roof&task=rafter&p=6&run=12ft", ["26' 10\"", "6'"], "wrong"],
+        ["mode=roof&task=angle&p=7", ["30.3"], "right"],
+        ["mode=roof&task=angle&p=7", ["59.7"], "wrong"],
+        ["mode=square&task=check&a=6ft&b=8ft&c=10ft", ["yes", "10"], "right"],
+        ["mode=square&task=check&a=6ft&b=8ft&c=10ft", ["yes", "14"], "wrong"],
+        ["mode=square&task=diag&a=12ft&b=16ft", ["20' 0\""], "right"],
+        ["mode=spacing&task=oc&len=14ft&oc=16in&what=studs", ["12"], "right"],
+        ["mode=spacing&task=oc&len=14ft&oc=16in&what=studs", ["11"], "wrong"],
+        ["mode=spacing&task=bal&span=72in&w=1-1/2in&gap=4in", ["13", "3 3/4"], "right"],
+        ["mode=spacing&task=bal&span=72in&w=1-1/2in&gap=4in", ["13", "4.04"], "wrong"],
+        ["mode=area&task=sheets&len=12ft&wid=16ft&waste=10", ["211.2", "7"], "right"],
+        ["mode=area&task=sheets&len=12ft&wid=16ft&waste=10", ["211.2", "6"], "wrong"],
+        ["mode=area&task=paint&len=12ft&wid=14ft&ht=8ft&coats=2&cov=350", ["3"], "right"],
+        ["mode=area&task=paint&len=12ft&wid=14ft&ht=8ft&coats=2&cov=350", ["2"], "wrong"],
+        ["mode=concrete&task=slab&len=20ft&wid=24ft&th=4in", ["5.93"], "right"],
+        ["mode=concrete&task=slab&len=20ft&wid=24ft&th=4in", ["71.11"], "wrong"],
+        ["mode=concrete&task=posts&n=8&dia=10in&dep=36in&bag=80", ["0.48", "22"], "right"],
+        ["mode=concrete&task=posts&n=8&dia=10in&dep=36in&bag=80", ["0.48", "21"], "wrong"],
+        ["mode=angles&task=miter&n=6", ["30"], "right"],
+        ["mode=angles&task=miter&n=6", ["60"], "wrong"],
+        ["mode=angles&task=crown&a=90&spring=38", ["31.6", "33.9"], "right"],
+        ["mode=angles&task=crown&a=90&spring=38", ["45", "33.9"], "wrong"],
+        ["mode=angles&task=slope&pct=2", ["1.15"], "right"],
+        ["mode=angles&task=slope&pct=2", ["2"], "wrong"]
+      ],
+      "electrical.html": [
+        ["mode=ohm&v=12&r=4", ["3"], "right"],
+        ["mode=ohm&v=12&r=4", ["48"], "wrong"],
+        ["mode=ohm&v=12&r=220", ["54.5 mA"], "right"],
+        ["mode=ohm&v=12&r=220", ["0.0545 A"], "right"],
+        ["mode=ohm&v=12&r=220", ["0.0545"], "wrong"],
+        ["mode=power&p=100&v=120", ["833 mA", "144"], "right"],
+        ["mode=power&p=100&v=120", ["1.2", "144"], "wrong"],
+        ["mode=resistors&net=p(100,220,470)", ["60"], "right"],
+        ["mode=resistors&net=p(100,220,470)", ["790"], "wrong"],
+        ["mode=drop&awg=12&mat=cu&len=100&i=16&v=120", ["6.34", "5.28"], "right"],
+        ["mode=drop&awg=12&mat=cu&len=100&i=16&v=120", ["3.17", "2.64"], "wrong"],
+        ["mode=load&task=count&each=100&v=120&brk=15", ["14"], "right"],
+        ["mode=load&task=count&each=100&v=120&brk=15", ["15"], "wrong"],
+        ["mode=energy&w=1.5k&h=8&rate=0.15", ["12", "54"], "right"],
+        ["mode=energy&w=1.5k&h=8&rate=0.15", ["12000", "54000"], "wrong"],
+        ["mode=color&bands=brown-black-red-gold", ["1k", "5"], "right"],
+        ["mode=color&bands=brown-black-red-gold", ["10k", "5"], "wrong"],
+        ["mode=color&r=4.7k&tol=5", ["yellow violet red gold"], "right"],
+        ["mode=color&r=4.7k&tol=5", ["violet yellow red gold"], "wrong"],
+        ["mode=rc&task=tau&r=10k&c=100u", ["1"], "right"],
+        ["mode=rc&task=tau&r=10k&c=100u", ["0.001"], "wrong"],
+        ["mode=ac&task=wave&x=170&u=V&from=pk&to=rms", ["120.2"], "right"],
+        ["mode=ac&task=wave&x=170&u=V&from=pk&to=rms", ["240.4"], "wrong"],
+        ["mode=ac&task=3ph&v=480&i=50&pf=0.85", ["35.33 kW"], "right"],
+        ["mode=ac&task=3ph&v=480&i=50&pf=0.85", ["20.4 kW"], "wrong"]
+      ],
+      "cooking.html": [
+        ["mode=scale&k=3&items=2%2F3~cup~sugar", ["2"], "right"],
+        ["mode=scale&k=3&items=2%2F3~cup~sugar", ["2/9"], "wrong"],
+        ["mode=scale&k=3&items=2%2F3~cup~sugar", ["6/9"], "wrong"],
+        ["mode=scale&from=4&to=10", ["5/2"], "right"],
+        ["mode=scale&from=4&to=10", ["2/5"], "wrong"],
+        ["mode=volume&v=3/2&from=cup&to=tbsp", ["24"], "right"],
+        ["mode=volume&v=3/2&from=cup&to=tbsp", ["12"], "wrong"],
+        ["mode=volume&v=1&from=tsp&to=tbsp", ["1/3"], "right"],
+        ["mode=volume&v=2&from=cup&to=ml", ["500"], "wrong"],
+        ["mode=weight&ing=flour&v=250&from=g&to=cup", ["2"], "right"],
+        ["mode=weight&ing=flour&v=250&from=g&to=cup", ["31250"], "wrong"],
+        ["mode=weight&ing=sugar&v=2&from=cup&to=g", ["400"], "right"],
+        ["mode=bakers&task=amounts&flour=500&p=water:70", ["350", "850"], "right"],
+        ["mode=bakers&task=amounts&flour=500&p=water:70", ["35000", "850"], "wrong"],
+        ["mode=bakers&task=target&total=1000&p=water:65,salt:2,yeast:1", ["595", "387"], "right"],
+        ["mode=bakers&task=target&total=1000&p=water:65,salt:2,yeast:1", ["350", "227.5"], "wrong"],
+        ["mode=cost&items=flour~3.49~5~lb~2~cup", ["0.38"], "right"],
+        ["mode=cost&items=flour~3.49~5~lb~2~cup", ["3.49"], "wrong"],
+        ["mode=cost&task=fc&cost=3.2&price=12", ["26.7"], "right"],
+        ["mode=cost&task=fc&cost=3.2&price=12", ["375"], "wrong"],
+        ["mode=cost&task=price&cost=3.6&target=30", ["12"], "right"],
+        ["mode=cost&task=price&cost=3.6&target=30", ["4.68"], "wrong"],
+        ["mode=oven&v=350&from=f&to=c", ["176.7"], "right"],
+        ["mode=oven&v=350&from=f&to=c", ["194.4"], "wrong"],
+        ["mode=oven&v=350&from=f&to=c", ["162.4"], "wrong"],
+        ["mode=oven&v=425&from=f&to=f&conv=1", ["400"], "right"],
+        ["mode=oven&v=425&from=f&to=f&conv=1", ["450"], "wrong"],
+        ["mode=time&w=6&wu=lb&rate=20&ru=lb&ready=18:30", ["2 h", "4:30 pm"], "right"],
+        ["mode=time&w=6&wu=lb&rate=20&ru=lb&ready=18:30", ["2:00", "8:30 pm"], "wrong"],
+        ["mode=time&w=14&wu=lb&rate=13&ru=lb&rest=30&ready=17:00", ["3 h 2 min", "1:58 pm"], "wrong"],
+        ["mode=time&w=14&wu=lb&rate=13&ru=lb&rest=30&ready=17:00", ["182", "1:28 pm"], "right"],
+        ["mode=pans&a=round:9&b=square:8", ["64", "1.01"], "right"],
+        ["mode=pans&a=round:9&b=square:8", ["64", "0.89"], "wrong"],
+        ["mode=ratios&kind=brine&pct=5&water=2&wu=l", ["100"], "right"],
+        ["mode=ratios&kind=brine&pct=5&water=2&wu=l", ["0.1"], "wrong"],
+        ["mode=ratios&kind=vin&a=3&b=1&oil=1/2&ou=cup", ["1/6"], "right"],
+        ["mode=ratios&kind=vin&a=3&b=1&total=1&tu=cup", ["3", "1/3"], "wrong"]
       ],
       "money-math.html": [
         ["mode=compound&task=amount&p=5000&r=4&n=12&t=10", ["$7,454.16", "$2,454.16"], "right"],
@@ -4815,6 +5132,629 @@
       }
       throw new Error("unknown mode " + o.mode);
     }
+    // nursing.html: re-work a made problem from its link with the usual nursing rounding rules; every number the
+    // page's answer should show, as text (worked here with plain decimals, apart from the page's exact fractions)
+    function nurR(x, k) { var p = Math.pow(10, k || 0); return Math.round(Number((x * p).toFixed(6))) / p; }
+
+    function nurExact(x, k) { var p = Math.pow(10, k); return Math.abs(x * p - Math.round(x * p)) < 1e-6; }
+
+    function nurMl(x) { return x < 1 ? nurR(x, 2) : nurR(x, 1); } // a liquid: tenths, hundredths under 1 mL
+    function nurDose(x) { return nurExact(x, 2) ? x : nurR(x, 1); } // a dose: exact, or to a tenth
+    function nurKg(o, k, u) { var w = Number(o[k || "wt"]); return o[u || "wu"] === "lb" ? nurR(w / 2.2, 1) : w; }
+
+    function nurWork(o) {
+      var n = function(k) { return Number(o[k]); },
+        s = function(x) { return String(Math.round(x * 1e6) / 1e6); };
+      var MG = { mcg: 0.001, mg: 1, g: 1000, kg: 1e6 },
+        f = function(a, b) { return a === b ? 1 : MG[a] / MG[b]; };
+      if (o.mode === "weight") {
+        var kg = nurKg(o),
+          out = o.wu === "lb" ? [s(kg)] : [],
+          N = o.n ? n("n") : 0,
+          lo = n("dose") * kg,
+          hi = o.hi ? n("hi") * kg : null,
+          dose = null;
+        if (o.per === "min" || o.per === "hr") { out.push(s(lo)); if (o.per === "min") out.push(s(lo * 60)); return out; }
+        if (o.per === "day") {
+          out.push(s(lo));
+          if (hi) out.push(s(hi));
+          if (N) {
+            dose = nurDose(lo / N);
+            out.push(s(dose));
+            if (hi) out.push(s(nurDose(hi / N)));
+          }
+        } else {
+          dose = lo;
+          out.push(s(lo));
+          if (hi) out.push(s(hi));
+        }
+        var over = false,
+          ok = true,
+          od = null;
+        if (o.max) {
+          var mx = (o.mkg === "1" ? n("max") * kg : n("max")) * f(o.mu, o.du),
+            cmp = o.mper === "day" ? (o.per === "day" ? (hi || lo) : N ? (hi || lo) * N : null) : (o.per === "dose" ? (hi || lo) : N ? nurDose((hi || lo) / N) : null);
+          if (cmp !== null) over = cmp > mx + 1e-9;
+        }
+        if (o.ord) {
+          od = n("ord") * f(o.ou, o.du);
+          var c = o.per === "day" ? od * N : od,
+            cl = lo,
+            ch = hi;
+          ok = ch ? c >= cl - 1e-9 && c <= ch + 1e-9 : Math.abs(c - cl) <= cl / 100 + 1e-9;
+        }
+        if (o.hv) {
+          var give = o.ord ? (ok ? od : null) : (hi || over ? null : dose);
+          if (give !== null) out.push(s(nurMl(give * f(o.du, o.hu) / n("hv") * (o.hq ? n("hq") : 1))));
+        }
+        return out;
+      }
+      if (o.mode === "dose") {
+        var v = n("d") * f(o.du, o.hu) / n("h") * n("q");
+        if (o.qu === "mL") return [s(nurMl(v))];
+        var w = Math.round(v),
+          h2 = Math.round(v * 2) / 2,
+          half = o.qu === "tab" && o.sc !== "0";
+        return [s(Math.abs(v - w) < 1e-9 || half && Math.abs(v - h2) < 1e-9 ? (Math.abs(v - w) < 1e-9 ? w : h2) : v)]; // not a whole (or allowed half): the exact amount, not rounded off
+      }
+      if (o.mode === "rate") {
+        if (o.task === "vol") return [s(nurR(n("v") * 60 / n("t"), 0))];
+        var kgR = /^kg/.test(o.per) ? nurKg(o) : 1,
+          conc = n("amt") / n("bag") * f(o.au, o.du),
+          perMin = /min$/.test(o.per);
+        if (o.task === "dose") return [s(nurR(n("dose") * kgR * (perMin ? 60 : 1) / conc, 1))];
+        var ex = n("rt") * conc / (perMin ? 60 : 1) / kgR;
+        return [s(nurExact(ex, 2) ? ex : nurR(ex, nurExact(ex, 3) || ex < 10 ? 2 : 1))];
+      }
+      if (o.mode === "drip") return [s(nurR(o.rt ? n("rt") * n("df") / 60 : n("v") * n("df") / n("t"), 0))];
+      if (o.mode === "time") {
+        var mlhr = o.rt ? n("rt") : n("gm") * 60 / n("df"),
+          mins = nurR(n("v") / mlhr * 60, 0),
+          hh = Math.floor(mins / 60),
+          mm = mins - hh * 60,
+          res = [];
+        if (hh) res.push(s(hh));
+        if (mm || !hh) res.push(s(mm));
+        if (o.start) {
+          var e = (n("start") + mins) % 1440;
+          res.push(s(Math.floor(e / 60) * 100 + e % 60));
+        }
+        return res;
+      }
+      if (o.mode === "conc") {
+        if (o.task === "strength") return [s(n("amt") / n("vol"))];
+        if (o.task === "pct") return [s(o.vol ? n("pct") * n("vol") / 100 : nurMl(n("g") / (n("pct") / 100)))];
+        if (o.task === "ratio") { var mgml = 1000 / n("r"); return [s(o.d ? nurMl(n("d") * f(o.du, "mg") / mgml) : o.v ? mgml * n("v") : mgml)]; }
+        if (o.task === "dilute") {
+          if (o.v1) {
+            var v2 = n("c1") * n("v1") / n("c2");
+            v2 = nurExact(v2, 1) ? v2 : nurR(v2, 1);
+            return [s(v2), s(nurR(v2 - n("v1"), 6))];
+          }
+          var v1 = nurMl(n("c2") * n("v2") / n("c1"));
+          return [s(v1), s(nurR(n("v2") - v1, 6))];
+        }
+        var amtD = n("amt") * f(o.au, o.du),
+          cc = o.c ? n("c") * f(o.cu, o.du) / (o.cv ? n("cv") : 1) : amtD / n("dil");
+        return [s(nurMl(n("d") / cc)), s(Math.floor(amtD / n("d") + 1e-9))];
+      }
+      if (o.mode === "units") {
+        if (o.task === "dose") return [s(nurMl(n("d") / n("h") * (o.q ? n("q") : 1)))];
+        var cu = n("amt") / n("bag");
+        if (o.task === "back") { var uh = n("rt") * cu; return [s(nurExact(uh, 1) ? uh : nurR(uh, 1))]; }
+        var kgU = o.per === "kghr" ? nurKg(o) : 1,
+          uhr = n("dose") * kgU,
+          list = [s(nurR(uhr / cu, 1))];
+        if (o.per === "kghr") list.push(s(uhr));
+        if (o.bol) list.push(s(n("bol") * kgU));
+        return list;
+      }
+      if (o.mode === "convert") {
+        if (o.from === "f") return [s(nurR((n("v") - 32) * 5 / 9, 1))];
+        if (o.from === "c") return [s(nurR(n("v") * 9 / 5 + 32, 1))];
+        var B = { mcg: 1e-6, mg: 1e-3, g: 1, kg: 1000, lb: 1000 / 2.2, mL: 1, L: 1000, tsp: 5, tbsp: 15, oz: 30, cup: 240, cm: 1, "in": 2.54, m: 100, ft: 30.48 };
+        var x = n("v") * B[o.from] / B[o.to];
+        return [s(o.from === "lb" || o.to === "lb" ? nurR(x, 1) : nurExact(x, 4) ? x : nurR(x, 2))];
+      }
+      if (o.mode === "bsa") {
+        var us = o.hu === "in" && o.wu === "lb",
+          H = o.hu === "in" && !us ? n("ht") * 2.54 : n("ht"),
+          Wt = o.wu === "lb" && !us ? nurR(n("wt") / 2.2, 1) : n("wt");
+        var bsa = nurR(Math.sqrt(H * Wt / (us ? 3131 : 3600)), 2),
+          r2 = [s(bsa)];
+        if (o.dose) r2.push(s(nurDose(bsa * n("dose"))));
+        return r2;
+      }
+      throw new Error("unknown mode " + o.mode);
+    }
+    // carpentry.html: re-work a made problem from its link, without the page's code; the numbers its answer should show, as text
+    function crpR(x, k) {
+      var p = Math.pow(10, k || 0),
+        a = Math.round(Number((Math.abs(x) * p).toFixed(6))) / p;
+      return x < 0 && a !== 0 ? -a : a;
+    }
+
+    function crpLen(s) { // inches, from 5ft7-3/8in, 104in, 12ft, 7-1/2in, 1/2in, 15ft1/2in
+      var m = /^(?:(\d+(?:\.\d+)?)ft)?(?:(?:(\d+(?:\.\d+)?)(?:-(\d+)\/(\d+))?|(\d+)\/(\d+))in)?$/.exec(String(s));
+      if (!m || !(m[1] || m[2] || m[5])) throw new Error("length " + s);
+      return (m[1] ? 12 * Number(m[1]) : 0) + (m[2] ? Number(m[2]) : 0) + (m[3] ? Number(m[3]) / Number(m[4]) : 0) + (m[5] ? Number(m[5]) / Number(m[6]) : 0);
+    }
+
+    function crpMix(x, den) { // a length already on the 1/den grid, as "7 3/8"
+      var n = Math.round(x * den),
+        w = Math.floor(n / den),
+        r = n - w * den,
+        g = function(a, b) { return b ? g(b, a % b) : a; },
+        k = g(r, den);
+      return r ? (w ? w + " " : "") + (r / k) + "/" + (den / k) : String(w);
+    }
+
+    function crpNear(x, den) { return Math.floor(x * den + 0.5 + 1e-9) / den; } // to the nearest 1/den, halfway up
+
+    function crpFtIn(x, ftAlways) { // feet and inches, as the page writes a length (feet only from a foot up, unless ftAlways)
+      var ft = Math.floor(x / 12 + 1e-9),
+        inch = x - 12 * ft;
+      return ft || ftAlways ? [String(ft), crpMix(inch, 64)] : [crpMix(inch, 64)];
+    }
+
+    function crpWork(o) {
+      var n = function(k) { return Number(o[k]); },
+        s = function(x, k) { return String(crpR(x, k)); },
+        D = Math.PI / 180;
+      if (o.mode === "tape") {
+        if (o.task === "add") {
+          var tot = String(o.t).split(",").reduce(function(a, t) { return /^-/.test(t) ? a - crpLen(t.slice(1)) : a + crpLen(t); }, 0);
+          var r16 = crpNear(tot, 16);
+          return crpFtIn(r16, true).concat(r16 >= 12 ? [crpMix(r16, 64)] : []);
+        }
+        if (o.task === "half" || o.task === "div") {
+          var part = crpLen(o.a) / (o.task === "half" ? 2 : n("n")),
+            p16 = crpNear(part, 16),
+            out = crpFtIn(p16, true);
+          if (Math.abs(p16 - part) > 1e-9 && Math.abs(part * 64 - Math.round(part * 64)) < 1e-9) out = out.concat(crpFtIn(part, true));
+          return out;
+        }
+        if (o.task === "dec") {
+          var den = o.den ? n("den") : 16,
+            x = n("x") * (o.u === "ft" ? 12 : 1);
+          return o.u === "ft" ? crpFtIn(crpNear(x, den), true) : [crpMix(crpNear(x, den), 64)];
+        }
+        return [s(crpLen(o.a), 6)];
+      }
+      if (o.mode === "lumber") {
+        var t4 = Math.round(n("t") * 4),
+          w4 = Math.round(n("w") * 4),
+          Lin = crpLen(o.l),
+          pcs = n("n") || 1,
+          top = t4 * w4 * Lin * pcs,
+          bf = top / (16 * 144),
+          res = [crpMix(bf, 2304)];
+        if (o.price) {
+          var pr = n("price"),
+            cost = o.per === "bf" ? bf * pr : o.per === "lf" ? pcs * Lin / 12 * pr : pcs * pr;
+          res.push(crpR(cost, 2).toFixed(2));
+        }
+        return res;
+      }
+      if (o.mode === "stairs") {
+        var rise = crpLen(o.rise),
+          mx = o.max ? crpLen(o.max) : 7.75,
+          tr = o.tread ? crpLen(o.tread) : 10,
+          nr = o.n ? n("n") : Math.ceil(rise / mx - 1e-9),
+          h16 = crpNear(rise / nr, 16),
+          run = tr * (nr - 1),
+          str = Math.sqrt(rise * rise + run * run);
+        return [String(nr), crpMix(h16, 16), String(nr - 1)].concat(crpFtIn(run)).concat(crpFtIn(crpNear(str, 16)));
+      }
+      if (o.mode === "roof") {
+        if (o.task === "angle") return [s(Math.atan(n("p") / 12) / D, 1)];
+        if (o.task === "pitch") {
+          if (o.ang !== undefined) return [s(12 * Math.tan(n("ang") * D), 2)];
+          var rr = crpLen(o.rise),
+            rn = crpLen(o.run);
+          return [s(12 * rr / rn, 2), s(Math.atan(rr / rn) / D, 1)];
+        }
+        var p = n("p"),
+          run2 = o.span ? crpLen(o.span) / 2 : crpLen(o.run),
+          f = Math.sqrt(144 + p * p) / 12,
+          raf = (run2 + (o.oh ? crpLen(o.oh) : 0)) * f;
+        return crpFtIn(crpNear(raf, 16)).concat(crpFtIn(crpNear(run2 * p / 12, 16))).concat([s(Math.atan(p / 12) / D, 1)]);
+      }
+      if (o.mode === "square") {
+        if (o.task === "345") return [s(3 * n("k"), 4), s(4 * n("k"), 4), s(5 * n("k"), 4)];
+        if (o.task === "diags") {
+          var d1 = crpLen(o.d1),
+            d2 = crpLen(o.d2);
+          return d1 === d2 ? [] : [crpMix(Math.abs(d1 - d2), 64)].concat(crpFtIn((d1 + d2) / 2, true));
+        }
+        var a = crpLen(o.a),
+          b = crpLen(o.b);
+        return crpFtIn(crpNear(Math.sqrt(a * a + b * b), 16), true);
+      }
+      if (o.mode === "spacing") {
+        if (o.task === "oc") return [String(Math.ceil(crpLen(o.len) / crpLen(o.oc) - 1e-9) + 1)];
+        var S = crpLen(o.span),
+          bw = o.w ? crpLen(o.w) : 1.5,
+          g = o.gap ? crpLen(o.gap) : 4,
+          nb = Math.floor((S - g) / (bw + g) + 1e-9) + 1;
+        return [String(nb), s((S - nb * bw) / (nb + 1), 3)];
+      }
+      if (o.mode === "area") {
+        var L = crpLen(o.len) / 12,
+          W = crpLen(o.wid) / 12;
+        if (o.task === "paint") {
+          var wall = 2 * (L + W) * crpLen(o.ht) / 12 - (n("doors") || 0) * 20 - (n("windows") || 0) * 15 + (o.ceil === "1" ? L * W : 0),
+            paint = wall * (n("coats") || 2),
+            gal = paint / (n("cov") || 350);
+          return [String(Math.ceil(gal - 1e-9)), s(gal, 2), s(paint, 2)];
+        }
+        var withW = L * W * (1 + (n("waste") || 0) / 100),
+          outA = [s(withW, 2)];
+        if (o.task === "tile") outA.push(String(Math.ceil(withW / (crpLen(o.tl) * crpLen(o.tw || o.tl) / 144) - 1e-9)));
+        else if (o.task === "sheets") outA.push(String(Math.ceil(withW / 32 - 1e-9)));
+        else outA.push(String(o.box ? Math.ceil(withW / n("box") - 1e-9) : Math.ceil(withW - 1e-9)));
+        return outA;
+      }
+      if (o.mode === "concrete") {
+        var cuft = o.task === "posts" ? (n("n") || 1) * Math.PI * Math.pow(crpLen(o.dia) / 2, 2) * crpLen(o.dep) / 1728 : crpLen(o.len) * crpLen(o.wid) * crpLen(o.th) / 1728;
+        cuft *= 1 + (n("waste") || 0) / 100;
+        var outC = [s(cuft / 27, 2), s(cuft, 2)],
+          yieldFt = { 40: 0.3, 50: 0.375, 60: 0.45, 80: 0.6 };
+        if (o.bag) outC.push(String(Math.ceil(cuft / yieldFt[o.bag] - 1e-9)));
+        return outC;
+      }
+      if (o.mode === "angles") {
+        if (o.task === "miter") return [s(180 / n("n"), 2)];
+        if (o.task === "corner") return [s((180 - n("a")) / 2, 2)];
+        if (o.task === "crown") {
+          var h = n("a") / 2 * D,
+            sp = n("spring") * D;
+          return [s(Math.atan(Math.sin(sp) / Math.tan(h)) / D, 1), s(Math.asin(Math.cos(sp) * Math.cos(h)) / D, 1)];
+        }
+        var pct = o.pct !== undefined ? n("pct") : o.deg !== undefined ? Math.tan(n("deg") * D) * 100 : o.r ? Number(o.r.split(":")[0]) / Number(o.r.split(":")[1]) * 100 : crpLen(o.rpf) / 12 * 100;
+        return o.deg !== undefined ? [s(pct, 2)] : [s(Math.atan(pct / 100) / D, 2)];
+      }
+      throw new Error("unknown mode " + o.mode);
+    }
+    // electrical.html: re-work a made problem from its link, independently of the page's code; every number the page's
+    // answer should show, as text (rounded the page's way: exact when 6 significant figures hold it, else 4)
+    function elSig(x) {
+      var a = Math.abs(x),
+        k, t;
+      if (!a) return "0";
+      for (k = 1; k <= 6; k++) { t = Number(a.toPrecision(k)); if (Math.abs(t - a) <= 1e-9 * a) break; }
+      if (k > 6) t = Number(a.toPrecision(4));
+      var str = t.toFixed(Math.max(0, Math.min(20, 6 - Math.floor(Math.log(t) / Math.LN10)))).replace(/(\.\d*?)0+$/, "$1").replace(/\.$/, "");
+      return (x < 0 ? "-" : "") + str;
+    }
+
+    function elC(x) { var p = Math.round(Number((Math.abs(x) * 100).toFixed(6))) / 100; return String(p); } // to the cent
+    function elE(s) { var m = /^(-?[\d.]+(?:e[-+]?\d+)?)([GMkmunp]?)$/.exec(String(s)); return Number(m[1]) * ({ G: 1e9, M: 1e6, k: 1e3, m: 1e-3, u: 1e-6, n: 1e-9, p: 1e-12 } [m[2]] || 1); }
+
+    function elWork(o) {
+      var e = function(k) { return elE(o[k]); };
+      if (o.mode === "ohm") {
+        if (o.v === undefined) return [elSig(e("i") * e("r"))];
+        if (o.i === undefined) return [elSig(e("v") / e("r"))];
+        return [elSig(e("v") / e("i"))];
+      }
+      if (o.mode === "power") {
+        var HP = 746;
+        if (o.conv) { var f = { w: 1, kw: 1000, hp: HP }; return [elSig(Number(o.x) * f[o.from] / f[o.to])]; }
+        var p = o.hp !== undefined ? Number(o.hp) * HP : o.p !== undefined ? e("p") : null,
+          v = o.v !== undefined ? e("v") : null,
+          i = o.i !== undefined ? e("i") : null,
+          r = o.r !== undefined ? e("r") : null;
+        if (p === null && v !== null && i !== null) return [elSig(v * i), elSig(v / i)];
+        if (p === null && v !== null) return [elSig(v / r), elSig(v * v / r)];
+        if (p === null) return [elSig(i * r), elSig(i * i * r)];
+        if (v !== null) return [elSig(p / v), elSig(v * v / p)];
+        if (i !== null) return [elSig(p / i), elSig(p / (i * i))];
+        return [elSig(Math.sqrt(p / r)), elSig(Math.sqrt(p * r))];
+      }
+      if (o.mode === "resistors") {
+        var s = o.net,
+          at = 0;
+        var node = function() {
+          var c = s.charAt(at);
+          if ((c === "s" || c === "p") && s.charAt(at + 1) === "(") {
+            at += 2;
+            var k = [node()];
+            while (s.charAt(at) === ",") {
+              at++;
+              k.push(node());
+            }
+            at++;
+            return c === "s" ? k.reduce(function(a, b) { return a + b; }, 0) : 1 / k.reduce(function(a, b) { return a + 1 / b; }, 0);
+          }
+          var m = /^[\d.]+(?:e[-+]?\d+)?[GMkmunp]?/.exec(s.slice(at));
+          at += m[0].length;
+          return elE(m[0]);
+        };
+        var R = node();
+        return o.v !== undefined ? [elSig(R), elSig(e("v") / R)] : [elSig(R)];
+      }
+      if (o.mode === "drop") {
+        // NEC Chapter 9 Table 8, ohms per 1,000 ft at 75 °C (stranded; solid for 18-8 AWG when asked)
+        var SZ = ["18", "16", "14", "12", "10", "8", "6", "4", "3", "2", "1", "1/0", "2/0", "3/0", "4/0"];
+        var CU = [7.95, 4.99, 3.14, 1.98, 1.24, 0.778, 0.491, 0.308, 0.245, 0.194, 0.154, 0.122, 0.0967, 0.0766, 0.0608],
+          CUS = [7.77, 4.89, 3.07, 1.93, 1.21, 0.764],
+          AL = [13.1, 8.21, 5.17, 3.25, 2.04, 1.28, 0.808, 0.508, 0.403, 0.319, 0.253, 0.201, 0.159, 0.126, 0.1],
+          ALS = [12.8, 8.05, 5.06, 3.18, 2.0, 1.26];
+        var j = SZ.indexOf(o.awg),
+          solid = o.solid === "1" && j < 6;
+        var rk = o.ohm !== undefined ? e("ohm") : o.mat === "al" ? (solid ? ALS : AL)[j] : (solid ? CUS : CU)[j];
+        var L = e("len") * (o.lu === "m" ? 3.28084 : 1),
+          vd = (o.ph === "3" ? Math.sqrt(3) : 2) * L * e("i") * rk / 1000;
+        var out = [elSig(vd)];
+        if (o.v !== undefined) out.push(String(Math.round(Number((vd / e("v") * 100 * 100).toFixed(6))) / 100));
+        return out;
+      }
+      if (o.mode === "load") {
+        var V = e("v"),
+          B = e("brk");
+        if (o.task === "count") {
+          var each = o.each !== undefined ? e("each") : e("eachA") * V,
+            lim = (o.cont === "0" ? 1 : 0.8) * B * V;
+          return [String(Math.floor(lim / each + 1e-9))];
+        }
+        var tot = 0;
+        if (o.w) o.w.split(",").forEach(function(x) { tot += elE(x); });
+        if (o.a) o.a.split(",").forEach(function(x) { tot += elE(x) * V; });
+        return [elSig(tot / V), elSig(0.8 * B)];
+      }
+      if (o.mode === "energy") {
+        var day = Number(o.n || 1) * e("w") / 1000 * Number(o.h) * Number(o.rate),
+          days = o.days ? Number(o.days) : 30;
+        return [elC(day), elC(day * days), elC(day * (o.days ? 12 * days : 365))];
+      }
+      if (o.mode === "color") {
+        var COL = ["black", "brown", "red", "orange", "yellow", "green", "blue", "violet", "gray", "white"],
+          TOL = { brown: 1, red: 2, green: 0.5, blue: 0.25, violet: 0.1, gray: 0.05, gold: 5, silver: 10, none: 20 };
+        if (o.bands) {
+          var b = o.bands.split("-"),
+            nd = b.length === 5 ? 3 : 2,
+            d = "";
+          for (var q = 0; q < nd; q++) d += COL.indexOf(b[q]);
+          var mul = b[nd] === "gold" ? 0.1 : b[nd] === "silver" ? 0.01 : Math.pow(10, COL.indexOf(b[nd]));
+          return [elSig(Number(d) * mul), String(b.length >= 4 ? TOL[b[b.length - 1]] : 20)];
+        }
+        var r0 = e("r"),
+          ex, dd = null;
+        var split = function(digs) { // r0 = a digs-digit whole number × 10^ex
+          for (ex = -2; ex <= 9; ex++) {
+            var y = r0 / Math.pow(10, ex),
+              z = Math.round(y);
+            if (Math.abs(y - z) < 1e-7 * Math.max(1, y) && z >= Math.pow(10, digs - 1) && z < Math.pow(10, digs)) return String(z);
+          }
+          return null;
+        };
+        dd = split(o.n === "5" ? 3 : 2);
+        if (dd === null && !o.n) dd = split(3); // a 3-digit value takes 5 bands
+        var tol = o.tol !== undefined ? Number(o.tol) : dd.length === 3 ? 1 : 5,
+          tc = "none";
+        Object.keys(TOL).forEach(function(c) { if (TOL[c] === tol) tc = c; });
+        return { words: dd.split("").map(function(x) { return COL[Number(x)]; }).concat([ex === -1 ? "gold" : ex === -2 ? "silver" : COL[ex]]).concat(tc === "none" ? [] : [tc]).join(" ") };
+      }
+      if (o.mode === "rc") {
+        if (o.task === "s" || o.task === "p") {
+          var cs = o.c.split(",").map(elE);
+          return [elSig(o.task === "p" ? cs.reduce(function(a, c) { return a + c; }, 0) : 1 / cs.reduce(function(a, c) { return a + 1 / c; }, 0))];
+        }
+        var tau = e("r") * e("c");
+        if (o.task === "tau") return [elSig(tau)];
+        if (o.task === "time") return [elSig(tau * Math.log(o.dir === "discharge" ? e("vs") / e("vt") : e("vs") / (e("vs") - e("vt"))))];
+        var x = Math.exp(-e("t") / tau);
+        return [elSig(o.task === "charge" ? e("vs") * (1 - x) : e("vs") * x)];
+      }
+      if (o.mode === "ac") {
+        if (o.task === "period") return [elSig(1 / e("f"))];
+        if (o.task === "freq") return [elSig(1 / e("t"))];
+        var pf = o.pf !== undefined ? Number(o.pf) : 1;
+        if (o.task === "3ph") return [elSig(Math.sqrt(3) * e("v") * e("i") * pf)];
+        if (o.task === "3phi") return [elSig(e("p") / (Math.sqrt(3) * e("v") * pf))];
+        var pk = o.from === "pk" ? e("x") : o.from === "rms" ? e("x") * Math.SQRT2 : e("x") / 2,
+          to = o.to || (o.from === "rms" ? "pk" : "rms");
+        return [elSig(to === "pk" ? pk : to === "rms" ? pk / Math.SQRT2 : 2 * pk)];
+      }
+      throw new Error("unknown mode " + o.mode);
+    }
+    // cooking.html: re-work a made problem from its link. Fixed answers are listed as text; scaled recipe amounts are
+    // checked instead of copied: each amount on the page must be within the kitchen-rounding allowance of the exact
+    // product, and written with fractions a set of cups and spoons can measure.
+    function ckR(x, k) {
+      var p = Math.pow(10, k || 0),
+        a = Math.round(Number((Math.abs(x) * p).toFixed(6))) / p;
+      return x < 0 && a !== 0 ? -a : a;
+    }
+
+    function ckF(s) { // "1 1/2", "3/2", "2.5" → a number
+      s = String(s).trim();
+      var m = /^(\d+)\s+(\d+)\/(\d+)$/.exec(s);
+      if (m) return +m[1] + m[2] / m[3];
+      m = /^(\d+)\/(\d+)$/.exec(s);
+      return m ? m[1] / m[2] : Number(s);
+    }
+    var CK_TSP = { tsp: 1, tbsp: 3, floz: 6, cup: 48, pint: 96, quart: 192, gallon: 768 },
+      CK_ML = 4.92892159375,
+      CK_G = { g: 1, kg: 1000, oz: 28.349523125, lb: 453.59237 },
+      CK_CUP = { flour: 125, sugar: 200, brown: 220, butter: 226.8, rice: 185, water: 237, milk: 244, honey: 340, salt: 292 };
+
+    function ckToMl(v, u) { return u === "ml" ? v : u === "l" ? v * 1000 : v * CK_TSP[u] * CK_ML; }
+
+    function ckHM(min) {
+      var h = Math.floor(min / 60),
+        r = min - h * 60;
+      return h ? String(h) + (r ? " h " + r + " min" : " h") : r + " min";
+    }
+
+    function ckClock(min, h24) {
+      var m = ((Math.round(min) % 1440) + 1440) % 1440,
+        h = Math.floor(m / 60),
+        mm = m % 60;
+      return h24 ? (h < 10 ? "0" : "") + h + ":" + (mm < 10 ? "0" : "") + mm : (h % 12 || 12) + ":" + (mm < 10 ? "0" : "") + mm + (h < 12 ? " am" : " pm");
+    }
+
+    function ckScale(o, ans) {
+      var k = o.k ? ckF(o.k) : o.to / o.from,
+        items = (o.items || "").split("|").filter(Boolean).map(function(x) { var p = x.split("~"); return { a: p[0], u: p[1], n: p.slice(2).join(" ") }; }).filter(function(x) { return x.a; });
+      if (!items.length) {
+        var g = function(a, b) { return b ? g(b, a % b) : a; },
+          n = Math.round(o.to * 1e4),
+          d = Math.round(o.from * 1e4),
+          c = g(n, d);
+        n /= c;
+        d /= c;
+        var want = d === 1 ? String(n) : (n > d ? Math.floor(n / d) + " " + (n % d) + "/" + d : n + "/" + d);
+        return String(ans).indexOf(want) === 0 ? { ok: true } : { ok: false, msg: "expected the factor " + want };
+      }
+      var parts = String(ans).split(/;\s*/);
+      if (parts.length !== items.length) return { ok: false, msg: "expected " + items.length + " amounts, got " + parts.length };
+      for (var i = 0; i < items.length; i++) {
+        var it = items[i],
+          ex = ckF(it.a) * k,
+          s = parts[i],
+          re = /(\d+(?:\s+\d+\/\d+)?|\d+\/\d+|\d*\.\d+)\s*(cups?|tbsp|tsp|sticks?|fl oz|pints?|quarts?|gallons?|mL|L|kg|g|oz|lb)\b/g,
+          m, sum = 0,
+          any = false,
+          badF = null;
+        var vol = CK_TSP[it.u] || it.u === "stick",
+          met = it.u === "ml" || it.u === "l",
+          wt = CK_G[it.u];
+        while ((m = re.exec(s))) {
+          any = true;
+          var v = ckF(m[1]),
+            u = m[2].replace(/s$/, "").replace(/^stick$/, "stick"),
+            den = /\//.test(m[1]) ? +m[1].split("/")[1] : 1;
+          if (vol) {
+            var per = u === "stick" ? 24 : CK_TSP[u === "fl oz" ? "floz" : u];
+            if (!per) return { ok: false, msg: "“" + s + "”: not a volume" };
+            if ({ cup: [1, 2, 3, 4], tbsp: [1, 2], tsp: [1, 2, 4, 8], stick: [1, 2] } [u] && { cup: [1, 2, 3, 4], tbsp: [1, 2], tsp: [1, 2, 4, 8], stick: [1, 2] } [u].indexOf(den) < 0) badF = m[0];
+            sum += v * per;
+          } else if (met) sum += m[2] === "L" ? v * 1000 : v;
+          else if (wt) sum += v * CK_G[m[2]];
+        }
+        var exB = vol ? ex * (it.u === "stick" ? 24 : CK_TSP[it.u]) : met ? (it.u === "l" ? ex * 1000 : ex) : wt ? ex * CK_G[it.u] : ex;
+        if (!vol && !met && !wt) {
+          var cm = /^(\d+\s+\d+\/\d+|\d+\/\d+|\d+)/.exec(s);
+          if (!cm) return { ok: false, msg: "“" + s + "”: no count" };
+          sum = ckF(cm[1]);
+          any = true;
+          if (Math.abs(sum * 2 - Math.round(sum * 2)) > 1e-9) badF = cm[1];
+        }
+        if (!any) return { ok: false, msg: "“" + s + "”: no amount read" };
+        if (badF) return { ok: false, msg: "“" + s + "”: " + badF + " can’t be measured" };
+        var tol = vol ? (exB < 3 ? 1 / 16 : exB < 12 ? 1 / 8 : Math.max(exB < 96 ? 0.5 : exB < 192 ? 1.5 : 2.01, exB * 0.025)) : met ? (exB < 100 ? 0.5 : exB < 995 ? 2.5 : 5) : wt ? (it.u === "g" || it.u === "kg" ? (exB < 10 ? 0.25 : it.u === "kg" && exB >= 1000 ? 5 : 0.5) : CK_G.oz / 8) : 0.25;
+        if (Math.abs(sum - exB) > tol + 1e-6) return { ok: false, msg: "“" + s + "”: " + sum.toFixed(3) + " but " + it.a + " × " + k.toFixed(4) + " = " + exB.toFixed(3) };
+      }
+      return { ok: true };
+    }
+
+    function ckWork(o) {
+      var n = function(k) { return Number(o[k]); },
+        s = function(x, k) { return String(ckR(x, k)); };
+      if (o.mode === "volume") {
+        var v = ckF(o.v);
+        if (CK_TSP[o.from] && CK_TSP[o.to]) return [String(o.v) + "*" + CK_TSP[o.from] + "/" + CK_TSP[o.to]];
+        var ml = ckToMl(v, o.from),
+          r = o.to === "ml" ? ml : o.to === "l" ? ml / 1000 : ml / (CK_TSP[o.to] * CK_ML);
+        return [s(r, o.to === "ml" ? 1 : o.to === "l" ? 3 : 2)];
+      }
+      if (o.mode === "weight") {
+        var g = CK_CUP[o.ing],
+          w = ckF(o.v);
+        if (CK_G[o.to]) {
+          var cups = o.from === "stick" ? w / 2 : ckToMl(w, o.from) / (48 * CK_ML),
+            gr = cups * g;
+          return [s(gr / CK_G[o.to], o.to === "g" ? 0 : 2)];
+        }
+        var cu = w * CK_G[o.from] / g;
+        return [s(o.to === "ml" ? cu * 48 * CK_ML : o.to === "l" ? cu * 48 * CK_ML / 1000 : cu * 48 / CK_TSP[o.to], 2)];
+      }
+      if (o.mode === "bakers") {
+        var L = function(k) { return o[k].split(",").map(function(x) { var p = x.split(":"); return [p[0], Number(p[1])]; }); },
+          d = function(x) { return o.u === "kg" ? 3 : o.u === "oz" ? 1 : o.u === "lb" ? 2 : x < 10 ? 1 : 0; };
+        if (o.task === "pct") {
+          var ws = L("w"),
+            fl = ws[0][1];
+          return ws.slice(1).map(function(x) { return s(x[1] / fl * 100, 1); });
+        }
+        var ps = L("p"),
+          sum = 100 + ps.reduce(function(a, x) { return a + x[1]; }, 0),
+          flour = o.task === "target" ? n("total") * 100 / sum : n("flour");
+        var out = ps.map(function(x) { var wv = flour * x[1] / 100; return s(wv, d(wv)); });
+        if (o.task === "target") out.unshift(s(flour, d(flour)));
+        else out.push(s(flour * sum / 100, d(flour * sum / 100)));
+        return out;
+      }
+      if (o.mode === "cost") {
+        if (o.task === "fc") { var per = o.serv ? n("cost") / n("serv") : n("cost"); return (o.serv ? [s(per, 2)] : []).concat([s(per / n("price") * 100, 1)]); }
+        if (o.task === "price") { var per2 = o.serv ? n("cost") / n("serv") : n("cost"); return [s(per2 / (n("target") / 100), 2)]; }
+        var base = function(v, u) { return u === "each" ? v : u === "dozen" ? v * 12 : CK_G[u] ? v * CK_G[u] : u === "stick" ? v * 24 : u === "ml" || u === "l" ? ckToMl(v, u) / CK_ML : v * CK_TSP[u]; },
+          kind = function(u) { return u === "each" || u === "dozen" ? "n" : CK_G[u] ? "w" : "v"; };
+        var tot = o.items.split("|").reduce(function(acc, x) {
+          var p = x.split("~"),
+            price = Number(p[1]),
+            pq = Number(p[2]),
+            use = ckF(p[4]),
+            inPkg;
+          if (kind(p[3]) === kind(p[5])) inPkg = base(use, p[5]) / base(1, p[3]);
+          else {
+            var nm = p[0].toLowerCase(),
+              gc = /brown\s+sugar/.test(nm) ? CK_CUP.brown : /flour/.test(nm) ? CK_CUP.flour : /sugar/.test(nm) ? CK_CUP.sugar : /butter/.test(nm) ? CK_CUP.butter : /rice/.test(nm) ? CK_CUP.rice : /milk/.test(nm) ? CK_CUP.milk : /honey/.test(nm) ? CK_CUP.honey : /salt/.test(nm) ? CK_CUP.salt : CK_CUP.water;
+            var grams = kind(p[5]) === "v" ? base(use, p[5]) / 48 * gc : base(use, p[5]);
+            inPkg = kind(p[3]) === "w" ? grams / CK_G[p[3]] : grams / gc * 48 / base(1, p[3]);
+          }
+          return acc + inPkg * price / pq;
+        }, 0);
+        return [s(tot, 2)].concat(o.serv ? [s(tot / n("serv"), 2)] : []);
+      }
+      if (o.mode === "oven") {
+        var vv = ckF(o.v),
+          F = o.from === "f" ? vv : o.from === "c" ? vv * 9 / 5 + 32 : vv >= 1 ? 250 + 25 * vv : vv === 0.5 ? 250 : 225;
+        if (o.conv) F -= 25;
+        var C = o.from === "c" && !o.conv ? vv : o.from === "c" ? vv - 125 / 9 : (F - 32) * 5 / 9;
+        if (o.to === "gas") { var gm = F < 237.5 ? "1/4" : F < 262.5 ? "1/2" : String(Math.max(1, Math.min(9, Math.round((F - 250) / 25)))); return [gm]; }
+        return [s(o.to === "c" ? C : F, 1)];
+      }
+      if (o.mode === "time") {
+        var wl = o.wu === o.ru ? n("w") : o.wu === "kg" ? n("w") * 2.20462262 : n("w") / 2.20462262,
+          cook = ckR(wl * n("rate") + (o.plus ? n("plus") : 0), 0),
+          tt = cook + (o.rest ? n("rest") : 0),
+          clk = function(t) { var p = t.split(":"); return +p[0] * 60 + +p[1]; };
+        var hmT = ckHM(cook).match(/\d+/g);
+        if (o.ready) return ckClock(clk(o.ready) - tt, o.clock === "24").match(/\d+/g).concat(hmT);
+        if (o.start) return ckClock(clk(o.start) + tt, o.clock === "24").match(/\d+/g);
+        return hmT;
+      }
+      if (o.mode === "pans") {
+        var ar = function(t) { var p = t.split(":"); return p[0] === "round" ? Math.PI * p[1] * p[1] / 4 : p[0] === "square" ? p[1] * p[1] : p[1] * p[2]; },
+          A = ar(o.a) * (o.na ? n("na") : 1);
+        if (!o.b) return [s(A, 1)];
+        var Bv = ar(o.b) * (o.nb ? n("nb") : 1);
+        return [s(Bv / A, 2), s(A, 1), s(Bv, 1)];
+      }
+      if (o.mode === "ratios") {
+        if (o.kind === "brine" || o.kind === "salt") {
+          var am = ckF(o.kind === "brine" ? o.water : o.w),
+            gw = CK_G[o.wu] ? am * CK_G[o.wu] : ckToMl(am, o.wu),
+            sa = gw * n("pct") / 100;
+          return [s(sa, sa < 10 ? 1 : 0)];
+        }
+        var a = ckF(o.a),
+          b = ckF(o.b);
+        if (o.kind === "rice") return [o.rice + "*" + o.b + "/(" + o.a + ")"];
+        if (o.kind === "coffee") {
+          if (o.coffee) return [s(ckF(o.coffee) * CK_G[o.cu] * b / a, 0)];
+          var wg = CK_G[o.wu] ? ckF(o.water) * CK_G[o.wu] : ckToMl(ckF(o.water), o.wu);
+          return [s(wg * a / b, 1)];
+        }
+        if (o.total) return ["(" + o.total + ")*" + o.a + "/(" + o.a + "+" + o.b + ")", "(" + o.total + ")*" + o.b + "/(" + o.a + "+" + o.b + ")"];
+        if (o.oil) return ["(" + o.oil + ")*" + o.b + "/(" + o.a + ")"];
+        return ["(" + o.vin + ")*" + o.a + "/(" + o.b + ")"];
+      }
+      throw new Error("unknown mode " + o.mode);
+    }
     var ORACLE = {
       "counting.html": function(p, a, ansText) {
         var o = P(p),
@@ -4911,6 +5851,18 @@
         return need(a, [X(R(v))]);
       },
       "aviation.html": function(p, a) { return need(a, aviWork(P(p)).map(function(v) { return X(v); })); },
+      "nursing.html": function(p, a) { return need(a, nurWork(P(p)).map(function(v) { return X(v); })); },
+      "carpentry.html": function(p, a) { return need(a, crpWork(P(p)).map(function(v) { return X(v); })); },
+      "electrical.html": function(p, a, t) {
+        var w = elWork(P(p));
+        if (w.words) return String(t || "").trim() === w.words ? { ok: true } : { ok: false, msg: "expected the bands “" + w.words + "”" };
+        return need(a, w.map(function(v) { return X(v); }));
+      },
+      "cooking.html": function(p, a, ansText) {
+        var o = P(p);
+        if (o.mode === "scale") return ckScale(o, ansText);
+        return need(a, ckWork(o).map(function(v) { return /[*()]/.test(v) ? { exact: evaluate(v) } : X(v); }));
+      },
       "money-math.html": function(p, a, ansText) {
         var o = P(p),
           want, got, t = String(ansText);
@@ -7774,6 +8726,201 @@
           return linksOn(T, d).then(function() { drop(fr); });
         });
       },
+      /* the Worksheet Maker: a standard's problems (?std=…&n=…), the worksheet link back to the same numbers, and a code
+         that isn't a standard (the saved worksheet stays, with a note) */
+      "worksheet.html": function(T) {
+        var kp = 0,
+          kf = 0;
+
+        function until(test, ms) {
+          var t0 = Date.now();
+          return new Promise(function(ok) {
+            (function poll() {
+              var v = false;
+              try { v = test(); } catch (e) {}
+              if (v || Date.now() - t0 > ms) ok(!!v);
+              else setTimeout(poll, 100);
+            })();
+          });
+        }
+
+        function expect(what, good) {
+          if (good) {
+            kp++;
+            pass();
+          } else {
+            kf++;
+            fail(T.page, "known answer", what, T.page);
+          }
+        }
+        return load(T.page + "?std=6.RP.A.3&n=12").then(function(fr) {
+          var d = docOf(fr),
+            w = fr.f.contentWindow,
+            probs = [];
+          if (!d.querySelector(".sitenav")) probs.push("no nav bar");
+          if (!w.__worksheet) probs.push("no worksheet hooks");
+          if (!w.HelperAssign || !w.HelperAssign.bank) probs.push("no problem banks (assign.js)");
+          if (fr.errs.length) probs.push("script error: " + fr.errs[0]);
+          if (probs.length) {
+            fail(T.page, "loads", probs.join("; "), T.page);
+            score(T.page, "load", 0, 1);
+            drop(fr);
+            return;
+          }
+          pass();
+          score(T.page, "load", 1, 0);
+          var want = "";
+          return until(function() { return !w.__worksheet.busy() && w.__worksheet.items(0).length >= 12; }, 25000).then(function() {
+            var S = w.__worksheet.state(),
+              it = w.__worksheet.items(0),
+              box = d.getElementById("stdBox");
+            expect("6.RP.A.3: 12 problems (got " + it.length + ")", it.length === 12);
+            expect("6.RP.A.3: the title names the standard (" + S.title + ")", /^6\.RP\.A\.3: /.test(S.title));
+            expect("6.RP.A.3: every problem links to its steps", it.length && it.every(function(x) { return x.p && x.p.params; }));
+            expect("6.RP.A.3: the note says what was made", box && !box.hidden && !/warn/.test(box.className));
+            want = it.map(function(x) { return x.p.text; }).join("|");
+            return w.__worksheet.wsLink();
+          }).then(function(link) {
+            drop(fr);
+            return load(T.page + "?" + String(link).split("?")[1]);
+          }).then(function(fr2) {
+            var w2 = fr2.f.contentWindow;
+            return until(function() { return !w2.__worksheet.busy() && w2.__worksheet.items(0).length >= 12; }, 25000).then(function() {
+              expect("the worksheet link brings back the same problems", w2.__worksheet.items(0).map(function(x) { return x.p.text; }).join("|") === want);
+              drop(fr2);
+              return load(T.page + "?std=NOT.A.CODE&n=10");
+            });
+          }).then(function(fr3) {
+            var d3 = docOf(fr3),
+              w3 = fr3.f.contentWindow;
+            return until(function() { return !w3.__worksheet.busy() && w3.__worksheet.items(0).length > 0; }, 25000).then(function() {
+              var box = d3.getElementById("stdBox");
+              expect("a code that isn’t a standard says so", box && !box.hidden && /warn/.test(box.className) && /Not a standard/.test(box.textContent));
+              expect("… and keeps the worksheet (" + w3.__worksheet.state().title + ")", /^6\.RP\.A\.3: /.test(w3.__worksheet.state().title));
+              score(T.page, "known", kp, kf);
+              return linksOn(T, d3).then(function() { drop(fr3); });
+            });
+          });
+        });
+      },
+      /* the practice page: an assignment for a standard (?assignment&std=…&n=…) fills a new draft; a draft that already has
+         problems is only changed when the teacher says so (the run puts the real draft back afterwards) */
+      "practice.html": function(T) {
+        var kp = 0,
+          kf = 0;
+
+        function until(test, ms) {
+          var t0 = Date.now();
+          return new Promise(function(ok) {
+            (function poll() {
+              var v = false;
+              try { v = test(); } catch (e) {}
+              if (v || Date.now() - t0 > ms) ok(!!v);
+              else setTimeout(poll, 100);
+            })();
+          });
+        }
+
+        function expect(what, good) {
+          if (good) {
+            kp++;
+            pass();
+          } else {
+            kf++;
+            fail(T.page, "known answer", what, T.page);
+          }
+        }
+        try { localStorage.removeItem("assignment-draft"); } catch (e) {}
+        return load(T.page + "?assignment&std=4.NBT.B.5,HSA-REI.B.4&n=5").then(function(fr) {
+          var d = docOf(fr),
+            w = fr.f.contentWindow,
+            probs = [];
+          if (!d.querySelector(".sitenav")) probs.push("no nav bar");
+          if (!w.__practice) probs.push("no practice hooks");
+          if (fr.errs.length) probs.push("script error: " + fr.errs[0]);
+          if (probs.length) {
+            fail(T.page, "loads", probs.join("; "), T.page);
+            score(T.page, "load", 0, 1);
+            drop(fr);
+            return;
+          }
+          pass();
+          score(T.page, "load", 1, 0);
+          return until(function() { var a = w.__practice.draft(); return a && a.items.length >= 10 && !/Making/.test(d.getElementById("aStdBox").textContent); }, 25000).then(function() {
+            var a = w.__practice.draft();
+            expect("two standards, 5 each: 10 problems in the draft (got " + a.items.length + ")", a.items.length === 10 && d.querySelectorAll("#aList li").length === 10);
+            expect("the title names the standards (" + a.title + ")", /^4\.NBT\.B\.5, HSA-REI\.B\.4/.test(a.title));
+            expect("every problem is a helper link", a.items.every(function(x) { return x.p && x.q; }));
+            drop(fr);
+            return load(T.page + "?assignment&std=7.G.B.4&n=10");
+          }).then(function(fr2) {
+            var d2 = docOf(fr2),
+              w2 = fr2.f.contentWindow;
+            return until(function() { return d2.querySelector("#aStdBox [data-std]"); }, 25000).then(function() {
+              expect("a draft with problems: it asks first", w2.__practice.draft().items.length === 10 && /already has 10/.test(d2.getElementById("aStdBox").textContent));
+              d2.querySelector('#aStdBox [data-std="keep"]').click();
+              expect("… and Keep leaves it as it was", w2.__practice.draft().items.length === 10 && /^4\.NBT\.B\.5/.test(w2.__practice.draft().title));
+              score(T.page, "known", kp, kf);
+              return linksOn(T, d2).then(function() { drop(fr2); });
+            });
+          });
+        });
+      },
+      "skills.html": function(T) {
+        return load(T.page + "?grade=6").then(function(fr) {
+          var d = docOf(fr),
+            w = fr.f.contentWindow,
+            probs = [];
+          if (!d.querySelector(".sitenav")) probs.push("no nav bar");
+          if (!w.__skills) probs.push("no skill-map hooks");
+          if (d.querySelectorAll(".gbtn").length < 9) probs.push("only " + d.querySelectorAll(".gbtn").length + " grades");
+          if (!d.querySelectorAll("#domains .std").length) probs.push("no standards for grade 6");
+          if (!/^Grade 6$/.test((d.getElementById("gvTitle") || {}).textContent || "")) probs.push("didn’t open on grade 6");
+          if (fr.errs.length) probs.push("script error: " + fr.errs[0]);
+          if (probs.length) {
+            fail(T.page, "loads", probs.join("; "), T.page);
+            score(T.page, "load", 0, 1);
+            drop(fr);
+            return;
+          }
+          pass();
+          score(T.page, "load", 1, 0);
+          var kp = 0,
+            kf = 0,
+            S = w.__skills;
+
+          function expect(what, got, want) {
+            if (got === want) {
+              kp++;
+              pass();
+            } else {
+              kf++;
+              fail(T.page, "known answer", what + ": expected " + JSON.stringify(want) + ", got " + JSON.stringify(got), T.page);
+            }
+          }
+          // the rule: right first time or not, oldest first
+          expect("no problems", S.statusOf([]), "none");
+          expect("one wrong", S.statusOf([false]), "prac");
+          expect("two right", S.statusOf([true, true]), "get");
+          expect("four right of four", S.statusOf([true, true, true, true]), "get");
+          expect("five right of five", S.statusOf([true, true, true, true, true]), "mast");
+          expect("4 of the last 5", S.statusOf([false, true, true, true, true]), "mast");
+          expect("slipped back", S.statusOf([true, true, true, true, false, false]), "get");
+          // which tab a problem was on
+          expect("addition fractions", S.tabOf("addition.html", "q=1/2%2B1/3"), "frac");
+          expect("multiplication decimals", S.tabOf("multiplication.html", "q=38*96"), "dec");
+          expect("division fractions", S.tabOf("division.html", "q=3%2F4%C3%B71%2F8"), "");
+          expect("division as a decimal", S.tabOf("division.html", "q=330%C3%B72&ans=decimal&places=6"), "decimal");
+          expect("integers subtract", S.tabOf("integers.html", "q=3-(-3)"), "sub");
+          expect("integers chain", S.tabOf("integers.html", "q=-3%2B(-8)-(-5)%2B(-7)"), "chain");
+          expect("integers order", S.tabOf("integers.html", "q=7,-1,-3,2"), "abs");
+          expect("a mode in the link", S.tabOf("percents.html", "mode=change&from=40&to=78"), "change");
+          expect("a page with no tabs", S.tabOf("pemdas.html", "q=1%2B2"), "");
+          expect("not a standards page", S.tabOf("aviation.html", "mode=wind"), null);
+          score(T.page, "known", kp, kf);
+          return linksOn(T, d).then(function() { drop(fr); });
+        });
+      },
       "results.html": function(T) {
         return load(T.page).then(function(fr) {
           var d = docOf(fr),
@@ -7978,6 +9125,99 @@
           }
           score(T.page, "known", kp, kf);
           cell(T.page, "links", '<span class="na">—</span>');
+        });
+      },
+      /* embed.js: the code the Embed dialog makes, and a helper as it shows on another website (embed=site): no site
+         bar, masthead or footer, the link back, the practice mode from the link, and its height posted to the page
+         around it. The site's own embeds (embed=1: practice sets, problem of the day) must stay as they are. */
+      "embed.js": function(T) {
+        var kp = 0,
+          kf = 0;
+
+        function check(okay, what, link) {
+          if (okay) {
+            kp++;
+            pass();
+          } else {
+            kf++;
+            fail(T.page, "known answer", what, link || "embed.js");
+          }
+        }
+
+        function until(test, ms) {
+          var t0 = Date.now();
+          return new Promise(function(ok) {
+            (function poll() {
+              var v = false;
+              try { v = test(); } catch (e) {}
+              if (v || Date.now() - t0 > ms) ok(!!v);
+              else setTimeout(poll, 80);
+            })();
+          });
+        }
+        return new Promise(function(ok, bad) {
+          if (window.HelperEmbed) return ok();
+          var sc = document.createElement("script");
+          sc.src = U("embed.js");
+          sc.onload = ok;
+          sc.onerror = function() { bad(new Error("embed.js didn’t load")); };
+          document.head.appendChild(sc);
+        }).then(function() {
+          var E = window.HelperEmbed;
+          if (!E || !E.build || !E.mode) {
+            fail(T.page, "loads", "no HelperEmbed", "embed.js");
+            score(T.page, "load", 0, 1);
+            return;
+          }
+          pass();
+          score(T.page, "load", 1, 0);
+          var a = E.build({ page: "addition.html", params: "q=47%2B38&practice=check&embed=1&theme=dark", practice: "step", layout: "simple", height: "auto", title: "The Carry Column" });
+          check(/\/helpers\/addition\?q=47%2B38&practice=step&embed=site$/.test(a.src), "build(): the address is " + a.src);
+          check(/ data-fit-height /.test(a.html) && /helper:height/.test(a.snippet) && /hasAttribute\("data-fit-height"\)/.test(a.snippet) && a.code.indexOf(a.snippet) > 0,
+            "build(): the grow-to-fit code has no data-fit-height or no script");
+          var b = E.build({ page: "algebra.html", params: "mode=solve&q=3x%3D6", practice: "check", layout: "full", height: "fixed", px: 500, theme: "dark" });
+          check(/\/helpers\/algebra\?mode=solve&q=3x%3D6&practice=check&embed=site-full&theme=dark$/.test(b.src) && !/data-fit-height/.test(b.html) && !b.snippet && / height="500"/.test(b.html),
+            "build(): the fixed-height code is " + b.html.slice(0, 160));
+          check(E.mode("x.html?embed=site") === "site" && E.mode("x.html?q=1&embed=site-full") === "site-full" && E.mode("x.html?embed=1") === "" && E.mode("x.html?embed=sites") === "",
+            "mode() mistakes an address");
+          var link = "addition.html?q=47%2B38&practice=step&embed=site",
+            posts = [],
+            heights = [];
+
+          function onMsg(e) { if (e.data && e.data.type === "helper:height" && typeof e.data.h === "number") posts.push({ w: e.source, h: e.data.h }); }
+          window.addEventListener("message", onMsg); // before the frame loads: it posts its height as soon as it starts
+          return load(link).then(function(fr) {
+            var w = fr.f.contentWindow,
+              d = docOf(fr);
+            return until(function() {
+              heights = posts.filter(function(p) { return p.w === w; }).map(function(p) { return p.h; });
+              return d.querySelector(".ht-site-by") && heights.length;
+            }, 5000).then(function() {
+              window.removeEventListener("message", onMsg);
+              var r = d.documentElement,
+                shown = function(sel) { var e = d.querySelector(sel); return !!(e && e.offsetParent); },
+                by = d.querySelector(".ht-site-by a"),
+                step = d.getElementById("stepBtn");
+              check(r.classList.contains("ht-site") && !r.classList.contains("embed") && !r.classList.contains("ht-site-wait"), "the page isn't marked ht-site (class “" + r.className + "”)", link);
+              check(!shown(".sitenav") && !shown(".masthead") && !shown(".footnote") && !shown(".maker"), "the site bar, title, footer or problem maker still shows", link);
+              check(!!by && by.target === "_blank" && /practice=step/.test(by.href) && !/embed=/.test(by.href), "the “Show The Steps ↗” link is missing or wrong: " + (by ? by.href : "none"), link);
+              check(!!step && step.getAttribute("aria-pressed") === "true", "One step at a time isn’t on, as the link asks", link);
+              var h = heights[heights.length - 1],
+                pg = Math.ceil(d.querySelector(".page").getBoundingClientRect().bottom);
+              check(h > 200 && Math.abs(h - pg) < 40, "the height posted (" + h + ") isn’t the page’s (" + pg + ")", link);
+              drop(fr);
+              var own = "addition.html?q=47%2B38&practice=check&embed=1&theme=dark";
+              return load(own).then(function(f2) {
+                var d2 = docOf(f2);
+                check(d2.documentElement.classList.contains("embed") && !d2.documentElement.classList.contains("ht-site") && !d2.querySelector(".ht-site-by") && !f2.f.contentWindow.HelperEmbed,
+                  "embed=1 (practice sets) is treated as an outside embed", own);
+                drop(f2);
+              });
+            });
+          }).then(function() {
+            score(T.page, "known", kp, kf);
+            cell(T.page, "links", '<span class="na">—</span>');
+          });
         });
       },
       "keypad": function(T) {
@@ -8192,6 +9432,164 @@
             });
           }, Promise.resolve());
         });
+      },
+      /* Play (practice=play, play.js): the steps come up one at a time by themselves, each one outlined while it's read,
+         and the end shows the same answer as Show all work. The frames can't speak before a click, so the sound is
+         turned off (in a frame nothing is saved) and the steps move on by the timer.
+         load: the Play button (after Tutor me) opens the player and plays, Show all work closes it, no Play in an embed,
+         and a step moves on by itself. known: problems with known links, walked step by step with its Next button. */
+      "play.html": function(T) {
+        var page = T.page,
+          sp = 0,
+          sf = 0,
+          kp = 0,
+          kf = 0;
+
+        function until(test, ms) {
+          var t0 = Date.now();
+          return new Promise(function(ok) {
+            (function poll() {
+              var v = false;
+              try { v = test(); } catch (e) {}
+              if (v || Date.now() - t0 > ms) ok(!!v);
+              else setTimeout(poll, 80);
+            })();
+          });
+        }
+
+        function withP(link, p) { return link + (link.indexOf("?") < 0 ? "?" : "&") + "practice=" + p; }
+
+        function walk(link) {
+          var bad = [];
+          return load(withP(link, "all")).then(function(fr0) {
+            var want = answerText(docOf(fr0), true);
+            drop(fr0);
+            return load(withP(link, "play")).then(function(fr) {
+              var w = fr.f.contentWindow,
+                d = docOf(fr);
+              return until(function() { return w.HelperPlay && w.HelperPlay.active() && w.HelperPlay.state().n > 0; }, 4000).then(function(opened) {
+                if (!opened) { drop(fr); return ["practice=play didn’t open the player"]; }
+                var H = w.HelperPlay;
+                H.sound(false);
+                H.play();
+                var n = H.state().n;
+                if (!H.state().playing) bad.push("it didn’t start playing");
+
+                function step(k) {
+                  if (k > n || bad.length >= 3) return Promise.resolve();
+                  return until(function() { var s = H.state(); return s.cur === k && s.phase === "step" && s.step === k; }, 2000).then(function(there) {
+                    var s = H.state();
+                    if (!there) { bad.push("at step " + s.cur + " (" + s.phase + "), expected " + k); return; }
+                    if (s.marked.indexOf("li:" + (k - 1)) < 0) bad.push("step " + k + " isn’t outlined");
+                    if (s.marked.some(function(m) { return m !== "li:" + (k - 1) && /^li:\d/.test(m); })) bad.push("step " + k + ": another step is outlined too");
+                    H.next();
+                    return step(k + 1);
+                  });
+                }
+                return step(1).then(function() {
+                  return until(function() { var s = H.state(); if (s.phase === "answer") H.next(); return s.phase === "done"; }, 3000);
+                }).then(function(done) {
+                  var s = H.state();
+                  if (!done) bad.push("it didn’t reach the end (" + s.phase + ", step " + s.cur + " of " + n + ")");
+                  else if (s.playing) bad.push("still playing at the end");
+                  if (done && s.marked.indexOf("answer") < 0) bad.push("the answer isn’t outlined at the end");
+                  var got = answerText(d, true);
+                  if (got !== want) bad.push("answer “" + got.slice(0, 60) + "”, Show all work has “" + want.slice(0, 60) + "”");
+                  if (fr.errs.length) bad.push("script error: " + fr.errs[0]);
+                  drop(fr);
+                  return bad;
+                });
+              });
+            });
+          });
+        }
+
+        function tally(bad, link) {
+          if (bad.length) {
+            kf++;
+            fail(page, "known answer", bad.slice(0, 3).join("; "), withP(link, "play"));
+          } else {
+            kp++;
+            pass();
+          }
+          score(page, "known", kp, kf);
+        }
+
+        function loads(bad, link) {
+          if (bad.length) {
+            sf++;
+            fail(page, "loads", bad.join("; "), link);
+          } else {
+            sp++;
+            pass();
+          }
+          score(page, "load", sp, sf);
+        }
+        var LINKS = ["addition.html?q=25.4%2B3.75", "division.html?q=847%C3%B712&ans=remainder", "fractions.html?mode=simplify&q=18/24",
+          "quadratics.html?mode=solve&eq=" + encodeURIComponent("x^2-5x+6=0"), "wordproblems.html?q=" + encodeURIComponent("Sam had 45 stickers. He gave away 17. How many stickers does he have left?"),
+          "geometry.html?mode=area&shape=rect&l=8&w=5", "matrices-and-vectors.html?mode=mult&A=1,2;3,4&B=5,6;7,8"
+        ];
+        if (depth === "thorough") LINKS = LINKS.concat(["subtraction.html?q=5003-1278", "multiplication.html?q=1%2F3*5%2F8", "integers.html?q=-2*(-7)",
+          "pemdas.html?q=" + encodeURIComponent("20 − 12 ÷ 4 × 2 + 1"), "stats.html?mode=center&q=4, 8, 6, 5, 7", "algebra.html", "percents.html", "probability.html",
+          "logarithms.html", "college-statistics.html", "graphing.html", "calculus.html", "trigonometry.html", "aviation.html", "nursing.html", "carpentry.html", "electrical.html", "cooking.html", "counting.html"
+        ]);
+        var link0 = "pemdas.html?q=" + encodeURIComponent("3 + 4 × 2") + "&practice=step";
+        // load: the button
+        return load(link0).then(function(fr) {
+          var w = fr.f.contentWindow,
+            d = docOf(fr);
+          return until(function() { return !!d.getElementById("playBtn") && !!d.getElementById("tutorBtn"); }, 4000).then(function(has) {
+            var bad = [];
+            if (!has) bad.push("no Play button");
+            else {
+              var pb = d.getElementById("playBtn");
+              if (pb.parentNode.lastElementChild !== pb) bad.push("Play isn’t the last practice button");
+              if (w.HelperPlay.active()) bad.push("open in plain step mode");
+              w.HelperPlay.sound(false);
+              pb.click();
+              var bar = d.getElementById("htPlay");
+              if (!w.HelperPlay.active() || !w.HelperPlay.playing() || pb.getAttribute("aria-pressed") !== "true" || !bar || bar.hidden) bad.push("the Play button didn’t start it");
+              else if (w.HelperPlay.state().marked.indexOf("li:0") < 0) bad.push("step 1 isn’t outlined");
+              var all = [].filter.call(d.querySelectorAll("button"), function(b) { return b.textContent.trim() === "Show all work"; })[0];
+              if (all) all.click();
+              if (w.HelperPlay.active() || w.HelperPlay.playing() || !bar.hidden || d.querySelector(".hp-now")) bad.push("Show all work didn’t close it");
+            }
+            drop(fr);
+            loads(bad, link0);
+          });
+        }).then(function() {
+          // by itself: with no voice, step 1 gives way to step 2 after about as long as it takes to say it
+          return load(link0).then(function(fr) {
+            var w = fr.f.contentWindow;
+            return until(function() { return !!w.HelperPlay; }, 4000).then(function(has) {
+              if (!has) {
+                drop(fr);
+                loads(["no Play"], link0);
+                return;
+              }
+              w.HelperPlay.sound(false);
+              w.HelperPlay.play();
+              return until(function() { return w.HelperPlay.state().cur >= 2; }, 25000).then(function(moved) {
+                var bad = moved ? [] : ["step 1 didn’t move on by itself"];
+                w.HelperPlay.close();
+                drop(fr);
+                loads(bad, link0);
+              });
+            });
+          });
+        }).then(function() {
+          return load(link0.replace("practice=step", "embed=1")).then(function(fr) {
+            return new Promise(function(ok) { setTimeout(ok, 1200); }).then(function() {
+              var d = docOf(fr),
+                bad = d.getElementById("playBtn") || d.getElementById("htPlay") ? ["Play in an embed"] : [];
+              drop(fr);
+              loads(bad, link0.replace("practice=step", "embed=1"));
+              cell(page, "links", '<span class="na">—</span>');
+            });
+          });
+        }).then(function() {
+          return LINKS.reduce(function(chain, l) { return chain.then(function() { return walk(l).then(function(bad) { tally(bad, l); }); }); }, Promise.resolve());
+        });
       }
     };
 
@@ -8295,7 +9693,7 @@
     // ?pages=ratios,stats runs just those
     var only = /[?&]pages=([^&]+)/.exec(location.search);
     if (only) {
-      var want = decodeURIComponent(only[1]).split(",").map(function(x) { return x === "keypad" ? x : x === "qr" || x === "qr.js" ? "qr.js" : (window.HelperSite && window.HelperSite.id(x)) || x.replace(/\.html$/, "") + ".html"; }); // old names or new: pemdas, order-of-operations
+      var want = decodeURIComponent(only[1]).split(",").map(function(x) { return x === "keypad" ? x : x === "qr" || x === "qr.js" ? "qr.js" : x === "embed" || x === "embed.js" ? "embed.js" : (window.HelperSite && window.HelperSite.id(x)) || x.replace(/\.html$/, "") + ".html"; }); // old names or new: pemdas, order-of-operations
       PAGES.forEach(function(T) { chosen[T.page] = want.indexOf(T.page) >= 0; });
       rows();
     }

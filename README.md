@@ -88,6 +88,10 @@ Each helper is one page. Type a problem (or pick one, or have the page make one)
 | [The Measuring Tape](https://showthesteps.org/helpers/unit-conversions) | Unit conversions: inches, feet, yards and miles (and mixed measures like 5 ft 7 in), customary weight and capacity, the metric staircase, converting between systems, time, °F, °C and K, and rates with units canceled (60 mph → 88 ft/s), including area and volume units |
 | [The Money Jar](https://showthesteps.org/helpers/money-math) | Money math: compound interest (and APY), saving every month, loan payments with an amortization schedule, credit card interest and payoff, paychecks with overtime, budgets and the 50/30/20 rule, and shopping math (stacked discounts, tax and tip, unit prices, inflation) |
 | [The Flight Computer](https://showthesteps.org/helpers/aviation) | Aviation math, the first "Math at work" page: the wind triangle (wind correction angle, true heading, ground speed, drawn to scale), runway crosswind and headwind, time, speed, distance and fuel with reserves, pressure and density altitude, true airspeed, true → magnetic → compass headings, descent planning, weight and balance with a CG check, standard-rate turns, turn radius, glide distance and aviation units. For learning only, not flight planning. |
+| [The Dose Calculator](https://showthesteps.org/helpers/nursing) | Nursing and medication math (Math at work): doses by weight (mg/kg, mg/kg/day divided, mcg/kg/min, pounds to kg) with a maximum or safe-range check, tablets and liquids by D/H × Q (halves only when scored), IV rates in mL/hr from a volume and time or from a dose and the bag, gravity drip rates in gtt/min, infusion time and finish time, concentrations, percent and ratio (1:1000) strengths, dilutions (C1V1 = C2V2) and reconstitution, heparin and insulin units, conversions (metric, household, lb/kg, °F/°C) and body surface area (Mosteller) with dose per m². Every step says why, and which rounding rule it uses. For learning only, not patient care. |
+| [The Framing Square](https://showthesteps.org/helpers/carpentry) | Carpentry and construction math (Math at work): feet, inches and fractions on a tape measure kept exact (add, subtract, halve, decimal ↔ nearest 1/16), board feet and lumber cost with nominal and actual sizes, stairs (risers, treads, total run, stringer, checked against typical code), roof pitch ↔ angle and rafter length with overhang, squaring with 3-4-5 and diagonals, studs, joists and balusters evenly spaced, flooring, tile, 4×8 sheets and paint with waste, concrete in cubic yards and bags, and miter, crown and slope angles, each drawn to scale. For learning and planning practice; check local codes and the manufacturer's numbers. |
+| [The Circuit Board](https://showthesteps.org/helpers/electrical) | Electrical math (Math at work): Ohm's law with the triangle and unit prefixes, power (P = VI = I²R = V²/R, W ↔ kW ↔ hp), series and parallel resistor networks with exact fractions and each resistor's share, voltage drop from the NEC Table 8 AWG resistances (copper and aluminum, single- and three-phase, against the 3% guideline), circuit loads and the 80% rule, energy cost (kWh to dollars), the resistor color code both ways, capacitors and RC time constants, and AC (peak/RMS, frequency/period, three-phase power). Circuit drawings throughout. For learning and checking coursework only; follow your local electrical code. |
+| [The Recipe Card](https://showthesteps.org/helpers/cooking) | Kitchen math (Math at work) for cooks, bakers and culinary students: scale a recipe by servings or a factor (a whole ingredient list at once, exact fractions, turned into cups and spoons you can measure), cups, spoons, pints and mL, grams ↔ cups for common ingredients, baker's percentages and hydration, recipe cost, cost per serving and food cost %, oven temperatures (°F, °C, gas mark, convection), cooking time by weight and when to start, pan sizes, and brine, rice, coffee and vinaigrette ratios. For learning and kitchen practice; use a thermometer for doneness. |
 | [The Power Tower](https://showthesteps.org/helpers/exponents) | Exponents: powers (zero, negative, negative bases), the exponent laws with the reason for each, scientific notation both ways, calculating and comparing with it, and square and cube roots |
 | [The Order Stack](https://showthesteps.org/helpers/order-of-operations) | Order of operations (PEMDAS) for long problems with + − × ÷, parentheses and exponents |
 | [The Balance Scale](https://showthesteps.org/helpers/algebra) | Algebra: simplifying expressions, solving equations and inequalities, and systems of two equations |
@@ -509,16 +513,16 @@ How big the site is, counted from the files themselves (the code is kept formatt
 
 | | |
 | --- | ---: |
-| Helpers | 34 |
+| Helpers | 38 |
 | Lessons | 46 |
-| Pages and scripts | 96 pages, 12 scripts |
-| Lines of code | 280,584 |
-| &nbsp;&nbsp;JavaScript | 182,984 |
-| &nbsp;&nbsp;CSS | 87,044 |
-| &nbsp;&nbsp;HTML | 10,556 |
-| Characters | 12,745,436 |
-| Size | 12.2 MB |
-| Self-test checks | 24,362 (the last thorough run) |
+| Pages and scripts | 102 pages, 14 scripts |
+| Lines of code | 308,537 |
+| &nbsp;&nbsp;JavaScript | 202,261 |
+| &nbsp;&nbsp;CSS | 95,115 |
+| &nbsp;&nbsp;HTML | 11,161 |
+| Characters | 14,199,159 |
+| Size | 13.6 MB |
+| Self-test checks | 27,940 (the last thorough run) |
 
 <sub>Counted by `scripts/stats.py` on 2026-10-24; blank lines left out.</sub>
 

@@ -1,0 +1,1374 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Your Skill Map</title>
+<meta name="description" content="The Common Core standards for grades 1 to 8 and high school, with what you’ve practiced on the helpers: not started, practiced, getting it or mastered, and what to practice next.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Show The Steps">
+<meta property="og:title" content="Your Skill Map · Show The Steps">
+<meta property="og:description" content="The Common Core standards for grades 1 to 8 and high school, with what you’ve practiced on the helpers: not started, practiced, getting it or mastered, and what to practice next.">
+<meta property="og:url" content="https://showthesteps.org/practice/skills">
+<meta property="og:image" content="https://showthesteps.org/assets/icons/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Show The Steps: every step, written out.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://showthesteps.org/practice/skills">
+<script src="../assets/site.js"></script>
+<script src="../assets/nav.js" defer></script>
+<script src="../assets/progress.js" defer></script>
+<script src="../assets/standards.js" defer></script>
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<style>
+  :root {
+    --paper: #EDEFEC;
+    --surface: #F8F9F7;
+    --surface-2: #E2E6E2;
+    --ink: #18201C;
+    --ink-2: #4A5550;
+    --ink-3: #7B8681;
+    --rule: #C8CFCA;
+    --key: #33463F;
+    --key-bg: #DDE6E1;
+    --key-line: #8BA398;
+    --warm: #9A5410;
+    --warm-bg: #F6E5D2;
+    --focus: #33463F;
+    --add: #0D7361;
+    --sub: #A8412A;
+    --mul: #544696;
+    --div: #A85A0C;
+    --ord: #1F5E8C;
+    --alg: #9B2F6B;
+    --geo: #4F6A17;
+    --fra: #0B6E83;
+    --pct: #8A6D00;
+    --fac: #7B3FA0;
+    --int: #46596E;
+    --rat: #B0263E;
+    --lin: #1E7A3C;
+    --sta: #3346A8;
+    --wrd: #0F766E;
+    --scr: #B45309;
+    --gra: #0369A1;
+    --exp: #BE185D;
+    --pro: #A21CAF;
+    --tri: #4D7C0F;
+    --cal: #7C3AED;
+    --num: #EA580C;
+    --qua: #B91C1C;
+    --log: #1D4ED8;
+    --seq: #15803D;
+    --fun: #0E7490;
+    --rad: #92400E;
+    --cpx: #4F46E5;
+    --bel: #047857;
+    --mat: #57534E;
+    --uni: #BE123C;
+    --mon: #A16207;
+    --avi: #0B5CAD;
+    --nur: #6E3D64;
+    --crp: #694321;
+    --ele: #611E05;
+    --rcp: #67311E;
+    --cnt: #6B5A2B;
+    --fla: #C2410C;
+    --heat: #0D7361;
+    --shadow: 0 1px 0 rgba(24, 32, 28, .05), 0 14px 30px -20px rgba(24, 32, 28, .5);
+    --f-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --f-body: "IBM Plex Sans", "Segoe UI", Helvetica, Arial, sans-serif;
+    --f-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #121615;
+      --surface: #1A201E;
+      --surface-2: #262E2B;
+      --ink: #E5EAE7;
+      --ink-2: #A2ADA8;
+      --ink-3: #76817C;
+      --rule: #36403C;
+      --key: #B8C9C1;
+      --key-bg: #22302B;
+      --key-line: #4E6A5F;
+      --warm: #E8A45C;
+      --warm-bg: #37270F;
+      --focus: #B8C9C1;
+      --add: #4FCCB0;
+      --sub: #F08A6E;
+      --mul: #A99CF0;
+      --div: #F2A85C;
+      --ord: #7DB8E8;
+      --alg: #F08CC0;
+      --geo: #B5D06A;
+      --fra: #5FC9DE;
+      --pct: #E3C04D;
+      --fac: #C9A0EE;
+      --int: #A9BDD2;
+      --rat: #F27D8F;
+      --lin: #6FD38E;
+      --sta: #93A2F2;
+      --wrd: #5EEAD4;
+      --scr: #FCD34D;
+      --gra: #7DD3FC;
+      --exp: #FDA4AF;
+      --pro: #F0ABFC;
+      --tri: #BEF264;
+      --cal: #C4B5FD;
+      --num: #FDBA74;
+      --qua: #FCA5A5;
+      --log: #93C5FD;
+      --seq: #86EFAC;
+      --fun: #67E8F9;
+      --rad: #FBBF24;
+      --cpx: #A5B4FC;
+      --bel: #6EE7B7;
+      --mat: #D6D3D1;
+      --uni: #FDA4AF;
+      --mon: #FDE047;
+      --avi: #8CC4F5;
+      --nur: #FAC8F0;
+      --crp: #CDA383;
+      --ele: #F9C4A0;
+      --rcp: #E4BDAF;
+      --cnt: #EED9A0;
+      --fla: #FB923C;
+      --heat: #4FCCB0;
+      --shadow: 0 1px 0 rgba(0, 0, 0, .3), 0 14px 30px -20px rgba(0, 0, 0, .9);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #121615;
+    --surface: #1A201E;
+    --surface-2: #262E2B;
+    --ink: #E5EAE7;
+    --ink-2: #A2ADA8;
+    --ink-3: #76817C;
+    --rule: #36403C;
+    --key: #B8C9C1;
+    --key-bg: #22302B;
+    --key-line: #4E6A5F;
+    --warm: #E8A45C;
+    --warm-bg: #37270F;
+    --focus: #B8C9C1;
+    --add: #4FCCB0;
+    --sub: #F08A6E;
+    --mul: #A99CF0;
+    --div: #F2A85C;
+    --ord: #7DB8E8;
+    --alg: #F08CC0;
+    --geo: #B5D06A;
+    --fra: #5FC9DE;
+    --pct: #E3C04D;
+    --fac: #C9A0EE;
+    --int: #A9BDD2;
+    --rat: #F27D8F;
+    --lin: #6FD38E;
+    --sta: #93A2F2;
+    --wrd: #5EEAD4;
+    --scr: #FCD34D;
+    --gra: #7DD3FC;
+    --exp: #FDA4AF;
+    --pro: #F0ABFC;
+    --tri: #BEF264;
+    --cal: #C4B5FD;
+    --num: #FDBA74;
+    --qua: #FCA5A5;
+    --log: #93C5FD;
+    --seq: #86EFAC;
+    --fun: #67E8F9;
+    --rad: #FBBF24;
+    --cpx: #A5B4FC;
+    --bel: #6EE7B7;
+    --mat: #D6D3D1;
+    --uni: #FDA4AF;
+    --mon: #FDE047;
+    --avi: #8CC4F5;
+    --nur: #FAC8F0;
+    --crp: #CDA383;
+    --ele: #F9C4A0;
+    --rcp: #E4BDAF;
+    --cnt: #EED9A0;
+    --fla: #FB923C;
+    --heat: #4FCCB0;
+    --shadow: 0 1px 0 rgba(0, 0, 0, .3), 0 14px 30px -20px rgba(0, 0, 0, .9);
+  }
+
+  * {
+    box-sizing: border-box
+  }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--f-body);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased
+  }
+  a {
+    color: inherit
+  }
+  .page {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 28px 20px 72px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px
+  }
+  @media (max-width:520px) {
+    .page {
+      padding: 22px 16px 56px;
+      gap: 20px
+    }
+  }
+  .masthead {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap
+  }
+  .eyebrow {
+    font-family: var(--f-mono);
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--ink-3)
+  }
+  h1 {
+    font-family: var(--f-display);
+    font-stretch: 118%;
+    font-weight: 800;
+    font-size: clamp(34px, 6.4vw, 54px);
+    line-height: .98;
+    letter-spacing: -.02em;
+    margin: .16em 0 0
+  }
+  h1 em {
+    font-style: normal;
+    color: var(--key)
+  }
+  .tagline {
+    color: var(--ink-2);
+    max-width: 60ch;
+    margin: .5em 0 0;
+    font-size: 15.5px
+  }
+  .theme-btn {
+    font-family: var(--f-mono);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .06em;
+    background: var(--surface);
+    color: var(--ink-2);
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    padding: 8px 15px;
+    cursor: pointer;
+    white-space: nowrap
+  }
+  .theme-btn:hover {
+    color: var(--ink);
+    border-color: var(--ink-3)
+  }
+  button:focus-visible,
+  a:focus-visible {
+    outline: 2.5px solid var(--focus);
+    outline-offset: 2px
+  }
+
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    min-width: 0
+  }
+  .panel-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 6px 14px;
+    flex-wrap: wrap;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--rule)
+  }
+  .panel-head h2,
+  .panel-head h3 {
+    font-family: var(--f-display);
+    font-stretch: 112%;
+    font-weight: 700;
+    font-size: 15px;
+    margin: 0
+  }
+  .panel-head span {
+    font-size: 13px;
+    color: var(--ink-3)
+  }
+  .lbl {
+    font-family: var(--f-mono);
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    color: var(--ink-3)
+  }
+  .ghost {
+    font-family: var(--f-body);
+    font-size: 14px;
+    font-weight: 600;
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--rule);
+    border-radius: 9px;
+    padding: 8px 14px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block
+  }
+  .ghost:hover {
+    border-color: var(--ink-3)
+  }
+  .go {
+    font-family: var(--f-body);
+    font-size: 14.5px;
+    font-weight: 600;
+    background: var(--key);
+    color: var(--surface);
+    border: 0;
+    border-radius: 9px;
+    padding: 9px 16px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    white-space: nowrap
+  }
+  .go:hover {
+    filter: brightness(1.08)
+  }
+  .go[aria-busy="true"] {
+    opacity: .75;
+    cursor: progress
+  }
+  .actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center
+  }
+  .msg {
+    font-size: 13px;
+    color: var(--ink-2)
+  }
+  .welcome {
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+  }
+  .welcome h2 {
+    font-family: var(--f-display);
+    font-stretch: 112%;
+    font-weight: 800;
+    font-size: 22px;
+    margin: 0
+  }
+  .welcome p {
+    margin: 0;
+    color: var(--ink-2);
+    max-width: 66ch
+  }
+  @media (max-width:520px) {
+    .welcome {
+      padding: 18px 16px
+    }
+  }
+  [hidden] {
+    display: none !important
+  }
+  .sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap
+  }
+
+  /* the four statuses */
+  .s0 {
+    --st: var(--ink-3)
+  }
+  .s1 {
+    --st: var(--ord)
+  }
+  .s2 {
+    --st: var(--pct)
+  }
+  .s3 {
+    --st: var(--lin)
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--st);
+    background: color-mix(in srgb, var(--st) 13%, transparent);
+    border: 1px solid color-mix(in srgb, var(--st) 40%, transparent);
+    border-radius: 999px;
+    padding: 2px 10px 2px 8px;
+    white-space: nowrap;
+    line-height: 1.5
+  }
+  .chip.s0 {
+    color: var(--ink-2);
+    background: transparent;
+    border: 1px dashed var(--rule)
+  }
+  .chip i {
+    font-style: normal;
+    font-size: 13px;
+    line-height: 1
+  }
+
+  /* the grades: the summary and the picker in one */
+  .grades {
+    padding: 14px 18px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px
+  }
+  .glist {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px
+  }
+  @media (max-width:520px) {
+    .glist {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px
+    }
+  }
+  .gbtn {
+    font: inherit;
+    color: inherit;
+    text-align: left;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    padding: 10px 12px 11px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0
+  }
+  .gbtn:hover {
+    border-color: var(--ink-3)
+  }
+  .gbtn[aria-pressed="true"] {
+    border-color: var(--key);
+    box-shadow: inset 0 0 0 1.5px var(--key);
+    background: var(--key-bg)
+  }
+  .gbtn b {
+    font-family: var(--f-display);
+    font-stretch: 112%;
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 1.15
+  }
+  .gbtn small {
+    font-size: 12.5px;
+    color: var(--ink-2);
+    line-height: 1.35
+  }
+  .gbtn small em {
+    font-style: normal;
+    font-weight: 600;
+    color: var(--ink)
+  }
+  .bar {
+    display: flex;
+    height: 8px;
+    border-radius: 999px;
+    background: var(--surface-2);
+    overflow: hidden;
+    margin-top: 3px
+  }
+  .bar i {
+    display: block;
+    height: 100%;
+    background: var(--st)
+  }
+  .key {
+    display: flex;
+    gap: 6px 14px;
+    flex-wrap: wrap;
+    align-items: center;
+    font-size: 12.5px;
+    color: var(--ink-2)
+  }
+  .key span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px
+  }
+  .key i {
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+    background: var(--st);
+    display: inline-block
+  }
+  .key .s0 i {
+    background: var(--surface-2);
+    border: 1px solid var(--rule)
+  }
+
+  /* the chosen grade */
+  .gv {
+    display: flex;
+    flex-direction: column;
+    gap: 20px
+  }
+  .gv-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 10px 20px;
+    flex-wrap: wrap
+  }
+  .gv-head h2 {
+    font-family: var(--f-display);
+    font-stretch: 118%;
+    font-weight: 800;
+    font-size: clamp(26px, 4.6vw, 36px);
+    line-height: 1;
+    letter-spacing: -.015em;
+    margin: 0
+  }
+  .gv-head p {
+    margin: 6px 0 0;
+    color: var(--ink-2);
+    font-size: 15px
+  }
+  .next {
+    padding: 14px 18px 16px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px
+  }
+  @media (max-width:860px) {
+    .next {
+      grid-template-columns: minmax(0, 1fr)
+    }
+  }
+  .card {
+    border: 1px solid var(--rule);
+    border-left: 4px solid var(--st);
+    border-radius: 6px 12px 12px 6px;
+    padding: 11px 14px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0
+  }
+  .card .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap
+  }
+  .card p {
+    margin: 0;
+    font-size: 13.5px;
+    color: var(--ink-2)
+  }
+  .card .ev {
+    font-size: 12.5px;
+    color: var(--ink-3)
+  }
+  .card .go {
+    align-self: flex-start;
+    margin-top: 2px
+  }
+  .done {
+    padding: 16px 18px;
+    color: var(--ink-2);
+    display: flex;
+    gap: 10px 16px;
+    flex-wrap: wrap;
+    align-items: center
+  }
+  .done p {
+    margin: 0
+  }
+  .code {
+    font-family: var(--f-mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    text-decoration: underline dotted;
+    text-underline-offset: .2em;
+    white-space: nowrap
+  }
+  .code:hover {
+    text-decoration-style: solid
+  }
+  .plus {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    color: var(--ink-3);
+    margin-left: 6px;
+    white-space: nowrap
+  }
+
+  .area {
+    font-family: var(--f-display);
+    font-stretch: 112%;
+    font-weight: 800;
+    font-size: 19px;
+    margin: 6px 0 -8px
+  }
+  .dom .panel-head h3 small {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--ink-3);
+    margin-left: 8px;
+    letter-spacing: .04em
+  }
+  .slist {
+    list-style: none;
+    margin: 0;
+    padding: 0
+  }
+  .std {
+    display: grid;
+    grid-template-columns: 8.6em minmax(0, 1fr) auto;
+    gap: 6px 16px;
+    align-items: start;
+    padding: 13px 18px;
+    border-bottom: 1px dashed var(--rule)
+  }
+  .std:last-child {
+    border-bottom: 0
+  }
+  .std .chip {
+    justify-self: start;
+    margin-top: 1px
+  }
+  .std .txt {
+    margin: 3px 0 0;
+    font-size: 14.5px;
+    overflow-wrap: anywhere
+  }
+  .std .ev {
+    margin: 4px 0 0;
+    font-size: 12.5px;
+    color: var(--ink-3)
+  }
+  .std .where {
+    margin: 4px 0 0;
+    font-size: 12.5px;
+    color: var(--ink-3)
+  }
+  .std .where a {
+    color: var(--ink-2)
+  }
+  .std .where a:hover {
+    color: var(--ink)
+  }
+  .std .go {
+    margin-top: 1px
+  }
+  @media (max-width:640px) {
+    .std {
+      grid-template-columns: minmax(0, 1fr);
+      padding: 12px 16px;
+      gap: 6px
+    }
+    .std .go {
+      justify-self: start
+    }
+  }
+
+  .rules {
+    padding: 14px 18px 16px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 14px 28px
+  }
+  @media (max-width:760px) {
+    .rules {
+      grid-template-columns: minmax(0, 1fr)
+    }
+  }
+  .rules dl {
+    margin: 0;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 8px 12px;
+    align-items: baseline
+  }
+  .rules dd {
+    margin: 0;
+    font-size: 14px;
+    color: var(--ink-2)
+  }
+  .rules p {
+    margin: 0 0 8px;
+    font-size: 14px;
+    color: var(--ink-2)
+  }
+  .rules p:last-child {
+    margin-bottom: 0
+  }
+  .bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px 20px;
+    flex-wrap: wrap;
+    align-items: center
+  }
+  .privacy {
+    font-size: 13.5px;
+    color: var(--ink-3);
+    max-width: 62ch;
+    margin: 0
+  }
+
+  @media print {
+    /* paper is white: the light colors, whatever the theme on screen (#_ outranks the dark-theme rules) */
+    :root:not(#_) {
+      --paper: #fff;
+      --surface: #fff;
+      --surface-2: #E2E6E2;
+      --ink: #18201C;
+      --ink-2: #4A5550;
+      --ink-3: #7B8681;
+      --rule: #C8CFCA;
+      --key: #33463F;
+      --key-bg: #DDE6E1;
+      --focus: #33463F;
+      --lin: #1E7A3C;
+      --ord: #1F5E8C;
+      --pct: #8A6D00;
+      --shadow: none
+    }
+    .theme-btn,
+    .sitenav,
+    .go,
+    .actions,
+    .noprint {
+      display: none !important
+    }
+    .panel {
+      box-shadow: none;
+      break-inside: auto
+    }
+    .std,
+    .card,
+    .gbtn {
+      break-inside: avoid
+    }
+    .gbtn[aria-pressed="true"] {
+      box-shadow: none;
+      border-width: 2px
+    }
+  }
+  @supports not (background:color-mix(in srgb, red 50%, blue)) {
+    /* Safari before 16.2 (iOS 15) */
+    .chip {
+      background: var(--surface-2);
+      border-color: var(--st)
+    }
+  }
+</style>
+
+<div class="page">
+  <header class="masthead">
+    <div>
+      <div class="eyebrow">Practice, kept on this device</div>
+      <h1>Your <em>skill map</em></h1>
+      <p class="tagline">The Common Core standards, grade by grade, and how your practice on the helpers is going on each one:
+        not started, practiced, getting it or mastered. Pick a grade, then practice what’s next.</p>
+    </div>
+    <button class="theme-btn" id="themeBtn" type="button">Dark mode</button>
+  </header>
+
+  <section class="panel welcome" id="welcome" hidden>
+    <h2>Your map is empty, for now</h2>
+    <p>Every skill starts as <b>not started</b>. Pick your grade below and press <b>Practice it</b> on a skill: the helper
+      opens on the right tab with a new problem, in <b>Check my answer</b> mode. Each answer you check fills in the map.
+      It all stays in this browser, on this device.</p>
+  </section>
+
+  <section class="panel" aria-labelledby="gradesHead">
+    <div class="panel-head"><h2 id="gradesHead">By grade</h2><span id="gradesNote">pick one to see its skills</span></div>
+    <div class="grades">
+      <div class="glist" id="glist" role="group" aria-label="Grades"></div>
+      <div class="key" aria-hidden="true"><span class="s3"><i></i>Mastered</span><span class="s2"><i></i>Getting it</span>
+        <span class="s1"><i></i>Practiced</span><span class="s0"><i></i>Not started</span></div>
+    </div>
+  </section>
+
+  <div class="gv" id="gv" aria-live="off">
+    <div class="gv-head">
+      <div>
+        <h2 id="gvTitle">Grade</h2>
+        <p id="gvLine"></p>
+      </div>
+      <div class="actions"><button type="button" class="ghost" id="printBtn">Print this grade</button></div>
+    </div>
+
+    <section class="panel" aria-labelledby="nextHead">
+      <div class="panel-head"><h2 id="nextHead">Next up</h2><span>not mastered yet, earliest first</span></div>
+      <div id="next"></div>
+    </section>
+
+    <div id="domains" class="gv"></div>
+  </div>
+
+  <section class="panel" aria-labelledby="rulesHead">
+    <div class="panel-head"><h2 id="rulesHead">How a skill’s status is worked out</h2><span>from the problems you checked</span></div>
+    <div class="rules">
+      <dl>
+        <dt><span class="chip s0"><i aria-hidden="true">–</i>Not started</span></dt>
+        <dd>No problem checked yet on any helper tab that teaches it.</dd>
+        <dt><span class="chip s1"><i aria-hidden="true">◔</i>Practiced</span></dt>
+        <dd>At least one problem checked, but fewer than 2 of your last 5 right first time.</dd>
+        <dt><span class="chip s2"><i aria-hidden="true">◑</i>Getting it</span></dt>
+        <dd>At least 2 of your last 5 problems right first time.</dd>
+        <dt><span class="chip s3"><i aria-hidden="true">●</i>Mastered</span></dt>
+        <dd>At least 5 problems tried, and 4 or 5 of your last 5 right first time.</dd>
+      </dl>
+      <div>
+        <p><b>Right first time</b> means your first <b>Check</b> on that problem was right, with no hint. A problem counts once,
+          however many times you check it, and it counts for every standard its helper tab is matched to, so one problem can
+          move a few skills at once.</p>
+        <p>Problems from practice sets and the problem of the day count too. Tutor me and flash cards don’t. Because only your
+          <b>last 5</b> count, a skill can slip back if the newest ones go wrong, and come back with a few right in a row.</p>
+        <p>The match between the helpers and the standards is <a href="../reference/standards.html">unofficial</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="bottom">
+    <p class="privacy"><b>Private by design.</b> This map is worked out in your browser from the practice kept on this device.
+      Nothing is sent anywhere, and there’s no account.</p>
+    <div class="actions">
+      <a class="ghost" href="progress.html">Your progress</a>
+      <a class="ghost" href="sets.html">Make a practice set</a>
+      <span class="msg" id="msg" role="status" aria-live="polite"></span>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* skills.html: the skill map.
+     The Common Core standards (assets/standards.js: HelperStandards.list, and which helper tab teaches each one) laid out by
+     grade, then domain, each with a status worked out from the practice log (assets/progress.js: HelperProgress.problems(),
+     one record per problem, with firstRight = the first Check was right, with no hint). Nothing is stored but the grade
+     picked (localStorage["skills-grade"]) and the theme (localStorage["skills-page-theme"]).
+
+     A problem belongs to one helper tab: its page, and the tab worked out from its link (tabOf below: mode=…, or for the
+     few helpers that don't put the tab in the link, worked out from the problem the way the helper does). It counts for
+     the standards of that tab (and the page's common ones).
+     The status of a standard, from its problems in the order they were first tried:
+       not started  none
+       practiced    at least one
+       getting it   at least GETTING of the last LAST right first time
+       mastered     at least LAST tried, and at least MASTER of the last LAST right first time
+     "Practice it" opens the helper on that tab with practice=check, and a new problem: the helper is loaded in a hidden
+     frame and asked for one ({type:"helper:make", count:1, options} → {type:"helper:made", problems:[{params}]}, the
+     worksheet API). If that fails or takes too long, the link opens the tab as it is.
+
+     URL parameters
+       grade=1..8|hs   the grade shown (else the one picked last on this device, else the one practiced most lately, else 1)
+     window.__skills = { statusOf(flags), tabOf(page, params), build(), rule } for the self-test. */
+  (function() {
+    "use strict";
+    var $ = function(id) { return document.getElementById(id); };
+
+    function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+    // a page's full address from its short name (site.js knows which folder each page is in)
+    function U(page, params) { return window.HelperSite ? window.HelperSite.url(page, params) : page + (params ? "?" + params : ""); }
+    var DAY = 86400000;
+
+    function startOfDay(t) {
+      var d = new Date(t);
+      d.setHours(0, 0, 0, 0);
+      return d.getTime();
+    }
+
+    function ago(t, now) {
+      if (!t) return "";
+      var d = Math.round((startOfDay(now) - startOfDay(t)) / DAY);
+      return d <= 0 ? "today" : d === 1 ? "yesterday" : d < 7 ? d + " days ago" :
+        new Date(t).toLocaleDateString(undefined, { month: "short", day: "numeric", year: d > 300 ? "numeric" : undefined });
+    }
+
+    /* ===================== the rule ===================== */
+    var RULE = { last: 5, master: 4, getting: 2 };
+    var ST = {
+      none: { cls: "s0", ic: "–", label: "Not started" },
+      prac: { cls: "s1", ic: "◔", label: "Practiced" },
+      get: { cls: "s2", ic: "◑", label: "Getting it" },
+      mast: { cls: "s3", ic: "●", label: "Mastered" }
+    };
+
+    // flags: right first time or not, for each problem, oldest first
+    function statusOf(flags) {
+      if (!flags || !flags.length) return "none";
+      var last = flags.slice(-RULE.last),
+        r = last.filter(function(f) { return !!f; }).length;
+      if (last.length >= RULE.last && r >= RULE.master) return "mast";
+      if (r >= RULE.getting) return "get";
+      return "prac";
+    }
+
+    function chip(st) {
+      var s = ST[st];
+      return '<span class="chip ' + s.cls + '"><i aria-hidden="true">' + s.ic + "</i>" + s.label + "</span>";
+    }
+
+    /* ===================== which tab a problem was on ===================== */
+    var PAGEBY = {};
+
+    function parseQ(params, keepPlus) {
+      var o = {};
+      String(params || "").replace(/^\?/, "").split("&").forEach(function(kv) {
+        if (!kv) return;
+        var i = kv.indexOf("="),
+          k = i < 0 ? kv : kv.slice(0, i),
+          v = i < 0 ? "" : kv.slice(i + 1);
+        try { v = decodeURIComponent(keepPlus ? v : v.replace(/\+/g, " ")); } catch (e) {}
+        o[k] = v;
+      });
+      return o;
+    }
+    // the Number Line leaves the tab out of the link when the problem shows it: the same test the helper makes
+    function intTab(q) {
+      var s = String(q || "").replace(/\s+/g, "").replace(/[−–—]/g, "-");
+      if (!s || /[,|<>]|abs|compare/i.test(s)) return "abs";
+      s = s.replace(/[\[{]/g, "(").replace(/[\]}]/g, ")").replace(/\d+(\.\d+)?/g, "N");
+      for (var k = 0; k < 4; k++) s = s.replace(/\([-+]?N\)/g, "N").replace(/(^|[-+*×x·\/÷:(])[-+]N/g, "$1N");
+      var ops = s.match(/[-+*×x·\/÷:]/g) || [];
+      if (!ops.length) return "abs";
+      if (ops.length > 1 || /\(/.test(s)) return "chain";
+      return ops[0] === "+" ? "add" : ops[0] === "-" ? "sub" : "muldiv";
+    }
+
+    function tabOf(page, params) {
+      var id = String(page || "").replace(/\.html$/, ""),
+        P = PAGEBY[id];
+      if (!P) return null;
+      if (!P.modes.length) return "";
+      var keys = P.modes.map(function(m) { return m.key; }),
+        o = parseQ(params),
+        m = o.mode,
+        q = o.q || "";
+      if (id === "addition" || id === "subtraction" || id === "multiplication") {
+        if (m === "dec" || m === "decimals") return "dec";
+        if (m === "frac" || m === "fractions") return "frac";
+        return /\d\s*\/\s*\d/.test(q) ? "frac" : "dec";
+      }
+      if (id === "division") { // fractions need ÷ or : between them; whole numbers and decimals say how to answer in ans=
+        if (/[÷:]/.test(q) && /\//.test(q)) return "";
+        if (o.ans && keys.indexOf(o.ans) >= 0) return o.ans;
+        return /\./.test(q) ? "decimal" : "remainder";
+      }
+      if (m && keys.indexOf(m) >= 0) return m;
+      if (id === "integers") return intTab(parseQ(params, true).q);
+      return keys[0];
+    }
+
+    /* ===================== where each standard is practiced ===================== */
+    var NOCHECK = { "graphing|free": 1 }; // the free plot has nothing to check
+    // the worksheet API's options for a new problem on a tab, where they aren't just { mode: tab }
+    var MAKE = {
+      "addition|dec": { mode: "decimals" },
+      "addition|frac": { mode: "fractions" },
+      "subtraction|dec": { mode: "decimals" },
+      "subtraction|frac": { mode: "fractions" },
+      "multiplication|dec": { mode: "decimals" },
+      "multiplication|frac": { mode: "fractions" },
+      "division|remainder": { mode: "decimals", ans: "remainder" },
+      "division|fraction": { mode: "decimals", ans: "fraction" },
+      "division|decimal": { mode: "decimals", ans: "decimal" },
+      "division|": { mode: "fractions" }
+    };
+    // and the link that opens the tab, where it isn't ?mode=tab
+    var PLAIN = {
+      "multiplication|dec": "",
+      "multiplication|frac": "q=2%2F3*3%2F4",
+      "division|remainder": "ans=remainder",
+      "division|fraction": "ans=fraction",
+      "division|decimal": "ans=decimal",
+      "division|": "q=3%2F4%C3%B71%2F2"
+    };
+
+    function makeOpts(id, tab) { return MAKE[id + "|" + tab] || (tab ? { mode: tab } : {}); }
+
+    function practiceLink(id, params) {
+      var HP = window.HelperProgress;
+      if (HP) return HP.link(id + ".html", params);
+      return U(id + ".html", (params ? params + "&" : "") + "practice=check");
+    }
+
+    function tabLink(id, tab) {
+      var k = id + "|" + tab;
+      return practiceLink(id, PLAIN.hasOwnProperty(k) ? PLAIN[k] : tab ? "mode=" + encodeURIComponent(tab) : "");
+    }
+
+    /* ===================== grades and domains ===================== */
+    var DOM_ORDER = ["CC", "OA", "NBT", "NF", "MD", "RP", "NS", "EE", "F", "G", "SP"];
+    var HS_ORDER = ["N-RN", "N-Q", "N-CN", "N-VM", "A-SSE", "A-APR", "A-CED", "A-REI", "F-IF", "F-BF", "F-LE", "F-TF", "G-CO", "G-SRT", "G-C", "G-GPE", "G-GMD",
+      "G-MG", "S-ID", "S-IC", "S-CP", "S-MD"
+    ];
+
+    function domCode(code) {
+      var m = /^(K|\d)\.([A-Z]+)\./.exec(code);
+      if (m) return m[1] + "." + m[2];
+      m = /^HS([NAFGS])-([A-Z]+)\./.exec(code);
+      return m ? m[1] + "-" + m[2] : "";
+    }
+
+    function domRank(s) {
+      var d = domCode(s.code);
+      if (s.grade === "HS") { var i = HS_ORDER.indexOf(d); return i < 0 ? 99 : i; }
+      var j = DOM_ORDER.indexOf(d.split(".")[1]);
+      return j < 0 ? 99 : j;
+    }
+
+    function gradeName(g) { return g === "HS" ? "High school" : g === "K" ? "Kindergarten" : "Grade " + g; }
+
+    function gradeKey(g) { return String(g).toLowerCase(); }
+
+    /* ===================== putting it together ===================== */
+    var DATA = null;
+
+    function build(now) {
+      var HS = window.HelperStandards,
+        HP = window.HelperProgress;
+      now = now || Date.now();
+      if (!HS) return null;
+      PAGEBY = {};
+      HS.pages.forEach(function(p) { PAGEBY[p.id] = p; });
+      var probs = HP ? HP.problems() : [],
+        byTab = {},
+        byPage = {};
+      probs.forEach(function(P) {
+        var id = String(P.page).replace(/\.html$/, ""),
+          t = tabOf(id, P.params);
+        if (t === null) return;
+        (byTab[id + "|" + t] = byTab[id + "|" + t] || []).push(P);
+        (byPage[id] = byPage[id] || []).push(P);
+      });
+      var list = HS.list.slice().sort(function(a, b) {
+        var ga = a.grade === "HS" ? 99 : a.grade === "K" ? 0 : +a.grade,
+          gb = b.grade === "HS" ? 99 : b.grade === "K" ? 0 : +b.grade;
+        return ga - gb || domRank(a) - domRank(b) || HS.list.indexOf(a) - HS.list.indexOf(b);
+      });
+      var grades = [],
+        G = {};
+      var skills = list.map(function(s) {
+        var targets = HS.pagesFor(s.code).filter(function(t) { return !NOCHECK[t.page + "|" + t.mode] && PAGEBY[t.page]; }),
+          seen = {},
+          mine = [];
+        targets.forEach(function(t) {
+          var P = PAGEBY[t.page],
+            from = t.mode === "" && P.modes.length && P.common.indexOf(s.code) >= 0 ? byPage[t.page] : byTab[t.page + "|" + t.mode];
+          (from || []).forEach(function(x) {
+            if (!seen[x.key]) {
+              seen[x.key] = 1;
+              mine.push(x);
+            }
+          });
+          t.size = PAGEBY[t.page].common.length + (P.modes.filter(function(m) { return m.key === t.mode; })[0] || { codes: [] }).codes.length;
+        });
+        mine.sort(function(a, b) { return a.first - b.first; });
+        var flags = mine.map(function(x) { return !!x.firstRight; }),
+          lastN = flags.slice(-RULE.last);
+        // the main place to practice it: the tab with the fewest standards (the most to the point), first in the list on a tie
+        var main = targets.slice().sort(function(a, b) { return a.size - b.size || targets.indexOf(a) - targets.indexOf(b); })[0] || null;
+        var k = {
+          s: s,
+          status: statusOf(flags),
+          tried: mine.length,
+          rightFirst: flags.filter(Boolean).length,
+          lastN: lastN.length,
+          lastRight: lastN.filter(Boolean).length,
+          last: mine.reduce(function(m, x) { return Math.max(m, x.last); }, 0),
+          targets: targets,
+          main: main
+        };
+        var g = s.grade;
+        if (!G[g]) {
+          G[g] = { grade: g, key: gradeKey(g), name: gradeName(g), skills: [], total: 0, practiced: 0, mast: 0, get: 0, prac: 0, last: 0 };
+          grades.push(G[g]);
+        }
+        G[g].skills.push(k);
+        G[g].total++;
+        if (k.status !== "none") G[g].practiced++;
+        if (k.status !== "none") G[g][k.status]++;
+        if (k.last > G[g].last) G[g].last = k.last;
+        return k;
+      });
+      return { now: now, problems: probs.length, counted: Object.keys(byPage).reduce(function(n, id) { return n + byPage[id].length; }, 0), grades: grades, G: G, skills: skills };
+    }
+
+    /* ===================== drawing ===================== */
+    var picked = null;
+
+    function evidence(k, now) {
+      if (!k.tried) return "Not tried yet";
+      var when = " · last practiced " + ago(k.last, now);
+      if (k.tried === 1) return "1 tried, " + (k.lastRight ? "right first time" : "not right first time") + when;
+      return k.lastRight + " of your last " + k.lastN + " right first time · " + k.tried + " tried" + when;
+    }
+
+    function toGo(k) { return k.status === "mast" ? "" : ". Mastered at " + RULE.master + " of your last " + RULE.last + " right first time."; }
+
+    function where(t) { return t.name + (t.modeName ? " · " + t.modeName : ""); }
+
+    function practiceBtn(k, label) {
+      if (!k.main) return "";
+      var t = k.main;
+      return '<a class="go practice" href="' + esc(tabLink(t.page, t.mode)) + '" data-p="' + esc(t.page) + '" data-t="' + esc(t.mode) + '" aria-label="' +
+        esc((label || "Practice it") + ": " + k.s.code + " on " + where(t)) + '">' + esc(label || "Practice it") + ' <span aria-hidden="true">→</span></a>';
+    }
+
+    function short(text, n) {
+      if (text.length <= n) return text;
+      var cut = text.lastIndexOf(" ", n - 1);
+      return text.slice(0, cut > n * .6 ? cut : n - 1).replace(/[\s.,;:]+$/, "") + "…";
+    }
+
+    function drawGrades() {
+      var D = DATA;
+      $("glist").innerHTML = D.grades.map(function(g) {
+        function seg(cls, n) { return n ? '<i class="' + cls + '" style="width:' + (100 * n / g.total).toFixed(2) + '%"></i>' : ""; }
+        var line = gradeName(g.grade) + ": " + g.practiced + " of " + g.total + " practiced, " + g.mast + " mastered";
+        return '<button type="button" class="gbtn" data-g="' + esc(g.key) + '" aria-pressed="' + (g.key === picked) + '" aria-label="' + esc(line) + '">' +
+          "<b>" + esc(g.name) + "</b><small><em>" + g.practiced + "</em> of " + g.total + " practiced · <em>" + g.mast + "</em> mastered</small>" +
+          '<span class="bar" aria-hidden="true">' + seg("s3", g.mast) + seg("s2", g.get) + seg("s1", g.prac) + "</span></button>";
+      }).join("");
+      $("gradesNote").textContent = D.problems ? D.counted + " problem" + (D.counted === 1 ? "" : "s") + " counted · pick a grade to see its skills" : "pick a grade to see its skills";
+    }
+
+    function drawGrade() {
+      var D = DATA,
+        g = D.G[upper(picked)] || D.grades[0],
+        now = D.now;
+      $("gvTitle").textContent = g.name;
+      $("gvLine").textContent = g.practiced + " of " + g.total + " practiced, " + g.mast + " mastered" + (g.get ? ", " + g.get + " getting it" : "") + ".";
+      // next up: not mastered yet, earliest first
+      var next = g.skills.filter(function(k) { return k.status !== "mast" && k.main; }).slice(0, 3);
+      if (!next.length) {
+        var i = D.grades.indexOf(g),
+          after = D.grades[i + 1];
+        $("next").innerHTML = '<div class="done"><p><b>Every skill in ' + esc(g.name) + " is mastered.</b> Keep them fresh with a practice set now and then.</p>" +
+          (after ? '<button type="button" class="ghost" data-g="' + esc(after.key) + '">On to ' + esc(after.name) + "</button>" : "") + "</div>";
+      } else {
+        $("next").innerHTML = '<div class="next">' + next.map(function(k) {
+          return '<div class="card ' + ST[k.status].cls + '"><div class="top"><a class="code" href="' + esc(window.HelperStandards.url(k.s.code)) + '" title="' + esc(k.s.code + ": " + k.s.text) + '">' + esc(k.s.code) + "</a>" + chip(k.status) + "</div>" +
+            "<p>" + esc(short(k.s.text, 150)) + "</p>" +
+            '<p class="ev">' + esc(evidence(k, now) + toGo(k)) + "</p>" +
+            practiceBtn(k) + "</div>";
+        }).join("") + "</div>";
+      }
+      // the domains
+      var html = "",
+        area = "",
+        doms = [],
+        DM = {};
+      g.skills.forEach(function(k) {
+        var dc = domCode(k.s.code);
+        if (!DM[dc]) {
+          DM[dc] = { code: dc, name: k.s.domain, area: k.s.area || "", skills: [] };
+          doms.push(DM[dc]);
+        }
+        DM[dc].skills.push(k);
+      });
+      doms.forEach(function(d, di) {
+        if (d.area && d.area !== area) {
+          area = d.area;
+          html += '<h3 class="area">' + esc(area) + "</h3>";
+        }
+        var pr = d.skills.filter(function(k) { return k.status !== "none"; }).length,
+          ma = d.skills.filter(function(k) { return k.status === "mast"; }).length;
+        html += '<section class="panel dom" aria-labelledby="dom' + di + '"><div class="panel-head"><h3 id="dom' + di + '">' + esc(d.name) + "<small>" + esc(d.code) + "</small></h3>" +
+          "<span>" + pr + " of " + d.skills.length + " practiced · " + ma + " mastered</span></div><ol class=\"slist\">" +
+          d.skills.map(function(k) {
+            var others = k.targets.filter(function(t) { return t !== k.main; });
+            return '<li class="std ' + ST[k.status].cls + '">' + chip(k.status) +
+              '<div><a class="code" href="' + esc(window.HelperStandards.url(k.s.code)) + '">' + esc(k.s.code) + "</a>" + (k.s.plus ? '<span class="plus" title="For students who go on to advanced courses">(+) advanced</span>' : "") +
+              '<p class="txt">' + esc(k.s.text) + "</p>" +
+              '<p class="ev">' + esc(evidence(k, now) + ".") + "</p>" +
+              (k.main ? '<p class="where">On ' + '<a href="' + esc(tabLink(k.main.page, k.main.mode)) + '">' + esc(where(k.main)) + "</a>" +
+                (others.length ? "; also " + others.map(function(t) { return '<a href="' + esc(tabLink(t.page, t.mode)) + '">' + esc(where(t)) + "</a>"; }).join(", ") : "") + "</p>" : "") +
+              "</div>" + practiceBtn(k) + "</li>";
+          }).join("") + "</ol></section>";
+      });
+      $("domains").innerHTML = html;
+    }
+
+    function upper(key) { return key === "hs" ? "HS" : key === "k" ? "K" : key; }
+
+    function draw() {
+      DATA = build();
+      if (!DATA) return;
+      $("welcome").hidden = !!DATA.counted;
+      if (!picked || !DATA.G[upper(picked)]) picked = firstGrade();
+      drawGrades();
+      drawGrade();
+    }
+
+    function firstGrade() {
+      var D = DATA,
+        q = /[?&]grade=([^&#]*)/.exec(location.search),
+        saved = "";
+      if (q && D.G[upper(decodeURIComponent(q[1]).toLowerCase())]) return decodeURIComponent(q[1]).toLowerCase();
+      try { saved = localStorage.getItem("skills-grade") || ""; } catch (e) {}
+      if (saved && D.G[upper(saved)]) return saved;
+      // the grade practiced most lately (the lowest one, when a problem counts for several)
+      var best = null;
+      D.grades.forEach(function(g) { if (g.last && (!best || g.last > best.last)) best = g; });
+      return best ? best.key : D.grades[0].key;
+    }
+
+    function pick(key, save) {
+      if (!DATA || !DATA.G[upper(key)]) return;
+      picked = key;
+      if (save) try { localStorage.setItem("skills-grade", key); } catch (e) {}
+      try {
+        var qs = location.search.replace(/([?&])grade=[^&#]*&?/, "$1").replace(/[?&]$/, "");
+        qs = (qs ? qs + "&" : "?") + "grade=" + key;
+        history.replaceState(history.state, "", location.pathname + qs + location.hash);
+      } catch (e) {}
+      drawGrades();
+      drawGrade();
+    }
+
+    document.addEventListener("click", function(e) {
+      var b = e.target && e.target.closest ? e.target.closest("[data-g]") : null;
+      if (b && b.tagName === "BUTTON") {
+        pick(b.getAttribute("data-g"), true);
+        if (b.classList.contains("ghost")) $("gvTitle").scrollIntoView({ block: "start" });
+      }
+    });
+    $("printBtn").addEventListener("click", function() { window.print(); });
+
+    /* ===================== Practice it: a new problem first ===================== */
+    function makeOne(id, tab) {
+      return new Promise(function(ok, bad) {
+        var f = document.createElement("iframe"),
+          mid = "skills-" + Date.now() + "-" + Math.random().toString(36).slice(2, 8),
+          done = false,
+          timer = 0;
+
+        function finish(err, params) {
+          if (done) return;
+          done = true;
+          clearTimeout(timer);
+          window.removeEventListener("message", onMsg);
+          if (f.parentNode) f.parentNode.removeChild(f);
+          if (err) bad(err);
+          else ok(params);
+        }
+
+        function onMsg(e) {
+          var d = e.data;
+          if (!d || typeof d !== "object" || d.id !== mid || d.type !== "helper:made") return;
+          var p = (d.problems || [])[0];
+          if (p && typeof p.params === "string" && p.params) finish(null, p.params);
+          else finish(new Error(d.error || "no problem"));
+        }
+        window.addEventListener("message", onMsg);
+        timer = setTimeout(function() { finish(new Error("timeout")); }, 9000);
+        f.setAttribute("aria-hidden", "true");
+        f.tabIndex = -1;
+        f.title = "";
+        f.style.cssText = "position:absolute;width:900px;height:700px;left:-10000px;top:0;border:0;visibility:hidden";
+        f.onload = function() {
+          setTimeout(function() {
+            try { f.contentWindow.postMessage({ type: "helper:make", id: mid, count: 1, options: makeOpts(id, tab) }, "*"); } catch (x) { finish(x); }
+          }, 60);
+        };
+        f.src = U(id + ".html");
+        document.body.appendChild(f);
+      });
+    }
+
+    document.addEventListener("click", function(e) {
+      var a = e.target && e.target.closest ? e.target.closest("a.practice") : null;
+      if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || !window.Promise) return;
+      e.preventDefault();
+      if (a.getAttribute("aria-busy") === "true") return;
+      var id = a.getAttribute("data-p"),
+        tab = a.getAttribute("data-t") || "",
+        href = a.href;
+      a.setAttribute("aria-busy", "true");
+      a.setAttribute("data-label", a.innerHTML);
+      a.textContent = "Making a problem…";
+      $("msg").textContent = "Making a new problem…";
+      makeOne(id, tab).then(function(params) { location.href = practiceLink(id, params); }, function() { location.href = href; });
+    });
+    // back from the helper (the page may come back from the cache): the buttons as they were
+    window.addEventListener("pageshow", function(e) {
+      [].forEach.call(document.querySelectorAll('a.practice[aria-busy="true"]'), function(a) {
+        a.removeAttribute("aria-busy");
+        a.innerHTML = a.getAttribute("data-label") || "Practice it";
+      });
+      $("msg").textContent = "";
+      if (DATA && e.persisted) {
+        if (window.HelperProgress) window.HelperProgress.reload();
+        draw();
+      }
+    });
+
+    /* ===================== theme ===================== */
+    var themeBtn = $("themeBtn");
+
+    function isDark() {
+      var t = document.documentElement.getAttribute("data-theme");
+      return t ? t === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    }
+
+    function paint() { themeBtn.textContent = isDark() ? "Light mode" : "Dark mode"; }
+    try { var th = localStorage.getItem("skills-page-theme"); if (th === "light" || th === "dark") document.documentElement.setAttribute("data-theme", th); } catch (e) {}
+    themeBtn.addEventListener("click", function() {
+      var next = isDark() ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", next);
+      try { localStorage.setItem("skills-page-theme", next); } catch (e) {}
+      paint();
+    });
+    paint();
+
+    window.__skills = { statusOf: statusOf, tabOf: function(page, params) { if (!PAGEBY.addition && window.HelperStandards) build(); return tabOf(page, params); }, build: build, rule: RULE };
+
+    // progress.js and standards.js are deferred like this page's own work, so wait for them
+    function start() {
+      draw();
+      document.addEventListener("helper:progress", draw);
+      window.addEventListener("storage", function(e) {
+        if (e.key === "helper-progress" || e.key === null) {
+          if (window.HelperProgress) window.HelperProgress.reload();
+          draw();
+        }
+      });
+    }
+    if (window.HelperStandards && window.HelperProgress) start();
+    else window.addEventListener("DOMContentLoaded", start);
+  })();
+</script>
+</html>

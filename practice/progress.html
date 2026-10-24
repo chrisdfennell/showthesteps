@@ -17,9 +17,7 @@
 <script src="../assets/site.js"></script>
 <script src="../assets/nav.js" defer></script>
 <script src="../assets/progress.js" defer></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..800&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
 <style>
   :root {
     --paper: #EDEFEC;
@@ -68,6 +66,10 @@
     --uni: #BE123C;
     --mon: #A16207;
     --avi: #0B5CAD;
+    --nur: #6E3D64;
+    --crp: #694321;
+    --ele: #611E05;
+    --rcp: #67311E;
     --cnt: #6B5A2B;
     --fla: #C2410C;
     --heat: #0D7361;
@@ -124,6 +126,10 @@
       --uni: #FDA4AF;
       --mon: #FDE047;
       --avi: #8CC4F5;
+      --nur: #FAC8F0;
+      --crp: #CDA383;
+      --ele: #F9C4A0;
+      --rcp: #E4BDAF;
       --cnt: #EED9A0;
       --fla: #FB923C;
       --heat: #4FCCB0;
@@ -177,6 +183,10 @@
     --uni: #FDA4AF;
     --mon: #FDE047;
     --avi: #8CC4F5;
+    --nur: #FAC8F0;
+    --crp: #CDA383;
+    --ele: #F9C4A0;
+    --rcp: #E4BDAF;
     --cnt: #EED9A0;
     --fla: #FB923C;
     --heat: #4FCCB0;
@@ -790,6 +800,7 @@
     <p>Open any helper, switch to <b>Check my answer</b>, and try a problem. Each answer you check shows up here,
       along with the days you practiced. It all stays in this browser, on this device.</p>
     <div class="actions"><a class="go" href="sets.html">Make a practice set</a>
+      <a class="ghost" href="skills.html" style="text-decoration:none">Your skill map</a>
       <a class="ghost" href="../index.html" style="text-decoration:none">Pick a helper</a></div>
   </section>
 
@@ -950,8 +961,9 @@
       $("cal").innerHTML = g;
 
       $("sugs").innerHTML = (s.suggestions || []).map(function(x) {
-        return '<a class="sug" style="--c:' + cv(x.c) + '" href="' + esc(x.href) + '"><b>' + esc(x.head) + "</b><span>" + esc(x.body) + "</span></a>";
-      }).join("") + '<a class="sug" style="--c:var(--ink-3)" href="sets.html"><b>Make a practice set</b><span>Pick topics and how many, then work through them one at a time — or share the link.</span></a>';
+          return '<a class="sug" style="--c:' + cv(x.c) + '" href="' + esc(x.href) + '"><b>' + esc(x.head) + "</b><span>" + esc(x.body) + "</span></a>";
+        }).join("") + '<a class="sug" style="--c:var(--ink-3)" href="sets.html"><b>Make a practice set</b><span>Pick topics and how many, then work through them one at a time — or share the link.</span></a>' +
+        '<a class="sug" style="--c:var(--ink-3)" href="skills.html"><b>Your skill map</b><span>The Common Core standards for your grade: which you’ve practiced, which you’ve mastered, and what’s next.</span></a>';
 
       $("topicRows").innerHTML = s.topics.slice().sort(function(a, b) { return a.order - b.order; }).map(function(T) {
         return '<tr style="--c:' + cv(T.c) + '"><td><span class="tname"><i class="dot"></i>' + esc(T.name) + "</span></td>" +

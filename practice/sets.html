@@ -17,9 +17,9 @@
 <script src="../assets/site.js"></script>
 <script src="../assets/nav.js" defer></script>
 <script src="../assets/qr.js" defer></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..800&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<script src="../assets/standards.js"></script>
+<script src="../assets/assign.js"></script>
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
 <style>
   :root {
     --paper: #EDEFEC;
@@ -68,6 +68,10 @@
     --uni: #BE123C;
     --mon: #A16207;
     --avi: #0B5CAD;
+    --nur: #6E3D64;
+    --crp: #694321;
+    --ele: #611E05;
+    --rcp: #67311E;
     --cnt: #6B5A2B;
     --fla: #C2410C;
     --ok: #0D7361;
@@ -129,6 +133,10 @@
       --uni: #FDA4AF;
       --mon: #FDE047;
       --avi: #8CC4F5;
+      --nur: #FAC8F0;
+      --crp: #CDA383;
+      --ele: #F9C4A0;
+      --rcp: #E4BDAF;
       --cnt: #EED9A0;
       --fla: #FB923C;
       --ok: #4FCCB0;
@@ -187,6 +195,10 @@
     --uni: #FDA4AF;
     --mon: #FDE047;
     --avi: #8CC4F5;
+    --nur: #FAC8F0;
+    --crp: #CDA383;
+    --ele: #F9C4A0;
+    --rcp: #E4BDAF;
     --cnt: #EED9A0;
     --fla: #FB923C;
     --ok: #4FCCB0;
@@ -435,6 +447,33 @@
   }
   .msg.err {
     color: var(--warm)
+  }
+  /* what ?assignment&std= made: the standard, the helper tabs, and what was left out */
+  .stdbox {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-left: 4px solid var(--key-line);
+    border-radius: 6px 12px 12px 6px;
+    padding: 12px 16px;
+    font-size: 14px;
+    color: var(--ink-2);
+    display: flex;
+    flex-direction: column;
+    gap: 8px
+  }
+  .stdbox.warn {
+    border-left-color: var(--warm);
+    background: var(--warm-bg)
+  }
+  .stdbox p {
+    margin: 0
+  }
+  .stdbox b {
+    color: var(--ink)
+  }
+  .stdbox a {
+    color: var(--ink);
+    text-underline-offset: .15em
   }
 
   /* ---- builder ---- */
@@ -1170,6 +1209,7 @@
   </div>
 
   <!-- ===================== the assignment builder (sets.html?assignment) ===================== -->
+  <section class="stdbox" id="aStdBox" hidden aria-label="Problems for a standard" aria-live="polite"></section>
   <div class="layout" id="asgBuilder" hidden>
     <section class="panel" aria-label="The assignment">
       <div class="panel-head"><h2>The assignment</h2></div>
@@ -1334,7 +1374,8 @@
      An assignment starts with the student's name, and its hand-in line also says how many tries each problem took (v3).
        sets.html?assignment   the assignment builder: the problems teachers put in with "Add to assignment" on the helpers
                               (assets/assign.js; localStorage["assignment-draft"]), in order, with a title, instructions,
-                              a due date and the two options, and one link + QR code + text for Google Classroom or email. */
+                              a due date and the two options, and one link + QR code + text for Google Classroom or email.
+       sets.html?assignment&std=6.RP.A.3&n=10   the same, filled with n made problems for a standard (from the Standards page) */
   (function() {
     "use strict";
     var $ = function(id) { return document.getElementById(id); };
@@ -1356,6 +1397,10 @@
       ["unit-conversions.html", "Unit conversions", "The Measuring Tape", "uni"],
       ["money-math.html", "Money math", "The Money Jar", "mon"],
       ["aviation.html", "Aviation", "The Flight Computer", "avi"],
+      ["nursing.html", "Nursing", "The Dose Calculator", "nur"],
+      ["carpentry.html", "Carpentry", "The Framing Square", "crp"],
+      ["electrical.html", "Electrical", "The Circuit Board", "ele"],
+      ["cooking.html", "Cooking", "The Recipe Card", "rcp"],
       ["pemdas.html", "Order of operations", "The Order Stack", "ord"],
       ["algebra.html", "Algebra", "The Balance Scale", "alg"],
       ["lines.html", "Lines & slope", "The Slope Grid", "lin"],
@@ -2753,6 +2798,105 @@
     document.addEventListener("DOMContentLoaded", aQrReady);
     window.addEventListener("load", aQrReady);
 
+    /* sets.html?assignment&std=6.RP.A.3&n=10 (from the Standards page; several: std=6.RP.A.3,6.RP.A.2, n for each):
+       n made problems for each standard, from the helper tabs that practice it (HelperAssign.bank, assets/assign.js).
+       They become a new draft, unless the draft already has problems: then the teacher picks replace, add or keep. */
+    // a section's options with the helper's defaults filled in, as the builder's options do it (null: the helper has no such mode)
+    function fullOpts(list, opts) {
+      var o = JSON.parse(JSON.stringify(opts || {})),
+        modeOpt = list.filter(function(x) { return x.key === "mode"; })[0];
+      if (modeOpt && o.mode === undefined) o.mode = modeOpt["default"];
+      if (modeOpt && !(modeOpt.values || []).some(function(v) { return String(v.v) === String(o.mode); })) return null;
+      list.forEach(function(x) {
+        var only = x.modes || x.appliesTo || x.forMode;
+        if (only && o.mode !== undefined && x.key !== "mode" && [].concat(only).map(String).indexOf(String(o.mode)) < 0) return;
+        if (o[x.key] === undefined) o[x.key] = x.defaultByMode && x.defaultByMode[o.mode] !== undefined ? x.defaultByMode[o.mode] : x["default"];
+      });
+      return o;
+    }
+    // → the draft's items, in the sections' order (a section asks for a few more, so repeats can be dropped)
+    function aMakeBank(B) {
+      return Promise.all(B.secs.map(function(sec) {
+        return schemaFor(sec.page).then(function(list) {
+          var o = fullOpts(list, sec.opts);
+          if (!o) return [];
+          return ask(sec.page, { type: "helper:make", count: sec.count + 3, options: o }, "helper:made").then(function(d) {
+            var seen = {};
+            return (d.problems || []).filter(function(p) {
+              if (!p || typeof p.params !== "string" || seen[p.params]) return false;
+              seen[p.params] = 1;
+              return true;
+            }).slice(0, sec.count).map(function(p) {
+              return { p: sec.page.replace(/\.html$/, ""), q: cleanParams(p.params), t: String(p.text || "").replace(/\s+/g, " ").trim().slice(0, 140), at: Date.now() };
+            });
+          });
+        }).then(null, function() { return []; });
+      })).then(function(lists) {
+        var all = [],
+          keys = {};
+        lists.forEach(function(l) {
+          l.forEach(function(x) {
+            if (!keys[aKey(x)]) {
+              keys[aKey(x)] = 1;
+              all.push(x);
+            }
+          });
+        });
+        return all.slice(0, 100);
+      });
+    }
+
+    function aFromStd(codes, n) {
+      var A = window.HelperAssign,
+        B = A && A.bank ? A.bank(codes, n, 60) : null,
+        box = $("aStdBox");
+      var rest = location.search.replace(/^\?/, "").split("&").filter(function(kv) { return kv && !/^(std|n)=/.test(kv); }).join("&");
+      try { history.replaceState(history.state, "", location.pathname + (rest ? "?" + rest : "") + location.hash); } catch (e) {}
+      box.hidden = false;
+
+      function say(html, warn) {
+        box.className = "stdbox" + (warn ? " warn" : "");
+        box.innerHTML = html;
+      }
+      if (!B) return say("<p>The list of standards couldn’t be loaded, so nothing was added.</p>", true);
+      if (!B.secs.length) return say(A.bankHtml(B, "", "Nothing was made, so your assignment is as you left it."), true);
+      say("<p>Making the problems for <b>" + esc(B.codes.join(", ")) + "</b>…</p>");
+      aMakeBank(B).then(function(items) {
+        if (!items.length) return say("<p>The helpers didn’t send any problems for <b>" + esc(B.codes.join(", ")) + "</b>. Open this page from the website and try again.</p>", true);
+        var had = AD.items.length;
+
+        function use(how) {
+          if (how === "replace") {
+            AD = { v: 1, items: items, title: B.title, instr: "", due: "", steps: AD.steps, retries: AD.retries };
+            aPrev = {};
+          } else if (how === "add") {
+            var keys = {};
+            AD.items.forEach(function(x) { keys[aKey(x)] = 1; });
+            items.forEach(function(x) { if (!keys[aKey(x)] && AD.items.length < 100) AD.items.push(x); });
+          }
+          if (how !== "keep") {
+            aSave();
+            aStale();
+            aPaintFields();
+            aDraw();
+          }
+          var n = AD.items.length;
+          say(how === "keep" ? "<p>Your assignment is as you left it: the problems for <b>" + esc(B.codes.join(", ")) + "</b> weren’t added.</p>" :
+            A.bankHtml(B, items.length + " problem" + (items.length === 1 ? "" : "s") + (how === "add" ? " added after the " + had + " you had (" + n + " in all)" : " in the assignment")) +
+            (n >= 100 ? "<p>An assignment holds 100 problems at most.</p>" : ""));
+        }
+        if (!had) return use("replace");
+        say(A.bankHtml(B, items.length + " problem" + (items.length === 1 ? "" : "s") + " made") +
+          "<p><b>Your assignment already has " + had + " problem" + (had === 1 ? "" : "s") + ".</b> What should happen to " + (had === 1 ? "it" : "them") + "?</p>" +
+          '<div class="actions"><button type="button" class="go" data-std="replace">Replace ' + (had === 1 ? "it" : "them") + ' with the new ones</button>' +
+          '<button type="button" class="ghost" data-std="add">Add the new ones after ' + (had === 1 ? "it" : "them") + '</button>' +
+          '<button type="button" class="ghost" data-std="keep">Keep the assignment as it is</button></div>');
+        [].forEach.call(box.querySelectorAll("[data-std]"), function(b) { b.addEventListener("click", function() { use(b.getAttribute("data-std")); }); });
+        var first = box.querySelector("[data-std]");
+        if (first) first.focus();
+      });
+    }
+
     function startAsgBuilder() {
       AD = aLoad();
       document.title = "Assignment builder · Practice";
@@ -2763,6 +2907,13 @@
       $("asgBuilder").hidden = false;
       aPaintFields();
       aDraw();
+      var std = /[?&]std=([^&#]+)/.exec(location.search),
+        nm = /[?&]n=(\d+)/.exec(location.search);
+      if (std) {
+        var codes = "";
+        try { codes = decodeURIComponent(std[1].replace(/\+/g, " ")); } catch (e) { codes = std[1]; }
+        aFromStd(codes, nm ? nm[1] : 10);
+      }
       // problems added in another tab show up here
       window.addEventListener("storage", function(e) {
         if (e.key === AKEY || !e.key) {

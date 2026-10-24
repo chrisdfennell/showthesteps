@@ -1,13 +1,12 @@
 /* Keeps a copy of the site so it works offline once it has been opened.
    Pages are fetched fresh whenever there's a connection (so updates show straight away),
-   and the saved copy is used when there isn't. Fonts are saved the first time they load.
+   and the saved copy is used when there isn't. The fonts are the site's own files too (assets/fonts).
    Adding a page: put it in PAGES (its real file, with its folder). Change VERSION to throw away everything saved before.
    Pages are opened by readable addresses (helpers/order-of-operations, no .html): offline, such an address is found
    under its file's name.
    This file stays at the top of the site: a service worker only looks after the pages in its own folder and below. */
-var VERSION = "v8";
+var VERSION = "v9";
 var CACHE = "helpers-" + VERSION;
-var FONTS = "helpers-fonts";
 var PAGES = [
   "./", "index.html", "404.html",
   "helpers/addition.html", "helpers/subtraction.html", "helpers/multiplication.html", "helpers/division.html",
@@ -18,10 +17,13 @@ var PAGES = [
   "helpers/scratch-paper.html", "helpers/number-sense.html", "helpers/quadratics.html", "helpers/logarithms.html",
   "helpers/sequences.html", "helpers/functions.html", "helpers/radicals.html", "helpers/complex-numbers.html",
   "helpers/college-statistics.html", "helpers/matrices-and-vectors.html", "helpers/unit-conversions.html", "helpers/money-math.html", "helpers/aviation.html",
-  "practice/sets.html", "practice/worksheets.html", "practice/flash-cards.html", "practice/problem-of-the-day.html", "practice/progress.html", "practice/class-results.html",
-  "reference/sheets.html", "reference/definitions.html", "info/about.html", "info/privacy.html", "info/help.html", "tests/self-test.html",
-  "assets/site.js", "assets/nav.js", "assets/progress.js", "assets/glossary.js", "assets/search.js", "assets/tools.js", "assets/tutor.js", "assets/qr.js", "assets/standards.js", "assets/assign.js", "assets/photo.js",
+  "helpers/nursing.html", "helpers/carpentry.html", "helpers/electrical.html", "helpers/cooking.html",
+  "practice/sets.html", "practice/worksheets.html", "practice/flash-cards.html", "practice/problem-of-the-day.html", "practice/progress.html", "practice/skills.html", "practice/class-results.html",
+  "reference/sheets.html", "reference/definitions.html", "info/about.html", "info/privacy.html", "info/help.html", "info/embed.html", "tests/self-test.html",
+  "assets/site.js", "assets/nav.js", "assets/progress.js", "assets/glossary.js", "assets/search.js", "assets/tools.js", "assets/tutor.js", "assets/play.js", "assets/embed.js", "assets/qr.js", "assets/standards.js", "assets/assign.js", "assets/photo.js",
   "reference/standards.html", "learn/index.html",
+  "assets/fonts/fonts.css", "assets/fonts/archivo-latin.woff2", "assets/fonts/IBMPlexSans-Regular-Latin1.woff2", "assets/fonts/IBMPlexSans-Medium-Latin1.woff2",
+  "assets/fonts/IBMPlexSans-SemiBold-Latin1.woff2", "assets/fonts/IBMPlexMono-Regular-Latin1.woff2", "assets/fonts/IBMPlexMono-SemiBold-Latin1.woff2",
   "assets/manifest.webmanifest", "assets/icons/icon.svg", "assets/icons/icon-192.png", "assets/icons/icon-512.png",
   "assets/icons/icon-maskable-512.png", "assets/icons/apple-touch-icon.png", "assets/icons/favicon.svg", "assets/icons/og.png"
 ];
@@ -38,7 +40,7 @@ self.addEventListener("install", function(e) {
 
 self.addEventListener("activate", function(e) {
   e.waitUntil(caches.keys().then(function(keys) {
-    return Promise.all(keys.filter(function(k) { return k !== CACHE && k !== FONTS; }).map(function(k) { return caches.delete(k); }));
+    return Promise.all(keys.filter(function(k) { return k !== CACHE; }).map(function(k) { return caches.delete(k); }));
   }).then(function() { return self.clients.claim(); }));
 });
 
@@ -47,15 +49,6 @@ self.addEventListener("fetch", function(e) {
   if (req.method !== "GET") return;
   var url = new URL(req.url);
 
-  // fonts: use the saved copy if there is one, otherwise fetch it and save it
-  if (url.hostname === "fonts.googleapis.com" || url.hostname === "fonts.gstatic.com") {
-    e.respondWith(caches.open(FONTS).then(function(c) {
-      return c.match(req).then(function(hit) {
-        return hit || fetch(req).then(function(res) { c.put(req, res.clone()); return res; });
-      });
-    }));
-    return;
-  }
   if (url.origin !== self.location.origin) return;
 
   // the site's own files: fresh when online, saved copy when offline

@@ -3,11 +3,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Privacy · Show The Steps</title>
-<meta name="description" content="Show The Steps has no accounts, no ads and no cookies. The problems you type never leave your browser; visits are counted anonymously with GoatCounter. Here is exactly what is stored and sent.">
+<meta name="description" content="Show The Steps has no accounts, no ads and no cookies. The problems you type stay in your browser unless you choose to send one; visits are counted anonymously with GoatCounter. Here is exactly what is stored and sent.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Show The Steps">
 <meta property="og:title" content="Privacy · Show The Steps">
-<meta property="og:description" content="Show The Steps has no accounts, no ads and no cookies. The problems you type never leave your browser; visits are counted anonymously with GoatCounter. Here is exactly what is stored and sent.">
+<meta property="og:description" content="Show The Steps has no accounts, no ads and no cookies. The problems you type stay in your browser unless you choose to send one; visits are counted anonymously with GoatCounter. Here is exactly what is stored and sent.">
 <meta property="og:url" content="https://showthesteps.org/info/privacy">
 <meta property="og:image" content="https://showthesteps.org/assets/icons/og.png">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
@@ -23,9 +23,7 @@
     document.write('<script data-goatcounter="https://fennell.goatcounter.com/count" async src="https://gc.zgo.at/count.js"><\/script>');
   }
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..800&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
 <style>
   :root {
     --paper: #EDEFE9;
@@ -247,7 +245,8 @@
   </header>
 
   <div class="card">
-    <p><b>The short version:</b> every problem is worked out in your own browser, and nothing you type is sent to anyone.
+    <p><b>The short version:</b> every problem is worked out in your own browser, and nothing you type is sent to anyone, unless you press
+      <b>Send this problem</b> on a problem a page couldn't read.
       Your progress and settings are saved only on your device. The site counts visits anonymously, without cookies. It
       collects no personal information from anyone, including children, so there is no student data to share or sell.</p>
   </div>
@@ -275,13 +274,14 @@
       <td>Each page view: the page's address <b>without</b> the problem in it (so what you typed is never included), the site
         you came from, your screen size, and your browser and operating system. GoatCounter works out the country from your
         IP address and then discards the address. When a page can't read a problem you typed, it also counts that, with
-        only the page's name (never what you typed), so we can see which pages need to understand more. No cookies, and
-        nothing that identifies you.
+        only the page's name (not what you typed), so we can see which pages need to understand more. No cookies, and
+        nothing that identifies you.</td></tr>
+    <tr><td>GoatCounter<br><span class="small">a problem you send</span></td>
+      <td>Only if you press <b>Send this problem so we can teach the page</b> (it appears under a "couldn't read that" message):
+        that one problem, as you typed it, and the page's name, so the page can be taught to read problems like it. Email
+        addresses are taken out and it's cut to 300 characters; nothing else is sent with it, and nothing is sent unless you
+        press the button. Please leave out names and anything personal.
         <a href="https://www.goatcounter.com/help/privacy">GoatCounter's privacy policy</a>.</td></tr>
-    <tr><td>Google Fonts<br><span class="small">the lettering</span></td>
-      <td>Your browser downloads the site's fonts from Google's servers, which see your IP address like any download.
-        Google says it doesn't set cookies for this or use it to build profiles.
-        <a href="https://developers.google.com/fonts/faq/privacy">Google Fonts privacy</a>.</td></tr>
     <tr><td>GitHub Pages<br><span class="small">the hosting</span></td>
       <td>The site is served by GitHub, which may log visitors' IP addresses for security.
         <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's privacy statement</a>.</td></tr>
@@ -301,13 +301,17 @@
     <li><b>Practice sets and class results</b> are never uploaded: a student copies their result line and hands it to the
       teacher, who pastes it in.</li>
     <li><b>QR codes</b> are drawn on your device, and the <b>problem of the day</b> is worked out from the date, on your device.</li>
+    <li><b>Helpers embedded on another website</b> (a class page, Google Sites, Canvas) work the same way: what's typed stays in
+      the browser, and embedded pages aren't counted in the visit numbers. A helper may remember its last problem in the
+      visitor's browser; browsers keep that apart for each website it's embedded in.</li>
+    <li><b>The fonts</b> come from the site itself, so your browser doesn't contact Google or any other font server.</li>
     <li>There are no accounts, logins, ads, trackers or cookies.</li>
   </ul>
 
   <h2>Questions</h2>
   <p>Ask on <a href="https://github.com/chrisdfennell/arithmetic-helpers/issues">GitHub</a>, or report a security concern privately through
     <a href="https://github.com/chrisdfennell/arithmetic-helpers/security">the repository's security page</a>.</p>
-  <p class="small">Last updated October 23, 2026.</p>
+  <p class="small">Last updated October 24, 2026.</p>
 </div>
 <script>
   (function() {

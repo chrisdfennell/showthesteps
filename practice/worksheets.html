@@ -17,9 +17,9 @@
 <script src="../assets/site.js"></script>
 <script src="../assets/nav.js" defer></script>
 <script src="../assets/qr.js" defer></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..800&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<script src="../assets/standards.js"></script>
+<script src="../assets/assign.js"></script>
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
 <style>
   :root {
     --paper: #EDEFEC;
@@ -651,6 +651,33 @@
     font-size: 12.5px;
     color: var(--ink-3)
   }
+  /* what ?std= made: the standard, its sections, and what was left out */
+  .stdbox {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-left: 4px solid var(--key-line);
+    border-radius: 6px 12px 12px 6px;
+    padding: 12px 16px;
+    font-size: 14px;
+    color: var(--ink-2);
+    display: flex;
+    flex-direction: column;
+    gap: 6px
+  }
+  .stdbox.warn {
+    border-left-color: var(--warm);
+    background: var(--warm-bg)
+  }
+  .stdbox p {
+    margin: 0
+  }
+  .stdbox b {
+    color: var(--ink)
+  }
+  .stdbox a {
+    color: var(--ink);
+    text-underline-offset: .15em
+  }
 
   @media print {
     @page {
@@ -738,6 +765,8 @@
     <button class="theme-btn" id="themeBtn" type="button">Dark mode</button>
   </header>
 
+  <section class="stdbox no-print" id="stdBox" hidden aria-label="Made for a standard" role="status"></section>
+
   <div class="layout">
     <section class="panel builder" aria-label="Build the worksheet">
       <div class="panel-head"><h2>Build it</h2></div>
@@ -820,6 +849,9 @@
        JSON = { v:1, t:title, f:[name, key, mix, qr, shuffle] (0/1), c:columns, sp:"sm|md|lg", n:versions, ka:"end|each",
                 ms:mixSeed, s:[[page without .html, count, options, seed], …] }
      It's reproducible as long as the helpers make problems the same way (the same site version).
+     worksheets.html?std=6.RP.A.3&n=10 (from the Standards page; several standards: std=6.RP.A.3,6.RP.A.2, n for each)
+     starts a new worksheet for those standards: HelperAssign.bank (assets/assign.js) picks a section for each helper tab
+     that practices them, with the n problems split across them. A standard no helper can make problems for says so.
      Saved on this device: localStorage["worksheet-maker"] = { s:S, probs:version A's problems (as before), vprobs:[version][section], theme }. */
   (function() {
     "use strict";
@@ -842,6 +874,10 @@
       ["unit-conversions.html", "Unit conversions", "The Measuring Tape"],
       ["money-math.html", "Money math", "The Money Jar"],
       ["aviation.html", "Aviation", "The Flight Computer"],
+      ["nursing.html", "Nursing", "The Dose Calculator"],
+      ["carpentry.html", "Carpentry", "The Framing Square"],
+      ["electrical.html", "Electrical", "The Circuit Board"],
+      ["cooking.html", "Cooking", "The Recipe Card"],
       ["pemdas.html", "Order of operations", "The Order Stack"],
       ["algebra.html", "Algebra", "The Balance Scale"],
       ["lines.html", "Lines & slope", "The Slope Grid"],
@@ -1728,8 +1764,39 @@
       buildSecs();
       draw();
     }
+    // ?std=6.RP.A.3&n=10: a new worksheet for those standards (or, when no helper can make their problems, the saved one
+    // as it was, with a note that says why)
+    function fromStd(codes, n) {
+      var A = window.HelperAssign,
+        B = A && A.bank ? A.bank(codes, n, 80) : null,
+        box = $("stdBox");
+      if (B && B.secs.length) {
+        S.title = B.title;
+        S.mixSeed = newSeed();
+        S.secs = B.secs.map(function(s) { return { page: s.page, count: s.count, opts: JSON.parse(JSON.stringify(s.opts)), seed: newSeed() }; });
+        VP = [
+          []
+        ];
+        TOK = [];
+      }
+      start();
+      var total = B ? B.secs.reduce(function(t, s) { return t + s.count; }, 0) : 0;
+      box.innerHTML = B ? A.bankHtml(B, total + " problem" + (total === 1 ? "" : "s") + " on the sheet" + (S.versions > 1 ? " (each version)" : ""),
+        B.secs.length ? "" : "Nothing was made, so this is your last worksheet, as you left it.") : "<p>The list of standards couldn’t be loaded, so this is your last worksheet.</p>";
+      box.className = "stdbox no-print" + (B && B.secs.length ? "" : " warn");
+      box.hidden = false;
+      if (B && B.secs.length) {
+        NOTE = "Made for " + B.codes.join(", ") + ".";
+        if (!busy) status(NOTE);
+        save();
+      }
+      // the link has done its job (a refresh keeps this worksheet)
+      var rest = location.search.replace(/^\?/, "").split("&").filter(function(kv) { return kv && !/^(std|n)=/.test(kv); }).join("&");
+      try { history.replaceState(history.state, "", location.pathname + (rest ? "?" + rest : "") + location.hash); } catch (e) {}
+    }
     load();
-    var wsm = /[?&]ws=([^&#]+)/.exec(location.search);
+    var wsm = /[?&]ws=([^&#]+)/.exec(location.search),
+      stdm = /[?&]std=([^&#]+)/.exec(location.search);
     if (wsm) {
       var wsCode = "";
       try { wsCode = decodeURIComponent(wsm[1]); } catch (e) { wsCode = wsm[1]; }
@@ -1749,6 +1816,11 @@
         start();
         status("That worksheet link can’t be read — it may have been cut off when it was copied.");
       });
+    } else if (stdm) {
+      var nm = /[?&]n=(\d+)/.exec(location.search),
+        codes = "";
+      try { codes = decodeURIComponent(stdm[1].replace(/\+/g, " ")); } catch (e) { codes = stdm[1]; }
+      fromStd(codes, nm ? nm[1] : 10);
     } else start();
     window.__worksheet = {
       state: function() { return S; },

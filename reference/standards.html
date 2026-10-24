@@ -17,9 +17,8 @@
 <script src="../assets/site.js"></script>
 <script src="../assets/nav.js" defer></script>
 <script src="../assets/standards.js"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..800&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<script src="../assets/assign.js"></script>
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
 <style>
   :root {
     --paper: #EDEFEC;
@@ -376,6 +375,96 @@
     margin: 0 6px;
     color: var(--rule)
   }
+  .meta .no {
+    color: var(--ink-3)
+  }
+  .pick {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-left: auto;
+    padding-left: 10px;
+    align-self: center;
+    color: var(--ink-2);
+    cursor: pointer;
+    white-space: nowrap
+  }
+  .pick input {
+    width: 15px;
+    height: 15px;
+    margin: 0;
+    accent-color: var(--key)
+  }
+
+  /* ---- making problems: how many, and the standards picked ---- */
+  .makebar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+    font-size: 13.5px;
+    color: var(--ink-2)
+  }
+  .makebar[hidden] {
+    display: none
+  }
+  .makebar input {
+    font-family: var(--f-body);
+    font-size: 15px;
+    color: var(--ink);
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 5px 8px;
+    width: 4.5em
+  }
+  .tray {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 20;
+    background: var(--surface);
+    border-top: 1px solid var(--rule);
+    box-shadow: 0 -10px 30px -22px rgba(0, 0, 0, .6);
+    padding: 10px 16px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 8px 12px;
+    font-size: 14px
+  }
+  .tray[hidden] {
+    display: none
+  }
+  .tray b {
+    font-family: var(--f-mono);
+    font-size: 13px
+  }
+  .tbtn {
+    font-family: var(--f-body);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    background: transparent;
+    border: 1px solid var(--rule);
+    border-radius: 9px;
+    padding: 6px 13px;
+    cursor: pointer;
+    text-decoration: none
+  }
+  .tbtn.go {
+    background: var(--key);
+    border-color: var(--key);
+    color: var(--surface)
+  }
+  .tbtn:hover {
+    border-color: var(--ink-3)
+  }
+  body.picking .page {
+    padding-bottom: 130px
+  }
   .empty {
     background: var(--surface);
     border: 1px dashed var(--rule);
@@ -456,6 +545,8 @@
     .sitenav,
     .theme-btn,
     .finder,
+    .tray,
+    .make,
     .byhelper,
     .footnote,
     .tagline,
@@ -519,6 +610,7 @@
       <h1>The <em>Standards</em></h1>
       <p class="tagline">Every Common Core math standard the helpers practice, with the helper (and the tab) that teaches it.
         Look one up by its code, a topic or a grade.</p>
+      <p class="tagline" style="font-size:14px">Want to see which ones <b>you’ve</b> practiced? Your <a href="../practice/skills.html">skill map</a> shows each standard as not started, practiced, getting it or mastered.</p>
     </div>
     <button class="theme-btn" id="themeBtn" type="button">Dark mode</button>
   </header>
@@ -529,6 +621,11 @@
       <input type="search" id="q" autocomplete="off" spellcheck="false" placeholder="Try &ldquo;4.NBT&rdquo;, &ldquo;fractions&rdquo; or &ldquo;grade 6&rdquo;">
     </div>
     <div class="chips" id="chips" role="group" aria-label="Grade"></div>
+    <div class="makebar">
+      <label class="lbl" for="nIn">Make problems</label>
+      <input type="number" id="nIn" min="1" max="40" value="10" aria-describedby="nHint">
+      <span id="nHint">new problems for each standard, as a printable worksheet or an assignment. Pick several to put them on one.</span>
+    </div>
     <p class="count" id="count" role="status" aria-live="polite"></p>
     <p class="note">This is an unofficial alignment, made by the people who run this site, not by the authors of the standards.
       The wording is the standards&rsquo; own (shortened where it is very long). Standards marked (+) are the ones meant for
@@ -541,6 +638,13 @@
     <summary>Or start from a helper</summary>
     <ul id="helpers"></ul>
   </details>
+
+  <div class="tray" id="tray" hidden role="region" aria-label="Picked standards">
+    <span id="trayTxt"></span>
+    <a class="tbtn go" id="trayWs" href="#">Make a worksheet</a>
+    <a class="tbtn" id="trayAs" href="#">Make an assignment</a>
+    <button type="button" class="tbtn" id="trayClear">Clear</button>
+  </div>
 
   <p class="footnote">The Common Core State Standards are &copy; 2010 National Governors Association Center for Best Practices
     and Council of Chief State School Officers, all rights reserved. Spotted a mistake in a match? The list lives in
@@ -575,7 +679,8 @@
 
     var H = window.HelperStandards;
     if (!H) { $("list").innerHTML = "<p class=\"noscript\">The standards list could not be loaded.</p>"; return; }
-    var S = { q: "", grade: "" };
+    var S = { q: "", grade: "", n: 10, picked: [] };
+    var A = window.HelperAssign && window.HelperAssign.bank ? window.HelperAssign : null;
 
     /* ---- the grade buttons ---- */
     var GRADES = [];
@@ -622,8 +727,77 @@
       }).join("<span class=\"sep\">|</span>");
       return "<article class=\"std\" id=\"" + esc(s.code) + "\"><h4>" + esc(s.code) + (s.plus ? " <span>(+) advanced</span>" : "") + "</h4>" +
         "<p class=\"txt\">" + esc(s.text) + "</p>" +
-        (links ? "<p class=\"meta\"><b>Practice it</b>" + links + "</p>" : "") + "</article>";
+        (links ? "<p class=\"meta\"><b>Practice it</b>" + links + "</p>" : "") + makeLine(s.code, r.pages.length) + "</article>";
     }
+
+    /* ---- make problems: worksheets.html?std=…&n=… and sets.html?assignment&std=…&n=… (HelperAssign.bank, assign.js) ---- */
+    var CAN = {};
+
+    function canMake(code) {
+      if (!A) return false;
+      if (CAN[code] === undefined) CAN[code] = A.bank(code, 1).secs.length > 0;
+      return CAN[code];
+    }
+
+    function makeUrl(kind, codes) {
+      var q = "std=" + codes.map(encodeURIComponent).join(",") + "&n=" + S.n;
+      return kind === "ws" ? H.pageUrl("worksheet.html", q) : H.pageUrl("practice.html", "assignment&" + q);
+    }
+
+    function makeLine(code, helpers) {
+      if (!A) return "";
+      if (!canMake(code)) {
+        return "<p class=\"meta make\"><b>Make problems</b><span class=\"no\">" + (helpers ? "The helpers can’t make new problems for this one: practice it on the helper." :
+          "No helper practices this one yet.") + "</span></p>";
+      }
+      var c = esc(code);
+      return "<p class=\"meta make\"><b>Make problems</b>" +
+        "<a data-make=\"ws\" data-code=\"" + c + "\" href=\"" + esc(makeUrl("ws", [code])) + "\">Worksheet</a><span class=\"sep\">|</span>" +
+        "<a data-make=\"as\" data-code=\"" + c + "\" href=\"" + esc(makeUrl("as", [code])) + "\">Assignment</a>" +
+        "<label class=\"pick\"><input type=\"checkbox\" data-pick=\"" + c + "\"" + (S.picked.indexOf(code) >= 0 ? " checked" : "") + "> Pick</label></p>";
+    }
+
+    function paintTray() {
+      var n = S.picked.length;
+      document.body.classList.toggle("picking", n > 0);
+      $("tray").hidden = !n;
+      if (!n) return;
+      $("trayTxt").innerHTML = n === 1 ? "Picked: <b>" + esc(S.picked[0]) + "</b>" : n + " standards picked: <b>" + esc(S.picked.slice(0, 3).join(", ")) + (n > 3 ? ", …" : "") + "</b>";
+      $("trayWs").href = makeUrl("ws", S.picked);
+      $("trayAs").href = makeUrl("as", S.picked);
+      $("trayWs").textContent = n === 1 ? "Make a worksheet" : "One worksheet for all " + n;
+      $("trayAs").textContent = n === 1 ? "Make an assignment" : "One assignment for all " + n;
+      $("trayWs").title = $("trayAs").title = S.n + " problems for each standard";
+    }
+
+    function paintLinks() {
+      [].forEach.call(document.querySelectorAll("a[data-make]"), function(a) { a.href = makeUrl(a.getAttribute("data-make"), [a.getAttribute("data-code")]); });
+      paintTray();
+    }
+    $("nIn").addEventListener("change", function() {
+      S.n = Math.max(1, Math.min(40, parseInt(this.value, 10) || 10));
+      this.value = S.n;
+      paintLinks();
+    });
+    $("list").addEventListener("change", function(e) {
+      var code = e.target.getAttribute && e.target.getAttribute("data-pick");
+      if (!code) return;
+      var i = S.picked.indexOf(code);
+      if (e.target.checked && i < 0 && S.picked.length < 12) S.picked.push(code);
+      else if (!e.target.checked && i >= 0) S.picked.splice(i, 1);
+      if (e.target.checked && S.picked.indexOf(code) < 0) {
+        e.target.checked = false;
+        $("trayTxt").textContent = "Twelve standards at most on one worksheet.";
+        return;
+      }
+      paintTray();
+    });
+    $("trayClear").addEventListener("click", function() {
+      S.picked = [];
+      [].forEach.call(document.querySelectorAll("input[data-pick]"), function(b) { b.checked = false; });
+      paintTray();
+    });
+    if (!A) $("nIn").parentNode.hidden = true;
 
     function render() {
       var rows = H.search(S.q).filter(function(r) { return !S.grade || r.standard.grade === S.grade; });

@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Embed a helper · Show The Steps</title>
+<meta name="description" content="Put a Show The Steps helper, with your problem already in it, on a class website, Google Sites, Canvas or a blog: all the steps, one step at a time, or Check my answer.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Show The Steps">
+<meta property="og:title" content="Embed a helper · Show The Steps">
+<meta property="og:description" content="Put a Show The Steps helper, with your problem already in it, on a class website, Google Sites, Canvas or a blog: all the steps, one step at a time, or Check my answer.">
+<meta property="og:url" content="https://showthesteps.org/info/embed">
+<meta property="og:image" content="https://showthesteps.org/assets/icons/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Show The Steps: every step, written out.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://showthesteps.org/info/embed">
+<link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
+<script src="../assets/site.js"></script>
+<script src="../assets/nav.js" defer></script>
+<script>
+  /* counting visits with GoatCounter (no cookies, no personal data); not when testing on this computer */
+  if (/^https?:$/.test(location.protocol) && !/^(localhost|127\.[0-9.]+|\[::1\])$/.test(location.hostname) && window.top === window.self) {
+    window.goatcounter = { path: function() { return location.pathname; } };
+    document.write('<script data-goatcounter="https://fennell.goatcounter.com/count" async src="https://gc.zgo.at/count.js"><\/script>');
+  }
+</script>
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<style>
+  :root {
+    --paper: #EDEFE9;
+    --surface: #F8F9F5;
+    --surface-2: #E3E7DF;
+    --ink: #19211D;
+    --ink-2: #4B5651;
+    --ink-3: #7C8781;
+    --rule: #C9D0C6;
+    --key: #1F5E8C;
+    --shadow: 0 1px 0 rgba(25, 33, 29, .05), 0 14px 30px -20px rgba(25, 33, 29, .5);
+    --f-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --f-body: "IBM Plex Sans", "Segoe UI", Helvetica, Arial, sans-serif;
+    --f-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #131817;
+      --surface: #1B2220;
+      --surface-2: #252E2B;
+      --ink: #E7EBE4;
+      --ink-2: #A3AEA7;
+      --ink-3: #77837D;
+      --rule: #38423F;
+      --key: #7DB8E8;
+      --shadow: 0 1px 0 rgba(0, 0, 0, .3), 0 14px 30px -20px rgba(0, 0, 0, .9);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #131817;
+    --surface: #1B2220;
+    --surface-2: #252E2B;
+    --ink: #E7EBE4;
+    --ink-2: #A3AEA7;
+    --ink-3: #77837D;
+    --rule: #38423F;
+    --key: #7DB8E8;
+    --shadow: 0 1px 0 rgba(0, 0, 0, .3), 0 14px 30px -20px rgba(0, 0, 0, .9);
+  }
+  * {
+    box-sizing: border-box
+  }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--f-body);
+    font-size: 16.5px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased
+  }
+  .page {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 22px 20px 70px
+  }
+  @media (max-width:520px) {
+    .page {
+      padding: 16px 16px 56px
+    }
+  }
+  .masthead {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px 20px;
+    flex-wrap: wrap;
+    margin: 26px 0 8px
+  }
+  .eyebrow {
+    font-family: var(--f-mono);
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--ink-3)
+  }
+  h1 {
+    font-family: var(--f-display);
+    font-stretch: 118%;
+    font-weight: 800;
+    font-size: clamp(34px, 6vw, 54px);
+    line-height: 1;
+    letter-spacing: -.02em;
+    margin: .25em 0 .2em
+  }
+  h1 em {
+    font-style: normal;
+    color: var(--key)
+  }
+  .tagline {
+    color: var(--ink-2);
+    font-size: 18px;
+    margin: 0;
+    max-width: 40em
+  }
+  .theme-btn {
+    font-family: var(--f-mono);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .06em;
+    background: var(--surface);
+    color: var(--ink-2);
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    padding: 8px 15px;
+    cursor: pointer;
+    white-space: nowrap
+  }
+  .theme-btn:hover {
+    color: var(--ink);
+    border-color: var(--ink-3)
+  }
+  h2 {
+    font-family: var(--f-display);
+    font-stretch: 112%;
+    font-weight: 800;
+    font-size: clamp(21px, 3vw, 25px);
+    letter-spacing: -.01em;
+    margin: 38px 0 8px
+  }
+  h3 {
+    font-size: 17px;
+    margin: 22px 0 6px
+  }
+  p,
+  li {
+    color: var(--ink-2)
+  }
+  p {
+    margin: 0 0 14px
+  }
+  ul,
+  ol {
+    padding-left: 1.25em;
+    margin: 0 0 14px
+  }
+  li {
+    margin: 0 0 6px
+  }
+  strong,
+  b {
+    color: var(--ink)
+  }
+  a {
+    color: var(--key);
+    text-underline-offset: 2px
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    padding: 20px 22px;
+    margin: 18px 0
+  }
+  .card p:last-child,
+  .card ul:last-child,
+  .card ol:last-child {
+    margin-bottom: 0
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+    margin: 6px 0 14px
+  }
+  th,
+  td {
+    text-align: left;
+    vertical-align: top;
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--rule)
+  }
+  th {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    font-weight: 600
+  }
+  td {
+    color: var(--ink-2)
+  }
+  td:first-child {
+    color: var(--ink);
+    font-weight: 600;
+    white-space: nowrap
+  }
+  @media (max-width:560px) {
+    td:first-child {
+      white-space: normal
+    }
+  }
+  code {
+    font-family: var(--f-mono);
+    font-size: .88em;
+    color: var(--ink);
+    background: var(--surface-2);
+    border-radius: 5px;
+    padding: 1px 5px;
+    overflow-wrap: anywhere
+  }
+  pre {
+    font-family: var(--f-mono);
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ink);
+    background: var(--surface-2);
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    padding: 12px 14px;
+    margin: 0 0 14px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere
+  }
+  pre code {
+    background: none;
+    padding: 0;
+    font-size: inherit
+  }
+  .small {
+    font-size: 14px;
+    color: var(--ink-3)
+  }
+  :focus-visible {
+    outline: 2.5px solid var(--key);
+    outline-offset: 3px
+  }
+  @media print {
+    .sitenav,
+    .theme-btn {
+      display: none !important
+    }
+    body {
+      background: #fff
+    }
+    .card {
+      box-shadow: none
+    }
+    pre {
+      white-space: pre-wrap
+    }
+  }
+</style>
+<div class="page">
+  <header class="masthead">
+    <div>
+      <div class="eyebrow">Embed a helper</div>
+      <h1>The steps, <em>on your page.</em></h1>
+      <p class="tagline">Put a helper, with your problem already in it, on a class website, Google Sites, Canvas or a blog. Students
+        work it right there, and a small link opens the full page.</p>
+    </div>
+    <button class="theme-btn" id="themeBtn" type="button">Dark mode</button>
+  </header>
+
+  <h2>The quick way</h2>
+  <div class="card">
+    <ol>
+      <li>Open a helper and put in the problem, like <b>47 + 38</b> on the <a href="../helpers/addition.html?q=47%2B38">Carry Column</a>.
+        The embed shows the problem that's on screen.</li>
+      <li>Press <b>Embed</b> at the bottom of the page, beside <b>Copy link</b> (or press <b>E</b>).</li>
+      <li>Choose what visitors see, the layout, the height and the colors. The preview shows the result.</li>
+      <li>Press <b>Copy code</b> and paste it into your page, or copy the address for Google Sites.</li>
+    </ol>
+  </div>
+
+  <h2>The choices</h2>
+  <table>
+    <tr><th>Choice</th><th>What it does</th></tr>
+    <tr><td>Visitors see</td><td><b>All the steps</b> worked out; <b>One step at a time</b>, with arrows to go on; or <b>Check my answer</b>:
+      the student types an answer first, and the work shows once it's right or they ask for it.</td></tr>
+    <tr><td>Layout</td><td><b>Just this problem</b>: the problem, the answer and the steps, nothing else. <b>The whole helper</b> also has
+      its title, the problem maker, the examples and the buttons to switch modes, so students can try their own problems.</td></tr>
+    <tr><td>Height</td><td><b>Grows to fit</b>: the frame becomes as tall as the steps (the code has a few lines of script for that).
+      <b>Fixed</b>: the height you give; anything longer scrolls inside the frame.</td></tr>
+    <tr><td>Colors</td><td>Light, dark, or the visitor's own setting.</td></tr>
+  </table>
+  <p>Either way there's no site menu or footer inside the frame, just a small <b>Show The Steps ↗</b> link that opens the full page in a
+    new tab. Other links in the helper (to the Word List, or another helper) open in a new tab too.</p>
+
+  <h2>Examples</h2>
+  <h3>A fixed height</h3>
+  <p>The simplest code: one line, and it works anywhere that takes an <code>&lt;iframe&gt;</code>.</p>
+  <pre><code>&lt;iframe src="https://showthesteps.org/helpers/addition?q=47%2B38&amp;amp;practice=step&amp;amp;embed=site"
+  title="The Carry Column · Show The Steps" width="100%" height="700"
+  style="border:0;width:100%;max-width:100%;height:700px" loading="lazy"&gt;&lt;/iframe&gt;</code></pre>
+  <h3>Growing to fit</h3>
+  <p>The frame is marked <code>data-fit-height</code>, and a few lines of script after it set its height each time the helper says how
+    tall it is. Put the script on the page once, even with several helpers on it; a frame without <code>data-fit-height</code> keeps its own height.</p>
+  <pre><code>&lt;iframe src="https://showthesteps.org/helpers/algebra?mode=solve&amp;amp;q=3x%2B2%3D11&amp;amp;practice=check&amp;amp;embed=site"
+  title="The Balance Scale · Show The Steps" data-fit-height width="100%" height="700"
+  style="border:0;width:100%;max-width:100%;height:700px" loading="lazy"&gt;&lt;/iframe&gt;
+&lt;script&gt;
+/* Show The Steps: an embedded helper says how tall it is; a frame marked data-fit-height is made that tall */
+window.addEventListener("message", function (e) {
+  if (e.origin !== "https://showthesteps.org" || !e.data || e.data.type !== "helper:height") return;
+  var f = document.getElementsByTagName("iframe");
+  for (var i = 0; i &lt; f.length; i++)
+    if (f[i].contentWindow === e.source &amp;&amp; f[i].hasAttribute("data-fit-height")) f[i].style.height = Math.max(150, Math.min(5000, Math.ceil(e.data.h))) + "px";
+});
+&lt;/script&gt;</code></pre>
+  <p class="small">If your site removes scripts, the frame just keeps the height it starts with, and anything longer scrolls inside it.</p>
+
+  <h2>Where to paste it</h2>
+  <h3>Google Sites</h3>
+  <p>Choose <b>Insert → Embed</b>, stay on the <b>By URL</b> tab and paste the address (the <b>Google Sites / Canvas</b> tab of the Embed
+    dialog has it, with <b>Copy address</b>). If it asks how to show it, choose <b>Whole page</b>. Press <b>Insert</b>, then drag the box's edges to the size you want:
+    Google Sites sets the height itself.</p>
+  <h3>Canvas</h3>
+  <p>In a page, assignment or quiz, open the editor's <b>HTML editor</b> (the <b>&lt;/&gt;</b> button), paste the code where you want it and
+    save. Canvas removes scripts, so the frame keeps its starting height: choose <b>Fixed</b> and a height that fits, or use the height the
+    preview shows.</p>
+  <h3>A class website or a blog</h3>
+  <p>Use the block or widget that takes HTML: it's called something like <b>Custom HTML</b>, <b>HTML</b>, <b>Code</b> or <b>Embed</b>
+    (in Blogger, a post's HTML view or an HTML/JavaScript gadget). Some site builders and plans don't allow frames or scripts; if the
+    frame doesn't appear, share the link instead, or the QR code from the <b>QR</b> button.</p>
+
+  <h2>The address, in detail</h2>
+  <p>An embed is the helper's own link with three settings added. You can write one by hand:</p>
+  <table>
+    <tr><th>Setting</th><th>Values</th></tr>
+    <tr><td><code>embed</code></td><td><code>site</code> for just this problem, <code>site-full</code> for the whole helper. This is what marks
+      a helper as embedded on another website.</td></tr>
+    <tr><td><code>practice</code></td><td><code>all</code>, <code>step</code> or <code>check</code>.</td></tr>
+    <tr><td><code>theme</code></td><td><code>light</code> or <code>dark</code>; leave it out to follow the visitor's setting.</td></tr>
+    <tr><td>the problem</td><td>Whatever the helper's address already has, like <code>q=47%2B38</code>. The <a href="help.html">Help page</a>
+      says what each helper can read.</td></tr>
+  </table>
+  <p class="small">For web developers: after every change, the helper posts <code>{ type: "helper:height", h: &lt;pixels&gt; }</code> to the page
+    around it, which is what the script above listens for. In Check my answer each check also posts <code>{ type: "helper:checked", detail }</code>,
+    with the verdict (<code>right</code>, <code>wrong</code>, <code>simplify</code> or <code>shown</code>). The site's own practice sets use the
+    same messages.</p>
+
+  <h2>Privacy and credit</h2>
+  <div class="card">
+    <ul>
+      <li>An embedded helper works in the visitor's browser, just as on this site: nothing they type is sent anywhere, and there are no
+        accounts, ads or cookies. Embedded pages aren't counted in the site's visit numbers. See the <a href="privacy.html">privacy page</a>.</li>
+      <li>Please keep the <b>Show The Steps ↗</b> link in the frame: it's the credit the
+        <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a> license asks for. Embedding is free for classes and
+        any other non-commercial use.</li>
+    </ul>
+  </div>
+
+  <h2>If something's wrong</h2>
+  <ul>
+    <li><b>The frame is empty or says it refused to connect.</b> Your site's editor may not allow frames; use the link or the QR code instead.</li>
+    <li><b>It's cut off at the bottom.</b> Add the script (Grows to fit), or choose a taller fixed height.</li>
+    <li><b>It shows a different problem.</b> The embed has the problem that was on screen when you copied the code: put in the problem and
+      copy it again.</li>
+  </ul>
+  <p>Something else? <a href="https://github.com/chrisdfennell/arithmetic-helpers/issues">Tell us on GitHub</a>.</p>
+</div>
+<script>
+  (function() {
+    /* the theme switch, remembered with the other pages' settings */
+    var KEY = "helpers-info",
+      btn = document.getElementById("themeBtn");
+    try { var t = localStorage.getItem(KEY); if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t); } catch (e) {}
+
+    function isDark() {
+      var t = document.documentElement.getAttribute("data-theme");
+      return t ? t === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    }
+
+    function paint() { btn.textContent = isDark() ? "Light mode" : "Dark mode"; }
+    btn.addEventListener("click", function() {
+      var next = isDark() ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", next);
+      paint();
+      try { localStorage.setItem(KEY, next); } catch (e) {}
+    });
+    paint();
+  })();
+</script>
+</html>

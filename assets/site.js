@@ -59,6 +59,10 @@
     "unit-conversions": "helpers/unit-conversions",
     "money-math": "helpers/money-math",
     aviation: "helpers/aviation",
+    nursing: "helpers/nursing",
+    carpentry: "helpers/carpentry",
+    electrical: "helpers/electrical",
+    cooking: "helpers/cooking",
     functions: "helpers/functions",
     radicals: "helpers/radicals",
     "complex-numbers": "helpers/complex-numbers",
@@ -69,6 +73,7 @@
     flashcards: "practice/flash-cards",
     daily: "practice/problem-of-the-day",
     progress: "practice/progress",
+    skills: "practice/skills",
     results: "practice/class-results",
     reference: "reference/sheets",
     glossary: "reference/definitions",
@@ -76,12 +81,14 @@
     about: "info/about",
     privacy: "info/privacy",
     help: "info/help",
+    embed: "info/embed",
     tests: "tests/self-test"
   };
   var FILES = { "404.html": "404.html", "sw.js": "sw.js" };
-  ["site.js", "nav.js", "tools.js", "tutor.js", "search.js", "progress.js", "glossary.js", "qr.js", "standards.js", "manifest.webmanifest"].forEach(function(a) { FILES[a] = "assets/" + a; });
+  ["site.js", "nav.js", "tools.js", "tutor.js", "play.js", "search.js", "progress.js", "glossary.js", "qr.js", "standards.js", "manifest.webmanifest"].forEach(function(a) { FILES[a] = "assets/" + a; });
   FILES["assign.js"] = "assets/assign.js"; // the "Add to assignment" button (tools.js loads it)
   FILES["photo.js"] = "assets/photo.js"; // Photo of the problem (tools.js loads it)
+  FILES["embed.js"] = "assets/embed.js"; // Embed on another website (tools.js loads it)
   ["icon.svg", "icon-192.png", "icon-512.png", "icon-maskable-512.png", "apple-touch-icon.png", "favicon.svg", "og.png"].forEach(function(i) { FILES["icons/" + i] = "assets/icons/" + i; });
   var FOLDERS = ["helpers", "practice", "reference", "info", "learn", "tests"];
   var ALIAS = {}; // a page's own file name → its short name

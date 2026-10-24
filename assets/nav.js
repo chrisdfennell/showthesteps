@@ -341,6 +341,7 @@
     { href: "flashcards.html", name: "Flash cards", title: "The Flash Cards: times tables and other facts" },
     { href: "daily.html", name: "Daily", title: "Problem of the day" },
     { href: "progress.html", name: "Progress", title: "Your progress" },
+    { href: "skills.html", name: "Skill map", title: "Your skill map: the Common Core standards you've practiced, and what's next" },
     { href: "results.html", name: "Results", title: "Class results: a teacher's view of a practice set" },
     { href: "reference.html", name: "Reference", title: "Reference sheets to print" },
     { href: "glossary.html", name: "Definitions", title: "The Word List: what the math words mean" },
@@ -369,12 +370,84 @@
       ["turns", "Turns & glide", ""],
       ["units", "Units", "kt, nm, inHg, gal ↔ lb"]
     ]
+  }, {
+    href: "nursing.html",
+    path: "helpers/nursing.html",
+    sign: "✚",
+    name: "Nursing",
+    title: "The Dose Calculator",
+    c: "nur",
+    tabs: [
+      ["weight", "Dose by weight", "mg/kg, mcg/kg/min"],
+      ["dose", "Tablets & liquids", "D/H × Q"],
+      ["rate", "IV rate", "mL/hr"],
+      ["drip", "Drip rate", "gtt/min"],
+      ["time", "Infusion time", "when it ends"],
+      ["conc", "Concentrations", "%, 1:1000, dilutions"],
+      ["units", "Units", "insulin, heparin"],
+      ["convert", "Conversions", "mcg, mL, lb, °F"],
+      ["bsa", "Body surface area", "dose per m²"]
+    ]
+  }, {
+    href: "carpentry.html",
+    path: "helpers/carpentry.html",
+    sign: "∟",
+    name: "Carpentry",
+    title: "The Framing Square",
+    c: "crp",
+    tabs: [
+      ["tape", "Tape measure", "feet, inches, 16ths"],
+      ["lumber", "Board feet", "lumber and cost"],
+      ["stairs", "Stairs", "risers, treads, stringer"],
+      ["roof", "Roof & rafters", "pitch, angle, length"],
+      ["square", "Squaring", "3-4-5 and diagonals"],
+      ["spacing", "Even spacing", "studs, joists, balusters"],
+      ["area", "Area & materials", "tile, sheets, paint"],
+      ["concrete", "Concrete", "yards and bags"],
+      ["angles", "Angles & miters", "frames, corners, slope"]
+    ]
+  }, {
+    href: "electrical.html",
+    path: "helpers/electrical.html",
+    sign: "⚡",
+    name: "Electrical",
+    title: "The Circuit Board",
+    c: "ele",
+    tabs: [
+      ["ohm", "Ohm’s law", "V, I or R, with prefixes"],
+      ["power", "Power", "VI, I²R, V²/R; kW, hp"],
+      ["resistors", "Series & parallel", "resistor networks"],
+      ["drop", "Voltage drop", "AWG table, 3%"],
+      ["load", "Loads & breakers", "the 80% rule"],
+      ["energy", "Energy cost", "kWh to dollars"],
+      ["color", "Color code", "4- and 5-band"],
+      ["rc", "Capacitors & RC", "time constant"],
+      ["ac", "AC & three-phase", "RMS, Hz, √3·V·I·pf"]
+    ]
+  }, {
+    href: "cooking.html",
+    path: "helpers/cooking.html",
+    sign: "♨",
+    name: "Cooking",
+    title: "The Recipe Card",
+    c: "rcp",
+    tabs: [
+      ["scale", "Scale a recipe", "servings, double, a list"],
+      ["volume", "Cups & spoons", "tsp, tbsp, cups, mL"],
+      ["weight", "Grams ↔ cups", "flour, sugar, butter …"],
+      ["bakers", "Baker’s %", "hydration, dough weight"],
+      ["cost", "Cost", "per serving, food cost %"],
+      ["oven", "Oven temps", "°F, °C, gas mark"],
+      ["time", "Cooking time", "minutes per pound"],
+      ["pans", "Pan sizes", "round, square, 9 × 13"],
+      ["ratios", "Ratios & brines", "brine, rice, coffee, 3:1"]
+    ]
   }];
 
   var LIGHT = "--nv-add:#0D7361;--nv-sub:#A8412A;--nv-mul:#544696;--nv-div:#A85A0C;--nv-ord:#1F5E8C;--nv-alg:#9B2F6B;--nv-geo:#4F6A17;" +
-    "--nv-fra:#0B6E83;--nv-pct:#8A6D00;--nv-fac:#7B3FA0;--nv-int:#46596E;--nv-rat:#B0263E;--nv-lin:#1E7A3C;--nv-sta:#3346A8;--nv-wrd:#0F766E;--nv-gra:#0369A1;--nv-exp:#BE185D;--nv-pro:#A21CAF;--nv-scr:#B45309;--nv-tri:#4D7C0F;--nv-cal:#7C3AED;--nv-num:#EA580C;--nv-qua:#B91C1C;--nv-log:#1D4ED8;--nv-seq:#15803D;--nv-fun:#0E7490;--nv-rad:#92400E;--nv-cpx:#4F46E5;--nv-bel:#047857;--nv-mat:#57534E;--nv-uni:#BE123C;--nv-mon:#A16207;--nv-avi:#0B5CAD;--nv-cnt:#6B5A2B;";
+    "--nv-fra:#0B6E83;--nv-pct:#8A6D00;--nv-fac:#7B3FA0;--nv-int:#46596E;--nv-rat:#B0263E;--nv-lin:#1E7A3C;--nv-sta:#3346A8;--nv-wrd:#0F766E;--nv-gra:#0369A1;--nv-exp:#BE185D;--nv-pro:#A21CAF;--nv-scr:#B45309;--nv-tri:#4D7C0F;--nv-cal:#7C3AED;--nv-num:#EA580C;--nv-qua:#B91C1C;--nv-log:#1D4ED8;--nv-seq:#15803D;--nv-fun:#0E7490;--nv-rad:#92400E;--nv-cpx:#4F46E5;--nv-bel:#047857;--nv-mat:#57534E;--nv-uni:#BE123C;--nv-mon:#A16207;--nv-avi:#0B5CAD;--nv-nur:#6E3D64;--nv-crp:#694321;--nv-ele:#611E05;--nv-rcp:#67311E;--nv-cnt:#6B5A2B;";
   var DARK = "--nv-add:#4FCCB0;--nv-sub:#F08A6E;--nv-mul:#A99CF0;--nv-div:#F2A85C;--nv-ord:#7DB8E8;--nv-alg:#F08CC0;--nv-geo:#B5D06A;" +
-    "--nv-fra:#5FC9DE;--nv-pct:#E3C04D;--nv-fac:#C9A0EE;--nv-int:#A9BDD2;--nv-rat:#F27D8F;--nv-lin:#6FD38E;--nv-sta:#93A2F2;--nv-wrd:#5EEAD4;--nv-gra:#7DD3FC;--nv-exp:#FDA4AF;--nv-pro:#F0ABFC;--nv-scr:#FCD34D;--nv-tri:#BEF264;--nv-cal:#C4B5FD;--nv-num:#FDBA74;--nv-qua:#FCA5A5;--nv-log:#93C5FD;--nv-seq:#86EFAC;--nv-fun:#67E8F9;--nv-rad:#FBBF24;--nv-cpx:#A5B4FC;--nv-bel:#6EE7B7;--nv-mat:#D6D3D1;--nv-uni:#FDA4AF;--nv-mon:#FDE047;--nv-avi:#8CC4F5;--nv-cnt:#EED9A0;";
+    "--nv-fra:#5FC9DE;--nv-pct:#E3C04D;--nv-fac:#C9A0EE;--nv-int:#A9BDD2;--nv-rat:#F27D8F;--nv-lin:#6FD38E;--nv-sta:#93A2F2;--nv-wrd:#5EEAD4;--nv-gra:#7DD3FC;--nv-exp:#FDA4AF;--nv-pro:#F0ABFC;--nv-scr:#FCD34D;--nv-tri:#BEF264;--nv-cal:#C4B5FD;--nv-num:#FDBA74;--nv-qua:#FCA5A5;--nv-log:#93C5FD;--nv-seq:#86EFAC;--nv-fun:#67E8F9;--nv-rad:#FBBF24;--nv-cpx:#A5B4FC;--nv-bel:#6EE7B7;--nv-mat:#D6D3D1;--nv-uni:#FDA4AF;--nv-mon:#FDE047;--nv-avi:#8CC4F5;--nv-nur:#FAC8F0;--nv-crp:#CDA383;--nv-ele:#F9C4A0;--nv-rcp:#E4BDAF;--nv-cnt:#EED9A0;";
   var CSS =
     ":root{" + LIGHT + "}" +
     "@media (prefers-color-scheme: dark){:root:not([data-theme=\"light\"]){" + DARK + "}}" +
@@ -426,10 +499,16 @@
     ".sitenav .sn-wide .sn-wgrp + .sn-wgrp{border-top:0;margin-top:0;padding-top:0}" +
     ".sitenav .sn-wide .sn-wgrp{padding-bottom:6px}" +
     ".sitenav .sn-wide ul a{padding-top:4px;padding-bottom:4px;font-size:13px}" +
+    // Math at work with several fields: one field per column, its page's name and each tab's hint on a line of their own
+    ".sitenav .sn-wmenu.sn-wwork{width:1010px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}" +
+    ".sitenav .sn-wwork a.sn-wh small{display:block;margin:2px 0 0;font-weight:400}" +
+    ".sitenav .sn-wwork ul a small{display:block;margin:1px 0 0;font-size:11.5px;line-height:1.3}" +
     ".sitenav .sn-wmenu a[aria-current=\"page\"]{background:var(--surface-2);box-shadow:inset 3px 0 0 var(--nv)}" +
     ".sitenav .sn-wbtn b.it{font-style:italic;font-family:Georgia,\"Times New Roman\",serif;font-size:15px}" +
     ".sitenav .sn-wmenu a b.it{font-style:italic;font-family:Georgia,\"Times New Roman\",serif}" +
-    "@media (max-width:560px){.sitenav .sn-links a{padding:5px 9px;font-size:12.5px}.sitenav .sn-tools{margin-left:0}.sitenav .sn-wbtn{padding:5px 9px;font-size:12.5px}}" +
+    "@media (max-width:560px){.sitenav .sn-links a{padding:5px 9px;font-size:12.5px}.sitenav .sn-tools{margin-left:0}.sitenav .sn-wbtn{padding:5px 9px;font-size:12.5px}" +
+    // phones: one column, so the hints go back beside their tabs
+    ".sitenav .sn-wwork a.sn-wh small,.sitenav .sn-wwork ul a small{display:inline;margin:0 0 0 4px}}" +
     // each helper's #statusLine is for screen readers only: the same message is already on screen
     "#statusLine{position:absolute !important;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}" +
     "@media print{.sitenav{display:none !important}}";
@@ -589,7 +668,8 @@
       // named for its one field while there is just one ("✈ Aviation"); "Math at work" once there are more
       +
       (one ? WORK[0].sign : "⚒") + "</b>" + (one ? WORK[0].name : "Math at work") + '<span class="sn-caret" aria-hidden="true">▾</span></button>' +
-      '<div class="sn-wmenu" id="snWorkMenu" hidden>';
+      // one field: a small list; more: a panel like the sections', one field per column
+      '<div class="sn-wmenu' + (one ? "" : " sn-wide sn-wwork") + '" id="snWorkMenu" hidden>';
     WORK.forEach(function(g) {
       var cur = workIsHere(g, here);
       h += '<div class="sn-wgrp" style="--nv:var(--nv-' + g.c + ')"><a class="sn-wh" href="' + WU(g) + '"' + (cur ? ' aria-current="page"' : "") + '><b aria-hidden="true">' +

@@ -30,6 +30,14 @@
   // pages shown inside another page (worksheets, practice sets, the self-test) keep their own look and record nothing
   var passive = framed || embedded() || page === "tests.html";
 
+  // embedded on someone else's website (embed=site or embed=site-full, made by the Embed dialog): embed.js trims the
+  // page down. Read from the address the page was opened with: each helper rewrites its own address as it starts.
+  function siteEmbed() {
+    var href = location.href;
+    try { var nav = performance.getEntriesByType && performance.getEntriesByType("navigation")[0]; if (nav && nav.name) href = nav.name; } catch (e) {}
+    return /[?&]embed=site(-full)?(&|#|$)/i.test(href);
+  }
+
   // a page's full address from its name (site.js knows the folders)
   function U(page, params) { return window.HelperSite ? window.HelperSite.url(page, params) : page + (params ? "?" + params : ""); }
 
@@ -47,6 +55,12 @@
   var CSS =
     "a.ht-report{text-decoration:none;display:inline-flex;align-items:center;color:inherit}" +
     "@media print{a.ht-report{display:none !important}}" +
+    ".ht-sendbox{margin-top:10px;font-size:14px;color:var(--ink-2)}" +
+    ".ht-sendbox small{font-size:13px;color:var(--ink-3)}" +
+    ".ht-send{font:inherit;font-size:14px;font-weight:600;color:var(--key,var(--ink));background:var(--surface,#fff);" +
+    "border:1px solid currentColor;border-radius:999px;padding:4px 14px;cursor:pointer;margin-right:4px}" +
+    ".ht-send:focus-visible{outline:2.5px solid var(--focus,var(--ink));outline-offset:2px}" +
+    "@media print{.ht-sendbox{display:none !important}}" +
     ".ht-bar{display:inline-flex;gap:6px;align-items:center;flex-wrap:wrap}" +
     ".ht-btn{font-family:var(--f-body,\"IBM Plex Sans\",Arial,sans-serif);font-size:12.5px;font-weight:600;line-height:1;" +
     "color:var(--ink-2);background:var(--surface);border:1px solid var(--rule);border-radius:999px;padding:6px 10px;cursor:pointer}" +
@@ -103,6 +117,7 @@
     ".ht-pad button.wide{min-width:84px;font-size:14px}" +
     ".ht-pad button.done{font-family:var(--f-body,Arial,sans-serif);font-size:15px;background:var(--ink);color:var(--surface);border-color:var(--ink)}" +
     "html.ht-padding body{padding-bottom:120px}" +
+    "html.ht-site-wait body{visibility:hidden}" +
     "@media print{.ht-bar,.ht-search,.ht-menu,.ht-next,.ht-exit,.ht-read,.ht-pad{display:none !important}}";
 
   /* ===================== settings that follow you ===================== */
@@ -504,11 +519,13 @@
       "<tr><td><kbd>N</kbd></td><td>A new problem (or the next one after a right answer)</td></tr>" +
       "<tr><td><kbd>←</kbd> <kbd>→</kbd></td><td>Back and forward a step in One step at a time</td></tr>" +
       "<tr><td><kbd>1</kbd>–<kbd>4</kbd></td><td>Pick a choice in Tutor me</td></tr>" +
+      "<tr><td><kbd>Space</kbd></td><td>Play or pause in Play</td></tr>" +
       "<tr><td><kbd>R</kbd></td><td>Read the explanation aloud</td></tr>" +
       "<tr><td><kbd>D</kbd></td><td>Switch light and dark</td></tr>" +
       "<tr><td><kbd>+</kbd> <kbd>−</kbd></td><td>Bigger or smaller text</td></tr>" +
       "<tr><td><kbd>B</kbd></td><td>Big screen, for a projector</td></tr>" +
       "<tr><td><kbd>Q</kbd></td><td>A QR code for this page, to open it on a phone</td></tr>" +
+      (document.getElementById("htEmbed") ? "<tr><td><kbd>E</kbd></td><td>Put this problem on another website (embed it)</td></tr>" : "") +
       "<tr><td><kbd>K</kbd></td><td>Show or hide the math keys (they come up by themselves on phones)</td></tr>" +
       "<tr><td><kbd>Esc</kbd></td><td>Close this, or leave big screen</td></tr>" +
       "<tr><td><kbd>?</kbd></td><td>Show this list</td></tr></table>" +
@@ -577,6 +594,10 @@
       e.preventDefault();
       closeMenu();
       showQR();
+    } else if ((k === "e" || k === "E") && document.getElementById("htEmbed")) {
+      e.preventDefault();
+      closeMenu();
+      showEmbed();
     } else if (k === "+" || k === "=") {
       e.preventDefault();
       setScale(1);
@@ -664,7 +685,11 @@
     "unit-conversions.html": "/ . ° ′ ″ , ²",
     "money-math.html": "$ % . , / ( )",
     "counting.html": "! C( P( ( ) , × ÷ ^ n",
-    "aviation.html": "° @ , . / : E W"
+    "aviation.html": "° @ , . / : E W",
+    "nursing.html": "/ . , : % mg mcg mL",
+    "carpentry.html": "' \" / + − x ° % $ space",
+    "electrical.html": "Ω k µ | + ( ) . % $",
+    "cooking.html": "/ ½ ¼ ¾ $ % ° : ×"
   };
   var padEl = null,
     padFor = null,
@@ -828,6 +853,49 @@
     });
   }
 
+  /* ===================== Embed on another website: embed.js, next to this file ===================== */
+  // fetched the first time the Embed button is pressed, or straight away on a page opened with embed=site…
+  var embedWait = null;
+
+  function withEmbed(done) {
+    if (window.HelperEmbed) { done(); return; }
+    if (embedWait) { embedWait.push(done); return; }
+    embedWait = [done];
+    var sc = document.createElement("script");
+    sc.src = qrSrc().replace(/qr\.js$/, "embed.js");
+    sc.async = true;
+    sc.onload = function() {
+      var w = embedWait || [];
+      embedWait = null;
+      if (window.HelperEmbed) w.forEach(function(f) { safe(f)(); });
+      else announce("Couldn’t load the embed maker");
+    };
+    sc.onerror = function() {
+      embedWait = null;
+      sc.remove();
+      root.classList.remove("ht-site-wait");
+      announce("Couldn’t load the embed maker. Check the connection and try again.");
+    };
+    document.head.appendChild(sc);
+  }
+
+  function showEmbed() { withEmbed(function() { window.HelperEmbed.open({ label: labelFor(location.search) }); }); }
+
+  function addEmbedButton() { // beside Copy link, on the helpers only
+    var copy = document.getElementById("copyBtn"),
+      path = window.HelperSite ? window.HelperSite.path(page) : location.pathname;
+    if (!copy || !/(^|\/)helpers\//.test(path) || document.getElementById("htEmbed")) return;
+    var b = document.createElement("button");
+    b.type = "button";
+    b.id = "htEmbed";
+    b.className = copy.className;
+    b.textContent = "Embed";
+    b.setAttribute("aria-haspopup", "dialog");
+    b.title = "Put this problem on your class website, Google Sites, Canvas or a blog (E)";
+    b.addEventListener("click", safe(showEmbed));
+    copy.parentNode.insertBefore(b, copy.nextSibling);
+  }
+
   /* ===================== "Now try it by hand": the four written methods go on to the Scratch Paper ===================== */
   var BYHAND = { "addition.html": "add", "subtraction.html": "sub", "multiplication.html": "mul", "division.html": "div" };
 
@@ -903,6 +971,23 @@
     }
     var sc = document.createElement("script");
     sc.src = src.replace(/tools\.js([?#].*)?$/, "tutor.js");
+    sc.async = true;
+    document.head.appendChild(sc);
+  }
+
+  /* ===================== Play: play.js, next to this file ===================== */
+  // the steps one at a time by themselves, read aloud (practice=play); on the pages with step mode, never in an embed
+  function loadPlay() {
+    if (window.HelperPlay || page === "tests.html" || embedded()) return;
+    var modes = [].some.call(document.querySelectorAll('[role="group"] button'), function(b) { return /^one step at a time$/i.test(b.textContent.trim()); });
+    if (!modes || !document.querySelector(".log")) return;
+    var src = SELF;
+    if (!src) {
+      var s = document.querySelector('script[src$="tools.js"], script[src*="tools.js?"]');
+      src = s ? s.src : "tools.js";
+    }
+    var sc = document.createElement("script");
+    sc.src = src.replace(/tools\.js([?#].*)?$/, "play.js");
     sc.async = true;
     document.head.appendChild(sc);
   }
@@ -1000,12 +1085,60 @@
   }
   var countedNotices = {};
 
+  /* "Send this problem": only when the visitor presses it, the problem they typed (and nothing else) is counted as a
+     GoatCounter event "sent/<page>/<problem>", so the readers can be taught new wording. Email addresses are taken out
+     and it's cut to 300 characters. */
+  var sentProblems = {};
+
+  function typedProblem() {
+    var q = null;
+    try { q = new URLSearchParams(location.search).get("q"); } catch (e) {}
+    if (!q) {
+      var box = [].filter.call(document.querySelectorAll(".page textarea, .page input[type=text], .page input:not([type])"), function(i) {
+        return i.offsetParent !== null && !i.closest(".sitenav, .ht-search, .maker, .ht-menu") && i.value.trim();
+      })[0];
+      q = box ? box.value : "";
+    }
+    // email addresses and phone numbers written with separators (555-123-4567, (555) 123 4567) are taken out
+    return String(q || "").replace(/[\w.+-]+@[\w-]+\.[\w.-]+/g, "[email]")
+      .replace(/(?:\+\d{1,3}[\s.-]?)?(?:\b\d{3}[.-]\d{3}[.-]\d{4}|\(\d{3}\)\s?\d{3}[\s.-]\d{4})\b/g, "[phone]")
+      .replace(/\s+/g, " ").trim().slice(0, 300);
+  }
+
+  function offerSend(notice, gc) {
+    var text = typedProblem();
+    if (!text || notice.querySelector(".ht-sendbox")) return;
+    var box = document.createElement("div");
+    box.className = "ht-sendbox";
+    if (sentProblems[page + "|" + text]) {
+      box.textContent = "Sent. Thank you!";
+      notice.appendChild(box);
+      return;
+    }
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "ht-send";
+    b.textContent = "Send this problem so we can teach the page";
+    var note = document.createElement("small");
+    note.textContent = " Only the problem you typed is sent, nothing else. Please leave out names or anything personal.";
+    b.addEventListener("click", safe(function() {
+      gc.count({ path: "sent/" + page.replace(/\.html$/, "") + "/" + text, title: "A problem a visitor sent", event: true });
+      sentProblems[page + "|" + text] = true;
+      box.textContent = "Sent. Thank you! The page will learn to read problems like this one.";
+    }));
+    box.appendChild(b);
+    box.appendChild(note);
+    notice.appendChild(box);
+  }
+
   function watchNotices() {
     var t = null;
 
     function check() {
-      var gc = window.goatcounter;
-      if (!visibleNotice() || !gc || typeof gc.count !== "function") return;
+      var gc = window.goatcounter,
+        notice = visibleNotice();
+      if (!notice || !gc || typeof gc.count !== "function") return;
+      offerSend(notice, gc);
       var key = location.search || "-";
       if (countedNotices[key]) return;
       countedNotices[key] = true;
@@ -1050,7 +1183,13 @@
     document.head.appendChild(st);
     if (page !== "tests.html") initPad(); // the math keys also help inside practice sets on a phone
     loadTutor(); // framed too (the self-test); embedded, only when the link says practice=tutor
+    loadPlay(); // framed too (the self-test); never embedded
     document.addEventListener("helper:tutor", safe(onTutor));
+    if (siteEmbed()) { // on someone else's website: embed.js hides the site bar, adds the link back, posts the height
+      root.classList.add("ht-site-wait");
+      setTimeout(function() { root.classList.remove("ht-site-wait"); }, 2500); // in case embed.js can't be fetched
+      withEmbed(function() { window.HelperEmbed.site(); });
+    }
     if (passive) return; // framed or embedded: nothing else to add, nothing to save
     applySettings();
     watchTheme();
@@ -1060,6 +1199,7 @@
     if (!document.querySelector(".page")) return; // the home page: settings only
     addReadButton();
     addReportButton();
+    addEmbedButton(); // between Copy link and Report a problem
     // ---- assignments: assets/assign.js adds the "Add to assignment" button beside Copy link on the helper pages ----
     if (!window.HelperAssign) {
       var asg = document.createElement("script");
@@ -1086,7 +1226,7 @@
     })();
   });
 
-  window.HelperTools = { settings: function() { return S; }, setBig: setBig, setScale: setScale, showQR: showQR, words: words, togglePad: togglePad, voiceScore: voiceScore, spoken: spoken, version: SITE_VERSION };
+  window.HelperTools = { settings: function() { return S; }, setBig: setBig, setScale: setScale, showQR: showQR, showEmbed: showEmbed, words: words, togglePad: togglePad, voiceScore: voiceScore, spoken: spoken, version: SITE_VERSION };
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", main);
   else main();
 })();

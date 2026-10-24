@@ -36,7 +36,11 @@
     "reference.html": ["the reference sheets", "c-ink"],
     "daily.html": ["the problem of the day", "c-day"],
     "scratch.html": ["The Scratch Paper", "c-scr"],
-    "aviation.html": ["The Flight Computer", "c-avi"]
+    "aviation.html": ["The Flight Computer", "c-avi"],
+    "nursing.html": ["The Dose Calculator", "c-nur"],
+    "carpentry.html": ["The Framing Square", "c-crp"],
+    "electrical.html": ["The Circuit Board", "c-ele"],
+    "cooking.html": ["The Recipe Card", "c-rcp"]
   };
 
   function go(page, params, what, alt) { return { page: page, params: params, what: what || "", alt: alt || null }; }
@@ -519,6 +523,25 @@
     var countChance = /\bprobability\b|\bchances?\b|\bodds\b/.test(low) && (/\bcommittee\b|\bteam\s+of\s+\d+\b|\b(?:chosen|selected|picked)\s+at\s+random\s+from\s+\d+\s+[a-z]+\s+and\s+\d+\s+[a-z]+/.test(low) || /\blotter(?:y|ies)\b/.test(low));
     if (!asksWord && (countFormula || countWords && !/\bprobability\b|\bchances?\b|\bodds\b/.test(low) || countChance))
       return go("counting.html", qp(s), "counting");
+    // nursing, the Dose Calculator: doses by weight (mg/kg, mcg/kg/min), ordered and available (D/H × Q), IV rates (mL/hr), drip
+    // rates (drop factor, gtt/min), infusion time, percent and 1:1000 strengths, dilutions, reconstitution, heparin and insulin
+    // units, body surface area, and changes to or from mcg; other unit changes (lb to kg, °F to °C, tsp to mL) stay with the
+    // Measuring Tape, and "units" alone (50 units an hour from a factory) stays with the rates
+    if (!asksWord && (
+        /\d\s*(?:mcg|micrograms?|mg|milligrams?|meq|units?)\s*(?:\/|per)\s*(?:kg|kilograms?)\b|\d\s*(?:mcg|micrograms?|mg|milligrams?)\s*(?:\/|per)\s*(?:min|minute|hr|hour)\b/.test(low) ||
+        /\bdrop\s*factor\b|\bgtts?\s*(?:\/|per)\s*(?:ml|min)\b|\b(?:micro|macro)\s*-?\s*drip\b|\bdrops?\s+(?:per|a|\/)\s+min(?:ute)?\b/.test(low) ||
+        /\d\s*(?:ml|cc)\s*(?:\/|per)\s*(?:hr|h|hour)\b/.test(low) ||
+        /^\s*[\d.,]+\s*(?:ml|l|liters?|litres?)\s+(?:of\s+\S+\s+)?(?:over|in)\s+[\d.]+\s*(?:hours?|hrs?|h|minutes?|mins?)\b/.test(low) ||
+        /\d\s*(?:ml|l)\b[^.?]*\b(?:over|in)\s+[\d.]+\s*(?:hours?|hrs?|minutes?|mins?)\b/.test(low) && /\b(?:infuse[ds]?|infusion|iv|bag|drip|pump|hang|ns|d5w|saline|ringer'?s?)\b/.test(low) ||
+        /\b(?:order(?:ed|s)?|give|prescribed|desired)\b[^?]*\d\s*(?:mcg|mg|g|grams?|units?|meq)\b[^?]*\b(?:available|on\s+hand|have|has|supplied|tablets?|tabs?|capsules?|scored)\b/.test(low) ||
+        /\d\s*(?:mcg|mg|g|units?|meq)\s*(?:per|\/|in)\s*[\d.]*\s*(?:ml|cc|tabs?|tablets?)\b/.test(low) && /\b(?:order|give|available|on\s+hand|how\s+many\s+(?:ml|tablets?|tabs?)|draw\s+up|bag|concentration|infus|vial|dose)/.test(low) ||
+        /\b1\s*:\s*\d{1,3}(?:,?\d{3})+\b/.test(low) && /\b(?:epinephrine|adrenaline|mg|ml|solution|strength|dose)\b/.test(low) ||
+        /\b(?:heparin|insulin|u-?100)\b/.test(low) && /\d/.test(low) ||
+        /\bbsa\b|\bbody\s+surface\s+area\b|\bmosteller\b|\d\s*(?:mg|mcg|units?)\s*(?:\/|per)\s*(?:m2|m²|square\s+met(?:er|re))\b/.test(low) ||
+        /\b(?:d5w|d10w|d5\s*1\/2\s*ns|normal\s+saline|nacl)\b|\d\s*%\s*(?:dextrose|ns|nacl|sodium\s+chloride|saline)\b/.test(low) && /\d/.test(low) ||
+        /\breconstitut\w*\b|\bdiluent\b|\bc1\s*v1\b/.test(low) ||
+        /^\s*[\d.,]+\s*(?:mcg|micrograms?)\s+(?:to|in|into)\s+\S|^\s*[\d.,]+\s*(?:mg|milligrams?|g|grams?)\s+(?:to|in|into)\s+(?:mcg|micrograms?)\b/.test(low)))
+      return go("nursing.html", qp(s), "nursing math");
     // aviation, the Flight Computer: wind triangle, runway winds, time/speed/fuel in knots and nautical miles, pressure and
     // density altitude, true airspeed, headings with variation and deviation, descent, weight and balance, turns, glide,
     // and aviation units (knots, nm, inHg, hPa, gallons of avgas or Jet A); plain unit changes stay with the Measuring Tape
@@ -534,6 +557,60 @@
         /^\s*-?\d[\d,.]*\s*(?:knots?|kts?|kt|nm|nautical\s+miles?|inhg|in\s*hg|hpa|millibars?|mb)\s+(?:to|in|into)\s+\S/.test(low) ||
         /\d\s*(?:gal(?:lons)?|lbs?|pounds?)\s+(?:of\s+)?(?:avgas|jet\s*a|100\s*ll)\b/.test(low)))
       return go("aviation.html", qp(s), "aviation");
+    // carpentry, the Framing Square: tape-measure sums with fractions of an inch (5' 7 3/8" + 2' 9 5/8"), a decimal to the
+    // nearest 1/16, board feet, stairs, rafters and roof pitch, squaring (is it square, 3-4-5, out of square), studs, joists and
+    // balusters on center, flooring/tile/sheets/paint with waste, concrete slabs, footings and post holes, miters and slopes;
+    // feet-and-inches sums with no fraction of an inch ("5 ft 7 in + 3 ft 8 in") stay with the Measuring Tape
+    if (!asksWord && !story && (
+        /\d+\s*\/\s*(?:2|4|8|16|32|64)\b\s*(?:"|''|in\b|inch)|['′]\s*-?\s*\d+\s+\d+\s*\/\s*(?:2|4|8|16|32|64)\b/.test(low) &&
+        (/\d\s*(?:"|''|in\b|inch(?:es)?\b|'|ft\b|feet\b)\s*(?:\+|-|−|plus|minus|less)\s*\d/.test(low) || /\b(?:half\s+of|halve|cent(?:er|re)\s+of|divided\s+into|into\s+\d+\s+equal)\b/.test(low)) ||
+        /\bnearest\s+(?:1\s*\/\s*(?:8|16|32|64)|sixteenth|eighth|thirty-?second)s?\b/.test(low) ||
+        /\bboard[-\s]*(?:feet|foot|ft)\b|\bbd\.?\s*ft\b/.test(low) ||
+        /\btotal\s+rise\b|\b(?:stairs?|staircase|stairway)\b.*\b(?:rise|risers?|treads?|stringers?)\b|\bstringers?\b.*\b(?:rise|stairs?)\b|\b\d+\s+risers\b/.test(low) ||
+        /\brafters?\b|\broof\s+pitch\b|\b\d+(?:\.\d+)?\s*(?:\/|:|\s+in\s+)\s*12\s+(?:pitch|roof)\b|\bpitch\b.*\b(?:run|span|rafters?|overhang)\b/.test(low) ||
+        /\bis\s+(?:it|this|the\s+\w+)\s+square\b|\bout\s+of\s+square\b|\b3\s*-\s*4\s*-\s*5\b|\bsquar(?:e|ing)\s+(?:up\s+)?(?:a|the)\s+(?:corner|wall|deck|foundation|slab|frame|form)\b|\bdiagonals\s+\d/.test(low) ||
+        /\b(?:studs?|joists?|trusses?)\b.*\b(?:on\s*-?\s*cent(?:er|re)|o\.?c\.?)(?![a-z])|\b\d+\s*(?:"|in(?:ch(?:es)?)?)?\s*(?:on\s*-?\s*cent(?:er|re)|o\.?c\.?)(?![a-z]).*\b(?:wall|floor|deck|studs?|joists?)\b|\bbalusters?\b|\bspindles?\b.*\bgap\b/.test(low) ||
+        (/\d\s*%\s*(?:waste|extra|overage)\b|\bwaste\b.*\d\s*%/.test(low) || /\bpaint\b.*\b(?:coats?|walls?)\b/.test(low)) && /\d\s*(?:'|ft|feet)?\s*(?:by|x)\s*\d/.test(low) ||
+        /\b4\s*x\s*8\s+sheets?\b|\bsheets?\s+of\s+(?:plywood|osb|drywall|sheathing)\b/.test(low) ||
+        /\bconcrete\b|\bslab\b.*(?:\bthick\b|\binch|\d\s*in\b|")|\bfootings?\b.*\d.*\b(?:wide|deep)\b|\bpost\s*holes?\b|\bsonotubes?\b|\bbags?\s+of\s+(?:concrete|quikrete|sakrete|premix)\b/.test(low) ||
+        /\bmiter|\bmitre|\bbevel\s+(?:angle|cut)|\bcrown\s+mo(?:u)?lding\b|\bcrown\b.*\b(?:corner|spring)\b|\bbaseboard\b.*\bcorner\b|\b\d+\s*-?\s*sided\s+frame\b|\b(?:hexagon|octagon|pentagon)(?:al)?\s+frame\b/.test(low) ||
+        /\b\d+(?:\.\d+)?\s*(?:%|percent)\s+(?:slope|grade)\b.*\b(?:degrees?|angle)\b|\b(?:slope|grade|ramp)\b.*\b\d+(?:\.\d+)?\s*(?:degrees?|°).*\bpercent\b|\b\d+\s*\/\s*\d+\s*(?:"|in(?:ch)?)\s+per\s+(?:foot|ft)\b|\bramp\b.*\b1\s*:\s*\d+\b/.test(low)))
+      return go("carpentry.html", qp(s), "carpentry");
+    // electrical, the Circuit Board: Ohm's law, power, series and parallel resistors, voltage drop, loads and breakers, energy
+    // cost, the resistor color code, capacitors and RC, AC and three-phase. It needs an electrical unit or word next to the
+    // numbers ("12 V across 4 ohms", "100 W bulb on 120 V", "brown black red gold", "1500 W to kW"); a story with ohms, kWh
+    // or AWG in it comes here too. Single-letter units count only as capitals (2v + 3w stays algebra). Plain unit changes stay
+    // with the Measuring Tape and money with the Money Jar.
+    var COLR = "(?:black|brown|red|orange|yellow|green|blue|violet|purple|gr[ae]y|white|gold|silver)";
+    var elStrong = /Ω|\d\s*(?:k|m|meg|kilo|mega)?\s*-?\s*ohms?\b|\bohm'?s\s+law\b|\bkwh\b|\bkilowatt[-\s]?hours?\b|\bawg\b|\d\s*(?:µ|μ|u|n|p)f\b|\b(?:micro|nano|pico)farads?\b|\bresistors?\b|\bcapacitors?\b|\bcapacitance\b|\bvoltage\s+drop\b|\btime\s+constant\b|\b(?:three|3)[-\s]?phase\b|\bpower\s+factor\b|\bhorsepower\b|\bcolou?r\s+code\b|\bpeak[-\s]to[-\s]peak\b|\brms\b|\bbreakers?\b|\b(?:4|5|four|five)[-\s]band\b|\d\s*(?:k|M)?Hz\b/i;
+    var elV = /\d\s*(?:k|m|µ|μ|u)?V(?![A-Za-z])/.test(s) || /\d\s*(?:milli|kilo)?volts?\b/i.test(s),
+      elA = /\d\s*(?:m|µ|μ|u)?A(?![A-Za-z])/.test(s) || /\d\s*(?:milli)?amp(?:ere)?s?\b/i.test(s),
+      elW = /\d\s*(?:k|M|m)?W(?![A-Za-z])/.test(s) || /\d\s*(?:kilo|mega|milli)?watts?\b/i.test(s),
+      elUnits = (elV ? 1 : 0) + (elA ? 1 : 0) + (elW ? 1 : 0);
+    if (!asksWord && (elStrong.test(s) && /\d/.test(s) || elUnits >= 2 ||
+        elUnits === 1 && /\b(?:volts?|amps?|watts?|voltage|current|resistance|power|bulbs?|lamps?|heaters?|circuit|battery|wire|appliances?|across|through|supply|draws?|outlet)\b/i.test(s) && !/[=<>]\s*[a-z]|\b[a-z]\s*[=<>]/i.test(s) ||
+        /^\s*-?\d[\d,.]*\s*(?:k?W|watts?|kilowatts?|hp|horsepower)\s+(?:to|in|into)\s+(?:k?W|watts?|kilowatts?|hp|horsepower)\s*\??\s*$/i.test(s) ||
+        new RegExp("^\\s*(?:(?:the\\s+)?(?:bands?|colou?rs?|resistor)\\s*:?\\s*)?(?:" + COLR + "[\\s,]+){2,4}" + COLR + "\\s*(?:bands?)?\\s*\\??\\s*$", "i").test(s)))
+      return go("electrical.html", qp(s), "electrical math");
+    // kitchen math, the Recipe Card: scaling a recipe (servings, double/halve, "2/3 cup sugar times 3", a pasted list),
+    // grams ↔ cups for an ingredient, baker's percentages, food cost, oven settings (gas mark, convection), cooking time
+    // per pound, pan sizes, brines and kitchen ratios. Plain unit changes ("1 1/2 cups to tablespoons", "350 F to C",
+    // "how many cups in a gallon") stay with the Measuring Tape: only an ingredient, a recipe or a kitchen word brings them here.
+    var KV = "(?:cups?|c\\.|tbsps?|tablespoons?|tsps?|teaspoons?|sticks?)",
+      KW = "(?:g|grams?|kg|oz|ounces?|lbs?|pounds?)",
+      FOOD = "(?:all[-\\s]purpose\\s+flour|flour|sugar|brown\\s+sugar|butter|rice|milk|honey|salt|water|oil|olive\\s+oil|vinegar|yeast|baking\\s+(?:soda|powder)|vanilla|cinnamon|cocoa|oats|broth|stock|cream|eggs?|cheese|chocolate\\s+chips)",
+      kitchenLines = String(raw).split(/\s*(?:\n|;)\s*/).filter(function(l) { return new RegExp("^\\s*(?:\\d[\\d\\s\\/.]*|[½¼¾⅓⅔⅛])\\s*" + KV + "\\b", "i").test(l); }).length;
+    if (!asksWord && !story && (
+        /\b\d+\s+(?:servings?|portions?|people)\s+(?:to|into|for)\s+\d+\b|\bserves\s+\d+\b[^.?]*\b(?:to|make|need|feed)\s+\d+\b|\bscale\s+(?:a\s+|the\s+|this\s+)?(?:recipe|\d+\s+servings?)\b|\b(?:double|triple|halve|half)\s+(?:a|the|this)\s+recipe\b/.test(low) ||
+        new RegExp("\\d\\s*" + KV + "\\s+(?:of\\s+)?[a-z][a-z\\s]*?\\s*(?:times|×|x|\\*)\\s*\\d|\\b(?:double|triple|halve)\\b[^.?]*\\d\\s*" + KV + "\\b").test(low) || kitchenLines >= 2 ||
+        new RegExp("\\d\\s*" + KW + "\\s+(?:of\\s+)?" + FOOD + "\\b[^.?]*\\b(?:to|in|into|as)\\s+" + KV + "\\b|\\d\\s*" + KV + "\\s+(?:of\\s+)?" + FOOD + "\\b[^.?]*\\b(?:to|in|into|as)\\s+" + KW + "\\b|\\bhow\\s+many\\s+(?:grams|ounces)\\s+(?:is|are|in)\\s+(?:a|an|one|\\d[\\d\\s\\/.]*)\\s*" + KV + "\\s+(?:of\\s+)?" + FOOD + "\\b").test(low) ||
+        /\bhydration\b|\bbaker'?s?\s+(?:percent|percentages?|%)|\b\d+\s*(?:g|kg)\s+(?:of\s+)?dough\b/.test(low) ||
+        /\bfood\s+cost\b|\bplate\s+cost\b|\bmenu\s+price\b|\bcost\s+per\s+serving\b|\brecipe\s+cost\b|\bper\s+recipe\b/.test(low) ||
+        /\bgas\s+mark\b|\bconvection\b|\bfan\s+oven\b|\boven\b[^.?]*\d{3}\s*°?\s*[fc]\b|\d{3}\s*°?\s*[fc]\b[^.?]*\boven\b/.test(low) ||
+        /\d\s*(?:-\s*)?(?:minutes?|mins?)\s*(?:per|a|\/|each)\s*(?:lb|pound|kg|kilo)\b/.test(low) ||
+        /\d\s*(?:-\s*|\s)?(?:inch(?:es)?|in\.?|"|cm)?\s*-?\s*(?:round|square)s?\s+(?:cake\s+)?(?:pans?\s+)?(?:to|into|for|vs\.?|versus)\s+(?:a\s+|an\s+|two\s+|\d\s+)?\d|\d+\s*(?:x|×)\s*\d+\s*(?:-?\s*(?:inch|in|"))?\s*(?:pans?|dish)?\s+(?:to|into|for|vs\.?)\s+(?:a\s+|two\s+|\d\s+)?\d+(?:\s*(?:x|×)\s*\d+|\s*(?:-?\s*(?:inch|in|"|cm))?\s*(?:round|square))|\b(?:cake|baking|loaf|bundt|sheet)\s+pans?\b/.test(low) ||
+        /\bbrine\b|\bvinaigrette\b|\bcoffee\b[^.?]*\d\s*:\s*\d|\brice\b[^.?]*\b(?:\d\s*:\s*\d|water)\b|\d\s*%\s*salt\b|\bsalt\b[^?]*\d\s*%[^?]*\b(?:meat|pork|chicken|beef|turkey|fish|water)\b/.test(low)))
+      return go("cooking.html", qp(s), "kitchen math");
     // unit conversions: a measure to another unit ("5 ft 7 in to inches", "3.2 km to m", "60 mph to ft/s", "98.6 F to C",
     // "how many cups in a gallon"); "convert 7/4 to a decimal" stays with the fractions, below
     var UNIT = "(?:in(?:ch(?:es)?)?|ft|feet|foot|yd|yards?|mi|miles?|mm|cm|km|m|meters?|metres?|millimeters?|centimeters?|kilometers?|millimetres?|centimetres?|kilometres?|kgs|kms|kilos?|dm|decimeters?|decimetres?|hrs|mins|deg(?:rees?)?\\s*[fck]\\b|fluid\\s+(?:ounces?|oz)|mg|g|kg|grams?|milligrams?|kilograms?|oz|ounces?|lbs?|pounds?|tons?|tsp|tbsp|teaspoons?|tablespoons?|cups?|pt|pints?|qt|quarts?|gal|gallons?|ml|l|liters?|litres?|milliliters?|fl\\.?\\s*oz|sec(?:onds?)?|s|min(?:utes?)?|h|hr|hours?|days?|weeks?|years?|yr|°\\s*[fck]|[fck]|degrees?\\s+(?:fahrenheit|celsius)|fahrenheit|celsius|kelvin|mph|km\\/h|kph|ft\\/s|m\\/s|acres?|hectares?|ha|(?:square|sq\\.?|cubic|cu\\.?)\\s+(?:inch(?:es)?|feet|foot|yards?|miles?|meters?|centimeters?|ft|in|yd|mi|m|cm|mm|km)|(?:ft|in|yd|mi|m|cm|mm|km)\\s*(?:\\^\\s*[23]|[²³])|(?:feet|foot|inch(?:es)?|yards?|miles?|meters?|metres?|centimeters?|cm|m|ft|in)\\s+(?:squared|cubed))";
