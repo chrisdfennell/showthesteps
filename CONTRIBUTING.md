@@ -24,6 +24,8 @@ Open <http://localhost:8000/tests/self-test.html> and press **Run**. It checks e
 - **ES5 JavaScript** (`var`, `function`), no frameworks, no build tools, so it runs anywhere and is easy to read.
 - **Formatted code**: one statement per line, 2-space indent, CSS one property per line. After editing, run
   `python scripts/format.py` (it needs `pip install jsbeautifier cssbeautifier`); `--check` lists files that aren't formatted.
+- **The README's numbers**: `python scripts/stats.py` recounts the pages, lines of code and characters for the
+  "By the numbers" table (`--checks N` also sets the self-test count from a thorough run).
 - **Exact math**: use the pages' BigInt fractions, not floating point, wherever an answer should be exact.
 - **Every helper follows the same contracts**, which the worksheet maker, practice sets, progress and the self-test rely on:
   - the problem is in the address (`?q=…`, `mode=…`, `practice=all|step|check`) and kept in step with `history.replaceState`

@@ -43,6 +43,7 @@
 - [Install it as an app](#install-it-as-an-app)
 - [Testing](#testing)
 - [How it's built](#how-its-built)
+- [By the numbers](#by-the-numbers)
 - [Versioning and releases](#versioning-and-releases)
 - [Privacy](#privacy)
 - [License](#license)
@@ -499,6 +500,29 @@ Each helper reports each check with a `helper:checked` event, and answers worksh
 | `tests/` | `self-test.html` |
 | Repository | `README.md` and `docs/` (its screenshots and demos), `LICENSE`, `.github/workflows/release.yml` |
 </details>
+
+## By the numbers
+
+How big the site is, counted from the files themselves (the code is kept formatted: one statement per line). `scripts/stats.py` keeps this table up to date.
+
+<!-- stats:start -->
+
+| | |
+| --- | ---: |
+| Helpers | 34 |
+| Lessons | 46 |
+| Pages and scripts | 96 pages, 12 scripts |
+| Lines of code | 280,584 |
+| &nbsp;&nbsp;JavaScript | 182,984 |
+| &nbsp;&nbsp;CSS | 87,044 |
+| &nbsp;&nbsp;HTML | 10,556 |
+| Characters | 12,745,436 |
+| Size | 12.2 MB |
+| Self-test checks | 24,362 (the last thorough run) |
+
+<sub>Counted by `scripts/stats.py` on 2026-10-24; blank lines left out.</sub>
+
+<!-- stats:end -->
 
 ## Versioning and releases
 
