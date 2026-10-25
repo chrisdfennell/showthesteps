@@ -472,6 +472,17 @@
     // FEW040 BKN250 14/08 A3012"). It starts with METAR, SPECI or TAF, or has a station and a DDHHMMZ time, or three kinds of
     // METAR group (a wind like 18012KT, a cloud layer like BKN040, a temperature like 14/08, an altimeter like A3012 or
     // Q1013, a visibility like 10SM). A weather code asked about ("what does -SHRA mean") goes there too.
+    // an airport code to look up: a K or P code typed in capitals on its own ("KSEA", "PANC": the US, Alaska, Hawaii and the
+    // Pacific), or any code with a weather word ("ksea metar", "weather KDEN", "wx kjfk"): the Weather tab gets its latest
+    // METAR; "winds aloft SEA" gets that station's winds aloft. The page asks once before anything is fetched.
+    var icao = /^\s*([KP][A-Z]{3})\s*$/.exec(s) ||
+      /^\s*(?:(?:the\s+)?(?:latest|current|get)\s+)?(?:metar|weather|wx)\s+(?:for\s+|at\s+|in\s+)?([a-z][a-z0-9]{3})\s*\??\s*$/i.exec(s) ||
+      /^\s*([a-z][a-z0-9]{3})\s+(?:metar|weather|wx)\s*\??\s*$/i.exec(s);
+    if (icao && !/^(?:for|the|what|with|this|that|show|give|tell)$/i.test(icao[1]))
+      return go("aviation.html", "mode=metar&fetch=" + icao[1].toUpperCase(), "the latest METAR for " + icao[1].toUpperCase());
+    var fbStn = /^\s*(?:(?:the\s+)?latest\s+)?winds?\s+aloft\s+(?:for\s+|at\s+|in\s+)?([a-z][a-z0-9]{2,3})\s*\??\s*$/i.exec(s) ||
+      /^\s*([a-z][a-z0-9]{2,3})\s+winds?\s+aloft\s*\??\s*$/i.exec(s);
+    if (fbStn) return go("aviation.html", "mode=windsaloft&fetch=" + fbStn[1].toUpperCase(), "the latest winds aloft for " + fbStn[1].toUpperCase());
     var wxUp = " " + s.toUpperCase().replace(/;/g, " ") + " ",
       wxCode = /^\s*what\s+(?:does|do|is)\s+(?:the\s+)?(?:code\s+)?([+-]|VC)?(MI|PR|BC|DR|BL|SH|TS|FZ)?((?:DZ|RA|SN|SG|IC|PL|GR|GS|UP|BR|FG|FU|VA|DU|SA|HZ|PY|PO|SQ|FC|SS|DS)*)\s+mean\s*\??\s*$/.exec(s);
     if (/^\s*(?:METAR|SPECI|TAF)\s+[A-Z0-9]/.test(wxUp) || /\s[A-Z][A-Z0-9]{3}\s+\d{6}Z\s/.test(wxUp) || [/\s(?:\d{3}|VRB)\d{2,3}(?:G\d{2,3})?(?:KT|MPS)\s/, /\s(?:(?:FEW|SCT|BKN|OVC)\d{3}(?:CB|TCU)?|VV\d{3}|CLR|SKC|NSC|NCD|CAVOK)\s/, /\sM?\d{2}\/M?\d{2}\s/, /\s[AQ]\d{4}\s/,

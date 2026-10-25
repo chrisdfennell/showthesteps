@@ -55,6 +55,15 @@
   var CSS =
     "a.ht-report{text-decoration:none;display:inline-flex;align-items:center;color:inherit}" +
     "@media print{a.ht-report{display:none !important}}" +
+    // a helper's "Lessons:" line (the Math at work pages): a quiet label and links as pills in the page's own colors
+    "p.learn-line{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:14px 0 0;color:var(--ink-3)}" +
+    "p.learn-line a{font-family:var(--f-body,inherit);font-size:13.5px;font-weight:500;line-height:1.3;color:var(--ink);text-decoration:none;" +
+    "background:var(--surface,transparent);border:1px solid var(--rule);border-radius:999px;padding:4px 11px}" +
+    "p.learn-line a:hover{border-color:var(--key,var(--ink-3));color:var(--key,var(--ink))}" +
+    "p.learn-line a:focus-visible{outline:2.5px solid var(--focus,var(--ink));outline-offset:2px}" +
+    "p.learn-line a:last-child{background:none;border-style:dashed}" +
+    "p.learn-line .ht-ll{font-family:var(--f-mono,monospace);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-right:4px}" +
+    "@media print{p.learn-line{display:none !important}}" +
     ".ht-sendbox{margin-top:10px;font-size:14px;color:var(--ink-2)}" +
     ".ht-sendbox small{font-size:13px;color:var(--ink-3)}" +
     ".ht-send{font:inherit;font-size:14px;font-weight:600;color:var(--key,var(--ink));background:var(--surface,#fff);" +

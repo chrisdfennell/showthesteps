@@ -522,15 +522,15 @@ How big the site is, counted from the files themselves (the code is kept formatt
 | Helpers | 44 |
 | Lessons | 66 |
 | Pages and scripts | 129 pages, 16 scripts |
-| Lines of code | 361,512 |
-| &nbsp;&nbsp;JavaScript | 232,618 |
+| Lines of code | 361,552 |
+| &nbsp;&nbsp;JavaScript | 232,655 |
 | &nbsp;&nbsp;CSS | 114,830 |
-| &nbsp;&nbsp;HTML | 14,064 |
-| Characters | 16,962,659 |
+| &nbsp;&nbsp;HTML | 14,067 |
+| Characters | 16,966,145 |
 | Size | 16.3 MB |
 | Self-test checks | 32,222 (the last thorough run) |
 
-<sub>Counted by `scripts/stats.py` on 2026-10-24; blank lines left out.</sub>
+<sub>Counted by `scripts/stats.py` on 2026-10-25; blank lines left out.</sub>
 
 <!-- stats:end -->
 

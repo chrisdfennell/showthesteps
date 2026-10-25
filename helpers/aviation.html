@@ -1998,7 +1998,7 @@
     ground-school work &mdash; not for planning a real flight. Use official weather, charts and flight-planning tools, and
     the numbers in your aircraft&rsquo;s POH (Pilot&rsquo;s Operating Handbook). The Weather and Winds aloft tabs are for
     learning to read reports and forecasts: before a real flight, get an official weather briefing (in the US, from Flight Service at 1800wxbrief.com).</div>
-  <p class="learn-line">Lessons: <a href="../learn/wind-correction-angle.html">wind correction angle</a> · <a href="../learn/crosswind-component.html">crosswind component</a> · <a href="../learn/density-altitude.html">density altitude</a> · <a href="../learn/weight-and-balance.html">weight and balance</a> · <a href="../learn/index.html#work">all Math at work lessons</a></p>
+  <p class="learn-line"><span class="ht-ll">Lessons</span> <a href="../learn/wind-correction-angle.html">wind correction angle</a> <a href="../learn/crosswind-component.html">crosswind component</a> <a href="../learn/density-altitude.html">density altitude</a> <a href="../learn/weight-and-balance.html">weight and balance</a> <a href="../learn/index.html#work">all Math at work lessons</a></p>
 
   <section class="problem">
     <div class="modes" id="modeTabs" role="group" aria-label="What kind of problem">
@@ -7593,6 +7593,24 @@
       }
     });
     inp.addEventListener("input", function() { if (!fbBusy) fbSay(""); });
+
+    /* a link that asks for the latest report: mode=metar&fetch=KSEA, mode=windsaloft&fetch=SEA (the search box sends a typed
+       airport code here). It presses the same button a visitor would, so the one-time note still comes first. */
+    (function() {
+      var sp;
+      try { sp = new URLSearchParams(location.search); } catch (e) { return; }
+      var code = String(sp.get("fetch") || "").replace(/\s+/g, "").toUpperCase();
+      if (!code || EMBED || !/^[A-Z0-9]{3,4}$/.test(code)) return;
+      if (/^winds/.test(String(sp.get("mode") || "")) || S.mode === "windsaloft") {
+        if (S.mode !== "windsaloft") setMode("windsaloft");
+        $("fbStn").value = code;
+        $("fbBtn").click();
+      } else {
+        if (S.mode !== "metar") setMode("metar");
+        $("wxIcao").value = code;
+        $("wxBtn").click();
+      }
+    })();
 
     /* embedded in a practice set: the height goes to the parent */
     var lastH = 0;
