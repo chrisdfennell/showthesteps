@@ -15,10 +15,28 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://showthesteps.org/helpers/story-problems">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","name":"Word problems, step by step – The Story Problem","description":"Word problems, one routine every time: read it, say what’s asked, list what you know, pick the operation and say why, draw a bar model, solve, and answer in a sentence with units — then check it makes sense…","url":"https://showthesteps.org/helpers/story-problems","inLanguage":"en-US","isAccessibleForFree":true,"learningResourceType":["Interactive worked examples","Practice problems"],"interactivityType":"active","educationalUse":["Practice","Self-assessment"],"teaches":"Word problems","educationalLevel":["Elementary school (grades K–5)","Middle school (grades 6–8)"],"audience":{"@type":"EducationalAudience","educationalRole":"student"},"publisher":{"@type":"Organization","name":"Show The Steps","url":"https://showthesteps.org/"},"isPartOf":{"@type":"WebSite","name":"Show The Steps","url":"https://showthesteps.org/"}}</script>
-<script src="../assets/site.js"></script>
 <script src="../assets/nav.js" defer></script>
 <script src="../assets/progress.js" defer></script>
-<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script>
+  /* Loading fast: this page is one big file (the story reader below is most of it), so the parts that make the first
+     picture come first. site.js and the fonts' stylesheet are loaded at the end of the page, just before the reader
+     (site.js still runs before it and before nav.js), so nothing up here waits for the network and the page shows as
+     soon as its first bytes arrive. (Preloading those two from up here was tried: the fonts then start sooner and
+     slow down the rest of this page, so the answer came later.) This sets the colors the reader would set later (load
+     and readURL below do the same), so the first picture is already in the right theme: embed=1 with theme=, or the
+     theme this browser saved. */
+  (function() {
+    var de = document.documentElement,
+      th = "";
+    try {
+      if (/(?:^|[?&])embed=(?:1|true)(?:&|$)/i.test(location.search)) {
+        de.classList.add("embed");
+        th = (new URLSearchParams(location.search).get("theme") || "").toLowerCase();
+      } else th = (JSON.parse(localStorage.getItem("story-problem") || "null") || {}).theme;
+    } catch (e) {}
+    if (th === "light" || th === "dark") de.setAttribute("data-theme", th);
+  })();
+</script>
 <style>
   :root {
     --paper: #EAF0EF;
@@ -2133,6 +2151,50 @@
 </div>
 
 <script>
+  /* Until the story reader below has arrived (on a slow connection it is most of this page's download), the box already
+     works: a story from a link (q=) is shown in it, whatever is typed is kept, and both say "Reading…". The reader
+     takes over when it starts (storyEarly.stop, in its wiring) and reads what was typed as if it had just been typed. */
+  (function() {
+    var in1 = document.getElementById("in1"),
+      det = document.getElementById("detected"),
+      de = document.documentElement,
+      embed = /(?:^|[?&])embed=(?:1|true)(?:&|$)/i.test(location.search),
+      E = window.storyEarly = { typed: false, stop: stop },
+      said = false,
+      q = null,
+      t = de.getAttribute("data-theme");
+
+    function reading() {
+      if (embed) return;
+      det.hidden = false;
+      det.innerHTML = '<span class="dk">Reading…</span> one moment';
+      said = true;
+    }
+
+    function typed() {
+      E.typed = true;
+      reading();
+    }
+
+    function stop() {
+      in1.removeEventListener("input", typed);
+      if (!said) return;
+      det.hidden = true;
+      det.innerHTML = "";
+    }
+    document.getElementById("themeBtn").textContent = (t ? t === "dark" : window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) ? "Light mode" : "Dark mode";
+    if (embed) in1.readOnly = true;
+    else in1.addEventListener("input", typed);
+    try { q = new URLSearchParams(location.search).get("q"); } catch (e) {}
+    if (q !== null && q.trim()) {
+      in1.value = q.slice(0, 2000);
+      reading();
+    }
+  })();
+</script>
+<script src="../assets/site.js"></script>
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script>
   (function() {
     "use strict";
     /* URL parameters
@@ -2394,8 +2456,6 @@
 
     function money(v) { return isCents(v) ? usd(v) : usdX(v) + " ≈ " + usd(roundK(v, 2)); }
 
-    function moneyS(v) { return isCents(v) ? usd(v) : "≈" + usd(roundK(v, 2)); }
-
     function shortT(v) { // short text for pictures
       var t = termDec(v);
       if (t !== null && (t.split(".")[1] || "").length <= 2) return t;
@@ -2429,8 +2489,6 @@
       }
       return null;
     }
-
-    function decPlaces(d) { var k = 0; while (k < 40 && (10n ** BigInt(k)) % d !== 0n) k++; return k; }
 
     /* ===================== words ===================== */
     var ABBR = { oz: 1, lb: 1, lbs: 1, kg: 1, g: 1, km: 1, m: 1, cm: 1, mm: 1, mi: 1, ft: 1, yd: 1, "in": 1, ml: 1, l: 1, L: 1, min: 1, h: 1, hr: 1, sec: 1, mph: 1 };
@@ -2841,10 +2899,6 @@
     function cl(a, o, b, r, k, kb, kr) { return { a: a, o: o, b: b, r: r, k: k || "n", kb: kb || k || "n", kr: kr || k || "n" }; }
 
     function hvW(W, N) { return (N || W.N) === "they" ? "have" : "has"; }
-
-    function isW(W, N) { return (N || W.N) === "they" ? "are" : "is"; }
-
-    function dsW(W, N) { return (N || W.N) === "they" ? "do" : "does"; }
 
     function sv(W, verb, N) { // a present-tense verb after the name: gets / they get
       if ((N || W.N) !== "they") return verb;
@@ -14240,7 +14294,7 @@
       sample.className = "sample";
       sample.id = "sample";
       host.appendChild(sample);
-      paintSample();
+      if ($("maker").open) paintSample(); // closed, it's written when it opens (its toggle handler): making one takes a while
       var go = document.createElement("div");
       go.className = "maker-go";
       go.innerHTML = '<button type="button" class="go" id="genBtn">New problem</button><span class="msg" id="genMsg"></span>';
@@ -14427,7 +14481,19 @@
     buildChips();
     buildMaker();
     if (S.src === "text") $("readBox").open = true;
+    // typed in the box before this reader had arrived (the little script above the reader): read it now, the same as
+    // the box's input handler would have
+    var early = window.storyEarly,
+      typedEarly = !!(early && early.typed && !EMBED);
+    if (early) early.stop();
+    if (typedEarly) {
+      S.src = "text";
+      S.text = in1.value;
+      S.ov = {};
+      S.step = 1;
+    }
     paint();
     render();
+    if (typedEarly) save();
   })();
 </script>

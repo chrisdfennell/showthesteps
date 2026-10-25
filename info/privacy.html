@@ -247,6 +247,10 @@
   <div class="card">
     <p><b>The short version:</b> every problem is worked out in your own browser, and nothing you type is sent to anyone, unless you press
       <b>Send this problem</b> on a problem a page couldn't read.
+      If you use the <b>microphone button</b> to say a problem, your browser (not this site) sends what you say to its own
+      speech service to turn it into text; see <a href="#voice">Saying a problem</a>. On the Flight Computer, the
+      <b>Get the latest METAR</b> and <b>Get the latest winds aloft</b> buttons fetch weather from the US National Weather
+      Service, only when you press them; see <a href="#weather">The Flight Computer's weather tabs</a>.
       Your progress and settings are saved only on your device. The site counts visits anonymously, without cookies. It
       collects no personal information from anyone, including children, so there is no student data to share or sell.</p>
   </div>
@@ -262,6 +266,9 @@
     <tr><td>Problem of the day</td><td>Your streak, and which days you've done.</td></tr>
     <tr><td>Flash cards, practice sets, worksheets</td><td>How well you know each card, a practice set in progress, and the worksheet maker's choices.</td></tr>
     <tr><td>Class results</td><td>Only if a teacher chooses to keep pasted results on their own device.</td></tr>
+    <tr><td>Microphone OK</td><td>That you read the notice before using the microphone button, so it isn't shown each time.</td></tr>
+    <tr><td>Weather notes seen</td><td>That you've read the Flight Computer's one-time note before its first weather fetch
+      (<code>flight-computer-wx-ok</code>, <code>flight-computer-fb-ok</code>).</td></tr>
   </table>
   <p>To delete it: <a href="../practice/progress.html">Your progress</a> has a <b>Clear my progress</b> button, and clearing this
     site's data in your browser's settings removes everything. If you install the site as an app, your browser also keeps a
@@ -290,11 +297,38 @@
         engine (Tesseract.js and its English reading data, about 7 MB) from jsDelivr, which sees your IP address like any
         download. Your browser keeps it, so later pictures are read without downloading it again. Your picture is never sent.
         <a href="https://www.jsdelivr.com/terms/privacy-policy">jsDelivr's privacy policy</a>.</td></tr>
+    <tr id="voice"><td>Your browser's speech service<br><span class="small">saying a problem</span></td>
+      <td>Only if you press the <b>microphone button</b> beside the problem box and say a problem. Turning speech into
+        text is done by your browser, not by Show The Steps: in Chrome and Edge the browser sends what you say to its
+        maker's speech service (Google or Microsoft); in Safari, on an iPhone, iPad or Mac, to Apple's. It sends only
+        while the button shows that it's listening, and stops when you press it again or stop talking. Only the words come
+        back, into the box. <b>Show The Steps doesn't receive or keep the recording</b>, and never sees it. Where the
+        browser can turn speech into text on the device itself, the microphone uses that, and nothing is sent. Before the
+        first use, a short notice says which it will be, and the microphone isn't used until you press OK.
+        Google's, Microsoft's and Apple's privacy policies cover what their services do with it:
+        <a href="https://policies.google.com/privacy">Google</a>,
+        <a href="https://privacy.microsoft.com/privacystatement">Microsoft</a>,
+        <a href="https://www.apple.com/legal/privacy/">Apple</a>. Firefox has no speech recognition, so it shows no
+        microphone button.</td></tr>
+    <tr id="weather"><td><a href="https://www.weather.gov">The US National Weather Service</a><br><span class="small">the Flight Computer's weather tabs</span></td>
+      <td>Weather reports and winds-aloft forecasts you paste are read in your browser and not sent anywhere. Two buttons
+        fetch data, only when you press them, from the National Weather Service (api.weather.gov, a public US government
+        service; no account and no key):
+        <b>Get the latest METAR</b> (Weather tab) sends the airport code you typed (like KSEA) to api.weather.gov to get that
+        airport's recent observations, the way any web request does (with your IP address);
+        <b>Get the latest winds aloft</b> (Winds aloft tab) downloads the latest winds-aloft forecast from api.weather.gov. The
+        station code is <b>not</b> sent: the page finds the station in the forecast itself.
+        Before the first fetch each tab shows a one-time note saying what is sent. Nothing is fetched automatically, and the
+        buttons don't appear when a helper is embedded in a practice set.
+        <a href="https://www.weather.gov/privacy">The National Weather Service's privacy policy</a>.</td></tr>
   </table>
   <p>Nothing else is sent. In particular:</p>
   <ul>
     <li><b>Photos of a problem</b> (the camera button by the problem box, or a picture you paste or drop in) are read on your
       device and never uploaded or saved: only the words and numbers read from it are put in the box.</li>
+    <li><b>Saying a problem</b> (the microphone button) is the one time sound leaves the device, and your browser sends it,
+      not Show The Steps: see <a href="#voice">Your browser's speech service</a> above. The site gets only the words, in
+      the box, and they stay in your browser like anything you type.</li>
     <li><b>Read aloud</b> uses the voices built into your device or browser. Some browsers offer online voices (with names like
       "Online" or "Google"); if you pick one of those, your browser may send the text being read to its maker's speech service.
       The other voices work entirely on your device.</li>

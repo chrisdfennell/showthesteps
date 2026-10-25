@@ -581,6 +581,12 @@
       { page: "carpentry.html", name: "The Framing Square" },
       { page: "electrical.html", name: "The Circuit Board" },
       { page: "cooking.html", name: "The Recipe Card" },
+      { page: "pharmacy.html", name: "The Pill Counter" },
+      { page: "hvac-plumbing.html", name: "The Pipe Wrench" },
+      { page: "machining.html", name: "The Machine Shop" },
+      { page: "automotive.html", name: "The Gear Box" },
+      { page: "business.html", name: "The Cash Register" },
+      { page: "real-estate.html", name: "The Floor Plan" },
       { page: "counting.html", name: "The Counting Tree" },
       { page: "number-sense.html", name: "The Place Value Chart" }, { page: "quadratics.html", name: "The Area Box" },
       { page: "logarithms.html", name: "The Log Ladder" }, { page: "sequences.html", name: "The Number Staircase" },
@@ -591,9 +597,12 @@
       { page: "reference.html", name: "Reference sheets", kind: "tool" }, { page: "results.html", name: "Class results", kind: "tool" },
       { page: "worksheet.html", name: "The Worksheet Maker", kind: "tool" }, { page: "practice.html", name: "Practice sets & assignments", kind: "tool" },
       { page: "skills.html", name: "Skill map", kind: "tool" },
+      { page: "review.html", name: "Review", kind: "tool" },
       { page: "daily.html", name: "Problem of the day", kind: "tool" }, { page: "qr.js", name: "QR codes (qr.js)", kind: "tool" },
       { page: "embed.js", name: "Embed on another website (embed.js)", kind: "tool" },
+      { page: "voice.js", name: "Say the problem (voice.js)", kind: "tool" },
       { page: "keypad", name: "Math keys (tools.js)", kind: "tool" },
+      { page: "speech", name: "Math in words (tools.js, a11y.js)", kind: "tool" },
       { page: "tutor.html", name: "Tutor me (tutor.js)", kind: "tool" },
       { page: "play.html", name: "Play (play.js)", kind: "tool" }
     ];
@@ -665,7 +674,26 @@
         ["mode=units&v=29.92&from=inhg&to=hpa", ["1013.21"]],
         ["mode=units&v=15&from=c&to=f", ["59"]],
         ["mode=units&v=40&from=gal&to=lb&fuel=avgas", ["240"]],
-        ["mode=units&v=300&from=lb&to=gal&fuel=jet", ["44.78"]]
+        ["mode=units&v=300&from=lb&to=gal&fuel=jet", ["44.78"]],
+        ["q=" + encodeURIComponent("KSEA 241753Z 18012KT 10SM FEW040 BKN250 14/08 A3012"), ["~vfr", "25000", "10", "2400", "67"]],
+        ["mode=metar&m=" + encodeURIComponent("KDEN 241653Z 35008KT 3SM BR FEW005 OVC008 02/01 A3021") + "&elev=5434", ["~ifr", "800", "3", "400", "93", "5144", "4819"]],
+        ["q=" + encodeURIComponent("EGLL 241750Z 24015KT 9999 SCT020 BKN035 13/09 Q1009 NOSIG elevation 83"), ["~vfr", "3500", "6.21", "1600", "77", "207", "17"]],
+        ["q=" + encodeURIComponent("SPECI KORD 241812Z 27020G32KT 1 1/2SM +TSRA BKN010CB OVC025 18/16 A2968 RMK AO2 PK WND 28035/1806 RAB02 runway 22"), ["~ifr", "1000", "1 1/2", "13", "15", "25", "800", "88"]],
+        ["q=" + encodeURIComponent("LFPG 240800Z 00000KT 0300 R27L/0550U FG VV001 08/08 Q1021"), ["~lifr", "100", "0.19", "100"]],
+        ["q=" + encodeURIComponent("CYYZ 241800Z 31018G28KT 15SM -SN BKN025 OVC040 M05/M11 A2988 runway 24"), ["~mvfr", "2500", "15", "6", "17", "26", "2400", "63"]],
+        ["mode=metar&m=" + encodeURIComponent("EHAM 241755Z 21018G28KT 180V240 6000 -SHRA FEW012 SCT018CB BKN030 11/08 Q0998") + "&rwy=27", ["~mvfr", "3000", "3.73", "9", "16", "24"]],
+        ["q=" + encodeURIComponent("TAF KSEA 241720Z 2418/2524 18010KT P6SM BKN040 FM250200 20015G25KT 4SM -RA OVC015 TEMPO 2504/2508 2SM BR OVC008"), ["~vfr", "4000", "6"]],
+        ["q=" + encodeURIComponent("what does -FZRA mean"), ["~light freezing rain"]],
+        ["mode=windsaloft&q=7310", ["230", "110"]],
+        ["mode=windsaloft&q=" + encodeURIComponent("321858 at 30000"), ["320", "18", "-58", "-13"]],
+        ["mode=windsaloft&q=9900", ["~light and variable"]],
+        ["q=" + encodeURIComponent("SEA 2512 2620+06 2628+01 2635-04 2650-16 2664-28 257743 258849 760854 at 7500 course 090 TAS 120"), ["260", "24", "4", "92", "144"]],
+        ["q=" + encodeURIComponent("DATA BASED ON 241800Z VALID 250000Z FOR USE 2000-0300Z. TEMPS NEG ABV 24000 FT 3000 6000 9000 12000 18000 24000 30000 34000 39000 DEN 2425+03 2433-01 2448-12 2462-24 247239 248348 750452 at 10500"), ["240", "29", "1", "7"]],
+        ["mode=windsaloft&m=" + encodeURIComponent("XXX 3310 3415+10 0120+05 0225+00 0240-12 0255-24 026540 027548 028556") + "&stn=XXX&alt=7500", ["355", "18", "8"]],
+        ["q=" + encodeURIComponent("ABQ 1618+08 1938+02 2046-11 2050-24 206139 206047 204852 at 10000 magnetic course 270 variation 9 E TAS 130"), ["170", "25", "6", "269", "136"]],
+        ["q=" + encodeURIComponent("ANC 1717 2020-04 2029-08 2237-09 2264-16 2264-29 238143 239152 237861 best altitude course 090 TAS 120"), ["12000", "140"]],
+        ["q=" + encodeURIComponent("PDX 9900 2412+07 2617+01 2624-03 2539-16 2648-29 265645 266454 276361 at 30000"), ["260", "56", "-45", "0"]],
+        ["q=" + encodeURIComponent("HNL 0411 0412 0412 0412 9900+14 9900+12 3205+07 2808+02 2517-06 2641-18 at 2500"), ["40", "12"]]
       ],
       "nursing.html": [
         ["q=" + encodeURIComponent("15 mg/kg for a 44 lb child"), ["20", "300"]],
@@ -840,6 +868,268 @@
         ["q=" + encodeURIComponent("coffee 1:16 for 500 mL water"), ["31.3"]],
         ["q=" + encodeURIComponent("salt 1.5% of 800 g pork"), ["12"]],
         ["q=" + encodeURIComponent("2 cups rice 1:2 water"), ["4"]]
+      ],
+      "pharmacy.html": [
+        ["q=" + encodeURIComponent("1 tab PO BID x 10 days quantity"), ["2", "20"]],
+        ["q=" + encodeURIComponent("2 tsp PO TID x 7 days"), ["3", "42", "210"]],
+        ["q=" + encodeURIComponent("1-2 tabs PO q4-6h PRN pain, max 8 tabs/day x 5 days"), ["4", "8", "40"]],
+        ["q=" + encodeURIComponent("1 gtt OU QID x 7 days"), ["4", "8", "56"]],
+        ["q=" + encodeURIComponent("tab ii PO qhs x 14 days"), ["1", "2", "28"]],
+        ["mode=sig&n=1&u=tab&f=q8h&d=7", ["3", "21"]],
+        ["q=" + encodeURIComponent("90 tablets 1 tab TID days supply"), ["3", "90", "30"]],
+        ["q=" + encodeURIComponent("100 tablets 1 tab TID days supply"), ["33"]],
+        ["q=" + encodeURIComponent("1/2 tab PO daily x 5 days how many to dispense"), ["3"]],
+        ["q=" + encodeURIComponent("150 mL bottle, 1 tsp BID, days supply"), ["10", "150", "15"]],
+        ["q=" + encodeURIComponent("inhaler 200 puffs, 2 puffs QID, days supply"), ["8", "200", "25"]],
+        ["q=" + encodeURIComponent("5 pens of 3 mL U-100 insulin, 30 units daily, days supply"), ["30", "1500", "50"]],
+        ["q=" + encodeURIComponent("5 mL bottle, 1 gtt OU BID, days supply"), ["4", "100", "25"]],
+        ["q=" + encodeURIComponent("amoxicillin 250 mg/5 mL 1 tsp TID x 10 days how many mL"), ["15", "150"]],
+        ["q=" + encodeURIComponent("500 mg TID x 10 days, 250 mg/5 mL, bottles of 100 mL"), ["30", "300", "3"]],
+        ["q=" + encodeURIComponent("20 units BID x 30 days, pens of 300 units, how many pens"), ["40", "1200", "4"]],
+        ["q=" + encodeURIComponent("1 gtt OU BID x 30 days, 5 mL bottles"), ["120", "6", "2"]],
+        ["q=" + encodeURIComponent("mix 10% and 2% to make 5%, 500 g"), ["3", "5", "187.5", "312.5"]],
+        ["q=" + encodeURIComponent("how much 1% to add to 30 g of 2.5% to make 2%"), ["15", "45"]],
+        ["q=" + encodeURIComponent("mix 70% alcohol and water to make 30%, 480 mL"), ["205.7", "274.3"]],
+        ["mode=allig&hi=20&lo=5&want=10", ["1", "2"]],
+        ["q=" + encodeURIComponent("how many grams of drug in 250 mL of 2% solution"), ["5"]],
+        ["q=" + encodeURIComponent("how many grams of hydrocortisone in 30 g of 1% cream"), ["0.3", "300"]],
+        ["q=" + encodeURIComponent("dilute 30 mL of 50% to 10%"), ["150", "120"]],
+        ["q=" + encodeURIComponent("how much 50% to make 500 mL of 10%"), ["100", "400"]],
+        ["q=" + encodeURIComponent("1:1000 as mg/mL and percent"), ["1", "0.1"]],
+        ["mode=conc&task=dilute&c1=50&v1=30&v2=150&cu=%25", ["10"]],
+        ["q=" + encodeURIComponent("formula for 100 g to make 250 g"), ["2.5"]],
+        ["q=" + encodeURIComponent("formula for 100 g: hydrocortisone 1 g, mineral oil 10 g, white petrolatum qs; make 250 g"), ["2.5", "25", "222.5"]],
+        ["q=" + encodeURIComponent("XIV tablets"), ["14"]],
+        ["mode=convert&v=24&to=roman", ["~xxiv"]],
+        ["q=" + encodeURIComponent("2 tsp to mL"), ["10"]],
+        ["q=" + encodeURIComponent("154 lb to kg"), ["70"]],
+        ["q=" + encodeURIComponent("cost $40 markup 25%"), ["10", "50"]],
+        ["q=" + encodeURIComponent("AWP $120 minus 15% plus $2.50 dispensing fee"), ["102", "104.5"]],
+        ["q=" + encodeURIComponent("AWP $250 for 100 tablets, dispense 30, AWP minus 16% plus $1.75 fee"), ["63", "64.75"]],
+        ["q=" + encodeURIComponent("selling price $50, cost $40, gross profit"), ["10", "25", "20"]],
+        ["q=" + encodeURIComponent("copay $10, insurance pays $35, cost $38"), ["45", "7"]],
+        ["q=" + encodeURIComponent("inventory $50,000, cost of goods $600,000 a year"), ["12", "30.4"]],
+        ["mode=biz&task=onhand&oh=300&use=20", ["15"]],
+        ["q=" + encodeURIComponent("40 °F to °C"), ["4.4"]],
+        ["q=" + encodeURIComponent("store at 2-8 °C in °F"), ["35.6", "46.4"]],
+        ["q=" + encodeURIComponent("the fridge reads 40 °F, is it in the 2-8 °C range?"), ["4.4", "~yes"]],
+        ["mode=temp&v=10&vu=f&rng=freezer", ["-12.2", "~yes"]]
+      ],
+      "hvac-plumbing.html": [
+        ["q=" + encodeURIComponent("36000 BTU to tons"), ["3"]],
+        ["mode=heat&x=1500&u=w&to=btuh", ["5118"]],
+        ["mode=heat&x=24000&u=btuh&to=w", ["7034"]],
+        ["q=" + encodeURIComponent("2.5 therms to BTU"), ["250000"]],
+        ["mode=heat&x=100&u=kwh&to=therm", ["3.41"]],
+        ["q=" + encodeURIComponent("1200 CFM 20 degree rise BTU"), ["25920"]],
+        ["mode=air&task=sens&q=30000&dt=20", ["1388.9"]],
+        ["q=" + encodeURIComponent("800 CFM supply 55 return 75 BTU"), ["17280"]],
+        ["mode=air&task=sens&tons=2&cfm=800", ["27.8"]],
+        ["mode=air&task=ach&l=20&w=15&h=8&cfm=200", ["5"]],
+        ["q=" + encodeURIComponent("800 CFM 12 inch round duct velocity"), ["1019"]],
+        ["mode=duct&task=vel&cfm=600&w=14&h=8", ["771"]],
+        ["mode=duct&task=size&cfm=1000&fpm=900", ["16"]],
+        ["mode=duct&task=size&cfm=1000&fpm=800&h=8", ["24", "8"]],
+        ["q=" + encodeURIComponent("14 by 8 duct to round"), ["11.94"]],
+        ["q=" + encodeURIComponent("R-13 wall 120 sq ft 40 degree difference heat loss"), ["369"]],
+        ["mode=loss&u=0.3&a=15&ti=70&to=10&what=window", ["270"]],
+        ["mode=loss&r=0.68,13,0.45,0.17&a=200&ti=70&to=20&what=wall", ["699"]],
+        ["q=" + encodeURIComponent("100 ft of 3/4 inch pipe gallons"), ["2.29", "19.1"]],
+        ["mode=pipe&task=box&l=48in&w=36in&h=24in", ["179.53", "1495.5"]],
+        ["mode=pipe&task=cyl&dia=24in&ht=48in", ["94", "783"]],
+        ["q=" + encodeURIComponent("40 gallon tank 5 gpm fill time"), ["8"]],
+        ["mode=flow&task=time&gal=500&gpm=12&drain=1", ["41.67"]],
+        ["mode=flow&task=pipe&d=1&v=5", ["12.24"]],
+        ["mode=flow&task=vel&d=0.75&gpm=10", ["7.26"]],
+        ["q=" + encodeURIComponent("60 feet of head psi"), ["25.98"]],
+        ["mode=pressure&task=psi&psi=50", ["115.5"]],
+        ["mode=pressure&task=floor&psi=65&floor=4&per=12", ["49.41"]],
+        ["mode=pressure&task=floor&psi=80&up=30", ["67.01"]],
+        ["q=" + encodeURIComponent("drain 30 feet at 1/4 inch per foot"), ["7 1/2", "2.08"]],
+        ["mode=drain&task=slope&fall=6in&len=40ft", ["0.15", "1.25"]],
+        ["mode=drain&task=pct&pct=2", ["0.24"]],
+        ["q=" + encodeURIComponent("50 gallons 50 to 120 degrees BTU"), ["29155"]],
+        ["mode=heater&task=time&gal=50&t1=50&t2=120&rate=4500&ru=w", ["1.9", "29155"]],
+        ["mode=heater&task=time&gal=40&dt=60&rate=40000&ru=btuh&eff=80", ["0.62", "19992"]],
+        ["mode=heater&task=rec&dt=90&rate=40000&ru=btuh&eff=76", ["40.5"]]
+      ],
+      "machining.html": [
+        ["q=" + encodeURIComponent("SFM 100 drill 1/2 inch rpm"), ["764"]],
+        ["mode=rpm&task=rpm&sfm=400&d=3/4&tool=mill", ["2037"]],
+        ["mode=rpm&task=rpm&vc=30&d=10&u=mm", ["955", "954"]],
+        ["mode=rpm&task=sfm&rpm=1500&d=2", ["785.4"]],
+        ["q=" + encodeURIComponent("1200 rpm 0.004 chip load 4 flutes feed"), ["19.2", "0.016"]],
+        ["mode=feed&task=chip&ipm=15&rpm=1500&z=3", ["0.0033"]],
+        ["mode=feed&task=lathe&rpm=800&ipr=0.008&len=6", ["6.4", "0.94"]],
+        ["q=" + encodeURIComponent("tap drill 1/2-13"), ["0.4231", "27/64", "0.4219", "78"]],
+        ["mode=thread&task=drill&maj=1/4&tpi=20", ["0.2", "7", "0.201", "75"]],
+        ["mode=thread&task=drill&maj=%2310&tpi=24", ["0.1483", "25", "0.1495", "75"]],
+        ["mode=thread&task=drill&maj=3/8&tpi=24&pct=65", ["0.3398", "0.339", "67"]],
+        ["mode=thread&task=drill&maj=%234&tpi=40", ["0.087", "43", "0.089", "71"]],
+        ["mode=thread&task=drill&maj=%232&tpi=56", ["0.0681", "50", "0.07", "69"]],
+        ["mode=thread&task=pct&maj=1/2&tpi=13&drill=27%2F64", ["78"]],
+        ["q=" + encodeURIComponent("M10 x 1.5 tap drill"), ["8.5", "77"]],
+        ["q=" + encodeURIComponent("M12 tap drill"), ["10.25", "10.2", "79"]],
+        ["mode=thread&task=pitch&tpi=13", ["0.0769", "1.954"]],
+        ["q=" + encodeURIComponent("taper 1.25 to 1.00 over 4 inches"), ["0.75", "0.0625", "1.79", "3.58"]],
+        ["mode=taper&task=offset&D=0.875&d=0.750&L=3&ol=10", ["0.5", "1.19", "2.39", "0.2083"]],
+        ["mode=taper&task=dia&tpf=3/4&L=4&d=1.000", ["1.25"]],
+        ["mode=taper&task=angle&D=50&d=40&L=100&u=mm", ["10", "2.86", "5.72"]],
+        ["q=" + encodeURIComponent("bolt circle 6 holes 4 inch diameter"), ["60", "2", "0", "1", "1.7321", "-1", "-1.7321", "-2"]],
+        ["mode=bolt&n=8&bcd=6.5&start=22.5", ["45", "3.0026", "1.2437", "-3.0026", "-1.2437"]],
+        ["mode=bolt&n=5&bcd=100&start=90&u=mm", ["72", "50", "-47.553", "15.451", "-29.389", "-40.451"]],
+        ["mode=bolt&n=4&bcd=3.25&cx=2&cy=1.5", ["90", "3.625", "1.5", "3.125", "0.375", "-0.125"]],
+        ["q=" + encodeURIComponent("sine bar 5 inch 30 degrees"), ["2.5"]],
+        ["mode=sine&task=height&L=10&ang=12d30m", ["2.1644"]],
+        ["mode=sine&task=angle&L=5&h=1.2941", ["15", "~15° 0′ 0″"]],
+        ["q=" + encodeURIComponent("steel plate 24 x 12 x 1/2 weight"), ["40.84", "18.52"]],
+        ["mode=weight&shape=round&mat=aluminum&dia=2&l=36", ["11.03", "5"]],
+        ["mode=weight&shape=tube&mat=steel&od=2&wall=0.120&l=20ft", ["48.24", "21.88"]],
+        ["mode=weight&shape=plate&mat=aluminum&l=600&w=300&t=10&u=mm", ["4.86", "10.71"]],
+        ["q=" + encodeURIComponent("25 volts 200 amps 10 inches per minute heat input"), ["30"]],
+        ["mode=weld&task=heat&v=22&a=180&ts=300&tu=mmmin", ["0.792"]],
+        ["mode=weld&task=fillet&leg=3/8", ["0.2651"]],
+        ["mode=weld&task=filler&joint=fillet&leg=3/8&len=10ft&proc=smaw", ["2.39", "3.68"]],
+        ["q=" + encodeURIComponent("hole 1.000 +0.002 shaft 0.998 -0.001 fit"), ["1", "1.002", "0.997", "0.998", "0.005", "0.002", "~clearance"]],
+        ["q=" + encodeURIComponent("1.250 ± 0.005 limits"), ["1.255", "1.245", "0.01"]],
+        ["mode=fit&task=fit&hn=0.750&hp=0.001&hm=0&sn=0.7520&sp=0.0005&sm=0.0005", ["0.0025", "0.0005", "~interference"]]
+      ],
+      "automotive.html": [
+        ["q=" + encodeURIComponent("gear ratio 41 teeth 11 teeth"), ["3.73"]],
+        ["q=" + encodeURIComponent("ring gear 41 pinion 11 3000 rpm"), ["3.73", "805"]],
+        ["mode=gear&task=teeth&a=15&b=45&rpm=1800", ["3", "600"]],
+        ["q=" + encodeURIComponent("3.36 first gear 3.73 final drive"), ["12.53"]],
+        ["mode=gear&task=overall&g=2.66&fd=4.10&tq=250&tu=lbft", ["10.91", "2726.5"]],
+        ["mode=gear&task=teeth&a=12&b=45&rpm=2400&tq=200&tu=lbft", ["3.75", "640", "750"]],
+        ["q=" + encodeURIComponent("3000 rpm 3.73 final drive 0.85 overdrive 26 inch tire speed"), ["73.2", "946"]],
+        ["mode=speed&task=mph&rpm=2500&g=1&gn=dir&fd=3.55&tire=P265%2F70R17", ["66.2", "704"]],
+        ["q=" + encodeURIComponent("65 mph 3.73 gears 0.7 overdrive 28 inch tire rpm"), ["2037", "780"]],
+        ["mode=speed&task=rpm&mph=70&fd=4.10&d=33", ["2923"]],
+        ["q=" + encodeURIComponent("P225/60R16 diameter"), ["5.31", "26.63", "757"]],
+        ["mode=tire&task=size&t=LT265%2F75R16", ["7.82", "31.65", "637"]],
+        ["mode=tire&task=size&t=33x12.50R15", ["9", "33", "611"]],
+        ["q=" + encodeURIComponent("P225/60R16 to P245/55R17 at 60 mph"), ["62.2", "3.68"]],
+        ["mode=tire&task=change&t=265%2F70R17&t2=285%2F70R17&mph=60", ["62.1", "3.49"]],
+        ["q=" + encodeURIComponent("bore 4 stroke 3.48 8 cylinders displacement"), ["349.8", "5.73"]],
+        ["mode=disp&task=calc&bore=86&stroke=86&n=4&u=mm", ["1998", "2.00"]],
+        ["q=" + encodeURIComponent("350 cubic inches to liters"), ["5.74", "5735"]],
+        ["mode=disp&task=conv&v=5.7&from=l", ["347.8", "5700"]],
+        ["q=" + encodeURIComponent("swept 500 cc clearance 55 cc compression ratio"), ["10.09"]],
+        ["mode=comp&task=cr&bore=4&stroke=3.48&u=in&ch=64&gk=9&pd=5", ["10.19"]],
+        ["q=" + encodeURIComponent("500 cc cylinder 10.5:1 clearance volume"), ["52.63"]],
+        ["mode=comp&task=cr&bore=86&stroke=86&u=mm&ch=50", ["10.99"]],
+        ["q=" + encodeURIComponent("300 lb-ft at 5000 rpm horsepower"), ["285.6", "213"]],
+        ["mode=power&task=tq&hp=400&pu=hp&rpm=6000", ["350.1", "474.7"]],
+        ["q=" + encodeURIComponent("400 N·m at 4000 rpm kW"), ["167.6", "224.7"]],
+        ["mode=power&task=rpm&hp=350&pu=hp&tq=400&tu=lbft", ["4596"]],
+        ["q=" + encodeURIComponent("350 miles 12 gallons mpg"), ["29.2", "8.1"]],
+        ["mode=fuel&task=mpg&od1=45210&od2=45560&gal=12", ["29.2", "8.1"]],
+        ["mode=fuel&task=l100&km=500&l=40", ["8", "29.4"]],
+        ["q=" + encodeURIComponent("30 mpg to L/100 km"), ["7.8"]],
+        ["q=" + encodeURIComponent("300 mile trip 25 mpg $3.50 a gallon"), ["12", "42.00", "0.14"]],
+        ["mode=fuel&task=trip&mi=120&mpg=32&price=3.89&rt=1", ["7.5", "29.18"]],
+        ["q=" + encodeURIComponent("50:1 oil for 1 gallon"), ["2.56", "76"]],
+        ["mode=mix&task=two&r=40&v=5&vu=l", ["125", "4.23"]],
+        ["mode=mix&task=ratio&oil=2.6&ou=floz&v=1&vu=gal", ["49.2"]],
+        ["q=" + encodeURIComponent("50% antifreeze 12 quarts"), ["6"]],
+        ["q=" + encodeURIComponent("12 quarts at 30% want 50% how much to drain"), ["3.43"]],
+        ["q=" + encodeURIComponent("2.5 hours at $120 an hour parts $180 markup 30% tax 7%"), ["300.00", "234.00", "16.38", "550.38"]],
+        ["mode=shop&task=inv&hrs=1.8&rate=135&parts=64.50,22.75&mk=40&tax=6.5&taxon=all", ["243.00", "122.15", "23.73", "388.88"]],
+        ["q=" + encodeURIComponent("$80 part 40% markup"), ["112.00", "32.00"]],
+        ["mode=shop&task=markup&cost=80&mg=40", ["133.33"]],
+        ["mode=shop&task=markup&cost=60&price=90", ["50", "33.33", "30.00"]]
+      ],
+      "business.html": [
+        ["q=" + encodeURIComponent("cost $12 price $20 markup and margin"), ["8", "66.67", "40"]],
+        ["q=" + encodeURIComponent("cost $45 for a 40% margin"), ["75", "30", "66.67"]],
+        ["mode=markup&task=markup&cost=30&pct=50", ["45", "15", "33.33"]],
+        ["mode=markup&task=cost&from=margin&price=80&pct=35", ["52", "28", "53.85"]],
+        ["q=" + encodeURIComponent("50% markup as a margin"), ["33.33"]],
+        ["mode=markup&task=margin&cost=12&pct=35", ["18.46", "6.46", "53.83"]],
+        ["q=" + encodeURIComponent("$80 with 20% off then 10% off"), ["57.6", "22.4", "28"]],
+        ["mode=discount&task=stack&price=120&d=25,10,5", ["76.95", "43.05", "35.88"]],
+        ["q=" + encodeURIComponent("was $80 now $60"), ["25", "20"]],
+        ["q=" + encodeURIComponent("sale price $45 after 25% off, original price"), ["60", "15"]],
+        ["mode=discount&task=updown&price=50&up=40&down=25", ["52.5", "5"]],
+        ["mode=discount&task=stack&price=19.99&d=20,10", ["14.39", "5.6", "28"]],
+        ["q=" + encodeURIComponent("change from $50 for $23.47"), ["26.53", "20", "5", "1", "2", "3", "8"]],
+        ["mode=till&task=change&total=61.18&paid=100", ["38.82", "12"]],
+        ["q=" + encodeURIComponent("change from $10 for $3.42 rounded to the nearest 5 cents"), ["6.6", "5"]],
+        ["q=" + encodeURIComponent("drawer 6 twenties, 8 tens, 5 fives, 27 ones, 12 quarters, 9 dimes, 6 nickels, 14 pennies\nstart $100\ncash sales $157.59"), ["256.34", "257.59", "1.25", "~short", "156.34"]],
+        ["q=" + encodeURIComponent("shirt $19.99\n2 x soda $1.49\nbread $3.29 no tax\ntax 8.25%"), ["26.26", "1.9", "28.16"]],
+        ["q=" + encodeURIComponent("$54 including 8% tax"), ["50", "4"]],
+        ["mode=tax&task=rate&pre=40&tax=3.3", ["8.25", "3.3"]],
+        ["mode=tax&task=receipt&items=" + encodeURIComponent("notebook~2.79~3~t|pens~3.99~1~t") + "&rate=6.5", ["12.36", "0.8", "13.16"]],
+        ["q=" + encodeURIComponent("in 8:45 out 5:15 30 minute lunch"), ["8"]],
+        ["q=" + encodeURIComponent("46 hours at $18 with overtime"), ["882", "720", "162"]],
+        ["q=" + encodeURIComponent("Mon 9-5:30\nTue 8:30-5\nWed 9-6\n30 minute lunch each day\n$16.50 an hour"), ["24", "30", "24.5", "404.25"]],
+        ["q=" + encodeURIComponent("5% commission on $12,000 in sales plus $400 base"), ["600", "1000"]],
+        ["mode=payroll&task=comm&sales=16500&t=0:3,10000:5", ["625"]],
+        ["q=" + encodeURIComponent("in 10:00 pm out 6:30 am 30 minute break"), ["8"]],
+        ["mode=payroll&task=ot&h=50&rate=14&x=2", ["840", "560", "280"]],
+        ["q=" + encodeURIComponent("fixed costs $3000 price $25 variable cost $10 break even"), ["200", "5000"]],
+        ["mode=breakeven&fixed=12500&price=40&vc=15.5&q=600", ["511", "20440", "2200"]],
+        ["mode=breakeven&fixed=8000&price=12&vc=4.5&target=4000", ["1067", "12804", "1600"]],
+        ["q=" + encodeURIComponent("sales $250,000\ncost of goods sold $150,000\nrent $24,000\nwages $40,000\nutilities $6,000"), ["100000", "40", "30000", "12"]],
+        ["mode=pl&sales=80000&ret=2000&cogs=46800&exp=" + encodeURIComponent("rent~18000|wages~16000"), ["31200", "40", "-2800", "-3.59"]],
+        ["q=" + encodeURIComponent("case of 24 for $18 plus $6 shipping unit cost"), ["1", "24"]],
+        ["q=" + encodeURIComponent("10 at $4, 20 at $5, 15 at $4.60 average cost"), ["4.6444", "45", "209"]],
+        ["q=" + encodeURIComponent("cost of goods sold $180,000 beginning inventory $28,000 ending inventory $32,000 turnover"), ["6", "60.8", "30000"]],
+        ["q=" + encodeURIComponent("uses 40 a day, lead time 5 days, safety stock 60, reorder point"), ["260", "200", "60"]],
+        ["mode=inventory&task=rop&use=280&per=week&lead=2&lu=week&ss=50", ["610", "560"]],
+        ["q=" + encodeURIComponent("12 oz for $3.99 or 20 oz for $5.49"), ["~b · 20 oz", "0.2745"]],
+        ["q=" + encodeURIComponent("$1.25 each or 24 for $24"), ["~b · 24 for $24.00", "1"]],
+        ["q=" + encodeURIComponent("buy 2 get 1 free at $3.99 each or $2.89 each"), ["~a · $3.99 each buy 2 get 1 free", "2.66"]],
+        ["q=" + encodeURIComponent("64 fl oz for $3.79 or 1 gallon for $5.49"), ["~b · 1 gal", "0.0429"]]
+      ],
+      "real-estate.html": [
+        ["q=" + encodeURIComponent("living room 15 x 20, kitchen 12 x 14, two bedrooms 11 x 12 square feet"), ["732"]],
+        ["q=" + encodeURIComponent("L-shaped house 40 x 30 minus 15 x 10"), ["1050"]],
+        ["q=" + encodeURIComponent("28 x 40 ranch listed at $250,000 price per square foot"), ["1120", "223.21"]],
+        ["q=" + encodeURIComponent("$425,000 for 2,500 square feet price per square foot"), ["170"]],
+        ["mode=sqft&task=value&sf=1850&pps=210", ["388500"]],
+        ["mode=sqft&task=rooms&r=living-room:15ft6inx20,dining:12x13", ["466"]],
+        ["q=" + encodeURIComponent("2.5 acres to square feet"), ["108900"]],
+        ["q=" + encodeURIComponent("87,120 square feet to acres"), ["2"]],
+        ["q=" + encodeURIComponent("lot 100 x 200 ft $50,000 price per front foot"), ["20000", "0.4591", "500"]],
+        ["mode=land&task=lot&front=80&depth=150&pff=1200", ["12000", "96000"]],
+        ["q=" + encodeURIComponent("10 acres for $85,000 price per acre"), ["8500"]],
+        ["q=" + encodeURIComponent("NE 1/4 of the SW 1/4 of a section"), ["40"]],
+        ["mode=land&task=survey&d=N1/2,NW1/4,SE1/4&ppa=3000", ["20", "60000"]],
+        ["q=" + encodeURIComponent("$350,000 at 6% commission split 50/50"), ["21000", "10500"]],
+        ["q=" + encodeURIComponent("$425,000 6% commission listing side 60% agent gets 70%"), ["25500", "15300", "10200", "10710"]],
+        ["q=" + encodeURIComponent("$250,000 7% on the first $100,000 and 3% on the rest"), ["11500", "4.6"]],
+        ["q=" + encodeURIComponent("commission $21,000 on $350,000 what rate"), ["6"]],
+        ["mode=commission&task=price&comm=18000&rate=6", ["300000"]],
+        ["q=" + encodeURIComponent("sold $400,000 6% commission closing costs $4,500 payoff $210,000"), ["161500", "238500"]],
+        ["mode=net&task=net&price=285000&rate=5.5&ccp=2&payoff=150000&other=repairs:3000", ["110625", "174375"]],
+        ["q=" + encodeURIComponent("net $250,000 after 6% commission $5,000 closing costs payoff $180,000 list price"), ["462765.96"]],
+        ["q=" + encodeURIComponent("$300,000 20% down 6.5% 30 years payment"), ["1516.96", "240000", "80"]],
+        ["q=" + encodeURIComponent("$350,000 10% down 7% 30 years taxes $4,200 a year insurance $1,500 a year PITI"), ["2095.70", "2570.70", "315000", "90"]],
+        ["mode=mortgage&task=pay&loan=240000&r=6&t=15", ["2025.26"]],
+        ["q=" + encodeURIComponent("$2,000 a month 6% 30 years 10% down how much house"), ["333583.23", "370648.03"]],
+        ["q=" + encodeURIComponent("loan $240,000 value $300,000 LTV"), ["80"]],
+        ["q=" + encodeURIComponent("assessed $250,000 at 25 mills"), ["6250"]],
+        ["q=" + encodeURIComponent("market value $300,000 assessed at 80% tax rate 30 mills homestead exemption $25,000"), ["6450", "215000"]],
+        ["q=" + encodeURIComponent("$2.10 per $100 on $180,000 assessed"), ["3780"]],
+        ["mode=tax&task=tax&av=320000&pct=1.25", ["4000"]],
+        ["q=" + encodeURIComponent("taxes $4,500 assessed $180,000 mill rate"), ["25", "2.5"]],
+        ["q=" + encodeURIComponent("taxes $3,650 a year closing June 15 proration"), ["1660", "166", "1672.92", "165"]],
+        ["mode=prorate&task=split&amt=3650&per=y&item=tax&paid=arrears&date=6-15&day=buyer", ["1650", "165", "1662.78", "164"]],
+        ["q=" + encodeURIComponent("taxes $4,200 a year paid in advance closing September 20 proration"), ["1173.70", "102", "1166.67", "100"]],
+        ["q=" + encodeURIComponent("rent $1,800 a month collected closing June 10 proration"), ["1200", "20"]],
+        ["mode=prorate&task=split&amt=300&per=m&item=hoa&paid=advance&date=3-12", ["183.87", "19", "180", "18"]],
+        ["q=" + encodeURIComponent("NOI $24,000 price $400,000 cap rate"), ["6"]],
+        ["q=" + encodeURIComponent("NOI $30,000 at 7.5% cap value"), ["400000"]],
+        ["q=" + encodeURIComponent("gross rent $60,000 vacancy 5% expenses $18,000 price $500,000 cap rate"), ["39000", "7.8"]],
+        ["q=" + encodeURIComponent("price $240,000 rent $2,000 a month GRM"), ["120"]],
+        ["q=" + encodeURIComponent("cash flow $6,000 a year invested $80,000 cash on cash"), ["7.5"]],
+        ["q=" + encodeURIComponent("rent $1,500 a month price $250,000 rental yield"), ["7.2"]],
+        ["q=" + encodeURIComponent("bought $200,000 sold $260,000 percent"), ["30", "60000"]],
+        ["q=" + encodeURIComponent("$250,000 appreciates 4% a year for 5 years"), ["304163.23", "54163.23"]],
+        ["mode=value&task=grow&p=180000&r=2&t=10&dir=down&how=simple", ["144000"]],
+        ["q=" + encodeURIComponent("worth $260,000 after a 30% gain original price"), ["200000"]],
+        ["q=" + encodeURIComponent("building $300,000 39-year life after 10 years"), ["7692.31", "223076.92"]]
       ],
       "money-math.html": [
         ["mode=compound&task=amount&p=5000&r=4&n=12&t=10", ["7454.16", "2454.16"]],
@@ -1764,7 +2054,37 @@
         ["mode=turns&task=std&tas=120", ["19", "3868"], "right"],
         ["mode=turns&task=glide&ratio=9&alt=6000", ["10.2"], "wrong"],
         ["mode=units&v=120&from=kt&to=mph", ["138.09"], "right"],
-        ["mode=units&v=120&from=kt&to=mph", ["104.28"], "wrong"]
+        ["mode=units&v=120&from=kt&to=mph", ["104.28"], "wrong"],
+        ["mode=metar&m=" + encodeURIComponent("KDEN 241653Z 35008KT 3SM BR FEW005 OVC008 02/01 A3021") + "&ask=cat", ["800", "3", "IFR"], "right"],
+        ["mode=metar&m=" + encodeURIComponent("KDEN 241653Z 35008KT 3SM BR FEW005 OVC008 02/01 A3021") + "&ask=cat", ["500", "3", "LIFR"], "wrong"],
+        ["mode=metar&m=" + encodeURIComponent("KDEN 241653Z 35008KT 3SM BR FEW005 OVC008 02/01 A3021") + "&ask=cat", ["8", "3", "IFR"], "wrong"],
+        ["mode=metar&m=" + encodeURIComponent("EDDF 241820Z 25012KT 4000 -RA BR SCT008 BKN040 09/08 Q1002") + "&ask=cat", ["4000", "2.5", "IFR"], "right"],
+        ["mode=metar&m=" + encodeURIComponent("EDDF 241820Z 25012KT 4000 -RA BR SCT008 BKN040 09/08 Q1002") + "&ask=cat", ["4000", "4000", "VFR"], "wrong"],
+        ["mode=metar&m=" + encodeURIComponent("LEMD 241630Z 32008KT CAVOK 24/02 Q1018") + "&ask=cat", ["none", "10 km", "VFR"], "right"],
+        ["mode=metar&m=" + encodeURIComponent("SPECI KORD 241812Z 27020G32KT 1 1/2SM +TSRA BKN010CB OVC025 18/16 A2968") + "&rwy=22&ask=xw", ["13", "15 R", "25"], "right"],
+        ["mode=metar&m=" + encodeURIComponent("SPECI KORD 241812Z 27020G32KT 1 1/2SM +TSRA BKN010CB OVC025 18/16 A2968") + "&rwy=22&ask=xw", ["21", "25", "15"], "wrong"],
+        ["mode=metar&m=" + encodeURIComponent("KBOS 241554Z 04012KT 10SM FEW030 02/M04 A2985") + "&ask=base", ["2400"], "right"],
+        ["mode=metar&m=" + encodeURIComponent("KBOS 241554Z 04012KT 10SM FEW030 02/M04 A2985") + "&ask=base", ["800"], "wrong"],
+        ["mode=metar&m=" + encodeURIComponent("KSEA 241753Z 18012KT 10SM FEW040 BKN250 14/08 A3012") + "&ask=rh", ["67"], "right"],
+        ["mode=metar&m=" + encodeURIComponent("KSEA 241753Z 18012KT 10SM FEW040 BKN250 14/08 A3012") + "&ask=rh", ["70"], "wrong"],
+        ["mode=metar&m=" + encodeURIComponent("KDEN 241653Z 35008KT 3SM BR FEW005 OVC008 02/01 A3021") + "&elev=5434&ask=da", ["5144", "4819"], "right"],
+        ["mode=metar&m=" + encodeURIComponent("KDEN 241653Z 35008KT 3SM BR FEW005 OVC008 02/01 A3021") + "&elev=5434&ask=da", ["5144", "3584"], "wrong"],
+        ["mode=metar&m=" + encodeURIComponent("EHAM 241755Z 21018G28KT 6000 -SHRA FEW012 SCT018CB BKN030 11/08 Q0998") + "&ask=wx&code=-SHRA", ["light rain showers"], "right"],
+        ["mode=metar&m=" + encodeURIComponent("EHAM 241755Z 21018G28KT 6000 -SHRA FEW012 SCT018CB BKN030 11/08 Q0998") + "&ask=wx&code=-SHRA", ["minus rain showers"], "wrong"],
+        ["mode=windsaloft&m=" + encodeURIComponent("SEA 2512 2620+06 2628+01 2635-04 2650-16 2664-28 257743 258849 760854") + "&stn=SEA&lvl=39000&ask=dec", ["260", "108", "-54", "+2.5"], "right"],
+        ["mode=windsaloft&m=" + encodeURIComponent("SEA 2512 2620+06 2628+01 2635-04 2650-16 2664-28 257743 258849 760854") + "&stn=SEA&lvl=39000&ask=dec", ["760", "8", "-54", "2.5"], "wrong"],
+        ["mode=windsaloft&m=" + encodeURIComponent("SEA 2512 2620+06 2628+01 2635-04 2650-16 2664-28 257743 258849 760854") + "&stn=SEA&lvl=30000&ask=dec", ["250", "77", "-43", "+2"], "right"],
+        ["mode=windsaloft&m=" + encodeURIComponent("SEA 2512 2620+06 2628+01 2635-04 2650-16 2664-28 257743 258849 760854") + "&stn=SEA&lvl=30000&ask=dec", ["250", "77", "43", "2"], "wrong"],
+        ["mode=windsaloft&m=9900&ask=dec", ["variable", "light"], "right"],
+        ["mode=windsaloft&m=9900&ask=dec", ["990", "0"], "wrong"],
+        ["mode=windsaloft&m=" + encodeURIComponent("XXX 3310 3415+10 0120+05 0225+00 0240-12 0255-24 026540 027548 028556") + "&stn=XXX&alt=7500&ask=interp", ["355", "18", "8"], "right"],
+        ["mode=windsaloft&m=" + encodeURIComponent("XXX 3310 3415+10 0120+05 0225+00 0240-12 0255-24 026540 027548 028556") + "&stn=XXX&alt=7500&ask=interp", ["175", "18", "8"], "wrong"],
+        ["mode=windsaloft&m=" + encodeURIComponent("ABQ 1618+08 1938+02 2046-11 2050-24 206139 206047 204852") + "&stn=ABQ&alt=10000&mc=270&var=9E&tas=130&ask=wca", ["269", "136"], "right"],
+        ["mode=windsaloft&m=" + encodeURIComponent("ABQ 1618+08 1938+02 2046-11 2050-24 206139 206047 204852") + "&stn=ABQ&alt=10000&mc=270&var=9E&tas=130&ask=wca", ["260", "136"], "wrong"],
+        ["mode=windsaloft&m=" + encodeURIComponent("SEA 2512 2620+06 2628+01 2635-04 2650-16 2664-28 257743 258849 760854") + "&stn=SEA&alt=7500&ask=isa", ["4", "4"], "right"],
+        ["mode=windsaloft&m=" + encodeURIComponent("SEA 2512 2620+06 2628+01 2635-04 2650-16 2664-28 257743 258849 760854") + "&stn=SEA&alt=7500&ask=isa", ["4", "-4"], "wrong"],
+        ["mode=windsaloft&m=" + encodeURIComponent("ANC 1717 2020-04 2029-08 2237-09 2264-16 2264-29 238143 239152 237861") + "&stn=ANC&tc=90&tas=120&ask=best", ["12000"], "right"],
+        ["mode=windsaloft&m=" + encodeURIComponent("ANC 1717 2020-04 2029-08 2237-09 2264-16 2264-29 238143 239152 237861") + "&stn=ANC&tc=90&tas=120&ask=best", ["9000"], "wrong"]
       ],
       "nursing.html": [
         ["q=" + encodeURIComponent("15 mg/kg for a 44 lb child"), ["20", "300"], "right"],
@@ -1902,6 +2222,275 @@
         ["mode=ratios&kind=brine&pct=5&water=2&wu=l", ["0.1"], "wrong"],
         ["mode=ratios&kind=vin&a=3&b=1&oil=1/2&ou=cup", ["1/6"], "right"],
         ["mode=ratios&kind=vin&a=3&b=1&total=1&tu=cup", ["3", "1/3"], "wrong"]
+      ],
+      "pharmacy.html": [
+        ["mode=sig&n=1&u=tab&f=bid&rt=po&d=10", ["2", "20"], "right"],
+        ["mode=sig&n=1&u=tab&f=bid&rt=po&d=10", ["2", "10"], "wrong"],
+        ["mode=sig&n=1&u=tab&f=q8h&d=7", ["3", "21"], "right"],
+        ["mode=sig&n=1&u=tab&f=q8h&d=7", ["8", "56"], "wrong"],
+        ["mode=days&n=1&u=tab&f=tid&q=90&qu=tab", ["30"], "right"],
+        ["mode=days&n=1&u=tab&f=tid&q=90&qu=tab", ["270"], "wrong"],
+        ["mode=days&n=1&u=gtt&f=bid&rt=ou&pk=bottle&pkn=1&per=5&peru=mL", ["25"], "right"],
+        ["mode=days&n=1&u=gtt&f=bid&rt=ou&pk=bottle&pkn=1&per=5&peru=mL", ["50"], "wrong"],
+        ["mode=qty&n=2&u=puff&f=qid&rt=inh&d=30&pk=inh&per=200&peru=puff", ["240", "2"], "right"],
+        ["mode=qty&n=2&u=puff&f=qid&rt=inh&d=30&pk=inh&per=200&peru=puff", ["240", "1"], "wrong"],
+        ["mode=qty&n=1&u=tsp&f=tid&d=10", ["150"], "right"],
+        ["mode=qty&n=1&u=tsp&f=tid&d=10", ["30"], "wrong"],
+        ["mode=allig&hi=10&lo=2&want=5&tot=500&au=g", ["187.5", "312.5"], "right"],
+        ["mode=allig&hi=10&lo=2&want=5&tot=500&au=g", ["312.5", "187.5"], "wrong"],
+        ["mode=conc&task=pct&pct=2&tot=250&type=wv", ["5"], "right"],
+        ["mode=conc&task=pct&pct=2&tot=250&type=wv", ["500"], "wrong"],
+        ["mode=conc&task=dilute&c1=50&v1=30&c2=10&cu=%25", ["150", "120"], "right"],
+        ["mode=conc&task=dilute&c1=50&v1=30&c2=10&cu=%25", ["120", "150"], "wrong"],
+        ["mode=comp&old=100&ou=g&new=250", ["2.5"], "right"],
+        ["mode=comp&old=100&ou=g&new=250", ["0.4"], "wrong"],
+        ["mode=convert&rom=XIV", ["14"], "right"],
+        ["mode=convert&rom=XIV", ["16"], "wrong"],
+        ["mode=convert&v=24&to=roman", ["XXIV"], "right"],
+        ["mode=convert&v=24&to=roman", ["XXIIII"], "wrong"],
+        ["mode=convert&v=154&from=lb&to=kg", ["70"], "right"],
+        ["mode=convert&v=154&from=lb&to=kg", ["338.8"], "wrong"],
+        ["mode=biz&task=markup&cost=40&mk=25", ["50"], "right"],
+        ["mode=biz&task=markup&cost=40&mk=25", ["53.33"], "wrong"],
+        ["mode=biz&task=awp&awp=120&off=15&fee=2.5", ["104.50"], "right"],
+        ["mode=biz&task=awp&awp=120&off=15&fee=2.5", ["20.50"], "wrong"],
+        ["mode=temp&v=40&vu=f", ["4.4"], "right"],
+        ["mode=temp&v=40&vu=f", ["-9.8"], "wrong"],
+        ["mode=temp&v=40&vu=f&rng=fridge", ["4.4", "yes"], "right"],
+        ["mode=temp&v=40&vu=f&rng=fridge", ["4.4", "no"], "wrong"]
+      ],
+      "hvac-plumbing.html": [
+        ["mode=heat&x=36000&u=btuh&to=ton", ["3"], "right"],
+        ["mode=heat&x=36000&u=btuh&to=ton", ["18"], "wrong"],
+        ["mode=heat&x=24000&u=btuh&to=w", ["7034"], "right"],
+        ["mode=heat&x=24000&u=btuh&to=w", ["81888"], "wrong"],
+        ["mode=air&task=sens&cfm=1200&dt=20", ["25920"], "right"],
+        ["mode=air&task=sens&cfm=1200&dt=20", ["24000"], "wrong"],
+        ["mode=air&task=sens&q=30000&dt=20", ["1388.9"], "right"],
+        ["mode=air&task=sens&q=30000&dt=20", ["1500"], "wrong"],
+        ["mode=air&task=ach&l=20&w=15&h=8&cfm=200", ["5"], "right"],
+        ["mode=air&task=ach&l=20&w=15&h=8&cfm=200", ["0.08"], "wrong"],
+        ["mode=duct&task=vel&cfm=800&d=12", ["1019"], "right"],
+        ["mode=duct&task=vel&cfm=800&d=12", ["255"], "wrong"],
+        ["mode=duct&task=size&cfm=1000&fpm=900", ["16"], "right"],
+        ["mode=duct&task=size&cfm=1000&fpm=900", ["14"], "wrong"],
+        ["mode=loss&r=13&a=120&dt=40&what=wall", ["369"], "right"],
+        ["mode=loss&r=13&a=120&dt=40&what=wall", ["62400"], "wrong"],
+        ["mode=pipe&task=pipe&d=0.75&len=100ft", ["2.29", "19.1"], "right"],
+        ["mode=pipe&task=pipe&d=0.75&len=100ft", ["9.18", "19.1"], "wrong"],
+        ["mode=flow&task=time&gal=40&gpm=5", ["8"], "right"],
+        ["mode=flow&task=time&gal=40&gpm=5", ["200"], "wrong"],
+        ["mode=pressure&task=head&ft=60", ["25.98"], "right"],
+        ["mode=pressure&task=head&ft=60", ["138.6"], "wrong"],
+        ["mode=pressure&task=floor&psi=80&up=30", ["67.01"], "right"],
+        ["mode=pressure&task=floor&psi=80&up=30", ["92.99"], "wrong"],
+        ["mode=drain&task=fall&s=0.25&len=30ft", ["7 1/2\"", "2.08"], "right"],
+        ["mode=drain&task=fall&s=0.25&len=30ft", ["7 2/4\"", "2.08"], "simplify"],
+        ["mode=drain&task=fall&s=0.25&len=30ft", ["90\"", "2.08"], "wrong"],
+        ["mode=heater&task=btu&gal=50&t1=50&t2=120", ["29155"], "right"],
+        ["mode=heater&task=btu&gal=50&t1=50&t2=120", ["28000"], "wrong"],
+        ["mode=heater&task=time&gal=50&t1=50&t2=120&rate=4500&ru=w", ["1.9"], "right"],
+        ["mode=heater&task=time&gal=50&t1=50&t2=120&rate=4500&ru=w", ["6.48"], "wrong"]
+      ],
+      "machining.html": [
+        ["mode=rpm&task=rpm&sfm=100&d=1/2", ["764"], "right"],
+        ["mode=rpm&task=rpm&sfm=100&d=1/2", ["764 rpm"], "right"],
+        ["mode=rpm&task=rpm&sfm=100&d=1/2", ["64"], "wrong"],
+        ["mode=rpm&task=rpm&sfm=100&d=1/2", ["9167"], "wrong"],
+        ["mode=rpm&task=sfm&rpm=1500&d=2", ["785.4"], "right"],
+        ["mode=rpm&task=sfm&rpm=1500&d=2", ["9425"], "wrong"],
+        ["mode=feed&task=ipm&rpm=1200&cl=0.004&z=4", ["19.2"], "right"],
+        ["mode=feed&task=ipm&rpm=1200&cl=0.004&z=4", ["4.8"], "wrong"],
+        ["mode=feed&task=chip&ipm=15&rpm=1500&z=3", ["0.0033"], "right"],
+        ["mode=feed&task=chip&ipm=15&rpm=1500&z=3", ["0.01"], "wrong"],
+        ["mode=feed&task=lathe&rpm=800&ipr=0.008&len=6", ["6.4", "0.94"], "right"],
+        ["mode=feed&task=lathe&rpm=800&ipr=0.008&len=6", ["6.4", "38.4"], "wrong"],
+        ["mode=thread&task=drill&maj=1/2&tpi=13", ["0.4231", "27/64"], "right"],
+        ["mode=thread&task=drill&maj=1/2&tpi=13", ["0.4231", "7/16"], "wrong"],
+        ["mode=thread&task=drill&maj=1/2&tpi=13", ["0.4231", "54/128"], "simplify"],
+        ["mode=thread&task=drill&maj=1/2&tpi=13", ["0.375", "27/64"], "wrong"],
+        ["mode=thread&task=drill&maj=%2310&tpi=24", ["0.1483", "#25"], "right"],
+        ["mode=thread&task=drill&maj=1/4&tpi=20", ["0.2", "#7"], "right"],
+        ["mode=thread&task=metric&maj=10&p=1.5", ["8.5"], "right"],
+        ["mode=thread&task=metric&maj=10&p=1.5", ["7"], "wrong"],
+        ["mode=thread&task=metric&maj=12&p=1.75", ["10.2"], "right"],
+        ["mode=thread&task=metric&maj=12&p=1.75", ["10.3"], "wrong"],
+        ["mode=thread&task=drill&maj=%234&tpi=40", ["0.087", "#43"], "right"],
+        ["mode=thread&task=drill&maj=%234&tpi=40", ["0.087", "#44"], "wrong"],
+        ["mode=thread&task=pct&maj=1/2&tpi=13&drill=27%2F64", ["78"], "right"],
+        ["mode=thread&task=pct&maj=1/2&tpi=13&drill=27%2F64", ["6"], "wrong"],
+        ["mode=thread&task=pitch&tpi=13", ["0.0769", "1.954"], "right"],
+        ["mode=thread&task=pitch&tpi=13", ["13", "1.954"], "wrong"],
+        ["mode=taper&task=angle&D=1.25&d=1.00&L=4", ["0.75", "1.79"], "right"],
+        ["mode=taper&task=angle&D=1.25&d=1.00&L=4", ["0.0625", "1.79"], "wrong"],
+        ["mode=taper&task=angle&D=1.25&d=1.00&L=4", ["0.75", "3.58"], "wrong"],
+        ["mode=taper&task=offset&D=0.875&d=0.750&L=3&ol=10", ["0.2083"], "right"],
+        ["mode=taper&task=offset&D=0.875&d=0.750&L=3&ol=10", ["0.0625"], "wrong"],
+        ["mode=taper&task=dia&tpf=3/4&L=4&d=1.000", ["1.25"], "right"],
+        ["mode=taper&task=dia&tpf=3/4&L=4&d=1.000", ["4"], "wrong"],
+        ["mode=bolt&n=6&bcd=4", ["60", "1", "1.7321"], "right"],
+        ["mode=bolt&n=6&bcd=4", ["60", "2", "3.4641"], "wrong"],
+        ["mode=bolt&n=6&bcd=4", ["72", "1", "1.7321"], "wrong"],
+        ["mode=sine&task=height&L=5&ang=30", ["2.5"], "right"],
+        ["mode=sine&task=height&L=5&ang=30", ["4.3301"], "wrong"],
+        ["mode=sine&task=angle&L=5&h=1.2941", ["15"], "right"],
+        ["mode=sine&task=angle&L=5&h=1.2941", ["75"], "wrong"],
+        ["mode=weight&shape=plate&mat=steel&l=24&w=12&t=1/2", ["40.84", "18.52"], "right"],
+        ["mode=weight&shape=plate&mat=steel&l=24&w=12&t=1/2", ["40.84", "90.03"], "wrong"],
+        ["mode=weight&shape=round&mat=aluminum&dia=2&l=36", ["11.03", "5"], "right"],
+        ["mode=weight&shape=round&mat=aluminum&dia=2&l=36", ["44.11", "20.01"], "wrong"],
+        ["mode=weld&task=heat&v=25&a=200&ts=10", ["30"], "right"],
+        ["mode=weld&task=heat&v=25&a=200&ts=10", ["0.5"], "wrong"],
+        ["mode=weld&task=fillet&leg=3/8", ["0.2651"], "right"],
+        ["mode=weld&task=fillet&leg=3/8", ["0.53"], "wrong"],
+        ["mode=weld&task=filler&joint=fillet&leg=3/8&len=10ft&proc=smaw", ["2.39", "3.68"], "right"],
+        ["mode=weld&task=filler&joint=fillet&leg=3/8&len=10ft&proc=smaw", ["2.39", "1.56"], "wrong"],
+        ["mode=fit&task=fit&hn=1.000&hp=0.002&hm=0&sn=0.998&sp=0&sm=0.001", ["0.005", "0.002", "clearance"], "right"],
+        ["mode=fit&task=fit&hn=1.000&hp=0.002&hm=0&sn=0.998&sp=0&sm=0.001", ["0.002", "0.005", "clearance"], "wrong"],
+        ["mode=fit&task=fit&hn=1.000&hp=0.002&hm=0&sn=0.998&sp=0&sm=0.001", ["0.005", "0.002", "interference"], "wrong"],
+        ["mode=fit&task=limits&nom=1.250&p=0.005&m=0.005", ["1.255", "1.245"], "right"],
+        ["mode=fit&task=limits&nom=1.250&p=0.005&m=0.005", ["1.245", "1.255"], "wrong"]
+      ],
+      "automotive.html": [
+        ["mode=gear&task=teeth&a=11&b=41", ["3.73"], "right"],
+        ["mode=gear&task=teeth&a=11&b=41", ["41/11"], "right"],
+        ["mode=gear&task=teeth&a=11&b=41", ["82/22"], "simplify"],
+        ["mode=gear&task=teeth&a=11&b=41", ["0.27"], "wrong"],
+        ["mode=gear&task=teeth&a=11&b=41&rpm=3000", ["3.73", "805"], "right"],
+        ["mode=gear&task=teeth&a=11&b=41&rpm=3000", ["3.73", "11182"], "wrong"],
+        ["mode=gear&task=overall&g=3.36&fd=3.73", ["12.53"], "right"],
+        ["mode=gear&task=overall&g=3.36&fd=3.73", ["7.09"], "wrong"],
+        ["mode=speed&task=mph&rpm=3000&g=0.85&gn=od&fd=3.73&d=26", ["73.2"], "right"],
+        ["mode=speed&task=mph&rpm=3000&g=0.85&gn=od&fd=3.73&d=26", ["62.2"], "wrong"],
+        ["mode=speed&task=rpm&mph=65&g=0.7&gn=od&fd=3.73&d=28", ["2037"], "right"],
+        ["mode=speed&task=rpm&mph=65&g=0.7&gn=od&fd=3.73&d=28", ["2910"], "wrong"],
+        ["mode=tire&task=size&t=P225%2F60R16", ["5.31", "26.63", "757"], "right"],
+        ["mode=tire&task=size&t=P225%2F60R16", ["135", "26.63", "757"], "wrong"],
+        ["mode=tire&task=change&t=P225%2F60R16&t2=P245%2F55R17&mph=60", ["62.2", "3.68"], "right"],
+        ["mode=tire&task=change&t=P225%2F60R16&t2=P245%2F55R17&mph=60", ["57.9", "3.68"], "wrong"],
+        ["mode=disp&task=calc&bore=4&stroke=3.48&n=8&u=in", ["349.8", "5.73"], "right"],
+        ["mode=disp&task=calc&bore=4&stroke=3.48&n=8&u=in", ["350", "5.73"], "right"],
+        ["mode=disp&task=calc&bore=4&stroke=3.48&n=8&u=in", ["445.4", "7.30"], "wrong"],
+        ["mode=comp&task=cr&vs=500&vc=55", ["10.09"], "right"],
+        ["mode=comp&task=cr&vs=500&vc=55", ["10.1"], "right"],
+        ["mode=comp&task=cr&vs=500&vc=55", ["9.09"], "wrong"],
+        ["mode=comp&task=vc&vs=500&cr=10.5", ["52.63"], "right"],
+        ["mode=comp&task=vc&vs=500&cr=10.5", ["47.62"], "wrong"],
+        ["mode=power&task=hp&tq=300&tu=lbft&rpm=5000", ["285.6"], "right"],
+        ["mode=power&task=hp&tq=300&tu=lbft&rpm=5000", ["45.5"], "wrong"],
+        ["mode=power&task=tq&hp=400&pu=hp&rpm=6000", ["350.1"], "right"],
+        ["mode=power&task=tq&hp=400&pu=hp&rpm=6000", ["457"], "wrong"],
+        ["mode=fuel&task=mpg&mi=350&gal=12", ["29.2", "8.1"], "right"],
+        ["mode=fuel&task=mpg&mi=350&gal=12", ["0.03", "8.1"], "wrong"],
+        ["mode=fuel&task=trip&mi=300&mpg=25&price=3.50", ["12", "42.00"], "right"],
+        ["mode=fuel&task=trip&mi=300&mpg=25&price=3.50", ["12", "87.50"], "wrong"],
+        ["mode=mix&task=two&r=50&v=1&vu=gal", ["2.56"], "right"],
+        ["mode=mix&task=two&r=50&v=1&vu=gal", ["2.51"], "wrong"],
+        ["mode=mix&task=cool&pct=50&v=12&vu=qt", ["6", "6"], "right"],
+        ["mode=mix&task=drain&v=12&vu=qt&cur=30&want=50", ["3.43"], "right"],
+        ["mode=mix&task=drain&v=12&vu=qt&cur=30&want=50", ["2.4"], "wrong"],
+        ["mode=shop&task=inv&hrs=2.5&rate=120&parts=180&mk=30&tax=7", ["300", "234", "16.38", "550.38"], "right"],
+        ["mode=shop&task=inv&hrs=2.5&rate=120&parts=180&mk=30&tax=7", ["300", "234", "37.38", "571.38"], "wrong"],
+        ["mode=shop&task=markup&cost=80&mk=40", ["112"], "right"],
+        ["mode=shop&task=markup&cost=80&mk=40", ["133.33"], "wrong"]
+      ],
+      "business.html": [
+        ["mode=markup&task=both&cost=12&price=20", ["66.67", "40"], "right"],
+        ["mode=markup&task=both&cost=12&price=20", ["40", "66.67"], "wrong"],
+        ["mode=markup&task=margin&cost=45&pct=40", ["75"], "right"],
+        ["mode=markup&task=margin&cost=45&pct=40", ["63"], "wrong"],
+        ["mode=markup&task=conv&from=markup&pct=50", ["33.3"], "right"],
+        ["mode=markup&task=conv&from=markup&pct=50", ["50"], "wrong"],
+        ["mode=discount&task=stack&price=80&d=20,10", ["57.60", "28"], "right"],
+        ["mode=discount&task=stack&price=80&d=20,10", ["56", "30"], "wrong"],
+        ["mode=discount&task=pct&price=80&sale=60", ["25"], "right"],
+        ["mode=discount&task=pct&price=80&sale=60", ["33.33"], "wrong"],
+        ["mode=discount&task=orig&sale=45&d=25", ["60"], "right"],
+        ["mode=discount&task=orig&sale=45&d=25", ["56.25"], "wrong"],
+        ["mode=discount&task=updown&price=50&up=40&down=25", ["52.50"], "right"],
+        ["mode=discount&task=updown&price=50&up=40&down=25", ["57.50"], "wrong"],
+        ["mode=till&task=change&total=23.47&paid=50", ["26.53", "8"], "right"],
+        ["mode=till&task=change&total=23.47&paid=50", ["27.53", "8"], "wrong"],
+        ["mode=till&task=drawer&c=20:6,10:8,5:5,1:27,q:12,d:9,n:6,p:14&start=100&sales=157.59", ["256.34", "1.25 short"], "right"],
+        ["mode=till&task=drawer&c=20:6,10:8,5:5,1:27,q:12,d:9,n:6,p:14&start=100&sales=157.59", ["256.34", "-1.25"], "right"],
+        ["mode=till&task=drawer&c=20:6,10:8,5:5,1:27,q:12,d:9,n:6,p:14&start=100&sales=157.59", ["256.34", "1.25 over"], "wrong"],
+        ["mode=tax&task=receipt&items=" + encodeURIComponent("shirt~19.99~1~t|soda~1.49~2~t|bread~3.29~1~n") + "&rate=8.25", ["1.90", "28.16"], "right"],
+        ["mode=tax&task=receipt&items=" + encodeURIComponent("shirt~19.99~1~t|soda~1.49~2~t|bread~3.29~1~n") + "&rate=8.25", ["2.17", "28.43"], "wrong"],
+        ["mode=tax&task=back&total=54&rate=8", ["50", "4"], "right"],
+        ["mode=tax&task=back&total=54&rate=8", ["49.68", "4.32"], "wrong"],
+        ["mode=tax&task=rate&pre=40&tax=3.3", ["8.25"], "right"],
+        ["mode=tax&task=rate&pre=40&tax=3.3", ["7.62"], "wrong"],
+        ["mode=payroll&task=hours&s=08:45-17:15~30", ["8"], "right"],
+        ["mode=payroll&task=hours&s=08:45-17:15~30", ["8:00"], "right"],
+        ["mode=payroll&task=hours&s=08:45-17:15~30", ["8.5"], "wrong"],
+        ["mode=payroll&task=hours&s=08:00-16:50~30", ["8:20"], "right"],
+        ["mode=payroll&task=hours&s=08:00-16:50~30", ["8.20"], "wrong"],
+        ["mode=payroll&task=ot&h=46&rate=18", ["882"], "right"],
+        ["mode=payroll&task=ot&h=46&rate=18", ["828"], "wrong"],
+        ["mode=payroll&task=comm&sales=16500&t=0:3,10000:5", ["625"], "right"],
+        ["mode=payroll&task=comm&sales=16500&t=0:3,10000:5", ["825"], "wrong"],
+        ["mode=breakeven&fixed=3000&price=25&vc=10", ["200", "5000"], "right"],
+        ["mode=breakeven&fixed=3000&price=25&vc=10", ["120", "3000"], "wrong"],
+        ["mode=breakeven&fixed=8000&price=12&vc=4.5", ["1067", "12804"], "right"],
+        ["mode=breakeven&fixed=8000&price=12&vc=4.5", ["1066", "12792"], "wrong"],
+        ["mode=pl&sales=250000&cogs=150000&exp=" + encodeURIComponent("rent~24000|wages~40000|utilities~6000"), ["40", "30000", "12"], "right"],
+        ["mode=pl&sales=250000&cogs=150000&exp=" + encodeURIComponent("rent~24000|wages~40000|utilities~6000"), ["66.67", "100000", "40"], "wrong"],
+        ["mode=inventory&task=avg&lots=10~4,20~5,15~4.6", ["4.64"], "right"],
+        ["mode=inventory&task=avg&lots=10~4,20~5,15~4.6", ["4.53"], "wrong"],
+        ["mode=inventory&task=turn&cogs=180000&begin=28000&end=32000", ["6", "60.8"], "right"],
+        ["mode=inventory&task=turn&cogs=180000&begin=28000&end=32000", ["6.43", "56.8"], "wrong"],
+        ["mode=inventory&task=rop&use=40&lead=5&ss=60", ["260"], "right"],
+        ["mode=inventory&task=rop&use=40&lead=5&ss=60", ["200"], "wrong"],
+        ["mode=unit&items=" + encodeURIComponent("12~oz~3.99|20~oz~5.49"), ["B", "0.2745"], "right"],
+        ["mode=unit&items=" + encodeURIComponent("12~oz~3.99|20~oz~5.49"), ["B", "0.27"], "right"],
+        ["mode=unit&items=" + encodeURIComponent("12~oz~3.99|20~oz~5.49"), ["A", "0.3325"], "wrong"]
+      ],
+      "real-estate.html": [
+        ["mode=sqft&task=rooms&r=living-room:15x20,kitchen:12x14,bedroom:11x12:2", ["732"], "right"],
+        ["mode=sqft&task=rooms&r=living-room:15x20,kitchen:12x14,bedroom:11x12:2", ["600"], "wrong"],
+        ["mode=sqft&task=rooms&r=house:40x30,-cutout:15x10", ["1,050"], "right"],
+        ["mode=sqft&task=rooms&r=house:40x30,-cutout:15x10", ["1350"], "wrong"],
+        ["mode=sqft&task=ppsf&sf=2500&price=425000", ["$170.00"], "right"],
+        ["mode=sqft&task=ppsf&sf=2500&price=425000", ["0.0059"], "wrong"],
+        ["mode=land&task=conv&a=2.5", ["108,900"], "right"],
+        ["mode=land&task=conv&a=2.5", ["108900 sq ft"], "right"],
+        ["mode=land&task=conv&a=2.5", ["12100"], "wrong"],
+        ["mode=land&task=lot&front=100&depth=200&price=50000", ["20000", "500"], "right"],
+        ["mode=land&task=lot&front=100&depth=200&price=50000", ["20000", "250"], "wrong"],
+        ["mode=land&task=survey&d=NE1/4,SW1/4", ["40"], "right"],
+        ["mode=land&task=survey&d=NE1/4,SW1/4", ["320"], "wrong"],
+        ["mode=commission&task=split&price=350000&rate=6&list=50", ["21000", "10500", "10500"], "right"],
+        ["mode=commission&task=split&price=350000&rate=6&list=50", ["21000", "175000", "175000"], "wrong"],
+        ["mode=commission&task=tier&price=250000&tiers=100000:7,0:3", ["11500"], "right"],
+        ["mode=commission&task=tier&price=250000&tiers=100000:7,0:3", ["17500"], "wrong"],
+        ["mode=commission&task=rate&price=350000&comm=21000", ["6"], "right"],
+        ["mode=commission&task=rate&price=350000&comm=21000", ["0.06"], "wrong"],
+        ["mode=net&task=net&price=400000&rate=6&cc=4500&payoff=210000", ["161,500"], "right"],
+        ["mode=net&task=net&price=400000&rate=6&cc=4500&payoff=210000", ["371500"], "wrong"],
+        ["mode=net&task=need&net=250000&rate=6&cc=5000&payoff=180000", ["462765.96"], "right"],
+        ["mode=net&task=need&net=250000&rate=6&cc=5000&payoff=180000", ["461100"], "wrong"],
+        ["mode=mortgage&task=pay&price=300000&down=20&r=6.5&t=30", ["1516.96"], "right"],
+        ["mode=mortgage&task=pay&price=300000&down=20&r=6.5&t=30", ["1300"], "wrong"],
+        ["mode=mortgage&task=pay&price=350000&down=10&r=7&t=30&tax=4200&ins=1500", ["2095.70", "2570.70"], "right"],
+        ["mode=mortgage&task=pay&price=350000&down=10&r=7&t=30&tax=4200&ins=1500", ["2095.70", "7795.70"], "wrong"],
+        ["mode=mortgage&task=ltv&loan=240000&value=300000", ["80"], "right"],
+        ["mode=mortgage&task=ltv&loan=240000&value=300000", ["20"], "wrong"],
+        ["mode=tax&task=tax&av=250000&mills=25", ["6250"], "right"],
+        ["mode=tax&task=tax&av=250000&mills=25", ["62500"], "wrong"],
+        ["mode=tax&task=rate&tax=4500&av=180000", ["25"], "right"],
+        ["mode=tax&task=rate&tax=4500&av=180000", ["2.5"], "wrong"],
+        ["mode=prorate&task=split&amt=3650&per=y&item=tax&paid=arrears&date=6-15", ["1660", "1672.92"], "right"],
+        ["mode=prorate&task=split&amt=3650&per=y&item=tax&paid=arrears&date=6-15", ["1990", "1977.08"], "wrong"],
+        ["mode=invest&task=cap&noi=24000&price=400000", ["6"], "right"],
+        ["mode=invest&task=cap&noi=24000&price=400000", ["16.67"], "wrong"],
+        ["mode=invest&task=grm&price=240000&rent=2000", ["120"], "right"],
+        ["mode=invest&task=grm&price=240000&rent=2000", ["10"], "wrong"],
+        ["mode=value&task=change&a=200000&b=260000", ["30"], "right"],
+        ["mode=value&task=change&a=200000&b=260000", ["23.08"], "wrong"],
+        ["mode=value&task=orig&b=260000&pct=30", ["200000"], "right"],
+        ["mode=value&task=orig&b=260000&pct=30", ["182000"], "wrong"],
+        ["mode=value&task=grow&p=250000&r=4&t=5", ["304163.23"], "right"],
+        ["mode=value&task=grow&p=250000&r=4&t=5", ["300000"], "wrong"]
       ],
       "money-math.html": [
         ["mode=compound&task=amount&p=5000&r=4&n=12&t=10", ["$7,454.16", "$2,454.16"], "right"],
@@ -5133,6 +5722,143 @@
       }
       throw new Error("unknown mode " + o.mode);
     }
+    // aviation.html, the Weather tab (mode=metar): read the made report here, on its own, and work its question (ask)
+    function aviMetar(o, toks, ansText) {
+      var g = String(o.m || "").toUpperCase().split(/\s+/),
+        t = String(ansText || ""),
+        sky = [],
+        vis = null,
+        wind = null,
+        T = null,
+        Td = null,
+        alt = null,
+        i, m;
+      for (i = 0; i < g.length && !/^(?:RMK|NOSIG|BECMG|TEMPO)$/.test(g[i]); i++) {
+        if (!wind && (m = /^(\d{3}|VRB)(\d{2,3})(?:G(\d{2,3}))?KT$/.exec(g[i]))) wind = { d: m[1] === "VRB" ? null : +m[1], s: +m[2], g: m[3] ? +m[3] : null };
+        else if (!vis && /^\d$/.test(g[i]) && (m = /^(\d)\/(\d+)SM$/.exec(g[i + 1] || ""))) {
+          vis = { sm: +g[i] + m[1] / m[2], txt: [g[i] + " " + m[1] + "/" + m[2]] };
+          i++;
+        } else if (!vis && (m = /^([PM])?(\d+)(?:\/(\d+))?SM$/.exec(g[i]))) vis = { sm: m[3] ? m[2] / m[3] : +m[2], txt: [m[3] ? m[2] + "/" + m[3] : m[2]] };
+        else if (!vis && (m = /^(\d{4})$/.exec(g[i]))) vis = +m[1] === 9999 ? { sm: 10000 / 1609.344, txt: ["6.21"] } : { sm: +m[1] / 1609.344, txt: [String(+m[1]), String(aviR(+m[1] / 1609.344, 2))] };
+        else if (g[i] === "CAVOK") vis = { sm: 10000 / 1609.344, txt: ["6.21"] };
+        else if ((m = /^(?:BKN|OVC|VV)(\d{3})/.exec(g[i]))) sky.push(+m[1] * 100);
+        else if (T === null && (m = /^(M?)(\d{2})\/(M?)(\d{2})$/.exec(g[i]))) {
+          T = (m[1] ? -1 : 1) * m[2];
+          Td = (m[3] ? -1 : 1) * m[4];
+        } else if ((m = /^A(\d{4})$/.exec(g[i]))) alt = +m[1] / 100;
+        else if ((m = /^Q(\d{4})$/.exec(g[i]))) alt = +m[1] / 33.8639;
+      }
+      var X2 = function(v) { return X(String(v)); };
+      if (o.ask === "cat") {
+        var c = sky.length ? Math.min.apply(null, sky) : null,
+          rc = c === null ? 3 : c < 500 ? 0 : c < 1000 ? 1 : c <= 3000 ? 2 : 3,
+          rv = vis.sm < 1 ? 0 : vis.sm < 3 ? 1 : vis.sm <= 5 ? 2 : 3,
+          cat = ["LIFR", "IFR", "MVFR", "VFR"][Math.min(rc, rv)];
+        if (t.indexOf(cat + ":") !== 0) return { ok: false, msg: "expected " + cat };
+        return need(toks, (c === null ? [] : [X2(c)]).concat(vis.txt.map(X2)));
+      }
+      if (o.ask === "xw") {
+        var D = Math.PI / 180,
+          rel = ((wind.d - parseInt(o.rwy, 10) * 10) % 360 + 540) % 360 - 180,
+          out = [aviR(Math.abs(wind.s * Math.cos(rel * D)), 0), aviR(Math.abs(wind.s * Math.sin(rel * D)), 0)];
+        if (wind.g) out.push(aviR(Math.abs(wind.g * Math.sin(rel * D)), 0));
+        return need(toks, out.map(X2));
+      }
+      if (o.ask === "base") return need(toks, [X2(Math.round(Math.max(T - Td, 0) / 2.5 * 100) * 10)]);
+      if (o.ask === "rh") return need(toks, [X2(Math.round(100 * Math.exp(17.62 * Td / (243.12 + Td) - 17.62 * T / (243.12 + T))))]);
+      if (o.ask === "da") {
+        var pa = aviR(Number(o.elev) + (29.92 - alt) * 1000, 0);
+        return need(toks, [X2(pa), X2(aviR(pa + 120 * (T - (15 - 2 * pa / 1000)), 0))]);
+      }
+      if (o.ask === "wx") {
+        var w = /^(\+|-|VC)?(MI|PR|BC|DR|BL|SH|TS|FZ)?((?:[A-Z]{2})*)$/.exec(String(o.code || "")),
+          PH = { DZ: "drizzle", RA: "rain", SN: "snow", SG: "snow grains", IC: "ice crystals", PL: "ice pellets", GR: "hail", GS: "small hail", UP: "unknown", BR: "mist", FG: "fog", FU: "smoke", VA: "volcanic ash", DU: "dust", SA: "sand", HZ: "haze", PY: "spray", PO: "whirls", SQ: "squalls", FC: "funnel", SS: "sandstorm", DS: "duststorm" },
+          DS = { MI: "shallow", PR: "partial", BC: "patches", DR: "drifting", BL: "blowing", SH: "showers", TS: "thunderstorm", FZ: "freezing" },
+          words = [];
+        if (!w) return { ok: false, msg: "couldn’t read the code " + o.code };
+        if (w[1]) words.push({ "-": "light", "+": "heavy", VC: "vicinity" } [w[1]]);
+        if (w[2]) words.push(DS[w[2]]);
+        (w[3].match(/../g) || []).forEach(function(c2) { words.push(PH[c2]); });
+        var miss = words.filter(function(x) { return !x || t.toLowerCase().indexOf(x) < 0; });
+        return miss.length ? { ok: false, msg: "expected the words “" + words.join(" ") + "”" } : { ok: true };
+      }
+      return { skip: true };
+    }
+    // aviation.html, the Winds aloft tab (mode=windsaloft): read the made forecast here, on its own, and work its question
+    function aviFb(o, toks, ansText) {
+      var t = String(o.m || "").toUpperCase().replace(/(\d)FT\b/g, "$1 FT").split(/\s+/),
+        L = null,
+        g = [],
+        i, txt = String(ansText || "");
+      for (i = 0; i < t.length; i++) {
+        if (t[i] === "FT") {
+          L = [];
+          while (/^\d{4,5}$/.test(t[i + 1] || "")) L.push(+t[++i]);
+        } else if (/^(?:\d{4}(?:[+-]\d\d)?|\d{6})$/.test(t[i])) g.push(t[i]);
+      }
+      var lv = L || (g.length === 10 ? [1000, 1500, 2000, 3000, 6000, 9000, 12000, 15000, 18000, 24000] : [3000, 6000, 9000, 12000, 18000, 24000, 30000, 34000, 39000]),
+        isa = function(h) { return Math.max(15 - 2 * h / 1000, -56.5); },
+        r180 = function(x) { x = ((x % 360) + 360) % 360; return x > 180 ? x - 360 : x; },
+        hdg = function(x) { var h = ((aviR(x, 0) % 360) + 360) % 360; return h === 0 ? 360 : h; },
+        X2 = function(v) { return X(String(v)); },
+        dec = function(x) {
+          var m = /^(\d\d)(\d\d)(?:([+-])(\d\d)|(\d\d))?$/.exec(x),
+            dd = +m[1],
+            ff = +m[2],
+            w = { lv: dd === 99 && ff === 0 };
+          if (!w.lv) {
+            w.dir = (dd > 50 ? dd - 50 : dd) * 10;
+            w.spd = ff + (dd > 50 ? 100 : 0);
+          }
+          w.t = m[3] ? (m[3] === "-" ? -1 : 1) * m[4] : m[5] !== undefined ? -m[5] : null;
+          return w;
+        };
+      var cells = lv.map(function(h, k) { var x = g[k - (lv.length - g.length)]; return { h: h, w: x ? dec(x) : null }; }).filter(function(c) { return c.w; });
+      var at = function(A) { // the page's straight-line interpolation, the direction the short way round
+        var lo = null,
+          hi = null;
+        cells.forEach(function(c) { if (c.h <= A) lo = c; if (c.h >= A && !hi) hi = c; });
+        var f = hi.h === lo.h ? 0 : (A - lo.h) / (hi.h - lo.h),
+          a = lo.w,
+          b = hi.w,
+          sa = a.lv ? 0 : a.spd,
+          sb = b.lv ? 0 : b.spd,
+          w = { lv: a.lv && b.lv, spd: aviR(sa + f * (sb - sa), 0) };
+        if (!w.lv) {
+          var da = a.lv ? b.dir : a.dir,
+            db = b.lv ? a.dir : b.dir;
+          w.dir = hdg(da + f * r180(db - da));
+        }
+        w.t = a.t !== null && b.t !== null ? aviR(a.t + f * (b.t - a.t), 0) : f === 0 ? a.t : null;
+        return w;
+      };
+      var lvw = function(w, list) { return w.lv ? (txt.indexOf("light and variable") >= 0 ? need(toks, list) : { ok: false, msg: "expected light and variable" }) : need(toks, [X2(w.dir), X2(w.spd)].concat(list)); };
+      if (o.ask === "dec") {
+        var c = cells.filter(function(x) { return x.h === Number(o.lvl); })[0];
+        if (!c) return { ok: false, msg: "no group at " + o.lvl };
+        return lvw(c.w, c.w.t === null ? [] : [X2(c.w.t), X2(aviR(c.w.t - isa(c.h), 1))]);
+      }
+      var A = Number(o.alt);
+      if (o.ask === "interp") { var w1 = at(A); return lvw(w1, w1.t === null ? [] : [X2(w1.t)]); }
+      if (o.ask === "isa") { var w2 = at(A); return need(toks, [X2(aviR(isa(A), 1)), X2(w2.t), X2(aviR(w2.t - isa(A), 1))]); }
+      var tc = o.tc !== undefined ? Number(o.tc) : hdg(Number(o.mc) + (/w$/i.test(o["var"]) ? -1 : 1) * parseFloat(o["var"]));
+      if (o.ask === "wca") {
+        var w3 = at(A),
+          tri = aviWork({ mode: "wind", tc: tc, tas: o.tas, wd: w3.lv ? tc : w3.dir, ws: w3.lv ? 0 : w3.spd });
+        return need(toks, [X2(tri[0]), X2(tri[1])]);
+      }
+      if (o.ask === "best") {
+        var tas = Number(o.tas),
+          best = null;
+        cells.forEach(function(c2) {
+          if (c2.h > (tas >= 180 ? 99999 : 12000) || (!c2.w.lv && c2.w.spd >= tas)) return;
+          var gs = Number(aviWork({ mode: "wind", tc: tc, tas: tas, wd: c2.w.lv ? tc : c2.w.dir, ws: c2.w.lv ? 0 : c2.w.spd })[1]);
+          if (!best || gs > best.gs) best = { h: c2.h, gs: gs };
+        });
+        return need(toks, [X2(best.h), X2(best.gs)]);
+      }
+      return { skip: true };
+    }
     // nursing.html: re-work a made problem from its link with the usual nursing rounding rules; every number the
     // page's answer should show, as text (worked here with plain decimals, apart from the page's exact fractions)
     function nurR(x, k) { var p = Math.pow(10, k || 0); return Math.round(Number((x * p).toFixed(6))) / p; }
@@ -5756,6 +6482,982 @@
       }
       throw new Error("unknown mode " + o.mode);
     }
+    // pharmacy.html: re-work a made problem from its link with the usual pharmacy-technician rounding rules; every number
+    // the page's answer should show (worked here with plain decimals, apart from the page's exact fractions). A string is
+    // an exact value; {f} a value that doesn't end (compared loosely); {roman} a Roman numeral, compared as text.
+    function phR(x, k) { var p = Math.pow(10, k || 0); return Math.round(Number((x * p).toFixed(6))) / p; }
+
+    function phEx(x, k) { var p = Math.pow(10, k); return Math.abs(x * p - Math.round(x * p)) < 1e-6; }
+
+    function phAmt(x) { return phEx(x, 2) ? x : phR(x, Math.abs(x) < 1 ? 2 : 1); } // exact within 2 places, else a tenth (a hundredth under 1)
+    function phS(x) {
+      if (phEx(x, 6)) return String(Math.round(x * 1e6) / 1e6);
+      for (var d = 2; d <= 12; d++)
+        if (phEx(x * d, 6)) return Math.round(x * d) + "/" + d;
+      return { f: x };
+    }
+
+    function phUp(x) { return Math.ceil(x - 1e-9); }
+
+    function phDown(x) { return Math.floor(x + 1e-9); }
+
+    function phFreq(f) {
+      var m, T = { qd: 1, qam: 1, qpm: 1, qhs: 1, bid: 2, tid: 3, qid: 4, qod: 0.5, qwk: 1 / 7, ac: 3, pc: 3, achs: 4 };
+      if (T[f] !== undefined) return T[f];
+      if ((m = /^q(\d+)(?:-\d+)?h$/.exec(f))) return 24 / Number(m[1]);
+      if ((m = /^(\d+)x$/.exec(f))) return Number(m[1]);
+      throw new Error("frequency " + f);
+    }
+
+    function phSig(o) { // the doses a day and the amount a day, counted at the PRN maximum when it is lower
+      var per = Number(o.hi || o.n) * (/^(?:ou|au|nas)$/.test(o.rt || "") ? 2 : 1),
+        f = phFreq(o.f),
+        day = per * f,
+        doses = f;
+      if (o.max) {
+        var md = o.mu === "dose" ? Number(o.max) * per : Number(o.max);
+        if (md < day - 1e-9) {
+          day = md;
+          doses = md / per;
+        }
+      }
+      return { doses: doses, day: day, per: per };
+    }
+
+    function phDu(o) { // [the factor from a dose's unit to the unit it is dispensed in, that unit]
+      if (o.u === "tsp") return [5, "mL"];
+      if (o.u === "tbsp") return [15, "mL"];
+      var G = { mcg: 1e-6, mg: 1e-3, g: 1 };
+      if (G[o.u] && o.cs && G[o.csu]) return [G[o.u] / G[o.csu] / (Number(o.cs) / Number(o.cv || 1)), "mL"];
+      return [1, o.u];
+    }
+
+    function phTo(v, unit, du, o) { // a dispensed amount in the unit a dose uses
+      if (unit === du) return v;
+      if (unit === "mL" && du === "gtt") return v * Number(o.gpm || 20);
+      if (unit === "mL" && du === "units") return v * Number(o.cs) / Number(o.cv || 1);
+      throw new Error("units " + unit + " to " + du);
+    }
+
+    function phWork(o) {
+      var n = function(k) { return Number(o[k]); },
+        out = [];
+      var COUNT = /^(?:tab|cap|puff|spray|gtt|units|patch)$/;
+      if (o.mode === "sig") {
+        var S = phSig(o);
+        out.push(phS(S.doses));
+        if (o.d) {
+          var tot = S.day * n("d");
+          if (COUNT.test(o.u)) tot = phUp(tot);
+          out.push(phS(tot));
+          if (o.u === "tsp" || o.u === "tbsp") out.push(phS(tot * (o.u === "tsp" ? 5 : 15)));
+        } else out.push(phS(S.day));
+        return out;
+      }
+      if (o.mode === "days" || o.mode === "qty") {
+        var S2 = phSig(o),
+          k = phDu(o),
+          dayDu = S2.day * k[0] + (o.prime ? n("prime") * S2.doses : 0);
+        if (o.mode === "days") {
+          var have = o.pk ? phTo(n("pkn") * n("per"), o.peru, k[1], o) : phTo(n("q"), o.qu, k[1], o);
+          return [phS(phDown(have / dayDu))];
+        }
+        var t = dayDu * n("d"),
+          q;
+        if (k[1] === "gtt") q = phUp(t / Number(o.gpm || 20));
+        else q = COUNT.test(k[1]) || k[1] === "mL" ? phUp(t) : t;
+        out.push(phS(q));
+        if (o.pk) out.push(phS(phUp(q / phTo(n("per"), o.peru, k[1] === "gtt" ? "mL" : k[1], o))));
+        return out;
+      }
+      if (o.mode === "allig") {
+        var hi = n("hi"),
+          lo = Number(o.lo || 0),
+          w = n("want"),
+          hp = w - lo,
+          lp = hi - w;
+        if (o.tot) return [phS(phAmt(n("tot") * hp / (hp + lp))), phS(phAmt(n("tot") * lp / (hp + lp)))];
+        if (o.ha) { var l2 = n("ha") * lp / hp; return [phS(phAmt(l2)), phS(phAmt(n("ha") + l2))]; }
+        if (o.la) { var h2 = n("la") * hp / lp; return [phS(phAmt(h2)), phS(phAmt(n("la") + h2))]; }
+        var sc = 1;
+        while (!(phEx(hp * sc, 0) && phEx(lp * sc, 0)) && sc < 1e6) sc *= 10;
+        var a = Math.round(hp * sc),
+          b = Math.round(lp * sc),
+          g = gcdN(a, b);
+        return [String(a / g), String(b / g)];
+      }
+      if (o.mode === "conc") {
+        var G2 = { g: 1, mg: 1e-3, mcg: 1e-6, mL: 1 };
+        if (o.task === "pct") {
+          var am = n("pct") * n("tot") / 100;
+          out.push(phS(phAmt(am)));
+          if (o.type !== "vv" && am < 1) out.push(phS(am * 1000));
+          return out;
+        }
+        if (o.task === "vol") return [phS(phAmt(n("amt") * G2[o.amu] / (n("pct") / 100)))];
+        if (o.task === "find") { var pc = n("amt") * G2[o.amu] / n("tot") * 100; return [phS(phEx(pc, 2) ? pc : phR(pc, 2))]; }
+        if (o.task === "mgml") return [phS(o.pct ? n("pct") * 10 : n("mgml") / 10)];
+        if (o.task === "ratio") return o.v ? [phS(1000 / n("r") * n("v"))] : [phS(1000 / n("r")), phS(100 / n("r"))];
+        if (o.task === "toratio") return [phS(100 / n("pct"))];
+        if (o.v1 && o.c2) { var v2 = n("c1") * n("v1") / n("c2"); return [phS(phAmt(v2)), phS(phAmt(v2 - n("v1")))]; }
+        if (o.v2 && o.c2) { var v1 = n("c2") * n("v2") / n("c1"); return [phS(phAmt(v1)), phS(phAmt(n("v2") - v1))]; }
+        var c2 = n("c1") * n("v1") / n("v2");
+        return [phS(phEx(c2, 2) ? c2 : phR(c2, 2))];
+      }
+      if (o.mode === "comp") {
+        var U = { g: 1, kg: 1000, mL: 1, L: 1000, mg: 1e-3, mcg: 1e-6 },
+          ou = o.ou || "g",
+          nu = o.nu || ou,
+          newIn = n("new") * U[nu] / U[ou],
+          f = newIn / n("old"),
+          rest = 0,
+          qs = false;
+        out.push(phEx(f, 4) ? phS(f) : { f: f });
+        String(o.ing || "").split("|").filter(Boolean).forEach(function(x) {
+          var p = x.split("~");
+          if (p[1] === "qs") { qs = true; return; }
+          out.push(phS(phAmt(Number(p[1]) * f)));
+          rest += Number(p[1]) * f * U[p[2] || "g"] / U[ou];
+        });
+        if (qs) out.push(phS(phAmt(newIn - rest)));
+        return out;
+      }
+      if (o.mode === "convert") {
+        if (o.rom) {
+          var V = { I: 1, V: 5, X: 10, L: 50, C: 100, D: 500, M: 1000 },
+            s = o.rom.toUpperCase(),
+            half = /SS$/.test(s),
+            tot2 = 0;
+          s = s.replace(/SS$/, "");
+          for (var i = 0; i < s.length; i++) tot2 += V[s.charAt(i)] < (V[s.charAt(i + 1)] || 0) ? -V[s.charAt(i)] : V[s.charAt(i)];
+          return [phS(tot2 + (half ? 0.5 : 0))];
+        }
+        if (o.to === "roman") {
+          var num = n("v"),
+            R2 = [
+              [1000, "M"],
+              [900, "CM"],
+              [500, "D"],
+              [400, "CD"],
+              [100, "C"],
+              [90, "XC"],
+              [50, "L"],
+              [40, "XL"],
+              [10, "X"],
+              [9, "IX"],
+              [5, "V"],
+              [4, "IV"],
+              [1, "I"]
+            ],
+            rs = "";
+          R2.forEach(function(p) {
+            while (num >= p[0]) {
+              rs += p[1];
+              num -= p[0];
+            }
+          });
+          return [{ roman: rs }];
+        }
+        var B = { mcg: 1e-6, mg: 1e-3, g: 1, kg: 1000, lb: 1000 / 2.2, mL: 1, L: 1000, tsp: 5, tbsp: 15, oz: 30, cup: 240, pt: 480, qt: 960, gal: 3840 };
+        var x = n("v") * B[o.from] / B[o.to];
+        return [phS(o.from === "lb" || o.to === "lb" ? (phEx(x, 1) ? x : phR(x, 1)) : phEx(x, 4) ? x : phR(x, 2))];
+      }
+      if (o.mode === "biz") {
+        var fee = o.fee ? n("fee") : 0,
+          pct1 = function(v) { return phEx(v, 1) ? v : phR(v, 1); };
+        if (o.task === "markup") return o.cost ? [phS(phR(n("cost") * (1 + n("mk") / 100) + fee, 2))] : [phS(phR((n("price") - fee) / (1 + n("mk") / 100), 2))];
+        if (o.task === "profit") { var gp = n("price") - n("cost"); return [phS(phR(gp, 2)), phS(pct1(gp / n("cost") * 100)), phS(pct1(gp / n("price") * 100))]; }
+        if (o.task === "awp") { var base = o.pk ? n("awp") / n("pk") * n("q") : n("awp"); return [phS(phR(base * (1 - n("off") / 100) + fee, 2))]; }
+        if (o.task === "copay") { var col = o.ins ? n("copay") + n("ins") : n("price"); return [phS(phR(o.cost ? col - n("cost") : o.ins ? col : col - n("copay"), 2))]; }
+        if (o.task === "inv") { var turn = n("cogs") / n("inv"); return [phS(pct1(turn)), phS(pct1(365 / turn))]; }
+        return [phS(phDown(n("oh") / n("use")))];
+      }
+      if (o.mode === "temp") {
+        var USP = { freezer: [-25, -10], fridge: [2, 8], cool: [8, 15], room: [20, 25] },
+          cv = function(v, u) { return u === "c" ? v * 9 / 5 + 32 : (v - 32) * 5 / 9; },
+          t1 = function(v) { return phS(phEx(v, 1) ? v : phR(v, 1)); };
+        var lo2 = o.rng ? USP[o.rng][0] : o.lo ? n("lo") : null,
+          hi2 = o.rng ? USP[o.rng][1] : o.lo ? n("hi") : null,
+          ru = o.rng ? "c" : o.ru;
+        if (o.v && lo2 !== null) return [t1(o.vu === ru ? n("v") : cv(n("v"), o.vu))];
+        if (lo2 !== null) return [t1(cv(lo2, ru)), t1(cv(hi2, ru))];
+        return [t1(cv(n("v"), o.vu))];
+      }
+      throw new Error("unknown mode " + o.mode);
+    }
+    // hvac-plumbing.html: re-work a made problem from its link, without the page's code; the numbers its answer should show
+    function hvpR(x, k) {
+      var p = Math.pow(10, k || 0),
+        a = Math.round(Number((Math.abs(x) * p).toFixed(6))) / p;
+      return x < 0 && a !== 0 ? -a : a;
+    }
+
+    function hvpN(s) { // a link number: 1.08, 3/4, 1-1/2
+      var m = /^(-)?(?:(\d+)-)?(\d+)\/(\d+)$/.exec(String(s));
+      if (m) return (m[1] ? -1 : 1) * ((m[2] ? Number(m[2]) : 0) + Number(m[3]) / Number(m[4]));
+      if (!/^-?\d*\.?\d+$/.test(String(s))) throw new Error("number " + s);
+      return Number(s);
+    }
+
+    function hvpLen(s) { // inches, from 30ft, 7-1/2in, 2ft6in, 48in
+      var m = /^(?:(\d+(?:\.\d+)?)ft)?(?:(?:(\d+(?:\.\d+)?)(?:-(\d+)\/(\d+))?|(\d+)\/(\d+))in)?$/.exec(String(s));
+      if (!m || !(m[1] || m[2] || m[5])) throw new Error("length " + s);
+      return (m[1] ? 12 * Number(m[1]) : 0) + (m[2] ? Number(m[2]) : 0) + (m[3] ? Number(m[3]) / Number(m[4]) : 0) + (m[5] ? Number(m[5]) / Number(m[6]) : 0);
+    }
+
+    function hvpMix(x) { // a length on the 1/16 grid as "7 1/2"
+      var n = Math.floor(x * 16 + 0.5 + 1e-9),
+        w = Math.floor(n / 16),
+        r = n - 16 * w,
+        g = function(a, b) { return b ? g(b, a % b) : a; },
+        k = g(r, 16);
+      return r ? (w ? w + " " : "") + (r / k) + "/" + (16 / k) : String(w);
+    }
+
+    function hvpPk(v) { v = Math.abs(v); return v >= 999.5 ? 0 : v >= 99.995 ? 1 : v >= 0.99995 ? 2 : 4; }
+
+    function hvpWork(o) {
+      var n = function(k) { return hvpN(o[k]); },
+        s = function(x, k) { return String(hvpR(x, k)); };
+      if (o.mode === "heat") {
+        var F = { btuh: 1, mbh: 1000, w: 3.412, kw: 3412, ton: 12000, btu: 1, therm: 100000, kwh: 3412 },
+          v = n("x") * F[o.u] / F[o.to];
+        return [s(v, hvpPk(v))];
+      }
+      if (o.mode === "air") {
+        if (o.task === "ach") {
+          var V = o.l ? n("l") * n("w") * n("h") : o.area ? n("area") * n("h") : n("vol");
+          return o.cfm ? [s(n("cfm") * 60 / V, 2)] : [s(n("ach") * V / 60, 1)];
+        }
+        var q = o.q ? n("q") : o.tons ? n("tons") * 12000 : null,
+          dt = o.dt ? n("dt") : o.t1 ? Math.abs(n("t2") - n("t1")) : null;
+        if (q === null) return [s(1.08 * n("cfm") * dt, 0)];
+        if (!o.cfm) return [s(q / (1.08 * dt), 1)];
+        return [s(q / (1.08 * n("cfm")), 1)];
+      }
+      if (o.mode === "duct") {
+        var nr = function(d) { var x = Math.ceil(hvpR(d, 6) - 1e-9); return x < 3 ? 3 : x <= 10 ? x : x % 2 ? x + 1 : x; },
+          ne = function(x) { var c = Math.ceil(hvpR(x, 6) - 1e-9); return c % 2 ? c + 1 : c; };
+        if (o.task === "vel") return [s(n("cfm") / ((o.d ? Math.PI * n("d") * n("d") / 4 : n("w") * n("h")) / 144), 0)];
+        if (o.task === "size") {
+          var A = n("cfm") / n("fpm") * 144;
+          return o.h ? [String(ne(A / n("h"))), s(n("h"), 4)] : [String(nr(Math.sqrt(4 * A / Math.PI)))];
+        }
+        return o.d ? [s(Math.PI * n("d") * n("d") / 4 / n("h"), 2)] : [s(Math.sqrt(4 * n("w") * n("h") / Math.PI), 2)];
+      }
+      if (o.mode === "loss") {
+        var U = o.r ? 1 / String(o.r).split(",").reduce(function(a, r) { return a + Number(r); }, 0) : n("u"),
+          d2 = o.dt ? n("dt") : Math.abs(n("ti") - n("to"));
+        return [s(U * n("a") * d2, 0)];
+      }
+      if (o.mode === "pipe") {
+        var cu = o.task === "pipe" ? Math.PI * n("d") * n("d") / 4 * hvpLen(o.len) : o.task === "cyl" ? Math.PI * Math.pow(hvpLen(o.dia), 2) / 4 * hvpLen(o.ht) : hvpLen(o.l) * hvpLen(o.w) * hvpLen(o.h),
+          gal = cu / 231;
+        return [s(gal, 2), s(gal * 8.33, 1)];
+      }
+      if (o.mode === "flow") {
+        if (o.task === "time") return [s(n("gal") / n("gpm"), 2)];
+        if (o.task === "gal") return [s(n("gpm") * n("min"), 2)];
+        if (o.task === "gpm") return [s(n("gal") / n("min"), 2)];
+        var k = Math.PI * 180 / 231 * n("d") * n("d");
+        return o.task === "pipe" ? [s(k * n("v"), 2)] : [s(n("gpm") / k, 2)];
+      }
+      if (o.mode === "pressure") {
+        if (o.task === "head") return [s(0.433 * n("ft"), 2)];
+        if (o.task === "psi") return [s(2.31 * n("psi"), 2)];
+        var rise = o.floor !== undefined ? (Number(o.floor) - 1) * n("per") : n("up");
+        return [s(n("psi") - 0.433 * rise, 2)];
+      }
+      if (o.mode === "drain") {
+        var sl = o.task === "slope" ? hvpLen(o.fall) / (hvpLen(o.len) / 12) : o.s ? n("s") : n("pct") * 12 / 100,
+          pct = sl / 12 * 100;
+        if (o.task === "fall") return [hvpMix(sl * hvpLen(o.len) / 12), s(pct, 2)];
+        if (o.task === "slope") return [s(sl, 3), s(pct, 2)];
+        return o.s ? [s(pct, 2)] : [s(sl, 3)];
+      }
+      if (o.mode === "heater") {
+        var dT = o.dt ? n("dt") : n("t2") - n("t1"),
+          out = o.task === "btu" ? 0 : n("rate") * { btuh: 1, w: 3.412, kw: 3412 } [o.ru] * (o.eff ? n("eff") : 100) / 100;
+        if (o.task === "btu") return [s(8.33 * n("gal") * dT, 0)];
+        if (o.task === "time") return [s(8.33 * n("gal") * dT / out, 2), s(8.33 * n("gal") * dT, 0)];
+        return [s(out / (8.33 * dT), 1)];
+      }
+      throw new Error("unknown mode " + o.mode);
+    }
+    // machining.html: re-work a made problem from its link, without the page's code; the numbers its answer should show, as text
+    function mchR(x, k) {
+      var p = Math.pow(10, k || 0),
+        a = Math.round(Number((Math.abs(x) * p).toFixed(6))) / p;
+      return x < 0 && a !== 0 ? -a : a;
+    }
+
+    function mchS(x, k) { return String(mchR(x, k)); }
+
+    function mchN(s) { // a size from a link: 0.5, 1/2, 1-1/4, #10 (a machine screw: 0.060 + 0.013 × the number)
+      s = String(s);
+      var m = /^#(\d+)$/.exec(s);
+      if (m) return 0.06 + 0.013 * Number(m[1]);
+      m = /^(\d+)-(\d+)\/(\d+)$/.exec(s);
+      if (m) return Number(m[1]) + Number(m[2]) / Number(m[3]);
+      m = /^(\d+)\/(\d+)$/.exec(s);
+      if (m) return Number(m[1]) / Number(m[2]);
+      if (!/^-?\d*\.?\d+$/.test(s)) throw new Error("number " + s);
+      return Number(s);
+    }
+    // the drill chart: 64ths to 2", #1–#80, A–Z
+    var MCH_DRILLS = (function() {
+      var out = [],
+        nums = [2280, 2210, 2130, 2090, 2055, 2040, 2010, 1990, 1960, 1935, 1910, 1890, 1850, 1820, 1800, 1770, 1730, 1695, 1660, 1610, 1590, 1570, 1540, 1520, 1495, 1470, 1440, 1405, 1360, 1285, 1200, 1160, 1130, 1110, 1100, 1065, 1040, 1015, 995, 980, 960, 935, 890, 860, 820, 810, 785, 760, 730, 700, 670, 635, 595, 550, 520, 465, 430, 420, 410, 400, 390, 380, 370, 360, 350, 330, 320, 310, 292, 280, 260, 250, 240, 225, 210, 200, 180, 160, 145, 135],
+        lets = [2340, 2380, 2420, 2460, 2500, 2570, 2610, 2660, 2720, 2770, 2810, 2900, 2950, 3020, 3160, 3230, 3320, 3390, 3480, 3580, 3680, 3770, 3860, 3970, 4040, 4130];
+      for (var i = 1; i <= 128; i++) out.push({
+        v: i / 64,
+        name: (function(n) {
+          var w = Math.floor(n / 64),
+            r = n % 64,
+            g = r,
+            d = 64;
+          while (g % 2 === 0 && g) {
+            g /= 2;
+            d /= 2;
+          }
+          return r ? (w ? w + " " : "") + g + "/" + d : String(w);
+        })(i)
+      });
+      nums.forEach(function(t, j) { if (!out.some(function(d) { return Math.abs(d.v - t / 10000) < 1e-12; })) out.push({ v: t / 10000, name: "#" + (j + 1) }); });
+      lets.forEach(function(t, j) { if (!out.some(function(d) { return Math.abs(d.v - t / 10000) < 1e-12; })) out.push({ v: t / 10000, name: String.fromCharCode(65 + j) }); });
+      return out.sort(function(a, b) { return a.v - b.v; });
+    })();
+
+    function mchNear(t) { // the nearest drill (a tie goes to the bigger one)
+      var best = MCH_DRILLS[0];
+      MCH_DRILLS.forEach(function(d) { if (Math.abs(d.v - t) <= Math.abs(best.v - t) + 1e-12) best = d; });
+      return best;
+    }
+
+    function mchDrill(s) {
+      s = String(s);
+      var m = /^#(\d+)$/.exec(s) || /^([A-Z])$/.exec(s);
+      var hit = MCH_DRILLS.filter(function(d) { return m ? d.name === s : Math.abs(d.v - mchN(s.replace(" ", "-"))) < 1e-9; })[0];
+      if (!hit) throw new Error("drill " + s);
+      return hit;
+    }
+
+    // the standard published tap drill charts (about 75% thread): common UNC/UNF sizes, metric coarse
+    var MCH_TAP = {
+      "#0-80": "3/64",
+      "#1-64": "#53",
+      "#1-72": "#53",
+      "#2-56": "#50",
+      "#2-64": "#50",
+      "#3-48": "#47",
+      "#3-56": "#45",
+      "#4-40": "#43",
+      "#4-48": "#42",
+      "#5-40": "#38",
+      "#5-44": "#37",
+      "#6-32": "#36",
+      "#6-40": "#33",
+      "#8-32": "#29",
+      "#8-36": "#29",
+      "#10-24": "#25",
+      "#10-32": "#21",
+      "#12-24": "#16",
+      "#12-28": "#14",
+      "1/4-20": "#7",
+      "1/4-28": "#3",
+      "5/16-18": "F",
+      "5/16-24": "I",
+      "3/8-16": "5/16",
+      "3/8-24": "Q",
+      "7/16-14": "U",
+      "7/16-20": "25/64",
+      "1/2-13": "27/64",
+      "1/2-20": "29/64",
+      "9/16-12": "31/64",
+      "9/16-18": "33/64",
+      "5/8-11": "17/32",
+      "5/8-18": "37/64",
+      "3/4-10": "21/32",
+      "3/4-16": "11/16",
+      "7/8-9": "49/64",
+      "7/8-14": "13/16",
+      "1-8": "7/8",
+      "1-12": "59/64"
+    };
+    var MCH_MTAP = {
+      "1.6x0.35": 1.25,
+      "2x0.4": 1.6,
+      "2.5x0.45": 2.05,
+      "3x0.5": 2.5,
+      "4x0.7": 3.3,
+      "5x0.8": 4.2,
+      "6x1": 5,
+      "8x1.25": 6.8,
+      "10x1.5": 8.5,
+      "12x1.75": 10.2,
+      "14x2": 12,
+      "16x2": 14,
+      "18x2.5": 15.5,
+      "20x2.5": 17.5,
+      "22x2.5": 19.5,
+      "24x3": 21,
+      "27x3": 24,
+      "30x3.5": 26.5,
+      "36x4": 32
+    };
+
+    function mchLen(s, u) { // a length with ft or m on the end
+      var m = /^(.*?)(ft|m)$/.exec(String(s));
+      return m ? mchN(m[1]) * (m[2] === "ft" ? 12 : 1000) : mchN(s);
+    }
+
+    function mchWork(o) {
+      var n = function(k) { return mchN(o[k]); },
+        mm = o.u === "mm",
+        k = mm ? 3 : 4,
+        D = Math.PI / 180;
+      if (o.mode === "rpm") {
+        var d = n("d");
+        if (o.task === "sfm") return [mchS(Math.PI * d * n("rpm") / (mm ? 1000 : 12), 1)];
+        var sp = n(mm ? "vc" : "sfm");
+        return [mchS(sp * (mm ? 1000 : 12) / (Math.PI * d), 0), mchS(sp * (mm ? 318 : 3.82) / d, 0)];
+      }
+      if (o.mode === "feed") {
+        if (o.task === "ipm") return [mchS(n("rpm") * n("cl") * n("z"), 3)];
+        if (o.task === "chip") return [mchS(n("ipm") / (n("rpm") * n("z")), k)];
+        var ipm = n("rpm") * n("ipr");
+        return [mchS(ipm, 3)].concat(o.len ? [mchS(n("len") / ipm, 2)] : []);
+      }
+      if (o.mode === "thread") {
+        if (o.task === "pitch") return o.p ? [mchS(25.4 / n("p"), 2), mchS(n("p") / 25.4, 4)] : [mchS(1 / n("tpi"), 4), mchS(25.4 / n("tpi"), 3)];
+        if (o.task === "metric") {
+          var tg = n("maj") - (o.pct ? 0.01299 * n("pct") * n("p") : n("p")),
+            dr = !o.pct && MCH_MTAP[Number(o.maj) + "x" + Number(o.p)] || mchR(tg, 1);
+          return [mchS(tg, 3), mchS(dr, 1), mchS((n("maj") - dr) / (0.01299 * n("p")), 0)];
+        }
+        var maj = mchN(o.maj),
+          tpi = n("tpi");
+        if (o.task === "pct") return [mchS(tpi * (maj - mchDrill(o.drill).v) / 0.01299, 0)];
+        var t2 = maj - (o.pct ? 0.01299 * n("pct") / tpi : 1 / tpi),
+          dd = !o.pct && MCH_TAP[o.maj + "-" + o.tpi] ? mchDrill(MCH_TAP[o.maj + "-" + o.tpi]) : mchNear(t2);
+        return [mchS(dd.v, 4), mchS(t2, 4), mchS(tpi * (maj - dd.v) / 0.01299, 0)];
+      }
+      if (o.mode === "taper") {
+        var L = n("L");
+        if (o.task === "dia") return [mchS(o.D ? n("D") - n("tpf") / 12 * L : n("d") + n("tpf") / 12 * L, 4)];
+        if (o.task === "offset") return [mchS(o.tpf ? n("tpf") * n("ol") / 24 : (n("D") - n("d")) * n("ol") / (2 * L), k)];
+        var df = n("D") - n("d"),
+          half = Math.atan(df / 2 / L) / D;
+        return (mm ? [mchS(L / df, 2)] : [mchS(df / L * 12, 4), mchS(df / L, 5)]).concat([mchS(half, 2), mchS(2 * half, 2)]);
+      }
+      if (o.mode === "bolt") {
+        var r = n("bcd") / 2,
+          st = o.start ? Number(o.start) : 0,
+          cx = o.cx ? n("cx") : 0,
+          cy = o.cy ? n("cy") : 0,
+          out = [];
+        for (var i = 0; i < n("n"); i++) {
+          var a = (st + i * 360 / n("n")) * D;
+          out.push(mchS(cx + r * Math.cos(a), k), mchS(cy + r * Math.sin(a), k));
+        }
+        return out;
+      }
+      if (o.mode === "sine") {
+        if (o.task === "angle") return [mchS(Math.asin(n("h") / n("L")) / D, 2)];
+        var mA = /^(\d+(?:\.\d+)?)(?:d(?:(\d+)m)?)?$/.exec(o.ang),
+          ang = Number(mA[1]) + (mA[2] ? Number(mA[2]) / 60 : 0);
+        return [mchS(n("L") * Math.sin(ang * D), k)];
+      }
+      if (o.mode === "weight") {
+        var rho = { steel: [0.2836, 7.85], aluminum: [0.0975, 2.70], stainless: [0.289, 8.00], brass: [0.307, 8.50], copper: [0.323, 8.96], iron: [0.26, 7.20] } [o.mat],
+          l = function(key) { return mchLen(o[key], o.u); },
+          V;
+        if (o.shape === "plate") V = l("l") * l("w") * l("t");
+        else {
+          var len = l("l"),
+            area = o.shape === "tube" ? Math.PI / 4 * (Math.pow(l("od"), 2) - Math.pow(o.id ? l("id") : l("od") - 2 * l("wall"), 2)) : o.shape === "hex" ? Math.sqrt(3) / 2 * Math.pow(l("f"), 2) : o.shape === "square" ? Math.pow(l("a"), 2) : Math.PI / 4 * Math.pow(l("dia"), 2);
+          V = area * len;
+        }
+        var pcs = o.n ? Number(o.n) : 1,
+          lb, kg;
+        if (mm) {
+          kg = V / 1000 * rho[1] / 1000 * pcs;
+          lb = kg / 0.45359237;
+          return [mchS(kg, 2), mchS(lb, 2)];
+        }
+        lb = V * rho[0] * pcs;
+        return [mchS(lb, 2), mchS(lb * 0.45359237, 2)];
+      }
+      if (o.mode === "weld") {
+        if (o.task === "heat") {
+          var hi = n("v") * n("a") * (o.tu === "mms" ? 1 : 60) / (n("ts") * 1000) * (o.eff ? n("eff") : 1);
+          return [mchS(hi, o.tu === "mmmin" || o.tu === "mms" ? 3 : 2)];
+        }
+        if (o.task === "fillet") return [mchS(o.throat ? n("throat") / 0.707 : n("leg") * 0.707, k)];
+        var de = o.de ? Number(o.de) : { smaw: 65, gmaw: 95, fcaw: 85, gtaw: 95 } [o.proc || "gmaw"],
+          dens = { steel: [0.2836, 7.85], stainless: [0.289, 8.00], aluminum: [0.0975, 2.70] } [o.mat || "steel"],
+          ar = o.joint === "vee" ? Math.pow(n("t"), 2) * Math.tan(Number(o.ang || 60) / 2 * D) + (o.gap ? n("gap") : 0) * n("t") : Math.pow(n("leg"), 2) / 2,
+          vol = ar * mchLen(o.len, o.u),
+          wm = mm ? vol / 1000 * dens[1] / 1000 : vol * dens[0];
+        return [mchS(wm / (de / 100), 2), mchS(wm, 2)];
+      }
+      if (o.mode === "fit") {
+        var dp = function(keys) { return Math.max.apply(null, [3].concat(keys.map(function(x) { var m2 = /\.(\d+)/.exec(o[x]); return m2 ? m2[1].length : 0; }))); };
+        if (o.task === "limits") {
+          var hiL = n("nom") + n("p"),
+            loL = n("nom") - n("m"),
+            p1 = dp(["nom", "p", "m"]);
+          return [mchS(loL, p1), mchS(hiL, p1), mchS(hiL - loL, p1)];
+        }
+        var p2 = dp(["hn", "hp", "hm", "sn", "sp", "sm"]),
+          maxC = n("hn") + n("hp") - (n("sn") - n("sm")),
+          minC = n("hn") - n("hm") - (n("sn") + n("sp"));
+        if (minC >= -1e-12) return [mchS(minC, p2), mchS(maxC, p2)];
+        if (maxC <= 1e-12) return [mchS(-maxC, p2), mchS(-minC, p2)];
+        return [mchS(maxC, p2), mchS(-minC, p2)];
+      }
+      throw new Error("unknown mode " + o.mode);
+    }
+    // automotive.html: re-work a made problem from its link, without the page's code; the numbers its answer should show, as text
+    function autR(x, k) {
+      var p = Math.pow(10, k || 0),
+        a = Math.round(Number((Math.abs(x) * p).toFixed(6))) / p;
+      return x < 0 && a !== 0 ? -a : a;
+    }
+
+    function autTire(s) { // a tire's diameter in inches: P225/60R16, LT33x12.50R15
+      var m = /^(?:P|LT|ST|T)?(\d{3})\/(\d{2,3})[A-Z]*(\d{2}(?:\.\d)?)$/i.exec(String(s));
+      if (m) return 2 * (+m[1]) * (+m[2]) / 100 / 25.4 + Number(m[3]);
+      m = /^(?:LT)?(\d{2}(?:\.\d+)?)x[\d.]+R(\d{2}(?:\.\d)?)$/i.exec(String(s));
+      if (m) return Number(m[1]);
+      throw new Error("tire " + s);
+    }
+
+    function autWork(o) {
+      var n = function(k) { return Number(o[k]); },
+        s = function(x, k) { return String(autR(x, k)); };
+      if (o.mode === "gear") {
+        var r = o.task === "teeth" ? n("b") / n("a") : n("g") * n("fd"),
+          outG = [s(r, 2)];
+        if (o.rpm) outG.push(s(n("rpm") / r, 0));
+        if (o.tq) outG.push(s(n("tq") * r, 1));
+        return outG;
+      }
+      if (o.mode === "speed") {
+        var ov = (o.g ? n("g") : 1) * n("fd"),
+          D = o.d ? n("d") : autTire(o.tire),
+          c = Math.PI * D;
+        return o.task === "mph" ? [s(n("rpm") / ov * c * 60 / 63360, 1)] : [s(n("mph") * 63360 / 60 / c * ov, 0)];
+      }
+      if (o.mode === "tire") {
+        var d1 = autTire(o.t),
+          rim = Number(/(\d{2}(?:\.\d)?)$/.exec(o.t)[1]);
+        if (o.task === "size") return [s((d1 - rim) / 2, 2), s(d1, 2), s(63360 / (Math.PI * d1), 0)];
+        var ratio = autTire(o.t2) / d1;
+        return [s(n("mph") * ratio, 1), s((ratio - 1) * 100, 2)];
+      }
+      if (o.mode === "disp") {
+        if (o.task === "calc") {
+          var cyl = Math.PI / 4 * Math.pow(n("bore"), 2) * n("stroke") * n("n");
+          if (o.u === "mm") return [s(cyl / 1000, 0), s(cyl / 1e6, 2)];
+          return [s(cyl, 1), s(cyl * 16.387064 / 1000, 2)];
+        }
+        var cc = o.from === "cc" ? n("v") : o.from === "l" ? n("v") * 1000 : n("v") * 16.387064;
+        return o.from === "ci" ? [s(cc / 1000, 2), s(cc, 0)] : o.from === "cc" ? [s(cc / 1000, 3), s(cc / 16.387064, 1)] : [s(cc / 16.387064, 1), s(cc, 0)];
+      }
+      if (o.mode === "comp") {
+        var vs = o.vs ? n("vs") / (o.n ? n("n") : 1) : Math.PI / 4 * Math.pow(n("bore"), 2) * n("stroke") * (o.u === "mm" ? 0.001 : 16.387064);
+        if (o.task === "vc") return [s(vs / (n("cr") - 1), 2)];
+        var vc = o.vc ? n("vc") : n("ch") + (o.gk ? n("gk") : 0) + (o.pd ? n("pd") : 0) + (o.dk ? n("dk") : 0);
+        return [s((vs + vc) / vc, 2)];
+      }
+      if (o.mode === "power") {
+        if (o.task === "hp") return [o.tu === "nm" ? s(n("tq") * n("rpm") / 9549, 1) : s(n("tq") * n("rpm") / 5252, 1)];
+        if (o.task === "tq") return [o.pu === "kw" ? s(n("hp") * 9549 / n("rpm"), 1) : s(n("hp") * 5252 / n("rpm"), 1)];
+        var hp = o.pu === "kw" ? n("hp") / 0.7457 : n("hp"),
+          lbft = o.tu === "nm" ? n("tq") / 1.3558 : n("tq");
+        return [s(hp * 5252 / lbft, 0)];
+      }
+      if (o.mode === "fuel") {
+        if (o.task === "mpg") {
+          var mpg = (o.od1 ? n("od2") - n("od1") : n("mi")) / n("gal");
+          return [s(mpg, 1), s(235.215 / mpg, 1)];
+        }
+        if (o.task === "l100") {
+          var l100 = n("l") / n("km") * 100;
+          return [s(l100, 1), s(235.215 / l100, 1)];
+        }
+        if (o.task === "conv") return [o.mpg ? s(235.215 / n("mpg"), 1) : s(235.215 / n("l100"), 1)];
+        var fuel = o.km ? n("km") * (o.rt === "1" ? 2 : 1) * n("l100") / 100 : n("mi") * (o.rt === "1" ? 2 : 1) / n("mpg");
+        return [s(fuel, 2), s(fuel * n("price"), 2)];
+      }
+      if (o.mode === "mix") {
+        var U = { gal: 128, qt: 32, floz: 1 },
+          ML = { l: 1000, ml: 1 };
+        if (o.task === "two") return U[o.vu] ? [s(n("v") * U[o.vu] / n("r"), 2)] : [s(n("v") * ML[o.vu] / n("r"), 0)];
+        if (o.task === "ratio") {
+          var gas = U[o.vu] && o.ou !== "ml" ? n("v") * U[o.vu] : U[o.vu] ? n("v") * U[o.vu] * 29.5735295625 : n("v") * ML[o.vu],
+            oil = o.ou === "ml" || !U[o.vu] ? (o.ou === "ml" ? n("oil") : n("oil") * 29.5735295625) : n("oil");
+          return [s(gas / oil, 1)];
+        }
+        if (o.task === "cool") return [s(n("v") * n("pct") / 100, 2), s(n("v") * (1 - n("pct") / 100), 2)];
+        return [s(n("v") * (n("want") - n("cur")) / (100 - n("cur")), 2)];
+      }
+      if (o.mode === "shop") {
+        if (o.task === "inv") {
+          var labor = autR(n("hrs") * n("rate"), 2),
+            pc = String(o.parts || "").split(",").filter(Boolean).reduce(function(a, x) { return a + Number(x); }, 0),
+            parts = autR(pc * (1 + (o.mk ? n("mk") : 0) / 100), 2),
+            taxable = o.taxon === "all" ? labor + parts : o.taxon === "none" ? 0 : parts,
+            tax = autR(taxable * (o.tax ? n("tax") : 0) / 100, 2),
+            outS = [s(labor, 2)];
+          if (o.parts) outS.push(s(parts, 2));
+          if (o.tax && n("tax")) outS.push(s(tax, 2));
+          outS.push(s(labor + parts + tax, 2));
+          return outS;
+        }
+        if (o.mk) return [s(n("cost") * (1 + n("mk") / 100), 2)];
+        if (o.mg) return [s(n("cost") / (1 - n("mg") / 100), 2)];
+        var pr = n("price"),
+          cost = n("cost");
+        return [s((pr - cost) / cost * 100, 2), s((pr - cost) / pr * 100, 2)];
+      }
+      throw new Error("unknown mode " + o.mode);
+    }
+    // business.html: re-work a made problem from its link, without the page's code; the numbers its answer should show, as text
+    function bizR(x, k) {
+      var p = Math.pow(10, k || 0),
+        a = Math.round(Number((Math.abs(x) * p).toFixed(6))) / p;
+      return x < 0 && a !== 0 ? -a : a;
+    }
+
+    function bizWork(o) {
+      var n = function(k) { return Number(o[k]); },
+        c = function(x) { return bizR(x, 2); }, // money to the cent, half a cent up
+        s = function(x, k) { return String(bizR(x, k === undefined ? 2 : k)); },
+        u4 = function(x) { return Math.abs(x * 100 - Math.round(x * 100)) < 1e-7 ? s(x, 2) : s(x, 4); };
+      if (o.mode === "markup") {
+        var pc = n("pct") / 100;
+        if (o.task === "both") { var pr = n("price") - n("cost"); return [s(pr / n("cost") * 100), s(pr / n("price") * 100)]; }
+        if (o.task === "margin") return [s(c(n("cost") / (1 - pc)))];
+        if (o.task === "markup") { var p2 = c(n("cost") * (1 + pc)); return [s(p2), s((p2 - n("cost")) / p2 * 100)]; }
+        if (o.task === "cost") return [s(c(o.from === "markup" ? n("price") / (1 + pc) : n("price") * (1 - pc)))];
+        return [s((o.from === "markup" ? pc / (1 + pc) : pc / (1 - pc)) * 100)];
+      }
+      if (o.mode === "discount") {
+        if (o.task === "stack") {
+          var ds = String(o.d).split(",").map(Number),
+            cur = n("price"),
+            keep = 1;
+          ds.forEach(function(d) {
+            cur = c(cur * (1 - d / 100));
+            keep *= 1 - d / 100;
+          });
+          return [s(cur)].concat(ds.length > 1 ? [s((1 - keep) * 100)] : []);
+        }
+        if (o.task === "pct") return [s((n("price") - n("sale")) / n("price") * 100)];
+        if (o.task === "orig") return [s(c(n("sale") / (1 - n("d") / 100)))];
+        return [s(c(c(n("price") * (1 + n("up") / 100)) * (1 - n("down") / 100)))];
+      }
+      if (o.mode === "till") {
+        if (o.task === "change") {
+          var tot = Math.round(n("total") * 100),
+            r = tot % 5;
+          if (o.r5 === "1") tot = r <= 2 ? tot - r : tot + 5 - r;
+          var ch = Math.round(n("paid") * 100) - tot,
+            left = ch,
+            pcs = 0;
+          [10000, 5000, 2000, 1000, 500, 100, 25, 10, 5, 1].forEach(function(v) {
+            pcs += Math.floor(left / v);
+            left %= v;
+          });
+          return [s(ch / 100)].concat(ch ? [String(pcs)] : []);
+        }
+        var val = { "100": 10000, "50": 5000, "20": 2000, "10": 1000, "5": 500, "2": 200, "1": 100, h: 50, q: 25, d: 10, n: 5, p: 1 },
+          cnt = o.c ? String(o.c).split(",").reduce(function(a, x) { var q = x.split(":"); return a + val[q[0]] * Number(q[1]); }, 0) : Math.round(n("counted") * 100),
+          exp = o.exp !== undefined ? Math.round(n("exp") * 100) : o.sales !== undefined ? Math.round((n("start") || 0) * 100) + Math.round(n("sales") * 100) - Math.round((n("out") || 0) * 100) : null;
+        return [s(cnt / 100)].concat(exp !== null && cnt !== exp ? [s(Math.abs(cnt - exp) / 100)] : []);
+      }
+      if (o.mode === "tax") {
+        if (o.task === "back") { var pre = c(n("total") / (1 + n("rate") / 100)); return [s(pre), s(n("total") - pre)]; }
+        if (o.task === "rate") return [s((o.tax !== undefined ? n("tax") : n("total") - n("pre")) / n("pre") * 100)];
+        var sub = 0,
+          taxable = 0;
+        String(o.items).split("|").forEach(function(x) {
+          var q = x.split("~"),
+            a = Number(q[1]) * Number(q[2] || 1);
+          sub += a;
+          if (q[3] !== "n") taxable += a;
+        });
+        var tx = c(taxable * n("rate") / 100);
+        return [s(tx), s(c(sub + tx))];
+      }
+      if (o.mode === "payroll") {
+        if (o.task === "ot") {
+          var h = n("h"),
+            rt = n("rate"),
+            x = o.x !== undefined ? n("x") : 1.5,
+            ov = o.over !== undefined ? n("over") : 40;
+          return [s(c(Math.min(h, ov) * rt + Math.max(h - ov, 0) * rt * x))];
+        }
+        if (o.task === "comm") {
+          var tiers = String(o.t).split(",").map(function(x) { var q = x.split(":"); return [Number(q[0]), Number(q[1])]; }).sort(function(a, b) { return a[0] - b[0]; }),
+            sales = n("sales"),
+            com = 0;
+          tiers.forEach(function(t, i) {
+            var hi = i + 1 < tiers.length ? tiers[i + 1][0] : Infinity;
+            com += Math.max(0, Math.min(sales, hi) - t[0]) * t[1] / 100;
+          });
+          com = c(com);
+          return o.base !== undefined ? [s(c(com + n("base"))), s(com)] : [s(com)];
+        }
+        var min = String(o.s).split("|").reduce(function(a, x) {
+          var m = /(\d+):(\d+)-(\d+):(\d+)(?:~(\d+))?$/.exec(x),
+            st = Number(m[1]) * 60 + Number(m[2]),
+            en = Number(m[3]) * 60 + Number(m[4]);
+          while (en <= st) en += 1440;
+          return a + en - st - Number(m[5] || 0);
+        }, 0);
+        var out = [s(min / 60)];
+        if (o.rate !== undefined) {
+          var hh = min / 60,
+            multi = String(o.s).split("|").length > 1;
+          out.push(s(c(hh > 40 && multi ? 40 * n("rate") + (hh - 40) * n("rate") * 1.5 : hh * n("rate"))));
+        }
+        return out;
+      }
+      if (o.mode === "breakeven") {
+        var cmv = n("price") - n("vc"),
+          be = n("fixed") / cmv,
+          un = Math.abs(be - Math.round(be)) < 1e-9 ? Math.round(be) : Math.ceil(be),
+          res = [String(un), s(un * n("price"))];
+        if (o.q !== undefined) res.push(s(n("q") * cmv - n("fixed")));
+        if (o.target !== undefined) {
+          var tq = (n("fixed") + n("target")) / cmv;
+          res.push(String(Math.abs(tq - Math.round(tq)) < 1e-9 ? Math.round(tq) : Math.ceil(tq)));
+        }
+        return res;
+      }
+      if (o.mode === "pl") {
+        var net = n("sales") - (o.ret !== undefined ? n("ret") : 0),
+          gp = net - n("cogs"),
+          ex = o.exp ? String(o.exp).split("|").reduce(function(a, x) { return a + Number(x.split("~")[1]); }, 0) : 0,
+          np = gp - ex;
+        return [s(gp), s(gp / net * 100), s(np), s(np / net * 100)];
+      }
+      if (o.mode === "inventory") {
+        if (o.task === "unit") return [u4((n("cost") + (o.extra !== undefined ? n("extra") : 0)) / n("n"))];
+        if (o.task === "avg") {
+          var units = 0,
+            cost = 0;
+          String(o.lots).split(",").forEach(function(x) {
+            var q = x.split("~");
+            units += Number(q[0]);
+            cost += Number(q[0]) * Number(q[1]);
+          });
+          return [u4(cost / units)].concat(o.sold !== undefined ? [s(n("sold") * cost / units)] : []);
+        }
+        if (o.task === "turn") {
+          var av = o.avg !== undefined ? n("avg") : (n("begin") + n("end")) / 2,
+            tn = n("cogs") / av;
+          return [s(tn), s((o.days !== undefined ? n("days") : 365) / tn, 1)];
+        }
+        var dpw = o.dpw !== undefined ? n("dpw") : 7,
+          daily = o.per === "week" ? n("use") / dpw : n("use"),
+          lead = o.lu === "week" ? n("lead") * dpw : n("lead"),
+          rop = daily * lead + (o.ss !== undefined ? n("ss") : 0);
+        return [String(Math.abs(rop - Math.round(rop)) < 1e-9 ? Math.round(rop) : Math.ceil(rop))];
+      }
+      if (o.mode === "unit") {
+        var B = { oz: [1, "w"], lb: [16, "w"], g: [1 / 28.349523125, "w"], kg: [1000 / 28.349523125, "w"], floz: [1, "v"], pt: [16, "v"], qt: [32, "v"], gal: [128, "v"], ml: [1 / 29.5735295625, "v"], l: [1000 / 29.5735295625, "v"], ct: [1, "n"], sheet: [1, "s"], roll: [1, "r"], load: [1, "o"] },
+          items = String(o.items).split("|").map(function(x) { return x.split("~"); }),
+          base = B[items[0][1]][0],
+          best = Infinity;
+        items.forEach(function(q) {
+          var amt = Number(q[0]) * Number(q[3] || 1) * B[q[1]][0] / base,
+            pay = Number(q[2]),
+            m;
+          if (q[4] && (m = /^b(\d+)g(\d+)$/.exec(q[4]))) {
+            pay *= Number(m[1]);
+            amt *= Number(m[1]) + Number(m[2]);
+          } else if (q[4] && (m = /^off([\d.]+)$/.exec(q[4]))) pay = c(pay * (1 - Number(m[1]) / 100));
+          best = Math.min(best, pay / amt);
+        });
+        return [s(best, 4)];
+      }
+      throw new Error("unknown mode " + o.mode);
+    }
+    // real-estate.html: re-work a made problem from its link, without the page's code; the numbers its answer should show, as text
+    function reR(x, k) {
+      var p = Math.pow(10, k),
+        a = Math.floor(Math.abs(x) * p + 0.5 + 1e-7) / p;
+      return x < 0 && a !== 0 ? -a : a;
+    }
+
+    function reS(x, k) { return String(reR(x, k === undefined ? 2 : k)); }
+
+    function reDim(s) { var m = /^(\d+(?:\.\d+)?)(?:ft(\d+(?:\.\d+)?)in)?$/.exec(String(s)); if (!m) throw new Error("length " + s); return Number(m[1]) + (m[2] ? Number(m[2]) / 12 : 0); }
+
+    function rePmt(L, r, t) {
+      var i = r / 1200,
+        n = Math.round(t * 12),
+        F = Math.pow(1 + i, n);
+      return i === 0 ? L / n : L * i * F / (F - 1);
+    }
+
+    function reWork(o) {
+      var n = function(k) { return o[k] === undefined ? null : Number(o[k]); },
+        out = [];
+      if (o.mode === "sqft") {
+        if (o.task === "ppsf") return [reS(n("price") / n("sf"))];
+        if (o.task === "value") return [reS(n("sf") * n("pps"))];
+        var tot = o.r.split(",").reduce(function(s, x) {
+          var p = x.split(":"),
+            d = p[1].split("x"),
+            a = reDim(d[0]) * reDim(d[1]) * (p[2] ? Number(p[2]) : 1);
+          return /^-/.test(p[0]) ? s - a : s + a;
+        }, 0);
+        out.push(reS(tot, 4));
+        if (o.price) out.push(reS(n("price") / tot));
+        if (o.pps) out.push(reS(tot * n("pps")));
+        return out;
+      }
+      if (o.mode === "land") {
+        if (o.task === "conv") return o.a ? [reS(n("a") * 43560, 4)] : o.sf ? [reS(n("sf") / 43560, 4)] : [reS(n("sm") * 640, 4)];
+        if (o.task === "lot") {
+          var sf = n("front") * n("depth");
+          out = [reS(sf, 4), reS(sf / 43560, 4)];
+          if (o.price) out.push(reS(n("price") / n("front")));
+          if (o.pff) out.push(reS(n("pff") * n("front")));
+          if (o.ppa) out.push(reS(n("ppa") * sf / 43560));
+          if (o.pps) out.push(reS(n("pps") * sf));
+          return out;
+        }
+        if (o.task === "acre") {
+          var ac = o.a ? n("a") : n("sf") / 43560;
+          return [o.price ? reS(n("price") / ac) : reS(n("ppa") * ac)];
+        }
+        var acres = o.d.split(",").reduce(function(s, x) { return s / (/1\/2$/.test(x) ? 2 : 4); }, 640);
+        return [reS(acres, 4)].concat(o.ppa ? [reS(acres * n("ppa"))] : []);
+      }
+      if (o.mode === "commission") {
+        if (o.task === "rate") return [reS(n("comm") / n("price") * 100)];
+        if (o.task === "price") return [reS(n("comm") / (n("rate") / 100))];
+        if (o.task === "tier") {
+          var prev = 0,
+            c = 0,
+            P = n("price");
+          o.tiers.split(",").forEach(function(x) {
+            var p = x.split(":"),
+              up = Number(p[0]) || Infinity,
+              top = Math.min(up, P);
+            if (top > prev) c += (top - prev) * Number(p[1]) / 100;
+            if (up !== Infinity) prev = up;
+          });
+          return [reS(c)];
+        }
+        var tc = n("price") * n("rate") / 100;
+        out = [reS(tc)];
+        var side = tc;
+        if (o.list) {
+          var ls = tc * n("list") / 100;
+          out.push(reS(ls), reS(tc - ls));
+          side = o.side === "sell" ? tc - ls : ls;
+        }
+        if (o.agent) out.push(reS(side * n("agent") / 100));
+        return out;
+      }
+      if (o.mode === "net") {
+        var other = String(o.other || "").split(",").filter(Boolean).reduce(function(s, x) { return s + Number(x.split(":")[1]); }, 0);
+        if (o.task === "need") {
+          var top2 = n("net") + (n("payoff") || 0) + (n("cc") || 0) + other,
+            keep = 1 - (n("rate") + (n("ccp") || 0)) / 100,
+            exact = top2 / keep;
+          return [String(Math.ceil(exact * 100 - 1e-6) / 100)];
+        }
+        var pr = n("price"),
+          costs = (o.rate ? pr * n("rate") / 100 : n("comm")) + (o.ccp ? pr * n("ccp") / 100 : n("cc") || 0) + (n("payoff") || 0) + other;
+        return [reS(pr - costs)];
+      }
+      if (o.mode === "mortgage") {
+        var mon = function() { return (o.tax ? reR(n("tax") / (o.taxper === "m" ? 1 : 12), 2) : 0) + (o.ins ? reR(n("ins") / (o.insper === "m" ? 1 : 12), 2) : 0) + (o.hoa ? reR(n("hoa"), 2) : 0); };
+        if (o.task === "ltv") return o.loan ? [reS(n("loan") / n("value") * 100)] : [reS(n("value") * n("ltv") / 100)];
+        if (o.task === "afford") {
+          var max = o.pay ? n("pay") : n("inc") * n("ratio") / 100;
+          if (o.debt) max = Math.min(max, n("inc") * n("back") / 100 - n("debt"));
+          max = reR(max, 2);
+          var pi = max - mon(),
+            i = n("r") / 1200,
+            nn = Math.round(n("t") * 12),
+            L = reR(i === 0 ? pi * nn : pi * (1 - Math.pow(1 + i, -nn)) / i, 2);
+          out = [reS(L)];
+          if (o.dd) out.push(reS(L + n("dd")));
+          else if (o.down) out.push(reS(L / (1 - n("down") / 100)));
+          return out;
+        }
+        var L2 = o.loan ? n("loan") : n("price") - (o.dd ? n("dd") : reR(n("price") * n("down") / 100, 2)),
+          M = reR(rePmt(L2, n("r"), n("t")), 2);
+        out = [reS(M)];
+        if (o.tax || o.ins || o.hoa || o.pmi) out.push(reS(M + mon() + (o.pmi ? reR(L2 * n("pmi") / 1200, 2) : 0)));
+        return out;
+      }
+      if (o.mode === "tax") {
+        var ex = String(o.ex || "").split(",").filter(Boolean).reduce(function(s, x) { return s + Number(x); }, 0);
+        if (o.task === "rate") return [reS(n("tax") / (n("av") - ex) * 1000, 3)];
+        var av = o.av ? n("av") : n("mv") * n("ratio") / 100,
+          taxable = Math.max(av - ex, 0),
+          f = o.mills ? n("mills") / 1000 : o.pct ? n("pct") / 100 : o.per100 ? n("per100") / 100 : n("per1000") / 1000;
+        return [reS(taxable * f)];
+      }
+      if (o.mode === "prorate") {
+        var MD = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
+          dm = o.date.split("-").map(Number),
+          st = Number(String(o.start || "1-1").split("-")[0]),
+          own = o.day === "buyer" ? 1 : 0,
+          amt = n("amt"),
+          sa, la, sb;
+        if (o.per === "y") {
+          var doy = function(m, d) { var s = d; for (var k = 0; k < m - 1; k++) s += MD[k]; return s; };
+          var idx = doy(dm[0], dm[1]) - doy(st, 1) + 1;
+          if (idx <= 0) idx += 365;
+          sa = idx - own;
+          la = 365;
+          sb = ((dm[0] - st + 12) % 12) * 30 + Math.min(dm[1], 30) - own;
+        } else {
+          la = MD[dm[0] - 1];
+          sa = dm[1] - own;
+          sb = Math.min(dm[1], 30) - own;
+        }
+        var seller = o.paid === "arrears";
+        return [reS(amt * (seller ? sa : la - sa) / la), reS(amt * (seller ? sb : 360 / (o.per === "y" ? 1 : 12) - sb) / (o.per === "y" ? 360 : 30))];
+      }
+      if (o.mode === "invest") {
+        if (o.task === "grm") return o.price ? [reS(n("price") / n("rent"))] : [reS(n("grm") * n("rent"))];
+        if (o.task === "coc") { var cf = o.cf ? n("cf") : n("noi") - n("ds") * (o.dsper === "m" ? 12 : 1); return (o.cf ? [] : [reS(cf)]).concat([reS(cf / n("cash") * 100)]); }
+        if (o.task === "yield") { var yr = n("rent") * (o.per === "y" ? 1 : 12); return [reS(yr / n("price") * 100)].concat(o.exp ? [reS((yr - n("exp")) / n("price") * 100)] : []); }
+        var noi = n("noi");
+        if (!o.noi) {
+          var g = n("gross") * (o.gper === "m" ? 12 : 1),
+            egi = g - (o.vac ? g * n("vac") / 100 : 0);
+          noi = egi - (o.exp ? n("exp") : o.expp ? egi * n("expp") / 100 : 0);
+          out.push(reS(noi));
+        }
+        out.push(o.price ? reS(noi / n("price") * 100) : reS(noi / (n("cap") / 100)));
+        return out;
+      }
+      if (o.mode === "value") {
+        if (o.task === "change") { var pc = Math.abs((n("b") - n("a")) / n("a") * 100); return [reS(pc)].concat(o.t ? [reS((Math.pow(n("b") / n("a"), 1 / n("t")) - 1) * 100)] : []); }
+        if (o.task === "orig") return [reS(n("b") / (1 + n("pct") / 100))];
+        if (o.task === "life") {
+          var bl = n("cost") - (n("land") || 0),
+            y = bl / n("life");
+          return [reS(y), reS(bl - y * n("age"))];
+        }
+        var r = n("r") / 100 * (o.dir === "down" ? -1 : 1);
+        return [reS(n("p") * (o.how === "simple" ? 1 + r * n("t") : Math.pow(1 + r, n("t"))))];
+      }
+      throw new Error("unknown mode " + o.mode);
+    }
     var ORACLE = {
       "counting.html": function(p, a, ansText) {
         var o = P(p),
@@ -5851,7 +7553,7 @@
         }
         return need(a, [X(R(v))]);
       },
-      "aviation.html": function(p, a) { return need(a, aviWork(P(p)).map(function(v) { return X(v); })); },
+      "aviation.html": function(p, a, t) { var o = P(p); return o.mode === "metar" ? aviMetar(o, a, t) : o.mode === "windsaloft" ? aviFb(o, a, t) : need(a, aviWork(o).map(function(v) { return X(v); })); },
       "nursing.html": function(p, a) { return need(a, nurWork(P(p)).map(function(v) { return X(v); })); },
       "carpentry.html": function(p, a) { return need(a, crpWork(P(p)).map(function(v) { return X(v); })); },
       "electrical.html": function(p, a, t) {
@@ -5859,6 +7561,12 @@
         if (w.words) return String(t || "").trim() === w.words ? { ok: true } : { ok: false, msg: "expected the bands “" + w.words + "”" };
         return need(a, w.map(function(v) { return X(v); }));
       },
+      "pharmacy.html": function(p, a, raw) { var w = phWork(P(p)); if (w.length === 1 && w[0].roman) return String(raw).trim() === w[0].roman ? { ok: true } : { ok: false, msg: "expected " + w[0].roman }; return need(a, w.map(function(v) { return typeof v === "string" ? X(v) : Fl(v.f, 0.002); })); },
+      "hvac-plumbing.html": function(p, a) { return need(a, hvpWork(P(p)).map(function(v) { return X(v); })); },
+      "machining.html": function(p, a) { return need(a, mchWork(P(p)).map(function(v) { return X(v); })); },
+      "automotive.html": function(p, a) { return need(a, autWork(P(p)).map(function(v) { return X(v); })); },
+      "business.html": function(p, a) { return need(a, bizWork(P(p)).map(function(v) { return X(v); })); },
+      "real-estate.html": function(p, a) { return need(a, reWork(P(p)).map(function(v) { return X(v); })); },
       "cooking.html": function(p, a, ansText) {
         var o = P(p);
         if (o.mode === "scale") return ckScale(o, ansText);
@@ -9055,6 +10763,173 @@
           });
         });
       },
+      "review.html": function(T) {
+        return load(T.page).then(function(fr) {
+          var d = docOf(fr),
+            w = fr.f.contentWindow,
+            probs = [];
+          if (!d.querySelector(".sitenav")) probs.push("no nav bar");
+          if (!w.__review) probs.push("no review hooks");
+          if (d.getElementById("welcome").hidden === d.getElementById("body").hidden) probs.push("neither the empty state nor the queue shows");
+          if (fr.errs.length) probs.push("script error: " + fr.errs[0]);
+          if (probs.length) {
+            fail(T.page, "loads", probs.join("; "), T.page);
+            score(T.page, "load", 0, 1);
+            drop(fr);
+            return;
+          }
+          pass();
+          score(T.page, "load", 1, 0);
+          var kp = 0,
+            kf = 0,
+            R = w.__review;
+
+          function expect(what, got, want) {
+            if (JSON.stringify(got) === JSON.stringify(want)) {
+              kp++;
+              pass();
+            } else {
+              kf++;
+              fail(T.page, "known answer", what + ": expected " + JSON.stringify(want) + ", got " + JSON.stringify(got), T.page);
+            }
+          }
+          // a fixed now: Sat Oct 24 2026, noon; dd = days from then
+          var NOW = new Date(2026, 9, 24, 12, 0, 0).getTime();
+
+          function E(dd, page, params, verdict, firstTry, hinted, h) { return { time: new Date(2026, 9, 24 + dd, h || 10, 0, 0).getTime(), page: page, params: params, text: params, verdict: verdict, firstTry: firstTry !== false, hinted: !!hinted }; }
+
+          function day(dd) { return new Date(2026, 9, 24 + dd).getTime(); }
+
+          function n(p) { return [p.due.length, p.comingCount, p.learned.length]; }
+          var F = "fractions.html",
+            s1 = "mode=simplify&q=18%2F24",
+            s2 = "mode=simplify&q=10%2F15",
+            c1 = "mode=compare&q=1%2F2%2C2%2F3",
+            p;
+          expect("the waits", R.rule.waits, [1, 3, 7, 14]);
+          expect("nothing checked", n(R.plan([], NOW)), [0, 0, 0]);
+          expect("right first time, never missed", n(R.plan([E(-1, F, s1, "right")], NOW)), [0, 0, 0]);
+          p = R.plan([E(-1, F, s1, "wrong")], NOW);
+          expect("missed yesterday: due today, at the 1-day wait", [n(p), p.due[0].wait], [
+            [1, 0, 0], 1
+          ]);
+          p = R.plan([E(0, F, s1, "wrong", true, false, 9)], NOW);
+          expect("missed this morning: due tomorrow", [n(p), p.coming[0].day === day(1)], [
+            [0, 1, 0], true
+          ]);
+          expect("a hint is a miss", n(R.plan([E(-1, F, s1, "right", true, true)], NOW))[0], 1);
+          expect("Show me the work before checking is a miss", n(R.plan([E(-1, F, s1, "shown", false)], NOW))[0], 1);
+          expect("right on a second check of the same go: still a miss", n(R.plan([E(-1, F, s1, "wrong"), E(-1, F, s1, "right", false, false, 11)], NOW))[0], 1);
+          p = R.plan([E(-4, F, s1, "wrong"), E(-3, F, s1, "right")], NOW);
+          expect("right when due: the 3-day wait", [p.due[0].wait, p.due[0].due === day(0)], [3, true]);
+          p = R.plan([E(-4, F, s1, "wrong"), E(-4, F, s1, "right", true, false, 15)], NOW);
+          expect("right too early: no change", [p.due[0].wait, p.due[0].late], [1, 3]);
+          p = R.plan([E(-2, F, s1, "wrong"), E(-1, F, s2, "right")], NOW);
+          expect("a new one like it counts", [p.comingCount, p.coming[0].items[0].wait], [1, 3]);
+          expect("another tab doesn't", R.plan([E(-2, F, s1, "wrong"), E(-1, F, c1, "right")], NOW).due[0].wait, 1);
+          p = R.plan([E(-20, F, s1, "wrong"), E(-19, F, s1, "right"), E(-16, F, s1, "right"), E(-9, F, s1, "right")], NOW);
+          expect("1 → 3 → 7: the 14-day wait, due in 5 days", [p.coming[0].items[0].wait, p.coming[0].inDays], [14, 5]);
+          var ladder = [E(-30, F, s1, "wrong"), E(-29, F, s1, "right"), E(-26, F, s1, "right"), E(-19, F, s1, "right")];
+          expect("right after the 14-day wait: learned", n(R.plan(ladder.concat([E(-5, F, s1, "right")]), NOW)), [0, 0, 1]);
+          expect("a day short of 14: not yet", R.plan(ladder.concat([E(-6, F, s1, "right")]), NOW).due[0].wait, 14);
+          expect("a miss at 14 days: back to 1", R.plan(ladder.concat([E(-1, F, s2, "wrong")]), NOW).due[0].wait, 1);
+          expect("learned, then a miss: back in the queue", n(R.plan(ladder.concat([E(-5, F, s1, "right"), E(-1, F, s2, "wrong")]), NOW)), [1, 0, 0]);
+          p = R.plan([E(-1, F, s1, "wrong"), E(-1, F, s2, "wrong", true, false, 11)], NOW);
+          expect("two misses of one kind: one place, the newest shown", [p.due.length, p.due[0].miss.params], [1, s2]);
+          expect("flash cards are left out", n(R.plan([E(-1, "flashcards.html", "deck=times&card=7x8&mode=quiz", "wrong")], NOW))[0], 0);
+          expect("kinds", R.plan([E(-1, "aviation.html", "mode=wind&tc=360", "wrong"), E(-1, "integers.html", "q=3-(-3)", "wrong"), E(-1, "pemdas.html", "q=1%2B2", "wrong")], NOW)
+            .due.map(function(K) { return K.kind; }).sort(), ["aviation.html|wind", "integers.html|sub", "pemdas.html|"]);
+          score(T.page, "known", kp, kf);
+          return linksOn(T, d).then(function() { drop(fr); });
+        });
+      },
+      /* voice.js: what's said, turned into what the problem boxes read (HelperVoice.toMath), and no microphone button
+         on this page (it only goes by a helper's problem box or the home page's search box) */
+      "voice.js": function(T) {
+        var KNOWN = [
+          ["three fourths of twenty", "3/4 of 20"],
+          ["forty seven plus thirty eight", "47 + 38"],
+          ["What is forty-seven plus thirty-eight?", "47 + 38"],
+          ["x squared plus five x plus six equals zero", "x^2 + 5x + 6 = 0"],
+          ["the square root of seventy two", "sqrt(72)"],
+          ["the square root of the quantity x plus one", "sqrt(x + 1)"],
+          ["two and a half times six", "2 1/2 × 6"],
+          ["negative seven plus three", "-7 + 3"],
+          ["open parenthesis three plus four close parenthesis times two", "(3 + 4) × 2"],
+          ["twenty percent of eighty", "20% of 80"],
+          ["seven hundred and twenty divided by eight", "720 ÷ 8"],
+          ["four point five plus three point two five", "4.5 + 3.25"],
+          ["three dollars and fifty cents times four", "$3.50 × 4"],
+          ["a dollar fifty plus seventy five cents", "$1.50 + $0.75"],
+          ["seven times table", "7 times table"],
+          ["how many times does three go into twelve", "how many times does 3 go into 12"],
+          ["three over four plus one half", "3/4 + 1/2"],
+          ["two to the negative three", "2^-3"],
+          ["x is less than or equal to five", "x ≤ 5"],
+          ["five less than twelve", "5 less than 12"],
+          ["sine of thirty degrees", "sin(30°)"],
+          ["log base two of eight", "log_2(8)"],
+          ["f of x equals two x plus one", "f(x) = 2x + 1"],
+          ["find the mean of three five seven and nine", "find the mean of 3, 5, 7, 9"],
+          ["round three thousand seven hundred forty two to the nearest hundred", "round 3742 to the nearest hundred"],
+          ["from nine fifteen a.m. to eleven forty a.m.", "from 9:15 am to 11:40 am"],
+          ["a quarter past three", "3:15"],
+          ["which one is bigger three fourths or two thirds", "which one is bigger 3/4 or 2/3"],
+          ["Sam has three apples and buys five more how many does he have", "Sam has 3 apples and buys 5 more. How many does he have?"],
+          ["a shirt costs twenty dollars and is twenty five percent off what is the sale price", "A shirt costs $20 and is 25% off. What is the sale price?"],
+          ["Jo has four quarters and three dimes how much money does she have", "Jo has 4 quarters and 3 dimes. How much money does she have?"],
+          ["x squared plus 5x plus 6 equals 0 using the quadratic formula", "x^2 + 5x + 6 = 0 using the quadratic formula"]
+        ];
+        return new Promise(function(ok, bad) {
+          if (window.HelperVoice) return ok();
+          var sc = document.createElement("script");
+          sc.src = U("voice.js");
+          sc.charset = "utf-8";
+          sc.onload = ok;
+          sc.onerror = function() { bad(new Error("voice.js didn’t load")); };
+          document.head.appendChild(sc);
+        }).then(function() {
+          var V = window.HelperVoice;
+          if (!V || typeof V.toMath !== "function") {
+            fail(T.page, "loads", "no HelperVoice.toMath", "voice.js");
+            score(T.page, "load", 0, 1);
+            return;
+          }
+          pass();
+          score(T.page, "load", 1, 0);
+          var kp = 0,
+            kf = 0;
+          KNOWN.forEach(function(k) {
+            var got;
+            try { got = V.toMath(k[0]); } catch (e) { got = "threw " + e.message; }
+            if (got === k[1]) {
+              kp++;
+              pass();
+            } else {
+              kf++;
+              fail(T.page, "known answer", JSON.stringify(k[0]) + " → " + JSON.stringify(got) + ", expected " + JSON.stringify(k[1]), "voice.js");
+            }
+          });
+          // the story box keeps the words and makes sentences, even for a short one
+          var st = V.toMath("what is forty seven plus thirty eight", { story: true });
+          if (st === "What is 47 plus 38?") {
+            kp++;
+            pass();
+          } else {
+            kf++;
+            fail(T.page, "known answer", "story box: " + JSON.stringify(st), "voice.js");
+          }
+          if (!document.querySelector(".ht-mic")) {
+            kp++;
+            pass();
+          } else {
+            kf++;
+            fail(T.page, "known answer", "a microphone button appeared on the self-test page", "voice.js");
+          }
+          score(T.page, "known", kp, kf);
+          cell(T.page, "links", '<span class="na">—</span>');
+        });
+      },
       "qr.js": function(T) {
         // checked against modules made by the Python qrcode package (same text, level and mask)
         var REF = [{
@@ -9218,6 +11093,85 @@
           }).then(function() {
             score(T.page, "known", kp, kf);
             cell(T.page, "links", '<span class="na">—</span>');
+          });
+        });
+      },
+      /* Math in words (tools.js: HelperTools.words / spoken, for Read aloud and Play) and the screen-reader names
+         a11y.js puts on the math (role="img" + aria-label). known: words for known text and markup; load: the
+         answer band of a fractions problem gets its name, and its textContent is unchanged. */
+      "speech": function(T) {
+        var CASES = [
+          ["t", "6√2", "6 root 2"],
+          ["t", "i²³ = i³", "i to the 23rd power equals i cubed"],
+          ["t", "1 3/4", "1 and 3 quarters"],
+          ["t", "3:2", "3 to 2"],
+          ["t", "1:30 pm", "1 30 PM"],
+          ["t", "$7,454.16", "7,454 dollars and 16 cents"],
+          ["t", "100 mL/hr", "100 milliliters per hour"],
+          ["t", "21 gtt/min", "21 drops per minute"],
+          ["t", "120 ft²", "120 square feet"],
+          ["t", "4.7 kΩ", "4.7 kilohms"],
+          ["t", "0.1(6)", "0.1 with the 6 repeating"],
+          ["t", "|x − 3| = 4", "the absolute value of x minus 3, equals 4"],
+          ["t", "f⁻¹(x)", "f inverse of x"],
+          ["t", "[0, ∞)", "the interval from 0 to infinity, including 0"],
+          ["t", "aₙ = 3 + 4(n − 1)", "a sub n equals 3 plus 4 times the quantity n minus 1"],
+          ["t", "x ≤ 5", "x is less than or equal to 5"],
+          ["t", "≈ 8.4853", "about 8.4853"],
+          ["h", '<span class="fr"><span class="nu">3</span><span class="de">4</span></span>', "3 quarters"],
+          ["h", '<span class="wn">1</span><span class="fr"><span class="nu">3</span><span class="de">4</span></span>', "1 and 3 quarters"],
+          ["h", '<i>x</i><sup>2</sup> − 3<i>x</i> + 2', "x squared minus 3x plus 2"],
+          ["h", '<span>6<span class="rad"><span class="rs">√</span><span class="rc">2</span></span></span>', "6 root 2"],
+          ["h", '<span class="mx" style="grid-template-columns:repeat(2,auto)"><span>2</span><span>7</span><span>−9</span><span>2</span></span>', "the 2 by 2 matrix: row 1: 2, 7; row 2: negative 9, 2"]
+        ];
+        var link = "fractions.html?mode=simplify&q=" + encodeURIComponent("18/24");
+        return load(link).then(function(fr) {
+          var w = fr.f.contentWindow,
+            d = docOf(fr),
+            HT = w.HelperTools,
+            kp = 0,
+            kf = 0;
+          if (!HT || !HT.words || !HT.spoken) {
+            fail(T.page, "loads", "no HelperTools.words / spoken on " + link, link);
+            score(T.page, "load", 0, 1);
+            drop(fr);
+            return;
+          }
+          CASES.forEach(function(c) {
+            var got;
+            try {
+              if (c[0] === "t") got = HT.words(c[1]);
+              else {
+                var el = d.createElement("div");
+                el.innerHTML = c[1];
+                got = HT.spoken(el);
+              }
+            } catch (e) { got = "error: " + e.message; }
+            if (got === c[2]) {
+              kp++;
+              pass();
+            } else {
+              kf++;
+              fail(T.page, "known answer", "“" + c[1] + "” is said “" + got + "”, expected “" + c[2] + "”", link);
+            }
+          });
+          score(T.page, "known", kp, kf);
+          cell(T.page, "links", '<span class="na">—</span>');
+          // a11y.js names the answer after the page settles (debounced); the value's text stays the same
+          return settle(900).then(function() {
+            var v = d.querySelector(".answer .v"),
+              name = v && v.getAttribute("aria-label");
+            if (!w.HelperA11y) {
+              fail(T.page, "loads", "a11y.js didn’t load", link);
+              score(T.page, "load", 0, 1);
+            } else if (!v || name !== "3 quarters" || v.getAttribute("role") !== "img" || v.textContent.replace(/\s+/g, "") !== "34") {
+              fail(T.page, "loads", "the answer’s screen-reader name is “" + name + "” (role " + (v && v.getAttribute("role")) + "), expected “3 quarters”", link);
+              score(T.page, "load", 0, 1);
+            } else {
+              pass();
+              score(T.page, "load", 1, 0);
+            }
+            drop(fr);
           });
         });
       },
@@ -9532,7 +11486,8 @@
         ];
         if (depth === "thorough") LINKS = LINKS.concat(["subtraction.html?q=5003-1278", "multiplication.html?q=1%2F3*5%2F8", "integers.html?q=-2*(-7)",
           "pemdas.html?q=" + encodeURIComponent("20 − 12 ÷ 4 × 2 + 1"), "stats.html?mode=center&q=4, 8, 6, 5, 7", "algebra.html", "percents.html", "probability.html",
-          "logarithms.html", "college-statistics.html", "graphing.html", "calculus.html", "trigonometry.html", "aviation.html", "nursing.html", "carpentry.html", "electrical.html", "cooking.html", "counting.html"
+          "logarithms.html", "college-statistics.html", "graphing.html", "calculus.html", "trigonometry.html", "aviation.html", "nursing.html", "pharmacy.html", "carpentry.html", "electrical.html", "hvac-plumbing.html",
+          "machining.html", "automotive.html", "cooking.html", "business.html", "real-estate.html", "counting.html"
         ]);
         var link0 = "pemdas.html?q=" + encodeURIComponent("3 + 4 × 2") + "&practice=step";
         // load: the button
@@ -9694,7 +11649,12 @@
     // ?pages=ratios,stats runs just those
     var only = /[?&]pages=([^&]+)/.exec(location.search);
     if (only) {
-      var want = decodeURIComponent(only[1]).split(",").map(function(x) { return x === "keypad" ? x : x === "qr" || x === "qr.js" ? "qr.js" : x === "embed" || x === "embed.js" ? "embed.js" : (window.HelperSite && window.HelperSite.id(x)) || x.replace(/\.html$/, "") + ".html"; }); // old names or new: pemdas, order-of-operations
+      var has1 = function(name) { return PAGES.some(function(T) { return T.page === name; }); };
+      var want = decodeURIComponent(only[1]).split(",").map(function(x) { // a row's own name (speech, voice.js) or its file without .js (voice)
+        if (has1(x)) return x;
+        if (has1(x + ".js")) return x + ".js";
+        return x === "keypad" ? x : x === "qr" || x === "qr.js" ? "qr.js" : x === "embed" || x === "embed.js" ? "embed.js" : (window.HelperSite && window.HelperSite.id(x)) || x.replace(/\.html$/, "") + ".html";
+      }); // old names or new: pemdas, order-of-operations
       PAGES.forEach(function(T) { chosen[T.page] = want.indexOf(T.page) >= 0; });
       rows();
     }

@@ -342,6 +342,7 @@
     { href: "daily.html", name: "Daily", title: "Problem of the day" },
     { href: "progress.html", name: "Progress", title: "Your progress" },
     { href: "skills.html", name: "Skill map", title: "Your skill map: the Common Core standards you've practiced, and what's next" },
+    { href: "review.html", name: "Review", title: "Your review: the problems you missed, back again 1, 3, 7 and 14 days later" },
     { href: "results.html", name: "Results", title: "Class results: a teacher's view of a practice set" },
     { href: "reference.html", name: "Reference", title: "Reference sheets to print" },
     { href: "glossary.html", name: "Definitions", title: "The Word List: what the math words mean" },
@@ -368,7 +369,9 @@
       ["descent", "Descent", "top of descent, fpm"],
       ["weight", "Weight & balance", "moments and CG"],
       ["turns", "Turns & glide", ""],
-      ["units", "Units", "kt, nm, inHg, gal ↔ lb"]
+      ["units", "Units", "kt, nm, inHg, gal ↔ lb"],
+      ["metar", "Weather", "METAR, TAF, flight category"],
+      ["windsaloft", "Winds aloft", "FB forecast, wind at altitude"]
     ]
   }, {
     href: "nursing.html",
@@ -387,6 +390,24 @@
       ["units", "Units", "insulin, heparin"],
       ["convert", "Conversions", "mcg, mL, lb, °F"],
       ["bsa", "Body surface area", "dose per m²"]
+    ]
+  }, {
+    href: "pharmacy.html",
+    path: "helpers/pharmacy.html",
+    sign: "℞",
+    name: "Pharmacy",
+    title: "The Pill Counter",
+    c: "pha",
+    tabs: [
+      ["sig", "Reading a sig", "BID, TID, q8h, PRN"],
+      ["days", "Days’ supply", "tablets, mL, puffs, units"],
+      ["qty", "Quantity to dispense", "round up, packages"],
+      ["allig", "Alligation", "mix two strengths"],
+      ["conc", "Concentrations", "% w/v, 1:1000, C1V1"],
+      ["comp", "Compounding", "scale a formula, qs"],
+      ["convert", "Conversions", "tsp, mL, lb, Roman"],
+      ["biz", "Business math", "markup, AWP, profit"],
+      ["temp", "Temperature & storage", "°F ↔ °C, 2–8 °C"]
     ]
   }, {
     href: "carpentry.html",
@@ -425,6 +446,60 @@
       ["ac", "AC & three-phase", "RMS, Hz, √3·V·I·pf"]
     ]
   }, {
+    href: "hvac-plumbing.html",
+    path: "helpers/hvac-plumbing.html",
+    sign: "❄",
+    name: "HVAC & plumbing",
+    title: "The Pipe Wrench",
+    c: "hvp",
+    tabs: [
+      ["heat", "Heat units", "BTU/hr, watts, tons, therms"],
+      ["air", "Airflow", "1.08 × CFM × ΔT, air changes"],
+      ["duct", "Ducts", "velocity and duct size"],
+      ["loss", "Heat loss", "U × A × ΔT, R-values"],
+      ["pipe", "Pipe & tank volume", "gallons and pounds"],
+      ["flow", "Flow & fill time", "gpm, time to fill"],
+      ["pressure", "Water pressure", "feet of head ↔ psi"],
+      ["drain", "Drain slope", "fall, 1/4\" per foot, %"],
+      ["heater", "Water heater", "BTU, time, recovery"]
+    ]
+  }, {
+    href: "machining.html",
+    path: "helpers/machining.html",
+    sign: "⌀",
+    name: "Machining",
+    title: "The Machine Shop",
+    c: "mch",
+    tabs: [
+      ["rpm", "Spindle speed", "RPM from SFM"],
+      ["feed", "Feed rate", "IPM, chip load"],
+      ["thread", "Threads", "tap drills, TPI"],
+      ["taper", "Tapers", "per foot, angle, offset"],
+      ["bolt", "Bolt circles", "hole x, y"],
+      ["sine", "Sine bar", "gauge block height"],
+      ["weight", "Metal weight", "plate, bar, tube"],
+      ["weld", "Welding", "heat input, fillets, filler"],
+      ["fit", "Tolerances & fits", "limits, clearance"]
+    ]
+  }, {
+    href: "automotive.html",
+    path: "helpers/automotive.html",
+    sign: "⚙",
+    name: "Auto shop",
+    title: "The Gear Box",
+    c: "aut",
+    tabs: [
+      ["gear", "Gear ratios", "teeth, final drive, rpm out"],
+      ["speed", "Speed ↔ RPM", "gears, tire, mph"],
+      ["tire", "Tire size", "P225/60R16, speedometer"],
+      ["disp", "Displacement", "bore, stroke, liters"],
+      ["comp", "Compression", "swept and clearance cc"],
+      ["power", "HP & torque", "lb-ft × rpm ÷ 5,252"],
+      ["fuel", "Fuel & trip", "mpg, L/100 km, trip cost"],
+      ["mix", "Mixtures", "50:1 oil, coolant %"],
+      ["shop", "Shop money", "labor, markup, tax"]
+    ]
+  }, {
     href: "cooking.html",
     path: "helpers/cooking.html",
     sign: "♨",
@@ -442,12 +517,48 @@
       ["pans", "Pan sizes", "round, square, 9 × 13"],
       ["ratios", "Ratios & brines", "brine, rice, coffee, 3:1"]
     ]
+  }, {
+    href: "business.html",
+    path: "helpers/business.html",
+    sign: "¤",
+    name: "Business",
+    title: "The Cash Register",
+    c: "biz",
+    tabs: [
+      ["markup", "Markup & margin", "and why they differ"],
+      ["discount", "Discounts", "stacked, % off, original price"],
+      ["till", "Change & the till", "fewest bills, over/short"],
+      ["tax", "Sales tax", "receipts, tax included"],
+      ["payroll", "Payroll", "time cards, overtime, commission"],
+      ["breakeven", "Break-even", "units and sales"],
+      ["pl", "Profit & loss", "gross and net margin"],
+      ["inventory", "Inventory", "turnover, reorder point"],
+      ["unit", "Unit price", "best buy, bulk deals"]
+    ]
+  }, {
+    href: "real-estate.html",
+    path: "helpers/real-estate.html",
+    sign: "⌂",
+    name: "Real estate",
+    title: "The Floor Plan",
+    c: "rea",
+    tabs: [
+      ["sqft", "Square footage", "rooms, L-shapes, $ per sq ft"],
+      ["land", "Acreage & land", "acres, lots, front feet"],
+      ["commission", "Commission", "splits and tiers"],
+      ["net", "Seller’s net", "costs, payoff, price to net"],
+      ["mortgage", "Mortgage", "P&I, PITI, LTV, afford"],
+      ["tax", "Property tax", "mills, %, exemptions"],
+      ["prorate", "Prorations", "365 and 360-day"],
+      ["invest", "Investment", "cap rate, GRM, cash on cash"],
+      ["value", "Appreciation", "growth, % change, depreciation"]
+    ]
   }];
 
   var LIGHT = "--nv-add:#0D7361;--nv-sub:#A8412A;--nv-mul:#544696;--nv-div:#A85A0C;--nv-ord:#1F5E8C;--nv-alg:#9B2F6B;--nv-geo:#4F6A17;" +
-    "--nv-fra:#0B6E83;--nv-pct:#8A6D00;--nv-fac:#7B3FA0;--nv-int:#46596E;--nv-rat:#B0263E;--nv-lin:#1E7A3C;--nv-sta:#3346A8;--nv-wrd:#0F766E;--nv-gra:#0369A1;--nv-exp:#BE185D;--nv-pro:#A21CAF;--nv-scr:#B45309;--nv-tri:#4D7C0F;--nv-cal:#7C3AED;--nv-num:#EA580C;--nv-qua:#B91C1C;--nv-log:#1D4ED8;--nv-seq:#15803D;--nv-fun:#0E7490;--nv-rad:#92400E;--nv-cpx:#4F46E5;--nv-bel:#047857;--nv-mat:#57534E;--nv-uni:#BE123C;--nv-mon:#A16207;--nv-avi:#0B5CAD;--nv-nur:#6E3D64;--nv-crp:#694321;--nv-ele:#611E05;--nv-rcp:#67311E;--nv-cnt:#6B5A2B;";
+    "--nv-fra:#0B6E83;--nv-pct:#8A6D00;--nv-fac:#7B3FA0;--nv-int:#46596E;--nv-rat:#B0263E;--nv-lin:#1E7A3C;--nv-sta:#3346A8;--nv-wrd:#0F766E;--nv-gra:#0369A1;--nv-exp:#BE185D;--nv-pro:#A21CAF;--nv-scr:#B45309;--nv-tri:#4D7C0F;--nv-cal:#7C3AED;--nv-num:#EA580C;--nv-qua:#B91C1C;--nv-log:#1D4ED8;--nv-seq:#15803D;--nv-fun:#0E7490;--nv-rad:#92400E;--nv-cpx:#4F46E5;--nv-bel:#047857;--nv-mat:#57534E;--nv-uni:#BE123C;--nv-mon:#A16207;--nv-avi:#0B5CAD;--nv-nur:#6E3D64;--nv-crp:#694321;--nv-ele:#611E05;--nv-rcp:#67311E;--nv-cnt:#6B5A2B;--nv-pha:#5E62B5;--nv-hvp:#134E4E;--nv-mch:#38543B;--nv-aut:#7E0135;--nv-biz:#8F538C;--nv-rea:#454A0D;";
   var DARK = "--nv-add:#4FCCB0;--nv-sub:#F08A6E;--nv-mul:#A99CF0;--nv-div:#F2A85C;--nv-ord:#7DB8E8;--nv-alg:#F08CC0;--nv-geo:#B5D06A;" +
-    "--nv-fra:#5FC9DE;--nv-pct:#E3C04D;--nv-fac:#C9A0EE;--nv-int:#A9BDD2;--nv-rat:#F27D8F;--nv-lin:#6FD38E;--nv-sta:#93A2F2;--nv-wrd:#5EEAD4;--nv-gra:#7DD3FC;--nv-exp:#FDA4AF;--nv-pro:#F0ABFC;--nv-scr:#FCD34D;--nv-tri:#BEF264;--nv-cal:#C4B5FD;--nv-num:#FDBA74;--nv-qua:#FCA5A5;--nv-log:#93C5FD;--nv-seq:#86EFAC;--nv-fun:#67E8F9;--nv-rad:#FBBF24;--nv-cpx:#A5B4FC;--nv-bel:#6EE7B7;--nv-mat:#D6D3D1;--nv-uni:#FDA4AF;--nv-mon:#FDE047;--nv-avi:#8CC4F5;--nv-nur:#FAC8F0;--nv-crp:#CDA383;--nv-ele:#F9C4A0;--nv-rcp:#E4BDAF;--nv-cnt:#EED9A0;";
+    "--nv-fra:#5FC9DE;--nv-pct:#E3C04D;--nv-fac:#C9A0EE;--nv-int:#A9BDD2;--nv-rat:#F27D8F;--nv-lin:#6FD38E;--nv-sta:#93A2F2;--nv-wrd:#5EEAD4;--nv-gra:#7DD3FC;--nv-exp:#FDA4AF;--nv-pro:#F0ABFC;--nv-scr:#FCD34D;--nv-tri:#BEF264;--nv-cal:#C4B5FD;--nv-num:#FDBA74;--nv-qua:#FCA5A5;--nv-log:#93C5FD;--nv-seq:#86EFAC;--nv-fun:#67E8F9;--nv-rad:#FBBF24;--nv-cpx:#A5B4FC;--nv-bel:#6EE7B7;--nv-mat:#D6D3D1;--nv-uni:#FDA4AF;--nv-mon:#FDE047;--nv-avi:#8CC4F5;--nv-nur:#FAC8F0;--nv-crp:#CDA383;--nv-ele:#F9C4A0;--nv-rcp:#E4BDAF;--nv-cnt:#EED9A0;--nv-pha:#CCCFFF;--nv-hvp:#A6D9D4;--nv-mch:#9FB79A;--nv-aut:#BEA5AA;--nv-biz:#C79FC3;--nv-rea:#B3B47C;";
   var CSS =
     ":root{" + LIGHT + "}" +
     "@media (prefers-color-scheme: dark){:root:not([data-theme=\"light\"]){" + DARK + "}}" +
@@ -499,16 +610,18 @@
     ".sitenav .sn-wide .sn-wgrp + .sn-wgrp{border-top:0;margin-top:0;padding-top:0}" +
     ".sitenav .sn-wide .sn-wgrp{padding-bottom:6px}" +
     ".sitenav .sn-wide ul a{padding-top:4px;padding-bottom:4px;font-size:13px}" +
-    // Math at work with several fields: one field per column, its page's name and each tab's hint on a line of their own
-    ".sitenav .sn-wmenu.sn-wwork{width:1010px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}" +
+    // Math at work with several fields: a grid of fields that wraps (four across on a laptop, one on a phone), each with its
+    // page's name on a line of its own; a tab's hint is its tooltip, so eleven fields stay as compact as a section's panel
+    ".sitenav .sn-wmenu.sn-wwork{width:940px;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:4px 8px}" +
+    ".sitenav .sn-wwork .sn-wgrp{padding-bottom:10px}" +
     ".sitenav .sn-wwork a.sn-wh small{display:block;margin:2px 0 0;font-weight:400}" +
-    ".sitenav .sn-wwork ul a small{display:block;margin:1px 0 0;font-size:11.5px;line-height:1.3}" +
+    ".sitenav .sn-wwork ul a small{display:none}" +
     ".sitenav .sn-wmenu a[aria-current=\"page\"]{background:var(--surface-2);box-shadow:inset 3px 0 0 var(--nv)}" +
     ".sitenav .sn-wbtn b.it{font-style:italic;font-family:Georgia,\"Times New Roman\",serif;font-size:15px}" +
     ".sitenav .sn-wmenu a b.it{font-style:italic;font-family:Georgia,\"Times New Roman\",serif}" +
     "@media (max-width:560px){.sitenav .sn-links a{padding:5px 9px;font-size:12.5px}.sitenav .sn-tools{margin-left:0}.sitenav .sn-wbtn{padding:5px 9px;font-size:12.5px}" +
-    // phones: one column, so the hints go back beside their tabs
-    ".sitenav .sn-wwork a.sn-wh small,.sitenav .sn-wwork ul a small{display:inline;margin:0 0 0 4px}}" +
+    // phones: one column, the page's name beside its field
+    ".sitenav .sn-wmenu.sn-wwork{grid-template-columns:1fr}.sitenav .sn-wwork a.sn-wh small{display:inline;margin:0 0 0 4px}}" +
     // each helper's #statusLine is for screen readers only: the same message is already on screen
     "#statusLine{position:absolute !important;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}" +
     "@media print{.sitenav{display:none !important}}";
@@ -674,7 +787,9 @@
       var cur = workIsHere(g, here);
       h += '<div class="sn-wgrp" style="--nv:var(--nv-' + g.c + ')"><a class="sn-wh" href="' + WU(g) + '"' + (cur ? ' aria-current="page"' : "") + '><b aria-hidden="true">' +
         g.sign + "</b>" + g.name + " <small>" + g.title + "</small></a><ul>";
-      g.tabs.forEach(function(t) { h += '<li><a href="' + WU(g, "mode=" + t[0]) + '">' + t[1] + (t[2] ? " <small>" + t[2] + "</small>" : "") + "</a></li>"; });
+      g.tabs.forEach(function(t) {
+        h += '<li><a href="' + WU(g, "mode=" + t[0]) + '"' + (t[2] && !one ? ' title="' + (t[1] + ": " + t[2]).replace(/&/g, "&amp;").replace(/"/g, "&quot;") + '"' : "") + ">" + t[1] + (t[2] ? " <small>" + t[2] + "</small>" : "") + "</a></li>";
+      });
       h += "</ul></div>";
     });
     return h + "</div></li>";
@@ -682,15 +797,27 @@
 
   // every button in the bar with a menu (the sections, and Math at work); opening one closes the others
   function menus(nav) {
-    var closers = [];
-    [].forEach.call(nav.querySelectorAll(".sn-work"), function(box) { menu1(box, closers); });
+    var closers = [],
+      escs = [];
+    [].forEach.call(nav.querySelectorAll(".sn-work"), function(box) { menu1(box, closers, escs); });
+    // Escape anywhere closes the open menu and goes back to its button: Safari doesn't focus a button when it's clicked,
+    // so after a mouse click the button's and the menu's own Escape handlers never hear the key
+    document.addEventListener("keydown", function(e) {
+      if (e.key !== "Escape" && e.key !== "Esc") return;
+      escs.forEach(function(esc) { if (esc()) e.preventDefault(); });
+    });
   }
 
-  function menu1(box, closers) {
+  function menu1(box, closers, escs) {
     var btn = box.querySelector(".sn-wbtn"),
       menu = box.querySelector(".sn-wmenu");
     if (!btn || !menu) return;
     closers.push(function() { close(false); });
+    escs.push(function() { // true when it was open
+      if (menu.hidden) return false;
+      close(true);
+      return true;
+    });
 
     function links() { return [].slice.call(menu.querySelectorAll("a")); }
 

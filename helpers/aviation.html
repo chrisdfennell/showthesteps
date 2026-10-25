@@ -3,18 +3,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Aviation math, step by step – The Flight Computer | Show The Steps</title>
-<meta name="description" content="Pilot math, step by step, like an E6B flight computer: the wind triangle (wind correction angle, true heading, ground speed), crosswind and headwind components, time, speed, distance and fuel, pressure and density altitude, true airspeed, true, magnetic and compass headings, top of descent, weight and balance, turns and glide distance, and aviation units.">
+<meta name="description" content="Pilot math, step by step, like an E6B flight computer: the wind triangle (wind correction angle, true heading, ground speed), crosswind and headwind components, time, speed, distance and fuel, pressure and density altitude, true airspeed, true, magnetic and compass headings, top of descent, weight and balance, turns and glide distance, aviation units, METAR and TAF weather reports decoded with the flight category, and winds aloft (FB) read and interpolated.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Show The Steps">
 <meta property="og:title" content="Aviation math, step by step – The Flight Computer">
-<meta property="og:description" content="Pilot math, step by step, like an E6B flight computer: the wind triangle, crosswind components, time, speed, distance and fuel, pressure and density altitude, true airspeed, headings, top of descent, weight and balance, turns and glide distance.">
+<meta property="og:description" content="Pilot math, step by step, like an E6B flight computer: the wind triangle, crosswind components, time, speed, distance and fuel, pressure and density altitude, true airspeed, headings, top of descent, weight and balance, turns and glide distance, and METAR and TAF weather reports.">
 <meta property="og:url" content="https://showthesteps.org/helpers/aviation">
 <meta property="og:image" content="https://showthesteps.org/assets/icons/og.png">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Show The Steps: every step, written out.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://showthesteps.org/helpers/aviation">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","name":"Aviation math, step by step – The Flight Computer","description":"Pilot math, step by step, like an E6B flight computer: the wind triangle, crosswind and headwind components, time, speed, distance and fuel, pressure and density altitude, true airspeed, true, magnetic and compass headings, top of descent, weight and balance, turns and glide distance, and aviation units.","url":"https://showthesteps.org/helpers/aviation","inLanguage":"en-US","isAccessibleForFree":true,"learningResourceType":["Interactive worked examples","Practice problems"],"interactivityType":"active","educationalUse":["Practice","Self-assessment"],"teaches":"Aviation math (flight computer, ground school)","educationalLevel":["High school (grades 9–12)","Adult education"],"audience":{"@type":"EducationalAudience","educationalRole":"student"},"publisher":{"@type":"Organization","name":"Show The Steps","url":"https://showthesteps.org/"},"isPartOf":{"@type":"WebSite","name":"Show The Steps","url":"https://showthesteps.org/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","name":"Aviation math, step by step – The Flight Computer","description":"Pilot math, step by step, like an E6B flight computer: the wind triangle, crosswind and headwind components, time, speed, distance and fuel, pressure and density altitude, true airspeed, true, magnetic and compass headings, top of descent, weight and balance, turns and glide distance, aviation units, METAR and TAF weather reports, and winds aloft.","url":"https://showthesteps.org/helpers/aviation","inLanguage":"en-US","isAccessibleForFree":true,"learningResourceType":["Interactive worked examples","Practice problems"],"interactivityType":"active","educationalUse":["Practice","Self-assessment"],"teaches":"Aviation math (flight computer, ground school)","educationalLevel":["High school (grades 9–12)","Adult education"],"audience":{"@type":"EducationalAudience","educationalRole":"student"},"publisher":{"@type":"Organization","name":"Show The Steps","url":"https://showthesteps.org/"},"isPartOf":{"@type":"WebSite","name":"Show The Steps","url":"https://showthesteps.org/"}}</script>
 <script src="../assets/site.js"></script>
 <script src="../assets/nav.js" defer></script>
 <script src="../assets/progress.js" defer></script>
@@ -224,6 +224,11 @@
   }
   .safety b {
     font-weight: 600
+  }
+  .learn-line {
+    margin: 8px 2px 0;
+    font-size: 14px;
+    color: var(--ink-2)
   }
 
   .problem {
@@ -1370,6 +1375,191 @@
     stroke-dasharray: 5 4
   }
 
+  /* the weather tab: the latest METAR, fetched only when asked */
+  .wxget {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 10px;
+    margin-top: -4px
+  }
+  .wxget label {
+    font-family: var(--f-mono);
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    color: var(--ink-3)
+  }
+  .wxget input {
+    font-family: var(--f-mono);
+    font-size: 16px;
+    font-weight: 600;
+    width: 6.5ch;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: transparent;
+    border: 0;
+    border-bottom: 2px solid var(--rule);
+    border-radius: 0;
+    padding: 2px 4px;
+    outline: none
+  }
+  .wxget input:focus {
+    border-bottom-color: var(--focus)
+  }
+  .wxget select {
+    font: inherit;
+    font-size: 13.5px;
+    color: var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 7px;
+    padding: 5px 6px
+  }
+  .wxget .ghost:disabled {
+    cursor: progress;
+    opacity: .7
+  }
+  .wxnote {
+    font-size: 12.5px;
+    color: var(--ink-3)
+  }
+  .wxmsg {
+    flex-basis: 100%;
+    font-size: 13.5px;
+    color: var(--ink-2);
+    overflow-wrap: anywhere
+  }
+  .wxmsg:empty {
+    display: none
+  }
+  .wxmsg.bad,
+  .wxmsg.ask {
+    color: var(--ink);
+    background: var(--warm-bg);
+    border-left: 3px solid var(--warm);
+    border-radius: 4px 8px 8px 4px;
+    padding: 7px 12px
+  }
+  .wxmsg b {
+    font-family: var(--f-mono);
+    font-weight: 600;
+    color: var(--ink)
+  }
+  .wxmsg .ghost {
+    margin-left: 8px;
+    padding: 4px 11px
+  }
+
+  /* the weather tab: each group of a report as a colored chip, its meaning beside it */
+  .mg {
+    font-family: var(--f-mono);
+    font-weight: 600;
+    font-size: 13.5px;
+    line-height: 1.5;
+    background: var(--cb);
+    color: var(--c);
+    border: 1.5px solid transparent;
+    border-radius: 6px;
+    padding: 0 6px;
+    white-space: nowrap;
+    display: inline-block
+  }
+  .mg.unk {
+    background: transparent;
+    color: var(--ink-2);
+    border: 1.5px dashed var(--ink-3)
+  }
+  .mt-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    min-width: 0
+  }
+  .mt-dec {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    gap: 8px 12px;
+    align-items: baseline;
+    min-width: 0
+  }
+  .mt-row {
+    display: contents
+  }
+  .mt-dec .mg {
+    justify-self: start
+  }
+  .mt-m {
+    font-size: 14px;
+    color: var(--ink-2);
+    min-width: 0;
+    overflow-wrap: anywhere
+  }
+  .mt-m b {
+    font-family: var(--f-mono);
+    font-weight: 600;
+    color: var(--ink)
+  }
+  .mt-m .nd,
+  .log .txt .nd {
+    font-style: italic;
+    color: var(--ink-3)
+  }
+  @media (max-width:520px) {
+    .mt-dec {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 2px
+    }
+    .mt-dec .mg {
+      margin-top: 6px;
+      white-space: normal;
+      overflow-wrap: anywhere
+    }
+  }
+  .tbl td.mt-wrap {
+    font-family: var(--f-body);
+    font-weight: 500;
+    white-space: normal;
+    min-width: 16ch;
+    max-width: 34ch
+  }
+  .tbl tr.hi td {
+    background: var(--key-bg)
+  }
+  .tbl.fct {
+    min-width: 0
+  }
+  @media (max-width:520px) {
+    .tbl.fct td {
+      white-space: normal
+    }
+  }
+  .tbl td.on {
+    color: var(--key);
+    text-decoration: underline;
+    text-underline-offset: 3px
+  }
+  .fc {
+    font-weight: 700
+  }
+  .fc-vfr,
+  .answer .v .fc-vfr {
+    color: var(--a)
+  }
+  .fc-mvfr,
+  .answer .v .fc-mvfr {
+    color: var(--key)
+  }
+  .fc-ifr,
+  .answer .v .fc-ifr {
+    color: var(--bad)
+  }
+  .fc-lifr,
+  .answer .v .fc-lifr {
+    color: var(--r)
+  }
+
   .legend {
     display: flex;
     flex-wrap: wrap;
@@ -1545,7 +1735,10 @@
   html.embed .reads,
   html.embed .keys,
   html.embed .entry,
-  html.embed .safety {
+  html.embed .learn-line,
+  html.embed .safety,
+  html.embed .wxget,
+  html.embed #fbGet {
     display: none !important
   }
   html.embed .problem {
@@ -1615,6 +1808,7 @@
     .cknote,
     .ckhint,
     #ckGo,
+    .wxget,
     .uselink {
       display: none !important
     }
@@ -1794,7 +1988,7 @@
       <h1>The Flight <em>Computer</em></h1>
       <p class="tagline">The math on a pilot&rsquo;s E6B, one step at a time: wind correction and ground speed, crosswind
         components, time, distance and fuel, pressure and density altitude, true airspeed, true to magnetic to compass,
-        top of descent, weight and balance, turns and glide. The trig behind the wind triangle is on
+        top of descent, weight and balance, turns and glide, METAR and TAF weather reports decoded, and winds aloft. The trig behind the wind triangle is on
         <a href="trigonometry.html">the Unit Circle</a>, plain unit changes on <a href="unit-conversions.html">the Measuring Tape</a>.</p>
     </div>
     <button class="theme-btn" id="themeBtn" type="button">Dark mode</button>
@@ -1802,7 +1996,9 @@
 
   <div class="safety" role="note"><b>For learning only.</b> This page is for studying and for checking homework and
     ground-school work &mdash; not for planning a real flight. Use official weather, charts and flight-planning tools, and
-    the numbers in your aircraft&rsquo;s POH (Pilot&rsquo;s Operating Handbook).</div>
+    the numbers in your aircraft&rsquo;s POH (Pilot&rsquo;s Operating Handbook). The Weather and Winds aloft tabs are for
+    learning to read reports and forecasts: before a real flight, get an official weather briefing (in the US, from Flight Service at 1800wxbrief.com).</div>
+  <p class="learn-line">Lessons: <a href="../learn/wind-correction-angle.html">wind correction angle</a> · <a href="../learn/crosswind-component.html">crosswind component</a> · <a href="../learn/density-altitude.html">density altitude</a> · <a href="../learn/weight-and-balance.html">weight and balance</a> · <a href="../learn/index.html#work">all Math at work lessons</a></p>
 
   <section class="problem">
     <div class="modes" id="modeTabs" role="group" aria-label="What kind of problem">
@@ -1815,6 +2011,8 @@
       <button type="button" data-mode="weight" aria-pressed="false">Weight &amp; balance</button>
       <button type="button" data-mode="turns" aria-pressed="false">Turns &amp; glide</button>
       <button type="button" data-mode="units" aria-pressed="false">Units</button>
+      <button type="button" data-mode="metar" aria-pressed="false">Weather</button>
+      <button type="button" data-mode="windsaloft" aria-pressed="false">Winds aloft</button>
     </div>
     <div class="entry">
       <div class="numfield">
@@ -1823,16 +2021,37 @@
       </div>
       <div class="keys" id="keys" aria-label="Insert a symbol">
         <button type="button" data-k="°" aria-label="Degrees">°</button>
-        <button type="button" data-k=" at " data-only="wind runway trip descent turns">at</button>
+        <button type="button" data-k=" at " data-only="wind runway trip descent turns windsaloft">at</button>
         <button type="button" data-k=" @ " data-only="weight">@</button>
         <button type="button" data-k=", " aria-label="Comma">,</button>
         <button type="button" data-k=" E" data-only="headings" aria-label="East">E</button>
         <button type="button" data-k=" W" data-only="headings" aria-label="West">W</button>
         <button type="button" data-k=" to " data-only="units descent">to</button>
+        <button type="button" data-k=" runway " data-only="metar">runway</button>
+        <button type="button" data-k=" elevation " data-only="metar">elevation</button>
       </div>
     </div>
     <div class="reads" id="reads"></div>
     <p class="hint" id="hint"></p>
+    <div class="wxget" id="wxGet" hidden>
+      <label for="wxIcao">Latest METAR</label>
+      <input id="wxIcao" type="text" maxlength="4" autocomplete="off" spellcheck="false" placeholder="KSEA" aria-label="Airport code (ICAO)">
+      <button type="button" class="ghost" id="wxBtn">Get the latest METAR</button>
+      <span class="wxnote">US airports, from the National Weather Service</span>
+      <div class="wxmsg" id="wxMsg" role="status"></div>
+    </div>
+    <div class="wxget" id="fbGet" hidden>
+      <label for="fbStn">Latest winds aloft</label>
+      <input id="fbStn" type="text" maxlength="4" autocomplete="off" spellcheck="false" placeholder="SEA" aria-label="Station code (SEA or KSEA)">
+      <select id="fbHrs" aria-label="Which forecast">
+        <option value="6">6-hour</option>
+        <option value="12">12-hour</option>
+        <option value="24">24-hour</option>
+      </select>
+      <button type="button" class="ghost" id="fbBtn">Get the latest winds aloft</button>
+      <span class="wxnote">US forecast stations, from the National Weather Service</span>
+      <div class="wxmsg" id="fbMsg" role="status"></div>
+    </div>
 
     <details class="maker" id="maker">
       <summary>Make a problem for me <span>&mdash; pick what goes in it</span></summary>
@@ -1906,11 +2125,12 @@
 
      URL parameters
      ---------------
-     mode      wind | runway | trip | altitude | headings | descent | weight | turns | units — which tab opens.
+     mode      wind | runway | trip | altitude | headings | descent | weight | turns | units | metar | windsaloft — which tab opens.
                (Also understood: wind-triangle, e6b, wca, ground-speed, crosswind, headwind, components, time, speed,
                distance, fuel, pressure, density, density-altitude, pressure-altitude, tas, airspeed, heading,
                magnetic, compass, variation, deviation, tod, top-of-descent, weight-and-balance, wb, balance, cg,
-               turn, bank, glide, radius, unit, convert.)  Missing? It is worked out from q (below).
+               turn, bank, glide, radius, unit, convert, metar, taf, speci, weather, wx, winds-aloft, fb, fd.)  Missing? It is
+               worked out from q.
      q         The problem as it would be typed, URL-encoded. When mode is missing, q chooses the tab:
                  wind 270 at 15, course 360, TAS 110 · course 225, TAS 95, wind 180/25              -> wind
                  crosswind runway 27 wind 310 at 20 · runway 36 wind 330 at 18 gusting 28            -> runway
@@ -1924,6 +2144,11 @@
                  standard-rate turn at 120 knots · turn radius at 120 knots, 30° bank
                  glide ratio 9 from 6000 ft                                                         -> turns
                  120 knots to mph · 29.92 inHg to hPa · 15 °C to °F · 40 gal avgas to lb            -> units
+                 KSEA 241753Z 18012KT 10SM FEW040 BKN250 14/08 A3012 (a METAR, SPECI or TAF, pasted, with
+                 "runway 16", "elevation 433" or a question added if you like) · what does -SHRA mean   -> metar
+                 SEA 2512 2620+06 2628+01 … (an FB winds-aloft row, or the whole forecast, or one group like 7310),
+                 with "at 7500", "course 090" (or "magnetic course 085 variation 5 E"), "TAS 120" or "best altitude"
+                 added if you like                                                                   -> windsaloft
      The structured form. This is what the page writes in the address bar and what made problems carry, so a
      problem opens exactly as it was made. With these (and mode), q is not needed. Directions in degrees, speeds in
      knots, altitudes in feet, times in minutes:
@@ -1942,6 +2167,19 @@
        turns     task=std&tas=… · task=radius&tas=…&bank=<degrees> · task=glide&ratio=<n>&alt=<ft>
        units     v=<number>&from=<unit>&to=<unit>[&fuel=avgas|jet]   units: kt mph kmh fpm mps nm sm km ft m inhg
                  hpa c f gal l lb kg
+       metar     m=<the report, URL-encoded>[&rwy=<runway>][&elev=<field elevation, ft>][&ask=cat|xw|base|rh|da|wx]
+                 [&code=<a weather code, for ask=wx>]   ask is the question Check my answer asks (cat: flight category,
+                 xw: crosswind, base: cloud base, rh: humidity, da: pressure and density altitude, wx: a code's meaning).
+                 The report is read from the box. Only "Get the latest METAR" (a US airport code, typed beside it)
+                 fetches anything: it sends that code to the National Weather Service (api.weather.gov, CORS-open, no
+                 key), takes the newest observation with a raw METAR, and puts it in the box as if pasted. A one-time
+                 note comes first (localStorage "flight-computer-wx-ok"); it's hidden when embed=1.
+       windsaloft m=<the forecast for one station: heading, FT levels row, the station's row; or one group>[&stn=SEA]
+                 [&alt=<cruise ft>][&lvl=<a level, for one group or ask=dec>][&tc=<true course>|&mc=<magnetic>&var=<deg>E|W]
+                 [&tas=<kt>|&cas=<KIAS>][&ask=dec|interp|wca|isa|best]. A row's blank cells are its lowest levels (no wind
+                 within 1,500 ft of the station), so a row typed on one line lines up again. "Get the latest winds aloft"
+                 downloads the newest FB product (api.weather.gov/products/types/FD1|FD2|FD3) and finds the station in it;
+                 the station code isn't sent. One-time note: localStorage "flight-computer-fb-ok".
      practice  all | step | check  =  Show all work | One step at a time | Check my answer (tutor: Tutor me, tutor.js)
      embed     1 = shown inside a practice set: Check my answer only, the problem read-only, no masthead, tabs,
                maker, examples, practice toggle or footnote, nothing saved; the page posts its height to the
@@ -1964,12 +2202,14 @@
        {type:"helper:make", id, count, options:{mode, …}}   (count is 1 to 100)
           -> {type:"helper:made", id, page:"aviation.html", problems:[{text, html, params, answer, answerHtml}]}
      Option keys (each option lists the modes that use it):
-       mode      wind | runway | trip | altitude | headings | descent | weight | turns | units
+       mode      wind | runway | trip | altitude | headings | descent | weight | turns | units | metar | windsaloft
        wind: windStrength (any light strong) · runway: rwyWind (any head tail), rwyGust (toggle)
        trip: tripTask (any time dist speed fuel), tripReserve (toggle) · altitude: altTask (any pa da tas), altTemp (toggle)
        headings: hdgDir (any down up), hdgWca (toggle) · descent: desTask (any rate dist angle rule)
        weight: wbSize (small full), wbLimits (toggle) · turns: turnTask (any std radius glide)
        units: unitKind (any speed dist press temp fuel)
+       metar: wxAsk (any cat xw base wx rh da), wxRegion (any us intl), wxRmk (toggle: US remarks)
+       windsaloft: fbAsk (any dec interp wca isa best), fbJet (toggle: a jet stream, 100 kt and more)
      Making problems never changes the page, its inputs or localStorage.
 
      Practice hooks: every graded Check, and "Show me the work", is reported as helper:checked — a CustomEvent
@@ -1983,7 +2223,7 @@
     var PAGE = "aviation.html",
       STORE = "flight-computer",
       TITLE = "The Flight Computer";
-    var MODES = ["wind", "runway", "trip", "altitude", "headings", "descent", "weight", "turns", "units"];
+    var MODES = ["wind", "runway", "trip", "altitude", "headings", "descent", "weight", "turns", "units", "metar", "windsaloft"];
     var TITLES = {
       wind: "Wind triangle",
       runway: "Runway winds",
@@ -1993,7 +2233,9 @@
       descent: "Descent",
       weight: "Weight & balance",
       turns: "Turns & glide",
-      units: "Units"
+      units: "Units",
+      metar: "Weather",
+      windsaloft: "Winds aloft"
     };
     var EMBED = /(?:^|[?&])embed=1(?:&|$)/.test(location.search);
 
@@ -4225,9 +4467,1966 @@
       }
     };
 
+    /* ---------- weather reports: METAR, SPECI and TAF ---------- */
+    // Read the way the FAA's Aviation Weather Handbook (FAA-H-8083-28) and the WMO codes (FM 15 METAR, FM 51 TAF) write
+    // them. Each group is read on its own; a group the page doesn't know is shown as "not decoded", never guessed.
+    var WXI = { "-": "light", "+": "heavy" };
+    var WXDS = { MI: "shallow", PR: "partial", BC: "patches of", DR: "low drifting", BL: "blowing", SH: "showers", TS: "thunderstorm", FZ: "freezing" };
+    var WXPH = {
+      DZ: "drizzle",
+      RA: "rain",
+      SN: "snow",
+      SG: "snow grains",
+      IC: "ice crystals",
+      PL: "ice pellets",
+      GR: "hail",
+      GS: "small hail or snow pellets",
+      UP: "unknown precipitation",
+      BR: "mist",
+      FG: "fog",
+      FU: "smoke",
+      VA: "volcanic ash",
+      DU: "widespread dust",
+      SA: "sand",
+      HZ: "haze",
+      PY: "spray",
+      PO: "dust or sand whirls",
+      SQ: "squalls",
+      FC: "funnel cloud",
+      SS: "sandstorm",
+      DS: "duststorm"
+    };
+    // words a student's answer has to use for each part of a weather code (any one of each list)
+    var WXSYN = {
+      "-": ["light"],
+      "+": ["heavy"],
+      VC: ["vicinity", "nearby", "near ", "around", "close"],
+      RE: ["recent", "ended", "earlier"],
+      TORN: ["tornado", "waterspout"],
+      MI: ["shallow"],
+      PR: ["partial"],
+      BC: ["patch"],
+      DR: ["drift"],
+      BL: ["blow"],
+      SH: ["shower"],
+      TS: ["thunder"],
+      FZ: ["freez"],
+      DZ: ["drizzle"],
+      RA: ["rain"],
+      SN: ["snow"],
+      SG: ["snow grain"],
+      IC: ["ice crystal", "diamond dust"],
+      PL: ["ice pellet", "sleet"],
+      GR: ["hail"],
+      GS: ["small hail", "snow pellet", "graupel"],
+      UP: ["unknown"],
+      BR: ["mist"],
+      FG: ["fog"],
+      FU: ["smoke"],
+      VA: ["volcanic ash", "ash"],
+      DU: ["dust"],
+      SA: ["sand"],
+      HZ: ["haze"],
+      PY: ["spray"],
+      PO: ["whirl", "dust devil"],
+      SQ: ["squall"],
+      FC: ["funnel"],
+      SS: ["sandstorm", "sand storm"],
+      DS: ["duststorm", "dust storm"]
+    };
+    var WXNOT = "<span class=\"nd\">not decoded</span> — not a group this page knows, so it is left as it is rather than guessed.";
+
+    function wxParse(g) { // a present-weather group: "-SHRA", "+TSRA", "VCFG", "FZFG", "BLSN", "RERA"
+      var m = /^(RE)?(\+|-|VC)?(MI|PR|BC|DR|BL|SH|TS|FZ)?((?:DZ|RA|SN|SG|IC|PL|GR|GS|UP|BR|FG|FU|VA|DU|SA|HZ|PY|PO|SQ|FC|SS|DS)*)$/.exec(g);
+      if (!m || (!m[3] && !m[4])) return null;
+      var ph = m[4] ? m[4].match(/../g) : [],
+        it = m[2] === "+" || m[2] === "-" ? m[2] : "",
+        vc = m[2] === "VC",
+        d = m[3] || "";
+      if (d && !ph.length && d !== "TS" && d !== "SH") return null;
+      if (it && !ph.length) return null;
+      var torn = it === "+" && ph.join("") === "FC",
+        I = it ? WXI[it] + " " : "",
+        list = andList(ph.map(function(c) { return WXPH[c]; })),
+        w;
+      if (torn) w = "tornado or waterspout";
+      else if (d === "TS") w = "thunderstorm" + (ph.length ? " with " + I + list : "");
+      else if (d === "SH") w = ph.length ? I + list + " showers" : "showers";
+      else if (d) w = I + WXDS[d] + " " + list;
+      else w = I + list;
+      if (vc) w += " in the vicinity";
+      var parts = [],
+        keys = [];
+      if (m[1]) parts.push(["RE", "recent"]);
+      if (m[2]) parts.push([m[2], vc ? "in the vicinity (5 to 10 miles away)" : torn ? "a strong one" : WXI[it]]);
+      if (d) parts.push([d, d === "BC" ? "patches" : WXDS[d]]);
+      ph.forEach(function(c) { parts.push([c, WXPH[c]]); });
+      if (torn) keys.push(WXSYN.TORN);
+      else {
+        if (it) keys.push(WXSYN[it]);
+        if (vc) keys.push(WXSYN.VC);
+        if (d) keys.push(WXSYN[d]);
+        ph.forEach(function(c) { keys.push(WXSYN[c]); });
+      }
+      if (m[1]) keys.push(WXSYN.RE);
+      return { g: g, re: !!m[1], it: it, vc: vc, d: d, ph: ph, w: (m[1] ? "recent " : "") + w, parts: parts, keys: keys, ts: d === "TS" };
+    }
+
+    function wxPartsH(x) { return x.parts.length > 1 ? " (" + x.parts.map(function(p) { return B(esc(p[0])) + " " + p[1]; }).join(", ") + ")" : ""; }
+
+    function smVis(t) { // statute miles: 10SM, 1 1/2SM, 3/4SM, M1/4SM, P6SM
+      var m = /^([PM])?(?:(\d{1,2})|(\d) (\d)\/(\d{1,2})|(\d)\/(\d{1,2}))SM$/.exec(t);
+      if (!m) return null;
+      var v = m[2] ? +m[2] : m[3] ? +m[3] + m[4] / m[5] : m[6] / m[7];
+      return { sm: v, less: m[1] === "M", more: m[1] === "P", txt: m[2] || (m[3] ? m[3] + " " + m[4] + "/" + m[5] : m[6] + "/" + m[7]), m: null };
+    }
+
+    function mVis(t) { // meters: 9999 (10 km or more), 0800, 0000 (less than 50 m); NDV: no directional variation
+      var m = /^(\d{4})(NDV)?$/.exec(t);
+      if (!m) return null;
+      var v = +m[1];
+      return { m: v, sm: (v === 9999 ? 10000 : v === 0 ? 50 : v) / 1609.344, more: v === 9999, less: v === 0, ndv: !!m[2], txt: m[1] };
+    }
+
+    function visW(V) { // the visibility in words
+      if (V.cavok) return "10 km or more";
+      if (V.m !== null) return V.more ? "10 km or more" : V.less ? "less than 50 m" : nf(V.m, 0) + " m";
+      return (V.less ? "less than " : V.more ? "more than " : "") + V.txt + " statute mile" + (V.sm === 1 && !V.more ? "" : "s");
+    }
+
+    function visSM(V) { // the visibility in statute miles, the way the answer gives it
+      if (V.m !== null || V.cavok) return (V.less ? "less than " : "") + nf(V.sm, 2) + " SM" + (V.more ? " or more" : "");
+      return (V.less ? "less than " : V.more ? "more than " : "") + V.txt + " SM";
+    }
+
+    function windTok(t) { // 18012KT, 27020G32KT, VRB03KT, 00000KT, 24008MPS
+      var m = /^(\d{3}|VRB)(\d{2,3})(?:G(\d{2,3}))?(KT|MPS|KMH)$/.exec(t);
+      if (!m) return null;
+      var f = m[4] === "KT" ? 1 : m[4] === "MPS" ? 3600 / 1852 : 1 / 1.852,
+        W = { vrb: m[1] === "VRB", dir: m[1] === "VRB" ? null : +m[1], spd: +m[2], gust: m[3] ? +m[3] : null, u: m[4], f: f };
+      if (W.dir !== null && W.dir > 360) return null;
+      W.kt = W.spd * f;
+      W.gkt = W.gust !== null ? W.gust * f : null;
+      W.calm = W.spd === 0 && W.gust === null;
+      return W;
+    }
+
+    function windW(W) {
+      var u = W.u === "KT" ? " kt" : W.u === "MPS" ? " m/s" : " km/h",
+        conv = W.u === "KT" ? "" : " (about " + nf(W.kt, 0) + " kt" + (W.gust !== null ? ", gusts " + nf(W.gkt, 0) + " kt" : "") + ")";
+      if (W.calm) return "calm";
+      return (W.vrb ? "variable in direction" : "from " + p3(W.dir) + "°") + " at " + W.spd + u + (W.gust !== null ? ", gusting to " + W.gust + u : "") + conv;
+    }
+    var COV = { FEW: ["few clouds", "1 to 2 eighths of the sky"], SCT: ["scattered clouds", "3 to 4 eighths of the sky"], BKN: ["broken clouds", "5 to 7 eighths of the sky"], OVC: ["overcast", "all of the sky"] };
+
+    function tC(s) { return s === "//" || s === undefined || s === "" ? null : (s.charAt(0) === "M" ? -1 : 1) * Number(s.replace("M", "")); }
+
+    function tW(c, raw) { return c === null ? "missing" : (raw && /^M00$/.test(raw) ? "−0 °C (just below freezing)" : nf(c, 1) + " °C"); }
+    var DIRW = { N: "north", NE: "northeast", E: "east", SE: "southeast", S: "south", SW: "southwest", W: "west", NW: "northwest" };
+
+    function dirW(t) {
+      var m = /^(N|NE|E|SE|S|SW|W|NW)(?:-(N|NE|E|SE|S|SW|W|NW))?$/.exec(t);
+      return m ? DIRW[m[1]] + (m[2] ? " to " + DIRW[m[2]] : "") : null;
+    }
+
+    function zW(d, h, mi) { return "day " + Number(d) + " of the month at " + h + ":" + (mi || "00") + "Z"; }
+
+    function isStn(t) { return /^[A-Z][A-Z0-9]{3}$/.test(t) && !/^(?:AUTO|NOSIG|TEMPO|BECMG|PROB)$/.test(t) && !wxParse(t); }
+
+    function freshCond() { return { wind: null, wvar: null, vis: null, vmin: null, cavok: false, wx: [], sky: [], clr: null, nsw: false, given: {} }; }
+
+    // a group that describes the conditions (in the body of a METAR, a trend or a TAF period); null if it isn't one
+    function condTok(t, C) {
+      var m, x;
+      if (!C.given.wind && (x = windTok(t))) {
+        C.wind = x;
+        C.given.wind = true;
+        return { k: "wind", h: x.calm ? "Wind " + B("calm") + " (00000KT: no wind)." : "Wind " + B(windW(x)) + "." + (x.vrb ? " VRB: the direction keeps changing (a light wind, or one around a thunderstorm)." : " The first three digits are the direction it blows <b>from</b> (degrees true), the next the speed" + (x.gust !== null ? "; G is the gusts" : "") + ".") };
+      }
+      if (C.wind && !C.wvar && (m = /^(\d{3})V(\d{3})$/.exec(t))) {
+        C.wvar = { from: +m[1], to: +m[2] };
+        return { k: "wind", h: "The wind direction " + B("varies between " + m[1] + "° and " + m[2] + "°") + "." };
+      }
+      if (!C.given.vis && (x = smVis(t))) {
+        C.vis = x;
+        C.given.vis = true;
+        return { k: "vis", h: "Visibility " + B(visW(x)) + "." + (x.less ? " M means less than." : x.more ? " P means more than (plus)." : "") };
+      }
+      if (!C.given.vis && (x = mVis(t))) {
+        C.vis = x;
+        C.given.vis = true;
+        return { k: "vis", h: "Visibility " + B(visW(x)) + (x.less || x.more ? "" : " (" + nf(x.sm, 2) + " statute miles)") + "." + (x.more ? " 9999 means 10 km or more." : "") + (x.ndv ? " NDV: the automated sensor can't tell direction." : "") };
+      }
+      if (C.vis && C.vis.m !== null && !C.vmin && (m = /^(\d{4})(N|NE|E|SE|S|SW|W|NW)$/.exec(t))) {
+        C.vmin = +m[1];
+        return { k: "vis", h: "The lowest visibility is " + B(nf(+m[1], 0) + " m") + ", toward the " + DIRW[m[2]] + "." };
+      }
+      if (t === "CAVOK" && !C.given.vis) {
+        C.cavok = true;
+        C.vis = { m: 9999, sm: 10000 / 1609.344, more: true, less: false, cavok: true, txt: "CAVOK" };
+        C.given.vis = true;
+        C.given.sky = true;
+        C.given.wx = true;
+        return { k: "vis", h: B("Ceiling and visibility OK") + ": visibility 10 km or more, no cloud below 5,000 ft (or the highest minimum sector altitude), no cumulonimbus or towering cumulus, and no significant weather." };
+      }
+      if (t === "NSW") {
+        C.wx = [];
+        C.nsw = true;
+        C.given.wx = true;
+        return { k: "wx", h: B("No significant weather") + ": the weather given before has ended." };
+      }
+      if ((x = wxParse(t)) && !x.re) {
+        if (!C.given.wx) C.wx = [];
+        C.given.wx = true;
+        C.wx.push(x);
+        return { k: "wx", h: B(cap(x.w)) + wxPartsH(x) + "." };
+      }
+      if ((m = /^(FEW|SCT|BKN|OVC)(\d{3}|\/\/\/)(CB|TCU|\/\/\/)?$/.exec(t))) {
+        if (!C.given.sky) C.sky = [];
+        C.given.sky = true;
+        var h = m[2] === "///" ? null : Number(m[2]) * 100,
+          ly = { cov: m[1], h: h, cb: m[3] === "CB", tcu: m[3] === "TCU", g: t };
+        C.sky.push(ly);
+        return {
+          k: "sky",
+          h: cap(COV[m[1]][0]) + " (" + COV[m[1]][1] + ") " + (h === null ? "at a height the sensor couldn't measure" : "at " + B(nf(h, 0) + " ft") + " above the ground (" + m[2] + ": " + Number(m[2]) + " hundred feet)") +
+            (m[1] === "BKN" || m[1] === "OVC" ? " — <b>a ceiling</b>" : "") + (ly.cb ? "; CB: cumulonimbus, thunderstorm clouds" : ly.tcu ? "; TCU: towering cumulus" : m[3] === "///" ? "; the cloud type couldn't be seen" : "") + "."
+        };
+      }
+      if ((m = /^VV(\d{3}|\/\/\/)$/.exec(t))) {
+        if (!C.given.sky) C.sky = [];
+        C.given.sky = true;
+        var vh = m[1] === "///" ? null : Number(m[1]) * 100;
+        C.sky.push({ cov: "VV", h: vh, g: t });
+        return { k: "sky", h: "Sky hidden (obscured): " + B("vertical visibility " + (vh === null ? "not measured" : nf(vh, 0) + " ft")) + " — this counts as <b>the ceiling</b>." };
+      }
+      if ((m = /^(CLR|SKC|NSC|NCD)$/.exec(t))) {
+        C.sky = [];
+        C.clr = t;
+        C.given.sky = true;
+        return { k: "sky", h: { CLR: B("Clear") + ": no clouds below 12,000 ft (an automated station).", SKC: B("Sky clear") + ".", NSC: B("No significant cloud") + ": none below 5,000 ft and no cumulonimbus or towering cumulus.", NCD: B("No clouds detected") + " (an automated station)." } [t] };
+      }
+      return null;
+    }
+
+    function wxSplit(raw) { // the groups, with "1 1/2SM" kept together
+      var t = raw.split(" ").filter(Boolean),
+        out = [];
+      for (var i = 0; i < t.length; i++) {
+        if (/^\d$/.test(t[i]) && /^[PM]?\d\/\d{1,2}SM$/.test(t[i + 1] || "")) {
+          out.push(t[i] + " " + t[i + 1]);
+          i++;
+        } else out.push(t[i]);
+      }
+      return out;
+    }
+
+    function wxDecode(raw) {
+      var toks = wxSplit(raw),
+        D = { items: [], met: null, taf: null, good: 0, unk: 0 },
+        ti = toks.indexOf("TAF");
+      if (ti < 0)
+        for (var i = 0; i < Math.min(toks.length, 5); i++)
+          if (/^\d{4}\/\d{4}$/.test(toks[i])) ti = 0; // a TAF pasted without the word TAF
+      var mt = ti < 0 ? toks : toks.slice(0, ti),
+        tt = ti < 0 ? [] : toks.slice(ti);
+      if (mt.length) D.met = metParse(mt, D);
+      if (tt.length) D.taf = tafParse(tt, D);
+      D.items.forEach(function(it) {
+        if (it.k === "unk") D.unk++;
+        else D.good++;
+      });
+      return D;
+    }
+
+    function headTok(t, R, add) { // the report's type, station and time
+      var m;
+      if (!R.station && isStn(t) && !R.time) {
+        R.station = t;
+        add(t, "head", "The airport (station): " + B(t) + ", its four-letter ICAO code" + (/^K/.test(t) ? " (K: the lower 48 US states)" : /^C/.test(t) ? " (C: Canada)" : /^P/.test(t) ? " (P: Alaska, Hawaii and the Pacific)" : /^E/.test(t) ? " (E: northern Europe)" : /^L/.test(t) ? " (L: southern Europe)" : "") + ".");
+        return true;
+      }
+      if (!R.time && (m = /^(\d{2})(\d{2})(\d{2})Z$/.exec(t)) && +m[1] >= 1 && +m[1] <= 31 && +m[2] <= 24 && +m[3] <= 59) {
+        R.time = { d: m[1], h: m[2], m: m[3] };
+        add(t, "head", (R.isTaf ? "Issued on " : "Observed on ") + B(zW(m[1], m[2], m[3])) + " (Z is UTC, “Zulu” time): DD HH MM.");
+        return true;
+      }
+      return false;
+    }
+
+    function metParse(toks, D) {
+      var R = { type: null, station: null, time: null, auto: false, cor: false, nil: false, cond: freshCond(), rvr: [], t: null, td: null, tRaw: "", tdRaw: "", alt: null, tx: null, tdx: null, rmk: false, trend: false },
+        i = 0,
+        sec = "body",
+        tc = null;
+
+      function add(g, k, h, s) { D.items.push({ g: g, k: k, h: h, sec: s || (sec === "trend" && k !== "unk" ? "trend" : { head: "head", wind: "wind", vis: "vis", rvr: "vis", wx: "vis", sky: "sky", temp: "temp", alt: "temp", trend: "trend", unk: "unk" } [k]) }); }
+      if (/^(METAR|SPECI)$/.test(toks[0])) {
+        R.type = toks[0];
+        add(toks[0], "head", toks[0] === "METAR" ? B("METAR") + ": a routine weather report, made every hour (near the top of the hour in the US)." : B("SPECI") + ": a special report, made between the hourly ones because the weather changed a lot.");
+        i = 1;
+      }
+      for (; i < toks.length; i++) {
+        var t = toks[i],
+          m, x, c;
+        if (t === "RMK") {
+          R.rmk = true;
+          D.items.push({ g: t, k: "rmk", h: B("Remarks") + " follow: extra details, many in code.", sec: "rmk" });
+          rmkParse(toks.slice(i + 1), D, R);
+          break;
+        }
+        if (sec === "body" && !R.cond.given.wind && !R.cond.given.vis && headTok(t, R, add)) continue;
+        if (t === "NIL") {
+          R.nil = true;
+          add(t, "head", B("NIL") + ": the report is missing.");
+          continue;
+        }
+        if (t === "AUTO") {
+          R.auto = true;
+          add(t, "head", B("Automated") + " report: no person checked it.");
+          continue;
+        }
+        if (t === "COR" || /^CC[A-Z]$/.test(t)) {
+          R.cor = true;
+          add(t, "head", B("Corrected") + " report: it replaces one sent earlier with a mistake.");
+          continue;
+        }
+        if (t === "NOSIG") {
+          add(t, "trend", B("No significant change") + " expected in the next 2 hours.");
+          continue;
+        }
+        if (t === "BECMG" || t === "TEMPO") {
+          sec = "trend";
+          R.trend = true;
+          tc = freshCond();
+          add(t, "trend", t === "BECMG" ? B("Becoming") + ": a lasting change expected in the next 2 hours. What follows is the forecast, not what is happening now." : B("Temporarily") + ": short spells of what follows in the next 2 hours (a forecast, not now).");
+          continue;
+        }
+        if (sec === "trend") {
+          if ((m = /^(FM|TL|AT)(\d{2})(\d{2})$/.exec(t))) {
+            add(t, "trend", { FM: "From", TL: "Until", AT: "At" } [m[1]] + " " + B(m[2] + ":" + m[3] + "Z") + ".");
+            continue;
+          }
+          if ((c = condTok(t, tc))) {
+            add(t, c.k, c.h);
+            continue;
+          }
+          add(t, "unk", WXNOT);
+          continue;
+        }
+        if ((c = condTok(t, R.cond))) {
+          add(t, c.k, c.h);
+          continue;
+        }
+        if ((m = /^R(\d{2}[LRC]?)\/([PM])?(\d{4})(?:V([PM])?(\d{4}))?(FT)?(?:\/?([UDN]))?$/.exec(t))) {
+          var ru = m[6] ? " ft" : " m",
+            pm = function(s) { return s === "P" ? "more than " : s === "M" ? "less than " : ""; };
+          R.rvr.push(t);
+          add(t, "rvr", "Runway visual range on runway " + B(m[1]) + ": " + B(m[5] ? "from " + pm(m[2]) + nf(+m[3], 0) + " to " + pm(m[4]) + nf(+m[5], 0) + ru : pm(m[2]) + nf(+m[3], 0) + ru) +
+            " (how far down the runway a pilot can see the lights)" + (m[7] ? ", " + { U: "getting better (U, up)", D: "getting worse (D, down)", N: "no change (N)" } [m[7]] : "") + ".");
+          continue;
+        }
+        if ((x = wxParse(t)) && x.re) {
+          add(t, "wx", B(cap(x.w)) + ": it ended within the last hour" + wxPartsH(x) + ".");
+          continue;
+        }
+        if (R.t === null && !R.tRaw && (m = /^(M?\d{2})\/(M?\d{2}|\/\/)?$/.exec(t))) {
+          R.tRaw = m[1];
+          R.tdRaw = m[2] || "";
+          R.t = tC(m[1]);
+          R.td = tC(m[2]);
+          add(t, "temp", "Temperature " + B(tW(R.t, m[1])) + ", dew point " + B(tW(R.td, m[2])) + "." + (/M/.test(t) ? " M means minus." : ""));
+          continue;
+        }
+        if ((m = /^A(\d{4})$/.exec(t)) && !R.alt) {
+          R.alt = { inhg: +m[1] / 100, hpa: null, g: t };
+          add(t, "alt", "Altimeter setting " + B(nf(+m[1] / 100, 2, true) + " inHg") + " (inches of mercury: the four digits with a point after the first two).");
+          continue;
+        }
+        if ((m = /^Q(\d{4})$/.exec(t)) && !R.alt) {
+          R.alt = { inhg: null, hpa: +m[1], g: t };
+          add(t, "alt", "QNH (the altimeter setting) " + B(nf(+m[1], 0) + " hPa") + " (hectopascals, the same as millibars) = " + nf(+m[1] / HPA_IN, 2, true) + " inHg.");
+          continue;
+        }
+        if (t === "WS" && /^(?:R\d{2}[LRC]?|RWY\d{2}[LRC]?)$/.test(toks[i + 1] || "")) {
+          add(t + " " + toks[i + 1], "wx", B("Wind shear") + " on runway " + toks[i + 1].replace(/^R(?:WY)?/, "") + ".");
+          i++;
+          continue;
+        }
+        if (t === "WS" && toks[i + 1] === "ALL" && toks[i + 2] === "RWY") {
+          add("WS ALL RWY", "wx", B("Wind shear") + " on all runways.");
+          i += 2;
+          continue;
+        }
+        add(t, "unk", WXNOT);
+      }
+      return R;
+    }
+
+    function vTok(toks, j) { // a visibility in a remark: "2", "1/2", "1 1/2"
+      var a = toks[j] || "",
+        b = toks[j + 1] || "";
+      if (/^\d+$/.test(a) && /^\d\/\d{1,2}$/.test(b)) return { n: 2, t: a + " " + b };
+      if (/^\d+(?:\/\d{1,2})?$/.test(a)) return { n: 1, t: a };
+      return null;
+    }
+
+    function locRun(toks, j) { // locations: DSNT N, VC NE-S, OHD, ALQDS, MOV E
+      var w = [],
+        k = j;
+      while (k < toks.length) {
+        var t = toks[k],
+          d = dirW(t);
+        if (t === "DSNT") w.push("distant (10 to 30 miles)");
+        else if (t === "VC") w.push("in the vicinity (5 to 10 miles)");
+        else if (t === "OHD") w.push("overhead");
+        else if (t === "ALQDS") w.push("all around");
+        else if (t === "AND") w.push("and");
+        else if (d) w.push("to the " + d);
+        else if (t === "MOV" && dirW(toks[k + 1] || "")) {
+          w.push("moving " + dirW(toks[k + 1]));
+          k++;
+        } else if (t === "MOV" && toks[k + 1] === "OHD") {
+          w.push("moving overhead");
+          k++;
+        } else break;
+        k++;
+      }
+      return { n: k - j, w: w.join(" ").replace(/ and to the /g, " and ") };
+    }
+
+    function tenths(s, v) { return (s === "1" ? -1 : 1) * Number(v) / 10; }
+
+    function rmkParse(toks, D, R) {
+      var i = 0;
+
+      function add(n, k, h) {
+        D.items.push({ g: toks.slice(i, i + n).join(" "), k: k, h: h, sec: k === "unk" ? "unk" : "rmk" });
+        i += n;
+      }
+      var TEND = ["rising, then falling", "rising, then steady (or rising more slowly)", "rising steadily", "falling or steady, then rising (or rising faster)", "steady", "falling, then rising", "falling, then steady (or falling more slowly)", "falling steadily", "steady or rising, then falling (or falling faster)"];
+      var NO = { TSNO: "the lightning detector isn't working", RVRNO: "runway visual range should be reported but isn't", PNO: "the rain gauge isn't working", FZRANO: "the freezing-rain sensor isn't working", PWINO: "the present-weather sensor isn't working", CHINO: "the second ceiling sensor isn't working", VISNO: "the second visibility sensor isn't working", SLPNO: "the sea-level pressure isn't available" };
+      var at = function(s) { return s.length === 4 ? s.slice(0, 2) + ":" + s.slice(2) + "Z" : ":" + s + " (minutes past the hour)"; };
+      while (i < toks.length) {
+        var t = toks[i],
+          n1 = toks[i + 1] || "",
+          n2 = toks[i + 2] || "",
+          m, v, L;
+        if ((m = /^A([O0])([12])(A?)$/.exec(t))) {
+          add(1, "rmk", B("AO" + m[2]) + ": an automated station " + (m[2] === "2" ? "with" : "without") + " a sensor that tells rain from snow" + (m[3] ? ", with a person adding to it" : "") + "." + (m[1] === "0" ? " (Written here with a zero; the code is the letters A O.)" : ""));
+          continue;
+        }
+        if ((m = /^SLP(\d{3})$/.exec(t))) {
+          var slp = (+m[1] < 500 ? 1000 : 900) + +m[1] / 10;
+          add(1, "rmk", "Sea-level pressure " + B(nf(slp, 1, true) + " hPa") + " (put 10 or 9 in front of the three digits, whichever is nearer 1,000, and a point before the last).");
+          continue;
+        }
+        if ((m = /^T([01])(\d{3})(?:([01])(\d{3}))?$/.exec(t))) {
+          R.tx = tenths(m[1], m[2]);
+          R.tdx = m[3] ? tenths(m[3], m[4]) : null;
+          add(1, "rmk", "The exact temperature " + B(nf(R.tx, 1, true) + " °C") + (m[3] ? " and dew point " + B(nf(R.tdx, 1, true) + " °C") : "") + " (tenths of a degree; a 1 in front means minus).");
+          continue;
+        }
+        if ((m = /^P(\d{4})$/.exec(t))) {
+          add(1, "rmk", "Precipitation in the last hour: " + B(+m[1] === 0 ? "a trace (too little to measure)" : nf(+m[1] / 100, 2, true) + " in") + ".");
+          continue;
+        }
+        if ((m = /^6(\d{4}|\/{4})$/.exec(t))) {
+          add(1, "rmk", "Precipitation in the last 3 or 6 hours: " + B(m[1] === "////" ? "not measured" : +m[1] === 0 ? "a trace" : nf(+m[1] / 100, 2, true) + " in") + ".");
+          continue;
+        }
+        if ((m = /^7(\d{4})$/.exec(t))) {
+          add(1, "rmk", "Precipitation in the last 24 hours: " + B(+m[1] === 0 ? "a trace" : nf(+m[1] / 100, 2, true) + " in") + ".");
+          continue;
+        }
+        if ((m = /^([12])([01])(\d{3})$/.exec(t))) {
+          add(1, "rmk", (m[1] === "1" ? "Highest" : "Lowest") + " temperature in the last 6 hours: " + B(nf(tenths(m[2], m[3]), 1, true) + " °C") + ".");
+          continue;
+        }
+        if ((m = /^4([01])(\d{3})([01])(\d{3})$/.exec(t))) {
+          add(1, "rmk", "In the last 24 hours the highest temperature was " + B(nf(tenths(m[1], m[2]), 1, true) + " °C") + " and the lowest " + B(nf(tenths(m[3], m[4]), 1, true) + " °C") + ".");
+          continue;
+        }
+        if ((m = /^4\/(\d{3})$/.exec(t))) {
+          add(1, "rmk", "Snow on the ground: " + B(+m[1] + " in") + ".");
+          continue;
+        }
+        if ((m = /^5([0-8])(\d{3})$/.exec(t))) {
+          add(1, "rmk", "In the last 3 hours the pressure went " + B(TEND[+m[1]]) + ", " + B(nf(+m[2] / 10, 1, true) + " hPa") + " in all.");
+          continue;
+        }
+        if ((m = /^933(\d{3})$/.exec(t))) {
+          add(1, "rmk", "Water in the snow on the ground: " + B(nf(+m[1] / 10, 1, true) + " in") + ".");
+          continue;
+        }
+        if (t === "PK" && n1 === "WND" && (m = /^(\d{3})(\d{2,3})\/(\d{2})?(\d{2})$/.exec(n2))) {
+          add(3, "rmk", "Peak wind: " + B("from " + m[1] + "° at " + Number(m[2]) + " kt") + " at " + at((m[3] || "") + m[4]) + ".");
+          continue;
+        }
+        if (t === "WSHFT" && (m = /^(\d{2})?(\d{2})$/.exec(n1))) {
+          var fro = n2 === "FROPA";
+          add(fro ? 3 : 2, "rmk", B("Wind shift") + " at " + at((m[1] || "") + m[2]) + (fro ? ", with a front passing (FROPA)" : "") + ".");
+          continue;
+        }
+        if (t === "FROPA") {
+          add(1, "rmk", B("A front passed") + ".");
+          continue;
+        }
+        if ((m = /^PRES(RR|FR|RISE|FALL)$/.exec(t))) {
+          add(1, "rmk", "Pressure " + B(/^(RR|RISE)$/.test(m[1]) ? "rising rapidly" : "falling rapidly") + ".");
+          continue;
+        }
+        if (t === "$") {
+          add(1, "rmk", B("$") + ": the station needs maintenance (a sensor may be off).");
+          continue;
+        }
+        if (NO[t]) {
+          add(1, "rmk", B(t) + ": " + NO[t] + ".");
+          continue;
+        }
+        if ((v = beGroup(t))) {
+          add(1, "rmk", v);
+          continue;
+        }
+        var fq = /^(OCNL|FRQ|CONS)$/.test(t) ? 1 : 0;
+        if ((m = /^LTG((?:IC|CC|CG|CA)*)$/.exec(toks[i + fq] || ""))) {
+          L = locRun(toks, i + fq + 1);
+          var ty = (m[1].match(/../g) || []).map(function(c) { return { IC: "in the cloud", CC: "cloud to cloud", CG: "cloud to ground", CA: "cloud to air" } [c]; });
+          add(1 + fq + L.n, "rmk", B(cap((fq ? { OCNL: "occasional ", FRQ: "frequent ", CONS: "continuous " } [t] : "") + "lightning")) + (ty.length ? " (" + andList(ty) + ")" : "") + (L.w ? " " + L.w : "") + ".");
+          continue;
+        }
+        if (/^(?:TS|CB|TCU|ACC|VIRGA|CBMAM|ACSL|SCSL|CCSL)$/.test(t)) {
+          L = locRun(toks, i + 1);
+          if (L.n || t === "VIRGA") {
+            add(1 + L.n, "rmk", B({ TS: "Thunderstorm", CB: "Cumulonimbus (thunderstorm clouds)", TCU: "Towering cumulus", ACC: "Altocumulus castellanus", VIRGA: "Virga (rain that dries up before it reaches the ground)", CBMAM: "Cumulonimbus with mammatus", ACSL: "Standing lenticular altocumulus", SCSL: "Standing lenticular stratocumulus", CCSL: "Standing lenticular cirrocumulus" } [t]) + (L.w ? " " + L.w : "") + ".");
+            continue;
+          }
+        }
+        if (t === "CIG" && (m = /^(\d{3})V(\d{3})$/.exec(n1))) {
+          add(2, "rmk", "The ceiling " + B("varies from " + nf(+m[1] * 100, 0) + " to " + nf(+m[2] * 100, 0) + " ft") + ".");
+          continue;
+        }
+        if (t === "VIS" && (m = /^(\d+(?:\/\d+)?)V(\d+(?:\/\d+)?)$/.exec(n1))) {
+          add(2, "rmk", "The visibility " + B("varies between " + m[1] + " and " + m[2] + " statute miles") + ".");
+          continue;
+        }
+        if (t === "VIS" && dirW(n1) && (v = vTok(toks, i + 2))) {
+          add(2 + v.n, "rmk", "Visibility " + B(v.t + " statute miles") + " toward the " + dirW(n1) + ".");
+          continue;
+        }
+        if ((t === "SFC" || t === "TWR") && n1 === "VIS" && (v = vTok(toks, i + 2))) {
+          add(2 + v.n, "rmk", (t === "SFC" ? "Visibility at the surface" : "Visibility from the control tower") + ": " + B(v.t + " statute miles") + ".");
+          continue;
+        }
+        if (t === "SNINCR" && (m = /^(\d+)\/(\d+)$/.exec(n1))) {
+          add(2, "rmk", B("Snow increasing rapidly") + ": " + m[1] + " in in the last hour, " + m[2] + " in on the ground.");
+          continue;
+        }
+        add(1, "unk", WXNOT);
+      }
+    }
+
+    function beGroup(t) { // when weather began and ended: RAB15, RAB1955E2010, SNB05E25RAB25, TSB15
+      var re = /([A-Z]{2,6}?)((?:[BE](?:\d{4}|\d{2}))+)/g,
+        m, all = "",
+        out = [];
+      while ((m = re.exec(t))) {
+        var x = wxParse(m[1]);
+        if (!x || x.it) return null;
+        all += m[0];
+        var ev = m[2].match(/[BE]\d+/g).map(function(e) { var s = e.slice(1); return (e.charAt(0) === "B" ? "began" : "ended") + " at " + (s.length === 4 ? s.slice(0, 2) + ":" + s.slice(2) + "Z" : ":" + s); });
+        out.push(B(cap(x.w)) + " " + andList(ev));
+      }
+      return all === t && out.length ? out.join("; ") + " (B began, E ended; two digits are minutes past the hour)." : null;
+    }
+
+    function tafParse(toks, D) {
+      var T = { isTaf: true, station: null, time: null, valid: null, periods: [] },
+        i = 0,
+        prev = freshCond(),
+        cur;
+
+      function add(g, k, h) { D.items.push({ g: g, k: k, h: h, sec: k === "unk" ? "unk" : "taf" }); }
+
+      function per(o) {
+        cur = o;
+        T.periods.push(o);
+      }
+
+      function vW(m) { return "day " + Number(m[1]) + " at " + m[2] + ":00Z to day " + Number(m[3]) + " at " + m[4] + ":00Z"; }
+      if (toks[0] === "TAF") {
+        add("TAF", "taf", B("TAF") + ": a terminal aerodrome forecast — the weather expected within 5 statute miles of the airport.");
+        i = 1;
+      }
+      while (toks[i] === "AMD" || toks[i] === "COR") {
+        add(toks[i], "taf", toks[i] === "AMD" ? B("Amended") + ": an update to the forecast." : B("Corrected") + " forecast.");
+        i++;
+      }
+      for (; i < toks.length && (!T.station || !T.time); i++)
+        if (!headTok(toks[i], T, function(g, k, h) { add(g, "taf", h); })) break;
+      var m = /^(\d{2})(\d{2})\/(\d{2})(\d{2})$/.exec(toks[i] || "");
+      if (m) {
+        T.valid = toks[i];
+        add(toks[i], "taf", "Valid " + B("from " + vW(m)) + ".");
+        i++;
+      }
+      per({ kind: "base", g: T.valid || "start", label: m ? "from day " + Number(m[1]) + " " + m[2] + "Z" : "the start", cond: freshCond(), temp: false });
+      for (; i < toks.length; i++) {
+        var t = toks[i],
+          c, nc;
+        if (t === "RMK") {
+          add(t, "taf", B("Remarks") + " follow.");
+          for (i++; i < toks.length; i++) add(toks[i], "unk", WXNOT);
+          break;
+        }
+        if ((m = /^FM(\d{2})(\d{2})(\d{2})$/.exec(t))) {
+          prev = cur.temp ? prev : cur.cond;
+          per({ kind: "FM", g: t, label: "from day " + Number(m[1]) + " " + m[2] + ":" + m[3] + "Z", cond: freshCond(), temp: false });
+          add(t, "taf", B("From " + zW(m[1], m[2], m[3]).replace(/^day/, "day")) + ": everything after this replaces the forecast before it.");
+          continue;
+        }
+        var pr = /^PROB(30|40)$/.exec(t),
+          kw = pr ? (toks[i + 1] === "TEMPO" ? "TEMPO" : "") : t;
+        if (pr || t === "TEMPO" || t === "BECMG") {
+          var g = t + (pr && kw ? " TEMPO" : ""),
+            vm = /^(\d{2})(\d{2})\/(\d{2})(\d{2})$/.exec(toks[i + (pr && kw ? 2 : 1)] || "");
+          if (!vm) {
+            add(t, "unk", WXNOT);
+            continue;
+          }
+          g += " " + vm[0];
+          i += pr && kw ? 2 : 1;
+          if (!cur.temp) prev = cur.cond;
+          nc = inherit(prev);
+          per({ kind: pr ? "PROB" : t, g: g, label: (pr ? pr[1] + "% chance " + (kw ? "of temporary " : "") : t === "TEMPO" ? "temporarily " : "becoming ") + "day " + Number(vm[1]) + " " + vm[2] + "Z to day " + Number(vm[3]) + " " + vm[4] + "Z", cond: nc, temp: t !== "BECMG" });
+          add(g, "taf", (pr ? B("A " + pr[1] + "% chance") + (kw ? " of temporary changes" : "") : t === "TEMPO" ? B("Temporarily") + " (spells adding up to less than half the time)" : B("Becoming") + " (a lasting change, gradually)") + " " + B("from " + vW(vm)) + ":");
+          continue;
+        }
+        if ((c = condTok(t, cur.cond))) {
+          add(t, c.k, c.h);
+          continue;
+        }
+        if ((m = /^WS(\d{3})\/(\d{3})(\d{2,3})KT$/.exec(t))) {
+          add(t, "wx", B("Low-level wind shear") + " at " + nf(+m[1] * 100, 0) + " ft above the ground: the wind there is from " + m[2] + "° at " + Number(m[3]) + " kt.");
+          continue;
+        }
+        if ((m = /^T([XN])(M?\d{2})\/(\d{2})(\d{2})Z$/.exec(t))) {
+          add(t, "temp", (m[1] === "X" ? "Highest" : "Lowest") + " temperature forecast: " + B(nf(tC(m[2]), 0) + " °C") + " on day " + Number(m[3]) + " at " + m[4] + ":00Z.");
+          continue;
+        }
+        if ((m = /^QNH(\d{4})INS$/.exec(t))) {
+          add(t, "alt", "Lowest altimeter setting forecast: " + B(nf(+m[1] / 100, 2, true) + " inHg") + ".");
+          continue;
+        }
+        add(t, "unk", WXNOT);
+      }
+      return T;
+    }
+
+    function inherit(C) { // a TEMPO, PROB or BECMG period starts from the conditions before it
+      var n = freshCond();
+      n.wind = C.wind;
+      n.wvar = C.wvar;
+      n.vis = C.vis;
+      n.cavok = C.cavok;
+      n.wx = C.wx.slice();
+      n.sky = C.sky.slice();
+      n.clr = C.clr;
+      return n;
+    }
+
+    function ceilOf(C) { // the lowest BKN, OVC or VV layer (null: no ceiling)
+      var c = null;
+      C.sky.forEach(function(l) { if ((l.cov === "BKN" || l.cov === "OVC" || l.cov === "VV") && l.h !== null && (!c || l.h < c.h)) c = l; });
+      return c;
+    }
+
+    function lowFS(C, below) { // the lowest FEW or SCT layer under the ceiling: the classic trap
+      var c = null;
+      C.sky.forEach(function(l) { if ((l.cov === "FEW" || l.cov === "SCT") && l.h !== null && (below === null || l.h < below) && (!c || l.h < c.h)) c = l; });
+      return c;
+    }
+    var FCAT = ["LIFR", "IFR", "MVFR", "VFR"];
+
+    function rankC(h) { return h === null ? 3 : h < 500 ? 0 : h < 1000 ? 1 : h <= 3000 ? 2 : 3; }
+
+    function rankV(sm) { return sm < 1 ? 0 : sm < 3 ? 1 : sm <= 5 ? 2 : 3; }
+
+    function catOf(C) { // the flight category from the conditions; null when the clouds or visibility are missing
+      if (!C || !C.vis || (!C.given.sky && !C.cavok && !C.sky.length && !C.clr)) return null;
+      var c = ceilOf(C),
+        rc = rankC(c ? c.h : null),
+        rv = rankV(C.vis.sm);
+      return { cat: FCAT[Math.min(rc, rv)], rc: rc, rv: rv, ceil: c, h: c ? c.h : null };
+    }
+
+    function fcH(cat) { return '<span class="fc fc-' + cat.toLowerCase() + '">' + cat + "</span>"; }
+    var WXSTN = {
+      us: [
+        ["KSEA", 433, [16, 34]],
+        ["KDEN", 5434, [16, 34, 17, 35, 7, 25, 8, 26]],
+        ["KORD", 680, [10, 28, 9, 27, 4, 22]],
+        ["KJFK", 13, [4, 22, 13, 31]],
+        ["KLAX", 128, [6, 24, 7, 25]],
+        ["KATL", 1026, [8, 26, 9, 27, 10, 28]],
+        ["KBOS", 20, [4, 22, 15, 33, 9, 27]],
+        ["KPHX", 1135, [7, 25, 8, 26]],
+        ["KDFW", 607, [13, 31, 17, 35, 18, 36]],
+        ["KMSP", 841, [12, 30, 4, 22, 17, 35]],
+        ["KSFO", 13, [10, 28, 1, 19]],
+        ["KMIA", 8, [8, 26, 9, 27, 12, 30]],
+        ["KSLC", 4227, [16, 34, 17, 35]],
+        ["KABQ", 5355, [8, 26, 3, 21]],
+        ["KASE", 7820, [15, 33]],
+        ["KBZN", 4473, [12, 30, 3, 21]],
+        ["CYYZ", 569, [5, 23, 6, 24, 15, 33]]
+      ],
+      intl: [
+        ["EGLL", 83, [9, 27]],
+        ["LFPG", 392, [8, 26, 9, 27]],
+        ["EDDF", 364, [7, 25]],
+        ["EHAM", -11, [18, 36, 6, 24, 9, 27]],
+        ["LEMD", 2001, [14, 32, 18, 36]],
+        ["LIRF", 15, [16, 34, 7, 25]],
+        ["YSSY", 21, [16, 34, 7, 25]],
+        ["RJTT", 35, [16, 34, 4, 22, 5, 23]],
+        ["NZAA", 23, [5, 23]],
+        ["LSZH", 1416, [14, 32, 16, 34, 10, 28]],
+        ["EIDW", 242, [10, 28, 16, 34]],
+        ["LOWI", 1907, [8, 26]],
+        ["FAOR", 5558, [3, 21]]
+      ]
+    };
+
+    function stnOf(code) {
+      var all = WXSTN.us.concat(WXSTN.intl);
+      for (var i = 0; i < all.length; i++)
+        if (all[i][0] === code) return all[i];
+      return null;
+    }
+    var ASKT = { cat: "flight category", xw: "crosswind", base: "cloud base", rh: "humidity", da: "density altitude" };
+
+    function magnus(t) { return 6.112 * Math.exp(17.62 * t / (243.12 + t)); } // vapor pressure in hPa (Magnus, Sonntag 1990)
+    function wxClean(t) { return clean(t).toUpperCase().replace(/=+/g, " ").replace(/[,;]+|\.(?!\d)/g, " ").replace(/\s+/g, " ").trim(); }
+
+    function metarLike(q) { // a pasted report: METAR/SPECI/TAF first, a station and DDHHMMZ, or three kinds of METAR group
+      var s = " " + clean(q).toUpperCase() + " ";
+      if (/^\s*(?:METAR|SPECI|TAF)\s+[A-Z0-9]/.test(s)) return true;
+      if (/\s[A-Z][A-Z0-9]{3}\s+\d{6}Z\s/.test(s)) return true;
+      var n = 0;
+      if (/\s(?:\d{3}|VRB)\d{2,3}(?:G\d{2,3})?(?:KT|MPS)\s/.test(s)) n++;
+      if (/\s(?:(?:FEW|SCT|BKN|OVC)\d{3}(?:CB|TCU)?|VV\d{3}|CLR|SKC|NSC|NCD|CAVOK)\s/.test(s)) n++;
+      if (/\sM?\d{2}\/M?\d{2}\s/.test(s)) n++;
+      if (/\s[AQ]\d{4}\s/.test(s)) n++;
+      if (/\s[PM]?(?:\d{1,2}|\d\/\d{1,2}|\d \d\/\d{1,2})SM\s/.test(s)) n++;
+      return n >= 3;
+    }
+
+    function wxRwy(P) { return (P.rwy < 10 ? "0" : "") + P.rwy + (P.lr || ""); }
+
+    function wxAsk(P, R) { // the question this problem asks (a made one says; a typed one gets the likeliest)
+      var a = P.ask;
+      if (a === "xw" && !R.rw) a = null;
+      if (a === "da" && !R.A) a = null;
+      if ((a === "base" || a === "rh") && R.spread === null) a = null;
+      if (a === "wx" && !R.wxq) a = null;
+      if (a === "cat" && !R.fc) a = null;
+      if (a) return a;
+      return R.rw && P.rwy ? "xw" : R.fc ? "cat" : R.wxq ? "wx" : R.spread !== null ? "base" : null;
+    }
+
+    function rwWorst(W, rh) { // the most crosswind anywhere in a variable range (dddVddd)
+      if (!W.wvar) return null;
+      var a = W.wvar.from,
+        b = W.wvar.to,
+        span = norm360(b - a),
+        best = 0;
+      for (var k = 0; k <= span; k++) best = Math.max(best, Math.abs(Math.sin((a + k - rh) * D2R)));
+      return best;
+    }
+    M.metar = {
+      read: function(t) {
+        var s = " " + clean(t) + " ",
+          P = { mode: "metar", raw: "", rwy: null, lr: "", elev: null, ask: null, code: null },
+          m;
+        s = s.replace(/^\s*(?:please\s+)?(?:decode|read|explain|translate)\s*(?:this|the)?\s*(?:metar|speci|taf|report|weather)?\s*:?\s*/i, " ");
+        if ((m = /\s(?:what\s+(?:does|do|is)|meaning\s+of|decode)\s+(?:the\s+)?(?:code\s+)?([+-]?[A-Za-z]{2,8})(?:\s+mean)?\s*\??\s/i.exec(s)) && wxParse(m[1].toUpperCase())) {
+          P.ask = "wx";
+          P.code = m[1].toUpperCase();
+          s = s.slice(0, m.index) + " " + s.slice(m.index + m[0].length);
+        }
+        var re = /\s(?:runway|rwy)\s*(\d{1,2})\s*([lrc])?(?=[\s?.!]|$)/ig;
+        while ((m = re.exec(s))) {
+          if (/\b(?:WS|ALL)\s*$/i.test(s.slice(0, m.index))) continue;
+          P.rwy = +m[1];
+          P.lr = (m[2] || "").toUpperCase();
+          s = s.slice(0, m.index) + " " + s.slice(m.index + m[0].length);
+          break;
+        }
+        if ((m = /\s(?:(?:field|airport)\s+)?(?:elevation|elev)\.?\s*(?:of|is|=|:)?\s*(-?\d[\d,]*)\s*(?:ft|feet|')?(?=[\s?.!]|$)/i.exec(s))) {
+          P.elev = toNum(m[1]);
+          s = s.slice(0, m.index) + " " + s.slice(m.index + m[0].length);
+        }
+        var asks = [
+          ["cat", /\s(?:what(?:'s|\s+is)\s+the\s+)?flight\s+(?:category|rules)\s*\??/i],
+          ["xw", /\s(?:the\s+)?(?:crosswind|cross\s+wind|headwind)(?:\s+components?)?\s*\??/i],
+          ["base", /\s(?:estimated?\s+)?(?:the\s+)?cloud\s+bases?\s*\??/i],
+          ["rh", /\s(?:relative\s+)?humidity\s*\??/i],
+          ["da", /\s(?:density|pressure)\s+altitude\s*\??/i]
+        ];
+        asks.forEach(function(a) {
+          var x = a[1].exec(s);
+          if (!x) return;
+          if (!P.ask) P.ask = a[0];
+          s = s.slice(0, x.index) + " " + s.slice(x.index + x[0].length);
+        });
+        P.raw = wxClean(s.replace(/[?!]+/g, " "));
+        if (!P.raw && P.code) P.raw = P.code;
+        if (!P.raw) throw new UserErr(EMPTY.metar);
+        return P;
+      },
+      fromSp: function(sp) {
+        if (!sp.has("m")) return null;
+        var P = { mode: "metar", raw: wxClean(sp.get("m")), rwy: null, lr: "", elev: pn(sp, "elev", true), ask: null, code: null };
+        if (!P.raw) throw new UserErr(LINKBAD);
+        if (sp.has("rwy")) {
+          var m = /^(\d{1,2})([LRC])?$/i.exec(String(sp.get("rwy")).trim());
+          if (!m) throw new UserErr(LINKBAD);
+          P.rwy = +m[1];
+          P.lr = (m[2] || "").toUpperCase();
+        }
+        var a = String(sp.get("ask") || "").toLowerCase();
+        if (a && !ASKT[a] && a !== "wx") throw new UserErr(LINKBAD);
+        P.ask = a || null;
+        if (sp.has("code")) P.code = String(sp.get("code")).toUpperCase();
+        return P;
+      },
+      params: function(P) {
+        return "mode=metar&m=" + encodeURIComponent(P.raw) + (P.rwy ? "&rwy=" + wxRwy(P) : "") + (P.elev !== null ? "&elev=" + nA(P.elev) : "") + (P.ask ? "&ask=" + P.ask : "") + (P.ask === "wx" && P.code ? "&code=" + encodeURIComponent(P.code) : "");
+      },
+      text: function(P) {
+        return P.raw + (P.rwy ? " runway " + wxRwy(P) : "") + (P.elev !== null ? " elevation " + nA(P.elev) : "") + (P.ask === "wx" && P.code ? " what does " + P.code + " mean" : P.ask ? " " + ASKT[P.ask] : "");
+      },
+      reads: function(P) {
+        var D = wxDecode(P.raw),
+          R = D.met || D.taf,
+          dot = ' <span class="nm">·</span> ';
+        var whole = D.met && (D.met.type || D.met.station || D.met.time),
+          what = D.met && !whole && !D.taf ? "weather code" + (D.good === 1 ? "" : "s") : (whole ? (D.met.type || "METAR") + (D.taf ? " and " : "") : "") + (D.taf ? "TAF" : "");
+        return what + (R && R.station ? " " + esc(R.station) : "") + (R && R.time ? dot + "day " + Number(R.time.d) + ", " + R.time.h + ":" + R.time.m + "Z" : "") + dot + D.good + " group" + (D.good === 1 ? "" : "s") + " decoded" + (D.unk ? ", " + D.unk + " not" : "") +
+          (P.rwy ? dot + "runway " + wxRwy(P) : "") + (P.elev !== null ? dot + "elevation " + nf(P.elev, 0) + " ft" : "");
+      },
+      compute: function(P) {
+        var D = wxDecode(P.raw);
+        need(D.good > 0, "That doesn’t read as a METAR or TAF. Paste a whole report, like " + B("KSEA 241753Z 18012KT 10SM FEW040 BKN250 14/08 A3012") + ", or one group, like " + B("-SHRA") + ".");
+        if (P.rwy !== null) need(P.rwy >= 1 && P.rwy <= 36, "A runway number is 01 to 36: its magnetic direction ÷ 10.");
+        if (P.elev !== null) need(P.elev >= -1500 && P.elev <= 20000, "Give a field elevation between −1,500 and 20,000 ft.");
+        var R = { D: D, met: D.met, taf: D.taf, src: D.met && (D.met.cond.vis || D.met.cond.wind || D.met.cond.sky.length || D.met.cond.clr) ? "met" : D.taf ? "taf" : "met" };
+        R.C = R.src === "met" ? (D.met ? D.met.cond : freshCond()) : D.taf.periods[0].cond;
+        R.fc = catOf(R.C);
+        R.low = R.fc ? lowFS(R.C, R.fc.h) : null;
+        var W = R.C.wind;
+        R.wind = W;
+        if (P.rwy && W && !W.vrb && !W.calm) {
+          R.rwP = { mode: "runway", rwy: P.rwy, lr: P.lr, wd: W.dir === 0 ? 360 : W.dir, ws: rnd(W.kt, 2), gust: W.gust !== null && W.gkt > W.kt ? rnd(W.gkt, 2) : null };
+          R.rw = M.runway.compute(R.rwP);
+          R.rwMax = rwWorst(W, P.rwy * 10);
+        } else R.rw = null;
+        var mt = D.met;
+        R.T = mt && mt.t !== null ? mt.t : null;
+        R.Td = mt && mt.td !== null ? mt.td : null;
+        R.spread = R.T !== null && R.Td !== null ? R.T - R.Td : null;
+        if (R.spread !== null) {
+          R.base = Math.max(R.spread, 0) / 2.5 * 1000;
+          R.baseR = rnd(R.base, -1);
+          R.eT = magnus(R.T);
+          R.eTd = magnus(R.Td);
+          R.rh = Math.min(100 * R.eTd / R.eT, 100);
+          R.rhR = rnd(R.rh, 0);
+          if (mt.tx !== null && mt.tdx !== null) {
+            R.baseX = rnd(Math.max(mt.tx - mt.tdx, 0) / 2.5 * 1000, -1);
+            R.rhX = rnd(Math.min(100 * magnus(mt.tdx) / magnus(mt.tx), 100), 0);
+          }
+        }
+        R.alt = mt ? mt.alt : null;
+        R.A = null;
+        if (P.elev !== null && R.alt && R.T !== null) {
+          R.AP = { mode: "altitude", task: "da", elev: P.elev, set: R.alt.inhg !== null ? R.alt.inhg : R.alt.hpa, pa: null, oat: R.T, oatF: null, cas: null };
+          try { R.A = M.altitude.compute(R.AP); } catch (e) {
+            if (!(e && e.user)) throw e;
+            R.altErr = e.user;
+          }
+        }
+        var wxs = R.C.wx || [];
+        R.wxq = null;
+        if (P.code && wxParse(P.code)) R.wxq = wxParse(P.code);
+        else if (wxs.length) R.wxq = wxs[0];
+        R.ask = wxAsk(P, R);
+        return R;
+      },
+      draw: function(P, R) {
+        var W = new Work(),
+          D = R.D,
+          items = D.items,
+          mt = R.met,
+          stn = (mt && mt.station) || (R.taf && R.taf.station) || "";
+        var KC = { head: "p", wind: "e", vis: "u", rvr: "u", wx: "m", sky: "v", temp: "r", alt: "a", trend: "p", rmk: "n", taf: "p", unk: "n" };
+        var chip = function(it) { return '<span class="mg c-' + KC[it.k] + (it.k === "unk" ? " unk" : "") + '">' + esc(it.g) + "</span>"; };
+        var list = function(its) { return '<div class="mt-dec">' + its.map(function(it) { return '<div class="mt-row">' + chip(it) + '<span class="mt-m">' + it.h + "</span></div>"; }).join("") + "</div>"; };
+        var say = function(its) { return its.map(function(it) { return [KC[it.k], it.g, it.h]; }); };
+        var kinds = D.met && D.taf ? "a " + (mt.type === "SPECI" ? "special report (SPECI)" : "METAR") + " and a TAF" : D.taf ? "a TAF (a forecast)" : mt && mt.type === "SPECI" ? "a special report (SPECI)" : "a METAR (an observation)";
+        W.add("<b>The report, group by group.</b> A report is read left to right, one group (a word between spaces) at a time, and each kind of group has its place. The colors show what each group is about; a dashed box is a group this page doesn’t know.",
+          '<div class="mt-strip">' + items.map(chip).join(" ") + "</div>",
+          [
+            ["p", "read", "This is " + kinds + (stn ? " for " + B(esc(stn)) : "") + ": " + B(D.good + " group" + (D.good === 1 ? "" : "s")) + " to decode" + (D.unk ? ", and " + B(D.unk) + " this page doesn’t know" : "") + "."]
+          ],
+          mt && mt.auto ? "AUTO: nobody checked this report, so things like the cloud types may be missing." : "");
+        var SECS = [
+          ["head", "<b>Who, where and when.</b> The kind of report, the airport’s four-letter ICAO code, and the day of the month and time in UTC (Z, “Zulu”)."],
+          ["wind", "<b>The wind</b>: three digits for the direction it blows <b>from</b>, in degrees true, then the speed (KT is knots); G and a number are the gusts."],
+          ["vis", "<b>Visibility and weather.</b> In the US the visibility is in statute miles (SM, fractions too: 1 1/2SM); elsewhere in meters (9999 is 10 km or more). A weather code is the intensity (− light, + heavy, VC nearby), a descriptor (SH showers, TS thunderstorm, FZ freezing …) and what is falling or in the air (RA rain, SN snow, BR mist, FG fog …)."],
+          ["sky", "<b>The clouds</b>, lowest first: how much of the sky (FEW, SCT, BKN, OVC, in eighths) and the height in <b>hundreds of feet</b> above the ground — three digits, so 040 is 4,000 ft."],
+          ["temp", "<b>Temperature, dew point and pressure.</b> Temperatures in °C, and <b>M means minus</b> (M05 is −5 °C). The altimeter setting is A and inches of mercury in the US (A2992 = 29.92 inHg), Q and hectopascals elsewhere (Q1013)."],
+          ["trend", "<b>What’s expected next</b>: a trend forecast for the next 2 hours, added to many reports outside the US."],
+          ["rmk", "<b>The remarks.</b> After RMK come extra details, many in code: what kind of station it is, the exact temperatures (the T-group), the sea-level pressure, when rain began and ended, and more."],
+          ["taf", "<b>The forecast (TAF).</b> The first conditions hold from the start of the valid time. " + B("FM") + " starts a whole new forecast, " + B("TEMPO") + " is a temporary change, " + B("BECMG") + " a gradual lasting one, and " + B("PROB30") + " or " + B("PROB40") + " a 30% or 40% chance."],
+          ["unk", "<b>Not decoded.</b> These groups aren’t ones this page knows, so they are shown just as they are instead of being guessed at. Check them in the FAA’s Aviation Weather Handbook or an official briefing."]
+        ];
+        SECS.forEach(function(s) {
+          var its = items.filter(function(it) { return it.sec === s[0]; });
+          if (!its.length) return;
+          var aside = "";
+          if (s[0] === "sky" && R.fc && R.low && R.fc.ceil) aside = "Careful: " + esc(R.low.g) + " is lower, but FEW and SCT layers are not a ceiling. Only BKN, OVC or VV are.";
+          if (s[0] === "temp" && mt && mt.t !== null && P.elev === null) aside = "With the field elevation (like " + B("elevation " + (stnOf(stn) ? stnOf(stn)[1] : 433)) + ") the page also works out the pressure and density altitude.";
+          if (s[0] === "rmk" && mt && mt.tx !== null) aside = "The T-group gives the temperature and dew point to a tenth of a degree; the main report rounds them to whole degrees.";
+          W.add(s[1], list(its), say(its), aside);
+        });
+        if (R.taf && R.taf.periods.length) {
+          var rows = R.taf.periods.map(function(p) {
+            var fc = catOf(p.cond),
+              cc = p.cond;
+            return { p: p, fc: fc, txt: [cc.wind ? windW(cc.wind) : "", cc.vis ? visW(cc.vis) : "", cc.wx.map(function(x) { return x.w; }).join(", "), cc.cavok ? "" : cc.clr ? "clear" : cc.sky.map(function(l) { return l.g; }).join(" ")].filter(Boolean).join(" · ") };
+          });
+          var worst = null;
+          rows.forEach(function(r) { if (r.fc && (!worst || FCAT.indexOf(r.fc.cat) < FCAT.indexOf(worst.fc.cat))) worst = r; });
+          W.add("<b>The flight category in each forecast period.</b> A TEMPO, PROB or BECMG period keeps whatever it doesn’t change from the forecast before it.",
+            xs('<table class="tbl"><thead><tr><th class="l">Period</th><th class="l">Conditions</th><th class="l">Category</th></tr></thead><tbody>' + rows.map(function(r) {
+              return '<tr><td class="l">' + esc(cap(r.p.label)) + '</td><td class="l mt-wrap">' + esc(r.txt) + '</td><td class="l">' + (r.fc ? fcH(r.fc.cat) : "—") + "</td></tr>";
+            }).join("") + "</tbody></table>"),
+            rows.map(function(r) { return ["a", r.fc ? r.fc.cat : "?", cap(esc(r.p.label)) + ": " + esc(r.txt || "no change") + "."]; }),
+            worst ? "The worst forecast: " + B(worst.fc.cat) + " (" + esc(worst.p.label) + ")." : "");
+          R.tafWorst = worst;
+        }
+        // the flight category
+        var fc = R.fc,
+          C = R.C,
+          cells = [],
+          facts = [];
+        if (fc) {
+          var hTxt = fc.ceil ? nf(fc.h, 0) + " ft" : "none",
+            V = C.vis;
+          var row = function(k, cname, cv, vv) { return '<tr' + (fc.cat === k ? ' class="hi"' : "") + '><td class="l">' + fcH(k) + '</td><td class="l' + (fc.rc === FCAT.indexOf(k) ? " on" : "") + '">' + cv + '</td><td class="l dim">' + cname + '</td><td class="l' + (fc.rv === FCAT.indexOf(k) ? " on" : "") + '">' + vv + "</td></tr>"; };
+          var tbl = xs('<table class="tbl fct"><thead><tr><th class="l">Category</th><th class="l">Ceiling</th><th class="l"></th><th class="l">Visibility</th></tr></thead><tbody>' +
+            row("LIFR", "or", "below 500 ft", "below 1 SM") + row("IFR", "or", "500 to below 1,000 ft", "1 to below 3 SM") + row("MVFR", "or", "1,000 to 3,000 ft", "3 to 5 SM") + row("VFR", "and", "above 3,000 ft", "above 5 SM") + "</tbody></table>");
+          var cWhy = fc.ceil ? "the lowest broken, overcast or hidden layer is " + B(esc(fc.ceil.g)) + ": " + Number(fc.ceil.g.replace(/\D/g, "")) + " hundred feet = " + B(hTxt) : C.cavok ? B("no ceiling") + " below 5,000 ft (CAVOK)" : B("no ceiling") + ": no BKN, OVC or VV layer";
+          var vWhy = V.m !== null || V.cavok ? (V.cavok ? "CAVOK: 10 km or more" : V.txt + " is " + visW(V)) + " = " + (V.less ? "less than " : "") + nf(V.sm, 2) + " SM (÷ 1,609 m in a mile)" : esc((V.less ? "M" : V.more ? "P" : "") + V.txt) + "SM: " + visW(V);
+          W.add("<b>The flight category.</b> The <b>ceiling</b> is the lowest layer that is broken (BKN) or overcast (OVC), or the vertical visibility (VV) into a hidden sky — FEW and SCT layers don’t count. Find the row the ceiling falls in and the row the visibility falls in: the category is the <b>worse</b> of the two (the FAA’s definitions, used on aviationweather.gov).",
+            eqL("ceiling " + (fc.ceil ? hTxt : "none") + opS("·") + "visibility " + esc(visSM(V))) + tbl,
+            [
+              ["e", "ceiling", cap(cWhy) + "."],
+              ["u", "visibility", "Visibility " + vWhy + "."],
+              ["a", "category", "Ceiling: " + FCAT[fc.rc] + "; visibility: " + FCAT[fc.rv] + ". The worse is " + B(fc.cat) + "."]
+            ],
+            R.low ? "Don’t take the ceiling from " + esc(R.low.g) + ": few (FEW) or scattered (SCT) clouds leave most of the sky open, so they are not a ceiling." :
+            V.m !== null && !V.cavok ? "International reports give the visibility in meters: " + esc(V.txt) + " is not " + esc(V.txt) + " miles." : "");
+          cells.push({ k: "Flight category", v: fcH(fc.cat), s: fc.cat }, { k: "Ceiling", v: hTxt }, { k: "Visibility", v: V.m !== null || V.cavok ? visSM(V) + ' <span class="sm">(' + esc(visW(V)) + ")</span>" : esc(visSM(V)), s: visSM(V) });
+          if (V.m !== null && !V.cavok && !V.more && !V.less) facts.push("Meters to miles: " + useBtn("units", V.m + " m to sm", nf(V.m, 0) + " m in statute miles"));
+        } else W.add("<b>The flight category</b> needs the visibility and the clouds, and this report doesn’t have both.", "", [
+          ["a", "category", "No flight category: the report needs a visibility and a sky (cloud) group."]
+        ]);
+        if (R.ask === "wx" && R.wxq) cells.push({ k: R.wxq.g, v: esc(R.wxq.w), s: R.wxq.w });
+        // runway winds
+        if (P.rwy && R.rw) {
+          var rw = R.rw,
+            rp = R.rwP,
+            sd = sideOf(rw.rel),
+            xwA = Math.abs(rw.xwR),
+            hwW = rw.hw < -1e-9 ? "tailwind" : "headwind",
+            wN = gv(rp.ws) + " kt";
+          W.add("<b>Crosswind on runway " + wxRwy(P) + ".</b> The same working as the Runway winds tab: runway " + wxRwy(P) + " points " + p3(rw.rh) + "°, so the angle is wind − runway; headwind = wind × cos(angle), crosswind = wind × sin(angle)" + (rp.gust ? ", and again with the gust" : "") + ".",
+            eqL("angle = " + p3(rp.wd) + "° − " + p3(rw.rh) + "° = " + nf(rw.rel, 0) + "°") +
+            eqL("headwind = " + wN + " × cos " + nf(rw.ang, 0) + "° = " + nf(rw.hw, 2) + opS("≈") + res(nf(Math.abs(rw.hwR), 0) + " kt " + hwW)) +
+            eqL("crosswind = " + wN + " × sin " + nf(rw.ang, 0) + "° = " + nf(Math.abs(rw.xw), 2) + opS("≈") + res(xwA + " kt" + (xwA && sd ? " from the " + sd : ""))) +
+            (rp.gust ? eqL("in the gusts: " + gv(rp.gust) + " kt × sin " + nf(rw.ang, 0) + "° = " + nf(Math.abs(rw.gxw), 2) + opS("≈") + res(rw.gxwR + " kt")) : "") +
+            (R.rwMax !== null && R.rwMax > Math.abs(rw.sr) + 1e-9 ? whyH("The direction varies (" + R.wind.wvar.from + "V" + R.wind.wvar.to + "): somewhere in that range the crosswind reaches " + B(nf(rp.ws * R.rwMax, 0) + " kt") + (rp.gust ? ", " + B(nf(rp.gust * R.rwMax, 0) + " kt") + " in the gusts" : "") + ".") : ""),
+            [
+              ["m", "cross", "Runway " + wxRwy(P) + ": " + B(nf(Math.abs(rw.hwR), 0) + " kt " + hwW) + " and " + B(xwA + " kt") + " of crosswind" + (xwA && sd ? " from the " + sd : "") + (rp.gust ? "; in the gusts " + B(rw.gxwR + " kt") : "") + "."]
+            ],
+            "A METAR’s wind is in degrees <b>true</b>; runway numbers are <b>magnetic</b>. Where the magnetic variation is big, change the wind to magnetic first (the Headings tab). Here it is worked as given, the way most ground-school problems do. Step by step: " + useBtn("runway", M.runway.text(rp), "Runway winds") + ".");
+          cells.push({ k: rw.hw < -1e-9 ? "Tailwind" : "Headwind", v: nf(Math.abs(rw.hwR), 0) + " kt" }, { k: "Crosswind", v: xwA + " kt" + (xwA && sd ? ' <span class="sm">from the ' + sd + "</span>" : ""), s: xwA + " kt" + (xwA && sd ? " from the " + sd : "") });
+          if (rp.gust) cells.push({ k: "Gust crosswind", v: rw.gxwR + " kt" });
+          facts.push("Runway " + wxRwy(P) + " step by step: " + useBtn("runway", M.runway.text(rp), "Runway winds"));
+        } else if (P.rwy && R.wind) W.add("<b>Crosswind on runway " + wxRwy(P) + ".</b> " + (R.wind.calm ? "The wind is calm: no crosswind at all." : "The wind is variable (VRB), so it has no one direction: take all " + nf(R.wind.kt, 0) + " kt as a possible crosswind."), "", [
+          ["m", "cross", R.wind.calm ? "Calm: no crosswind." : "Variable: up to " + B(nf(R.wind.kt, 0) + " kt") + " of crosswind."]
+        ]);
+        else if (!P.rwy && R.wind && !R.wind.calm && !R.wind.vrb) {
+          var st0 = stnOf(stn),
+            pick = Math.round(R.wind.dir / 10) % 36 || 36;
+          if (st0) pick = st0[2].slice().sort(function(a, b) { return Math.abs(rel180(R.wind.dir - a * 10)) - Math.abs(rel180(R.wind.dir - b * 10)); })[0];
+          facts.push("Crosswind for a runway: add " + useBtn("metar", M.metar.text({ raw: P.raw, rwy: pick, lr: "", elev: P.elev, ask: null, code: null }), "runway " + (pick < 10 ? "0" : "") + pick));
+        }
+        // cloud base and humidity, from the temperature and the dew point
+        if (R.spread !== null) {
+          var Tt = nf(R.T, 0),
+            Dt = nf(R.Td, 0),
+            low0 = null;
+          C.sky.forEach(function(l) { if (l.h !== null && (!low0 || l.h < low0.h)) low0 = l; });
+          var cmp = low0 ? "The lowest layer reported is " + B(esc(low0.g)) + " (" + nf(low0.h, 0) + " ft): the estimate is " + (Math.abs(low0.h - R.baseR) < 50 ? "right on it" : nf(Math.abs(low0.h - R.baseR), 0) + " ft " + (R.baseR > low0.h ? "higher" : "lower")) + "." :
+            C.clr || C.cavok ? "No clouds are reported low down: the air may be too dry, or rising too little, to make them." : "";
+          W.add("<b>Estimated cloud base</b> — an estimate, not a measurement. Air that rises cools about 3 °C every 1,000 ft, and its dew point drops about 0.5 °C, so the gap (the spread) closes about 2.5 °C every 1,000 ft. Where it closes, clouds form: " + B("base ≈ (T − Td) ÷ 2.5 × 1,000 ft") + " above the ground. It works best for puffy cumulus clouds.",
+            eqL("spread = " + Tt + " − " + paren(Dt) + " = " + nf(R.spread, 0) + " °C") + eqL("base ≈ " + nf(R.spread, 0) + " ÷ 2.5 × 1,000 = " + res(nf(R.baseR, 0) + " ft") + " AGL") + (cmp ? whyH(cmp) : ""),
+            [
+              ["v", "spread", "Temperature " + B(Tt + " °C") + " minus dew point " + B(Dt + " °C") + " = " + B(nf(R.spread, 0) + " °C") + "."],
+              ["m", "÷ 2.5", B(nf(R.spread, 0) + " ÷ 2.5 × 1,000 ≈ " + nf(R.baseR, 0) + " ft") + " above the ground (an estimate)."]
+            ],
+            (R.spread <= 1 ? "A spread of 1 °C or less means the air is almost saturated: fog or very low clouds are likely. " : "") + (R.baseX !== undefined && R.baseX !== R.baseR ? "With the T-group’s tenths it comes to " + nf(R.baseX, 0) + " ft." : ""));
+          cells.push({ k: "Cloud base (estimate)", v: nf(R.baseR, 0) + " ft" });
+          var g1 = 17.62 * R.Td / (243.12 + R.Td),
+            g2 = 17.62 * R.T / (243.12 + R.T);
+          W.add("<b>Relative humidity</b> — approximate, with the Magnus formula. The dew point gives how much water vapor the air holds, as a pressure: " + B("e = 6.112 × e<sup>17.62 × Td ÷ (243.12 + Td)</sup> hPa") + ". The same formula at the temperature gives the most it could hold. Their ratio is the humidity.",
+            eqL("vapor = 6.112 × e<sup>17.62 × " + paren(Dt) + " ÷ " + nf(243.12 + R.Td, 2) + "</sup> = 6.112 × e<sup>" + nf(g1, 4) + "</sup> = " + nf(R.eTd, 2) + " hPa") +
+            eqL("most it could hold = 6.112 × e<sup>17.62 × " + paren(Tt) + " ÷ " + nf(243.12 + R.T, 2) + "</sup> = 6.112 × e<sup>" + nf(g2, 4) + "</sup> = " + nf(R.eT, 2) + " hPa") +
+            eqL("RH = " + nf(R.eTd, 2) + " ÷ " + nf(R.eT, 2) + " × 100 ≈ " + res(nf(R.rhR, 0) + "%")),
+            [
+              ["m", "Magnus", "Vapor pressure " + B(nf(R.eTd, 2) + " hPa") + " at the dew point, " + B(nf(R.eT, 2) + " hPa") + " at the temperature."],
+              ["a", "RH", B(nf(R.eTd, 2) + " ÷ " + nf(R.eT, 2) + " ≈ " + nf(R.rhR, 0) + "%") + " relative humidity (approximate)."]
+            ],
+            "A quick check: about 5% less humidity for each degree of spread (100 − 5 × " + nf(R.spread, 0) + " = " + nf(Math.max(100 - 5 * R.spread, 0), 0) + "%) — close only when the spread is small.");
+          cells.push({ k: "Humidity (approx.)", v: nf(R.rhR, 0) + "%" });
+          facts.push("Temperature in °F: " + useBtn("units", nA(R.T) + " °C to °F", Tt + " °C to °F"));
+        }
+        // pressure and density altitude at the field
+        if (R.A) {
+          var A = R.A,
+            ap = R.AP,
+            si = A.si,
+            dif = 29.92 - si;
+          W.add("<b>Pressure and density altitude</b> at the field, elevation " + B(nf(P.elev, 0) + " ft") + ", with the altimeter setting " + B(esc(R.alt.g)) + " and the temperature " + B(nf(R.T, 0) + " °C") + " — the same working as the Altitude & airspeed tab.",
+            (R.alt.hpa !== null ? eqL(nf(R.alt.hpa, 0) + " hPa ÷ 33.8639 = " + nf(si, 4) + " inHg") : "") +
+            eqL("PA = " + nf(P.elev, 0) + " + (29.92 − " + nf(si, 2) + ") × 1,000 = " + nf(P.elev, 0) + minus(-dif * 1000, 0) + " = " + res(nf(A.paR, 0) + " ft")) +
+            eqL("ISA at PA = 15 − 2 × " + frH(nf(A.paR, 0), "1,000") + " = " + tempT(A.isa)) +
+            eqL("DA = " + nf(A.paR, 0) + " + 120 × (" + nf(R.T, 0) + " − " + paren(nf(A.isa, 1)) + ") = " + nf(A.paR, 0) + minus(-120 * A.dev, 0) + " = " + res(nf(A.daR, 0) + " ft")),
+            [
+              ["e", "PA", "Pressure altitude " + B(nf(A.paR, 0) + " ft") + "."],
+              ["m", "DA", "Density altitude " + B(nf(A.daR, 0) + " ft") + " (120 ft for each °C away from standard)."]
+            ],
+            "Step by step: " + useBtn("altitude", M.altitude.text(ap), "Altitude & airspeed") + (A.daR > 5000 ? ". High density altitude means a longer takeoff roll and a slower climb." : "."));
+          cells.push({ k: "Density altitude", v: nf(A.daR, 0) + " ft" }, { k: "Pressure altitude", v: nf(A.paR, 0) + " ft" });
+          facts.push("Density altitude step by step: " + useBtn("altitude", M.altitude.text(ap), "Altitude & airspeed"));
+        } else if (R.altErr) W.add("<b>Pressure and density altitude.</b> " + R.altErr, "", [
+          ["e", "PA", stripTags(R.altErr)]
+        ]);
+        if (R.wind) facts.unshift("Wind " + B(esc(windW(R.wind))) + (R.wind.calm || R.wind.vrb ? "" : " (true)"));
+        if (C.wx && C.wx.length) facts.splice(1, 0, "Weather: " + C.wx.map(function(x) { return B(esc(x.g)) + " " + esc(x.w); }).join(", "));
+        if (R.alt && R.alt.hpa !== null) facts.push("Pressure in inHg: " + useBtn("units", R.alt.hpa + " hPa to inHg", nf(R.alt.hpa, 0) + " hPa to inHg"));
+        if (R.tafWorst && R.src === "met") facts.push("Worst in the TAF: " + B(R.tafWorst.fc.cat));
+        if (!cells.length) cells.push({ k: "Decoded", v: D.good + " group" + (D.good === 1 ? "" : "s") });
+        bandCells(cells, facts);
+        var close = fc ? (stn ? esc(stn) + ": " : "") + "<b>" + fc.cat + "</b> — ceiling " + (fc.ceil ? nf(fc.h, 0) + " ft" : "none") + ", visibility " + esc(visSM(C.vis)) + "." : "Decoded " + D.good + " group" + (D.good === 1 ? "" : "s") + ".";
+        return finish(W, '<div class="ck">' + close + '</div><div class="ck">For learning to read reports — not for planning a real flight: get an official weather briefing.</div>');
+      },
+      record: function(P, R) {
+        var a = R.ask,
+          rep = P.raw,
+          q, ans, fc = R.fc;
+        if (a === "cat") {
+          q = "What are the ceiling and the visibility, and what is the flight category (VFR, MVFR, IFR or LIFR)?";
+          ans = fc.cat + ": ceiling " + (fc.ceil ? nf(fc.h, 0) + " ft" : "none") + ", visibility " + visSM(R.C.vis) + (R.C.vis.m !== null && !R.C.vis.cavok && !R.C.vis.more && !R.C.vis.less ? " (" + nf(R.C.vis.m, 0) + " m)" : "");
+        } else if (a === "xw") {
+          var rw = R.rw,
+            sd = sideOf(rw.rel),
+            xwA = Math.abs(rw.xwR);
+          q = "Landing on runway " + wxRwy(P) + ", what are the headwind (or tailwind) and crosswind components" + (R.rwP.gust ? ", and the crosswind in the gusts" : "") + "?";
+          ans = (rw.hw < -1e-9 ? nf(Math.abs(rw.hwR), 0) + " kt tailwind" : nf(rw.hwR, 0) + " kt headwind") + ", " + xwA + " kt crosswind" + (xwA && sd ? " from the " + sd : "") + (R.rwP.gust ? "; in the gusts " + rw.gxwR + " kt crosswind" : "");
+        } else if (a === "base") {
+          q = "Estimate the height of the cloud base from the temperature and dew point (spread ÷ 2.5 × 1,000 ft).";
+          ans = "about " + nf(R.baseR, 0) + " ft above the ground (an estimate)";
+        } else if (a === "rh") {
+          q = "About what is the relative humidity? (Use the Magnus formula.)";
+          ans = "about " + nf(R.rhR, 0) + "% (approximate)";
+        } else if (a === "da") {
+          q = "The field elevation is " + nf(P.elev, 0) + " ft. What are the pressure altitude and the density altitude?";
+          ans = "pressure altitude " + nf(R.A.paR, 0) + " ft, density altitude " + nf(R.A.daR, 0) + " ft";
+        } else if (a === "wx") {
+          q = "What does " + R.wxq.g + " mean?";
+          ans = R.wxq.g + ": " + R.wxq.w;
+        } else {
+          q = "Decode it.";
+          ans = R.D.good + " groups decoded";
+        }
+        var who = (R.met && R.met.station) || (R.taf && R.taf.station) || "the airport";
+        return {
+          text: "Here is a weather report for " + who + ": " + rep + ". " + q,
+          html: "Here is a weather report: <b>" + esc(rep) + "</b>. " + esc(q).replace(/(runway \d+[LRC]?|\d[\d,]* ft|−?[A-Z+-]{2,9}(?= mean))/g, "<b>$1</b>"),
+          short: who + " " + (a === "wx" ? R.wxq.g : a ? ASKT[a] || a : "report"),
+          answer: ans,
+          answerHtml: "<b>" + esc(ans) + "</b>"
+        };
+      },
+      fields: function(P, R) {
+        var a = R.ask;
+        if (a === "cat") {
+          var fc = R.fc,
+            V = R.C.vis,
+            ca = [];
+          if (fc.ceil && fc.h >= 100) ca.push({ v: fc.h / 100, msg: "Cloud heights are in <b>hundreds of feet</b>: " + esc(fc.ceil.g) + " is " + nf(fc.h, 0) + " ft." });
+          if (R.low) ca.push({ v: R.low.h, msg: esc(R.low.g) + " isn’t a ceiling: FEW and SCT leave most of the sky open. The ceiling is the lowest <b>BKN</b>, <b>OVC</b> or <b>VV</b> layer." });
+          if (fc.ceil) ca.push({ v: fc.h * 10, msg: "Three digits are hundreds of feet: " + esc(fc.ceil.g) + " is " + nf(fc.h, 0) + " ft, not " + nf(fc.h * 10, 0) + "." });
+          var va = [];
+          if (V.m !== null && !V.cavok) va.push({ v: V.m, msg: "That’s the visibility in <b>meters</b>. In statute miles: " + V.m + " ÷ 1,609 = " + nf(V.sm, 2) + "." }, { v: V.m / 1000, msg: "That’s kilometers. In statute miles: " + V.m + " m ÷ 1,609 = " + nf(V.sm, 2) + "." });
+          var cats = [];
+          if (R.low) {
+            var trap = FCAT[Math.min(rankC(R.low.h), fc.rv)];
+            if (trap !== fc.cat) cats.push({ w: trap, msg: "That takes the ceiling from " + esc(R.low.g) + ", but FEW and SCT layers aren’t a ceiling." });
+          }
+          if (V.m !== null && !V.cavok) {
+            var trap2 = FCAT[Math.min(fc.rc, rankV(V.m))];
+            if (trap2 !== fc.cat) cats.push({ w: trap2, msg: "The visibility " + V.txt + " is in meters (" + nf(V.sm, 2) + " SM), not miles." });
+          }
+          if (fc.rc !== fc.rv) cats.push({ w: FCAT[Math.max(fc.rc, fc.rv)], msg: "That’s the better of the two. The category goes by the <b>worse</b> of the ceiling and the visibility." });
+          return [{ k: "ceil", label: "Ceiling", unit: "ft", type: "ceil", want: fc.ceil ? fc.h : null, tol: 0, alts: ca, ph: "e.g. 1500 or none", im: "text" },
+            { k: "vis", label: "Visibility", unit: "SM", type: "vis", want: V, tol: V.m !== null ? 0.06 : 0.01, alts: va, ph: "e.g. 1 1/2", im: "text" },
+            { k: "cat", label: "Flight category", unit: "", type: "pick", want: fc.cat, alts: cats, ph: "VFR, MVFR, IFR or LIFR", im: "text" }
+          ];
+        }
+        if (a === "xw") {
+          var rw = R.rw,
+            rp = R.rwP,
+            f = [{ k: "hw", label: rw.hw < -0.5 ? "Head- or tailwind" : "Headwind", unit: "kt", type: "hw", want: rw.hw, tol: 1, alts: [{ v: Math.abs(rw.xw), msg: "That’s the crosswind part. Along the runway it’s wind × <b>cos</b>(angle)." }] },
+              { k: "xw", label: "Crosswind", unit: "kt", type: "xw", side: sideOf(rw.rel), want: Math.abs(rw.xw), tol: 1, alts: [{ v: Math.abs(rw.hw), msg: "That’s the headwind part. Across the runway it’s wind × <b>sin</b>(angle)." }] }
+            ];
+          if (rp.gust) {
+            f[1].alts.unshift({ v: Math.abs(rw.gxw), msg: "That’s the crosswind in the <b>gusts</b>. The steady wind is the number before the G: " + gv(rp.ws) + " kt." });
+            f[0].alts.unshift({ v: Math.abs(rw.ghw), msg: "That uses the gust. The steady wind is the number before the G: " + gv(rp.ws) + " kt." });
+            f.push({ k: "gxw", label: "Crosswind in the gusts", unit: "kt", type: "num", want: Math.abs(rw.gxw), tol: 1, alts: [{ v: Math.abs(rw.xw), msg: "That’s the steady crosswind. For the gusts use the number after the G: " + gv(rp.gust) + " kt." }] });
+          }
+          return f;
+        }
+        var mt = R.met;
+        var noM = function(fn) { // the same sum with every M (minus) left off
+          var T = Math.abs(R.T),
+            Td = Math.abs(R.Td);
+          return (R.T < 0 || R.Td < 0) ? fn(T, Td) : null;
+        };
+        if (a === "base") {
+          var bm = noM(function(T, Td) { return Math.abs(T - Td) / 2.5 * 1000; }),
+            ba = [{ v: R.spread * 1000, msg: "Divide the spread by <b>2.5</b> before multiplying by 1,000: the spread closes about 2.5 °C every 1,000 ft." }, { v: R.spread / 2.5 * 100, msg: "× 1,000, not × 100: the answer is in feet." }];
+          if (bm !== null && Math.abs(bm - R.base) > 50) ba.unshift({ v: bm, msg: "<b>M means minus</b>: " + esc(mt.tRaw) + "/" + esc(mt.tdRaw) + " is " + nf(R.T, 0) + " °C and " + nf(R.Td, 0) + " °C." });
+          return [{ k: "base", label: "Cloud base (estimate)", unit: "ft", type: "num", want: R.base, tol: Math.max(50, R.base * 0.03), also: R.baseX !== undefined ? [R.baseX] : [], alts: ba }];
+        }
+        if (a === "rh") {
+          var rm = noM(function(T, Td) { return 100 * magnus(Td) / magnus(T); }),
+            ra = [{ v: 100 - 5 * R.spread, msg: "That’s the rough 5%-per-degree rule. The Magnus formula gives a better answer: e(Td) ÷ e(T) × 100." }];
+          if (rm !== null && Math.abs(rm - R.rh) > 2) ra.unshift({ v: rm, msg: "<b>M means minus</b>: " + esc(mt.tRaw) + "/" + esc(mt.tdRaw) + " is " + nf(R.T, 0) + " °C and " + nf(R.Td, 0) + " °C." });
+          return [{ k: "rh", label: "Relative humidity", unit: "%", type: "num", want: R.rh, tol: 1.5, also: R.rhX !== undefined ? [R.rhX] : [], alts: ra }];
+        }
+        if (a === "da") {
+          var A = R.A,
+            dm = R.T < 0 ? A.paR + 120 * (Math.abs(R.T) - A.isa) : null,
+            da = [{ v: A.paR + 120 * (R.T - 15), msg: "Compare the temperature with the standard temperature <b>at this altitude</b> (" + tempT(A.isa) + "), not 15 °C." }, { v: A.paR, msg: "That’s the pressure altitude. Now add 120 ft for each °C above standard." }];
+          if (dm !== null) da.unshift({ v: dm, msg: "<b>M means minus</b>: " + esc(mt.tRaw) + " is " + nf(R.T, 0) + " °C." });
+          return [{ k: "pa", label: "Pressure altitude", unit: "ft", type: "num", want: A.paR, tol: 1, alts: [{ v: P.elev - (29.92 - A.si) * 1000, msg: "The sign is turned around: a setting " + (A.si < 29.92 ? "below" : "above") + " 29.92 makes the pressure altitude " + (A.si < 29.92 ? "higher" : "lower") + " than the field." }] },
+            { k: "da", label: "Density altitude", unit: "ft", type: "num", want: A.da, tol: 12, alts: da }
+          ];
+        }
+        if (a === "wx") {
+          var x = R.wxq,
+            wa = [];
+          if (x.it === "-") wa.push({ re: /\b(?:minus|negative|less\s+than|below)\b/i, msg: "The − in front is the <b>intensity</b>: light. (No sign is moderate, + is heavy.) It isn’t minus." }, { re: /\bheavy\b/i, msg: "− means <b>light</b>; + means heavy." });
+          if (x.it === "+") wa.push({ re: /\blight\b/i, msg: "+ means <b>heavy</b>; − means light." }, { re: /\b(?:plus|more\s+than|positive)\b/i, msg: "The + in front is the <b>intensity</b>: heavy." });
+          return [{ k: "wx", label: x.g + " means", unit: "", type: "words", want: x.keys, parts: x.parts, alts: wa, ph: "e.g. heavy snow", im: "text" }];
+        }
+        return [];
+      },
+      note: "Heights in feet, visibility in statute miles (fractions like 1 1/2 are fine); the cloud base within about 50 ft and the humidity within 1.5%.",
+      hint: function(P, R) {
+        var a = R.ask;
+        if (a === "cat") return "The ceiling is the lowest BKN, OVC or VV layer (three digits = hundreds of feet). LIFR: below 500 ft or below 1 SM; IFR: below 1,000 ft or below 3 SM; MVFR: up to 3,000 ft or up to 5 SM. Take the worse.";
+        if (a === "xw") return "The angle between the wind and runway " + wxRwy(P) + " is " + B(nf(R.rw.ang, 0) + "°") + ". Headwind = wind × cos(angle), crosswind = wind × sin(angle); the steady wind is the number before the G.";
+        if (a === "base") return "Spread = temperature − dew point (M is minus). Base ≈ spread ÷ 2.5 × 1,000 ft.";
+        if (a === "rh") return "e = 6.112 × e^(17.62 × t ÷ (243.12 + t)). RH = e(dew point) ÷ e(temperature) × 100.";
+        if (a === "da") return "PA = elevation + (29.92 − setting) × 1,000. ISA = 15 − 2 × PA ÷ 1,000. DA ≈ PA + 120 × (OAT − ISA).";
+        if (a === "wx") return "Read it in parts: " + R.wxq.parts.map(function(p) { return B(esc(p[0])) + " " + p[1]; }).join(", ") + ".";
+        return "Read the report one group at a time.";
+      },
+      gen: function(G) { return wxGen(G); }
+    };
+
+    function wxGen(G) { // a made report: a real airport, weather that hangs together, and one question
+      var region = G.region === "any" ? pickOf(["us", "us", "intl"]) : G.region,
+        ask = G.ask === "any" ? pickOf(["cat", "cat", "cat", "xw", "xw", "base", "wx", "wx", "rh", "da"]) : G.ask,
+        us = region === "us",
+        st = pickOf(WXSTN[region]),
+        cat = ask === "cat" ? pickOf(["VFR", "MVFR", "MVFR", "IFR", "IFR", "LIFR"]) : pickOf(["VFR", "VFR", "VFR", "MVFR", "IFR", "LIFR"]);
+      var p2 = function(n) { return (n < 10 ? "0" : "") + n; },
+        p3n = function(n) { return (n < 10 ? "00" : n < 100 ? "0" : "") + n; };
+      // visibility (US: statute miles; elsewhere meters), and the ceiling
+      var VIS = us ? { VFR: ["10", "10", "10", "9", "8", "7"], MVFR: ["5", "4", "3"], IFR: ["2 1/2", "2", "1 3/4", "1 1/2", "1 1/4", "1"], LIFR: ["3/4", "1/2", "1/4", "M1/4"] } : { VFR: ["9999", "9999", "9999", "9000"], MVFR: ["8000", "7000", "6000", "5000"], IFR: ["4500", "4000", "3000", "2500", "2000"], LIFR: ["1500", "1200", "0800", "0600", "0400", "0200"] };
+      var CEIL = { VFR: [35, 40, 45, 50, 60, 80, 100, 120, 150, 200, 250], MVFR: [10, 12, 14, 15, 18, 20, 22, 25, 28, 30], IFR: [5, 6, 7, 8, 9], LIFR: [1, 2, 3, 4] };
+      var better = function(c) { var i = FCAT.indexOf(c); return FCAT.slice(i); };
+      var drive = cat === "VFR" ? "both" : pickOf(["ceil", "vis", "both"]),
+        vc = drive === "ceil" ? pickOf(better(cat).slice(1).length ? better(cat).slice(1) : ["VFR"]) : cat,
+        cc = drive === "vis" ? pickOf(better(cat).slice(1).length ? better(cat).slice(1) : ["VFR"]) : cat;
+      var vis = pickOf(VIS[vc]),
+        vsm = us ? smVis(vis + "SM").sm : mVis(vis).sm;
+      var noCeil = cc === "VFR" && Math.random() < 0.5,
+        ch = noCeil ? null : pickOf(CEIL[cc]) * 100;
+      var T = rint(/^(?:KMIA|KPHX|KLAX|KSFO|YSSY|LIRF)$/.test(st[0]) ? 8 : -12, 34), // no snow in Miami
+        wx = [],
+        cold = T <= 1;
+      // weather that fits the visibility
+      var fogVis = us ? vsm <= 0.5 : vsm < 1000 / 1609.344,
+        lowVis = us ? vsm <= 6 : vsm <= 5000 / 1609.344;
+      if (fogVis) wx.push(cold ? pickOf(["FZFG", "FG", "+SN"]) : "FG");
+      else if (lowVis) wx.push(cold ? pickOf(["-SN", "SN", "BR", "-SHSN", "BLSN", "-FZRA"]) : pickOf(["-RA", "RA", "+RA", "-SHRA", "SHRA", "BR", "BR", "-DZ", "HZ", "TSRA", "-TSRA"]));
+      else if (Math.random() < (ask === "wx" ? 1 : 0.3)) wx.push(cold ? pickOf(["-SN", "-SHSN", "VCSH"]) : pickOf(["-RA", "-SHRA", "VCSH", "VCTS", "-TSRA"]));
+      if (wx[0] === "HZ" && vsm < 3) wx[0] = "BR";
+      if (/^(?:-?RA|-DZ|SHRA|-SHRA|\+RA)$/.test(wx[0] || "") && lowVis && vsm < 3 && Math.random() < 0.5) wx.push("BR");
+      var ts = wx.some(function(w) { return /TS/.test(w); });
+      if (ts) T = Math.max(T, rint(16, 30));
+      if (wx.some(function(w) { return /SN|FZ/.test(w); })) T = Math.min(T, rint(-10, 0));
+      if (wx.some(function(w) { return /RA|DZ|TS/.test(w) && !/FZ/.test(w); })) T = Math.max(T, rint(2, 12));
+      if (wx[0] === "FZFG" || wx.some(function(w) { return /FZ/.test(w); })) T = Math.min(T, -1);
+      // the spread: small in fog and mist and rain, bigger in dry air
+      var fog = wx.some(function(w) { return /FG/.test(w); }),
+        spread = fog ? rint(0, 1) : wx.some(function(w) { return /BR|DZ/.test(w); }) ? rint(1, 2) : wx.some(function(w) { return /RA|SN|PL/.test(w); }) ? rint(1, 4) : rint(3, ask === "base" ? 12 : 16);
+      if (ask === "base" && spread === 0) spread = 1;
+      var Td = T - spread;
+      // the clouds: a FEW or SCT layer under the ceiling now and then (the classic trap), and some above it
+      var sky = [];
+      if (ch !== null) {
+        var cov = fog && ch <= 300 && Math.random() < 0.6 ? "VV" : pickOf(["BKN", "BKN", "OVC"]);
+        if (cov !== "VV" && ch >= 300 && Math.random() < (ask === "cat" ? 0.65 : 0.35)) {
+          var lh = Math.max(1, Math.round(ch / 100 * (0.3 + 0.5 * Math.random())));
+          if (lh * 100 < ch) sky.push(pickOf(["FEW", "SCT"]) + p3n(lh));
+        }
+        sky.push(cov + p3n(ch / 100));
+        if (cov === "BKN" && ch / 100 + 5 <= 250 && Math.random() < 0.5) sky.push(pickOf(["BKN", "OVC"]) + p3n(Math.min(ch / 100 + rint(5, 40), 250)));
+      } else {
+        var base = Math.max(spread * 4 + rint(-3, 3), 15),
+          r = Math.random();
+        if (!us && r < 0.25 && !wx.length && vis === "9999") sky = ["CAVOK"];
+        else if (r < 0.55) sky.push(pickOf(["FEW", "SCT"]) + p3n(Math.min(base, 120)) + (ts ? "CB" : ""));
+        else if (r < 0.8) sky.push("FEW" + p3n(Math.min(base, 120)), "SCT" + p3n(Math.min(base + rint(20, 80), 250)));
+        else sky.push(us ? pickOf(["CLR", "SKC"]) : pickOf(["NSC", "FEW" + p3n(Math.min(base, 120))]));
+        if (ts && sky[0] === "CAVOK") sky = ["SCT040CB"];
+      }
+      if (ts && !sky.some(function(s) { return /CB/.test(s); })) {
+        var li = -1;
+        sky.forEach(function(s, k) { if (li < 0 && /^(?:FEW|SCT|BKN|OVC)\d{3}$/.test(s)) li = k; });
+        if (li >= 0) sky[li] += "CB";
+        else if (!/^VV/.test(sky[0] || "")) sky = ["SCT040CB"];
+      }
+      // the wind
+      var rwy = null,
+        wd, ws, gust = null,
+        wtxt;
+      if (ask === "xw") {
+        rwy = pickOf(st[2]);
+        wd = hdgN(rwy * 10 + rint(2, 8) * 10 * pickOf([1, -1]));
+        ws = rint(8, 22);
+        if (Math.random() < 0.45) gust = ws + rint(10, 15);
+      } else if (Math.random() < 0.1 && !ts) {
+        wd = 0;
+        ws = 0;
+      } else if (Math.random() < 0.1 && !ts) {
+        wd = null;
+        ws = rint(2, 6);
+      } else {
+        wd = rint(1, 36) * 10;
+        ws = ts ? rint(12, 25) : rint(3, 18);
+        if ((ts || ws >= 10) && !fog && Math.random() < (ts ? 0.8 : 0.3)) gust = ws + rint(10, 16);
+      }
+      wtxt = (wd === null ? "VRB" : p3n(wd)) + p2(ws) + (gust ? "G" + p2(gust) : "") + "KT";
+      if (wd && ws > 6 && Math.random() < 0.15) wtxt += " " + p3n(hdgN(wd - rint(3, 5) * 10)) + "V" + p3n(hdgN(wd + rint(3, 5) * 10));
+      // the temperatures: the T-group in tenths (never ending in 5, so the rounding is clear), the body rounded
+      var tx = T + (T === 0 ? rint(0, 4) : rint(-4, 4)) / 10,
+        tdx = Td + (Td === 0 ? rint(0, 4) : rint(-4, 4)) / 10;
+      if (Td === T) tdx = Math.min(tdx, tx);
+      var tt = function(c) { return (c < 0 ? "M" : "") + p2(Math.abs(c)); },
+        tg = function(c) { return (c < 0 ? "1" : "0") + p3n(Math.round(Math.abs(c) * 10)); };
+      var alt = us ? "A" + rint(2960, 3045) : "Q" + (function(q) { return (q < 1000 ? "0" : "") + q; })(rint(995, 1035)),
+        hpa = us ? Number(alt.slice(1)) / 100 * HPA_IN : Number(alt.slice(1));
+      var day = rint(1, 28),
+        hr = rint(0, 23),
+        speci = us && Math.random() < 0.15,
+        mn = speci ? rint(1, 49) : us ? pickOf([51, 52, 53, 53, 54, 56]) : pickOf([0, 20, 30, 50]);
+      var parts = [];
+      if (speci) parts.push("SPECI");
+      else if (Math.random() < 0.5) parts.push("METAR");
+      parts.push(st[0], p2(day) + p2(hr) + p2(mn) + "Z");
+      if (us && Math.random() < 0.2) parts.push("AUTO");
+      if (sky[0] === "CAVOK") parts.push(wtxt, "CAVOK");
+      else {
+        parts.push(wtxt, us ? vis + "SM" : vis);
+        parts = parts.concat(wx, sky);
+      }
+      parts.push(tt(T) + "/" + tt(Td), alt);
+      if (!us && Math.random() < 0.4) parts.push("NOSIG");
+      if (us && (G.rmk || Math.random() < 0.3)) {
+        var rk = ["RMK", Math.random() < 0.9 ? "AO2" : "AO1"];
+        if (gust && gust >= 25) rk.push("PK", "WND", p3n(wd || 270) + (gust + rint(1, 5)) + "/" + p2(hr) + p2(rint(0, Math.max(mn - 1, 0))));
+        var slp = Math.round((hpa + rint(-4, 4)) * 10) % 1000;
+        rk.push("SLP" + p3n(slp));
+        if (wx.some(function(w) { return /RA|DZ/.test(w) && !/SH/.test(w); }) && Math.random() < 0.5) rk.push("RAB" + p2(rint(5, 45)));
+        if (ts && Math.random() < 0.6) rk.push(Math.random() < 0.5 ? "TSB" + p2(rint(5, 45)) : "OCNL LTGICCG " + pickOf(["DSNT W", "VC NE", "OHD", "DSNT SW-NW"]));
+        if (wx.some(function(w) { return /RA|DZ|SN/.test(w); })) rk.push("P" + p2(0) + p2(rint(1, 15)));
+        rk.push("T" + tg(tx) + tg(tdx));
+        if (Math.random() < 0.08) rk.push(pickOf(["PRESFR", "PRESRR"]));
+        if (Math.random() < 0.1) rk.push("$");
+        parts = parts.concat(rk);
+      }
+      var P = { mode: "metar", raw: parts.join(" "), rwy: rwy, lr: "", elev: ask === "da" ? st[1] : null, ask: ask, code: null };
+      if (ask === "wx") P.code = wx.length ? pickOf(wx) : null;
+      if (ask === "wx" && !P.code) P.ask = "cat";
+      return P;
+    }
+
+    /* ---------- winds and temperatures aloft: the FB forecast (it used to be called FD) ---------- */
+    // Read the way the FAA's Aviation Weather Handbook (FAA-H-8083-28) explains it: DDff is the direction in tens of
+    // degrees true and the speed in knots; 9900 is light and variable; direction digits 51 to 86 mean 100 kt more and 50
+    // off the direction; temperatures in °C, all negative above 24,000 ft (no sign); none at 3,000 ft.
+    var FBUSL = [3000, 6000, 9000, 12000, 18000, 24000, 30000, 34000, 39000],
+      FBHIL = [1000, 1500, 2000, 3000, 6000, 9000, 12000, 15000, 18000, 24000];
+    var FBUSE = { 6: "0200-0900", 12: "0900-1800", 18: "1400-2100", 0: "2000-0300" }; // the FOR USE window of a 6-hour forecast
+    var FBSTN = [ // made problems: real FB stations and their field elevations (ft)
+      ["SEA", 433],
+      ["PDX", 31],
+      ["SFO", 13],
+      ["LAS", 2181],
+      ["PHX", 1135],
+      ["DEN", 5434],
+      ["ABQ", 5355],
+      ["SLC", 4227],
+      ["BIL", 3652],
+      ["ELY", 6262],
+      ["MSP", 841],
+      ["STL", 618],
+      ["ATL", 1026],
+      ["BOS", 20],
+      ["JFK", 13],
+      ["MIA", 8],
+      ["AMA", 3605],
+      ["ANC", 152],
+      ["FAI", 434]
+    ];
+
+    function isaAt(h) { return Math.max(15 - 2 * h / 1000, -56.5); } // standard temperature: 2 °C cooler every 1,000 ft, −56.5 °C from about 36,000 ft
+    function sgn(t) { return (t > 0 ? "+" : t < 0 ? "−" : "") + nf(Math.abs(t), 1); }
+
+    function fbGroup(g, lvl, neg) { // one group: "2725+05", "7310", "321858", "9900", "9900-02"
+      var m = /^(\d{2})(\d{2})(?:([+-])(\d{2})|(\d{2}))?$/.exec(g);
+      if (!m) return null;
+      var dd = +m[1],
+        ff = +m[2],
+        o = { g: g, lv: false, dir: null, spd: null, hundred: false, p199: false, t: null, negRule: false, dd: dd, ff: ff };
+      if (dd === 99 && ff === 0) o.lv = true;
+      else if (dd >= 1 && dd <= 36) {
+        o.dir = dd * 10;
+        o.spd = ff;
+      } else if (dd >= 51 && dd <= 86) {
+        o.dir = (dd - 50) * 10;
+        o.spd = ff + 100;
+        o.hundred = true;
+        o.p199 = ff === 99;
+      } else return null;
+      if (m[3]) o.t = (m[3] === "-" ? -1 : 1) * +m[4];
+      else if (m[5] !== undefined) {
+        if (lvl !== null && lvl <= neg) return null; // an unsigned temperature belongs above 24,000 ft
+        o.t = -m[5];
+        o.negRule = true;
+      }
+      return o;
+    }
+
+    function fbWindW(o) { return o.lv ? "light and variable (less than 5 kt)" : "from " + p3(o.dir) + "° true at " + (o.p199 ? "199 kt or more" : o.spd + " kt"); }
+
+    function fbGroupH(o, lvl) {
+      var h = "Wind " + B(fbWindW(o)) + ".";
+      if (o.lv) h += " 9900 is not a direction and a speed: it means light and variable.";
+      else if (o.hundred) h += " The direction digits " + B(p2s(o.dd)) + " are more than 50, so the wind is 100 kt or more: " + p2s(o.dd) + " − 50 = " + p2s(o.dd - 50) + " → " + p3(o.dir) + "°, and " + p2s(o.ff) + " + 100 = " + o.spd + " kt" + (o.p199 ? " (99 + 100: 199 kt or more)" : "") + ".";
+      else h += " The first two digits are tens of degrees (" + p2s(o.dd) + " → " + p3(o.dir) + "°), the next two the speed.";
+      if (o.t !== null) h += " Temperature " + B(sgn(o.t) + " °C") + (o.negRule ? ": above 24,000 ft every temperature is below zero, so the sign is left off (" + p2s(-o.t) + " means −" + p2s(-o.t) + ")" : "") + ".";
+      else if (lvl === 3000) h += " No temperature is forecast for 3,000 ft.";
+      else if (lvl !== null) h += " No temperature: this level is within 2,500 ft of the station.";
+      return h;
+    }
+
+    function p2s(n) { return (n < 10 ? "0" : "") + n; }
+
+    function fbPrep(t) { // a pasted product on one line: keep its words apart
+      return wxClean(t).replace(/(\d)(FT)(?=\s|$)/g, "$1 $2").replace(/(^|\s)(\d{4}(?:[+-]\d\d|\d\d)?)([A-Z][A-Z0-9]{2}|\d[A-Z][A-Z0-9])(?=\s|$)/g, "$1$2 $3");
+    }
+
+    function isFbStn(t) { return /^[A-Z0-9]{3}$/.test(t) && /[A-Z]/.test(t) && t !== "ABV" && t !== "NEG"; }
+
+    function isFbGrp(t) { return /^(?:\d{4}(?:[+-]\d\d)?|\d{6})$/.test(t); }
+
+    function fbParse(raw) { // the header, the levels row and the station rows; a row's blank cells are its lowest levels
+      var tk = raw.split(" ").filter(Boolean),
+        D = { items: [], hdr: {}, levels: null, rows: [], loose: [], neg: 24000, good: 0, unk: 0 },
+        i = 0,
+        m;
+
+      function add(g, k, h, s) { D.items.push({ g: g, k: k, h: h, sec: s || "head" }); }
+      while (i < tk.length) {
+        var t = tk[i];
+        if (t === "000" && i === 0) {
+          add(t, "head", "The start of a National Weather Service text product (nothing to read).");
+          i++;
+        } else if ((m = /^FB([A-Z]{2})(3[123])$/.exec(t))) {
+          var who = /^K[A-Z]{3}$/.test(tk[i + 1] || "") ? 1 : 0,
+            iss = who && /^\d{6}$/.test(tk[i + 2] || "") ? 1 : 0;
+          add(tk.slice(i, i + 1 + who + iss).join(" "), "head", "The winds-aloft forecast for " + ({ US: "the lower 48 states", AK: "Alaska", HW: "Hawaii", OC: "the Pacific", CN: "Canada" } [m[1]] || "an area") + ", the " + { 31: "6", 32: "12", 33: "24" } [m[2]] + "-hour one" + (who ? ", from " + tk[i + 1] + " (the NWS in Washington)" : "") + (iss ? ", sent on day " + Number(tk[i + 2].slice(0, 2)) + " at " + tk[i + 2].slice(2, 4) + ":" + tk[i + 2].slice(4) + "Z" : "") + ".");
+          i += 1 + who + iss;
+        } else if ((m = /^FD([123])[A-Z]{2}\d$/.exec(t))) {
+          add(t, "head", "The product’s name: FD" + m[1] + ", the " + { 1: "6", 2: "12", 3: "24" } [m[1]] + "-hour winds-aloft forecast.");
+          i++;
+        } else if (t === "DATA" && tk[i + 1] === "BASED" && tk[i + 2] === "ON" && (m = /^(\d{2})(\d{2})(\d{2})Z$/.exec(tk[i + 3] || ""))) {
+          D.hdr.based = m[0];
+          add(tk.slice(i, i + 4).join(" "), "head", "Worked out from the weather data of " + B(zW(m[1], m[2], m[3])) + " (the computer model’s start).");
+          i += 4;
+        } else if (t === "VALID" && (m = /^(\d{2})(\d{2})(\d{2})Z$/.exec(tk[i + 1] || ""))) {
+          D.hdr.valid = m[0];
+          add(tk.slice(i, i + 2).join(" "), "head", "The forecast is for " + B(zW(m[1], m[2], m[3])) + ".");
+          i += 2;
+        } else if (t === "FOR" && tk[i + 1] === "USE" && (m = /^(\d{2})(\d{2})-(\d{2})(\d{2})Z\.?$/.exec(tk[i + 2] || ""))) {
+          D.hdr.use = m[1] + m[2] + "-" + m[3] + m[4] + "Z";
+          add(tk.slice(i, i + 3).join(" "), "head", "Use it " + B("from " + m[1] + ":" + m[2] + "Z to " + m[3] + ":" + m[4] + "Z") + (+m[3] < +m[1] ? " (past midnight UTC)" : "") + ": outside that window, a newer forecast is the one to use.");
+          i += 3;
+        } else if (t === "TEMPS" && tk[i + 1] === "NEG" && tk[i + 2] === "ABV" && /^\d{4,5}$/.test(tk[i + 3] || "")) {
+          D.neg = +tk[i + 3];
+          add(tk.slice(i, i + 4).join(" "), "head", B("Temperatures are negative above " + nf(D.neg, 0) + " ft") + ": up there the minus sign is left off.");
+          i += 4;
+        } else if (t === "FT" && /^\d{4,5}$/.test(tk[i + 1] || "")) {
+          var L = [];
+          for (i++;
+            /^\d{4,5}$/.test(tk[i] || "") && !(L.length && +tk[i] <= L[L.length - 1]); i++) L.push(+tk[i]);
+          D.levels = L;
+          add("FT " + L.join(" "), "head", "The levels, in feet above sea level: " + B(L.map(function(x) { return nf(x, 0); }).join(", ")) + ". Each column below is one of them.");
+        } else if (isFbStn(t)) {
+          var row = { stn: t, g: [] };
+          for (i++; i < tk.length && isFbGrp(tk[i]); i++) row.g.push(tk[i]);
+          D.rows.push(row);
+        } else if (isFbGrp(t)) {
+          D.loose.push(t);
+          i++;
+        } else {
+          add(t, "unk", WXNOT);
+          i++;
+        }
+      }
+      if (!D.rows.length && D.loose.length >= 3) D.rows.push({ stn: null, g: D.loose.splice(0) }); // a station row typed without its code
+      return D;
+    }
+
+    function fbCells(D, row) { // a row's groups placed under its levels (blanks first, as in the forecast)
+      var L = D.levels || (row.g.length === 10 ? FBHIL : FBUSL),
+        off = L.length - row.g.length,
+        out = [];
+      if (off < 0) return null;
+      L.forEach(function(lvl, k) {
+        var g = k >= off ? row.g[k - off] : null;
+        out.push({ lvl: lvl, g: g, w: g ? fbGroup(g, lvl, D.neg) : null });
+      });
+      return out;
+    }
+
+    function fbAt(cells, A) { // the wind and temperature at A by straight-line interpolation (the direction the short way round)
+      var have = cells.filter(function(c) { return c.w; }),
+        lo = null,
+        hi = null;
+      for (var i = 0; i < have.length; i++) {
+        if (have[i].lvl === A) return { lo: have[i], hi: have[i], f: 0, at: true };
+        if (have[i].lvl < A) lo = have[i];
+        else if (!hi) hi = have[i];
+      }
+      if (!lo || !hi) return { err: true, min: have.length ? have[0].lvl : null, max: have.length ? have[have.length - 1].lvl : null };
+      return { lo: lo, hi: hi, f: (A - lo.lvl) / (hi.lvl - lo.lvl), at: false };
+    }
+
+    function fbMix(I) { // the numbers at the cruise altitude from fbAt
+      var a = I.lo.w,
+        b = I.hi.w,
+        f = I.f,
+        sa = a.lv ? 0 : a.spd,
+        sb = b.lv ? 0 : b.spd,
+        o = { lv: a.lv && b.lv, f: f };
+      if (!o.lv) {
+        var da = a.lv ? b.dir : a.dir,
+          db = b.lv ? a.dir : b.dir;
+        o.turn = rel180(db - da);
+        o.dir = norm360(da + f * o.turn);
+        o.long = da + f * (db - da); // the long way round, the classic slip
+        o.da = da;
+        o.db = db;
+      }
+      o.spd = sa + f * (sb - sa);
+      o.sa = sa;
+      o.sb = sb;
+      o.t = a.t !== null && b.t !== null ? a.t + f * (b.t - a.t) : I.at ? a.t : null;
+      o.dirR = o.lv ? null : hdgN(o.dir);
+      o.spdR = rnd(o.spd, 0);
+      o.tR = o.t === null ? null : rnd(o.t, 0);
+      return o;
+    }
+
+    function fbNorm(D, row) { // the forecast with just this station: what goes in the link and the box
+      var h = [];
+      if (D.hdr.based) h.push("DATA BASED ON " + D.hdr.based);
+      if (D.hdr.valid) h.push("VALID " + D.hdr.valid);
+      if (D.hdr.use) h.push("FOR USE " + D.hdr.use + ".");
+      if (D.hdr.valid || D.neg !== 24000) h.push("TEMPS NEG ABV " + D.neg);
+      if (D.levels) h.push("FT " + D.levels.join(" "));
+      return h.concat([(row.stn ? row.stn + " " : "") + row.g.join(" ")]).join(" ");
+    }
+
+    function fbLike(q) { // a pasted FB forecast (or one of its rows), or "winds aloft"
+      var s = " " + clean(q) + " ";
+      if (/\bwinds?\s+(?:and\s+temp(?:erature)?s?\s+)?aloft\b/i.test(s) || /\sFB(?:US|AK|HW|OC)3[123]\s|\sTEMPS\s+NEG\s+ABV\s|\sDATA\s+BASED\s+ON\s+\d{6}Z\s|\sFT\s+(?:1000|3000)\s+(?:1500|6000)\s/i.test(s)) return true;
+      var m = /\s(?=[A-Z0-9]{3}\s)[A-Z0-9]*[A-Z][A-Z0-9]*\s+((?:(?:\d{4}(?:[+-]\d\d)?|\d{6})\s+){2,}(?:\d{4}(?:[+-]\d\d)?|\d{6}))(?=\s)/.exec(s);
+      return !!m && /[+-]\d\d|\d{6}/.test(m[1]);
+    }
+    var FBASK = { dec: "decode", interp: "wind at", wca: "heading", isa: "isa", best: "best altitude" };
+    M.windsaloft = {
+      read: function(t) {
+        var s = " " + clean(t) + " ",
+          P = { mode: "windsaloft", raw: "", stn: null, alt: null, lvl: null, tc: null, mc: null, v: null, tas: null, cas: null, ask: null },
+          m;
+
+        function cut(re, f) {
+          var x = re.exec(s);
+          if (!x) return null;
+          s = s.slice(0, x.index) + " " + s.slice(x.index + x[0].length);
+          if (f) f(x);
+          return x;
+        }
+        cut(/\s(?:please\s+)?(?:decode|read|explain)?\s*(?:the\s+|these\s+)?winds?\s+(?:and\s+temp(?:erature)?s?\s+)?aloft(?:\s+forecast)?\s*:?/i);
+        cut(/\s(?:find\s+(?:the\s+)?)?best\s+(?:cruise\s+|cruising\s+)?altitude\s*\??/i, function() { P.ask = "best"; });
+        cut(/\s(?:station|for|at\s+station)\s+([A-Za-z0-9]{3,4})(?=\s)/, function(x) { P.stn = x[1].toUpperCase().replace(/^[KP](?=[A-Z0-9]{3}$)/, ""); });
+        cut(/\s(?:magnetic\s+course|mc)\s*(?:of|is|=|:)?\s*(\d{1,3})\s*°?/i, function(x) { P.mc = +x[1]; });
+        cut(/\s(?:true\s+course|course|tc|crs)\s*(?:of|is|=|:)?\s*(\d{1,3})\s*°?/i, function(x) { P.tc = +x[1]; });
+        cut(/\s(?:mag(?:netic)?\s+)?var(?:iation)?\.?\s*(?:of|is|=|:)?\s*(\d+(?:\.\d+)?)\s*°?\s*(e|east|w|west)(?![a-z])/i, function(x) { P.v = (/^e/i.test(x[2]) ? 1 : -1) * +x[1]; });
+        cut(/\s(?:kias|ias)\s*(?:of|is|=|:)?\s*(\d{2,3})(?![\d.])|\s(\d{2,3})\s*kias\b/i, function(x) { P.cas = +(x[1] || x[2]); });
+        cut(/\s(?:tas|ktas|true\s+air\s*speed)\s*(?:of|is|=|:)?\s*(\d{2,3})(?![\d.])|\s(\d{2,3})\s*(?:ktas|kts?\s+tas|knots?\s+tas)\b/i, function(x) { P.tas = +(x[1] || x[2]); });
+        cut(/\s(?:at|altitude|cruise|cruising(?:\s+at)?|level)\s+(?:FL\s*(\d{2,3})|(\d{1,2},\d{3}|\d{4,5}))\s*(?:ft|feet|')?(?=\s)|\s(\d{1,2},\d{3}|\d{4,5})\s*(?:ft|feet|')(?=\s)|\sFL\s*(\d{2,3})(?=\s)/, function(x) { P.alt = x[1] || x[4] ? +(x[1] || x[4]) * 100 : toNum(x[2] || x[3]); });
+        if (/\s(?:heading|wind\s+correction)\b/i.test(s)) cut(/\s(?:the\s+)?(?:true\s+)?heading(?:\s+and\s+ground\s*speed)?\s*\??|\swind\s+correction(?:\s+angle)?\s*\??/i, function() { P.ask = P.ask || "wca"; });
+        cut(/\s(?:the\s+)?isa\s+deviation\s*\??/i, function() { P.ask = P.ask || "isa"; });
+        var D = fbParse(fbPrep(s.replace(/[?!]+/g, " ")));
+        if (!D.rows.length && !D.loose.length && !D.good) throw new UserErr(EMPTY.windsaloft);
+        if (D.rows.length) {
+          var row = null;
+          D.rows.forEach(function(r) { if (!row && P.stn && r.stn === P.stn) row = r; });
+          if (P.stn && !row) throw new UserErr("There’s no row for " + B(esc(P.stn)) + " in this forecast. Its stations: " + B(D.rows.map(function(r) { return r.stn; }).slice(0, 40).join(" ")) + (D.rows.length > 40 ? " …" : "") + ".");
+          row = row || D.rows[0];
+          P.stn = row.stn;
+          P.raw = fbNorm(D, row);
+          if (D.rows.length > 1) P._all = D.rows.map(function(r) { return { stn: r.stn, raw: fbNorm(D, r) }; });
+        } else {
+          need(D.loose.length === 1, "Paste a whole forecast, one station’s row (like " + B("SEA 2714 2725+05 2635+00 …") + ") or one group (like " + B("7310") + ").");
+          P.raw = D.loose[0];
+          P.lvl = P.alt;
+          P.alt = null;
+        }
+        return P;
+      },
+      fromSp: function(sp) {
+        if (!sp.has("m")) return null;
+        var ew = sp.get("var"),
+          P = { mode: "windsaloft", raw: fbPrep(String(sp.get("m"))), stn: sp.has("stn") ? String(sp.get("stn")).toUpperCase() : null, alt: pn(sp, "alt", true), lvl: pn(sp, "lvl", true), tc: pn(sp, "tc", true), mc: pn(sp, "mc", true), v: ew ? readEW(ew) : null, tas: pn(sp, "tas", true), cas: pn(sp, "cas", true), ask: sp.has("ask") ? String(sp.get("ask")).toLowerCase() : null };
+        if (!P.raw || (P.ask && !FBASK[P.ask])) throw new UserErr(LINKBAD);
+        return P;
+      },
+      params: function(P) {
+        var o = "mode=windsaloft&m=" + encodeURIComponent(P.raw);
+        if (P.stn) o += "&stn=" + P.stn;
+        ["alt", "lvl", "tc", "mc", "tas", "cas"].forEach(function(k) { if (P[k] !== null && P[k] !== undefined) o += "&" + k + "=" + nA(P[k]); });
+        if (P.v !== null) o += "&var=" + ewA(P.v);
+        return o + (P.ask ? "&ask=" + P.ask : "");
+      },
+      text: function(P) {
+        var o = P.raw;
+        if (P.lvl !== null) o += " at " + nA(P.lvl);
+        if (P.alt !== null) o += " at " + nA(P.alt);
+        if (P.mc !== null) o += " magnetic course " + dirA(P.mc);
+        if (P.v !== null) o += " variation " + nA(Math.abs(P.v)) + " " + (P.v >= 0 ? "E" : "W");
+        if (P.tc !== null) o += " course " + dirA(P.tc);
+        if (P.tas !== null) o += " TAS " + nA(P.tas);
+        if (P.cas !== null) o += " " + nA(P.cas) + " KIAS";
+        if (P.ask === "best") o += " best altitude";
+        else if (P.ask === "wca") o += " heading";
+        else if (P.ask === "isa") o += " ISA deviation";
+        return o;
+      },
+      reads: function(P) {
+        var dot = ' <span class="nm">·</span> ',
+          D = fbParse(P.raw);
+        return (D.rows.length ? "winds aloft" + (P.stn ? " for " + esc(P.stn) : "") + (D.hdr.valid ? dot + "valid " + D.hdr.valid : "") : "one winds-aloft group" + (P.lvl !== null ? " at " + nf(P.lvl, 0) + " ft" : "")) +
+          (P.alt !== null ? dot + "at " + nf(P.alt, 0) + " ft" : "") + (P.mc !== null ? dot + "magnetic course " + dirT(P.mc) : "") + (P.tc !== null ? dot + "true course " + dirT(P.tc) : "") + (P.tas !== null ? dot + "TAS " + gv(P.tas) + " kt" : "") + (P.cas !== null ? dot + gv(P.cas) + " KIAS" : "");
+      },
+      compute: function(P) {
+        var D = fbParse(P.raw),
+          R = { D: D };
+        if (P.alt !== null) need(P.alt >= 500 && P.alt <= 45000, "Give a cruise altitude between 500 and 45,000 ft.");
+        if (P.lvl !== null) need(P.lvl >= 1000 && P.lvl <= 45000, "Give the group’s level in feet, like " + B("at 30000") + ".");
+        if (P.tc !== null) need(P.tc >= 0 && P.tc <= 360, "A course is between 0° and 360°.");
+        if (P.mc !== null) need(P.mc >= 0 && P.mc <= 360, "A course is between 0° and 360°.");
+        if (P.mc !== null) need(P.v !== null, "A magnetic course needs the variation (like " + B("variation 10 E") + ") to change it to true: winds aloft are true.");
+        if (P.tas !== null) need(P.tas > 0 && P.tas <= 1000, "Give a true airspeed between 1 and 1,000 knots.");
+        if (P.cas !== null) need(P.cas > 0 && P.cas <= 500, "Give an airspeed between 1 and 500 knots.");
+        if (!D.rows.length) { // one group
+          R.one = fbGroup(P.raw, P.lvl, D.neg);
+          need(R.one, B(esc(P.raw)) + " isn’t a winds-aloft group: 4 digits (DDff), or with a temperature (DDff+TT, or DDffTT above 24,000 ft)" + (P.lvl !== null && P.lvl <= 24000 && /^\d{6}$/.test(P.raw) ? ". A temperature with no sign only comes above 24,000 ft" : "") + ".");
+          R.ask = "dec";
+          return R;
+        }
+        var row = D.rows[0];
+        R.cells = fbCells(D, row);
+        need(R.cells, "That row has more groups (" + row.g.length + ") than there are levels (" + (D.levels || FBUSL).length + ").");
+        R.cells.forEach(function(c) {
+          c.isa = isaAt(c.lvl);
+          c.dev = c.w && c.w.t !== null ? c.w.t - c.isa : null;
+        });
+        var bad = R.cells.filter(function(c) { return c.g && !c.w; });
+        R.bad = bad;
+        R.tc = P.tc !== null ? P.tc : P.mc !== null ? hdgN(P.mc + P.v) : null;
+        if (P.alt !== null) {
+          var I = fbAt(R.cells, P.alt);
+          need(!I.err, "The forecast for " + esc(P.stn || "this station") + " has winds from " + nf(I.min, 0) + " to " + nf(I.max, 0) + " ft: pick a cruise altitude between them (no wind is forecast within 1,500 ft of the station’s elevation).");
+          R.I = I;
+          R.X = fbMix(I);
+          if (R.X.t !== null) {
+            R.isaA = isaAt(P.alt);
+            R.devA = R.X.tR - R.isaA;
+            R.AP = { mode: "altitude", task: "da", elev: null, set: null, pa: P.alt, oat: R.X.tR, oatF: null, cas: null };
+            try { R.A = M.altitude.compute(R.AP); } catch (e) { R.A = null; }
+            if (P.cas !== null) {
+              R.TP = { mode: "altitude", task: "tas", elev: null, set: null, pa: P.alt, oat: R.X.tR, oatF: null, cas: P.cas };
+              try { R.T = M.altitude.compute(R.TP); } catch (e2) { R.T = null; }
+            }
+          }
+          R.tas = P.tas !== null ? P.tas : R.T ? R.T.mainR : null;
+          if (R.tc !== null && R.tas !== null) {
+            R.WP = { mode: "wind", tc: R.tc, tas: R.tas, wd: R.X.lv ? R.tc : R.X.dirR, ws: R.X.lv ? 0 : R.X.spdR };
+            R.W = M.wind.compute(R.WP);
+            if (P.mc !== null) {
+              try { R.Wm = M.wind.compute({ mode: "wind", tc: P.mc, tas: R.tas, wd: R.WP.wd, ws: R.WP.ws }); } catch (e3) { R.Wm = null; }
+            }
+          }
+        }
+        if (R.tc !== null && (P.tas !== null || P.cas !== null) && (P.ask === "best" || P.alt === null)) {
+          var top = (P.tas || P.cas) >= 180 ? 99999 : 12000;
+          R.best = [];
+          R.cells.forEach(function(c) {
+            if (!c.w || c.lvl > top) return;
+            var tas = P.tas !== null ? P.tas : null;
+            if (tas === null && c.w.t !== null) {
+              try { tas = M.altitude.compute({ mode: "altitude", task: "tas", elev: null, set: null, pa: c.lvl, oat: c.w.t, oatF: null, cas: P.cas }).mainR; } catch (e4) { tas = null; }
+            }
+            if (tas === null || (!c.w.lv && c.w.spd >= tas)) return;
+            try {
+              var w = M.wind.compute({ mode: "wind", tc: R.tc, tas: tas, wd: c.w.lv ? R.tc : c.w.dir, ws: c.w.lv ? 0 : c.w.spd });
+              R.best.push({ c: c, tas: tas, w: w });
+            } catch (e5) {}
+          });
+          R.top = top;
+          R.bestOne = null;
+          R.best.forEach(function(b) { if (!R.bestOne || b.w.gsR > R.bestOne.w.gsR) R.bestOne = b; });
+        }
+        R.ask = P.ask && P.ask !== "dec" ? P.ask : P.ask === "dec" || (P.lvl !== null) ? "dec" : R.bestOne && P.alt === null ? "best" : R.W ? "wca" : R.X ? "interp" : "dec";
+        if (R.ask === "wca" && !R.W) R.ask = R.X ? "interp" : "dec";
+        if (R.ask === "best" && !R.bestOne) R.ask = "dec";
+        if (R.ask === "isa" && (!R.X || R.X.t === null)) R.ask = R.X ? "interp" : "dec";
+        if (R.ask === "interp" && !R.X) R.ask = "dec";
+        if (R.ask === "dec") { // which level: the one asked for, or the first with something to learn
+          var pick = null;
+          R.cells.forEach(function(c) { if (c.w && P.lvl !== null && c.lvl === P.lvl) pick = c; });
+          if (!pick) R.cells.forEach(function(c) { if (!pick && c.w && (c.w.hundred || c.w.negRule || c.w.lv)) pick = c; });
+          if (!pick) R.cells.forEach(function(c) { if (!pick && c.w) pick = c; });
+          R.decC = pick;
+        }
+        return R;
+      },
+      draw: function(P, R) {
+        var W = new Work(),
+          D = R.D,
+          KC = { head: "p", unk: "n" };
+        var chip = function(g, k) { return '<span class="mg c-' + k + (k === "n" ? " unk" : "") + '">' + esc(g) + "</span>"; };
+        var cells = [],
+          facts = [];
+        if (R.one) { // one group on its own
+          var o = R.one;
+          W.add("<b>One group.</b> Winds and temperatures aloft come in groups of digits: " + B("DDff") + " (direction in tens of degrees true, speed in knots), then " + B("±TT") + " (°C). Above 24,000 ft the temperatures are all negative, so the sign is left off.",
+            '<div class="mt-dec"><div class="mt-row">' + chip(o.g, "e") + '<span class="mt-m">' + fbGroupH(o, P.lvl) + "</span></div></div>",
+            [
+              ["e", o.g, fbGroupH(o, P.lvl)]
+            ], o.negRule && P.lvl === null ? "Six digits with no sign come from the levels above 24,000 ft (30,000, 34,000, 39,000), so the temperature is below zero." : "");
+          cells.push({ k: "Wind", v: o.lv ? 'light and variable <span class="sm">(less than 5 kt)</span>' : p3(o.dir) + "° at " + (o.p199 ? "199+" : o.spd) + " kt", s: fbWindW(o) });
+          if (o.t !== null) cells.push({ k: "Temperature", v: sgn(o.t) + " °C" });
+          if (P.lvl !== null && o.t !== null) cells.push({ k: "ISA deviation", v: sgn(rnd(o.t - isaAt(P.lvl), 1)) + " °C" });
+          bandCells(cells, [P.lvl !== null ? "At " + B(nf(P.lvl, 0) + " ft") + ": standard " + B(sgn(isaAt(P.lvl)) + " °C") : "Add the level (like " + B("at 30000") + ") for the ISA deviation"]);
+          return finish(W, '<div class="ck">' + esc(o.g) + ": " + esc(fbWindW(o)) + (o.t !== null ? ", " + sgn(o.t) + " °C" : "") + ".</div>");
+        }
+        var hd = D.items.filter(function(it) { return it.k !== "unk"; });
+        W.add("<b>The forecast’s heading.</b> When it was made, the time it is for, and the hours to use it." + (D.hdr.valid ? "" : " (This one has no heading; the levels are the usual " + ((D.levels || []).length === 10 || (D.rows[0].g.length === 10) ? "Hawaii and Pacific" : "US") + " ones.)"),
+          hd.length ? '<div class="mt-dec">' + hd.map(function(it) { return '<div class="mt-row">' + chip(it.g, KC[it.k] || "p") + '<span class="mt-m">' + it.h + "</span></div>"; }).join("") + "</div>" : "",
+          hd.length ? hd.map(function(it) { return ["p", it.g.split(" ")[0], it.h]; }) : [
+            ["p", "levels", "No heading: the levels are taken as " + B((D.rows[0].g.length === 10 ? FBHIL : FBUSL).map(function(x) { return nf(x, 0); }).join(", ")) + " ft."]
+          ],
+          P._all ? "This forecast has " + P._all.length + " stations; this is " + B(esc(P.stn)) + ". Others: " + P._all.filter(function(r) { return r.stn !== P.stn; }).map(function(r) { return useBtn("windsaloft", r.raw, r.stn); }).join(" ") : "");
+        var unk = D.items.filter(function(it) { return it.k === "unk"; });
+        var trs = R.cells.map(function(c) {
+          var w = c.w;
+          return "<tr><td>" + nf(c.lvl, 0) + '</td><td class="l">' + (c.g ? chip(c.g, w ? "e" : "n") : '<span class="nm">blank</span>') + '</td><td class="l">' + (w ? (w.lv ? "light &amp; variable" : p3(w.dir) + "°") : c.g ? "not decoded" : "—") + "</td><td>" + (w && !w.lv ? (w.p199 ? "199+" : w.spd) + " kt" : w ? "&lt; 5 kt" : "") + "</td><td>" + (w && w.t !== null ? sgn(w.t) + " °C" : "") + '</td><td class="dim">' + sgn(c.isa) + " °C</td><td>" + (c.dev !== null ? sgn(rnd(c.dev, 1)) + " °C" : "") + "</td></tr>";
+        }).join("");
+        var tricks = [];
+        R.cells.forEach(function(c) {
+          if (!c.w) return;
+          if (c.w.hundred && tricks.indexOf("h") < 0) tricks.push("h");
+          if (c.w.negRule && tricks.indexOf("n") < 0) tricks.push("n");
+          if (c.w.lv && tricks.indexOf("l") < 0) tricks.push("l");
+        });
+        var tw = { h: "direction digits 51–86 mean 100 kt or more (take 50 off the direction, add 100 to the speed)", n: "above 24,000 ft the temperatures are negative with no sign", l: "9900 is light and variable, less than 5 kt" };
+        W.add("<b>Every level for " + esc(P.stn || "the station") + ".</b> Each group sits under its level. Blank cells: no wind is forecast within 1,500 ft of the station’s elevation, and no temperature at 3,000 ft or within 2,500 ft of the station. The last two columns compare the temperature with the standard (ISA) one: 15 °C at sea level, 2 °C cooler every 1,000 ft (−56.5 °C at the top).",
+          xs('<table class="tbl"><thead><tr><th>Level (ft)</th><th class="l">Group</th><th class="l">From</th><th>Speed</th><th>Temp</th><th>ISA</th><th>ISA dev.</th></tr></thead><tbody>' + trs + "</tbody></table>"),
+          R.cells.filter(function(c) { return c.w; }).map(function(c) { return ["e", nf(c.lvl, 0), B(esc(c.g)) + ": " + esc(fbWindW(c.w)) + (c.w.t !== null ? ", " + sgn(c.w.t) + " °C (ISA " + sgn(c.isa) + ", deviation " + sgn(rnd(c.dev, 1)) + ")" : "") + "."]; }),
+          tricks.length ? "Watch for: " + andList(tricks.map(function(k) { return tw[k]; })) + "." : "");
+        if (unk.length || R.bad.length) W.add("<b>Not decoded.</b> These aren’t groups this page knows, so they’re shown as they are instead of guessed.", '<div class="mt-strip">' + unk.map(function(it) { return chip(it.g, "n"); }).concat(R.bad.map(function(c) { return chip(c.g, "n"); })).join(" ") + "</div>", [
+          ["n", "?", unk.concat(R.bad).map(function(x) { return B(esc(x.g)); }).join(", ") + ": " + WXNOT]
+        ]);
+        if (R.ask === "dec" && R.decC) {
+          cells.push({ k: "At " + nf(R.decC.lvl, 0) + " ft", v: R.decC.w.lv ? 'light and variable <span class="sm">(less than 5 kt)</span>' : p3(R.decC.w.dir) + "° at " + (R.decC.w.p199 ? "199+" : R.decC.w.spd) + " kt", s: fbWindW(R.decC.w) });
+          if (R.decC.w.t !== null) cells.push({ k: "Temperature", v: sgn(R.decC.w.t) + " °C" }, { k: "ISA deviation", v: sgn(rnd(R.decC.dev, 1)) + " °C" });
+        }
+        // the cruise altitude: interpolate between the two levels around it
+        if (R.X) {
+          var I = R.I,
+            X = R.X,
+            A = P.alt,
+            lo = I.lo,
+            hi = I.hi;
+          if (I.at) W.add("<b>At " + nf(A, 0) + " ft</b>: that is one of the forecast levels, so read it straight off.", eqL(esc(lo.g) + " → " + esc(fbWindW(lo.w)) + (lo.w.t !== null ? ", " + sgn(lo.w.t) + " °C" : "")), [
+            ["e", "read", nf(A, 0) + " ft: " + B(esc(fbWindW(lo.w))) + (lo.w.t !== null ? ", " + B(sgn(lo.w.t) + " °C") : "") + "."]
+          ]);
+          else {
+            var fr = frH(nf(A - lo.lvl, 0), nf(hi.lvl - lo.lvl, 0));
+            W.add("<b>The wind at " + nf(A, 0) + " ft</b>, between the " + nf(lo.lvl, 0) + " and " + nf(hi.lvl, 0) + " ft levels: go the same fraction of the way from one to the other (straight-line interpolation). The direction goes the <b>short way round</b> the compass.",
+              eqL("fraction = " + fr + " = " + nf(X.f, 4)) +
+              (X.lv ? eqL("both levels light and variable: light and variable") :
+                eqL("direction = " + p3(X.da) + "° " + (X.turn < 0 ? "− " : "+ ") + nf(X.f, 4) + " × " + nf(Math.abs(X.turn), 0) + "° = " + nf(X.dir, 1) + "°" + opS("≈") + res(p3(X.dirR) + "°"))) +
+              eqL("speed = " + X.sa + " + " + nf(X.f, 4) + " × " + paren(nf(X.sb - X.sa, 0)) + " = " + nf(X.spd, 2) + opS("≈") + res(nf(X.spdR, 0) + " kt")) +
+              (X.t !== null ? eqL("temperature = " + sgn(lo.w.t) + " + " + nf(X.f, 4) + " × " + paren(nf(hi.w.t - lo.w.t, 0)) + " = " + nf(X.t, 2) + opS("≈") + res(sgn(X.tR) + " °C")) : whyH("No temperature: the " + nf(lo.lvl, 0) + " ft level has none to start from.")),
+              [
+                ["v", "fraction", B(nf(A - lo.lvl, 0) + " ÷ " + nf(hi.lvl - lo.lvl, 0) + " = " + nf(X.f, 4)) + " of the way up."],
+                ["m", "wind", X.lv ? "Light and variable." : "From " + B(p3(X.dirR) + "°") + " at " + B(nf(X.spdR, 0) + " kt") + (Math.abs(X.turn) > 1e-9 ? " (the wind turns " + nf(Math.abs(X.turn), 0) + "° " + (X.turn > 0 ? "clockwise" : "counterclockwise") + " between the levels)" : "") + "."],
+                ["r", "round", "Directions to a degree, speeds to a knot, temperatures to a degree."]
+              ],
+              !X.lv && Math.abs(X.db - X.da) > 180 ? "Short way round: from " + p3(X.da) + "° to " + p3(X.db) + "° is " + nf(Math.abs(X.turn), 0) + "° through north, not " + nf(Math.abs(X.db - X.da), 0) + "° the other way (that would give " + h3(X.long) + ")." :
+              lo.w.lv || hi.w.lv ? "Light and variable counts as 0 kt, with the other level’s direction." : "");
+          }
+          cells.push({ k: "Wind at " + nf(A, 0) + " ft", v: X.lv ? "light and variable" : p3(X.dirR) + "° at " + nf(X.spdR, 0) + " kt", s: X.lv ? "light and variable" : p3(X.dirR) + "° at " + nf(X.spdR, 0) + " kt" });
+          if (X.tR !== null) {
+            W.add("<b>ISA deviation at " + nf(A, 0) + " ft</b>: how much warmer or colder than standard the air is. Standard (ISA) is 15 °C at sea level, 2 °C cooler every 1,000 ft.",
+              eqL("ISA = 15 − 2 × " + frH(nf(A, 0), "1,000") + " = " + sgn(R.isaA) + " °C" + (R.isaA === -56.5 ? " (it stops cooling at −56.5 °C)" : "")) + eqL("deviation = " + sgn(X.tR) + " − " + paren(sgn(R.isaA)) + " = " + res(sgn(rnd(R.devA, 1)) + " °C")),
+              [
+                ["e", "ISA", "Standard at " + nf(A, 0) + " ft: " + B(sgn(R.isaA) + " °C") + "; forecast " + B(sgn(X.tR) + " °C") + ": " + B(sgn(rnd(R.devA, 1)) + " °C") + (R.devA > 0 ? " warmer" : R.devA < 0 ? " colder" : "") + " than standard."]
+              ],
+              R.A ? "Density altitude at " + nf(A, 0) + " ft (taken as the pressure altitude) with " + sgn(X.tR) + " °C: about " + B(nf(R.A.daR, 0) + " ft") + ". Step by step: " + useBtn("altitude", M.altitude.text(R.AP), "Altitude & airspeed") + "." : "");
+            cells.push({ k: "Temperature", v: sgn(X.tR) + " °C" }, { k: "ISA deviation", v: sgn(rnd(R.devA, 1)) + " °C" });
+            facts.push("Standard (ISA) at " + nf(A, 0) + " ft: " + B(sgn(R.isaA) + " °C"));
+            if (R.A) facts.push("Density altitude about " + B(nf(R.A.daR, 0) + " ft") + ": " + useBtn("altitude", M.altitude.text(R.AP), "Altitude & airspeed"));
+          }
+          if (R.T) {
+            W.add("<b>True airspeed</b> for " + gv(P.cas) + " KIAS at " + nf(A, 0) + " ft and " + sgn(X.tR) + " °C (the Altitude & airspeed tab’s working).", eqL("TAS ≈ " + res(nf(R.T.mainR, 0) + " kt")), [
+              ["v", "TAS", B(gv(P.cas) + " KIAS") + " is about " + B(nf(R.T.mainR, 0) + " kt") + " true airspeed up there."]
+            ], "Step by step: " + useBtn("altitude", M.altitude.text(R.TP), "Altitude & airspeed") + ".");
+            cells.push({ k: "TAS", v: nf(R.T.mainR, 0) + " kt" });
+          }
+          if (R.W) {
+            var Wr = R.W,
+              sd = sideOf(Wr.rel),
+              ad = Math.abs(Wr.wcaR);
+            if (P.mc !== null) W.add("<b>Winds aloft are true</b>, so the course must be true too: " + B("TC = MC + east variation") + " (or − west).", eqL("TC = " + dirT(P.mc) + (P.v >= 0 ? " + " : " − ") + gv(Math.abs(P.v)) + "° = " + res(h3(R.tc))), [
+              ["e", "true", "True course " + B(h3(R.tc)) + "."]
+            ]);
+            W.add("<b>The wind triangle</b> with the wind at " + nf(A, 0) + " ft (the Wind triangle tab’s working): true course " + h3(R.tc) + ", TAS " + gv(R.tas) + " kt, wind " + (X.lv ? "light and variable (0 kt)" : h3(R.WP.wd) + " at " + R.WP.ws + " kt") + ".",
+              eqL("sin WCA = " + R.WP.ws + " × sin " + nf(Wr.ang, 0) + "° ÷ " + gv(R.tas) + " → WCA " + ad + "°" + (sd && ad ? " " + sd : "")) + eqL("TH = " + res(h3(Wr.th)) + opS("·") + "GS = " + res(nf(Wr.gsR, 0) + " kt")),
+              [
+                ["m", "WCA", "Wind correction " + B(ad + "°" + (sd && ad ? " " + sd : "")) + "; true heading " + B(h3(Wr.th)) + ", ground speed " + B(nf(Wr.gsR, 0) + " kt") + "."]
+              ], "Every step: " + useBtn("wind", M.wind.text(R.WP), "Wind triangle") + ".");
+            cells.push({ k: "True heading", v: h3(Wr.th) }, { k: "Ground speed", v: nf(Wr.gsR, 0) + " kt" });
+            facts.push("The wind triangle: " + useBtn("wind", M.wind.text(R.WP), "Wind triangle"));
+          }
+        }
+        if (R.bestOne) {
+          var rows = R.best.map(function(b) { return "<tr" + (b === R.bestOne ? ' class="hi"' : "") + "><td>" + nf(b.c.lvl, 0) + '</td><td class="l">' + (b.c.w.lv ? "light &amp; variable" : p3(b.c.w.dir) + "° " + b.c.w.spd + " kt") + "</td><td>" + nf(b.tas, 0) + "</td><td>" + nf(b.w.gsR, 0) + " kt</td></tr>"; }).join("");
+          W.add("<b>The best altitude</b> for a true course of " + h3(R.tc) + ": work the wind triangle at every level" + (R.top < 99999 ? " up to 12,000 ft (for a TAS under 180 kt)" : "") + " and pick the best ground speed. (In a real airplane, the climb, the fuel and the terrain count too.)",
+            xs('<table class="tbl"><thead><tr><th>Level (ft)</th><th class="l">Wind</th><th>TAS</th><th>Ground speed</th></tr></thead><tbody>' + rows + "</tbody></table>"),
+            [
+              ["a", "best", "Best: " + B(nf(R.bestOne.c.lvl, 0) + " ft") + " with " + B(nf(R.bestOne.w.gsR, 0) + " kt") + " over the ground."]
+            ]);
+          if (R.ask === "best" || !R.X) cells.push({ k: "Best altitude", v: nf(R.bestOne.c.lvl, 0) + " ft" }, { k: "Its ground speed", v: nf(R.bestOne.w.gsR, 0) + " kt" });
+        }
+        if (D.hdr.use) facts.unshift("For use " + B(esc(D.hdr.use)) + (D.hdr.valid ? ", valid " + B(esc(D.hdr.valid)) : ""));
+        if (P.alt === null && !R.bestOne) facts.push("Add a cruise altitude (like " + B("at 7500") + "), a course and TAS for the wind there and the heading");
+        if (!cells.length) cells.push({ k: "Levels", v: R.cells.filter(function(c) { return c.w; }).length + " decoded" });
+        bandCells(cells, facts);
+        return finish(W, '<div class="ck">' + (R.X ? "At " + nf(P.alt, 0) + " ft: " + (R.X.lv ? "light and variable" : "<b>" + p3(R.X.dirR) + "° at " + nf(R.X.spdR, 0) + " kt</b>") + (R.X.tR !== null ? ", " + sgn(R.X.tR) + " °C" : "") + (R.W ? "; fly " + h3(R.W.th) + " true for " + nf(R.W.gsR, 0) + " kt over the ground" : "") + "." : "Decoded " + R.cells.filter(function(c) { return c.w; }).length + " levels for " + esc(P.stn || "the station") + ".") + "</div>");
+      },
+      record: function(P, R) {
+        var a = R.ask,
+          q, ans, at = function(c) { return "at " + nf(c.lvl, 0) + " ft"; };
+        var wtxt = function(w) { return w.lv ? "light and variable (less than 5 kt)" : p3(w.dir) + "° at " + (w.p199 ? "199+" : w.spd) + " kt"; };
+        if (R.one) {
+          q = "What does the winds-aloft group " + P.raw + (P.lvl !== null ? " (at " + nf(P.lvl, 0) + " ft)" : "") + " mean?";
+          ans = wtxt(R.one) + (R.one.t !== null ? ", " + sgn(R.one.t) + " °C" : "");
+        } else if (a === "dec") {
+          q = "What are the wind and temperature at " + nf(R.decC.lvl, 0) + " ft" + (R.decC.w.t !== null ? ", and the ISA deviation" : "") + "?";
+          ans = at(R.decC) + ": " + wtxt(R.decC.w) + (R.decC.w.t !== null ? ", " + sgn(R.decC.w.t) + " °C, ISA deviation " + sgn(rnd(R.decC.dev, 1)) + " °C" : "");
+        } else if (a === "interp") {
+          q = "Interpolate the wind" + (R.X.tR !== null ? " and temperature" : "") + " at " + nf(P.alt, 0) + " ft.";
+          ans = "at " + nf(P.alt, 0) + " ft: " + (R.X.lv ? "light and variable" : p3(R.X.dirR) + "° at " + nf(R.X.spdR, 0) + " kt") + (R.X.tR !== null ? ", " + sgn(R.X.tR) + " °C" : "");
+        } else if (a === "isa") {
+          q = "What is the ISA deviation at " + nf(P.alt, 0) + " ft?";
+          ans = "ISA " + sgn(R.isaA) + " °C, forecast " + sgn(R.X.tR) + " °C, ISA deviation " + sgn(rnd(R.devA, 1)) + " °C";
+        } else if (a === "wca") {
+          q = "Cruising at " + nf(P.alt, 0) + " ft on a " + (P.mc !== null ? "magnetic course of " + dirT(P.mc) + " (variation " + ewT(P.v) + ")" : "true course of " + dirT(P.tc)) + " at " + gv(R.tas) + " kt TAS: what are the true heading and the ground speed?";
+          ans = "TH " + h3(R.W.th) + ", GS " + nf(R.W.gsR, 0) + " kt";
+        } else {
+          q = "On a true course of " + dirT(R.tc) + " at " + gv(P.tas || P.cas) + " kt " + (P.tas !== null ? "TAS" : "IAS") + ", which forecast level" + (R.top < 99999 ? " up to 12,000 ft" : "") + " gives the best ground speed?";
+          ans = nf(R.bestOne.c.lvl, 0) + " ft (GS " + nf(R.bestOne.w.gsR, 0) + " kt)";
+        }
+        var t = "Winds aloft" + (P.stn ? " for " + P.stn : "") + ": " + P.raw + ". " + q;
+        return { text: t, html: "Winds aloft" + (P.stn ? " for <b>" + esc(P.stn) + "</b>" : "") + ": <b>" + esc(P.raw) + "</b>. " + esc(q).replace(/(\d[\d,]* ft|course of \d+°)/g, "<b>$1</b>"), short: (P.stn || P.raw) + " " + (a || "decode"), answer: ans, answerHtml: "<b>" + esc(ans) + "</b>" };
+      },
+      fields: function(P, R) {
+        var a = R.ask;
+        var decF = function(w, lvl) {
+          var f = [{ k: "dir", label: "Direction", unit: "°", type: "fbdir", want: w.lv ? null : w.dir, alts: w.hundred ? [{ v: w.dd * 10, msg: "Direction digits over 50 mean 100 kt or more: take 50 off (" + p2s(w.dd) + " − 50 = " + p2s(w.dd - 50) + ") for the direction, and add 100 to the speed." }] : [], ph: "e.g. 270 or variable", im: "text" },
+            { k: "spd", label: "Speed", unit: "kt", type: "fbspd", want: w.lv ? null : w.spd, p199: w.p199, alts: w.hundred ? [{ v: w.ff, msg: "The direction digits are over 50, so add 100: " + p2s(w.ff) + " + 100 = " + w.spd + " kt." }] : [], ph: "e.g. 25 or light", im: "text" }
+          ];
+          if (w.t !== null) f.push({ k: "t", label: "Temperature", unit: "°C", type: "num", want: w.t, tol: 0, alts: w.negRule ? [{ v: -w.t, msg: "Above 24,000 ft every temperature is negative (TEMPS NEG ABV 24000): " + p2s(-w.t) + " means −" + p2s(-w.t) + " °C." }] : [], im: "text" });
+          if (w.t !== null && lvl !== null) f.push({ k: "dev", label: "ISA deviation", unit: "°C", type: "num", want: w.t - isaAt(lvl), tol: 0.6, alts: [{ v: isaAt(lvl) - w.t, msg: "The other way round: deviation = forecast − standard." }].concat(w.negRule ? [{ v: -w.t - isaAt(lvl), msg: "Above 24,000 ft the temperature is negative: −" + p2s(-w.t) + " °C." }] : []), im: "text" });
+          return f;
+        };
+        if (R.one) return decF(R.one, P.lvl);
+        if (a === "dec") return decF(R.decC.w, R.decC.lvl);
+        if (a === "interp" || a === "isa") {
+          var X = R.X,
+            f = [];
+          if (a === "interp") {
+            var near = R.I.f < 0.5 ? R.I.lo : R.I.hi;
+            f.push({ k: "dir", label: "Direction", unit: "°", type: X.lv ? "fbdir" : "hdg", want: X.lv ? null : X.dirR, tol: 2, alts: (!X.lv && Math.abs(X.db - X.da) > 180 ? [{ v: hdgN(X.long), msg: "That goes the long way round the compass. From " + p3(X.da) + "° to " + p3(X.db) + "° is only " + nf(Math.abs(X.turn), 0) + "°, through north." }] : []).concat(near.w.dir !== null && !R.I.at ? [{ v: near.w.dir, msg: "That’s the " + nf(near.lvl, 0) + " ft level’s wind. Interpolate between the two levels." }] : []), ph: "e.g. 268", im: "text" }, { k: "spd", label: "Speed", unit: "kt", type: "num", want: X.spd, tol: 1, alts: [], im: "text" });
+          }
+          if (X.tR !== null) f.push({ k: "t", label: "Temperature", unit: "°C", type: "num", want: X.t, tol: 1, alts: [], im: "text" });
+          if (a === "isa") f.push({ k: "dev", label: "ISA deviation", unit: "°C", type: "num", want: R.devA, tol: 0.6, alts: [{ v: -R.devA, msg: "The other way round: deviation = forecast − standard." }, { v: X.tR - 15, msg: "Compare with the standard temperature <b>at this altitude</b> (" + sgn(R.isaA) + " °C), not 15 °C." }], im: "text" });
+          return f;
+        }
+        if (a === "wca") {
+          var al = [];
+          if (R.Wm) al.push({ v: R.Wm.th, msg: "Winds aloft are <b>true</b>: change the magnetic course to true first (TC = MC + east variation, − west), then work the triangle." });
+          al.push({ v: hdgN(R.tc - R.W.wcaR), msg: "The correction goes the wrong way: turn into the wind." });
+          return [{ k: "th", label: "True heading", unit: "°", type: "hdg", want: R.W.th, tol: 1, alts: al },
+            { k: "gs", label: "Ground speed", unit: "kt", type: "num", want: R.W.gs, tol: 1, alts: R.Wm ? [{ v: R.Wm.gs, msg: "That uses the magnetic course with a true wind. Change the course to true first." }] : [] }
+          ];
+        }
+        if (a === "best") {
+          var strong = null;
+          R.best.forEach(function(b) { if (!b.c.w.lv && (!strong || b.c.w.spd > strong.c.w.spd)) strong = b; });
+          return [{ k: "lvl", label: "Best level", unit: "ft", type: "num", want: R.bestOne.c.lvl, tol: 0, alts: strong && strong !== R.bestOne ? [{ v: strong.c.lvl, msg: "That level has the strongest wind, but not the best tailwind for this course: compare ground speeds." }] : [] }];
+        }
+        return [];
+      },
+      note: "Directions to the degree (interpolated ones within 2°), speeds within 1 kt; a light and variable wind can be typed as “variable” and “light”.",
+      hint: function(P, R) {
+        if (R.one || R.ask === "dec") return "DDff: direction in tens of degrees, speed in knots. Direction digits 51–86: take 50 off and add 100 kt. 9900: light and variable. Above 24,000 ft temperatures are negative with no sign.";
+        if (R.ask === "interp") return "Fraction = (altitude − lower level) ÷ (upper − lower). Go that fraction of the way for the direction (the short way round), the speed and the temperature.";
+        if (R.ask === "isa") return "ISA = 15 − 2 × altitude ÷ 1,000. Deviation = forecast temperature − ISA.";
+        if (R.ask === "wca") return "First the wind at " + nf(P.alt, 0) + " ft (interpolate)" + (P.mc !== null ? ", and the true course (MC + east variation)" : "") + ". Then sin WCA = wind × sin(angle) ÷ TAS.";
+        return "Work the ground speed at each level and pick the biggest.";
+      },
+      gen: function(G) { return fbGen(G); }
+    };
+
+    function fbGen(G) { // a station's row that hangs together: winds that veer and strengthen with height, temperatures that fall
+      var st = pickOf(FBSTN),
+        el = st[1],
+        ask = G.ask === "any" ? pickOf(["dec", "dec", "interp", "interp", "wca", "wca", "isa", "best"]) : G.ask;
+      var d0 = rint(16, 34) * 10,
+        veer = rint(0, 6) * 10,
+        s0 = rint(3, 22),
+        sTop = rint(G.jet ? 110 : 45, G.jet ? 165 : 120),
+        t0 = rint(-6, 26);
+      if (ask === "interp" && Math.random() < 0.5) {
+        d0 = rint(31, 35) * 10;
+        veer = rint(4, 9) * 10;
+      } // across north: the short way round matters
+      var g = [];
+      FBUSL.forEach(function(L, k) {
+        if (L < el + 1500) return;
+        var f = k / (FBUSL.length - 1),
+          dir = norm360(d0 + veer * f + rint(-1, 1) * 10),
+          spd = Math.round(s0 + (sTop - s0) * Math.pow(f, 1.3) + rint(-4, 4)),
+          dd = Math.round(dir / 10) || 36,
+          t = Math.round(t0 - 2 * L / 1000 + rint(-3, 3));
+        if (L >= 30000) t = Math.min(t, -rint(36, 44)) - (L - 30000) / 1000;
+        t = Math.round(Math.max(t, -64));
+        var grp;
+        if (spd < 5) grp = "9900";
+        else if (spd >= 100) grp = p2s(dd + 50) + p2s(Math.min(spd, 199) - 100);
+        else grp = p2s(dd) + p2s(spd);
+        if (L !== 3000 && L >= el + 2500) grp += L > 24000 ? p2s(-t) : (t < 0 ? "-" : "+") + p2s(Math.abs(t));
+        g.push(grp);
+      });
+      var hrs = pickOf([0, 6, 12, 18]),
+        day = rint(1, 27),
+        vd = hrs === 18 ? day + 1 : day,
+        vh = (hrs + 6) % 24;
+      var raw = "DATA BASED ON " + p2s(day) + p2s(hrs) + "00Z VALID " + p2s(vd) + p2s(vh) + "00Z FOR USE " + FBUSE[vh] + "Z. TEMPS NEG ABV 24000 FT " + FBUSL.join(" ") + " " + st[0] + " " + g.join(" ");
+      var P = { mode: "windsaloft", raw: raw, stn: st[0], alt: null, lvl: null, tc: null, mc: null, v: null, tas: null, cas: null, ask: ask };
+      var lvls = FBUSL.filter(function(L) { return L >= el + 1500; });
+      if (ask === "dec") {
+        var tricky = [];
+        g.forEach(function(x, k) { if (/^(?:[5-8]\d|99)/.test(x) || x.length === 6) tricky.push(lvls[k]); });
+        P.lvl = tricky.length && Math.random() < 0.8 ? pickOf(tricky) : pickOf(lvls);
+      } else if (ask === "best") {
+        P.tc = rint(1, 72) * 5;
+        P.tas = rint(20, 32) * 5;
+      } else {
+        var low = lvls.filter(function(L) { return L <= (ask === "wca" ? 12000 : 30000); });
+        if (low.length < 2) low = lvls.slice(0, 2);
+        var k2 = rint(0, low.length - 2),
+          a = low[k2],
+          b = low[k2 + 1];
+        P.alt = a + rint(1, Math.max(1, (b - a) / 500 - 1)) * 500;
+        if (ask === "isa" && a === 3000) P.alt = b;
+        if (ask === "wca") {
+          P.tas = rint(20, 32) * 5;
+          if (Math.random() < 0.5) {
+            P.mc = rint(1, 72) * 5;
+            P.v = rint(2, 16) * pickOf([1, -1]);
+          } else P.tc = rint(1, 72) * 5;
+        }
+      }
+      return P;
+    }
+
     /* ===================== which tab a typed problem belongs to ===================== */
     function kindOf(q) {
-      var s = " " + clean(q).toLowerCase() + " ";
+      var s = " " + clean(q).toLowerCase() + " ",
+        wq = /^\s*(?:what\s+(?:does|do|is)|meaning\s+of|decode)\s+(?:the\s+)?(?:code\s+)?([+-]?[a-z]{2,8})(?:\s+mean)?\s*\??\s*$/.exec(s);
+      if (metarLike(q) || (wq && wxParse(wq[1].toUpperCase())) || (/^\s*[+-]?[A-Z]{2,8}\s*$/.test(clean(q)) && wxParse(clean(q)))) return "metar"; // a weather report, or one of its codes (GS, -SHRA)
+      if (fbLike(q)) return "windsaloft"; // an FB winds-aloft forecast, one of its rows, or "winds aloft"
       if (/^\s*-?\d[\d,.]*\s*[a-z°"'\/. ]+?\s+(?:to|into|in|as|→|->)\s+[a-z°"'\/. ]+\??\s*$/.test(s)) {
         try { if (M.units.read(q)) return "units"; } catch (e) {}
       }
@@ -4251,7 +6450,9 @@
       ["descent", "descent descend tod top-of-descent"],
       ["weight", "weight weight-and-balance wb balance cg"],
       ["turns", "turns turn bank glide radius"],
-      ["units", "units unit convert conversions"]
+      ["units", "units unit convert conversions"],
+      ["metar", "metar metars taf tafs speci weather wx flight-category"],
+      ["windsaloft", "windsaloft winds-aloft aloft fb fd winds-and-temps"]
     ].forEach(function(p) {
       p[1].split(" ").forEach(function(a) { MODE_ALIAS[a] = p[0]; });
     });
@@ -4264,7 +6465,9 @@
       descent: "Type the altitudes, the ground speed and a rate — like " + B("descend from 9500 to 2500 at 120 knots 500 fpm") + ".",
       weight: "Type the items with weights and arms — like " + B("empty 1500 @ 38, pilot 170 @ 37, fuel 40 gal @ 48, limits 35 to 47.3") + ".",
       turns: "Type a turn or a glide — like " + B("standard-rate turn at 120 knots") + " or " + B("glide ratio 9 from 6000 ft") + ".",
-      units: "Type a number, its unit and the unit you want — like " + B("120 knots to mph") + "."
+      units: "Type a number, its unit and the unit you want — like " + B("120 knots to mph") + ".",
+      windsaloft: "Paste a winds-aloft (FB) forecast, one station’s row — like " + B("SEA 2512 2620+06 2628+01 2635-04 2650-16 2664-28 257743 258849 760854") + " — or one group like " + B("7310") + ". Add " + B("at 7500") + ", " + B("course 090") + " and " + B("TAS 120") + " for the wind there and the heading.",
+      metar: "Paste a METAR, SPECI or TAF — like " + B("KSEA 241753Z 18012KT 10SM FEW040 BKN250 14/08 A3012") + " — and add a runway or the field elevation if you like (" + B("runway 16") + ", " + B("elevation 433") + ")."
     };
 
     function readProblem(mode, text) {
@@ -4374,10 +6577,85 @@
 
     function near(a, b, tol, hdg) { return (hdg ? Math.abs(rel180(a - b)) : Math.abs(a - b)) <= tol + 1e-9; }
 
+    function parseVis(s) { // a visibility as typed: "1 1/2", "1.5", "3/4", "P6", "6+", "more than 6", "M1/4", "4000 m"
+      s = String(s).toLowerCase();
+      var more = /^\s*p|\+|more\s+than|over|greater|above/.test(s),
+        less = /^\s*m(?![a-z])|less\s+than|under|below/.test(s),
+        m, v = null;
+      if ((m = /(\d+)\s+(\d+)\s*\/\s*(\d+)/.exec(s))) v = +m[1] + m[2] / m[3];
+      else if ((m = /(\d+)\s*\/\s*(\d+)/.exec(s))) v = m[1] / m[2];
+      else if ((m = /(\d[\d,]*(?:\.\d+)?|\.\d+)/.exec(s))) v = Number(m[1].replace(/,/g, ""));
+      if (v === null || !isFinite(v)) return null;
+      if (/\bkm\b|kilomet/.test(s)) v = v * 1000 / 1609.344;
+      else if (/\d\s*m\b|met(?:er|re)s?\b/.test(s)) v = v / 1609.344;
+      return { v: v, more: more, less: less };
+    }
+
+    function gradeWx(f, s) { // the weather tabs' answers: a ceiling (or none), a visibility, a category, the words of a code, a wind aloft
+      var i, v;
+      if (f.type === "fbdir" || f.type === "fbspd") {
+        var lvw = /\b(?:light|variable|vrb|lv|calm)\b|less\s+than\s+5|under\s+5|<\s*5/i.test(s);
+        v = parseNum(s);
+        if (f.want === null) {
+          if (lvw || (f.type === "fbspd" && v !== null && v >= 0 && v < 5)) return { st: "ok" };
+          return { st: "bad", msg: f.type === "fbdir" && (v === 990 || v === 99) ? "9900 isn’t 990° at 0 kt: it means <b>light and variable</b> (less than 5 kt). Type variable." : "9900 means light and variable: type " + B(f.type === "fbdir" ? "variable" : "light") + "." };
+        }
+        if (lvw && v === null) return { st: "bad", msg: "It isn’t light and variable here: read the digits." };
+        if (v === null) return { st: "bad", msg: "Type a number." };
+        if (f.type === "fbspd" && f.p199 && v >= 199) return { st: "ok" };
+        if (near(v, f.want, 0, f.type === "fbdir")) return { st: "ok" };
+        for (i = 0; i < f.alts.length; i++)
+          if (near(v, f.alts[i].v, 0)) return { st: "bad", msg: f.alts[i].msg };
+        return { st: "bad", msg: "" };
+      }
+      if (f.type === "pick") {
+        var c = /\b(LIFR|MVFR|IFR|VFR)\b/.exec(s.toUpperCase());
+        if (!c) return { st: "bad", msg: "Type " + B("VFR") + ", " + B("MVFR") + ", " + B("IFR") + " or " + B("LIFR") + "." };
+        if (c[1] === f.want) return { st: "ok" };
+        for (i = 0; i < f.alts.length; i++)
+          if (f.alts[i].w === c[1]) return { st: "bad", msg: f.alts[i].msg };
+        return { st: "bad", msg: "" };
+      }
+      if (f.type === "ceil") {
+        var none = /\b(?:none|no(?:\s+ceiling)?|unlimited|nil|clear|n\/?a)\b/i.test(s) && !/\d/.test(s);
+        if (f.want === null) {
+          if (none) return { st: "ok" };
+          v = parseNum(s);
+          for (i = 0; v !== null && i < f.alts.length; i++)
+            if (near(v, f.alts[i].v, 0)) return { st: "bad", msg: f.alts[i].msg };
+          return { st: "bad", msg: "No layer is broken (BKN), overcast (OVC) or hidden (VV), so there is <b>no ceiling</b>: type none." };
+        }
+        if (none) return { st: "bad", msg: "There is a ceiling: the lowest layer that is BKN, OVC or VV." };
+        v = parseNum(s);
+        if (v === null) return { st: "bad", msg: "Type a height in feet, or none." };
+        if (near(v, f.want, 0)) return { st: "ok" };
+        for (i = 0; i < f.alts.length; i++)
+          if (near(v, f.alts[i].v, 0)) return { st: "bad", msg: f.alts[i].msg };
+        return { st: "bad", msg: "" };
+      }
+      if (f.type === "vis") {
+        var x = parseVis(s),
+          V = f.want;
+        if (!x) return { st: "bad", msg: "Type the visibility in statute miles, like " + B("1 1/2") + " or " + B("10") + "." };
+        if (V.more ? x.v >= Math.min(V.sm, 6) - f.tol : V.less ? x.v <= V.sm + f.tol : near(x.v, V.sm, f.tol)) return { st: "ok" }; // 9999 or P6SM: 6 or more will do
+        for (i = 0; i < f.alts.length; i++)
+          if (near(x.v, f.alts[i].v, f.tol)) return { st: "bad", msg: f.alts[i].msg };
+        return { st: "bad", msg: "" };
+      }
+      // the words for a weather code
+      var low = " " + s.toLowerCase() + " ",
+        miss = f.want.filter(function(g) { return !g.some(function(w) { return low.indexOf(w) >= 0; }); });
+      if (!miss.length) return { st: "ok" };
+      for (i = 0; i < f.alts.length; i++)
+        if (f.alts[i].re.test(low)) return { st: "bad", msg: f.alts[i].msg };
+      return { st: "bad", msg: "Not all of it. Read it in parts: " + f.parts.map(function(p) { return B(esc(p[0])) + " " + p[1]; }).join(", ") + "." };
+    }
+
     function gradeField(f, raw) {
       var s = cleanUser(raw),
         v;
       if (!s) return { st: "empty" };
+      if (f.type === "pick" || f.type === "ceil" || f.type === "vis" || f.type === "words" || f.type === "fbdir" || f.type === "fbspd") return gradeWx(f, s);
       if (f.type === "time") { v = parseMinutes(s); if (v === null) return { st: "bad", msg: "Type a time like " + B("2:24") + " or " + B("2 h 24 min") + "." }; } else { v = parseNum(s); if (v === null) return { st: "bad", msg: "Type a number." }; }
       var hd = f.type === "hdg";
       if (f.type === "hw") {
@@ -4406,7 +6684,7 @@
       $("ckFields").innerHTML = f.map(function(x) {
         var mk = CK.marks[x.k] || "";
         return '<div class="ckf"><label for="ck_' + x.k + '">' + esc(x.label) + '</label><div class="ckin"><input id="ck_' + x.k + '" data-k="' + x.k +
-          '" type="text" autocomplete="off" spellcheck="false" inputmode="' + (x.type === "time" || x.type === "hw" || x.type === "xw" ? "text" : "decimal") + '" placeholder="' + esc(x.type === "time" ? "e.g. 1:45" : x.type === "hdg" ? "e.g. 087" : "e.g. 12") + '" value="' + esc(CK.vals[x.k] || "") + '">' +
+          '" type="text" autocomplete="off" spellcheck="false" inputmode="' + (x.im || (x.type === "time" || x.type === "hw" || x.type === "xw" ? "text" : "decimal")) + '" placeholder="' + esc(x.ph || (x.type === "time" ? "e.g. 1:45" : x.type === "hdg" ? "e.g. 087" : "e.g. 12")) + '" value="' + esc(CK.vals[x.k] || "") + '">' +
           (x.unit ? '<span class="ckunit">' + esc(x.unit) + "</span>" : "") +
           '<span class="ckmark ' + mk + '" aria-hidden="true">' + (mk === "ok" ? "✓" : mk === "bad" ? "✗" : "") + "</span></div></div>";
       }).join("");
@@ -4484,7 +6762,10 @@
       descent: lg("c-v", "lose · time", "height and time") + lg("c-m", "TOD · rate", "distance and fpm") + lg("c-e", "angle", "the path") + lg("c-a", "✓", "the 3:1 check"),
       weight: lg("c-u", "lb", "fuel to pounds") + lg("c-m", "× · +", "moments and totals") + lg("c-v", "÷", "the CG") + lg("c-a", "✓", "the limits"),
       turns: lg("c-m", "rule · radius", "rules and radius") + lg("c-v", "tan · rate", "the exact way") + lg("c-u", "ft/s", "units") + lg("c-a", "✓", "check"),
-      units: lg("c-e", "fact", "the conversion fact") + lg("c-m", "×", "multiply") + lg("c-r", "round", "two places") + lg("c-a", "✓", "back again")
+      units: lg("c-e", "fact", "the conversion fact") + lg("c-m", "×", "multiply") + lg("c-r", "round", "two places") + lg("c-a", "✓", "back again"),
+      metar: lg("c-p", "who · when", "station, time, forecast periods") + lg("c-e", "wind", "wind") + lg("c-u", "visibility", "visibility") + lg("c-m", "weather", "weather codes") + lg("c-v", "clouds", "clouds") +
+        lg("c-r", "temp", "temperature, dew point") + lg("c-a", "pressure", "altimeter; results") + lg("c-n", "RMK", "remarks; not decoded (dashed)"),
+      windsaloft: lg("c-p", "heading", "when and for when") + lg("c-e", "level", "each level's group") + lg("c-v", "fraction", "interpolating") + lg("c-m", "wind · WCA", "the wind and the triangle") + lg("c-r", "round", "degrees and knots") + lg("c-a", "best", "the best altitude")
     };
     var lastTotal = 0;
 
@@ -4621,7 +6902,14 @@
         { key: "wbLimits", tog: "limits", sym: "✓", lbl: "CG limits and a maximum weight", d: true }
       ],
       turns: [{ key: "turnTask", seg: "task", lbl: "Find", vals: { any: "A mix", std: "Standard-rate bank", radius: "Turn radius", glide: "Glide distance" }, d: "any" }],
-      units: [{ key: "unitKind", seg: "kind", lbl: "Units", vals: { any: "A mix", speed: "Speed", dist: "Distance and height", press: "Pressure", temp: "Temperature", fuel: "Fuel" }, d: "any" }]
+      units: [{ key: "unitKind", seg: "kind", lbl: "Units", vals: { any: "A mix", speed: "Speed", dist: "Distance and height", press: "Pressure", temp: "Temperature", fuel: "Fuel" }, d: "any" }],
+      metar: [{ key: "wxAsk", seg: "ask", lbl: "Ask", vals: { any: "A mix", cat: "Flight category", xw: "Crosswind", base: "Cloud base", wx: "What a code means", rh: "Humidity", da: "Density altitude" }, d: "any" },
+        { key: "wxRegion", seg: "region", lbl: "Reports", vals: { any: "US and international", us: "US (miles, inHg)", intl: "International (meters, hPa)" }, d: "any" },
+        { key: "wxRmk", tog: "rmk", sym: "RMK", lbl: "Remarks in US reports", d: true }
+      ],
+      windsaloft: [{ key: "fbAsk", seg: "ask", lbl: "Ask", vals: { any: "A mix", dec: "Read a level", interp: "Wind at an altitude", wca: "Heading and ground speed", isa: "ISA deviation", best: "Best altitude" }, d: "any" },
+        { key: "fbJet", tog: "jet", sym: "100+", lbl: "A jet stream (winds of 100 kt and more)", d: false }
+      ]
     };
     var MODE_LABEL = {
       wind: "Wind triangle: wind correction, heading, ground speed",
@@ -4632,7 +6920,9 @@
       descent: "Descent planning: top of descent, rate, angle",
       weight: "Weight and balance: moments and CG",
       turns: "Turns (bank, radius) and glide distance",
-      units: "Aviation units: kt, nm, inHg, °C, gal ↔ lb"
+      units: "Aviation units: kt, nm, inHg, °C, gal ↔ lb",
+      metar: "Weather: METAR and TAF decoding, flight category, crosswind, cloud base",
+      windsaloft: "Winds aloft (FB): decoding, interpolating, heading and ground speed"
     };
     MODES.forEach(function(m) {
       var g = {};
@@ -4815,7 +7105,9 @@
       descent: "The altitudes, ground speed and a rate, distance or angle: <code>descend from 9500 to 2500 at 120 knots 500 fpm</code>, <code>… in 20 nm</code>, <code>… on a 3° path</code>.",
       weight: "Each item as weight @ arm (fuel can be gallons), then the limits: <code>empty 1500 @ 38, pilot 170 @ 37, fuel 40 gal @ 48, limits 35 to 47.3, max 2550</code>.",
       turns: "<code>standard-rate turn at 120 knots</code>, <code>turn radius at 120 knots, 30° bank</code>, <code>glide ratio 9 from 6000 ft</code>.",
-      units: "<code>120 knots to mph</code>, <code>29.92 inHg to hPa</code>, <code>15 °C to °F</code>, <code>5000 ft to m</code>, <code>40 gal avgas to lb</code>, <code>300 lb Jet A to gal</code>."
+      units: "<code>120 knots to mph</code>, <code>29.92 inHg to hPa</code>, <code>15 °C to °F</code>, <code>5000 ft to m</code>, <code>40 gal avgas to lb</code>, <code>300 lb Jet A to gal</code>.",
+      metar: "Paste a METAR, SPECI or TAF (US or international). Add <code>runway 16</code> for the crosswind and <code>elevation 433</code> for density altitude, or ask <code>what does -SHRA mean</code>. Nothing is sent anywhere unless you press <b>Get the latest METAR</b> (US airports).",
+      windsaloft: "A forecast, a station’s row (<code>SEA 2512 2620+06 …</code>) or one group (<code>7310</code>, <code>321858 at 30000</code>). Add <code>at 7500</code>, <code>course 090</code> (or <code>magnetic course 085 variation 5 E</code>), <code>TAS 120</code> or <code>120 KIAS</code>, or <code>best altitude</code>."
     };
     var LABELS = {
       wind: "Wind, course and airspeed",
@@ -4826,7 +7118,9 @@
       descent: "Descent",
       weight: "Items (weight @ arm) and limits",
       turns: "Turn or glide",
-      units: "Convert"
+      units: "Convert",
+      metar: "METAR, SPECI or TAF",
+      windsaloft: "Winds aloft (FB) and your flight"
     };
     var EX = {
       wind: ["wind 270 at 15, course 360, TAS 110", "wind 040 at 20, course 090, TAS 120", "course 225, TAS 95, wind 180/25", "TC 150 TAS 140 wind 300 at 30"],
@@ -4837,7 +7131,16 @@
       descent: ["descend from 9500 to 2500 at 120 knots 500 fpm", "descend from 8500 to 3000 at 140 knots in 20 nm", "descend from 11500 to 1500 at 150 knots on a 3° path", "descend from 7500 to 2000 at 110 knots using the 3:1 rule"],
       weight: ["empty 1500 @ 38, pilot 170 @ 37, passenger 150 @ 37, fuel 40 gal @ 48, baggage 50 @ 95, limits 35 to 47.3, max 2550", "empty 1650 @ 39.2, front 340 @ 37, rear 160 @ 73, fuel 48 gal @ 48, limits 35 to 47.3", "empty 1200 @ 34, pilot 200 @ 36, fuel 24 gal @ 40, forward limit 32.5, aft limit 36.5"],
       turns: ["standard-rate turn at 120 knots", "turn radius at 120 knots, 30° bank", "glide ratio 9 from 6000 ft", "standard-rate turn at 250 knots", "glide ratio 12:1 from 3500 ft"],
-      units: ["120 knots to mph", "29.92 inHg to hPa", "15 °C to °F", "5000 ft to m", "40 gal avgas to lb", "300 lb Jet A to gal", "100 km/h to knots", "50 nm to sm"]
+      units: ["120 knots to mph", "29.92 inHg to hPa", "15 °C to °F", "5000 ft to m", "40 gal avgas to lb", "300 lb Jet A to gal", "100 km/h to knots", "50 nm to sm"],
+      metar: ["KSEA 241753Z 18012G22KT 10SM -SHRA FEW025 BKN040 12/07 A2992 RMK AO2 SLP132 T01220067 runway 16", "KDEN 241653Z 35008KT 3SM BR FEW005 OVC008 02/01 A3021 elevation 5434",
+        "EGLL 241750Z 24015KT 9999 SCT020 BKN035 13/09 Q1009 NOSIG", "SPECI KORD 241812Z 27020G32KT 1 1/2SM +TSRA BKN010CB OVC025 18/16 A2968 RMK AO2 PK WND 28035/1806 RAB02 runway 22",
+        "LFPG 240800Z 00000KT 0300 R27L/0550U FG VV001 08/08 Q1021", "TAF KSEA 241720Z 2418/2524 18010KT P6SM BKN040 FM250200 20015G25KT 4SM -RA OVC015 TEMPO 2504/2508 2SM BR OVC008", "what does -FZRA mean"
+      ],
+      windsaloft: ["SEA 2512 2620+06 2628+01 2635-04 2650-16 2664-28 257743 258849 760854 at 7500 course 090 TAS 120",
+        "DATA BASED ON 241800Z VALID 250000Z FOR USE 2000-0300Z. TEMPS NEG ABV 24000 FT 3000 6000 9000 12000 18000 24000 30000 34000 39000 DEN 2425+03 2433-01 2448-12 2462-24 247239 248348 750452 at 10500",
+        "7310", "321858 at 30000", "ABQ 1618+08 1938+02 2046-11 2050-24 206139 206047 204852 at 10000 magnetic course 270 variation 9 E TAS 130",
+        "ANC 1717 2020-04 2029-08 2237-09 2264-16 2264-29 238143 239152 237861 best altitude course 090 TAS 120", "PDX 9900 2412+07 2617+01 2624-03 2539-16 2648-29 265645 266454 276361 at 30000"
+      ]
     };
     MODES.forEach(function(m) { S.inputs[m] = EX[m][0]; });
 
@@ -4874,6 +7177,8 @@
       $("numLab").textContent = LABELS[S.mode];
       $("hint").innerHTML = HINTS[S.mode];
       buildChips();
+      $("wxGet").hidden = S.mode !== "metar" || EMBED;
+      $("fbGet").hidden = S.mode !== "windsaloft" || EMBED;
       buildMaker();
       inp.value = S.inputs[S.mode] === "\u0000link" ? "" : S.inputs[S.mode];
     }
@@ -5064,6 +7369,230 @@
         if (v.maker) $("maker").open = true;
       } catch (e) {}
     }
+
+    /* ===================== the latest METAR, fetched only when asked (the Weather tab) ===================== */
+    var WXOK = "flight-computer-wx-ok",
+      wxOkNow = false,
+      wxBusy = false,
+      WXNOTE = "The airport code is sent to the US National Weather Service (api.weather.gov) to get its latest report.",
+      WXNOUS = "Only US airports can be fetched (National Weather Service data); paste the report for others.";
+
+    function wxSay(h, cls) {
+      $("wxMsg").className = "wxmsg" + (cls ? " " + cls : "");
+      $("wxMsg").innerHTML = h;
+    }
+
+    function wxAgreed() {
+      if (wxOkNow) return true;
+      try { return localStorage.getItem(WXOK) === "1"; } catch (e) { return false; }
+    }
+
+    function wxGetJSON(url, done) { // done(err, json, status): err null, "404", "status", "bad", "timeout", "offline" or "network"
+      var x;
+      try {
+        x = new XMLHttpRequest();
+        x.open("GET", url, true);
+        x.setRequestHeader("Accept", "application/geo+json");
+        x.timeout = 10000;
+      } catch (e) {
+        done("network");
+        return;
+      }
+      x.onload = function() {
+        if (x.status !== 200) return done(x.status === 404 ? "404" : "status", null, x.status);
+        var j = null;
+        try { j = JSON.parse(x.responseText); } catch (e) { return done("bad", null, x.status); }
+        done(null, j, 200);
+      };
+      x.ontimeout = function() { done("timeout"); };
+      x.onerror = function() { done(navigator.onLine === false ? "offline" : "network"); };
+      x.send();
+    }
+
+    function wxAgo(ms) {
+      var m = Math.max(0, Math.round((Date.now() - ms) / 60000));
+      return m < 1 ? "just now" : m < 60 ? m + " minute" + (m === 1 ? "" : "s") + " ago" : hm(m) + " ago";
+    }
+
+    function wxFetch(code) {
+      var base = "https://api.weather.gov/stations/" + encodeURIComponent(code),
+        btn = $("wxBtn");
+      if (navigator.onLine === false) return wxSay("You seem to be offline, so the report can’t be fetched. Paste it into the box instead.", "bad");
+      wxBusy = true;
+      btn.disabled = true;
+      btn.textContent = "Getting…";
+      wxSay("Asking the National Weather Service for " + B(esc(code)) + "’s latest report…");
+
+      function end(h, cls) {
+        wxBusy = false;
+        btn.disabled = false;
+        btn.textContent = "Get the latest METAR";
+        wxSay(h, cls);
+      }
+      var none = "There’s no US airport with the code " + B(esc(code)) + ". " + WXNOUS;
+      wxGetJSON(base + "/observations?limit=24", function(err, j, st) {
+        if (err === "timeout") return end("The National Weather Service didn’t answer within 10 seconds. Try again, or paste the report.", "bad");
+        if (err === "offline" || err === "network") return end("Couldn’t reach the National Weather Service" + (err === "offline" ? " — you seem to be offline" : "") + ". Try again, or paste the report.", "bad");
+        if (err === "404") return end(none, "bad");
+        if (err) return end("The National Weather Service couldn’t send the report just now" + (st ? " (error " + st + ")" : "") + ". Try again later, or paste it.", "bad");
+        var f = j && j.features && j.features.length ? j.features : [],
+          hit = null;
+        for (var i = 0; i < f.length && !hit; i++) { // many entries are 5-minute readings with no METAR: take the newest one that has one
+          var p = f[i] && f[i].properties;
+          if (p && p.rawMessage && String(p.rawMessage).trim()) hit = p;
+        }
+        if (!hit) {
+          if (f.length) return end(B(esc(code)) + " has no METAR in its latest reports (only automatic readings). Try again later, or paste one.", "bad");
+          // no observations at all: an unknown code (or a station outside the US), or a US station with nothing recent
+          return wxGetJSON(base, function(e2) { end(e2 === "404" ? none : B(esc(code)) + " has no recent METAR. Try again later, or paste one.", "bad"); });
+        }
+        var raw = clean(hit.rawMessage),
+          t = Date.parse(hit.timestamp),
+          el = hit.elevation && typeof hit.elevation.value === "number" ? Math.round(hit.elevation.value / 0.3048) : null,
+          when = isFinite(t) ? "observed " + (function(d) { return (d.getUTCHours() < 10 ? "0" : "") + d.getUTCHours() + ":" + (d.getUTCMinutes() < 10 ? "0" : "") + d.getUTCMinutes() + "Z"; })(new Date(t)) + ", " + wxAgo(t) : "the newest report";
+        if (S.mode !== "metar") setMode("metar");
+        S.linkP = null;
+        setProblem(raw);
+        end(B(esc(code)) + ": " + when + " (National Weather Service)." + (el !== null ? " For the density altitude, " + useBtn("metar", raw + " elevation " + el, "add the field elevation (" + nf(el, 0) + " ft)") + "." : ""));
+      });
+    }
+    $("wxBtn").addEventListener("click", function() {
+      if (wxBusy) return;
+      var code = String($("wxIcao").value || "").replace(/\s+/g, "").toUpperCase();
+      if (!code && CUR && CUR.mode === "metar") {
+        var D0 = wxDecode(CUR.raw);
+        code = (D0.met && D0.met.station) || (D0.taf && D0.taf.station) || "";
+        $("wxIcao").value = code;
+      }
+      if (!/^[A-Z][A-Z0-9]{3}$/.test(code)) return wxSay("Type the airport’s four-letter ICAO code, like " + B("KSEA") + " (not SEA).", "bad");
+      if (!wxAgreed()) {
+        wxSay(WXNOTE + ' <button type="button" class="ghost" id="wxOk">OK, get it</button>', "ask");
+        $("wxOk").addEventListener("click", function() {
+          wxOkNow = true;
+          try { localStorage.setItem(WXOK, "1"); } catch (e) {}
+          wxFetch(code);
+        });
+        return;
+      }
+      wxFetch(code);
+    });
+    $("wxIcao").addEventListener("keydown", function(e) {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        $("wxBtn").click();
+      }
+    });
+    inp.addEventListener("input", function() { if (!wxBusy) wxSay(""); });
+    inp.addEventListener("paste", function(e) {
+      if (S.mode !== "metar" && S.mode !== "windsaloft") return;
+      var t = "";
+      try { t = (e.clipboardData || window.clipboardData).getData("text"); } catch (x) { return; }
+      if (!/[\r\n]/.test(t)) return;
+      e.preventDefault();
+      var v = inp.value,
+        a = inp.selectionStart === null ? v.length : inp.selectionStart,
+        b = inp.selectionEnd === null ? v.length : inp.selectionEnd,
+        one = t.replace(/\s*[\r\n]+\s*/g, " ").trim();
+      inp.value = v.slice(0, a) + one + v.slice(b);
+      try { inp.setSelectionRange(a + one.length, a + one.length); } catch (x2) {}
+      inp.dispatchEvent(new Event("input", { bubbles: true }));
+    });
+
+    /* ===================== the latest winds aloft, fetched only when asked ===================== */
+    var FBOK = "flight-computer-fb-ok",
+      fbOkNow = false,
+      fbBusy = false,
+      FBNOTE = "The page downloads the latest winds-aloft forecast from the US National Weather Service (api.weather.gov) and finds the station in it (the station code itself isn’t sent).";
+
+    function fbSay(h, cls) {
+      $("fbMsg").className = "wxmsg" + (cls ? " " + cls : "");
+      $("fbMsg").innerHTML = h;
+    }
+
+    function fbFetch(code, hrs) {
+      var FD = { 6: "FD1", 12: "FD2", 24: "FD3" } [hrs],
+        nn = { 6: "31", 12: "32", 24: "33" } [hrs],
+        stn = code.length === 4 ? code.slice(1) : code,
+        cols = /^PA/.test(code) ? ["AK"] : /^PH/.test(code) ? ["HW"] : /^P/.test(code) ? ["OC"] : code.length === 4 ? ["US"] : ["US", "AK", "HW", "OC"],
+        btn = $("fbBtn"),
+        hw = hrs + "-hour";
+      if (navigator.onLine === false) return fbSay("You seem to be offline, so the forecast can’t be fetched. Paste it into the box instead.", "bad");
+      fbBusy = true;
+      btn.disabled = true;
+      btn.textContent = "Getting…";
+      fbSay("Getting the latest " + hw + " winds-aloft forecast from the National Weather Service…");
+
+      function end(h, cls) {
+        fbBusy = false;
+        btn.disabled = false;
+        btn.textContent = "Get the latest winds aloft";
+        fbSay(h, cls);
+      }
+
+      function fail(err, st) {
+        if (err === "timeout") return end("The National Weather Service didn’t answer within 10 seconds. Try again, or paste the forecast.", "bad");
+        if (err === "offline" || err === "network") return end("Couldn’t reach the National Weather Service" + (err === "offline" ? " — you seem to be offline" : "") + ". Try again, or paste the forecast.", "bad");
+        end("The National Weather Service couldn’t send the forecast just now" + (st ? " (error " + st + ")" : "") + ". Try again later, or paste it.", "bad");
+      }
+      wxGetJSON("https://api.weather.gov/products/types/" + FD, function(err, j, st) {
+        if (err) return fail(err, st);
+        var list = (j && j["@graph"]) || [];
+        list.sort(function(a, b) { return String(b.issuanceTime).localeCompare(String(a.issuanceTime)); });
+        if (!list.length) return end("The " + hw + " forecast isn’t on the National Weather Service’s list just now. Try the " + (hrs === 6 ? "24" : "6") + "-hour one, or paste a forecast.", "bad");
+        var k = 0;
+        (function next() {
+          if (k >= cols.length) return end(B(esc(stn)) + " isn’t a station in the latest " + hw + " winds-aloft forecast" + (cols.length === 1 ? " (FB" + cols[0] + nn + ")" : "") + ". Use the forecast station nearest your route (KSEA → SEA, PANC → ANC), or paste the forecast.", "bad");
+          var col = "FB" + cols[k++] + nn,
+            item = null;
+          list.forEach(function(x) { if (!item && x.wmoCollectiveId === col) item = x; });
+          if (!item) return next();
+          wxGetJSON("https://api.weather.gov/products/" + encodeURIComponent(item.id), function(e2, p, st2) {
+            if (e2) return fail(e2, st2);
+            var lines = String((p && p.productText) || "").split(/\r?\n/),
+              row = null,
+              keep = [];
+            lines.forEach(function(l) {
+              if (/^(?:DATA BASED ON|VALID|FT\s)/.test(l)) keep.push(l);
+              if (!row && new RegExp("^" + stn + "\\s").test(l)) row = l;
+            });
+            if (!row) return next();
+            var raw = fbPrep(keep.concat([row]).join(" ")),
+              D = fbParse(raw),
+              old = CUR && CUR.mode === "windsaloft" ? CUR : null,
+              P2 = { mode: "windsaloft", raw: raw, stn: stn, alt: old ? old.alt : null, lvl: null, tc: old ? old.tc : null, mc: old ? old.mc : null, v: old ? old.v : null, tas: old ? old.tas : null, cas: old ? old.cas : null, ask: null },
+              t = Date.parse(item.issuanceTime);
+            if (S.mode !== "windsaloft") setMode("windsaloft");
+            S.linkP = null;
+            setProblem(M.windsaloft.text(P2));
+            end(B(esc(stn)) + ": the " + hw + " forecast " + esc(col) + (isFinite(t) ? ", sent " + wxAgo(t) : "") + (D.hdr.based ? " — data based on " + B(D.hdr.based) : "") + (D.hdr.valid ? ", valid " + B(D.hdr.valid) : "") + (D.hdr.use ? ", for use " + B(D.hdr.use) : "") + " (National Weather Service).");
+          });
+        })();
+      });
+    }
+    $("fbBtn").addEventListener("click", function() {
+      if (fbBusy) return;
+      var code = String($("fbStn").value || "").replace(/\s+/g, "").toUpperCase();
+      if (!code && CUR && CUR.mode === "windsaloft" && CUR.stn) $("fbStn").value = code = CUR.stn;
+      if (!/^[A-Z0-9]{3,4}$/.test(code) || !/[A-Z]/.test(code)) return fbSay("Type the station’s code, like " + B("SEA") + " or " + B("KSEA") + " (" + B("ANC") + " or " + B("PANC") + " in Alaska).", "bad");
+      var hrs = +$("fbHrs").value || 6;
+      if (!(fbOkNow || (function() { try { return localStorage.getItem(FBOK) === "1"; } catch (e) { return false; } })())) {
+        fbSay(FBNOTE + ' <button type="button" class="ghost" id="fbOk">OK, get it</button>', "ask");
+        $("fbOk").addEventListener("click", function() {
+          fbOkNow = true;
+          try { localStorage.setItem(FBOK, "1"); } catch (e) {}
+          fbFetch(code, hrs);
+        });
+        return;
+      }
+      fbFetch(code, hrs);
+    });
+    $("fbStn").addEventListener("keydown", function(e) {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        $("fbBtn").click();
+      }
+    });
+    inp.addEventListener("input", function() { if (!fbBusy) fbSay(""); });
 
     /* embedded in a practice set: the height goes to the parent */
     var lastH = 0;

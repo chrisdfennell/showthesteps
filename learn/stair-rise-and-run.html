@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to Calculate Stairs: Risers, Treads and Stringer Length | Show The Steps</title>
+<meta name="description" content="Divide the total rise by the tallest riser allowed, round up, then find each riser, the treads, the total run and the stringer. Worked example: a 112 in rise.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Show The Steps">
+<meta property="og:title" content="How to Calculate Stairs: Risers, Treads and Stringer Length | Show The Steps">
+<meta property="og:description" content="Divide the total rise by the tallest riser allowed, round up, then find each riser, the treads, the total run and the stringer. Worked example: a 112 in rise.">
+<meta property="og:url" content="https://showthesteps.org/learn/stair-rise-and-run">
+<meta property="og:image" content="https://showthesteps.org/assets/icons/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Show The Steps: every step, written out.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://showthesteps.org/learn/stair-rise-and-run">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["HowTo","LearningResource"],"name":"How to Calculate Stairs: Risers, Treads and Stringer Length","description":"Divide the total rise by the tallest riser allowed, round up, then find each riser, the treads, the total run and the stringer. Worked example: a 112 in rise.","inLanguage":"en-US","url":"https://showthesteps.org/learn/stair-rise-and-run","isAccessibleForFree":true,"learningResourceType":"tutorial","educationalLevel":"High school, college and beyond","publisher":{"@type":"Organization","name":"Show The Steps","url":"https://showthesteps.org/"},"step":[{"@type":"HowToStep","position":1,"name":"Measure the total rise in inches, from finished floor to finished floor","text":"Measure the total rise in inches, from finished floor to finished floor."},{"@type":"HowToStep","position":2,"name":"Divide by the tallest riser allowed (7 3/4\" is typical in US house codes) and round up","text":"Divide by the tallest riser allowed (7 3/4\" is typical in US house codes) and round up. That is the number of risers."},{"@type":"HowToStep","position":3,"name":"Riser height = total rise ÷ number of risers","text":"Riser height = total rise ÷ number of risers."},{"@type":"HowToStep","position":4,"name":"There is one tread fewer than risers","text":"There is one tread fewer than risers. Total run = treads × tread depth (at least 10\" is typical)."},{"@type":"HowToStep","position":5,"name":"Stringer length = √(rise² + run²), by the Pythagorean theorem","text":"Stringer length = √(rise² + run²), by the Pythagorean theorem."}],"audience":{"@type":"Audience","audienceType":"Carpenters, builders and DIYers"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How many steps for a 104 inch rise?","acceptedAnswer":{"@type":"Answer","text":"104 ÷ 7.75 ≈ 13.42, so 14 risers of 104 ÷ 14 ≈ 7 7/16\" each, and 13 treads."}},{"@type":"Question","name":"What is the 2R + T rule?","acceptedAnswer":{"@type":"Answer","text":"Two risers plus one tread should come to about 24\" to 25\", one comfortable stride. Here 2 × 7.467 + 10 ≈ 24.9\"."}},{"@type":"Question","name":"How steep are these stairs?","acceptedAnswer":{"@type":"Answer","text":"tan⁻¹(riser ÷ tread) = tan⁻¹(7.467 ÷ 10) ≈ 36.7°."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Show The Steps","item":"https://showthesteps.org/"},{"@type":"ListItem","position":2,"name":"Learn","item":"https://showthesteps.org/learn/"},{"@type":"ListItem","position":3,"name":"Stair rise and run","item":"https://showthesteps.org/learn/stair-rise-and-run"}]}]}</script>
+<link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
+<script src="../assets/site.js"></script>
+<script src="../assets/nav.js" defer></script>
+<script>
+  /* counting visits with GoatCounter (no cookies, no personal data); not when testing on this computer */
+  if (/^https?:$/.test(location.protocol) && !/^(localhost|127\.[0-9.]+|\[::1\])$/.test(location.hostname) && window.top === window.self) {
+    window.goatcounter = { path: function() { return location.pathname; } };
+    document.write('<script data-goatcounter="https://fennell.goatcounter.com/count" async src="https://gc.zgo.at/count.js"><\/script>');
+  }
+</script>
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<style>
+  :root {
+    --paper: #EDEFE9;
+    --surface: #F8F9F5;
+    --surface-2: #E3E7DF;
+    --ink: #19211D;
+    --ink-2: #4B5651;
+    --ink-3: #7C8781;
+    --rule: #C9D0C6;
+    --key: #1F5E8C;
+    --key-bg: #DEE8F6;
+    --ok: #0F6E58;
+    --ok-bg: #D6EBE3;
+    --shadow: 0 1px 0 rgba(25, 33, 29, .05), 0 14px 30px -20px rgba(25, 33, 29, .5);
+    --f-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --f-body: "IBM Plex Sans", "Segoe UI", Helvetica, Arial, sans-serif;
+    --f-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #131817;
+      --surface: #1B2220;
+      --surface-2: #252E2B;
+      --ink: #E7EBE4;
+      --ink-2: #A3AEA7;
+      --ink-3: #77837D;
+      --rule: #38423F;
+      --key: #7DB8E8;
+      --key-bg: #1A2740;
+      --ok: #57CBAB;
+      --ok-bg: #123129;
+      --shadow: 0 1px 0 rgba(0, 0, 0, .3), 0 14px 30px -20px rgba(0, 0, 0, .9);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #131817;
+    --surface: #1B2220;
+    --surface-2: #252E2B;
+    --ink: #E7EBE4;
+    --ink-2: #A3AEA7;
+    --ink-3: #77837D;
+    --rule: #38423F;
+    --key: #7DB8E8;
+    --key-bg: #1A2740;
+    --ok: #57CBAB;
+    --ok-bg: #123129;
+    --shadow: 0 1px 0 rgba(0, 0, 0, .3), 0 14px 30px -20px rgba(0, 0, 0, .9);
+  }
+  * {
+    box-sizing: border-box
+  }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--f-body);
+    font-size: 16.5px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased
+  }
+  .page {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 22px 20px 70px
+  }
+  @media (max-width:520px) {
+    .page {
+      padding: 16px 16px 56px
+    }
+  }
+  .masthead {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px 20px;
+    flex-wrap: wrap;
+    margin: 26px 0 8px
+  }
+  .eyebrow {
+    font-family: var(--f-mono);
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--ink-3)
+  }
+  .eyebrow a {
+    color: inherit;
+    text-decoration: none
+  }
+  .eyebrow a:hover {
+    text-decoration: underline
+  }
+  h1 {
+    font-family: var(--f-display);
+    font-stretch: 112%;
+    font-weight: 800;
+    font-size: clamp(28px, 5.2vw, 44px);
+    line-height: 1.08;
+    letter-spacing: -.02em;
+    margin: .25em 0 .3em;
+    overflow-wrap: anywhere
+  }
+  .tagline {
+    color: var(--ink-2);
+    font-size: 18px;
+    margin: 0 0 14px;
+    max-width: 40em
+  }
+  .theme-btn {
+    font-family: var(--f-mono);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .06em;
+    background: var(--surface);
+    color: var(--ink-2);
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    padding: 8px 15px;
+    cursor: pointer;
+    white-space: nowrap
+  }
+  .theme-btn:hover {
+    color: var(--ink);
+    border-color: var(--ink-3)
+  }
+  h2 {
+    font-family: var(--f-display);
+    font-stretch: 108%;
+    font-weight: 800;
+    font-size: clamp(21px, 3vw, 25px);
+    letter-spacing: -.01em;
+    margin: 36px 0 8px
+  }
+  h3 {
+    font-family: var(--f-display);
+    font-weight: 700;
+    font-size: 17.5px;
+    margin: 20px 0 4px;
+    color: var(--ink)
+  }
+  p,
+  li {
+    color: var(--ink-2)
+  }
+  p {
+    margin: 0 0 14px
+  }
+  ul,
+  ol {
+    padding-left: 1.35em;
+    margin: 0 0 14px
+  }
+  li {
+    margin: 0 0 8px
+  }
+  strong,
+  b {
+    color: var(--ink)
+  }
+  a {
+    color: var(--key);
+    text-underline-offset: 2px
+  }
+  sup {
+    font-size: .75em;
+    line-height: 0
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    padding: 20px 22px;
+    margin: 18px 0
+  }
+  .card p:last-child,
+  .card ul:last-child,
+  .card ol:last-child {
+    margin-bottom: 0
+  }
+  .problem {
+    font-family: var(--f-display);
+    font-weight: 700;
+    font-size: 19px;
+    color: var(--ink);
+    margin: 0 0 12px
+  }
+  pre {
+    font-family: var(--f-mono);
+    font-size: 14.5px;
+    line-height: 1.35;
+    background: var(--surface-2);
+    color: var(--ink);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin: 0 0 14px;
+    overflow-x: auto;
+    max-width: 100%
+  }
+  .answer-line {
+    background: var(--ok-bg);
+    color: var(--ink);
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin: 14px 0 0
+  }
+  .answer-line b {
+    color: var(--ok)
+  }
+  .jump {
+    display: inline-block;
+    margin: 0 0 6px;
+    font-family: var(--f-mono);
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: .04em;
+    text-decoration: none;
+    background: var(--key-bg);
+    color: var(--key);
+    border-radius: 999px;
+    padding: 8px 15px
+  }
+  .jump:hover {
+    text-decoration: underline
+  }
+  .try {
+    background: var(--key-bg);
+    border: 2px solid var(--key);
+    border-radius: 16px;
+    padding: 20px 22px;
+    margin: 34px 0 10px
+  }
+  .try h2 {
+    margin-top: 0
+  }
+  .try p {
+    color: var(--ink)
+  }
+  .try .go {
+    display: block;
+    background: var(--key);
+    color: var(--paper);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 17px;
+    border-radius: 12px;
+    padding: 13px 16px;
+    margin: 6px 0 14px;
+    overflow-wrap: anywhere
+  }
+  .try .go:hover {
+    filter: brightness(1.1);
+    text-decoration: underline
+  }
+  .try .go small {
+    display: block;
+    font-weight: 400;
+    font-size: 13.5px;
+    opacity: .92
+  }
+  .try ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 10px
+  }
+  .try li {
+    margin: 0 0 6px
+  }
+  .try li a {
+    font-weight: 500;
+    overflow-wrap: anywhere
+  }
+  .try .more {
+    font-family: var(--f-mono);
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin: 0 0 6px
+  }
+  .small {
+    font-size: 14px;
+    color: var(--ink-3)
+  }
+  .related {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 14px
+  }
+  .related li {
+    margin: 0
+  }
+  .related a {
+    display: inline-block;
+    border: 1px solid var(--rule);
+    background: var(--surface);
+    border-radius: 999px;
+    padding: 6px 14px;
+    text-decoration: none;
+    font-size: 15px
+  }
+  .related a:hover {
+    border-color: var(--ink-3)
+  }
+  .band-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 10px
+  }
+  .band-grid li {
+    margin: 0
+  }
+  .band-grid a {
+    display: block;
+    height: 100%;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    padding: 12px 14px;
+    text-decoration: none;
+    color: var(--ink);
+    font-weight: 600
+  }
+  .band-grid a:hover {
+    border-color: var(--key)
+  }
+  .band-grid a span {
+    display: block;
+    font-weight: 400;
+    font-size: 13.5px;
+    color: var(--ink-3);
+    margin-top: 2px
+  }
+  :focus-visible {
+    outline: 2.5px solid var(--key);
+    outline-offset: 3px
+  }
+  @media print {
+    .sitenav,
+    .theme-btn,
+    .jump {
+      display: none !important
+    }
+    body {
+      background: #fff
+    }
+    .card,
+    .try {
+      box-shadow: none
+    }
+    .try .go {
+      background: none;
+      color: #000;
+      padding: 0
+    }
+    a {
+      color: #000
+    }
+    pre {
+      overflow: visible;
+      white-space: pre-wrap
+    }
+  }
+</style>
+<style>
+  :root {
+    --warm: #9A5410;
+    --warm-bg: #F6E5D2;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --warm: #E8A45C;
+      --warm-bg: #37270F;
+    }
+  }
+  :root[data-theme="dark"] {
+    --warm: #E8A45C;
+    --warm-bg: #37270F;
+  }
+  .safety {
+    border-left: 5px solid var(--warm);
+    background: var(--warm-bg);
+    color: var(--ink);
+    border-radius: 6px 12px 12px 6px;
+    padding: 10px 16px;
+    margin: 0 0 16px;
+    font-size: 14.5px;
+    line-height: 1.5
+  }
+  .safety b {
+    color: var(--ink)
+  }
+  .try .tool {
+    margin: 4px 0 0
+  }
+</style>
+
+<div class="page">
+  <header class="masthead">
+    <div>
+      <div class="eyebrow"><a href="index.html">Learn</a> · <a href="index.html#work">Math at work</a> · Carpentry</div>
+      <h1>How to Calculate Stairs: Risers, Treads and Stringer Length</h1>
+    </div>
+    <button class="theme-btn" id="themeBtn" type="button">Dark mode</button>
+  </header>
+  <p class="tagline">To build stairs you need the number of steps, the height of each <b>riser</b>, the depth of each <b>tread</b>, and the length of the <b>stringer</b>, the sloped board the treads sit on. It all starts from the <b>total rise</b>, measured floor to floor.</p>
+  <p class="safety" role="note"><b>For learning and planning practice.</b> Check your local building codes and the manufacturer’s numbers before you build: the code numbers here are typical values, not the law where you live.</p>
+  <a class="jump" href="#try">Try it with your own problem ↓</a>
+
+  <h2>The steps</h2>
+  <ol>
+      <li>Measure the <b>total rise</b> in inches, from finished floor to finished floor.</li>
+      <li>Divide by the tallest riser allowed (7 3/4" is typical in US house codes) and <b>round up</b>. That is the number of risers.</li>
+      <li>Riser height = total rise ÷ number of risers.</li>
+      <li>There is one tread <b>fewer</b> than risers. Total run = treads × tread depth (at least 10" is typical).</li>
+      <li>Stringer length = √(rise² + run²), by the Pythagorean theorem.</li>
+  </ol>
+
+  <h2>A worked example</h2>
+  <div class="card">
+    <p class="problem">The total rise is 112 inches. With risers at most 7 3/4" and 10" treads, find the risers, the treads, the total run and the stringer length.</p>
+    <ol>
+      <li>Risers: 112 ÷ 7.75 ≈ 14.45, so round up to 15 risers.</li>
+      <li>Each riser: 112 ÷ 15 ≈ 7.467", about 7 7/16".</li>
+      <li>Treads: 15 − 1 = 14. Total run: 14 × 10 = 140" = 11' 8".</li>
+      <li>Stringer: √(112² + 140²) = √32,144 ≈ 179.29", about 14' 11 5/16".</li>
+      <li>Comfort check: 2 × riser + tread = 2 × 7.467 + 10 ≈ 24.93", inside the usual 24" to 25".</li>
+    </ol>
+    <p class="answer-line"><b>15 risers</b> of about <b>7 7/16"</b>, <b>14 treads</b>, a total run of <b>11' 8"</b>, and a stringer about <b>14' 11 5/16"</b> long.</p>
+  </div>
+
+  <h2>Why it works</h2>
+  <p>Every step must be the same height or people trip, so the rise is shared out equally among the risers. Rounding the count up makes sure each share is no taller than the limit. The stairs make a right triangle with the floor and the wall: the rise and the run are its legs and the stringer is the hypotenuse, which is why the Pythagorean theorem gives its length.</p>
+
+  <section class="try" id="try" aria-labelledby="tryh">
+    <h2 id="tryh">Try it with your own problem</h2>
+    <p>Open <b>The Framing Square</b> (free) with this example already filled in. It shows every step, and you can type over it with your own numbers.</p>
+    <a class="go" href="../helpers/carpentry.html?q=total%20rise%20112%20inches">Work it out: total rise 112 inches<small>Opens The Framing Square with this example</small></a>
+    <p class="more">Or try these</p>
+    <ul>
+      <li><a href="../helpers/carpentry.html?q=total%20rise%20104%20inches">Total rise 104 in</a></li>
+      <li><a href="../helpers/carpentry.html?q=total%20rise%208%27%2010%22%20max%20riser%207%201%2F2%20tread%2011">Rise 8' 10", max riser 7 1/2", tread 11"</a></li>
+      <li><a href="../helpers/carpentry.html?q=deck%20stairs%20total%20rise%2030%20inches">Deck stairs with a 30 in rise</a></li>
+    </ul>
+    <p class="tool">More carpentry math, every step written out: <a href="../helpers/carpentry.html">open The Framing Square</a>.</p>
+  </section>
+
+  <h2>Common mistakes</h2>
+  <ul>
+      <li><b>Rounding the riser count down.</b> 14 risers would be 8" each, taller than allowed. Always round up.</li>
+      <li><b>Counting as many treads as risers.</b> The top step is the upper floor, so there is one tread fewer.</li>
+      <li><b>Measuring to the subfloor.</b> Measure finished floor to finished floor, or the first or last step comes out a different height.</li>
+      <li><b>Rounding every step.</b> 15 × 7 7/16" = 111 9/16", not 112". Lay out with the exact 7.467" if you can.</li>
+  </ul>
+
+  <h2>Questions people ask</h2>
+    <h3>How many steps for a 104 inch rise?</h3>
+    <p>104 ÷ 7.75 ≈ 13.42, so 14 risers of 104 ÷ 14 ≈ 7 7/16" each, and 13 treads.</p>
+    <h3>What is the 2R + T rule?</h3>
+    <p>Two risers plus one tread should come to about 24" to 25", one comfortable stride. Here 2 × 7.467 + 10 ≈ 24.9".</p>
+    <h3>How steep are these stairs?</h3>
+    <p>tan⁻¹(riser ÷ tread) = tan⁻¹(7.467 ÷ 10) ≈ 36.7°.</p>
+
+  <h2>Keep learning</h2>
+  <ul class="related">
+      <li><a href="rafter-length.html">Rafter length from roof pitch</a></li>
+      <li><a href="pythagorean-theorem.html">Pythagorean theorem</a></li>
+      <li><a href="long-division.html">Long division</a></li>
+      <li><a href="index.html#work">All Math at work lessons</a></li>
+    <li><a href="index.html">All lessons</a></li>
+  </ul>
+  <p class="small">Show The Steps is free, with no accounts or ads, and everything is worked out in your own browser. <a href="../index.html">Start at the home page</a>.</p>
+</div>
+<script>
+  (function() {
+    /* the theme switch, remembered with the other pages' settings */
+    var KEY = "helpers-info",
+      btn = document.getElementById("themeBtn");
+    try { var t = localStorage.getItem(KEY); if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t); } catch (e) {}
+
+    function isDark() {
+      var t = document.documentElement.getAttribute("data-theme");
+      return t ? t === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    }
+
+    function paint() { btn.textContent = isDark() ? "Light mode" : "Dark mode"; }
+    btn.addEventListener("click", function() {
+      var next = isDark() ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", next);
+      paint();
+      try { localStorage.setItem(KEY, next); } catch (e) {}
+    });
+    paint();
+  })();
+</script>
+</html>

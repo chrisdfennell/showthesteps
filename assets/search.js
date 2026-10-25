@@ -40,7 +40,13 @@
     "nursing.html": ["The Dose Calculator", "c-nur"],
     "carpentry.html": ["The Framing Square", "c-crp"],
     "electrical.html": ["The Circuit Board", "c-ele"],
-    "cooking.html": ["The Recipe Card", "c-rcp"]
+    "cooking.html": ["The Recipe Card", "c-rcp"],
+    "pharmacy.html": ["The Pill Counter", "c-pha"],
+    "hvac-plumbing.html": ["The Pipe Wrench", "c-hvp"],
+    "machining.html": ["The Machine Shop", "c-mch"],
+    "automotive.html": ["The Gear Box", "c-aut"],
+    "business.html": ["The Cash Register", "c-biz"],
+    "real-estate.html": ["The Floor Plan", "c-rea"]
   };
 
   function go(page, params, what, alt) { return { page: page, params: params, what: what || "", alt: alt || null }; }
@@ -462,6 +468,25 @@
     if (!s) return null;
     var low = s.toLowerCase();
 
+    // a weather report, pasted: a METAR, SPECI or TAF goes to the Flight Computer's Weather tab ("KSEA 241753Z 18012KT 10SM
+    // FEW040 BKN250 14/08 A3012"). It starts with METAR, SPECI or TAF, or has a station and a DDHHMMZ time, or three kinds of
+    // METAR group (a wind like 18012KT, a cloud layer like BKN040, a temperature like 14/08, an altimeter like A3012 or
+    // Q1013, a visibility like 10SM). A weather code asked about ("what does -SHRA mean") goes there too.
+    var wxUp = " " + s.toUpperCase().replace(/;/g, " ") + " ",
+      wxCode = /^\s*what\s+(?:does|do|is)\s+(?:the\s+)?(?:code\s+)?([+-]|VC)?(MI|PR|BC|DR|BL|SH|TS|FZ)?((?:DZ|RA|SN|SG|IC|PL|GR|GS|UP|BR|FG|FU|VA|DU|SA|HZ|PY|PO|SQ|FC|SS|DS)*)\s+mean\s*\??\s*$/.exec(s);
+    if (/^\s*(?:METAR|SPECI|TAF)\s+[A-Z0-9]/.test(wxUp) || /\s[A-Z][A-Z0-9]{3}\s+\d{6}Z\s/.test(wxUp) || [/\s(?:\d{3}|VRB)\d{2,3}(?:G\d{2,3})?(?:KT|MPS)\s/, /\s(?:(?:FEW|SCT|BKN|OVC)\d{3}(?:CB|TCU)?|VV\d{3}|CLR|SKC|NSC|NCD|CAVOK)\s/, /\sM?\d{2}\/M?\d{2}\s/, /\s[AQ]\d{4}\s/,
+        /\s[PM]?(?:\d{1,2}|\d\/\d{1,2}|\d \d\/\d{1,2})SM\s/
+      ].filter(function(r) { return r.test(wxUp); }).length >= 3 ||
+      wxCode && (wxCode[2] || wxCode[3]) && (wxCode[1] || wxCode[2] || wxCode[3].length >= 4))
+      return go("aviation.html", "mode=metar&" + qp(s), "a weather report (METAR or TAF)");
+    // winds aloft: an FB forecast (its heading, or a station's row like "SEA 2714 2725+05 2635+00 …"), or "winds aloft",
+    // goes to the Flight Computer's Winds aloft tab. A row needs a sign or six digits in it (2725+05, 257743), so a list
+    // of plain four-digit numbers doesn't count.
+    var fbRow = /(?:^|\s)(?=[A-Z0-9]{3}\s)[A-Z0-9]*[A-Z][A-Z0-9]*\s+((?:(?:\d{4}(?:[+-]\d\d)?|\d{6})\s+){2,}(?:\d{4}(?:[+-]\d\d)?|\d{6}))(?=\s|;|$)/.exec(s);
+    if (/\bwinds?\s+(?:and\s+temp(?:erature)?s?\s+)?aloft\b/i.test(s) || /\bFB(?:US|AK|HW|OC)3[123]\b|\bTEMPS\s+NEG\s+ABV\b|\bDATA\s+BASED\s+ON\s+\d{6}Z\b/.test(s) ||
+      fbRow && /[+-]\d\d|\d{6}/.test(fbRow[1]))
+      return go("aviation.html", "mode=windsaloft&" + qp(s), "winds aloft (an FB forecast)");
+
     // flash cards: "7 times table", "6, 7 and 8 times tables", "times tables 2 to 5", "division facts"
     if (/\b(flash ?cards?|times ?tables?|multiplication (?:tables?|facts)|(?:math|number|division|addition|subtraction) facts)\b/.test(low)) {
       var deck = /division/.test(low) ? "div" : /addition/.test(low) ? "add" : /subtraction/.test(low) ? "sub" : "times";
@@ -513,6 +538,21 @@
     // "what is a logarithm", "define place value": the Word List (below), not the helper
     var asksWord = /^\s*(?:what\s+(?:is|are|does)|define|definition|meaning)\b/i.test(s) && !/\d/.test(s);
     var story = isStory(s, low);
+    // auto shop, the Gear Box: gear ratios from teeth or gear × final drive, road speed ↔ rpm with gears and a tire, tire
+    // sizes (P225/60R16, 33x12.50R15) and speedometer error, bore-and-stroke displacement, compression ratio, horsepower ↔
+    // torque at an rpm, mpg and L/100 km and trip fuel cost, 2-stroke oil and coolant mixes, shop invoices (labor, parts
+    // markup, tax). Plain unit changes ("350 cubic inches to liters", "1500 W to hp") stay with the Measuring Tape and the
+    // Circuit Board, markups and tax with no shop words with the Hundred Grid, and story problems with the Story Problem.
+    if (!asksWord && !story && (
+        /\bgear\s+ratio\b[^?]*\d|\b\d+\s*-?\s*(?:teeth|tooth)\b|\b(?:ring\s+gear|pinion)\s*\d|\b\d+\s*(?:-\s*tooth\s+)?(?:pinion|ring\s+gear)\b|\bfinal\s+drive\b|\b(?:rear\s*end|axle)\s+(?:ratio|gears?)\b|\b\d\.\d+\s+(?:rear\s*end|gears)\b|\boverall\s+(?:gear\s+)?ratio\b|\b\d+(?:\.\d+)?\s+(?:first|second|third|fourth|fifth|sixth|1st|2nd|3rd|4th|5th|6th)\s+gear\b|\b\d(?:\.\d+)?\s+overdrive\b/.test(low) ||
+        /\d\s*rpm\b/.test(low) && /\btires?\b|\bwheels?\b|\b[pt]?\d{3}\s*\/\s*\d{2}\s*z?r\s*\d{2}\b/.test(low) ||
+        /\b(?:p|lt|st)?\d{3}\s*\/\s*\d{2}\s*z?r\s*\d{2}(?:\.\d)?\b|\b(?:lt)?\d{2}(?:\.\d+)?\s*x\s*\d{1,2}(?:\.\d+)?\s*r\s*\d{2}\b|\bspeedometer\b|\brevolutions\s+per\s+mile\b/.test(low) ||
+        /\bbore\b[^?]*\bstroke\b|\bstroke\b[^?]*\bbore\b|\b(?:engine\s+)?displacement\b[^?]*\b(?:cylinders?|v\d{1,2})\b|\bcompression\s+ratio\b|\bclearance\s+volume\b|\bswept\s+volume\b|\bcombustion\s+chamber\b/.test(low) ||
+        /\d\s*(?:lb\s*-?\s*ft|ft\s*-?\s*lbs?|pound\s*-?\s*feet|foot\s*-?\s*pounds|n\s*[·.\-]?\s*m|newton\s*-?\s*met(?:er|re)s?)\b[^?]*\b(?:rpm|hp|horsepower|kw)\b|\d\s*(?:hp|horsepower|kw)\b[^?]*\d\s*rpm\b|\btorque\b[^?]*\d\s*rpm\b|\d\s*rpm\b[^?]*\btorque\b/.test(low) ||
+        /\bmpg\b|\bmiles\s+per\s+gallon\b|\bl\s*\/\s*100\s*km\b|\bliters?\s+per\s+100\s*km\b|\bfuel\s+economy\b|\bgas\s+mileage\b|\bodometer\b/.test(low) ||
+        /\b\d+\s*:\s*1\b[^?]*\b(?:oil|gas|gasoline|fuel|premix|mix)\b|\b(?:oil|gas)\b[^?]*\b\d+\s*:\s*1\b|\b(?:2|two)\s*-?\s*(?:stroke|cycle)\b[^?]*\d|\b(?:antifreeze|anti-freeze|coolant)\b[^?]*\d|\d[^?]*\b(?:antifreeze|coolant)\b|\b(?:fl\.?\s*)?oz\s+(?:of\s+)?oil\b/.test(low) ||
+        /\blabou?r\b[^?]*\d[^?]*\bparts?\b|\bparts?\b[^?]*\blabou?r\b|\b\d+(?:\.\d+)?\s*(?:hours?|hrs?)\s+(?:at|@)\s*\$\s*\d[^?]*\bparts?\b|\bparts?\b[^?]*\bmark\s*-?\s*up\b|\$\s*\d[\d.,]*\s+parts?\b[^?]*\b(?:mark\s*-?\s*up|margin)\b|\binvoice\b[^?]*\d/.test(low)))
+      return go("automotive.html", qp(s), "auto shop math");
     // counting (counting.html): nCr / nPr / factorials, and "in how many ways…", arrangements, codes, outfits, handshakes, games,
     // diagonals; a chance worked out by counting (a committee chosen at random, a lottery) too — other probability stays with the
     // Chance Spinner. A point like P(1, 2) next to another point ("from P(1, 2) to Q(4, 6)") isn't P(n, r).
@@ -523,6 +563,12 @@
     var countChance = /\bprobability\b|\bchances?\b|\bodds\b/.test(low) && (/\bcommittee\b|\bteam\s+of\s+\d+\b|\b(?:chosen|selected|picked)\s+at\s+random\s+from\s+\d+\s+[a-z]+\s+and\s+\d+\s+[a-z]+/.test(low) || /\blotter(?:y|ies)\b/.test(low));
     if (!asksWord && (countFormula || countWords && !/\bprobability\b|\bchances?\b|\bodds\b/.test(low) || countChance))
       return go("counting.html", qp(s), "counting");
+    // pharmacy first, before the Dose Calculator: a sig given for so many days ("500 mg TID x 10 days"), a days' supply,
+    // or a quantity to dispense is the Pill Counter's even with mg, mL or insulin units in it (the nursing pages give one dose)
+    if (!asksWord && (
+        /\b(?:bid|tid|qid|qd|qhs|qod|q\s*\d+(?:\s*-\s*\d+)?\s*h(?:rs?)?|(?:once|twice)\s+(?:a\s+)?daily|daily)\b[^.?]*\b(?:x|for)\s*\d+\s*(?:days?|d|wks?|weeks?|months?)\b/.test(low) && /\d\s*(?:tabs?|tablets?|caps?|capsules?|tsps?|teaspoons?|tbsps?|puffs?|gtts?|drops?|sprays?|ml|mg|mcg|g|units?)\b/.test(low) ||
+        /\bdays?['’]?\s*supply\b|\bquantity\s+to\s+dispense\b|\bhow\s+(?:many|much)\b[^.?]*\bto\s+dispense\b/.test(low)))
+      return go("pharmacy.html", qp(s), "pharmacy math");
     // nursing, the Dose Calculator: doses by weight (mg/kg, mcg/kg/min), ordered and available (D/H × Q), IV rates (mL/hr), drip
     // rates (drop factor, gtt/min), infusion time, percent and 1:1000 strengths, dilutions, reconstitution, heparin and insulin
     // units, body surface area, and changes to or from mcg; other unit changes (lb to kg, °F to °C, tsp to mL) stay with the
@@ -540,8 +586,61 @@
         /\bbsa\b|\bbody\s+surface\s+area\b|\bmosteller\b|\d\s*(?:mg|mcg|units?)\s*(?:\/|per)\s*(?:m2|m²|square\s+met(?:er|re))\b/.test(low) ||
         /\b(?:d5w|d10w|d5\s*1\/2\s*ns|normal\s+saline|nacl)\b|\d\s*%\s*(?:dextrose|ns|nacl|sodium\s+chloride|saline)\b/.test(low) && /\d/.test(low) ||
         /\breconstitut\w*\b|\bdiluent\b|\bc1\s*v1\b/.test(low) ||
+        // a drug in a bag over a time ("cefazolin 1 g in 50 mL over 30 minutes")
+        /\d\s*(?:mcg|mg|g|grams?|units?|meq)\s+in\s+[\d.,]+\s*(?:ml|cc|l)\b[^.?]*\bover\s+[\d.]+\s*(?:hours?|hrs?|h|minutes?|mins?)\b/.test(low) ||
         /^\s*[\d.,]+\s*(?:mcg|micrograms?)\s+(?:to|in|into)\s+\S|^\s*[\d.,]+\s*(?:mg|milligrams?|g|grams?)\s+(?:to|in|into)\s+(?:mcg|micrograms?)\b/.test(low)))
       return go("nursing.html", qp(s), "nursing math");
+    // pharmacy, the Pill Counter: reading a sig (1 tab PO BID x 10 days), days' supply, quantity to dispense, alligation,
+    // concentrations in % w/v, w/w and v/v, dilutions of a stock, scaling a compounding formula, Roman numerals on a
+    // prescription (XIV tablets, #XC), AWP pricing, dispensing fees, copays, inventory turnover, and storage temperatures.
+    // It comes after the Dose Calculator, so anything with a nursing cue (mg/kg, mL/hr, IV, D5W, epinephrine, heparin,
+    // insulin units, ordered/available, 1:1000 with mg or mL) stays there. Plain unit changes (2 tsp to mL, 40 °F to °C)
+    // stay with the Measuring Tape, "24 in Roman numerals" with the reference sheets, and a plain markup or profit
+    // ("cost $40 markup 25%") with the Hundred Grid and the Money Jar: only a pharmacy word brings those here.
+    var RXU = "(?:tabs?|tablets?|caps?|capsules?|tsps?|teaspoons?|tbsps?|tablespoons?|puffs?|gtts?|drops?|sprays?|ml)";
+    if (!asksWord && (
+        new RegExp("\\d\\s*" + RXU + "\\s+(?:[a-z.]+\\s+){0,3}?(?:p\\.?o\\.?|s\\.?l\\.?|o\\.?u\\.?|inh\\s+)?\\s*(?:bid|tid|qid|qd|qhs|qod|q\\s*\\d+(?:\\s*-\\s*\\d+)?\\s*h(?:rs?)?|prn)\\b").test(low) ||
+        /\b(?:tabs?|caps?|gtts?)\s+(?:i{1,3}|iv|v|ss|iss)\s+(?:p\.?o\.?|s\.?l\.?|o\.?u\.?)\b/.test(low) ||
+        new RegExp("\\d\\s*" + RXU + "\\s+(?:p\\.?o\\.?|s\\.?l\\.?|by\\s+mouth|orally|under\\s+the\\s+tongue)\\s+(?:daily|once|twice|three\\s+times|four\\s+times|every|at\\s+bedtime|q\\s*am|q\\s*pm)\\b").test(low) ||
+        !story && /\b\d[\d,]*\s*(?:tabs?|tablets?|caps?|capsules?|vials?|inhalers?)\s+(?:are\s+|is\s+)?(?:on\s+hand|in\s+stock)\b/.test(low) ||
+        /\bdays?['’]?\s*supply\b/.test(low) ||
+        /\bhow\s+(?:many|much)\b[^.?]*\bto\s+dispense\b|\bquantity\s+to\s+dispense\b|\bdispense\s*#\s*[\divxlc]+/.test(low) ||
+        /\balligation\b/.test(low) ||
+        !story && /^\s*(?:mix|mixing|combine)\s+(?:a\s+)?\d[\d.]*\s*%[^.?]*\band\s+(?:a\s+)?(?:\d[\d.]*\s*%|water|petrolatum|(?:a\s+)?(?:diluent|base))[^.?]*\bto\s+(?:make|get|prepare)\s+(?:a\s+)?\d[\d.]*\s*%/.test(low) ||
+        /\bhow\s+much\s+(?:\d[\d.]*\s*%|water|diluent|petrolatum)[^.?]*\b(?:add|added|mix)\b[^.?]*\d[\d.]*\s*(?:g|ml)\s+of\s+(?:a\s+|the\s+)?\d[\d.]*\s*%[^.?]*\bto\s+make\s+(?:a\s+)?\d[\d.]*\s*%/.test(low) ||
+        /\b(?:w\s*\/\s*w|w\s*\/\s*v|v\s*\/\s*v)\b/.test(low) && /\d\s*%/.test(low) ||
+        /\bhow\s+many\s+(?:grams?|g|mg|milligrams?|ml)\b[^.?]*\bin\s+[\d.,]+\s*(?:ml|g|grams?)\s+of\s+(?:a\s+|an\s+)?[\d.]+\s*%\s*(?:\w+\s+)?(?:solution|cream|ointment|gel|lotion|suspension|powder)\b/.test(low) ||
+        /\bdilut\w*\s+[\d.,]+\s*ml\s+of\s+(?:a\s+|the\s+)?[\d.]+\s*%\s*(?:\w+\s+)?to\s+(?:a\s+)?[\d.]+\s*%/.test(low) ||
+        /\bhow\s+much\s+(?:of\s+(?:the\s+|a\s+)?)?[\d.]+\s*%\s*(?:\w+\s+)?(?:stock\s+)?(?:solution\s+)?(?:is\s+needed\s+|do\s+you\s+need\s+)?to\s+make\s+[\d.,]+\s*ml\s+of\s+(?:a\s+)?[\d.]+\s*%/.test(low) ||
+        /\d\s*%\s*(?:\w+\s+)?(?:to|in|as)\s+mg\s*\/\s*ml\b|\d\s*mg\s*\/\s*ml\s+(?:to|as|in)\s+(?:a\s+)?(?:percent|%)/.test(low) ||
+        /\bformula\s+(?:is\s+)?(?:for|makes|to\s+make|that\s+makes)\s+[\d.,]+\s*(?:g|grams?|ml|kg|l)\b/.test(low) ||
+        /\bq\.?s\.?\s+(?:ad\s+)?(?:to\s+)?[\d.]+\s*(?:g|ml)\b|\bcompound(?:ing|ed)?\b[^.?]*\b(?:scale|make|prepare)\b/.test(low) ||
+        /^\s*(?:#|disp(?:ense)?\s*#?\s*)?[ivxlcdm]+(?:ss)?\s+(?:tabs?|tablets?|caps?|capsules?)\s*$|^\s*(?:disp(?:ense)?\s*)?#\s*[ivxlcdm]+(?:ss)?\s*$/.test(low) ||
+        /\bawp\b|\baverage\s+wholesale\s+price\b|\bdispensing\s+fee\b/.test(low) || !/\b(?:beginning|ending|average)\s+inventory\b|\bcost\s+of\s+goods\s+sold\b|\bcogs\b|\breorder\s+point\b|\bsafety\s+stock\b/.test(low) && /\binventory\s+turnover\b|\bdays?\s+(?:of\s+)?(?:inventory|on\s+hand)\b/.test(low) ||
+        /\bco-?\s*pays?\b[^.?]*\b(?:insurance|plan|third[-\s]party|reimburs\w*)\b|\b(?:insurance|plan)\b[^.?]*\bco-?\s*pays?\b/.test(low) ||
+        !/\b(?:beginning|ending|average)\s+inventory\b|\bcost\s+of\s+goods\s+sold\b|\bcogs\b/.test(low) && /\binventory\b[^.?]*\bcost\s+of\s+goods\b|\bcost\s+of\s+goods\b[^.?]*\binventory\b/.test(low) ||
+        /\bmark\s*-?\s*up\b|\bgross\s+(?:profit|margin)\b/.test(low) && /\b(?:pharmacy|pharmacist|prescriptions?|rx|drugs?|medications?|tablets?|capsules?|inhalers?)\b/.test(low) ||
+        /\d\s*°?\s*[fc]\b|\d\s*degrees?\b/.test(low) && /\b(?:refrigerat\w*|fridge|freezer|vaccines?|controlled\s+room|room\s+temp\w*|storage\s+(?:range|temp\w*)|stored?\s+(?:at|between)\b|usp)\b/.test(low)))
+      return go("pharmacy.html", qp(s), "pharmacy math");
+    // HVAC and plumbing, the Pipe Wrench: BTU, BTU/hr, MBH, therms and tons of cooling (watts or kW only next to one of those),
+    // CFM and air changes, ducts, heat loss through a wall or window (R-13, U-factor), gallons in a pipe or a tank, gpm and
+    // fill times, feet of head and psi up a building, drain slope and fall, water heaters and recovery. Before aviation (fpm,
+    // gph), carpentry (1/4" per foot), electrical (watts) and the unit changes (gallons); plain unit changes without a trade
+    // word ("5 gallons to quarts", "1500 W to kW", "50 psi to kPa") stay where they were
+    if (!asksWord && !story && /\d/.test(low) && !/\/\s*kwh\b|\bper\s+kwh\b|(?:¢|\bcents?\b)\s*(?:a|an)\s+kwh\b/.test(low) && (
+        /\bbtu(?:'?s|h)?\b|\bmbh\b|\btherms?\b|\btons?\s+of\s+(?:cooling|refrigeration|air\s+conditioning)\b|\b\d+(?:\.\d+)?\s*-?\s*tons?\s+(?:ac|a\/c|air\s+conditioner|unit|system|heat\s+pump|condenser|rtu)\b/.test(low) ||
+        /\bcfm\b|\bair\s+changes?\b|\b\d+(?:\.\d+)?\s*ach\b/.test(low) ||
+        /\bducts?\b|\bductwork\b/.test(low) ||
+        /\br\s*-\s*\d+(?:\.\d+)?\b/.test(low) && /\b(?:walls?|windows?|ceilings?|attics?|roofs?|floors?|doors?|insulation|sq\.?\s*ft|square\s+feet|heat\s+loss)\b/.test(low) ||
+        /\bu\s*-?\s*(?:values?|factors?)\b|\bheat\s+(?:loss|gain)\b/.test(low) ||
+        /\b(?:windows?|doors?|skylights?|glass|walls?)\b/.test(low) && /\bu\s*-?\s*(?:=\s*)?0?\.\d+\b/.test(low) ||
+        /\b(?:pipes?|tubing|pex|copper\s+line)\b/.test(low) && /\bgal(?:lon)?s?\b|\bgpm\b|\bfeet\s+per\s+second\b|\bft\/s\b/.test(low) ||
+        /\btanks?\b/.test(low) && /\b(?:diameter|across|tall|high|deep|by|x)\b/.test(low) && /\b(?:gal(?:lon)?s?|tall|high|deep)\b/.test(low) && !/\b(?:liters?|litres?|ml)\b/.test(low) ||
+        /\bgpm\b|\bgallons?\s+(?:per|a|an)\s+minute\b/.test(low) ||
+        /\b(?:feet|ft|foot)\s+of\s+(?:head|water)\b|\bhead\b.*\bpsi\b|\bpsi\b.*\b(?:floor|stor(?:y|ey)|(?:feet|ft)\s+(?:up|above|below|higher|lower))\b|\bwater\s+tower\b/.test(low) ||
+        /\bdrain(?:s|age|\s+line|\s+pipe)?\b.*\b(?:per\s+(?:foot|ft)|slope|fall|grade)\b|\b(?:slope|fall|grade)\b.*\bdrain|\b(?:drop|fall)\s+of\s+[\d.\/ ]+\s*(?:"|in(?:ch(?:es)?)?)\s+(?:over|in|across)\s+[\d.]+\s*(?:'|ft|feet)\b/.test(low) ||
+        /\bwater\s+heaters?\b|\brecovery\b.*\b(?:gph|btu|gallons?|rise)\b|\bgph\b.*\b(?:rise|degrees?)\b|\b\d+\s*(?:w|watts?|kw)\s+(?:heating\s+)?elements?\b/.test(low)))
+      return go("hvac-plumbing.html", qp(s), "HVAC and plumbing");
     // aviation, the Flight Computer: wind triangle, runway winds, time/speed/fuel in knots and nautical miles, pressure and
     // density altitude, true airspeed, headings with variation and deviation, descent, weight and balance, turns, glide,
     // and aviation units (knots, nm, inHg, hPa, gallons of avgas or Jet A); plain unit changes stay with the Measuring Tape
@@ -566,16 +665,41 @@
         (/\d\s*(?:"|''|in\b|inch(?:es)?\b|'|ft\b|feet\b)\s*(?:\+|-|−|plus|minus|less)\s*\d/.test(low) || /\b(?:half\s+of|halve|cent(?:er|re)\s+of|divided\s+into|into\s+\d+\s+equal)\b/.test(low)) ||
         /\bnearest\s+(?:1\s*\/\s*(?:8|16|32|64)|sixteenth|eighth|thirty-?second)s?\b/.test(low) ||
         /\bboard[-\s]*(?:feet|foot|ft)\b|\bbd\.?\s*ft\b/.test(low) ||
+        // lumber by its nominal size and length ("4x4 10 ft", "10 2x4 8 ft at $3.98 each")
+        /\b[1246]\s*x\s*(?:2|3|4|6|8|10|12)\b(?:\s*x\s*|\s+)\d+\s*(?:ft|feet|foot|')(?![a-z])/.test(low) ||
+        // feet-and-inch marks with a diagonal, or a deck/slab/frame diagonal ("sides 9' and 12' diagonal 15' 1/2"")
+        /\d\s*['′][^.?]*\bdiagonal\b|\bdiagonal\b[^.?]*\d\s*['′]|\bdiagonal\s+of\s+(?:a|the)\s+[^.?]*\b(?:deck|slab|foundation|patio|frame|wall)\b/.test(low) ||
+        // a tape-measure reading to a decimal ("3 11/16" to decimal")
+        /\d+\s+\d+\s*\/\s*(?:2|4|8|16|32|64)\s*(?:"|''|in(?:ch(?:es)?)?\b)\s*(?:to|as|in)\s+(?:a\s+)?decimals?\b/.test(low) ||
         /\btotal\s+rise\b|\b(?:stairs?|staircase|stairway)\b.*\b(?:rise|risers?|treads?|stringers?)\b|\bstringers?\b.*\b(?:rise|stairs?)\b|\b\d+\s+risers\b/.test(low) ||
         /\brafters?\b|\broof\s+pitch\b|\b\d+(?:\.\d+)?\s*(?:\/|:|\s+in\s+)\s*12\s+(?:pitch|roof)\b|\bpitch\b.*\b(?:run|span|rafters?|overhang)\b/.test(low) ||
         /\bis\s+(?:it|this|the\s+\w+)\s+square\b|\bout\s+of\s+square\b|\b3\s*-\s*4\s*-\s*5\b|\bsquar(?:e|ing)\s+(?:up\s+)?(?:a|the)\s+(?:corner|wall|deck|foundation|slab|frame|form)\b|\bdiagonals\s+\d/.test(low) ||
         /\b(?:studs?|joists?|trusses?)\b.*\b(?:on\s*-?\s*cent(?:er|re)|o\.?c\.?)(?![a-z])|\b\d+\s*(?:"|in(?:ch(?:es)?)?)?\s*(?:on\s*-?\s*cent(?:er|re)|o\.?c\.?)(?![a-z]).*\b(?:wall|floor|deck|studs?|joists?)\b|\bbalusters?\b|\bspindles?\b.*\bgap\b/.test(low) ||
-        (/\d\s*%\s*(?:waste|extra|overage)\b|\bwaste\b.*\d\s*%/.test(low) || /\bpaint\b.*\b(?:coats?|walls?)\b/.test(low)) && /\d\s*(?:'|ft|feet)?\s*(?:by|x)\s*\d/.test(low) ||
+        (/\d\s*%\s*(?:waste|extra|overage)\b|\bwaste\b.*\d\s*%/.test(low) || /\bpaint\b.*\b(?:coats?|walls?)\b/.test(low)) && /\d\s*(?:'|"|ft|feet|in)?\s*(?:by|x)\s*\d/.test(low) ||
         /\b4\s*x\s*8\s+sheets?\b|\bsheets?\s+of\s+(?:plywood|osb|drywall|sheathing)\b/.test(low) ||
         /\bconcrete\b|\bslab\b.*(?:\bthick\b|\binch|\d\s*in\b|")|\bfootings?\b.*\d.*\b(?:wide|deep)\b|\bpost\s*holes?\b|\bsonotubes?\b|\bbags?\s+of\s+(?:concrete|quikrete|sakrete|premix)\b/.test(low) ||
         /\bmiter|\bmitre|\bbevel\s+(?:angle|cut)|\bcrown\s+mo(?:u)?lding\b|\bcrown\b.*\b(?:corner|spring)\b|\bbaseboard\b.*\bcorner\b|\b\d+\s*-?\s*sided\s+frame\b|\b(?:hexagon|octagon|pentagon)(?:al)?\s+frame\b/.test(low) ||
         /\b\d+(?:\.\d+)?\s*(?:%|percent)\s+(?:slope|grade)\b.*\b(?:degrees?|angle)\b|\b(?:slope|grade|ramp)\b.*\b\d+(?:\.\d+)?\s*(?:degrees?|°).*\bpercent\b|\b\d+\s*\/\s*\d+\s*(?:"|in(?:ch)?)\s+per\s+(?:foot|ft)\b|\bramp\b.*\b1\s*:\s*\d+\b/.test(low)))
       return go("carpentry.html", qp(s), "carpentry");
+    // machining and welding, the Machine Shop: spindle speed from SFM (or m/min), feeds and chip load, tap drills, TPI and
+    // metric threads, tapers and the tailstock offset, bolt circles, sine bars and gauge blocks, the weight of a metal plate,
+    // bar or tube, weld heat input, fillet throats and filler metal, and tolerances and fits. Every test needs a shop word
+    // (SFM, chip load, tap drill, TPI, taper per foot, bolt circle, sine bar, a metal and a shape, weld, limits with ±,
+    // hole and shaft); plain trig, circles and ± stay where they were. Volts and amps with a weld word come here, not to
+    // the Circuit Board (below).
+    if (!asksWord && !story && (
+        /\bs\.?f\.?m\b|\bsurface\s+(?:feet|foot)\b|\bspindle\s+speeds?\b|\bcutting\s+speed\b/.test(low) ||
+        /\brpm\b/.test(low) && /\b(?:drills?|end\s*-?\s*mills?|cutters?|lathe|reamers?|bar\s+stock|m\s*\/\s*min)\b|\bm\s*\/\s*min\b.*\b(?:drill|mill|cutter|lathe)\b/.test(low) ||
+        /\bchip\s*-?\s*load\b|\bipt\b|\bipr\b|\bflutes?\b.*\brpm\b|\brpm\b.*\bflutes?\b|\bfeed\s+(?:rate\s+)?per\s+(?:tooth|rev(?:olution)?)\b|\b(?:mm|in(?:ch(?:es)?)?)\s*(?:\/|per)\s*(?:tooth|rev(?:olution)?)\b/.test(low) ||
+        /\btap\s*-?\s*drills?\b|\btpi\b|\bthreads?\s+per\s+inch\b|\bun[cf]\b|#\s*\d+\s*-\s*\d+\b|\b\d+\s*\/\s*\d+\s*-\s*\d+\b[^?]*\b(?:taps?|threads?|drill)\b|\b(?:taps?|threads?|drill)\b[^?]*\b\d+\s*\/\s*\d+\s*-\s*\d+\b|\bpercent\s+(?:of\s+)?thread\b|\d\s*%\s*(?:of\s+)?thread\b|\bm\d+(?:\.\d+)?\s*[x×]\s*\d*\.?\d+\b[^?]*\b(?:tap|thread|drill|pitch|tpi)\b/.test(low) ||
+        /\btaper\b[^?]*\d[^?]*\b(?:over|per\s+(?:foot|inch)|long)\b|\btapers?\s+per\s+(?:foot|inch)\b|\btailstock\s+(?:offset|set\s*-?\s*over)\b|\bmorse\s+taper\b/.test(low) ||
+        /\bbolt\s*-?\s*(?:hole\s*)?circles?\b|\bpitch\s+circle\s+diameter\b|\bpcd\b/.test(low) ||
+        /\bsine\s*-?\s*(?:bar|plate)s?\b|\bga(?:u)?ge\s+blocks?\b/.test(low) ||
+        /\b(?:steel|alumin(?:um|ium)|stainless|brass|copper|cast\s+iron|bronze)\b/.test(low) && /\b(?:plates?|round\s+bar|square\s+bar|flat\s+bar|hex(?:\s+bar)?|bar\s+stock|tube|tubing|pipe|rod|sheet)\b/.test(low) && /\d/.test(low) &&
+        /\bweigh(?:s|t)?\b|\bhow\s+heavy\b|\b(?:lbs?|kg|pounds?)\b|\d\s*(?:x|×|by)\s*\d|\blong\b|\b(?:od|dia(?:meter)?|across\s+flats)\b|\d\s*(?:ft|feet|foot|in(?:ch(?:es)?)?|mm|")(?![a-z])/.test(low) ||
+        /\bweld(?:s|ing|ed)?\b|\bheat\s+input\b|\barc\s+energy\b|\b(?:smaw|gmaw|fcaw|gtaw)\b|\bfiller\s+(?:metal|wire|rod)\b|\bfiller\b[^?]*\bfillet\b|\bdeposition\s+efficiency\b|\bfillet\b[^?]*\b(?:throat|leg)\b|\bthroat\b[^?]*\bfillet\b|\bv\s*-?\s*groove\b/.test(low) ||
+        /\b(?:hole|bore)\b[^?]*\b(?:shaft|pin)\b[^?]*\b(?:fit|clearance|interference)\b|\b(?:clearance|interference|transition)\s+fit\b|\d\s*(?:±|\+\s*\/\s*-)\s*\d*\.\d+[^?]*\blimits?\b|\d\s*\+\s*\d*\.\d+\s*-\s*\d*\.\d+[^?]*\b(?:limits?|tolerance)\b/.test(low)))
+      return go("machining.html", qp(s), "machine shop math");
     // electrical, the Circuit Board: Ohm's law, power, series and parallel resistors, voltage drop, loads and breakers, energy
     // cost, the resistor color code, capacitors and RC, AC and three-phase. It needs an electrical unit or word next to the
     // numbers ("12 V across 4 ohms", "100 W bulb on 120 V", "brown black red gold", "1500 W to kW"); a story with ohms, kWh
@@ -587,7 +711,11 @@
       elA = /\d\s*(?:m|µ|μ|u)?A(?![A-Za-z])/.test(s) || /\d\s*(?:milli)?amp(?:ere)?s?\b/i.test(s),
       elW = /\d\s*(?:k|M|m)?W(?![A-Za-z])/.test(s) || /\d\s*(?:kilo|mega|milli)?watts?\b/i.test(s),
       elUnits = (elV ? 1 : 0) + (elA ? 1 : 0) + (elW ? 1 : 0);
-    if (!asksWord && (elStrong.test(s) && /\d/.test(s) || elUnits >= 2 ||
+    // resistors written as numbers: "100, 220 and 470 in series", "10k | 10k | 10k", "(1k | 2.2k) + 470", a period to a frequency
+    var elNums = /\d(?:\.\d+)?\s*[km]?\s*(?:ohms?)?\s+in\s+(?:series|parallel)\b/i.test(s) ||
+      /\d(?:\.\d+)?\s*k\s*\|\|?\s*\(?\s*\d|\d\s*\|\|\s*\d|^\s*\(?\s*\d+(?:\.\d+)?\s*[km]?\s*\|\s*\d+(?:\.\d+)?\s*[km]?\s*\|\s*\d/i.test(s) ||
+      /\bfrequency\b[^.?]*\b\d+(?:\.\d+)?\s*(?:ms|µs|μs|us|seconds?)\b[^.?]*\bperiod\b|\bperiod\s+of\s+[\d.]+\s*(?:ms|µs|μs|us)\b/i.test(s);
+    if (!asksWord && (elStrong.test(s) && /\d/.test(s) || elUnits >= 2 || elNums ||
         elUnits === 1 && /\b(?:volts?|amps?|watts?|voltage|current|resistance|power|bulbs?|lamps?|heaters?|circuit|battery|wire|appliances?|across|through|supply|draws?|outlet)\b/i.test(s) && !/[=<>]\s*[a-z]|\b[a-z]\s*[=<>]/i.test(s) ||
         /^\s*-?\d[\d,.]*\s*(?:k?W|watts?|kilowatts?|hp|horsepower)\s+(?:to|in|into)\s+(?:k?W|watts?|kilowatts?|hp|horsepower)\s*\??\s*$/i.test(s) ||
         new RegExp("^\\s*(?:(?:the\\s+)?(?:bands?|colou?rs?|resistor)\\s*:?\\s*)?(?:" + COLR + "[\\s,]+){2,4}" + COLR + "\\s*(?:bands?)?\\s*\\??\\s*$", "i").test(s)))
@@ -605,12 +733,54 @@
         new RegExp("\\d\\s*" + KV + "\\s+(?:of\\s+)?[a-z][a-z\\s]*?\\s*(?:times|×|x|\\*)\\s*\\d|\\b(?:double|triple|halve)\\b[^.?]*\\d\\s*" + KV + "\\b").test(low) || kitchenLines >= 2 ||
         new RegExp("\\d\\s*" + KW + "\\s+(?:of\\s+)?" + FOOD + "\\b[^.?]*\\b(?:to|in|into|as)\\s+" + KV + "\\b|\\d\\s*" + KV + "\\s+(?:of\\s+)?" + FOOD + "\\b[^.?]*\\b(?:to|in|into|as)\\s+" + KW + "\\b|\\bhow\\s+many\\s+(?:grams|ounces)\\s+(?:is|are|in)\\s+(?:a|an|one|\\d[\\d\\s\\/.]*)\\s*" + KV + "\\s+(?:of\\s+)?" + FOOD + "\\b").test(low) ||
         /\bhydration\b|\bbaker'?s?\s+(?:percent|percentages?|%)|\b\d+\s*(?:g|kg)\s+(?:of\s+)?dough\b/.test(low) ||
+        // a dough or recipe written in grams ("500 g flour, 350 g water, 10 g salt, 5 g yeast")
+        (low.match(new RegExp("\\d\\s*(?:g|grams?|kg)\\s+(?:of\\s+)?" + FOOD + "\\b", "g")) || []).length >= 2 ||
+        // eggs scaled, a fan oven, loaf pans ("3 eggs times 1/2", "200 C fan", "9x5 loaf to 8x4 loaf")
+        /\b\d+\s+eggs?\s+(?:times|×|x|\*)\s*[\d½¼¾]/.test(low) || /\d{2,3}\s*°?\s*[cf]\s+(?:fan|convection)\b/.test(low) ||
+        /\d+\s*(?:x|×)\s*\d+\s*(?:-?\s*(?:inch|in|"))?\s*loaf\b[^.?]*\b(?:to|into|for|vs\.?)\b/.test(low) ||
         /\bfood\s+cost\b|\bplate\s+cost\b|\bmenu\s+price\b|\bcost\s+per\s+serving\b|\brecipe\s+cost\b|\bper\s+recipe\b/.test(low) ||
         /\bgas\s+mark\b|\bconvection\b|\bfan\s+oven\b|\boven\b[^.?]*\d{3}\s*°?\s*[fc]\b|\d{3}\s*°?\s*[fc]\b[^.?]*\boven\b/.test(low) ||
         /\d\s*(?:-\s*)?(?:minutes?|mins?)\s*(?:per|a|\/|each)\s*(?:lb|pound|kg|kilo)\b/.test(low) ||
         /\d\s*(?:-\s*|\s)?(?:inch(?:es)?|in\.?|"|cm)?\s*-?\s*(?:round|square)s?\s+(?:cake\s+)?(?:pans?\s+)?(?:to|into|for|vs\.?|versus)\s+(?:a\s+|an\s+|two\s+|\d\s+)?\d|\d+\s*(?:x|×)\s*\d+\s*(?:-?\s*(?:inch|in|"))?\s*(?:pans?|dish)?\s+(?:to|into|for|vs\.?)\s+(?:a\s+|two\s+|\d\s+)?\d+(?:\s*(?:x|×)\s*\d+|\s*(?:-?\s*(?:inch|in|"|cm))?\s*(?:round|square))|\b(?:cake|baking|loaf|bundt|sheet)\s+pans?\b/.test(low) ||
         /\bbrine\b|\bvinaigrette\b|\bcoffee\b[^.?]*\d\s*:\s*\d|\brice\b[^.?]*\b(?:\d\s*:\s*\d|water)\b|\d\s*%\s*salt\b|\bsalt\b[^?]*\d\s*%[^?]*\b(?:meat|pork|chicken|beef|turkey|fish|water)\b/.test(low)))
       return go("cooking.html", qp(s), "kitchen math");
+    // real estate, the Floor Plan: commission splits, the seller's net and loan payoff, PITI, LTV and how much house, property
+    // tax in mills or per $100 on an assessed value, prorations at closing, cap rate / NOI / GRM / cash-on-cash, front feet and
+    // price per acre or per square foot, the survey (NE 1/4 of the SW 1/4), rooms added up from a plan, and a home's
+    // appreciation. Plain loans and payments ("$300,000 home, 20% down, 6.5% for 30 years") stay with the Money Jar, plain
+    // percents with the Hundred Grid, one rectangle's area with the Shape Shop and acres to square feet with the Measuring Tape.
+    var reBig = /\$\s*\d{1,3}(?:,\d{3}){1,}|\$\s*\d{5,}|\$\s*\d+(?:\.\d+)?\s*(?:k|m|million)\b/i.test(s);
+    if (!asksWord && !story && (
+        /\bcommissions?\b/.test(low) && !/\bsales\b/.test(low) && (/\bsplits?\b|\bbrokers?\b|\bbrokerages?\b|\blisting\b|\bhomes?\b|\bhouses?\b|\bproperty\b|\breal\s+estate\b|\brealtors?\b|\bon\s+the\s+first\s+\$/.test(low) || reBig) ||
+        /\b(?:listing|selling|buyer'?s|cooperating|co-?op)\s+(?:side|broker(?:age)?)\b|\bco-?broke\b/.test(low) ||
+        /\bpayoff\b|\bseller'?s\s+net\b|\bnet\s+(?:to|for)\s+(?:the\s+)?seller\b|\bnet\s+sheet\b|\bto\s+net\s+\$/.test(low) ||
+        /\bpiti\b|\bltv\b|\bloan[-\s]to[-\s]value\b|\bhow\s+much\s+(?:house|home)\b/.test(low) ||
+        /\bmills?\b|\bmill\s+(?:rate|levy)\b|\bassessed\b[^.?]*\$|\$[^.?]*\bassessed\b|\bproperty\s+tax(?:es)?\b|\bhomestead\s+exemption\b|\$\s*\d+(?:\.\d+)?\s+per\s+\$\s*100\b(?![\d,])/.test(low) ||
+        /\bprorat(?:e|ed|ion|ions|ing)\b|\bday\s+of\s+closing\b/.test(low) ||
+        /\bcap(?:italization)?\s+rate\b|\bnoi\b|\bnet\s+operating\s+income\b|\bgross\s+(?:rent|income)\s+multiplier\b|\bgrm\b|\bcash[-\s]on[-\s]cash\b|\brental\s+yield\b/.test(low) ||
+        /\bfront\s+(?:feet|foot)\b|\bfrontage\b|\bprice\s+per\s+(?:an?\s+)?acre\b|\$\s*\d[\d,.]*\s*(?:per|an?|\/)\s*acre\b|\bprice\s+per\s+(?:square\s+foot|sq\.?\s*ft)\b/.test(low) && reBig ||
+        /\b(?:ne|nw|se|sw)\s*1\s*\/\s*4\s+of\s+(?:the\s+)?(?:ne|nw|se|sw|n|s|e|w)\s*1\s*\/\s*[24]\b|\b(?:n|s|e|w)\s*1\s*\/\s*2\s+of\s+(?:the\s+)?(?:ne|nw|se|sw)\s*1\s*\/\s*4\b/.test(low) ||
+        (low.match(/\d\s*(?:'|ft)?\s*(?:x|by)\s*\d/g) || []).length >= 2 && /\b(?:bed(?:room)?s?|kitchen|living\s+room|dining\s+room|family\s+room|floor\s+plan)\b/.test(low) ||
+        reBig && /\b(?:homes?|houses?|property|condo|building)\b[^.?]*\b(?:apprecia|deprecia)\w*|\b(?:apprecia|deprecia)\w*\b[^.?]*\b(?:homes?|houses?|property)\b/.test(low) ||
+        /\b(?:economic|useful)\s+life\b/.test(low) && reBig ||
+        reBig && /\bbought\b[^.?]*\$[^.?]*\bsold\b[^.?]*\$/.test(low) && /\bpercent\b|%|\bgain\b|\bloss\b|\bappreciation\b/.test(low)))
+      return go("real-estate.html", qp(s), "real estate");
+    // business math, the Cash Register: markup vs margin and a price for a target margin (a markup then a markdown is the Money
+    // Jar's); counting a cash drawer and the over/short, cash rounding to 5¢; tax-included prices and taxable lines; time cards
+    // (in 8:45 out 5:15 with lunch), commission; break-even, profit and loss, inventory turnover and reorder points; buy N get M
+    // free. Only business words bring a problem here: plain change ("change from $5 for $3.65"), overtime, stacked discounts,
+    // tax with a tip, unit prices and story problems stay where they were.
+    if (!asksWord && !story && (
+        /\bmargins?\b(?!\s+of\s+error)/.test(low) && /\$|\d\s*%|\bmark-?\s*ups?\b|\bcost\b|\bprice\b/.test(low) && !/\bconfidence\b|\bsample\b/.test(low) ||
+        /\bmark-?\s*ups?\b|\bmarked\s+up\b/.test(low) && /\bcost\b/.test(low) && /\bprice\b|\bsells?\b|\bmargin\b|\d\s*%/.test(low) && !/\bmark(?:ed|s)?\s*-?\s*down\b|\bmarkdown\b/.test(low) ||
+        /\bcash\s+drawer\b|\b(?:count(?:ing)?\s+(?:the\s+)?)(?:till|drawer|register)\b|\bover\s*(?:\/|or)\s*short\b|\bfewest\s+(?:bills|coins)\b|\bcash\s+rounding\b|\bstart(?:ing)?\s+(?:cash|bank|float)\b|\bcash\s+sales\b/.test(low) ||
+        /\btax[-\s]?(?:included|inclusive)\b|\bincluding\s+(?:\d+(?:\.\d+)?\s*%\s+)?(?:sales\s+)?tax\b|\bincludes\s+(?:\d+(?:\.\d+)?\s*%\s+)?(?:sales\s+)?tax\b|\bnon-?taxable\b|\btaxable\b|\breceipt\b.*\btax\b/.test(low) && !/\btip\b/.test(low) || /\bno\s+tax\b/.test(low) && (low.match(/\$\s*\d/g) || []).length >= 2 && /\d\s*%\s*(?:sales\s+)?tax\b|\btax\s+\d/.test(low) ||
+        /\bclock(?:ed)?\s+(?:in|out)\b|\btime\s*cards?\b|\btimesheets?\b|\bin\s+\d{1,2}(?::\d\d)?\s*(?:am|pm)?\s+out\s+\d|\d(?::\d\d)?\s*(?:am|pm)?\s*(?:to|-)\s*\d{1,2}(?::\d\d)?\s*(?:am|pm)?\b[^?]*\b(?:unpaid\s+)?(?:lunch|break)\b|\bcommissions?\b[^?]*\$|\$[^?]*\bcommissions?\b/.test(low) ||
+        /\bbreak[-\s]?even\b|\bfixed\s+costs?\b[^?]*\bvariable\s+costs?\b|\bcontribution\s+margin\b/.test(low) ||
+        /\bcogs\b|\bcost\s+of\s+goods(?:\s+sold)?\b|\bgross\s+profit\b|\bnet\s+profit\s+margin\b|\boperating\s+expenses\b|\bprofit\s+and\s+loss\b|\bincome\s+statement\b/.test(low) ||
+        /\binventory\s+turnover\b|\b(?:beginning|ending|average)\s+inventory\b|\bdays?\s+(?:on\s+hand|of\s+inventory)\b|\breorder\s+point\b|\bsafety\s+stock\b|\bweighted\s+average\s+cost\b|\baverage\s+cost\b[^?]*\d\s+(?:units?\s+)?(?:at|@)\s+\$[^?]*\d\s+(?:units?\s+)?(?:at|@)\s+\$|\d\s+(?:units?\s+)?(?:at|@)\s+\$[^?]*\d\s+(?:units?\s+)?(?:at|@)\s+\$[^?]*\baverage\s+cost\b|\blanded\s+cost\b/.test(low) || /\bunit\s+cost\b/.test(low) && /\b(?:case\s+of|cases\s+of|cartons?|pallets?|shipping|freight)\b/.test(low) ||
+        /\bbuy\s+\d+\s*,?\s*get\s+\d+\s+free\b/.test(low)))
+      return go("business.html", qp(s), "business math");
     // unit conversions: a measure to another unit ("5 ft 7 in to inches", "3.2 km to m", "60 mph to ft/s", "98.6 F to C",
     // "how many cups in a gallon"); "convert 7/4 to a decimal" stays with the fractions, below
     var UNIT = "(?:in(?:ch(?:es)?)?|ft|feet|foot|yd|yards?|mi|miles?|mm|cm|km|m|meters?|metres?|millimeters?|centimeters?|kilometers?|millimetres?|centimetres?|kilometres?|kgs|kms|kilos?|dm|decimeters?|decimetres?|hrs|mins|deg(?:rees?)?\\s*[fck]\\b|fluid\\s+(?:ounces?|oz)|mg|g|kg|grams?|milligrams?|kilograms?|oz|ounces?|lbs?|pounds?|tons?|tsp|tbsp|teaspoons?|tablespoons?|cups?|pt|pints?|qt|quarts?|gal|gallons?|ml|l|liters?|litres?|milliliters?|fl\\.?\\s*oz|sec(?:onds?)?|s|min(?:utes?)?|h|hr|hours?|days?|weeks?|years?|yr|°\\s*[fck]|[fck]|degrees?\\s+(?:fahrenheit|celsius)|fahrenheit|celsius|kelvin|mph|km\\/h|kph|ft\\/s|m\\/s|acres?|hectares?|ha|(?:square|sq\\.?|cubic|cu\\.?)\\s+(?:inch(?:es)?|feet|foot|yards?|miles?|meters?|centimeters?|ft|in|yd|mi|m|cm|mm|km)|(?:ft|in|yd|mi|m|cm|mm|km)\\s*(?:\\^\\s*[23]|[²³])|(?:feet|foot|inch(?:es)?|yards?|miles?|meters?|metres?|centimeters?|cm|m|ft|in)\\s+(?:squared|cubed))";

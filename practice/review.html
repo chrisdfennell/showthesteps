@@ -1,0 +1,1386 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Your Review</title>
+<meta name="description" content="The problems you missed come back over the next days: due again 1 day later, then 3, 7 and 14 days as you get them right first time, until they’re learned. Kept on this device.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Show The Steps">
+<meta property="og:title" content="Your Review · Show The Steps">
+<meta property="og:description" content="The problems you missed come back over the next days: due again 1 day later, then 3, 7 and 14 days as you get them right first time, until they’re learned. Kept on this device.">
+<meta property="og:url" content="https://showthesteps.org/practice/review">
+<meta property="og:image" content="https://showthesteps.org/assets/icons/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Show The Steps: every step, written out.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://showthesteps.org/practice/review">
+<script src="../assets/site.js"></script>
+<script src="../assets/nav.js" defer></script>
+<script src="../assets/progress.js" defer></script>
+<script src="../assets/standards.js" defer></script>
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<style>
+  :root {
+    --paper: #EDEFEC;
+    --surface: #F8F9F7;
+    --surface-2: #E2E6E2;
+    --ink: #18201C;
+    --ink-2: #4A5550;
+    --ink-3: #7B8681;
+    --rule: #C8CFCA;
+    --key: #33463F;
+    --key-bg: #DDE6E1;
+    --key-line: #8BA398;
+    --warm: #9A5410;
+    --warm-bg: #F6E5D2;
+    --focus: #33463F;
+    --add: #0D7361;
+    --sub: #A8412A;
+    --mul: #544696;
+    --div: #A85A0C;
+    --ord: #1F5E8C;
+    --alg: #9B2F6B;
+    --geo: #4F6A17;
+    --fra: #0B6E83;
+    --pct: #8A6D00;
+    --fac: #7B3FA0;
+    --int: #46596E;
+    --rat: #B0263E;
+    --lin: #1E7A3C;
+    --sta: #3346A8;
+    --wrd: #0F766E;
+    --scr: #B45309;
+    --gra: #0369A1;
+    --exp: #BE185D;
+    --pro: #A21CAF;
+    --tri: #4D7C0F;
+    --cal: #7C3AED;
+    --num: #EA580C;
+    --qua: #B91C1C;
+    --log: #1D4ED8;
+    --seq: #15803D;
+    --fun: #0E7490;
+    --rad: #92400E;
+    --cpx: #4F46E5;
+    --bel: #047857;
+    --mat: #57534E;
+    --uni: #BE123C;
+    --mon: #A16207;
+    --avi: #0B5CAD;
+    --nur: #6E3D64;
+    --crp: #694321;
+    --ele: #611E05;
+    --rcp: #67311E;
+    --cnt: #6B5A2B;
+    --pha: #5E62B5;
+    --hvp: #134E4E;
+    --mch: #38543B;
+    --aut: #7E0135;
+    --biz: #8F538C;
+    --rea: #454A0D;
+    --fla: #C2410C;
+    --heat: #0D7361;
+    --shadow: 0 1px 0 rgba(24, 32, 28, .05), 0 14px 30px -20px rgba(24, 32, 28, .5);
+    --f-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --f-body: "IBM Plex Sans", "Segoe UI", Helvetica, Arial, sans-serif;
+    --f-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #121615;
+      --surface: #1A201E;
+      --surface-2: #262E2B;
+      --ink: #E5EAE7;
+      --ink-2: #A2ADA8;
+      --ink-3: #76817C;
+      --rule: #36403C;
+      --key: #B8C9C1;
+      --key-bg: #22302B;
+      --key-line: #4E6A5F;
+      --warm: #E8A45C;
+      --warm-bg: #37270F;
+      --focus: #B8C9C1;
+      --add: #4FCCB0;
+      --sub: #F08A6E;
+      --mul: #A99CF0;
+      --div: #F2A85C;
+      --ord: #7DB8E8;
+      --alg: #F08CC0;
+      --geo: #B5D06A;
+      --fra: #5FC9DE;
+      --pct: #E3C04D;
+      --fac: #C9A0EE;
+      --int: #A9BDD2;
+      --rat: #F27D8F;
+      --lin: #6FD38E;
+      --sta: #93A2F2;
+      --wrd: #5EEAD4;
+      --scr: #FCD34D;
+      --gra: #7DD3FC;
+      --exp: #FDA4AF;
+      --pro: #F0ABFC;
+      --tri: #BEF264;
+      --cal: #C4B5FD;
+      --num: #FDBA74;
+      --qua: #FCA5A5;
+      --log: #93C5FD;
+      --seq: #86EFAC;
+      --fun: #67E8F9;
+      --rad: #FBBF24;
+      --cpx: #A5B4FC;
+      --bel: #6EE7B7;
+      --mat: #D6D3D1;
+      --uni: #FDA4AF;
+      --mon: #FDE047;
+      --avi: #8CC4F5;
+      --nur: #FAC8F0;
+      --crp: #CDA383;
+      --ele: #F9C4A0;
+      --rcp: #E4BDAF;
+      --cnt: #EED9A0;
+      --pha: #CCCFFF;
+      --hvp: #A6D9D4;
+      --mch: #9FB79A;
+      --aut: #BEA5AA;
+      --biz: #C79FC3;
+      --rea: #B3B47C;
+      --fla: #FB923C;
+      --heat: #4FCCB0;
+      --shadow: 0 1px 0 rgba(0, 0, 0, .3), 0 14px 30px -20px rgba(0, 0, 0, .9);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #121615;
+    --surface: #1A201E;
+    --surface-2: #262E2B;
+    --ink: #E5EAE7;
+    --ink-2: #A2ADA8;
+    --ink-3: #76817C;
+    --rule: #36403C;
+    --key: #B8C9C1;
+    --key-bg: #22302B;
+    --key-line: #4E6A5F;
+    --warm: #E8A45C;
+    --warm-bg: #37270F;
+    --focus: #B8C9C1;
+    --add: #4FCCB0;
+    --sub: #F08A6E;
+    --mul: #A99CF0;
+    --div: #F2A85C;
+    --ord: #7DB8E8;
+    --alg: #F08CC0;
+    --geo: #B5D06A;
+    --fra: #5FC9DE;
+    --pct: #E3C04D;
+    --fac: #C9A0EE;
+    --int: #A9BDD2;
+    --rat: #F27D8F;
+    --lin: #6FD38E;
+    --sta: #93A2F2;
+    --wrd: #5EEAD4;
+    --scr: #FCD34D;
+    --gra: #7DD3FC;
+    --exp: #FDA4AF;
+    --pro: #F0ABFC;
+    --tri: #BEF264;
+    --cal: #C4B5FD;
+    --num: #FDBA74;
+    --qua: #FCA5A5;
+    --log: #93C5FD;
+    --seq: #86EFAC;
+    --fun: #67E8F9;
+    --rad: #FBBF24;
+    --cpx: #A5B4FC;
+    --bel: #6EE7B7;
+    --mat: #D6D3D1;
+    --uni: #FDA4AF;
+    --mon: #FDE047;
+    --avi: #8CC4F5;
+    --nur: #FAC8F0;
+    --crp: #CDA383;
+    --ele: #F9C4A0;
+    --rcp: #E4BDAF;
+    --cnt: #EED9A0;
+    --pha: #CCCFFF;
+    --hvp: #A6D9D4;
+    --mch: #9FB79A;
+    --aut: #BEA5AA;
+    --biz: #C79FC3;
+    --rea: #B3B47C;
+    --fla: #FB923C;
+    --heat: #4FCCB0;
+    --shadow: 0 1px 0 rgba(0, 0, 0, .3), 0 14px 30px -20px rgba(0, 0, 0, .9);
+  }
+
+  * {
+    box-sizing: border-box
+  }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--f-body);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased
+  }
+  a {
+    color: inherit
+  }
+  .page {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 28px 20px 72px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px
+  }
+  @media (max-width:520px) {
+    .page {
+      padding: 22px 16px 56px;
+      gap: 20px
+    }
+  }
+  .masthead {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap
+  }
+  .eyebrow {
+    font-family: var(--f-mono);
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--ink-3)
+  }
+  h1 {
+    font-family: var(--f-display);
+    font-stretch: 118%;
+    font-weight: 800;
+    font-size: clamp(34px, 6.4vw, 54px);
+    line-height: .98;
+    letter-spacing: -.02em;
+    margin: .16em 0 0
+  }
+  h1 em {
+    font-style: normal;
+    color: var(--key)
+  }
+  .tagline {
+    color: var(--ink-2);
+    max-width: 60ch;
+    margin: .5em 0 0;
+    font-size: 15.5px
+  }
+  .theme-btn {
+    font-family: var(--f-mono);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .06em;
+    background: var(--surface);
+    color: var(--ink-2);
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    padding: 8px 15px;
+    cursor: pointer;
+    white-space: nowrap
+  }
+  .theme-btn:hover {
+    color: var(--ink);
+    border-color: var(--ink-3)
+  }
+  button:focus-visible,
+  a:focus-visible {
+    outline: 2.5px solid var(--focus);
+    outline-offset: 2px
+  }
+
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    min-width: 0
+  }
+  .panel-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 6px 14px;
+    flex-wrap: wrap;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--rule)
+  }
+  .panel-head h2 {
+    font-family: var(--f-display);
+    font-stretch: 112%;
+    font-weight: 700;
+    font-size: 15px;
+    margin: 0
+  }
+  .panel-head h2 b {
+    font-variant-numeric: tabular-nums;
+    color: var(--key);
+    margin-left: 4px
+  }
+  .panel-head span {
+    font-size: 13px;
+    color: var(--ink-3)
+  }
+
+  .tiles {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px
+  }
+  @media (max-width:520px) {
+    .tiles {
+      gap: 8px
+    }
+  }
+  .tile {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    padding: 14px 16px 13px;
+    min-width: 0;
+    text-decoration: none;
+    color: inherit;
+    display: block
+  }
+  a.tile:hover {
+    border-color: var(--ink-3)
+  }
+  @media (max-width:520px) {
+    .tile {
+      padding: 11px 11px 10px
+    }
+  }
+  .tile b {
+    display: block;
+    font-family: var(--f-display);
+    font-stretch: 112%;
+    font-weight: 800;
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.05;
+    letter-spacing: -.01em;
+    font-variant-numeric: tabular-nums;
+    margin-top: 4px
+  }
+  .tile span {
+    display: block;
+    font-size: 13px;
+    color: var(--ink-2);
+    margin-top: 3px;
+    line-height: 1.35
+  }
+  .tile.due b {
+    color: var(--key)
+  }
+  .lbl {
+    font-family: var(--f-mono);
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    color: var(--ink-3)
+  }
+
+  /* the items: one per kind of problem (a helper and its tab) */
+  .items {
+    list-style: none;
+    margin: 0;
+    padding: 0
+  }
+  .item {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px 18px;
+    align-items: center;
+    padding: 14px 18px 14px 15px;
+    border-bottom: 1px dashed var(--rule);
+    border-left: 4px solid var(--c);
+    min-width: 0
+  }
+  .item:last-child {
+    border-bottom: 0
+  }
+  .items:last-child .item:last-child {
+    border-bottom-left-radius: 13px
+  }
+  @media (max-width:640px) {
+    .item {
+      grid-template-columns: minmax(0, 1fr);
+      padding: 12px 14px 13px 12px
+    }
+  }
+  .it-main {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px
+  }
+  .it-top {
+    display: flex;
+    align-items: center;
+    gap: 4px 10px;
+    flex-wrap: wrap
+  }
+  .it-where {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--ink);
+    text-decoration: none;
+    min-width: 0
+  }
+  .it-where:hover span {
+    text-decoration: underline
+  }
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--c);
+    flex: none
+  }
+  .it-q {
+    margin: 0;
+    font-family: var(--f-mono);
+    font-weight: 600;
+    font-size: 15px;
+    overflow-wrap: anywhere
+  }
+  .it-meta {
+    margin: 0;
+    font-size: 12.5px;
+    color: var(--ink-3);
+    overflow-wrap: anywhere
+  }
+  .it-meta b {
+    font-weight: 600;
+    color: var(--ink-2)
+  }
+  .when {
+    display: inline-flex;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 999px;
+    padding: 1px 9px;
+    white-space: nowrap;
+    color: var(--key);
+    background: var(--key-bg);
+    border: 1px solid var(--key-line)
+  }
+  .when.late {
+    color: var(--warm);
+    background: var(--warm-bg);
+    border-color: color-mix(in srgb, var(--warm) 45%, transparent)
+  }
+  .when.later {
+    color: var(--ink-2);
+    background: transparent;
+    border: 1px dashed var(--rule)
+  }
+  .when.done {
+    color: var(--lin);
+    background: color-mix(in srgb, var(--lin) 12%, transparent);
+    border-color: color-mix(in srgb, var(--lin) 40%, transparent)
+  }
+
+  /* the waits: 1 → 3 → 7 → 14 days */
+  .ladder {
+    list-style: none;
+    margin: 4px 0 0;
+    padding: 0;
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    align-items: center
+  }
+  .ladder li {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    line-height: 1.5;
+    padding: 0 7px;
+    border-radius: 6px;
+    border: 1px solid var(--rule);
+    color: var(--ink-3);
+    white-space: nowrap
+  }
+  .ladder li.done {
+    background: var(--surface-2);
+    color: var(--ink-2);
+    border-color: var(--surface-2)
+  }
+  .ladder li.now {
+    border-color: var(--key);
+    color: var(--key);
+    font-weight: 600;
+    box-shadow: inset 0 0 0 1px var(--key)
+  }
+  .ladder li.end.now {
+    border-color: var(--lin);
+    color: var(--lin);
+    box-shadow: inset 0 0 0 1px var(--lin)
+  }
+  .it-acts {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: flex-end
+  }
+  @media (max-width:640px) {
+    .it-acts {
+      justify-content: flex-start
+    }
+  }
+
+  .day {
+    margin: 0;
+    padding: 9px 18px 8px;
+    background: var(--surface-2);
+    font-family: var(--f-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap
+  }
+  .day span {
+    color: var(--ink-3);
+    letter-spacing: .06em
+  }
+  .empty-row {
+    padding: 16px 18px;
+    color: var(--ink-2);
+    font-size: 14.5px;
+    display: flex;
+    gap: 10px 16px;
+    flex-wrap: wrap;
+    align-items: center
+  }
+  .empty-row p {
+    margin: 0;
+    max-width: 66ch
+  }
+  .more {
+    padding: 10px 18px 14px;
+    border-top: 1px dashed var(--rule)
+  }
+
+  .ghost {
+    font-family: var(--f-body);
+    font-size: 14px;
+    font-weight: 600;
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--rule);
+    border-radius: 9px;
+    padding: 8px 14px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    white-space: nowrap
+  }
+  .ghost:hover {
+    border-color: var(--ink-3)
+  }
+  .go {
+    font-family: var(--f-body);
+    font-size: 14.5px;
+    font-weight: 600;
+    background: var(--key);
+    color: var(--surface);
+    border: 0;
+    border-radius: 9px;
+    padding: 9px 16px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    white-space: nowrap
+  }
+  .go:hover {
+    filter: brightness(1.08)
+  }
+  [aria-busy="true"] {
+    opacity: .75;
+    cursor: progress
+  }
+  .actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center
+  }
+  .msg {
+    font-size: 13px;
+    color: var(--ink-2)
+  }
+  .welcome {
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+  }
+  .welcome h2 {
+    font-family: var(--f-display);
+    font-stretch: 112%;
+    font-weight: 800;
+    font-size: 22px;
+    margin: 0
+  }
+  .welcome p {
+    margin: 0;
+    color: var(--ink-2);
+    max-width: 66ch
+  }
+  @media (max-width:520px) {
+    .welcome {
+      padding: 18px 16px
+    }
+  }
+
+  /* how it works */
+  .rules {
+    padding: 14px 18px 16px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 14px 28px
+  }
+  @media (max-width:760px) {
+    .rules {
+      grid-template-columns: minmax(0, 1fr)
+    }
+  }
+  .rules ul {
+    margin: 0;
+    padding-left: 1.25em;
+    font-size: 14px;
+    color: var(--ink-2);
+    display: flex;
+    flex-direction: column;
+    gap: 6px
+  }
+  .rules p {
+    margin: 0 0 8px;
+    font-size: 14px;
+    color: var(--ink-2)
+  }
+  .rules p:last-child {
+    margin-bottom: 0
+  }
+  .rules .ladder {
+    margin: 2px 0 10px
+  }
+  .rules .ladder li {
+    font-size: 12px;
+    padding: 1px 8px
+  }
+  .rules .arrow {
+    border: 0;
+    padding: 0;
+    color: var(--ink-3)
+  }
+  .bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px 20px;
+    flex-wrap: wrap;
+    align-items: center
+  }
+  .privacy {
+    font-size: 13.5px;
+    color: var(--ink-3);
+    max-width: 62ch;
+    margin: 0
+  }
+  [hidden] {
+    display: none !important
+  }
+  .sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap
+  }
+
+  @media print {
+    /* paper is white: the light colors, whatever the theme on screen (#_ outranks the dark-theme rules) */
+    :root:not(#_) {
+      --paper: #fff;
+      --surface: #fff;
+      --surface-2: #E2E6E2;
+      --ink: #18201C;
+      --ink-2: #4A5550;
+      --ink-3: #7B8681;
+      --rule: #C8CFCA;
+      --key: #33463F;
+      --key-bg: #DDE6E1;
+      --key-line: #8BA398;
+      --warm: #9A5410;
+      --warm-bg: #F6E5D2;
+      --focus: #33463F;
+      --lin: #1E7A3C;
+      --shadow: none
+    }
+    .theme-btn,
+    .sitenav,
+    .it-acts,
+    .actions,
+    .more,
+    .noprint {
+      display: none !important
+    }
+    .panel,
+    .tile {
+      box-shadow: none;
+      break-inside: auto
+    }
+    .item {
+      break-inside: avoid;
+      grid-template-columns: minmax(0, 1fr)
+    }
+    .day {
+      break-after: avoid
+    }
+  }
+  @supports not (background:color-mix(in srgb, red 50%, blue)) {
+    /* Safari before 16.2 (iOS 15) */
+    .when.late {
+      border-color: var(--warm)
+    }
+    .when.done {
+      background: transparent;
+      border-color: var(--lin)
+    }
+  }
+</style>
+
+<div class="page">
+  <header class="masthead">
+    <div>
+      <div class="eyebrow">Practice, kept on this device</div>
+      <h1>Your <em>review</em></h1>
+      <p class="tagline">The problems you missed come back over the next days, a little further apart each time you get them right,
+        until they stick. Do the ones due today, then come back tomorrow.</p>
+    </div>
+    <button class="theme-btn" id="themeBtn" type="button">Dark mode</button>
+  </header>
+
+  <section class="panel welcome" id="welcome" hidden>
+    <h2 id="welcomeHead">Nothing to review yet</h2>
+    <p id="welcomeText">Open any helper, switch to <b>Check my answer</b>, and try a few problems. Any you miss show up here a day later,
+      to try again. It all stays in this browser, on this device.</p>
+    <div class="actions"><a class="go" href="sets.html">Make a practice set</a>
+      <a class="ghost" href="problem-of-the-day.html">Problem of the day</a>
+      <a class="ghost" href="../index.html">Pick a helper</a></div>
+  </section>
+
+  <div id="body" hidden>
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <div class="tiles" id="tiles"></div>
+
+      <section class="panel" aria-labelledby="dueHead" id="duePanel">
+        <div class="panel-head"><h2 id="dueHead">Due today</h2><span id="dueNote"></span></div>
+        <div id="due"></div>
+      </section>
+
+      <section class="panel" aria-labelledby="comingHead" id="comingPanel">
+        <div class="panel-head"><h2 id="comingHead">Coming up</h2><span id="comingNote">by the day it’s due</span></div>
+        <div id="coming"></div>
+      </section>
+
+      <section class="panel" aria-labelledby="learnedHead" id="learnedPanel">
+        <div class="panel-head"><h2 id="learnedHead">Learned</h2><span id="learnedNote">right first time after the 14-day wait</span></div>
+        <div id="learned"></div>
+      </section>
+    </div>
+  </div>
+
+  <section class="panel" aria-labelledby="rulesHead">
+    <div class="panel-head"><h2 id="rulesHead">How the review works</h2><span>worked out from the problems you checked</span></div>
+    <div class="rules">
+      <div>
+        <ol class="ladder" aria-label="The waits: 1 day, then 3, 7 and 14 days, then learned">
+          <li>1 day</li><li class="arrow" aria-hidden="true">→</li><li>3 days</li><li class="arrow" aria-hidden="true">→</li>
+          <li>7 days</li><li class="arrow" aria-hidden="true">→</li><li>14 days</li><li class="arrow" aria-hidden="true">→</li>
+          <li class="end now">learned</li>
+        </ol>
+        <ul>
+          <li>A problem you <b>miss</b> is due again <b>1 day later</b>. A miss is anything but right first time: a wrong first
+            <b>Check</b>, one that needed a hint, or <b>Show me the work</b> before checking.</li>
+          <li>When it’s due, get it right first time, or a new one like it, and the wait grows: <b>1 → 3 → 7 → 14 days</b>.</li>
+          <li>Right first time after the <b>14-day</b> wait: it’s <b>learned</b> and leaves the queue.</li>
+          <li>A miss at any time sends it back to <b>1 day</b>, learned or not.</li>
+        </ul>
+      </div>
+      <div>
+        <p><b>“Like it”</b> means the same helper and the same tab (Fractions · Simplify, say). Problems of one kind share one place
+          in the queue, so missing three of them doesn’t give you three to redo; the newest miss is the one shown.</p>
+        <p>Only an answer on or after the day it’s due moves it along. Trying one early is fine, but if it’s right it doesn’t
+          count (it’s too soon to show you remember it); if it’s wrong, it starts again at 1 day.</p>
+        <p>Problems from practice sets and the problem of the day count. Flash cards have their own review (their boxes), so they
+          aren’t here, and Tutor me doesn’t count.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="bottom">
+    <p class="privacy"><b>Private by design.</b> This page is worked out in your browser, each time it opens, from the practice kept on
+      this device (the same record as <a href="progress.html">your progress</a>). Nothing extra is saved and nothing is sent anywhere.</p>
+    <div class="actions">
+      <a class="ghost" href="progress.html">Your progress</a>
+      <a class="ghost" href="skills.html">Your skill map</a>
+      <button type="button" class="ghost" id="printBtn">Print</button>
+      <span class="msg" id="msg" role="status" aria-live="polite"></span>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* review.html: the review queue (spaced repetition), worked out from the practice record each time the page opens.
+     The record is assets/progress.js's log (HelperProgress.entries(): { time, page, params, text, verdict, firstTry,
+     hinted, inSet }, oldest first). Nothing about the queue is stored, so it can never drift from the record; the only
+     thing this page saves is its light/dark choice, in localStorage["helper-review"] = { v:1, theme:"light"|"dark" }.
+
+     A kind of problem is a helper and its tab (tabOf below: the same matching as the Skill map, from standards.js, plus
+     the work-math helpers' tabs, which standards.js doesn't list). Each kind has one place in the queue.
+     The attempts, in time order: the first record of each problem (page + link), and every later "first graded try" at it
+     (the problem opened again). An attempt is right first time when it was right, the first try, and with no hint;
+     anything else (wrong, not simplified, a hint, Show me the work before checking) is a miss.
+     For each kind, attempt by attempt:
+       a miss                 → in the queue at the first wait: due WAITS[0] days after the miss (a calendar day, local time)
+       right first time, and the kind is in the queue, on or after the day it's due:
+                                at the last wait → learned (out of the queue); else the next wait, from the day of this answer
+       right first time before the day it's due, or with the kind not in the queue → no change
+     Flash cards (their own boxes) are left out; Tutor me is a log of its own and isn't read.
+     "Try it again" opens the missed problem with practice=check (HelperProgress.link). "A new one like it" loads the
+     helper in a hidden frame and asks it for one problem on that tab (the worksheet API: {type:"helper:make", count:1,
+     options} → {type:"helper:made", problems:[{params}]}, as on the Skill map); if that fails or takes too long, the link
+     opens the tab as it is.
+
+     window.__review = { plan(entries, now), tabOf(page, params), rule, draw() } for the self-test. */
+  (function() {
+    "use strict";
+    var $ = function(id) { return document.getElementById(id); };
+
+    function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+    // a page's full address from its short name (site.js knows which folder each page is in)
+    function U(page, params) { return window.HelperSite ? window.HelperSite.url(page, params) : page + (params ? "?" + params : ""); }
+    var DAY = 86400000,
+      KEY = "helper-review",
+      SHOW_LEARNED = 8;
+
+    /* ===================== the rule ===================== */
+    var RULE = { waits: [1, 3, 7, 14] };
+    var SKIP = { "flashcards.html": 1 };
+
+    function startOfDay(t) {
+      var d = new Date(t);
+      d.setHours(0, 0, 0, 0);
+      return d.getTime();
+    }
+    // n calendar days after a day (not n × 24 hours, so a clock change can't move it)
+    function addDays(t, n) {
+      var d = new Date(startOfDay(t));
+      d.setDate(d.getDate() + n);
+      d.setHours(0, 0, 0, 0);
+      return d.getTime();
+    }
+
+    function daysFrom(a, b) { return Math.round((startOfDay(b) - startOfDay(a)) / DAY); }
+
+    /* ===================== which kind a problem is ===================== */
+    // the work-math helpers' tabs (standards.js leaves them out), as on their own tab buttons
+    var WORKTABS = {
+      aviation: { wind: "Wind triangle", runway: "Runway winds", trip: "Time, speed & fuel", altitude: "Altitude & airspeed", headings: "Headings", descent: "Descent", weight: "Weight & balance", turns: "Turns & glide", units: "Units", metar: "Weather", windsaloft: "Winds aloft" },
+      nursing: { weight: "Dose by weight", dose: "Tablets & liquids", rate: "IV rate (mL/hr)", drip: "Drip rate (gtt/min)", time: "Infusion time", conc: "Concentrations", units: "Units (insulin, heparin)", convert: "Conversions", bsa: "Body surface area" },
+      carpentry: { tape: "Tape measure", lumber: "Board feet", stairs: "Stairs", roof: "Roof & rafters", square: "Squaring", spacing: "Even spacing", area: "Area & materials", concrete: "Concrete", angles: "Angles & miters" },
+      electrical: { ohm: "Ohm’s law", power: "Power", resistors: "Series & parallel", drop: "Voltage drop", load: "Loads & breakers", energy: "Energy cost", color: "Color code", rc: "Capacitors & RC", ac: "AC & three-phase" },
+      cooking: { scale: "Scale a recipe", volume: "Cups & spoons", weight: "Grams ↔ cups", bakers: "Baker’s %", cost: "Cost", oven: "Oven temps", time: "Cooking time", pans: "Pan sizes", ratios: "Ratios & brines" },
+      pharmacy: { sig: "Reading a sig", days: "Days’ supply", qty: "Quantity to dispense", allig: "Alligation", conc: "Concentrations", comp: "Compounding", convert: "Conversions", biz: "Business math", temp: "Temperature & storage" },
+      "hvac-plumbing": { heat: "Heat units", air: "Airflow", duct: "Ducts", loss: "Heat loss", pipe: "Pipe & tank volume", flow: "Flow & fill time", pressure: "Water pressure", drain: "Drain slope", heater: "Water heater" },
+      machining: { rpm: "Spindle speed", feed: "Feed rate", thread: "Threads", taper: "Tapers", bolt: "Bolt circles", sine: "Sine bar", weight: "Metal weight", weld: "Welding", fit: "Tolerances & fits" },
+      automotive: { gear: "Gear ratios", speed: "Speed ↔ RPM", tire: "Tire size", disp: "Displacement", comp: "Compression", power: "HP & torque", fuel: "Fuel & trip", mix: "Mixtures", shop: "Shop money" },
+      business: { markup: "Markup & margin", discount: "Discounts", till: "Change & the till", tax: "Sales tax", payroll: "Payroll", breakeven: "Break-even", pl: "Profit & loss", inventory: "Inventory", unit: "Unit price" },
+      "real-estate": { sqft: "Square footage", land: "Acreage & land", commission: "Commission", net: "Seller’s net", mortgage: "Mortgage", tax: "Property tax", prorate: "Prorations", invest: "Investment", value: "Appreciation" },
+      counting: { principle: "Multiply the choices", perm: "Order matters (nPr)", comb: "Choosing groups (nCr)", pairs: "Handshakes & diagonals", fact: "Factorials & chance" }
+    };
+    var PAGEBY = null;
+
+    function pages() {
+      if (PAGEBY) return PAGEBY;
+      var by = {};
+      if (window.HelperStandards) {
+        window.HelperStandards.pages.forEach(function(p) { by[p.id] = p; });
+        PAGEBY = by; // kept only once standards.js is there
+      }
+      return by;
+    }
+
+    function parseQ(params, keepPlus) {
+      var o = {};
+      String(params || "").replace(/^\?/, "").split("&").forEach(function(kv) {
+        if (!kv) return;
+        var i = kv.indexOf("="),
+          k = i < 0 ? kv : kv.slice(0, i),
+          v = i < 0 ? "" : kv.slice(i + 1);
+        try { v = decodeURIComponent(keepPlus ? v : v.replace(/\+/g, " ")); } catch (e) {}
+        o[k] = v;
+      });
+      return o;
+    }
+    // the Number Line leaves the tab out of the link when the problem shows it: the same test the helper makes
+    function intTab(q) {
+      var s = String(q || "").replace(/\s+/g, "").replace(/[−–—]/g, "-");
+      if (!s || /[,|<>]|abs|compare/i.test(s)) return "abs";
+      s = s.replace(/[\[{]/g, "(").replace(/[\]}]/g, ")").replace(/\d+(\.\d+)?/g, "N");
+      for (var k = 0; k < 4; k++) s = s.replace(/\([-+]?N\)/g, "N").replace(/(^|[-+*×x·\/÷:(])[-+]N/g, "$1N");
+      var ops = s.match(/[-+*×x·\/÷:]/g) || [];
+      if (!ops.length) return "abs";
+      if (ops.length > 1 || /\(/.test(s)) return "chain";
+      return ops[0] === "+" ? "add" : ops[0] === "-" ? "sub" : "muldiv";
+    }
+    // the tab a problem was on: "" for a helper without tabs (and the few problems that aren't on one)
+    function tabOf(page, params) {
+      var id = String(page || "").replace(/\.html$/, ""),
+        P = pages()[id],
+        o = parseQ(params),
+        m = o.mode || "",
+        q = o.q || "";
+      if (!P) return m;
+      if (!P.modes.length) return "";
+      var keys = P.modes.map(function(x) { return x.key; });
+      if (id === "addition" || id === "subtraction" || id === "multiplication") {
+        if (m === "dec" || m === "decimals") return "dec";
+        if (m === "frac" || m === "fractions") return "frac";
+        return /\d\s*\/\s*\d/.test(q) ? "frac" : "dec";
+      }
+      if (id === "division") { // fractions need ÷ or : between them; whole numbers and decimals say how to answer in ans=
+        if (/[÷:]/.test(q) && /\//.test(q)) return "";
+        if (o.ans && keys.indexOf(o.ans) >= 0) return o.ans;
+        return /\./.test(q) ? "decimal" : "remainder";
+      }
+      if (m && keys.indexOf(m) >= 0) return m;
+      if (id === "integers") return intTab(parseQ(params, true).q);
+      return m || keys[0];
+    }
+
+    function helperName(page) { return window.HelperProgress ? window.HelperProgress.topic(page).name : String(page).replace(/\.html$/, ""); }
+
+    function tabName(page, tab) {
+      var id = String(page).replace(/\.html$/, ""),
+        P = pages()[id];
+      if (P) {
+        var m = P.modes.filter(function(x) { return x.key === tab; })[0];
+        if (m) return m.name;
+      }
+      if (WORKTABS[id] && WORKTABS[id][tab]) return WORKTABS[id][tab];
+      return tab ? tab.charAt(0).toUpperCase() + tab.slice(1) : "";
+    }
+
+    function color(page) {
+      var c = window.HelperProgress ? window.HelperProgress.topic(page).c : "ink";
+      return c === "ink" ? "var(--ink-2)" : "var(--" + c + ",var(--ink-2))";
+    }
+
+    /* ===================== working out the queue ===================== */
+    function attemptsOf(entries) {
+      var seen = {},
+        out = [];
+      (entries || []).map(function(e, i) { return { e: e, i: i }; }).sort(function(a, b) { return a.e.time - b.e.time || a.i - b.i; }).forEach(function(w) {
+        var e = w.e;
+        if (!e || typeof e.time !== "number" || !e.page || SKIP[e.page]) return;
+        var key = e.page + "?" + (e.params || ""),
+          first = !seen[key];
+        seen[key] = 1;
+        if (!first && !(e.firstTry && e.verdict !== "shown")) return; // more checks in the same go: not a new attempt
+        var right = e.verdict === "right" && !!e.firstTry && !e.hinted;
+        out.push({
+          time: e.time,
+          page: e.page,
+          params: e.params || "",
+          text: e.text || "",
+          right: right,
+          how: right ? "" : e.hinted ? "needed a hint" : e.verdict === "shown" ? "showed the work" : e.verdict === "simplify" ? "not simplified" : e.verdict === "right" ? "not right first time" : "wrong first Check"
+        });
+      });
+      return out;
+    }
+
+    function plan(entries, now) {
+      now = now || Date.now();
+      var today = startOfDay(now),
+        W = RULE.waits,
+        kinds = {},
+        list = [],
+        att = attemptsOf(entries);
+      att.forEach(function(a) {
+        var tab = tabOf(a.page, a.params),
+          k = a.page + "|" + tab,
+          K = kinds[k];
+        if (!K) {
+          K = kinds[k] = { kind: k, page: a.page, tab: tab, state: "none", step: 0, due: 0, miss: null, misses: 0, since: [], learned: 0 };
+          list.push(K);
+        }
+        if (!a.right) {
+          K.state = "queue";
+          K.step = 0;
+          K.due = addDays(a.time, W[0]);
+          K.miss = a;
+          K.misses++;
+          K.since = [];
+          K.learned = 0;
+        } else if (K.state === "queue" && startOfDay(a.time) >= K.due) {
+          K.since.push(a.time);
+          if (K.step >= W.length - 1) {
+            K.state = "learned";
+            K.learned = a.time;
+          } else {
+            K.step++;
+            K.due = addDays(a.time, W[K.step]);
+          }
+        }
+      });
+      var due = [],
+        coming = [],
+        learned = [],
+        byDay = {};
+      list.forEach(function(K) {
+        K.wait = W[K.step];
+        if (K.state === "learned") learned.push(K);
+        else if (K.state === "queue") {
+          K.late = Math.max(0, daysFrom(K.due, today));
+          if (K.due <= today) due.push(K);
+          else {
+            if (!byDay[K.due]) {
+              byDay[K.due] = { day: K.due, inDays: daysFrom(today, K.due), items: [] };
+              coming.push(byDay[K.due]);
+            }
+            byDay[K.due].items.push(K);
+          }
+        }
+      });
+      due.sort(function(a, b) { return a.due - b.due || a.miss.time - b.miss.time; });
+      coming.sort(function(a, b) { return a.day - b.day; });
+      coming.forEach(function(d) { d.items.sort(function(a, b) { return a.miss.time - b.miss.time; }); });
+      learned.sort(function(a, b) { return b.learned - a.learned; });
+      return {
+        now: now,
+        attempts: att.length,
+        misses: att.filter(function(a) { return !a.right; }).length,
+        due: due,
+        coming: coming,
+        comingCount: coming.reduce(function(n, d) { return n + d.items.length; }, 0),
+        week: coming.filter(function(d) { return d.inDays <= 7; }).reduce(function(n, d) { return n + d.items.length; }, 0),
+        learned: learned,
+        kinds: list
+      };
+    }
+
+    /* ===================== links ===================== */
+    // the worksheet API's options for a new problem on a tab, where they aren't just { mode: tab }
+    var MAKE = {
+      "addition|dec": { mode: "decimals" },
+      "addition|frac": { mode: "fractions" },
+      "subtraction|dec": { mode: "decimals" },
+      "subtraction|frac": { mode: "fractions" },
+      "multiplication|dec": { mode: "decimals" },
+      "multiplication|frac": { mode: "fractions" },
+      "division|remainder": { mode: "decimals", ans: "remainder" },
+      "division|fraction": { mode: "decimals", ans: "fraction" },
+      "division|decimal": { mode: "decimals", ans: "decimal" },
+      "division|": { mode: "fractions" }
+    };
+    // and the link that opens the tab, where it isn't ?mode=tab
+    var PLAIN = {
+      "multiplication|dec": "",
+      "multiplication|frac": "q=2%2F3*3%2F4",
+      "division|remainder": "ans=remainder",
+      "division|fraction": "ans=fraction",
+      "division|decimal": "ans=decimal",
+      "division|": "q=3%2F4%C3%B71%2F2"
+    };
+
+    function idOf(page) { return String(page).replace(/\.html$/, ""); }
+
+    function makeOpts(id, tab) { return MAKE[id + "|" + tab] || (tab ? { mode: tab } : {}); }
+
+    function practiceLink(id, params) {
+      var HP = window.HelperProgress;
+      if (HP) return HP.link(id + ".html", params);
+      return U(id + ".html", (params ? params + "&" : "") + "practice=check");
+    }
+
+    function tabLink(id, tab) {
+      var k = id + "|" + tab;
+      return practiceLink(id, PLAIN.hasOwnProperty(k) ? PLAIN[k] : tab ? "mode=" + encodeURIComponent(tab) : "");
+    }
+
+    /* ===================== drawing ===================== */
+    function dateText(t, now) {
+      var d = daysFrom(now, t),
+        s = new Date(t).toLocaleDateString(undefined, { weekday: "short", month: "short", day: "numeric" });
+      return d === 0 ? "today" : d === 1 ? "tomorrow" : d === -1 ? "yesterday" : s;
+    }
+
+    function shortDate(t, now) {
+      var d = daysFrom(t, now);
+      if (d === 0) return "today";
+      if (d === 1) return "yesterday";
+      return new Date(t).toLocaleDateString(undefined, { month: "short", day: "numeric", year: d > 300 ? "numeric" : undefined }) + (d < 7 ? ", " + d + " days ago" : "");
+    }
+
+    function where(K) {
+      var n = helperName(K.page),
+        t = tabName(K.page, K.tab);
+      return n + (t ? " · " + t : "");
+    }
+
+    function plural(n, one, many) { return n + " " + (n === 1 ? one : many || one + "s"); }
+
+    function ladder(K) {
+      var W = RULE.waits,
+        html = '<ol class="ladder" aria-label="' + esc(K.state === "learned" ? "Learned: all four waits done" : "Wait " + (K.step + 1) + " of " + W.length + ": " + plural(K.wait, "day")) + '">';
+      W.forEach(function(w, i) {
+        var cls = K.state === "learned" || i < K.step ? "done" : i === K.step ? "now" : "";
+        html += '<li class="' + cls + '" aria-hidden="true">' + plural(w, "day") + "</li>";
+      });
+      return html + '<li class="end' + (K.state === "learned" ? " now" : "") + '" aria-hidden="true">learned</li></ol>';
+    }
+
+    function whenChip(K, now) {
+      if (K.state === "learned") return '<span class="when done">Learned ' + esc(shortDate(K.learned, now).replace(/, \d+ days ago$/, "")) + "</span>";
+      if (K.due <= startOfDay(now)) {
+        if (!K.late) return '<span class="when">Due today</span>';
+        return '<span class="when late">Due ' + esc(K.late === 1 ? "yesterday" : "since " + dateText(K.due, now)) + "</span>";
+      }
+      return '<span class="when later">Due ' + esc(dateText(K.due, now)) + "</span>";
+    }
+
+    function item(K, now) {
+      var id = idOf(K.page),
+        m = K.miss,
+        name = where(K),
+        meta = "Missed " + shortDate(m.time, now) + " (" + m.how + ")";
+      if (K.since.length) meta += " · then right first time " + (K.since.length === 1 ? "once" : K.since.length === 2 ? "twice" : K.since.length + " times") + " when due";
+      if (K.state === "learned") meta += " · learned " + shortDate(K.learned, now);
+      else meta += " · wait now " + plural(K.wait, "day");
+      if (K.misses > 1) meta += " · missed " + K.misses + " times in all";
+      return '<li class="item" style="--c:' + color(K.page) + '" data-kind="' + esc(K.kind) + '"><div class="it-main">' +
+        '<div class="it-top"><a class="it-where" href="' + esc(tabLink(id, K.tab)) + '"><i class="dot" aria-hidden="true"></i><span>' + esc(name) + "</span></a>" + whenChip(K, now) + "</div>" +
+        '<p class="it-q">' + esc(m.text || "(this problem)") + "</p>" +
+        '<p class="it-meta">' + esc(meta) + "</p>" + ladder(K) + "</div>" +
+        '<div class="it-acts"><a class="go again" href="' + esc(practiceLink(id, m.params)) + '" aria-label="' + esc("Try it again: " + (m.text || name)) + '">Try it again</a>' +
+        '<a class="ghost make" href="' + esc(tabLink(id, K.tab)) + '" data-p="' + esc(id) + '" data-t="' + esc(K.tab) + '" aria-label="' + esc("A new one like it: " + name) + '">A new one like it</a></div></li>';
+    }
+
+    function countBy(items) {
+      var c = {},
+        order = [];
+      items.forEach(function(K) {
+        var n = helperName(K.page);
+        if (!c[n]) {
+          c[n] = 0;
+          order.push(n);
+        }
+        c[n]++;
+      });
+      return order.map(function(n) { return c[n] + " " + n; }).join(", ");
+    }
+
+    var DATA = null,
+      allLearned = false;
+
+    function draw() {
+      var HP = window.HelperProgress,
+        entries = HP ? HP.entries() : [],
+        now = Date.now();
+      DATA = plan(entries, now);
+      var D = DATA,
+        any = D.due.length + D.comingCount + D.learned.length;
+      // a new visitor (nothing checked yet), or nothing missed yet
+      $("welcome").hidden = !!any;
+      $("body").hidden = !any;
+      if (!any) {
+        if (D.attempts) {
+          $("welcomeHead").textContent = "Nothing to review: no misses yet";
+          $("welcomeText").innerHTML = "All " + plural(D.attempts, "problem") + " you’ve checked so far were right first time. Any you miss " +
+            "will show up here a day later, to try again. It all stays in this browser, on this device.";
+        } else {
+          $("welcomeHead").textContent = "Nothing to review yet";
+          $("welcomeText").innerHTML = "Open any helper, switch to <b>Check my answer</b>, and try a few problems. Any you miss show up here " +
+            "a day later, to try again. It all stays in this browser, on this device.";
+        }
+        return;
+      }
+      var late = D.due.filter(function(K) { return K.late; }).length,
+        next = D.coming.length ? D.coming[0] : null;
+      $("tiles").innerHTML =
+        '<a class="tile due" href="#duePanel"><span class="lbl">Due today</span><b>' + D.due.length + "</b><span>" +
+        (D.due.length ? (late ? late + " from earlier days" : "to try today") : next ? "next one " + esc(dateText(next.day, now)) : "nothing waiting") + "</span></a>" +
+        '<a class="tile" href="#comingPanel"><span class="lbl">Coming up</span><b>' + D.comingCount + "</b><span>" + D.week + " in the next 7 days</span></a>" +
+        '<a class="tile" href="#learnedPanel"><span class="lbl">Learned</span><b>' + D.learned.length + "</b><span>out of the queue</span></a>";
+      // due today
+      $("dueHead").innerHTML = "Due today" + (D.due.length ? "<b>" + D.due.length + "</b>" : "");
+      $("dueNote").textContent = D.due.length ? countBy(D.due) + (late ? " · " + late + " from earlier days" : "") : "";
+      if (D.due.length) $("due").innerHTML = '<ul class="items">' + D.due.map(function(K) { return item(K, now); }).join("") + "</ul>";
+      else if (next) {
+        var first = next.items[0];
+        $("due").innerHTML = '<div class="empty-row"><p><b>Nothing due today.</b> The next ' + (next.items.length > 1 ? next.items.length + " are" : "one is") + " due " +
+          esc(dateText(next.day, now)) + (next.inDays > 1 ? " (in " + next.inDays + " days)" : "") + ": " + esc(where(first)) +
+          (next.items.length > 1 ? " and " + (next.items.length - 1) + " more" : "") + ". Come back then, or keep practicing something new.</p></div>";
+      } else $("due").innerHTML = '<div class="empty-row"><p><b>Nothing due, and nothing coming up.</b> Everything you missed is learned. Any new misses show up here a day later.</p></div>';
+      // coming up, by day
+      $("comingHead").innerHTML = "Coming up" + (D.comingCount ? "<b>" + D.comingCount + "</b>" : "");
+      $("coming").innerHTML = D.coming.length ? D.coming.map(function(d) {
+        var label = d.inDays === 1 ? "Tomorrow" : new Date(d.day).toLocaleDateString(undefined, { weekday: "long" });
+        return '<h3 class="day">' + esc(label + " · " + new Date(d.day).toLocaleDateString(undefined, { month: "short", day: "numeric" })) + "<span>" +
+          esc((d.inDays === 1 ? "" : "in " + d.inDays + " days · ") + plural(d.items.length, "problem")) + "</span></h3>" +
+          '<ul class="items">' + d.items.map(function(K) { return item(K, now); }).join("") + "</ul>";
+      }).join("") : '<div class="empty-row"><p>Nothing else waiting. Problems you miss, and ones you get right when they’re due, show up here for the day they come back.</p></div>';
+      // learned
+      $("learnedHead").innerHTML = "Learned" + (D.learned.length ? "<b>" + D.learned.length + "</b>" : "");
+      var L = allLearned ? D.learned : D.learned.slice(0, SHOW_LEARNED);
+      $("learned").innerHTML = D.learned.length ? '<ul class="items">' + L.map(function(K) { return item(K, now); }).join("") + "</ul>" +
+        (D.learned.length > L.length ? '<div class="more"><button type="button" class="ghost" id="moreLearned">Show all ' + D.learned.length + "</button></div>" : "") :
+        '<div class="empty-row"><p>None yet. A problem is learned when you get it right first time after the 14-day wait.</p></div>';
+    }
+
+    document.addEventListener("click", function(e) {
+      if (e.target && e.target.id === "moreLearned") {
+        allLearned = true;
+        draw();
+      }
+    });
+    $("printBtn").addEventListener("click", function() { window.print(); });
+
+    /* ===================== A new one like it: made by the helper first ===================== */
+    function makeOne(id, tab) {
+      return new Promise(function(ok, bad) {
+        var f = document.createElement("iframe"),
+          mid = "review-" + Date.now() + "-" + Math.random().toString(36).slice(2, 8),
+          done = false,
+          timer = 0;
+
+        function finish(err, params) {
+          if (done) return;
+          done = true;
+          clearTimeout(timer);
+          window.removeEventListener("message", onMsg);
+          if (f.parentNode) f.parentNode.removeChild(f);
+          if (err) bad(err);
+          else ok(params);
+        }
+
+        function onMsg(e) {
+          var d = e.data;
+          if (!d || typeof d !== "object" || d.id !== mid || d.type !== "helper:made") return;
+          var p = (d.problems || [])[0];
+          if (p && typeof p.params === "string" && p.params) finish(null, p.params);
+          else finish(new Error(d.error || "no problem"));
+        }
+        window.addEventListener("message", onMsg);
+        timer = setTimeout(function() { finish(new Error("timeout")); }, 9000);
+        f.setAttribute("aria-hidden", "true");
+        f.tabIndex = -1;
+        f.title = "";
+        f.style.cssText = "position:absolute;width:900px;height:700px;left:-10000px;top:0;border:0;visibility:hidden";
+        f.onload = function() {
+          setTimeout(function() {
+            try { f.contentWindow.postMessage({ type: "helper:make", id: mid, count: 1, options: makeOpts(id, tab) }, "*"); } catch (x) { finish(x); }
+          }, 60);
+        };
+        f.src = U(id + ".html");
+        document.body.appendChild(f);
+      });
+    }
+
+    document.addEventListener("click", function(e) {
+      var a = e.target && e.target.closest ? e.target.closest("a.make") : null;
+      if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || !window.Promise) return;
+      e.preventDefault();
+      if (a.getAttribute("aria-busy") === "true") return;
+      var id = a.getAttribute("data-p"),
+        tab = a.getAttribute("data-t") || "",
+        href = a.href;
+      a.setAttribute("aria-busy", "true");
+      a.setAttribute("data-label", a.innerHTML);
+      a.textContent = "Making a problem…";
+      $("msg").textContent = "Making a new problem…";
+      makeOne(id, tab).then(function(params) { location.href = practiceLink(id, params); }, function() { location.href = href; });
+    });
+    // back from the helper (the page may come back from the cache): the buttons as they were, and the queue again
+    window.addEventListener("pageshow", function(e) {
+      [].forEach.call(document.querySelectorAll('a.make[aria-busy="true"]'), function(a) {
+        a.removeAttribute("aria-busy");
+        a.innerHTML = a.getAttribute("data-label") || "A new one like it";
+      });
+      $("msg").textContent = "";
+      if (DATA && e.persisted) {
+        if (window.HelperProgress) window.HelperProgress.reload();
+        draw();
+      }
+    });
+
+    /* ===================== theme ===================== */
+    var themeBtn = $("themeBtn");
+
+    function isDark() {
+      var t = document.documentElement.getAttribute("data-theme");
+      return t ? t === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    }
+
+    function paint() { themeBtn.textContent = isDark() ? "Light mode" : "Dark mode"; }
+    try {
+      var saved = JSON.parse(localStorage.getItem(KEY) || "null");
+      if (saved && (saved.theme === "light" || saved.theme === "dark")) document.documentElement.setAttribute("data-theme", saved.theme);
+    } catch (e) {}
+    themeBtn.addEventListener("click", function() {
+      var next = isDark() ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", next);
+      try { localStorage.setItem(KEY, JSON.stringify({ v: 1, theme: next })); } catch (e) {}
+      paint();
+    });
+    paint();
+
+    window.__review = { plan: plan, tabOf: tabOf, rule: RULE, draw: draw };
+
+    // progress.js and standards.js are deferred like this page's own work, so wait for them
+    function start() {
+      draw();
+      document.addEventListener("helper:progress", draw);
+      window.addEventListener("storage", function(e) {
+        if (e.key === "helper-progress" || e.key === null) {
+          if (window.HelperProgress) window.HelperProgress.reload();
+          draw();
+        }
+      });
+      // past midnight, today's list changes
+      var day = startOfDay(Date.now());
+      setInterval(function() {
+        if (startOfDay(Date.now()) !== day) {
+          day = startOfDay(Date.now());
+          draw();
+        }
+      }, 60000);
+    }
+    if (window.HelperStandards && window.HelperProgress) start();
+    else window.addEventListener("DOMContentLoaded", start);
+  })();
+</script>
+</html>

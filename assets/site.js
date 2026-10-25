@@ -60,9 +60,15 @@
     "money-math": "helpers/money-math",
     aviation: "helpers/aviation",
     nursing: "helpers/nursing",
+    pharmacy: "helpers/pharmacy",
     carpentry: "helpers/carpentry",
+    machining: "helpers/machining",
     electrical: "helpers/electrical",
+    "hvac-plumbing": "helpers/hvac-plumbing",
+    automotive: "helpers/automotive",
     cooking: "helpers/cooking",
+    business: "helpers/business",
+    "real-estate": "helpers/real-estate",
     functions: "helpers/functions",
     radicals: "helpers/radicals",
     "complex-numbers": "helpers/complex-numbers",
@@ -74,6 +80,7 @@
     daily: "practice/problem-of-the-day",
     progress: "practice/progress",
     skills: "practice/skills",
+    review: "practice/review",
     results: "practice/class-results",
     reference: "reference/sheets",
     glossary: "reference/definitions",
@@ -89,6 +96,8 @@
   FILES["assign.js"] = "assets/assign.js"; // the "Add to assignment" button (tools.js loads it)
   FILES["photo.js"] = "assets/photo.js"; // Photo of the problem (tools.js loads it)
   FILES["embed.js"] = "assets/embed.js"; // Embed on another website (tools.js loads it)
+  FILES["voice.js"] = "assets/voice.js"; // Say the problem (tools.js loads it)
+  FILES["a11y.js"] = "assets/a11y.js"; // math names for screen readers (tools.js loads it)
   ["icon.svg", "icon-192.png", "icon-512.png", "icon-maskable-512.png", "apple-touch-icon.png", "favicon.svg", "og.png"].forEach(function(i) { FILES["icons/" + i] = "assets/icons/" + i; });
   var FOLDERS = ["helpers", "practice", "reference", "info", "learn", "tests"];
   var ALIAS = {}; // a page's own file name → its short name

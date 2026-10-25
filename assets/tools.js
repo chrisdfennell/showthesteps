@@ -195,41 +195,758 @@
     readBtn = null,
     tutorReading = false;
 
-  function spoken(el) {
-    var c = el.cloneNode(true);
-    [].forEach.call(c.querySelectorAll("svg, .sr-only, button"), function(x) { x.remove(); });
-    // a pause after the step label ("Set up"), each tag ("Ignore points") and each line, so they aren't run together
-    [].forEach.call(c.querySelectorAll(".n, .sn, .tag, .line, .aside, .note"), function(x) { x.appendChild(document.createTextNode(". ")); });
-    [].forEach.call(c.querySelectorAll(".fr, .frac, .fraction"), function(fr) {
-      var nu = fr.querySelector(".nu, .num, .top"),
-        de = fr.querySelector(".de, .den, .bot, .bottom");
-      if (!nu || !de) {
-        var k = fr.children;
-        if (k.length === 2) {
-          nu = k[0];
-          de = k[1];
-        }
+  /* math in words: what Read aloud, Play and the screen-reader labels (a11y.js) say for the page's math.
+     spoken(el): an element's text, with its math markup (stacked fractions, powers, roots, repeating digits, matrices)
+     read as words. words(t): text with its math symbols in words, said the way a teacher would say them. */
+  var MATH = (function() {
+    // private-use marks that spoken() leaves in place of the page's markup, so words() knows what it was
+    var FO = "\uE001",
+      FM = "\uE002",
+      FC = "\uE003", // a stacked fraction: FO top FM bottom FC
+      PO = "\uE010",
+      PC = "\uE011", // a power (superscript)
+      BO = "\uE012",
+      BC = "\uE013", // a subscript
+      RO = "\uE014",
+      RC = "\uE015", // what's under a root sign
+      EO = "\uE016",
+      EC = "\uE017", // repeating digits
+      GO = "\uE030",
+      GC = "\uE031", // a group in brackets: GO number GC
+      END = "\uE050"; // the end of a long part: a pause, if more follows
+
+    function chars(o) {
+      var k = [];
+      for (var c in o)
+        if (o.hasOwnProperty(c)) k.push(c);
+      return k.join("");
+    }
+    var SUPS = { "⁰": "0", "¹": "1", "²": "2", "³": "3", "⁴": "4", "⁵": "5", "⁶": "6", "⁷": "7", "⁸": "8", "⁹": "9", "⁺": "+", "⁻": "−", "⁼": "=", "⁽": "(", "⁾": ")", "ⁿ": "n", "ⁱ": "i", "ˣ": "x", "ʸ": "y", "ᵗ": "t", "ᵃ": "a", "ᵇ": "b", "ᶜ": "c", "ᵈ": "d", "ᵉ": "e", "ᶠ": "f", "ᵍ": "g", "ʰ": "h", "ʲ": "j", "ᵏ": "k", "ᵐ": "m", "ᵖ": "p", "ʳ": "r", "ˢ": "s", "ᵘ": "u", "ᵛ": "v", "ʷ": "w", "ᶻ": "z", "ᵀ": "T", "ᐟ": "/" };
+    var SUBS = { "₀": "0", "₁": "1", "₂": "2", "₃": "3", "₄": "4", "₅": "5", "₆": "6", "₇": "7", "₈": "8", "₉": "9", "₊": "+", "₋": "−", "₌": "=", "₍": "(", "₎": ")", "ₐ": "a", "ₑ": "e", "ₒ": "o", "ₓ": "x", "ₕ": "h", "ₖ": "k", "ₗ": "l", "ₘ": "m", "ₙ": "n", "ₚ": "p", "ₛ": "s", "ₜ": "t", "ᵢ": "i", "ⱼ": "j", "ᵣ": "r", "ᵤ": "u", "ᵥ": "v" };
+    var VULGAR = { "½": "1/2", "⅓": "1/3", "⅔": "2/3", "¼": "1/4", "¾": "3/4", "⅕": "1/5", "⅖": "2/5", "⅗": "3/5", "⅘": "4/5", "⅙": "1/6", "⅚": "5/6", "⅐": "1/7", "⅛": "1/8", "⅜": "3/8", "⅝": "5/8", "⅞": "7/8", "⅑": "1/9", "⅒": "1/10" };
+    var SUP_RE = new RegExp("[" + chars(SUPS) + "]+", "g"),
+      SUB_RE = new RegExp("[" + chars(SUBS) + "]+", "g"),
+      VUL_RE = new RegExp("(\\d?)([" + chars(VULGAR) + "])", "g");
+
+    function mapRun(run, o) { var s = ""; for (var i = 0; i < run.length; i++) s += o[run.charAt(i)]; return s; }
+
+    /* ---- numbers ---- */
+    var ORD = ["zeroth", "first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth", "eleventh", "twelfth", "thirteenth", "fourteenth", "fifteenth", "sixteenth", "seventeenth", "eighteenth", "nineteenth", "twentieth"];
+    var ORD_MORE = { 100: "hundredth", 1000: "thousandth" };
+    // 21st to 99th: "twenty-seventh", "sixtieth"
+    ["twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"].forEach(function(t, i) {
+      ORD_MORE[20 + 10 * i] = t.replace(/y$/, "ieth");
+      for (var u = 1; u < 10; u++) ORD_MORE[20 + 10 * i + u] = t + "-" + ORD[u];
+    });
+
+    function nth(n) { // 23 → "23rd"
+      var t = n % 100,
+        u = n % 10;
+      return n + (t > 10 && t < 14 ? "th" : u === 1 ? "st" : u === 2 ? "nd" : u === 3 ? "rd" : "th");
+    }
+    // 3/4 → "3 quarters", 1/2 → "1 half", 7/12 → "7 twelfths", 5/37 and 720/6 → "5 over 37", "720 over 6"
+    function fracWords(n, d) {
+      var a = String(n).replace(/\s+/g, " ").trim(),
+        b = String(d).replace(/\s+/g, " ").trim();
+      if (/^(?:[−-]|negative )?\d+$/.test(a) && /^\d+$/.test(b)) {
+        var k = Number(b),
+          top = Number(a.replace(/\D/g, "")),
+          one = top === 1,
+          name = k === 2 ? (one ? "half" : "halves") : k === 4 ? (one ? "quarter" : "quarters") : null;
+        if (!name && k > 2 && (k <= 20 || ORD_MORE[k])) name = (ORD[k] || ORD_MORE[k]) + (one ? "" : "s");
+        if (name && !(top > 20 && top > 3 * k)) return a + " " + name;
       }
-      if (nu && de) fr.textContent = " " + nu.textContent.trim() + " over " + de.textContent.trim() + " ";
-    });
-    [].forEach.call(c.querySelectorAll("sup"), function(s) {
-      var t = s.textContent.trim();
-      s.textContent = t === "2" ? " squared " : t === "3" ? " cubed " : " to the power " + t + " ";
-    });
-    return words(c.textContent).replace(/\s+\./g, ".").replace(/([.!?:;])(?:\s*\.)+/g, "$1").replace(/^\.\s*/, ""); // no ". ." where a line already ended
-  }
-  // math symbols said the way a teacher would say them
-  function words(t) {
-    return String(t)
-      .replace(/(^|[\s(=,:])[−-](?=\d)/g, "$1negative ")
-      .replace(/[−–]/g, " minus ").replace(/\+/g, " plus ").replace(/×/g, " times ").replace(/÷/g, " divided by ")
-      .replace(/≤/g, " is less than or equal to ").replace(/≥/g, " is greater than or equal to ")
-      .replace(/</g, " is less than ").replace(/>/g, " is greater than ").replace(/≈/g, " about ")
-      .replace(/=/g, " equals ").replace(/%/g, " percent").replace(/√/g, " the square root of ")
-      .replace(/π/g, " pi ").replace(/²/g, " squared").replace(/³/g, " cubed").replace(/°/g, " degrees")
-      .replace(/(\d)\s*\/\s*(\d)/g, "$1 over $2").replace(/\s*…/g, " and so on").replace(/\s*[→⇒]\s*/g, ", so ")
-      .replace(/\s+/g, " ").trim();
-  }
+      var unit = /^[\d.,]+( (?!squared|cubed)[a-z]{2,})+$/i; // 1 kilogram over 2.2 pounds
+      return (simple(a) || unit.test(a) ? a : a + ",") + " over " + (simple(b) || unit.test(b) ? b : "the quantity " + b + END);
+    }
+    // one number or letter (or a word): no "the quantity", no pause after it
+    function simple(s) { return !/[\s+−\-×÷·*=\/<>≤≥±]/.test(String(s).trim().replace(/^(?:[−-]|negative )\s*/, "")); }
+
+    /* ---- units, after a number ---- */
+    // symbol: [one, many]. "a" before the singular when a fraction comes first: "3 quarters of a cup"
+    var UNITS = {
+      mm: ["millimeter", "millimeters"],
+      cm: ["centimeter", "centimeters"],
+      m: ["meter", "meters"],
+      km: ["kilometer", "kilometers"],
+      "μm": ["micrometer", "micrometers"],
+      "in": ["inch", "inches"],
+      ft: ["foot", "feet"],
+      yd: ["yard", "yards"],
+      yds: ["yard", "yards"],
+      mi: ["mile", "miles"],
+      NM: ["nautical mile", "nautical miles"],
+      nm: ["nautical mile", "nautical miles"],
+      nmi: ["nautical mile", "nautical miles"],
+      mL: ["milliliter", "milliliters"],
+      ml: ["milliliter", "milliliters"],
+      L: ["liter", "liters"],
+      dL: ["deciliter", "deciliters"],
+      cc: ["cubic centimeter", "cubic centimeters"],
+      gal: ["gallon", "gallons"],
+      qt: ["quart", "quarts"],
+      pt: ["pint", "pints"],
+      "fl oz": ["fluid ounce", "fluid ounces"],
+      tsp: ["teaspoon", "teaspoons"],
+      tbsp: ["tablespoon", "tablespoons"],
+      Tbsp: ["tablespoon", "tablespoons"],
+      mg: ["milligram", "milligrams"],
+      g: ["gram", "grams"],
+      kg: ["kilogram", "kilograms"],
+      mcg: ["microgram", "micrograms"],
+      "μg": ["microgram", "micrograms"],
+      lb: ["pound", "pounds"],
+      lbs: ["pound", "pounds"],
+      oz: ["ounce", "ounces"],
+      ms: ["millisecond", "milliseconds"],
+      s: ["second", "seconds"],
+      sec: ["second", "seconds"],
+      min: ["minute", "minutes"],
+      mins: ["minute", "minutes"],
+      h: ["hour", "hours"],
+      hr: ["hour", "hours"],
+      hrs: ["hour", "hours"],
+      wk: ["week", "weeks"],
+      yr: ["year", "years"],
+      yrs: ["year", "years"],
+      mph: ["mile per hour", "miles per hour"],
+      kph: ["kilometer per hour", "kilometers per hour"],
+      kt: ["knot", "knots"],
+      kts: ["knot", "knots"],
+      kn: ["knot", "knots"],
+      fpm: ["foot per minute", "feet per minute"],
+      rpm: ["revolution per minute", "revolutions per minute"],
+      gph: ["gallon per hour", "gallons per hour"],
+      gpm: ["gallon per minute", "gallons per minute"],
+      mpg: ["mile per gallon", "miles per gallon"],
+      psi: ["pound per square inch", "pounds per square inch"],
+      gtt: ["drop", "drops"],
+      gtts: ["drop", "drops"],
+      mEq: ["milliequivalent", "milliequivalents"],
+      units: ["unit", "units"],
+      unit: ["unit", "units"],
+      tab: ["tablet", "tablets"],
+      tabs: ["tablet", "tablets"],
+      V: ["volt", "volts"],
+      mV: ["millivolt", "millivolts"],
+      kV: ["kilovolt", "kilovolts"],
+      A: ["amp", "amps"],
+      mA: ["milliamp", "milliamps"],
+      W: ["watt", "watts"],
+      kW: ["kilowatt", "kilowatts"],
+      MW: ["megawatt", "megawatts"],
+      Wh: ["watt hour", "watt hours"],
+      kWh: ["kilowatt hour", "kilowatt hours"],
+      mW: ["milliwatt", "milliwatts"],
+      hp: ["horsepower", "horsepower"],
+      "Ω": ["ohm", "ohms"],
+      "kΩ": ["kilohm", "kilohms"],
+      "MΩ": ["megohm", "megohms"],
+      F: ["farad", "farads"],
+      "μF": ["microfarad", "microfarads"],
+      nF: ["nanofarad", "nanofarads"],
+      pF: ["picofarad", "picofarads"],
+      Hz: ["hertz", "hertz"],
+      kHz: ["kilohertz", "kilohertz"],
+      MHz: ["megahertz", "megahertz"],
+      J: ["joule", "joules"],
+      kJ: ["kilojoule", "kilojoules"],
+      kcal: ["kilocalorie", "kilocalories"],
+      BTU: ["BTU", "BTUs"],
+      "°F": ["degree Fahrenheit", "degrees Fahrenheit"],
+      "°C": ["degree Celsius", "degrees Celsius"],
+      "°": ["degree", "degrees"],
+      "′": ["foot", "feet"],
+      "″": ["inch", "inches"],
+      "'": ["foot", "feet"],
+      '"': ["inch", "inches"],
+      inHg: ["inch of mercury", "inches of mercury"],
+      sq: ["square", "square"],
+      cup: ["cup", "cups"],
+      cups: ["cup", "cups"],
+      c: ["cup", "cups"],
+      "bd ft": ["board foot", "board feet"],
+      ha: ["hectare", "hectares"],
+      ac: ["acre", "acres"]
+    };
+    // these are letters too (a point A, a variable m): read as units only after a space, or when the page marked them
+    var RISKY = { c: 1, m: 1, "in": 1, L: 1, g: 1, s: 1, h: 1, V: 1, A: 1, W: 1, F: 1, J: 1, pt: 1, kn: 1, tab: 1, ac: 1, sq: 1, unit: 1, units: 1, ha: 1, hp: 1 };
+    var PER = { hr: "hour", h: "hour", min: "minute", sec: "second", s: "second", day: "day", wk: "week", week: "week", mo: "month", month: "month", yr: "year", year: "year", mL: "milliliter", ml: "milliliter", L: "liter", kg: "kilogram", lb: "pound", g: "gram", mg: "milligram", dL: "deciliter", gal: "gallon", mi: "mile", ft: "foot", "in": "inch", m: "meter", km: "kilometer", dose: "dose", item: "item", ea: "each", unit: "unit", oz: "ounce", hour: "hour", minute: "minute", person: "person", page: "page" };
+    var UNIT_KEYS = Object.keys(UNITS).sort(function(a, b) { return b.length - a.length; });
+
+    function esc(s) { return s.replace(/[.*+?^${}()|[\]\\\/]/g, "\\$&"); }
+    var NUM = "(?:\\d[\\d,]*(?:\\.\\d+)?|\\.\\d+)(?:\\s\\d+\\/\\d+|\\/\\d+|\\s?" + FO + "[^" + FC + "]*" + FC + ")?…?|" + FO + "[^" + FC + "]*" + FC;
+    var UNIT_RE = new RegExp("(" + NUM + ")(\\s?)(" + UNIT_KEYS.map(esc).join("|") + ")(²|³|" + PO + "[23]" + PC + ")?((?:\\/(?:" + UNIT_KEYS.concat(Object.keys(PER)).map(esc).join("|") + "))*)(?![A-Za-z0-9μΩ])", "g");
+
+    function unitName(u, many, pow) {
+      var w = UNITS[u] ? UNITS[u][many ? 1 : 0] : PER[u] || u;
+      if (pow === "²" || pow === PO + "2" + PC) w = "square " + w;
+      else if (pow) w = "cubic " + w;
+      return w;
+    }
+
+    function units(t) {
+      return t.replace(UNIT_RE, function(m, n, sp, u, pow, per, at, all) {
+          var before = all.charAt(at - 1);
+          if (/[A-Za-z_]/.test(before)) return m; // part of a word or a name: x2m
+          if (RISKY[u] && (!sp || !/^(\s*$|\s*[^\sA-Za-z0-9]|\s+(by|long|wide|tall|high|deep|of|per|and|or|to|is|on|in|at|for|away|each|apart|left|right|across)\b|\s+\d+\s?(?:min|s|sec|in|"|″)(?![A-Za-z]))/.test(all.slice(at + m.length)))) return m; // 2A, 3m, "3 in 4": a number and a letter
+          if (u === "sq") return m; // "sq ft" is its own unit
+          if ((u === "'" || u === '"') && /^[A-Za-z]/.test(all.slice(at + m.length))) return m; // a quote
+          var frac = /^\d+\/\d+$/.test(n) || n.charAt(0) === FO,
+            one = /^1(\.0+)?$/.test(n),
+            w = unitName(u, !one && !frac, pow);
+          var rest = per ? per.split("/").slice(1).map(function(p) { return " per " + unitName(p, false); }).join("") : "";
+          if (frac) w = "of " + (/^[aeiou]|^hour/i.test(w) ? "an " : "a ") + w;
+          return n.replace(/…$/, "") + " " + w + rest;
+        }).replace(/\bsq\.?\s?(ft|in|yd|mi|m|cm|km)\b/g, function(m, u) { return "square " + UNITS[u][1]; })
+        .replace(/\b(mL|gtt|mg|mcg|units?|mEq|km|mi|m|ft)\/(hr|h|min|s|sec|kg|mL|dL|L|dose)\b/g, function(m, a, b) { return unitName(a, true) + " per " + unitName(b, false); })
+        .replace(/\bper (oz|lb|kg|g|mg|mL|L|gal|qt|ft|in|yd|mi|km|hr|h|min|sq ft)\b/g, function(m, u) { return "per " + unitName(u, false); })
+        // a fraction before a unit written out: "3/4 inch drill" is "3 quarters of an inch"
+        .replace(/(^|[^\d\s.,\/]\s?|[^\d]\s)(\d+\/\d+)\s(inch|foot|cup|mile|pound|ounce|teaspoon|tablespoon|gallon|hour|yard|meter|liter|tablet)\b/g, function(m, pre, f, u) { return pre + f + " of " + (/^[aeiou]|^hour/.test(u) ? "an " : "a ") + u; })
+        .replace(/\b(cm|mm|km|in|ft|yd)(²|³|\uE010[23]\uE011)/g, function(m, u, p) { return unitName(u, true, p); });
+    }
+
+    /* ---- money ---- */
+    function money(t) {
+      return t.replace(/([−-]?)\$\s?(\d{1,3}(?:,\d{3})+|\d+)?(?:\.(\d+))?(?:\s?(thousand|million|billion|trillion))?(\s?\/\s?(?:hour|hr|h|day|week|wk|month|mo|year|yr|minute|min|mile|mi|gal|lb|oz|kg|item|each|ea|unit|person|page|sq ft|ft)\b)?/g, function(m, neg, d, c, big, per) {
+        if (!d && !c) return m;
+        var s, dn = Number(String(d || "0").replace(/,/g, ""));
+        if (big) s = (d || "0") + (c ? "." + c : "") + " " + big + " dollars";
+        else if (c && c.length !== 2) s = (d || "0") + "." + c + " dollars";
+        else if (c && dn === 0) s = Number(c) + (Number(c) === 1 ? " cent" : " cents");
+        else s = (d || "0") + (dn === 1 && !(c && Number(c)) ? " dollar" : " dollars") + (c && Number(c) ? " and " + Number(c) + (Number(c) === 1 ? " cent" : " cents") : "");
+        per = per && per.replace(/^\s?\/\s?/, "");
+        if (per) s += " per " + (PER[per] || per.replace("sq ft", "square foot"));
+        return (neg ? "negative " : "") + s;
+      }).replace(/(\d)\s?¢/g, "$1 cents").replace(/(\d)\s?€/g, "$1 euros").replace(/€\s?(\d[\d,.]*)/g, "$1 euros").replace(/£\s?(\d[\d,.]*)/g, "$1 pounds");
+    }
+
+    /* ---- clock times and ratios ---- */
+    function clock(t) {
+      t = t.replace(/\b(\d{1,2}):(\d{2})(?::(\d{2}))?\s?([ap])(?:\.\s?m\.|m\b)/gi, function(m, h, mm, ss, ap) {
+        var n = Number(mm);
+        return h + (n === 0 ? "" : n < 10 ? " oh " + n : " " + mm) + " " + ap.toUpperCase() + "M";
+      }).replace(/\b(\d{1,2}):(\d{2}):(\d{2})\b/g, function(m, h, mm, ss) { return h + " " + Number(mm) + " " + Number(ss); });
+      // a time on the clock: 4:00, 3:05, "until 3:45" — and every h:mm on the page that tells the time
+      var clocky = /number-sense|clock|time/i.test(location.pathname + location.search);
+      t = t.replace(/(\b(?:at|until|till|by|from|to|before|after|past|is|reads|shows|says)\s)?\b(\d{1,2}):([0-5]\d)\b(?!:|\s?[\d\/])/g, function(m, w, h, mm) {
+        var n = Number(mm);
+        if (!w && !clocky && mm.charAt(0) !== "0") return m; // 12:18 is a ratio
+        return (w || "") + h + (n === 0 ? " o’clock" : n < 10 ? " oh " + n : " " + mm);
+      });
+      // 3:2, 3 : 2 (not "Step 1: 3")
+      return t.replace(/(\d)(?::|\s:\s)(?=\d)/g, "$1 to ");
+    }
+
+    /* ---- repeating decimals: 0.1(6), 0.1 with a bar over the 6, the page's marked digits ---- */
+    function repeat(t) {
+      t = t.replace(/(\d*\.\d*)\((\d+)\)/g, function(m, a, r) { return a + EO + r + EC; });
+      return t.replace(new RegExp("([\\d.]*)" + EO + "([^" + EC + "]*)" + EC, "g"), function(m, a, r) {
+        r = r.replace(/\D/g, "");
+        if (!r) return a;
+        var digits = r.split("").join(" ");
+        if (!a || /\.$/.test(a)) return (a ? a + r : r) + " repeating";
+        return a + " with " + (r.length === 1 ? "the " : "") + digits + " repeating";
+      });
+    }
+
+    /* ---- symbols the calculus, sets and vectors use, said before the groups are taken apart ---- */
+    function special(t) {
+      // the integral and the sum, with their bounds: ∫₀² x² dx, ∫ from 0 to 2
+      t = t.replace(/(\d)\s?∫/g, "$1 times ∫").replace(/∫\s*(?=from\b)/g, " the integral ");
+      t = t.replace(new RegExp("∫\\s?(?:" + BO + "([^" + BC + "]*)" + BC + "\\s?" + PO + "([^" + PC + "]*)" + PC + ")?", "g"), function(m, a, b) {
+        return a !== undefined ? " the integral from " + a + " to " + b + " of " : " the integral of ";
+      });
+      t = t.replace(new RegExp("[Σ∑]\\s?(?:" + BO + "([^" + BC + "]*)" + BC + "\\s?" + PO + "([^" + PC + "]*)" + PC + ")?", "g"), function(m, a, b) {
+        return a !== undefined ? " the sum from " + a + " to " + b + " of " : " the sum of ";
+      });
+      // lim x→2, lim_(x→2), the limit as x approaches 2
+      t = t.replace(new RegExp("\\blim\\s?" + BO + "?\\s?([a-zθ])\\s?(?:→|->)\\s?([−-]?[\\d.]+|[−-]?∞|[a-z])" + BC + "?", "g"), " the limit as $1 approaches $2 of ");
+      t = t.replace(/\b([a-zθ])\s?(?:→|->)\s?([−-]?∞|[−-]?\d+(?:\.\d+)?)(?![\d.])/g, "$1 approaches $2");
+      t = t.replace(/\bd\/d([a-z])\b/g, " the derivative with respect to $1 of ").replace(/\bd([a-z])\/d([a-z])\b/g, "d $1 by d $2").replace(/\bd([xyt])\b/g, "d $1");
+      // n choose r
+      t = t.replace(new RegExp(BO + "(\\d+|n)" + BC + "\\s?C\\s?" + BO + "(\\d+|r|k)" + BC, "g"), "$1 choose $2").replace(/\b(\d+|n)C(\d+|r|k)\b/g, "$1 choose $2");
+      t = t.replace(/\bC\(\s?(\d+|n)\s?,\s?(\d+|r|k)\s?\)/g, "$1 choose $2");
+      // set builder {x | x > 2}, a set {1, 2, 3}
+      t = t.replace(/\{\s?([a-z])\s?[|:]\s?([^{}]*)\}/g, "the set of $1 such that $2" + END).replace(/\{([^{}]*)\}/g, function(m, a) { return /\S/.test(a) ? "the set " + a + END : "the empty set"; });
+      // intervals: [0, ∞), (−∞, 3], [2, 5) — and [a, b] after "on", "over", "in", "interval"
+      t = t.replace(/(\b(?:on|over|in|interval|domain|range|from|is)\s)?([\[(])\s?([^\[\]()]*?)\s?,\s?([^\[\]()]*?)\s?([\])])/g, function(m, w, l, a, b, r) {
+        var inf = /∞/.test(a + b);
+        if (!(inf || l !== r.replace("]", "[").replace(")", "(") || (w && l === "["))) return m;
+        if (l === "(" && r === ")" && !inf) return m; // a point
+        var la = l === "[",
+          rb = r === "]",
+          say = "the interval from " + a + " to " + b;
+        if (la && rb) say = "the closed interval from " + a + " to " + b;
+        else if (!la && !rb) say = inf && /^[−-]∞$/.test(a) && b === "∞" ? "all real numbers" : "the interval from " + a + " to " + b + (inf ? "" : ", not including either end");
+        else if (la) say += ", including " + a + (/∞/.test(b) ? "" : " but not " + b);
+        else say += ", including " + b + (/∞/.test(a) ? "" : " but not " + a);
+        return (w || "") + say + END;
+      });
+      // vectors ⟨3, 4⟩, norms ‖v‖, P(A|B), |x|
+      t = t.replace(/[⟨〈]([^⟩〉]*)[⟩〉]/g, "the vector $1" + END).replace(/‖([^‖]+)‖/g, function(m, a) { return "the magnitude of " + a + (simple(a) ? "" : END); });
+      t = t.replace(/\b([A-Z])\s?\|\s?([A-Z])\b/g, "$1 given $2").replace(/\bdet\b\s?/g, "the determinant of ");
+      t = t.replace(/\|([^|]+)\|/g, function(m, a) {
+        if (/^\s?[A-Z]\s?$/.test(a)) return "the determinant of " + a.trim();
+        if (/^\s?[A-Z]{2}\s?$/.test(a)) return "the length of " + a.trim().split("").join(" "); // |PQ|
+        return "the absolute value of " + a.trim() + (simple(a) ? "" : END);
+      });
+      // matrices typed as [[1, 2], [3, 4]]
+      t = t.replace(/\[\s?(\[[^\[\]]*\](?:\s?,\s?\[[^\[\]]*\])*)\s?\]/g, function(m, rows) {
+        var rs = rows.match(/\[[^\[\]]*\]/g) || [];
+        return matrixWords(rs.map(function(r) { return r.slice(1, -1).split(/\s?,\s?/); }));
+      });
+      return t;
+    }
+
+    function matrixWords(rows) {
+      var c = rows.length ? rows[0].length : 0;
+      return "the " + rows.length + " by " + c + " matrix: " + rows.map(function(r, i) { return "row " + (i + 1) + ": " + r.join(", "); }).join("; ") + END;
+    }
+
+    /* ---- groups in brackets: taken apart from the inside out, each said by expr() with what's around it ---- */
+    var raw = [],
+      done = [],
+      plain = [];
+
+    function groups(t) {
+      var re = /\(([^()]*)\)/g,
+        guard = 0;
+      while (/\([^()]*\)/.test(t) && guard++ < 30)
+        t = t.replace(re, function(m, a) {
+          raw.push(a);
+          done.push(null);
+          return GO + (raw.length - 1) + GC;
+        });
+      return t;
+    }
+
+    function inner(id) {
+      id = Number(id);
+      if (done[id] === null) done[id] = expr(raw[id]);
+      return done[id];
+    }
+    // words already said, kept as one piece: "f of x" in f(x)/2 is the top of the fraction
+    function keep(w) {
+      raw.push("k");
+      done.push(w);
+      plain[raw.length - 1] = true;
+      return GO + (raw.length - 1) + GC;
+    }
+
+    function flatRaw(id) { return String(raw[Number(id)]).replace(new RegExp(GO + "(\\d+)" + GC, "g"), function(m, k) { return "(" + flatRaw(k) + ")"; }); }
+
+    function compound(id) { // more than one number or letter: "the quantity …"
+      if (plain[Number(id)]) return false;
+      var r = String(raw[Number(id)]).replace(new RegExp(GO + "\\d+" + GC + "|" + PO + "[^" + PC + "]*" + PC + "|" + BO + "[^" + BC + "]*" + BC, "g"), "x");
+      return !simple(r) && !/,/.test(r);
+    }
+
+    function tuple(id) { return !plain[Number(id)] && /,/.test(flatRaw(id)); }
+
+    function prose(id) { return !plain[Number(id)] && /[A-Za-z]{3,}/.test(flatRaw(id).replace(/\b(sin|cos|tan|sec|csc|cot|log|ln|sqrt|exp|abs|mod)\b/g, "")); }
+
+    function quantity(id) { // what a group says on its own
+      var w = inner(id);
+      if (plain[Number(id)]) return w;
+      if (tuple(id) || prose(id)) return "(" + w + ")";
+      return compound(id) ? "the quantity " + w + END : w;
+    }
+    var G = GO + "(\\d+)" + GC;
+
+    /* ---- powers and subscripts ---- */
+    var TRIG = { sin: "sine", cos: "cosine", tan: "tangent", sec: "secant", csc: "cosecant", cot: "cotangent", arcsin: "arc sine", arccos: "arc cosine", arctan: "arc tangent", sinh: "hyperbolic sine", cosh: "hyperbolic cosine", tanh: "hyperbolic tangent" };
+
+    function powerWords(e) {
+      e = String(e).replace(/-/g, "−").replace(/\s+/g, " ").trim();
+      if (/^\d+$/.test(e)) {
+        var n = Number(e);
+        return n === 2 ? "squared" : n === 3 ? "cubed" : n === 0 ? "to the zero power" : n === 1 ? "to the first power" : "to the " + nth(n) + " power";
+      }
+      if (/^−\d+(\.\d+)?$/.test(e)) return "to the power of negative " + e.slice(1);
+      if (/^[a-zA-Zθ]$/.test(e)) return "to the " + e;
+      if (/^[a-z]{2,3}$/.test(e)) return "to the power " + e.split("").join(" "); // (1 + r/n)^nt
+      if (/^[′'″]+$/.test(e)) return e.length > 1 || e === "″" ? "double prime" : "prime"; // f with a prime written as a power
+      var f = /^(−?)(\d+)\/(\d+)$/.exec(e);
+      if (f) return "to the " + (f[1] ? "negative " : "") + fracWords(f[2], f[3]) + " power";
+      if (e === "∘" || e === "o") return "degrees";
+      return "to the power " + expr(e) + END;
+    }
+
+    function powers(s) {
+      var re = new RegExp("(" + G + "|[A-Za-z]+|θ|\\d+(?:\\.\\d+)?)?(\\s?)" + PO + "([^" + PO + PC + "]*)" + PC),
+        guard = 0;
+      while (re.test(s) && guard++ < 40) s = s.replace(re, function(m, base, id, sp, e) {
+        var ee = e.replace(/-/g, "−").trim();
+        base = base || "";
+        // (x + 1)², (−3)² and (i⁴)⁵: "the quantity …, squared" — not −3² or i to the 4th to the 5th; kept whole: P(1 + r)² is P times it
+        if (id !== undefined) return keep((compound(id) || (!plain[Number(id)] && new RegExp("^\\s*[−-]|" + PO).test(raw[Number(id)])) ? "the quantity " + inner(id) + ", " : quantity(id) + " ") + powerWords(e)) + " ";
+        if (TRIG[base]) return ee === "−1" ? "inverse " + TRIG[base] : TRIG[base] + " " + powerWords(e);
+        if (ee === "−1" && /^[fghA-Z]$/.test(base)) return base + " inverse";
+        if (ee === "T" && /^[A-Z]$/.test(base)) return base + " transpose";
+        if (ee === "*" && /^[A-Z]$/.test(base)) return base + " star";
+        return (base ? base : sp) + " " + powerWords(e) + " ";
+      });
+      return s;
+    }
+
+    function subs(s) {
+      var re = new RegExp("(\\b[A-Za-z]+|θ|" + G + ")?" + BO + "([^" + BO + BC + "]*)" + BC),
+        guard = 0;
+      while (re.test(s) && guard++ < 40) s = s.replace(re, function(m, base, id, c) {
+        c = c.trim();
+        if (base === "log") return "log base " + expr(c);
+        if (base === "H" && /^[0a]$/.test(c)) return c === "0" ? "H naught" : "H a"; // the hypotheses
+        var say = /^[a-z]{2,3}$/.test(c) ? c.split("").join(" ") : expr(c);
+        return (id !== undefined ? quantity(id) : base || "") + " sub " + say + (simple(c) ? "" : END) + " ";
+      });
+      return s;
+    }
+
+    /* ---- roots ---- */
+    var ROOT = { "√": 2, "∛": 3, "∜": 4 };
+
+    function roots(s) {
+      var re = new RegExp("(\\d+(?:\\.\\d+)?|[a-zA-Zθπ]|" + G + ")?(\\s?)(?:" + PO + "(\\d+|[a-z])" + PC + ")?([√∛∜])\\s?(" + RO + "([^" + RO + RC + "]*)" + RC + "|" + G + "|\\d+(?:\\.\\d+)?[a-zA-Z]?|[a-zA-Zθπ])?", "g");
+      return s.replace(re, function(m, coef, cid, sp, idx, sign, rad, rin, rid, at, all) {
+        var pre = coef ? "" : sp;
+        if (coef && /[A-Za-z]/.test(coef) && /[A-Za-z]/.test(all.charAt(at - 1))) {
+          pre = coef + sp;
+          coef = "";
+        } // a word, not a number in front
+        var k = idx ? (/^\d+$/.test(idx) ? Number(idx) : idx) : ROOT[sign],
+          name = k === 2 ? "square root" : k === 3 ? "cube root" : typeof k === "number" ? nth(k) + " root" : k + "th root",
+          what, long = false;
+        if (rin !== undefined) {
+          what = expr(rin);
+          long = !simple(rin.replace(new RegExp("[" + PO + PC + "]", "g"), ""));
+        } else if (rid !== undefined) {
+          what = inner(rid);
+          long = compound(rid);
+        } else what = rad || "";
+        if (!what) return pre + (coef ? coef + " times " : "") + "the " + name + " of ";
+        var c = coef ? (cid !== undefined ? quantity(cid) : coef) : "";
+        if (long) return pre + (c ? c + " times " : "") + "the " + name + " of the quantity " + what + END;
+        if (c && k === 2) return pre + c + " root " + what;
+        return pre + (c ? c + " times " : "") + "the " + name + " of " + what;
+      });
+    }
+
+    /* ---- functions: f(x), f′(2), sin 30°, log₂ 32, P(A) ---- */
+    function funcs(s) {
+      s = s.replace(/\b([fghyFGH])(′′′|‴|′′|″|′|''|')/g, function(m, f, p) { return f + (p.length === 3 || p === "‴" ? " triple prime" : p === "″" || p.length === 2 ? " double prime" : " prime"); });
+      // each said as one piece (keep), so f(x)/2 is "f of x over 2"
+      s = s.replace(new RegExp("\\b([fgh](?: inverse| prime| double prime| triple prime)?)\\s?" + G, "g"), function(m, f, id) { return keep(f + " of " + inner(id)) + (compound(id) ? END : ""); });
+      s = s.replace(new RegExp("\\b([A-Z])" + G, "g"), function(m, f, id) {
+        var r = flatRaw(id);
+        if (f === "P" && !plain[Number(id)] && /^\s*[A-Z]|[<>=≤≥]/.test(r)) return keep("P of " + inner(id)) + (compound(id) ? END : ""); // P(X = 4), P(Z < −1)
+        if (plain[Number(id)] || /[+−×÷*\/=]|\d\s?-/.test(r)) return m; // P(1 + r): times, said below
+        if (tuple(id) && f !== "P") return f + " " + quantity(id); // a point A(2, 3)
+        return keep(f + " of " + inner(id)) + (compound(id) ? END : "");
+      });
+      s = s.replace(new RegExp("\\b([a-z])" + G, "g"), function(m, f, id, at, all) {
+        if (plain[Number(id)] || /[A-Za-z]/.test(all.charAt(at - 1)) || !/^\s?[txnrθ]\s?$/.test(raw[Number(id)]) || f === "x") return m;
+        return keep(f + " of " + inner(id));
+      });
+      s = s.replace(new RegExp("\\b(sin|cos|tan|sec|csc|cot|arcsin|arccos|arctan|sinh|cosh|tanh|inverse (?:sine|cosine|tangent)|(?:sine|cosine|tangent|secant|cosecant|cotangent) (?:squared|cubed)|log base [A-Za-z0-9.]+|log|ln|exp)\\b(?:\\s?" + G + "|\\s(?=[−-]?[\\d.θπxyzt√" + FO + "]))?", "g"), function(m, f, id) {
+        var name = TRIG[f] || (f === "ln" ? "natural log" : f === "exp" ? "e to the" : f);
+        if (id !== undefined) return name + (f === "exp" ? " " : " of ") + inner(id) + (compound(id) ? END : "");
+        if (/\s$/.test(m)) return name + (f === "exp" ? " " : " of ");
+        return name;
+      });
+      return s;
+    }
+
+    /* ---- fractions ---- */
+    function fractions(s) {
+      // the page's stacked fractions, inside ones first; a whole number just before one makes a mixed number
+      var re = new RegExp("(\\d+\\s?)?" + FO + "([^" + FO + FM + FC + "]*)" + FM + "([^" + FO + FM + FC + "]*)" + FC),
+        guard = 0;
+      while (re.test(s) && guard++ < 30) s = s.replace(re, function(m, w, a, b, at, all) {
+        var mixed = w && /^\s*\d+\s*$/.test(a) && /^\s*\d+\s*$/.test(b) && !/[\d.,]/.test(all.charAt(at - 1));
+        return (w ? w.trim() + (mixed ? " and " : " ") : "") + fracWords(expr(a), expr(b)) + " ";
+      });
+      // 1 3/4, 3/4, x/3, (x + 1)/(x − 2)
+      s = s.replace(/(\d+\s)?([−-]?)(\d+)\/(\d+)(?![\d\/]|\.\d)/g, function(m, w, neg, a, b, at, all) {
+        var pre = all.charAt(at - 1);
+        if (/[\d.,\/]/.test(pre) || (!w && /[\w.]/.test(pre))) return m;
+        if (w && Number(a) >= Number(b)) return w + neg + a + " over " + b;
+        return (w ? w.trim() + " and " : "") + (neg ? "negative " : "") + fracWords(a, b);
+      });
+      var tok = "(" + G + "|[A-Za-z0-9.θπ?]+)";
+      return s.replace(new RegExp(tok + "\\s*\\/\\s*" + tok, "g"), function(m, a, ia, b, ib) {
+        if (/^and$/i.test(a) && /^or$/i.test(b)) return m;
+        var l = ia !== undefined ? (compound(ia) ? "the quantity " + inner(ia) + "," : quantity(ia)) : a,
+          r = ib !== undefined ? quantity(ib) : b;
+        if (ib === undefined && /^[a-z]{3,}$/i.test(a) && /^(hours?|minutes?|seconds?|days?|weeks?|months?|years?|gallons?|miles?|person|people|items?|pounds?|ounces?|kilograms?|units?|doses?|foot|feet|inch(es)?|meters?|liters?|cups?)$/.test(b)) return a + " per " + b;
+        return l + " over " + r;
+      });
+    }
+
+    /* ---- a number or letter right before a group, or two groups together: times ---- */
+    function times(s) {
+      s = s.replace(new RegExp("(\\d|\\b[a-zA-Zθπ]|" + GC + "|!)(?=" + G + ")", "g"), function(m, l, id, at, all) {
+        if (/[A-Za-z]/.test(l) && /[A-Za-z]/.test(all.charAt(at - 1))) return m; // a word: item(s)
+        if (tuple(id) || prose(id)) return m;
+        return l + " times ";
+      });
+      return s.replace(new RegExp("(" + GC + ")(?=" + GO + "|\\d|[a-zA-Z]\\b)", "g"), "$1 times ");
+    }
+    // the groups still left, said on their own: "the quantity x − 1"; a word's (s) stays as it is
+    // and an aside after a word or number, "1 1/3 (≈ 1.33) apples", keeps its brackets
+    function ungroup(s) {
+      return s.replace(new RegExp(G, "g"), function(m, id, at, all) {
+        var before = all.slice(0, at);
+        if (/[A-Za-z]$/.test(before) || /[\d%]\s+$/.test(before) || /^\s*[≈~=]/.test(raw[Number(id)])) return "(" + inner(id) + ")";
+        return quantity(id);
+      });
+    }
+
+    /* ---- the symbols ---- */
+    var SYM = [
+      [/≤/g, " is less than or equal to "],
+      [/≥/g, " is greater than or equal to "],
+      [/≠/g, " is not equal to "],
+      [/≅/g, " is congruent to "],
+      [/≡/g, " is equivalent to "],
+      [/∝/g, " is proportional to "],
+      [/(^|[(,:;]\s*)≈/g, "$1about "],
+      [/≈/g, " is about "],
+      [/(^|\s)~\s?(?=\d)/g, "$1about "],
+      [/</g, " is less than "],
+      [/>/g, " is greater than "],
+      [/=/g, " equals "],
+      [/±/g, " plus or minus "],
+      [/∓/g, " minus or plus "],
+      [/÷/g, " divided by "],
+      [/\+/g, " plus "],
+      [/%/g, " percent"],
+      [/‰/g, " per thousand"],
+      [/∞/g, " infinity "],
+      [/∠\s?([A-Z]+)/g, function(m, a) { return " angle " + a.split("").join(" ") + " "; }],
+      [/∠/g, " angle "],
+      [/(△|∆(?=[A-Z]{3}))\s?([A-Z]+)/g, function(m, x, a) { return " triangle " + a.split("").join(" ") + " "; }],
+      [/⊥/g, " is perpendicular to "],
+      [/\b(R\d*)\s?∥\s?(?=R)/g, "$1 in parallel with "],
+      [/∥/g, " is parallel to "],
+      [/∴/g, " so "],
+      [/∈/g, " is in "],
+      [/∉/g, " is not in "],
+      [/∪/g, " union "],
+      [/∩/g, " intersect "],
+      [/⊆/g, " is a subset of "],
+      [/⊂/g, " is a subset of "],
+      [/∅/g, " the empty set "],
+      [/ℝ/g, " the real numbers "],
+      [/ℤ/g, " the integers "],
+      [/ℕ/g, " the natural numbers "],
+      [/ℚ/g, " the rational numbers "],
+      [/ℂ/g, " the complex numbers "],
+      [/[Δ∆]\s?(?=[a-zA-Z])/g, " delta "],
+      [/[Δ∆]/g, " delta "],
+      [/∂/g, " partial "],
+      [/∏/g, " the product of "],
+      [/√/g, " the square root of "],
+      [/∛/g, " the cube root of "],
+      [/∜/g, " the fourth root of "],
+      [/\^/g, " to the power "],
+      [/°F\b/g, " degrees Fahrenheit"],
+      [/°C\b/g, " degrees Celsius"],
+      [/°/g, " degrees"],
+      [/″/g, " double prime"],
+      [/′/g, " prime"],
+      [/\s*…|\.\.\.(?!\.)/g, " and so on"],
+      [/\s*[⇒⟹]\s*/g, ", so "],
+      [/\s*⇔\s*/g, " if and only if "],
+      [/\b(R\d+)\s?↔\s?(R\d+)/g, "swap $1 and $2"],
+      [/\s*↔\s*/g, " if and only if "],
+      [/(^|\s)([a-zA-Z]{1,3})\s→\s([a-zA-Z]{1,3})(?=$|[\s.,;])/g, "$1$2 to $3"],
+      [/\s*→\s*/g, ", so "],
+      [/&/g, " and "],
+      [/\s\|\s/g, ", "],
+      [/#(?=\d)/g, "number "],
+      [/✓/g, " "],
+      [/α/g, " alpha "],
+      [/β/g, " beta "],
+      [/γ/g, " gamma "],
+      [/δ/g, " delta "],
+      [/ε/g, " epsilon "],
+      [/θ/g, " theta "],
+      [/λ/g, " lambda "],
+      [/μ/g, " mu "],
+      [/ν/g, " nu "],
+      [/ρ/g, " rho "],
+      [/σ/g, " sigma "],
+      [/τ/g, " tau "],
+      [/[φϕ]/g, " phi "],
+      [/χ/g, " chi "],
+      [/ω/g, " omega "],
+      [/Ω/g, " ohms "],
+      [/π/g, " pi "],
+      [/Σ/g, " sum "]
+    ];
+
+    function ops(s) {
+      s = s.replace(/(\d)\s*R\s*(\d)/g, "$1 remainder $2");
+      // a list: "V = 12 V · R = 4 Ω", "36 W · work the power" (not u · v = 11, 4 · 5)
+      s = s.replace(/\s*·\s*(?=([A-Za-z]{2,}\b(?!\s?[=(])|[A-Za-z]\w*\s?=))/g, function(m, x, at, all) {
+        var eq = /=[^;·]*$/.test(all.slice(0, at)); // an equation before it, and a word or "R =" after
+        var word = /^[A-Za-z]{2,}/.test(x) && !/^(negative|the|quantity|square|cube|pi|log|natural|sine|cosine|tangent|absolute|inverse|delta|theta|sigma|mu|alpha)\b/.test(x);
+        return (word && /^\s/.test(m)) || eq ? "; " : m;
+      });
+      // 2 × 2 matrix: "by"; u · v, u × v: "dot", "cross"
+      s = s.replace(/(\b[\dmn]+)\s?×\s?([\dmn]+)(?=\s+(?:matri|identity|grid|array|system|block|board|lumber|stud|joist|rafter|plank|post|piece))/g, "$1 by $2");
+      s = s.replace(/\b(inch(?:es)?|feet|foot|yards?|meters?|centimeters?|millimeters?)\s?×\s?(?=[\d.])/g, "$1 by "); // 8 feet by 10 feet
+      s = s.replace(/\b([12])\s?×\s?(2|3|4|6|8|10|12)\b(?=s\b|,?\s+\d+(?:\.\d+)?\s(?:feet|foot|inches)\b)/g, "$1 by $2"); // lumber: a 2 by 10, 16 feet long
+      s = s.replace(/\b([uvw])\s?·\s?([uvw])\b/g, "$1 dot $2").replace(/\b([uvw])\s?×\s?([uvw])\b/g, "$1 cross $2");
+      s = s.replace(new RegExp("([\\w!" + END + "]\\s*)·(?=\\s*[\\w(√π−-])", "g"), "$1 times ").replace(/\s·\s/g, ", ").replace(/·/g, " times ");
+      s = s.replace(/×/g, " times ").replace(/\*/g, " times ");
+      // a minus sign at the start, after a bracket or a sign, or right before a number: negative
+      s = s.replace(/(^|[\[(=,:;<>≤≥≈±+×÷·]|\s(?:is|of|times|by|over|plus|minus|and|to|from|approaches|power|sub|base|root))(\s*)−(?=\s?(?:\.?\d|[√π∞a-zA-Zθ]))/g, "$1$2negative ");
+      s = s.replace(/(\s)−(?=\.?\d|[√π∞])/g, "$1negative ");
+      s = s.replace(/−/g, " minus ").replace(/–/g, " minus ");
+      for (var i = 0; i < SYM.length; i++) s = s.replace(SYM[i][0], SYM[i][1]);
+      // 3xy: "3x y", read as letters
+      s = s.replace(/\b(\d*)([a-z])([a-z]{1,2})\b/g, function(m, d, a, b) {
+        if (!d && !/^(xy|xz|yz|ab|bc|ac|mn|xyz|abc|ax|bx|cx|mx|kx)$/.test(a + b)) return m;
+        if (d && /^(st|nd|rd|th|am|pm|in|s)$/.test(a + b)) return m;
+        return d + a + " " + b.split("").join(" ");
+      });
+      return s;
+    }
+
+    // the groups, powers, roots, functions, fractions and symbols in one piece of text
+    function expr(s) {
+      s = groups(String(s));
+      // n!, 3!·7!, (n − r)!
+      s = s.replace(new RegExp("(\\d|\\b[nrk]|" + GC + ")!(?!=)", "g"), "$1 factorial");
+      s = roots(s);
+      s = subs(powers(s));
+      s = funcs(s);
+      s = fractions(times(s));
+      return ops(ungroup(s));
+    }
+
+    function prep(t) {
+      t = String(t == null ? "" : t).replace(/[\u00a0\u2007\u2009\u200a\u202f]/g, " ").replace(/[\u200b\u2060\ufeff]/g, "")
+        .replace(/\u00b5/g, "μ").replace(/\u2044/g, "/").replace(/[⋅∙]/g, "·").replace(/∶/g, ":").replace(/''/g, "″").replace(/\s+/g, " ");
+      t = t.replace(VUL_RE, function(m, d, f) { var p = VULGAR[f].split("/"); return (d ? d + " " : "") + FO + p[0] + FM + p[1] + FC; });
+      t = t.replace(SUP_RE, function(r) { return PO + mapRun(r, SUPS) + PC; }).replace(SUB_RE, function(r) { return BO + mapRun(r, SUBS) + BC; });
+      t = t.replace(/\^\s?\(([^()]*)\)/g, PO + "$1" + PC).replace(/\^\s?\{([^{}]*)\}/g, PO + "$1" + PC).replace(/\^\s?([−-]?(?:\d+(?:\.\d+)?|[a-zA-Z]))/g, PO + "$1" + PC);
+      t = t.replace(/_\{([^{}]*)\}/g, BO + "$1" + BC).replace(/\b([a-zA-Z])_([a-zA-Z0-9]+)/g, "$1" + BO + "$2" + BC);
+      // a bar over digits: they repeat; over a letter: "x bar"; a hat: "p hat"; an arrow: "vector v"
+      t = t.replace(/((?:\d[\u0305\u0304])+)/g, function(m) { return EO + m.replace(/[\u0305\u0304]/g, "") + EC; })
+        .replace(/([a-zA-Z])[\u0305\u0304]/g, "$1 bar").replace(/([a-zA-Z])\u0302/g, "$1 hat").replace(/([a-zA-Z])\u20d7/g, "vector $1").replace(/ȳ/g, "y bar");
+      t = t.replace(/ȳ/g, "y bar").replace(/ŷ/g, "y hat").replace(/\b([tz]|df)\*/g, "$1 star"); // t*, the critical value
+      t = t.replace(/\b(401|403|457|529)\(([a-z])\)/g, "$1 $2"); // a 401(k)
+      // dashes: a pause between words; numbers in a row (the 68–95–99.7 rule), a range (pages 3–5); else a minus
+      t = t.replace(/\s*—\s*/g, ", ").replace(/([A-Za-z]{2,}[.,;]?)\s+–\s+(?=[A-Za-z]{2,})/g, "$1, ")
+        .replace(/(\d)–(\d[\d.]*)–(?=\d)/g, "$1, $2, ").replace(/([A-Za-z]{3,}\s\d+)–(\d+)\b/g, "$1 to $2").replace(/–/g, "−");
+      t = t.replace(/([A-Za-z]{2,}[.,;]?)\s+-\s+(?=[A-Za-z]{2,})/g, "$1, ").replace(/\s-\s/g, " − ").replace(/(^|[\s(\[=,:;<>≤≥+×÷])-(?=[\d.√π($])/g, "$1−");
+      return t.replace(/(\w|\))\s?\*\s?(?=[\w(])/g, "$1 × ");
+    }
+
+    function tidy(s) {
+      s = s.replace(new RegExp(END + "+(?=\\s*[\\w(\\-−\\uE000-\\uF8FF])", "g"), ", ").replace(/[\uE000-\uF8FF]/g, " ");
+      return s.replace(/\s+/g, " ").replace(/\s+([,.;:!?)]|[’']s\b)/g, "$1").replace(/\(\s+/g, "(").replace(/,(\s*,)+/g, ",").replace(/([.;:!?]),/g, "$1")
+        .replace(/,(?=\s*(?:$|[.;:!?]))/g, "").replace(/^[\s,]+/, "").trim();
+    }
+
+    function words(t) {
+      raw = [];
+      done = [];
+      plain = [];
+      var s = prep(t);
+      s = money(s);
+      s = clock(s);
+      s = repeat(s);
+      s = units(s);
+      s = special(s);
+      return tidy(expr(s));
+    }
+
+    /* the page's markup, said: a copy of el with its math turned into marks words() reads */
+    function txt(e) { return e ? e.textContent : ""; }
+    // the last character of the text before node n
+    function lastChar(n) {
+      while (n) {
+        if (n.previousSibling) {
+          n = n.previousSibling;
+          var t = n.textContent;
+          if (t) return t.charAt(t.length - 1);
+        } else n = n.parentNode;
+      }
+      return "";
+    }
+
+    function spoken(el) {
+      var c = document.createElement("div"), // a holder, so el itself is read too (a fraction, a power on its own)
+        q = function(sel) { return [].slice.call(c.querySelectorAll(sel)); };
+      c.appendChild(el.cloneNode(true));
+      q("svg, .sr-only, button, script, style").forEach(function(x) { if (x.parentNode) x.parentNode.removeChild(x); });
+      // a pause after the step label ("Set up"), each tag ("Ignore points") and each line, so they aren't run together
+      q(".n, .sn, .tag, .line, .aside, .note").forEach(function(x) { x.appendChild(document.createTextNode(". ")); });
+      q(".u").forEach(function(x) { x.insertBefore(document.createTextNode(" "), x.firstChild); }); // 40 cm²
+      // the inside ones first: powers, then roots and fractions (whose parts may hold powers), then matrices
+      q(".sep").forEach(function(x) { x.textContent = "; "; }); // GCF 6 · LCM 36
+      // the arrow between two fractions, the same step above and below it: "÷6" over "÷6"
+      q(".xa").forEach(function(x) {
+        var k = [].map.call(x.children, function(y) { return y.textContent.trim(); }),
+          m = /^([÷×])\s?(\d+)$/.exec(k[0] || "");
+        if (m && k.length === 2 && k[0] === k[1]) x.textContent = ", " + (m[1] === "÷" ? "divide" : "multiply") + " the top and the bottom by " + m[2] + ", to get ";
+        else if (k.length) x.textContent = " " + k.join(" and ") + " ";
+      });
+      q(".wk, .op-s").forEach(function(x) {
+        x.insertBefore(document.createTextNode(" "), x.firstChild);
+        x.appendChild(document.createTextNode(" "));
+      });
+      // an integral's bounds, the top one first: ∫ with 2 over 0
+      q(".bnd").forEach(function(b) { if (b.children.length === 2) b.textContent = BO + b.children[1].textContent + BC + PO + b.children[0].textContent + PC + " "; });
+      q("sup").reverse().forEach(function(s) { s.textContent = PO + s.textContent + PC; });
+      q("sub").reverse().forEach(function(s) { s.textContent = BO + s.textContent + BC; });
+      q(".rep").reverse().forEach(function(x) { x.textContent = EO + x.textContent + EC; });
+      // roots: .rt holding √ and the .rad under it, or .rad holding .ri (index), .rs (the sign) and .rc (under it)
+      q(".rt").reverse().forEach(function(r) {
+        var u = r.querySelector(".rad");
+        if (u) r.textContent = (r.textContent.replace(u.textContent, "").replace(/[^√∛∜]/g, "") || "√") + RO + u.textContent + RC;
+      });
+      q(".rad").reverse().forEach(function(r) {
+        var rc = r.querySelector(".rc"),
+          rs = r.querySelector(".rs"),
+          sign = rs ? rs.textContent.replace(/[^√∛∜]/g, "") || "√" : "√",
+          ix = r.querySelector(".ri, .idx, .ix");
+        if (rc) r.textContent = (ix ? PO + ix.textContent.trim() + PC : "") + sign + RO + rc.textContent + RC;
+      });
+      q(".fr, .frac, .fraction").reverse().forEach(function(fr) {
+        var nu = fr.querySelector(".nu, .num, .top"),
+          de = fr.querySelector(".de, .den, .bot, .bottom");
+        if (!nu || !de) {
+          var k = fr.children;
+          if (k.length === 2) {
+            nu = k[0];
+            de = k[1];
+          }
+        }
+        if (nu && de) fr.textContent = (/[\w)]/.test(lastChar(fr)) ? " " : "") + FO + nu.textContent.trim() + FM + de.textContent.trim() + FC + " ";
+      });
+      q(".mx").reverse().forEach(function(mx) {
+        var cells = [].slice.call(mx.children).map(function(e) { var t = txt(e); return /^[\s·•?…]*$/.test(t) ? "blank" : t; }), // a cell still to work out shows a dot
+          m = /repeat\(\s?(\d+)/.exec(mx.getAttribute("style") || ""),
+          n = m ? Number(m[1]) : Math.round(Math.sqrt(cells.length)) || 1,
+          rows = [];
+        for (var i = 0; i < cells.length; i += n) rows.push(cells.slice(i, i + n));
+        mx.textContent = " " + (n === 1 ? "the column " + rows.map(function(r) { return r[0]; }).join(", ") + END : matrixWords(rows)) + " ";
+      });
+      // no ". ." where a line already ended
+      return words(c.textContent).replace(/\s+\./g, ".").replace(/([.!?:;])(?:\s*\.)+/g, "$1").replace(/^\.\s*/, "");
+    }
+
+    return { words: words, spoken: spoken };
+  })();
+
+  function spoken(el) { return MATH.spoken(el); }
+
+  function words(t) { return MATH.words(t); }
 
   function logItems() {
     var log = document.querySelector(".log");
@@ -689,7 +1406,13 @@
     "nursing.html": "/ . , : % mg mcg mL",
     "carpentry.html": "' \" / + − x ° % $ space",
     "electrical.html": "Ω k µ | + ( ) . % $",
-    "cooking.html": "/ ½ ¼ ¾ $ % ° : ×"
+    "cooking.html": "/ ½ ¼ ¾ $ % ° : ×",
+    "pharmacy.html": "/ . , % $ : ° mg mL",
+    "hvac-plumbing.html": "/ . ° % \" ' x R- Δ ,",
+    "machining.html": "/ \" . x - ° ± + % #",
+    "automotive.html": ": / . $ % rpm lb-ft mph space",
+    "business.html": "$ % . , : x −",
+    "real-estate.html": "$ % , . x / ( )"
   };
   var padEl = null,
     padFor = null,
@@ -992,6 +1715,22 @@
     document.head.appendChild(sc);
   }
 
+  /* ===================== math names for screen readers: a11y.js, next to this file ===================== */
+  // fractions, powers, roots and the answer band get an aria-label in the words above (spoken); everywhere, embeds
+  // and frames too, but not on the self-test page itself
+  function loadA11y() {
+    if (window.HelperA11y || page === "tests.html" || !window.MutationObserver) return;
+    var src = SELF;
+    if (!src) {
+      var s = document.querySelector('script[src$="tools.js"], script[src*="tools.js?"]');
+      src = s ? s.src : "tools.js";
+    }
+    var sc = document.createElement("script");
+    sc.src = src.replace(/tools\.js([?#].*)?$/, "a11y.js");
+    sc.async = true;
+    document.head.appendChild(sc);
+  }
+
   /* ===================== the bar: search, recent, text size, big screen, shortcuts ===================== */
   function goSearch(text) {
     var r = window.HelperSearch && window.HelperSearch.route(text);
@@ -1171,6 +1910,15 @@
       sc.src = src.replace(/tools\.js([?#].*)?$/, "photo.js");
       sc.async = true;
       document.head.appendChild(sc);
+      // Say the problem: a microphone button beside the camera (voice.js), only where the browser can turn speech into
+      // text (Chrome, Edge, Safari; not Firefox). voice.js waits for photo.js's button, and asks before the first use.
+      if (!window.HelperVoice && (window.SpeechRecognition || window.webkitSpeechRecognition)) {
+        var vc = document.createElement("script");
+        vc.src = src.replace(/tools\.js([?#].*)?$/, "voice.js");
+        vc.charset = "utf-8";
+        vc.async = true;
+        document.head.appendChild(vc);
+      }
     });
     if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", loadPhoto);
     else loadPhoto();
@@ -1184,6 +1932,7 @@
     if (page !== "tests.html") initPad(); // the math keys also help inside practice sets on a phone
     loadTutor(); // framed too (the self-test); embedded, only when the link says practice=tutor
     loadPlay(); // framed too (the self-test); never embedded
+    loadA11y(); // framed and embedded too
     document.addEventListener("helper:tutor", safe(onTutor));
     if (siteEmbed()) { // on someone else's website: embed.js hides the site bar, adds the link back, posts the height
       root.classList.add("ht-site-wait");

@@ -72,6 +72,12 @@
     --ele: #611E05;
     --rcp: #67311E;
     --cnt: #6B5A2B;
+    --pha: #5E62B5;
+    --hvp: #134E4E;
+    --mch: #38543B;
+    --aut: #7E0135;
+    --biz: #8F538C;
+    --rea: #454A0D;
     --fla: #C2410C;
     --heat: #0D7361;
     --shadow: 0 1px 0 rgba(24, 32, 28, .05), 0 14px 30px -20px rgba(24, 32, 28, .5);
@@ -132,6 +138,12 @@
       --ele: #F9C4A0;
       --rcp: #E4BDAF;
       --cnt: #EED9A0;
+      --pha: #CCCFFF;
+      --hvp: #A6D9D4;
+      --mch: #9FB79A;
+      --aut: #BEA5AA;
+      --biz: #C79FC3;
+      --rea: #B3B47C;
       --fla: #FB923C;
       --heat: #4FCCB0;
       --shadow: 0 1px 0 rgba(0, 0, 0, .3), 0 14px 30px -20px rgba(0, 0, 0, .9);
@@ -189,6 +201,12 @@
     --ele: #F9C4A0;
     --rcp: #E4BDAF;
     --cnt: #EED9A0;
+    --pha: #CCCFFF;
+    --hvp: #A6D9D4;
+    --mch: #9FB79A;
+    --aut: #BEA5AA;
+    --biz: #C79FC3;
+    --rea: #B3B47C;
     --fla: #FB923C;
     --heat: #4FCCB0;
     --shadow: 0 1px 0 rgba(0, 0, 0, .3), 0 14px 30px -20px rgba(0, 0, 0, .9);
@@ -637,6 +655,31 @@
     font-size: 19px;
     margin: 6px 0 -8px
   }
+  /* a domain folds away: the heading row is the summary */
+  details.dom>summary {
+    list-style: none;
+    cursor: pointer
+  }
+  details.dom>summary::-webkit-details-marker {
+    display: none
+  }
+  details.dom>summary h3::before {
+    content: "▸";
+    display: inline-block;
+    width: 1.1em;
+    color: var(--ink-3);
+    transition: transform .15s
+  }
+  details.dom[open]>summary h3::before {
+    transform: rotate(90deg)
+  }
+  details.dom:not([open])>summary {
+    margin-bottom: 0
+  }
+  .domtools {
+    margin: 0 0 -4px;
+    text-align: right
+  }
   .dom .panel-head h3 small {
     font-family: var(--f-mono);
     font-size: 11px;
@@ -866,6 +909,7 @@
       Nothing is sent anywhere, and there’s no account.</p>
     <div class="actions">
       <a class="ghost" href="progress.html">Your progress</a>
+      <a class="ghost" href="review.html">Your review</a>
       <a class="ghost" href="sets.html">Make a practice set</a>
       <span class="msg" id="msg" role="status" aria-live="polite"></span>
     </div>
@@ -1199,6 +1243,10 @@
         }
         DM[dc].skills.push(k);
       });
+      // each domain folds away (a long grade is a lot of scrolling on a phone): on a wide screen they all start open,
+      // on a narrow one only the first does
+      var wide = window.innerWidth >= 900;
+      html += '<p class="domtools"><button type="button" class="ghost" id="domAll">' + (wide ? "Close all" : "Open all") + "</button></p>";
       doms.forEach(function(d, di) {
         if (d.area && d.area !== area) {
           area = d.area;
@@ -1206,8 +1254,8 @@
         }
         var pr = d.skills.filter(function(k) { return k.status !== "none"; }).length,
           ma = d.skills.filter(function(k) { return k.status === "mast"; }).length;
-        html += '<section class="panel dom" aria-labelledby="dom' + di + '"><div class="panel-head"><h3 id="dom' + di + '">' + esc(d.name) + "<small>" + esc(d.code) + "</small></h3>" +
-          "<span>" + pr + " of " + d.skills.length + " practiced · " + ma + " mastered</span></div><ol class=\"slist\">" +
+        html += '<details class="panel dom"' + (wide || di === 0 ? " open" : "") + '><summary class="panel-head"><h3 id="dom' + di + '">' + esc(d.name) + "<small>" + esc(d.code) + "</small></h3>" +
+          "<span>" + pr + " of " + d.skills.length + " practiced · " + ma + " mastered</span></summary><ol class=\"slist\">" +
           d.skills.map(function(k) {
             var others = k.targets.filter(function(t) { return t !== k.main; });
             return '<li class="std ' + ST[k.status].cls + '">' + chip(k.status) +
@@ -1217,9 +1265,21 @@
               (k.main ? '<p class="where">On ' + '<a href="' + esc(tabLink(k.main.page, k.main.mode)) + '">' + esc(where(k.main)) + "</a>" +
                 (others.length ? "; also " + others.map(function(t) { return '<a href="' + esc(tabLink(t.page, t.mode)) + '">' + esc(where(t)) + "</a>"; }).join(", ") : "") + "</p>" : "") +
               "</div>" + practiceBtn(k) + "</li>";
-          }).join("") + "</ol></section>";
+          }).join("") + "</ol></details>";
       });
       $("domains").innerHTML = html;
+      var all = $("domAll");
+      if (all) all.addEventListener("click", function() {
+        var open = all.textContent === "Open all";
+        [].forEach.call(document.querySelectorAll("#domains details.dom"), function(x) { x.open = open; });
+        all.textContent = open ? "Close all" : "Open all";
+      });
+      if (!window.__domPrint) {
+        window.__domPrint = true; // a printed grade shows every domain
+        window.addEventListener("beforeprint", function() {
+          [].forEach.call(document.querySelectorAll("#domains details.dom"), function(x) { x.open = true; });
+        });
+      }
     }
 
     function upper(key) { return key === "hs" ? "HS" : key === "k" ? "K" : key; }

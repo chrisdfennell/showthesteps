@@ -5,7 +5,7 @@
    Pages are opened by readable addresses (helpers/order-of-operations, no .html): offline, such an address is found
    under its file's name.
    This file stays at the top of the site: a service worker only looks after the pages in its own folder and below. */
-var VERSION = "v9";
+var VERSION = "v10";
 var CACHE = "helpers-" + VERSION;
 var PAGES = [
   "./", "index.html", "404.html",
@@ -17,10 +17,11 @@ var PAGES = [
   "helpers/scratch-paper.html", "helpers/number-sense.html", "helpers/quadratics.html", "helpers/logarithms.html",
   "helpers/sequences.html", "helpers/functions.html", "helpers/radicals.html", "helpers/complex-numbers.html",
   "helpers/college-statistics.html", "helpers/matrices-and-vectors.html", "helpers/unit-conversions.html", "helpers/money-math.html", "helpers/aviation.html",
-  "helpers/nursing.html", "helpers/carpentry.html", "helpers/electrical.html", "helpers/cooking.html",
-  "practice/sets.html", "practice/worksheets.html", "practice/flash-cards.html", "practice/problem-of-the-day.html", "practice/progress.html", "practice/skills.html", "practice/class-results.html",
+  "helpers/nursing.html", "helpers/pharmacy.html", "helpers/carpentry.html", "helpers/electrical.html", "helpers/hvac-plumbing.html",
+  "helpers/machining.html", "helpers/automotive.html", "helpers/cooking.html", "helpers/business.html", "helpers/real-estate.html",
+  "practice/sets.html", "practice/worksheets.html", "practice/flash-cards.html", "practice/problem-of-the-day.html", "practice/progress.html", "practice/skills.html", "practice/review.html", "practice/class-results.html",
   "reference/sheets.html", "reference/definitions.html", "info/about.html", "info/privacy.html", "info/help.html", "info/embed.html", "tests/self-test.html",
-  "assets/site.js", "assets/nav.js", "assets/progress.js", "assets/glossary.js", "assets/search.js", "assets/tools.js", "assets/tutor.js", "assets/play.js", "assets/embed.js", "assets/qr.js", "assets/standards.js", "assets/assign.js", "assets/photo.js",
+  "assets/site.js", "assets/nav.js", "assets/progress.js", "assets/glossary.js", "assets/search.js", "assets/tools.js", "assets/tutor.js", "assets/play.js", "assets/a11y.js", "assets/embed.js", "assets/qr.js", "assets/standards.js", "assets/assign.js", "assets/photo.js", "assets/voice.js",
   "reference/standards.html", "learn/index.html",
   "assets/fonts/fonts.css", "assets/fonts/archivo-latin.woff2", "assets/fonts/IBMPlexSans-Regular-Latin1.woff2", "assets/fonts/IBMPlexSans-Medium-Latin1.woff2",
   "assets/fonts/IBMPlexSans-SemiBold-Latin1.woff2", "assets/fonts/IBMPlexMono-Regular-Latin1.woff2", "assets/fonts/IBMPlexMono-SemiBold-Latin1.woff2",
