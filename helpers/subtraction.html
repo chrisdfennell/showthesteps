@@ -16,6 +16,7 @@
 <link rel="canonical" href="https://showthesteps.org/helpers/subtraction">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","name":"Subtraction with borrowing, step by step – The Borrow Bank","description":"When a column comes up short, you borrow from next door. Every trade gets crossed out and written above, so you can see exactly where the ten came from.","url":"https://showthesteps.org/helpers/subtraction","inLanguage":"en-US","isAccessibleForFree":true,"learningResourceType":["Interactive worked examples","Practice problems"],"interactivityType":"active","educationalUse":["Practice","Self-assessment"],"teaches":"Subtraction with borrowing","educationalLevel":["Elementary school (grades K–5)","Middle school (grades 6–8)"],"audience":{"@type":"EducationalAudience","educationalRole":"student"},"publisher":{"@type":"Organization","name":"Show The Steps","url":"https://showthesteps.org/"},"isPartOf":{"@type":"WebSite","name":"Show The Steps","url":"https://showthesteps.org/"}}</script>
 <script src="../assets/site.js"></script>
+<script src="../assets/i18n.js" data-strings="subtraction"></script>
 <script src="../assets/nav.js" defer></script>
 <script src="../assets/progress.js" defer></script>
 <link rel="stylesheet" href="../assets/fonts/fonts.css">
@@ -1627,75 +1628,75 @@
 <div class="page" id="page">
   <header class="masthead">
     <div>
-      <div class="eyebrow">Subtracting, worked out</div>
+      <div class="eyebrow" data-i18n="subtraction.eyebrow">Subtracting, worked out</div>
       <h1>The Borrow <em>Bank</em></h1>
-      <p class="tagline">When a column comes up short, you borrow from next door. Every trade gets
+      <p class="tagline" data-i18n="subtraction.tagline">When a column comes up short, you borrow from next door. Every trade gets
         crossed out and written above, so you can see exactly where the ten came from.</p>
     </div>
-    <button class="theme-btn" id="themeBtn" type="button">Dark mode</button>
+    <button class="theme-btn" id="themeBtn" type="button" data-i18n="common.darkMode">Dark mode</button>
   </header>
 
   <section class="problem">
-    <div class="modes" role="group" aria-label="What kind of numbers">
-      <button type="button" data-mode="dec" aria-pressed="true">Decimals</button>
-      <button type="button" data-mode="frac" aria-pressed="false">Fractions</button>
+    <div class="modes" role="group" aria-label="What kind of numbers" data-i18n-attr="aria-label=subtraction.kindAria">
+      <button type="button" data-mode="dec" aria-pressed="true" data-i18n="common.decimals">Decimals</button>
+      <button type="button" data-mode="frac" aria-pressed="false" data-i18n="common.fractions">Fractions</button>
     </div>
 
     <div class="entry" id="decEntry">
       <div class="numfield">
-        <label for="aIn">Start with</label>
+        <label for="aIn" data-i18n="subtraction.startWith">Start with</label>
         <input class="dec-in" id="aIn" type="text" inputmode="decimal" value="25.4" autocomplete="off">
       </div>
       <span class="minus">&minus;</span>
       <div class="numfield">
-        <label for="bIn">Take away</label>
+        <label for="bIn" data-i18n="subtraction.takeAway">Take away</label>
         <input class="dec-in" id="bIn" type="text" inputmode="decimal" value="3.75" autocomplete="off">
       </div>
       <button class="swap" id="swapBtn" type="button" aria-label="Swap the two numbers"
-              title="Swap the two numbers">&#8646;</button>
+              title="Swap the two numbers" data-i18n-attr="aria-label=subtraction.swap;title=subtraction.swap">&#8646;</button>
     </div>
 
     <div class="entry hide" id="fracEntry">
       <div class="mixfield">
-        <span class="fieldcap">Start with</span>
-        <input class="whole" id="w1" type="text" inputmode="numeric" value="3" aria-label="First whole number">
+        <span class="fieldcap" data-i18n="subtraction.startWith">Start with</span>
+        <input class="whole" id="w1" type="text" inputmode="numeric" value="3" aria-label="First whole number" data-i18n-attr="aria-label=subtraction.w1">
         <div class="stackfield">
-          <input id="n1" type="text" inputmode="numeric" value="1" aria-label="First numerator">
+          <input id="n1" type="text" inputmode="numeric" value="1" aria-label="First numerator" data-i18n-attr="aria-label=subtraction.n1">
           <div class="fbar"></div>
-          <input id="d1" type="text" inputmode="numeric" value="4" aria-label="First denominator">
+          <input id="d1" type="text" inputmode="numeric" value="4" aria-label="First denominator" data-i18n-attr="aria-label=subtraction.d1">
         </div>
       </div>
       <span class="minus">&minus;</span>
       <div class="mixfield">
-        <span class="fieldcap">Take away</span>
-        <input class="whole" id="w2" type="text" inputmode="numeric" value="1" aria-label="Second whole number">
+        <span class="fieldcap" data-i18n="subtraction.takeAway">Take away</span>
+        <input class="whole" id="w2" type="text" inputmode="numeric" value="1" aria-label="Second whole number" data-i18n-attr="aria-label=subtraction.w2">
         <div class="stackfield">
-          <input id="n2" type="text" inputmode="numeric" value="2" aria-label="Second numerator">
+          <input id="n2" type="text" inputmode="numeric" value="2" aria-label="Second numerator" data-i18n-attr="aria-label=subtraction.n2">
           <div class="fbar"></div>
-          <input id="d2" type="text" inputmode="numeric" value="3" aria-label="Second denominator">
+          <input id="d2" type="text" inputmode="numeric" value="3" aria-label="Second denominator" data-i18n-attr="aria-label=subtraction.d2">
         </div>
       </div>
     </div>
 
     <details class="maker" id="maker">
-      <summary>Make a problem for me <span>&mdash; pick what goes in it</span></summary>
+      <summary data-i18n="common.maker">Make a problem for me <span>&mdash; pick what goes in it</span></summary>
       <div class="maker-body" id="makerDec"></div>
       <div class="maker-body" id="makerFrac" hidden></div>
       <p class="sample" id="sample"></p>
       <div class="maker-go">
-        <button type="button" class="go" id="genBtn">New problem</button>
+        <button type="button" class="go" id="genBtn" data-i18n="common.newProblem">New problem</button>
         <span class="msg" id="genMsg" aria-live="polite"></span>
       </div>
     </details>
 
     <div class="examples">
-      <span class="lbl">Try</span>
+      <span class="lbl" data-i18n="common.try">Try</span>
       <span id="chips"></span>
       <span class="practice">
-        <div class="modes" role="group" aria-label="Practice mode">
-          <button type="button" id="allBtn" aria-pressed="true">Show all work</button>
-          <button type="button" id="stepBtn" aria-pressed="false">One step at a time</button>
-          <button type="button" id="checkBtn" aria-pressed="false">Check my answer</button>
+        <div class="modes" role="group" aria-label="Practice mode" data-i18n-attr="aria-label=common.practiceMode">
+          <button type="button" id="allBtn" aria-pressed="true" data-i18n="common.showAll">Show all work</button>
+          <button type="button" id="stepBtn" aria-pressed="false" data-i18n="common.oneStep">One step at a time</button>
+          <button type="button" id="checkBtn" aria-pressed="false" data-i18n="common.checkMine">Check my answer</button>
         </div>
       </span>
     </div>
@@ -1704,16 +1705,16 @@
   <div id="statusLine" role="status" aria-live="polite"></div>
   <div class="linknote" id="linkNote" hidden></div>
 
-  <section class="try" id="tryBox" hidden aria-label="Check my answer">
-    <label class="k" for="tryIn">Your answer</label>
+  <section class="try" id="tryBox" hidden aria-label="Check my answer" data-i18n-attr="aria-label=common.checkMine">
+    <label class="k" for="tryIn" data-i18n="common.yourAnswer">Your answer</label>
     <div class="try-row">
       <input class="try-in" id="tryIn" type="text" inputmode="text" autocomplete="off" spellcheck="false" placeholder="?">
-      <button type="button" class="go" id="tryBtn">Check</button>
+      <button type="button" class="go" id="tryBtn" data-i18n="common.check">Check</button>
     </div>
     <p class="try-msg" id="tryMsg" aria-live="polite"></p>
     <div class="try-more" id="tryMore" hidden>
-      <button type="button" class="tog" id="hintBtn">Show a hint</button>
-      <button type="button" class="tog" id="showBtn">Show me the work</button>
+      <button type="button" class="tog" id="hintBtn" data-i18n="common.hint">Show a hint</button>
+      <button type="button" class="tog" id="showBtn" data-i18n="common.showWork">Show me the work</button>
     </div>
     <p class="try-hint" id="tryHint"></p>
   </section>
@@ -1721,11 +1722,11 @@
   <div class="board" id="board">
     <section class="panel">
       <div class="panel-head">
-        <h2>The work</h2>
+        <h2 data-i18n="common.theWork">The work</h2>
         <div class="stepper" id="stepper" hidden>
-          <button type="button" id="prevBtn" aria-label="Previous step">&larr;</button>
+          <button type="button" id="prevBtn" aria-label="Previous step" data-i18n-attr="aria-label=common.prevStep">&larr;</button>
           <span class="count" id="stepCount"></span>
-          <button type="button" id="nextBtn" aria-label="Next step">&rarr;</button>
+          <button type="button" id="nextBtn" aria-label="Next step" data-i18n-attr="aria-label=common.nextStep">&rarr;</button>
         </div>
       </div>
       <div id="workHost"></div>
@@ -1733,16 +1734,16 @@
     </section>
 
     <section class="panel">
-      <div class="panel-head"><h2>Say it out loud</h2></div>
+      <div class="panel-head"><h2 data-i18n="common.sayIt">Say it out loud</h2></div>
       <ol class="log" id="log"></ol>
       <div class="closer" id="closer"></div>
     </section>
   </div>
 
   <div class="footnote">
-    <button class="print" type="button" id="printBtn">Print this work</button>
-    <button class="print" type="button" id="copyBtn">Copy link</button>
-    <span>Borrowing isn&rsquo;t cheating &mdash; one ten is worth ten ones, so you&rsquo;re trading, not taking.</span>
+    <button class="print" type="button" id="printBtn" data-i18n="common.print">Print this work</button>
+    <button class="print" type="button" id="copyBtn" data-i18n="common.copyLink">Copy link</button>
+    <span data-i18n="subtraction.footnote">Borrowing isn&rsquo;t cheating &mdash; one ten is worth ten ones, so you&rsquo;re trading, not taking.</span>
   </div>
 </div>
 
@@ -1774,6 +1775,8 @@
      ============================================================================= */
   (function() {
     "use strict";
+    if (window.HelperI18n) HelperI18n.apply();
+    var T = function(k, v) { return window.HelperI18n ? HelperI18n.t(k, v) : k; };
     var $ = function(id) { return document.getElementById(id); };
     var lastDec = null;
     var S = {
@@ -1825,10 +1828,18 @@
 
     function lcm(a, b) { return a / gcd(a, b) * b; }
 
-    function placeName(e) {
-      var pos = ["ones", "tens", "hundreds", "thousands", "ten thousands", "hundred thousands", "millions"];
-      var neg = ["tenths", "hundredths", "thousandths", "ten-thousandths", "hundred-thousandths"];
-      return e >= 0 ? (pos[e] || "big place") : (neg[-e - 1] || "tiny place");
+    /* a place's name: placeName(1) -> "tens" (a column heading); placeThe(1) -> the name as a sentence uses it
+       (English "tens", Spanish "las decenas") */
+    function placeKey(e) { return e >= 0 ? (e <= 6 ? String(e) : "big") : (e >= -5 ? String(e) : "tiny"); }
+
+    function placeName(e) { return T("subtraction.place." + placeKey(e)); }
+
+    function placeThe(e) { return T("subtraction.placeThe." + placeKey(e)); }
+
+    // a list of names: "tens and hundreds" (Spanish "las decenas y las centenas")
+    function andList(names) {
+      if (names.length < 2) return names.join("");
+      return names.slice(0, -1).join(T("subtraction.listSep")) + T("subtraction.listAnd") + names[names.length - 1];
     }
 
     function cmp(x, y) { // compare two parsed numbers
@@ -1940,11 +1951,10 @@
         b = parseNum(S.b);
       if (!a || !b) {
         var whole = typedIn();
-        return fail(whole ? "That box has a whole problem in it — press Enter to work out <b>" + esc(whole) + "</b>." :
-          "Type a number in both boxes — digits and at most one decimal point.");
+        return fail(whole ? T("subtraction.wholeInBox", { q: esc(whole) }) : T("subtraction.typeBoth"));
       }
       if ((a.i + a.f).length > 12 || (b.i + b.f).length > 12)
-        return fail("Keep each number to 12 digits or fewer so the columns stay readable.");
+        return fail(T("subtraction.tooLong"));
 
       var flipped = cmp(a, b) < 0;
       var top = flipped ? b : a,
@@ -2057,93 +2067,87 @@
 
       var facts = [];
       var borrows = A.steps.filter(function(s) { return s.borrowed; }).length;
-      facts.push(borrows === 0 ? "No borrowing needed — every column had enough." :
-        "Borrowed <b>" + borrows + "</b> time" + (borrows > 1 ? "s" : "") + ".");
-      if (A.maxF > 0 && top.f.length !== bot.f.length)
-        facts.push("Added zeros so both have <b>" + A.maxF + "</b> decimal place" +
-          (A.maxF > 1 ? "s" : "") + ".");
-      if (flipped)
-        facts.push("<b>" + esc(numStr(b)) + "</b> is bigger, so the answer is negative.");
+      facts.push(borrows === 0 ? T("subtraction.noBorrow") : T("subtraction.borrowedN", { n: borrows }));
+      if (A.maxF > 0 && top.f.length !== bot.f.length) facts.push(T("subtraction.addedZeros", { n: A.maxF }));
+      if (flipped) facts.push(T("subtraction.biggerNeg", { b: esc(numStr(b)) }));
       var ff = fracFact(shown);
       if (ff) facts.push(ff);
-      band('<span class="k">Difference</span><span class="v">' + esc(commas(shown)) + "</span>",
+      band('<span class="k">' + T("subtraction.difference") + '</span><span class="v">' + esc(commas(shown)) + "</span>",
         facts, "answer");
 
       /* words */
       var items = [];
       if (flipped) {
         items.push({
-          n: "Set&nbsp;up",
+          n: T("subtraction.setUp"),
           lines: [
-            ["p", "Flip it",
-              "<b>" + esc(numStr(b)) + "</b> is bigger than <b>" + esc(numStr(a)) +
-              "</b>, so the answer will be below zero. Subtract the smaller from the bigger — <b>" +
-              esc(numStr(top)) + " − " + esc(numStr(bot)) +
-              "</b> — then put a minus sign on the result."
+            ["p", T("subtraction.tag.flip"),
+              T("subtraction.flipIt", { b: esc(numStr(b)), a: esc(numStr(a)), top: esc(numStr(top)), bot: esc(numStr(bot)) })
             ]
           ],
-          aside: "Think of a thermometer: going down past zero doesn’t change how far you traveled, " +
-            "it just changes which side of zero you land on."
+          aside: T("subtraction.thermometer")
         });
       }
       if (A.maxF > 0 && top.f.length !== bot.f.length) {
         var shortOne = top.f.length < bot.f.length ? top : bot;
         items.push({
-          n: "Set&nbsp;up",
+          n: T("subtraction.setUp"),
           lines: [
-            ["p", "Line up",
-              "Stack them so the decimal points line up — the dashed line. Fill the empty places with <b>0</b>, " +
-              "so <b>" + esc(numStr(shortOne)) + "</b> becomes <b>" +
-              esc(shortOne.i + "." + (shortOne.f + new Array(A.maxF - shortOne.f.length + 1).join("0"))) +
-              "</b>."
+            ["p", T("subtraction.tag.lineUp"),
+              T("subtraction.lineUp", {
+                x: esc(numStr(shortOne)),
+                y: esc(shortOne.i + "." + (shortOne.f + new Array(A.maxF - shortOne.f.length + 1).join("0")))
+              })
             ]
           ],
-          aside: "You need a digit in every column before you can start trading between them."
+          aside: T("subtraction.lineUpAside")
         });
       }
       A.steps.forEach(function(s, idx) {
         var lines = [
-          ["p", "Column", "The <b>" + placeName(s.exp) + "</b> column."]
+          ["p", T("subtraction.tag.column"), T("subtraction.columnOf", { place: placeThe(s.exp) })]
         ];
         var aside = null;
         if (s.borrowed) {
           var origTop = A.orig[s.k];
           if (s.borrowed.through.length === 0) {
-            lines.push(["b", "Borrow", "You can’t take <b>" + s.bot + "</b> from <b>" + origTop +
-              "</b>. Borrow one from the <b>" + placeName(s.exp + 1) + "</b>: that column drops to <b>" +
-              A.work[s.borrowed.from] + "</b> and this one becomes <b>" + s.top + "</b>."
-            ]);
+            lines.push(["b", T("subtraction.tag.borrow"), T("subtraction.borrowNext", {
+              bot: s.bot,
+              top: origTop,
+              from: placeThe(s.exp + 1),
+              left: A.work[s.borrowed.from],
+              now: s.top
+            })]);
           } else {
-            var names = s.borrowed.through.map(function(t) { return placeName(A.maxI - 1 - t); });
-            lines.push(["b", "Borrow", "You can’t take <b>" + s.bot + "</b> from <b>" + origTop +
-              "</b>, and the " + names.join(" and ") + " column" +
-              (names.length > 1 ? "s are" : " is") + " <b>0</b> — nothing to lend. Keep going left to the <b>" +
-              placeName(A.maxI - 1 - s.borrowed.from) + "</b>: it drops to <b>" +
-              A.work[s.borrowed.from] + "</b>, each <b>0</b> along the way becomes <b>9</b>, " +
-              "and this column becomes <b>" + s.top + "</b>."
-            ]);
-            aside = "A zero can’t lend, so it borrows too. Each one takes ten from its left neighbor, " +
-              "keeps nine, and passes one along — that’s why they all turn into 9s.";
+            var names = s.borrowed.through.map(function(t) { return placeThe(A.maxI - 1 - t); });
+            lines.push(["b", T("subtraction.tag.borrow"), T("subtraction.borrowZeros", {
+              bot: s.bot,
+              top: origTop,
+              names: andList(names),
+              n: names.length,
+              from: placeThe(A.maxI - 1 - s.borrowed.from),
+              left: A.work[s.borrowed.from],
+              now: s.top
+            })]);
+            aside = T("subtraction.zeroAside");
           }
         }
-        lines.push(["c", "Subtract", "<b>" + s.top + " − " + s.bot + " = " + s.diff + "</b>."]);
-        items.push({ n: "Step&nbsp;" + (idx + 1), lines: lines, aside: aside, step: idx });
+        lines.push(["c", T("subtraction.tag.subtract"), "<b>" + s.top + " − " + s.bot + " = " + s.diff + "</b>."]);
+        items.push({ n: T("subtraction.stepN", { n: idx + 1 }), lines: lines, aside: aside, step: idx });
       });
       writeLog(items);
 
       var back = Number(raw) + Number(numStr(bot));
       var want = Number(numStr(top));
-      $("closer").innerHTML = "<b>Check by adding it back:</b> " + esc(numStr(parseNum(raw))) +
-        " + " + esc(numStr(bot)) + " = <b>" + trimNum(back) + "</b>" +
-        (Math.abs(back - want) < 1e-9 ?
-          ' <span class="ok">✓ back to ' + (flipped ? "the bigger number" : "what you started with") +
-          '</span>' :
-          " — should be " + esc(numStr(top))) + ".";
+      var backEq = esc(numStr(parseNum(raw))) + " + " + esc(numStr(bot)) + " = <b>" + trimNum(back) + "</b>";
+      $("closer").innerHTML = Math.abs(back - want) < 1e-9 ?
+        T(flipped ? "subtraction.closerBigger" : "subtraction.closerStart", { eq: backEq }) :
+        T("subtraction.closerShould", { eq: backEq, want: esc(numStr(top)) });
 
       $("legend").innerHTML =
-        '<div><i class="sw-k"></i> Traded / crossed out</div>' +
-        '<div><i class="sw-a"></i> The difference</div>' +
-        '<div>Struck-through digits were swapped for the smaller value above them</div>';
+        '<div><i class="sw-k"></i> ' + T("subtraction.legendTraded") + "</div>" +
+        '<div><i class="sw-a"></i> ' + T("subtraction.legendDiff") + "</div>" +
+        "<div>" + T("subtraction.legendStruck") + "</div>";
       /* the whole tape, split into what's taken away and what's left */
       var tv = numStr(top),
         bv = numStr(bot),
@@ -2153,18 +2157,15 @@
           unders = [];
         if (Number(bv) > 0) {
           tsegs.push({ w: Number(bv), html: esc(commaNum(bv)), cls: "b" });
-          unders.push({ from: 1, to: 1, label: flipped ? "you have" : "take away" });
+          unders.push({ from: 1, to: 1, label: T(flipped ? "subtraction.youHave" : "subtraction.takeAwayLow") });
         }
         if (Number(dv) > 0) {
           tsegs.push({ w: Number(dv), html: esc(commaNum(dv)), cls: "ans" });
-          unders.push({ from: tsegs.length, to: tsegs.length, label: flipped ? "short by" : "what’s left" });
+          unders.push({ from: tsegs.length, to: tsegs.length, label: T(flipped ? "subtraction.shortBy" : "subtraction.whatsLeft") });
         }
         mountTape(flipped ?
-          "<b>" + esc(commaNum(tv)) + "</b> is the longer tape. <b>" + esc(commaNum(bv)) +
-          "</b> only covers part of it, and the gap is <b>" + esc(commaNum(dv)) +
-          "</b> — so you land that far below zero: <b>" + esc(shown) + "</b>." :
-          "Start with the whole tape, <b>" + esc(commaNum(tv)) + "</b>. Take away <b>" +
-          esc(commaNum(bv)) + "</b> and <b>" + esc(commaNum(dv)) + "</b> is left.", { total: esc(commaNum(tv)), segs: tsegs, unders: unders });
+          T("subtraction.tapeNeg", { big: esc(commaNum(tv)), small: esc(commaNum(bv)), gap: esc(commaNum(dv)), res: esc(shown) }) :
+          T("subtraction.tapePos", { whole: esc(commaNum(tv)), take: esc(commaNum(bv)), left: esc(commaNum(dv)) }), { total: esc(commaNum(tv)), segs: tsegs, unders: unders });
       }
       /* area model: place-value boxes, traded where needed, then taken away column by column */
       var traded = A.steps.some(function(s) { return s.borrowed; });
@@ -2174,9 +2175,9 @@
       }
       if (pks.length && pks.length <= 8) {
         var amRows = [{ lbl: esc(commaNum(tv)), vals: A.orig, cls: "r0" }];
-        if (traded) amRows.push({ lbl: "after trading", vals: A.work, cls: "r0", trade: true });
-        amRows.push({ lbl: "take away " + esc(commaNum(bv)), vals: A.B.chars.map(Number), cls: "r1" });
-        amRows.push({ lbl: "what’s left", vals: A.out.map(Number), cls: "tot" });
+        if (traded) amRows.push({ lbl: T("subtraction.afterTrading"), vals: A.work, cls: "r0", trade: true });
+        amRows.push({ lbl: T("subtraction.takeAwayX", { x: esc(commaNum(bv)) }), vals: A.B.chars.map(Number), cls: "r1" });
+        amRows.push({ lbl: T("subtraction.whatsLeft"), vals: A.out.map(Number), cls: "tot" });
         var amHtml = "",
           parts = [];
         pks.forEach(function(k, c) {
@@ -2194,14 +2195,12 @@
               esc(v) + "</div>";
           });
         });
-        mountArea("Break " + (flipped ? "the bigger number, <b>" + esc(commaNum(tv)) + "</b>," : "<b>" +
-            esc(commaNum(tv)) + "</b>") + " into place-value boxes. " +
-          (traded ? "Where a box is too small to take from, trade one from the box on its left — that’s the " +
-            "borrowing. The traded row still adds up to <b>" + esc(commaNum(tv)) + "</b>. " : "") +
+        mountArea(T(flipped ? "subtraction.amBreakBig" : "subtraction.amBreak", { x: esc(commaNum(tv)) }) +
+          (traded ? T("subtraction.amTraded", { x: esc(commaNum(tv)) }) : "") +
           (parts.length > 1 ?
-            "Take away down each column, then add what’s left: " + parts.join(" + ") + " = <b>" :
-            "Take away down the column" + (pks.length > 1 ? "s" : "") + ": <b>") + esc(commaNum(dv)) + "</b> is left." +
-          (flipped ? " Put the minus sign back: <b>" + esc(commas(shown)) + "</b>." : ""),
+            T("subtraction.amAddUp", { parts: parts.join(" + "), left: esc(commaNum(dv)) }) :
+            T("subtraction.amDown", { n: pks.length, left: esc(commaNum(dv)) })) +
+          (flipped ? T("subtraction.amMinus", { x: esc(commas(shown)) }) : ""),
           '<div class="am-scroll"><div class="am" aria-hidden="true" style="gap:3px;grid-template-columns:auto repeat(' +
           pks.length + ',minmax(max-content,1fr));grid-template-rows:auto repeat(' + amRows.length +
           ',44px)">' + amHtml + "</div></div>");
@@ -2222,11 +2221,11 @@
       var m1 = S.frac[0],
         m2 = S.frac[1];
       if ([m1, m2].some(function(m) { return m.some(function(v) { return !isFinite(v); }); }))
-        return fail("Fill in every box. Use 0 for the whole number if you only want a fraction.");
+        return fail(T("subtraction.fillEvery"));
       if (m1[2] === 0 || m2[2] === 0)
-        return fail("A denominator can’t be 0 — you can’t cut something into zero pieces.");
+        return fail(T("subtraction.denZero"));
       if (m1[2] > 999 || m2[2] > 999 || m1[1] > 9999 || m2[1] > 9999)
-        return fail("Keep the numbers small enough to work by hand (denominators under 1000).");
+        return fail(T("subtraction.tooBig"));
 
       lastDec = null;
       var a = toImproper(m1),
@@ -2248,69 +2247,74 @@
         items = [];
 
       function step(html, eq, lines, aside, result) {
-        items.push({ n: "Step&nbsp;" + (rows.length + 1), step: rows.length, lines: lines, aside: aside || null });
+        items.push({ n: T("subtraction.stepN", { n: rows.length + 1 }), step: rows.length, lines: lines, aside: aside || null });
         rows.push({ eq: eq, html: html, result: !!result });
       }
 
       step(termHTML(m1) + '<span class="op-s">&minus;</span>' + termHTML(m2), "",
         [
-          ["p", "Look", "You can only take away pieces of the same size — the same denominator. " +
-            "Here they’re <b>" + a.d + "ths</b> and <b>" + b.d + "ths</b>."
-          ]
+          ["p", T("subtraction.tag.look"), T("subtraction.look", { a: a.d, b: b.d })]
         ],
-        a.d === b.d ? "These already match, so you can subtract straight away." : null);
+        a.d === b.d ? T("subtraction.lookSame") : null);
 
       if (mixedIn) {
         step(fracHTML(a.n, a.d) + '<span class="op-s">&minus;</span>' + fracHTML(b.n, b.d), "=",
           [
-            ["b", "Convert", "<b>" + m1[0] + " " + m1[1] + "/" + m1[2] + "</b> is <b>" + m1[0] + " × " +
-              m1[2] + " + " + m1[1] + " = " + a.n + "</b> pieces, so <b>" + a.n + "/" + a.d +
-              "</b>. The other becomes <b>" + b.n + "/" + b.d + "</b>."
-            ]
+            ["b", T("subtraction.tag.convert"), T("subtraction.convert", {
+              w: m1[0],
+              n: m1[1],
+              d: m1[2],
+              pieces: a.n,
+              f1: a.n + "/" + a.d,
+              f2: b.n + "/" + b.d
+            })]
           ],
-          "Turning mixed numbers into improper fractions saves you from borrowing a whole later on.");
+          T("subtraction.convertAside"));
       }
       if (a.d !== b.d) {
         step(fracHTML(an, L) + '<span class="op-s">&minus;</span>' + fracHTML(bn, L), "=",
           [
-            ["p", "Find LCD", "Multiples of <b>" + a.d + "</b>: " + multiples(a.d, L) +
-              ". Multiples of <b>" + b.d + "</b>: " + multiples(b.d, L) +
-              ". The smallest one they share is <b>" + L + "</b>."
-            ],
-            ["b", "Rename", "<b>" + a.n + "/" + a.d + "</b> × <b>" + fa + "/" + fa + "</b> = <b>" +
-              an + "/" + L + "</b>, and <b>" + b.n + "/" + b.d + "</b> × <b>" + fb + "/" + fb +
-              "</b> = <b>" + bn + "/" + L + "</b>."
-            ]
+            ["p", T("subtraction.tag.lcd"), T("subtraction.lcd", { a: a.d, ma: multiples(a.d, L), b: b.d, mb: multiples(b.d, L), L: L })],
+            ["b", T("subtraction.tag.rename"), T("subtraction.rename", {
+              x: "<b>" + a.n + "/" + a.d + "</b> × <b>" + fa + "/" + fa + "</b> = <b>" + an + "/" + L + "</b>",
+              y: "<b>" + b.n + "/" + b.d + "</b> × <b>" + fb + "/" + fb + "</b> = <b>" + bn + "/" + L + "</b>"
+            })]
           ],
-          "Same value, smaller pieces. Now both are counted in " + L + "ths, so they can be compared.");
+          T("subtraction.renameAside", { L: L }));
       }
       step(signedFrac(diff.n, L), "=",
         [
-          ["b", "Subtract", "<b>" + an + " − " + bn + " = " + diff.n + "</b> pieces, each a <b>" +
-            L + "th</b>. So <b>" + (neg ? "−" : "") + Math.abs(diff.n) + "/" + L + "</b>."
-          ]
+          ["b", T("subtraction.tag.subtract"), T("subtraction.subPieces", {
+            eq: an + " − " + bn + " = " + diff.n,
+            n: diff.n,
+            L: L,
+            res: (neg ? "−" : "") + Math.abs(diff.n) + "/" + L
+          })]
         ],
-        neg ? "You took away more than you had, so the answer drops below zero. The denominator " +
-        "still stays <b>" + L + "</b>." :
-        "The denominator stays <b>" + L + "</b>. You’re counting pieces, not resizing them.",
+        T(neg ? "subtraction.subNegAside" : "subtraction.subAside", { L: L }),
         simp.by === 1 && !needsMixedOut);
 
       if (simp.by > 1) {
         step(simp.d === 1 ? mixedHTML(simp.n, 0, 1, neg) : mixedHTML(0, simp.n, simp.d, neg), "=",
           [
-            ["c", "Simplify", "<b>" + Math.abs(diff.n) + "</b> and <b>" + L + "</b> both divide by <b>" +
-              simp.by + "</b>, giving <b>" + (neg ? "−" : "") + simp.n + "/" + simp.d + "</b>" +
-              (simp.d === 1 ? " — that’s just <b>" + (neg ? "−" : "") + simp.n + "</b>" : "") + "."
-            ]
+            ["c", T("subtraction.tag.simplify"), T(simp.d === 1 ? "subtraction.simplifyWhole" : "subtraction.simplify", {
+              n: Math.abs(diff.n),
+              L: L,
+              g: simp.by,
+              res: (neg ? "−" : "") + simp.n + "/" + simp.d,
+              whole: (neg ? "−" : "") + simp.n
+            })]
           ],
           null, !needsMixedOut);
       }
       if (needsMixedOut) {
         step(mixedHTML(w, rest, simp.d, neg), "=",
           [
-            ["c", "Mixed", "<b>" + simp.n + " ÷ " + simp.d + " = " + w + "</b> remainder <b>" + rest +
-              "</b>, so <b>" + (neg ? "−" : "") + w + " " + rest + "/" + simp.d + "</b>."
-            ]
+            ["c", T("subtraction.tag.mixed"), T("subtraction.mixedOut", {
+              eq: simp.n + " ÷ " + simp.d + " = " + w,
+              r: rest,
+              res: (neg ? "−" : "") + w + " " + rest + "/" + simp.d
+            })]
           ], null, true);
       }
 
@@ -2347,12 +2351,16 @@
           B1 = n2 * d1,
           keep = A1 - B1;
         var simpTxt = simp.n === 0 ? "0" : simp.n + "/" + simp.d;
-        mountArea("Cut <b>" + n1 + "/" + d1 + "</b> into columns and <b>" + n2 + "/" + d2 + "</b> into rows. " +
-          "Put both sets of cuts on each square and every piece is the same size: <b>1/" + P + "</b>. " +
-          "You start with <b>" + A1 + "</b> pieces and take away <b>" + B1 + "</b>, leaving <b>" +
-          keep + "/" + P + "</b>" + (simpTxt !== keep + "/" + P ? ", which is <b>" + simpTxt + "</b>" : "") + "." +
-          (P !== L ? " (Cutting both ways always works. The steps above found a smaller common " +
-            "denominator, <b>" + L + "</b> — either gives the same answer.)" : ""),
+        mountArea(T(simpTxt !== keep + "/" + P ? "subtraction.gridCutWhich" : "subtraction.gridCut", {
+            f1: n1 + "/" + d1,
+            f2: n2 + "/" + d2,
+            P: P,
+            A: A1,
+            B: B1,
+            left: keep + "/" + P,
+            simp: simpTxt
+          }) +
+          (P !== L ? T("subtraction.gridSmaller", { L: L }) : ""),
           '<div class="fgrids">' +
           fGrid(d1, d2, function(c) { return c < n1 ? "have" : ""; }, n1 + "/" + d1 + " = " + A1 + "/" + P) +
           '<span class="op">−</span>' +
@@ -2368,13 +2376,14 @@
         var squares = Math.ceil(an / L) + Math.ceil(bn / L) + Math.ceil(most / L);
         if (most > 0 && L <= 48 && cut.cols <= 12 && squares <= 10) {
           var resTxt = (neg ? "−" : "") + fracTxt(simp.n, simp.d);
-          mountArea("Cut every square into <b>" + L + "</b> equal pieces, so each piece is <b>1/" + L + "</b>. " +
-            "<b>" + mText(m1) + "</b> is <b>" + pieces(an) + "</b> and <b>" + mText(m2) + "</b> is <b>" + pieces(bn) + "</b>. " +
+          mountArea(T("subtraction.sqCut", { L: L, t1: mText(m1), p1: pieces(an), t2: mText(m2), p2: pieces(bn) }) +
             (neg ?
-              "You need to take away <b>" + bn + "</b> but only have <b>" + an + "</b>, so you come up <b>" +
-              pieces(bn - an) + "</b> short: <b>" + resTxt + "</b>." :
-              "Take away <b>" + bn + "</b> and <b>" + (an - bn) + "/" + L + "</b> is left" +
-              (resTxt !== (an - bn) + "/" + L ? ", which is <b>" + resTxt + "</b>" : "") + "."),
+              T("subtraction.sqShort", { take: bn, have: an, short: pieces(bn - an), res: resTxt }) :
+              T(resTxt !== (an - bn) + "/" + L ? "subtraction.sqLeftWhich" : "subtraction.sqLeft", {
+                take: bn,
+                left: (an - bn) + "/" + L,
+                res: resTxt
+              })),
             '<div class="fgrids">' +
             pieceSquares(an, L, cut, function(i) { return i < an ? "have" : ""; }, an + "/" + L) +
             '<span class="op">−</span>' +
@@ -2383,11 +2392,10 @@
             pieceSquares(most, L, cut, neg ?
               function(i) { return i < an ? "have" : (i < bn ? "gone" : ""); } :
               function(i) { return i < an - bn ? "left" : (i < an ? "gone" : ""); },
-              neg ? "short " + (bn - an) + "/" + L : (an - bn) + "/" + L) +
+              neg ? T("subtraction.shortCap", { x: (bn - an) + "/" + L }) : (an - bn) + "/" + L) +
             "</span></div>");
         } else if (most > 0) {
-          mountArea('<span class="areanote">Cut into ' + L + " pieces across " + squares +
-            " squares — too many to draw clearly. The chain above is the whole story.</span>", "");
+          mountArea('<span class="areanote">' + T("subtraction.tooMany", { L: L, sq: squares }) + "</span>", "");
         }
       }
 
@@ -2403,42 +2411,36 @@
           unders = [];
         if (small > 0) {
           tsegs.push({ w: small / L, html: esc(neg ? t1 : t2), cls: "b" });
-          unders.push({ from: 1, to: 1, label: neg ? "you have" : "take away" });
+          unders.push({ from: 1, to: 1, label: T(neg ? "subtraction.youHave" : "subtraction.takeAwayLow") });
         }
         if (gap > 0) {
           tsegs.push({ w: gap / L, html: esc(fracTxt(simp.n, simp.d)), cls: "ans" });
-          unders.push({ from: tsegs.length, to: tsegs.length, label: neg ? "short by" : "what’s left" });
+          unders.push({ from: tsegs.length, to: tsegs.length, label: T(neg ? "subtraction.shortBy" : "subtraction.whatsLeft") });
         }
         mountTape(neg ?
-          "<b>" + esc(t2) + "</b> is the longer tape. <b>" + esc(t1) + "</b> only covers part of it, and the " +
-          "gap is <b>" + esc(fracTxt(simp.n, simp.d)) + "</b> — so you land that far below zero: <b>" +
-          esc(resT) + "</b>." :
-          "Start with the whole tape, <b>" + esc(t1) + "</b>. Take away <b>" + esc(t2) + "</b> and <b>" +
-          esc(resT) + "</b> is left.", { total: esc(neg ? t2 : t1), segs: tsegs, unders: unders });
+          T("subtraction.tapeNeg", { big: esc(t2), small: esc(t1), gap: esc(fracTxt(simp.n, simp.d)), res: esc(resT) }) :
+          T("subtraction.tapePos", { whole: esc(t1), take: esc(t2), left: esc(resT) }), { total: esc(neg ? t2 : t1), segs: tsegs, unders: unders });
       }
 
       var final = needsMixedOut ? mixedHTML(w, rest, simp.d, neg) :
         (simp.n === 0 ? '<span class="mx">0</span>' :
           (simp.d === 1 ? mixedHTML(simp.n, 0, 1, neg) : mixedHTML(0, simp.n, simp.d, neg)));
       var dec = (neg ? -1 : 1) * simp.n / simp.d;
-      band('<span class="k">Difference</span><span class="v">' + final + "</span>", [
-        "As a decimal: <b>" + trimNum(dec) + "</b>",
-        "Common denominator used: <b>" + L + "</b>"
+      band('<span class="k">' + T("subtraction.difference") + '</span><span class="v">' + final + "</span>", [
+        T("subtraction.asDecimal", { x: trimNum(dec) }),
+        T("subtraction.lcdUsed", { L: L })
       ], "answer");
       writeLog(items);
 
       var d1 = a.n / a.d,
         d2 = b.n / b.d;
-      $("closer").innerHTML = "<b>Check by adding it back:</b> " + trimNum(dec) + " + " + trimNum(d2) +
-        " = <b>" + trimNum(dec + d2) + "</b>" +
-        (Math.abs(dec + d2 - d1) < 1e-9 ?
-          ' <span class="ok">✓ that’s what you started with</span>' :
-          "") + ".";
+      var fracEq = trimNum(dec) + " + " + trimNum(d2) + " = <b>" + trimNum(dec + d2) + "</b>";
+      $("closer").innerHTML = T(Math.abs(dec + d2 - d1) < 1e-9 ? "subtraction.closerFracOk" : "subtraction.closerPlain", { eq: fracEq });
 
       $("legend").innerHTML =
-        '<div><i class="sw-l"></i> What you had</div>' +
-        '<div><i class="sw-g"></i> Taken away</div>' +
-        '<div><i class="sw-a"></i> What’s left</div>';
+        '<div><i class="sw-l"></i> ' + T("subtraction.legendHad") + "</div>" +
+        '<div><i class="sw-g"></i> ' + T("subtraction.legendTaken") + "</div>" +
+        '<div><i class="sw-a"></i> ' + T("subtraction.legendLeft") + "</div>";
       return rows.length;
     }
 
@@ -2457,7 +2459,7 @@
     }
 
     function barTake(n, take, L, cap) {
-      return '<div class="barrow"><span class="cap">take ' + cap + '</span><div class="bar">' +
+      return '<div class="barrow"><span class="cap">' + T("subtraction.takeCap", { x: cap }) + '</span><div class="bar">' +
         cells(L, function(i) { return i < n - take ? "have" : (i < n ? "gone" : ""); }) +
         "</div></div>";
     }
@@ -2501,7 +2503,7 @@
       return (w ? w + " " : "") + r + "/" + d;
     }
 
-    function pieces(n) { return n + (n === 1 ? " piece" : " pieces"); }
+    function pieces(n) { return T("subtraction.pieces", { n: n }); }
 
     function mText(m) { // a mixed number as typed
       if (m[1] === 0) return String(m[0]);
@@ -2510,7 +2512,7 @@
 
     function mountArea(cap, inner) {
       $("workHost").insertAdjacentHTML("beforeend",
-        '<div class="areawrap"><div class="tapecap"><b class="lead">Area model.</b> ' + cap + "</div>" +
+        '<div class="areawrap"><div class="tapecap"><b class="lead">' + T("subtraction.areaModel") + "</b> " + cap + "</div>" +
         inner + "</div>");
     }
 
@@ -2539,7 +2541,7 @@
           '<div class="t-lbl under" style="grid-row:5;grid-column:' + c + '">' + u.label + "</div>";
       });
       $("workHost").insertAdjacentHTML("beforeend",
-        '<div class="tapewrap"><div class="tapecap"><b class="lead">Tape diagram.</b> ' + cap + "</div>" +
+        '<div class="tapewrap"><div class="tapecap"><b class="lead">' + T("subtraction.tapeDiagram") + "</b> " + cap + "</div>" +
         '<div class="tape-scroll"><div class="tape" aria-hidden="true" style="grid-template-columns:' +
         cols + '">' + html + "</div></div></div>");
     }
@@ -2566,7 +2568,7 @@
       if (a > BigInt(1)) parts.push(sg + n0 + "/" + d0);
       parts.push(sg + n + "/" + d);
       if (w > BigInt(0)) parts.push(sg + w + " " + (n % d) + "/" + d);
-      return "As a fraction: <b>" + parts.join(" = ") + "</b>";
+      return T("subtraction.asFraction", { x: parts.join(" = ") });
     }
 
     function band(inner, facts, cls) {
@@ -2625,7 +2627,7 @@
       if (S.step < 1) S.step = 1;
       $("stepper").hidden = !S.stepMode;
       if (S.stepMode) {
-        $("stepCount").textContent = S.step + " of " + total;
+        $("stepCount").textContent = T("subtraction.stepOf", { n: S.step, total: total });
         $("prevBtn").disabled = S.step <= 1;
         $("nextBtn").disabled = S.step >= total;
       }
@@ -3099,6 +3101,7 @@
     }
     /* the problem as typed, or else as readTyped reads its words ("subtract 17 from fifty-two") */
     function parseQ(raw, hint) {
+      if (window.HelperI18n) raw = HelperI18n.normalize(raw); // a problem typed in Spanish: "52 menos 17" -> "52 - 17"
       var r = parseQ1(raw, hint);
       if (!r.err) return r;
       var T = readTyped(raw);
@@ -3108,24 +3111,24 @@
     function parseQ1(raw, hint) {
       var s = String(raw).replace(/[−–—﹣－]/g, "-").replace(/\s+/g, " ").trim();
       if (/^\([^()]*\)$/.test(s)) s = s.slice(1, -1).trim();
-      if (!s) return { err: "it was empty" };
+      if (!s) return { err: T("subtraction.err.empty") };
       if (/[×*÷:]|\d\s*[xX]\s*\d/.test(s))
-        return { err: "this page only subtracts (the Product Ladder does ×, the Division House does ÷)" };
-      if (/\^/.test(s)) return { err: "this page only subtracts (powers are on the Order Stack)" };
-      if (/\+/.test(s)) return { err: "this page only subtracts, so put a minus sign between the numbers (the Carry Column does adding)" };
+        return { err: T("subtraction.err.timesDiv") };
+      if (/\^/.test(s)) return { err: T("subtraction.err.powers") };
+      if (/\+/.test(s)) return { err: T("subtraction.err.plus") };
       var parts = s.split("-").map(function(t) { return t.trim(); });
       if (parts.length !== 2 || !parts[0] || !parts[1])
-        return { err: "it needs two positive numbers with one minus sign between them, like 52-17" };
+        return { err: T("subtraction.err.two") };
       if (parts.some(function(t) { return /,/.test(t) && !/^\d{1,3}(?:,\d{3})+(?:\.\d*)?$/.test(t); }))
-        return { err: "a comma can only group thousands, like 12,345 — write decimals with a point, like 3.5" };
+        return { err: T("subtraction.err.comma") };
       if (hint !== "frac" && s.indexOf("/") < 0) {
         var a = cleanNum(parts[0]),
           b = cleanNum(parts[1]);
-        if (!parseNum(a) || !parseNum(b)) return { err: "each number should be digits with at most one decimal point" };
+        if (!parseNum(a) || !parseNum(b)) return { err: T("subtraction.err.digits") };
         return { p: { mode: "dec", a: a, b: b } };
       }
       var f = parts.map(readTerm);
-      if (!f[0] || !f[1]) return { err: "write fractions like 3/4 and mixed numbers like 2 3/4" };
+      if (!f[0] || !f[1]) return { err: T("subtraction.err.fractions") };
       return { p: { mode: "frac", frac: f } };
     }
     /* q, read by hand: "+" is a form-encoded space, everything else is percent-decoded */
@@ -3146,19 +3149,19 @@
         if (pr === "all" || pr === "step" || pr === "check") {
           S.practice = pr;
           S.stepMode = pr === "step";
-        } else notes.push("“practice” can be all, step or check");
+        } else notes.push(T("subtraction.link.practice"));
       }
       var md = sp.get("mode"),
         hint = null;
       if (md !== null) {
         md = md.trim().toLowerCase();
         hint = (md === "dec" || md === "decimals") ? "dec" : (md === "frac" || md === "fractions") ? "frac" : null;
-        if (!hint) notes.push("“mode” can be decimals or fractions");
+        if (!hint) notes.push(T("subtraction.link.mode"));
       }
       if (sp.has("q")) {
         var raw = rawParam("q") || "",
           r = parseQ(raw, hint);
-        if (r.err) notes.unshift("its problem, “" + esc(raw) + "”, couldn’t be read: " + r.err);
+        if (r.err) notes.unshift(T("subtraction.link.problem", { q: esc(raw), err: r.err }));
         else {
           S.mode = r.p.mode;
           S.step = 1;
@@ -3169,7 +3172,7 @@
         }
       } else if (hint) S.mode = hint;
       if (!notes.length) return null;
-      return "That link didn’t quite work — " + notes.join("; ") + ". Here’s the last problem instead.";
+      return T("subtraction.link.note", { notes: notes.join("; ") });
     }
 
     /* ===================== check my answer ===================== */
@@ -3211,17 +3214,10 @@
       if (neg) out.r = rNeg(out.r);
       return out;
     }
-    var WHY = {
-      signNeg: "Right size, wrong sign — the second number is bigger, so the answer is below zero. Put a minus sign in front.",
-      signPos: "Right size, wrong sign — the first number is bigger, so the answer is above zero.",
-      flipCols: "It looks like the smaller digit was taken from the bigger one in every column. When the top digit is smaller, borrow a ten from next door instead.",
-      noReduce: "Close — a ten was borrowed, but the digit it came from wasn’t made one smaller. Cross that digit out and write one less above it.",
-      either: "It looks like a borrow went wrong — either the smaller digit was taken from the bigger one, or the digit you borrowed from wasn’t made one smaller.",
-      align: "It looks like the numbers were lined up on the right instead of at the decimal point. Line the decimal points up first, and fill the gaps with zeros.",
-      tops: "It looks like the tops and the bottoms were both subtracted. Only the tops subtract — rename both fractions to a common denominator first, and the denominator stays the same.",
-      flipFrac: "It looks like the fraction parts were swapped to take the smaller from the bigger. When the second fraction part is bigger, borrow a whole first (or turn both into improper fractions).",
-      round: "So close — but that decimal is rounded. Give the exact answer as a fraction or mixed number."
-    };
+    var WHY = {};
+    ["signNeg", "signPos", "flipCols", "noReduce", "either", "align", "tops", "flipFrac", "round"].forEach(function(k) {
+      WHY[k] = T("subtraction.why." + k);
+    });
     /* what common mistake would give exactly u? */
     function diagnose(p, u, ans) {
       var tests = [];
@@ -3286,17 +3282,15 @@
 
     function correctNote(p, u, ans) {
       if (p.mode === "dec")
-        return (u.form === "frac" || u.form === "mixed") ?
-          " As a decimal that’s <b>" + esc(ans.text) + "</b>, the way the page writes it." : "";
+        return (u.form === "frac" || u.form === "mixed") ? " " + T("subtraction.note.asDec", { x: esc(ans.text) }) : "";
       var imp = (ans.r.n < Z ? "−" : "") + String(babs(ans.r.n)) + "/" + String(ans.r.d);
       if (ans.form === "mixed") {
-        if (u.form === "frac") return " Improper <b>" + imp + "</b> and mixed <b>" + esc(ans.text) +
-          "</b> are both right — the page shows the mixed number.";
-        if (u.form === "dec") return " That’s the same as <b>" + esc(ans.text) + "</b>, the mixed number the page shows.";
-        return " Mixed <b>" + esc(ans.text) + "</b> is how the page shows it too (improper <b>" + imp + "</b> is also right).";
+        if (u.form === "frac") return " " + T("subtraction.note.bothRight", { imp: imp, x: esc(ans.text) });
+        if (u.form === "dec") return " " + T("subtraction.note.sameMixed", { x: esc(ans.text) });
+        return " " + T("subtraction.note.mixedToo", { imp: imp, x: esc(ans.text) });
       }
       if (ans.form === "frac" && u.form === "dec")
-        return " That’s the same as <b>" + esc(ans.text) + "</b>, the fraction the page shows.";
+        return " " + T("subtraction.note.sameFrac", { x: esc(ans.text) });
       return "";
     }
 
@@ -3304,10 +3298,10 @@
       var n = u.top,
         d = u.bot,
         g = bgcd(n, d);
-      if (d === ONE) return "Anything over 1 is just a whole number.";
-      if (n === Z) return u.form === "mixed" ? "No pieces left over — it’s just the whole number." : "Zero pieces is just 0.";
-      if (u.form === "mixed" && n >= d) return "The fraction part is a whole or more — trade it into the whole number.";
-      return "<b>" + n + "</b> and <b>" + d + "</b> both divide by <b>" + g + "</b>.";
+      if (d === ONE) return T("subtraction.tip.overOne");
+      if (n === Z) return T(u.form === "mixed" ? "subtraction.tip.noPieces" : "subtraction.tip.zero");
+      if (u.form === "mixed" && n >= d) return T("subtraction.tip.trade");
+      return T("subtraction.tip.divide", { n: String(n), d: String(d), g: String(g) });
     }
 
     function say(html, cls) {
@@ -3336,31 +3330,29 @@
       $("page").classList.toggle("checking", ok && S.practice === "check" && !S.chk.revealed);
       $("tryMore").hidden = !S.chk.tries || S.chk.revealed;
       $("hintBtn").hidden = S.chk.keep;
-      $("tryHint").textContent = S.mode === "dec" ?
-        "Decimals, fractions or mixed numbers all count — 3.5, 7/2 and 3 1/2 are the same. Below zero? Start with −." :
-        "Write a fraction like 7/12, a mixed number like 1 7/12, or an improper fraction like 19/12. Below zero? Start with −.";
+      $("tryHint").textContent = T(S.mode === "dec" ? "subtraction.tryHintDec" : "subtraction.tryHintFrac");
     }
 
     function checkAnswer() {
       var p = problemFromState();
-      if (problemBad(p)) { say('<span class="lead">Fix the problem above first,</span> then check.', "no"); return; }
+      if (problemBad(p)) { say(T("subtraction.fixFirst"), "no"); return; }
       var u = readAnswer($("tryIn").value);
-      if (!u) { say('<span class="lead">Type your answer as a number</span> — like 12.5, 7/2, 3 1/2 or −4.', "no"); return; }
-      if (u.bad) { say('<span class="lead">A denominator can’t be 0.</span>', "no"); return; }
+      if (!u) { say(T("subtraction.typeNumber"), "no"); return; }
+      if (u.bad) { say('<span class="lead">' + T("subtraction.denZeroShort") + "</span>", "no"); return; }
       var ans = answerOf(p);
       if (rEq(u.r, ans.r) && p.mode === "frac" && !u.simple) {
         S.chk.tries++;
-        say('<span class="lead">Right value — now simplify it.</span> ' + simplifyTip(u), "half");
+        say('<span class="lead">' + T("subtraction.rightValue") + "</span> " + simplifyTip(u), "half");
         report("simplify");
       } else if (rEq(u.r, ans.r)) {
-        say('<span class="lead">✓ Correct!</span>' + correctNote(p, u, ans), "ok");
+        say('<span class="lead">' + T("common.correct") + "</span>" + correctNote(p, u, ans), "ok");
         report("right");
         S.chk.revealed = true;
         if (S.stepMode) S.step = 999;
       } else {
         S.chk.tries++;
         var why = diagnose(p, u, ans);
-        say('<span class="lead">Not quite — try again.</span>' + (why ? " " + why : ""), "no");
+        say('<span class="lead">' + T("common.notQuite") + "</span>" + (why ? " " + why : ""), "no");
         report("wrong");
       }
       render();
@@ -3393,74 +3385,77 @@
     /* one list drives the maker on the page and the worksheet API's options */
     var OPTS = [{
         key: "mode",
-        label: "Kind of numbers",
+        label: T("subtraction.opt.mode"),
         type: "choice",
         default: "decimals",
-        values: [{ v: "decimals", label: "Decimals" }, { v: "fractions", label: "Fractions" }]
+        values: [{ v: "decimals", label: T("common.decimals") }, { v: "fractions", label: T("common.fractions") }]
       }, {
         key: "digits",
-        label: "Digits in each number",
-        short: "Digits in each number",
+        label: T("subtraction.opt.digits"),
+        short: T("subtraction.opt.digits"),
         type: "choice",
         default: 2,
         appliesTo: ["decimals"],
         values: [1, 2, 3, 4, 5, 6].map(function(v) {
-          return { v: v, label: v + " (like " + ["7", "47", "347", "5347", "65,347", "865,347"][v - 1] + ")" };
+          return { v: v, label: T("subtraction.opt.digitsLike", { n: v, x: ["7", "47", "347", "5347", "65,347", "865,347"][v - 1] }) };
         })
       }, {
         key: "places",
-        label: "Decimal places",
-        short: "Decimal places",
+        label: T("subtraction.opt.places"),
+        short: T("subtraction.opt.places"),
         type: "choice",
         default: 0,
         appliesTo: ["decimals"],
-        values: [{ v: 0, label: "None" }, { v: 1, label: "1 place" }, { v: 2, label: "2 places" }, { v: 3, label: "3 places" },
-          { v: "mixed", label: "Different lengths (like 5.2 − 1.75)" }
+        values: [{ v: 0, label: T("subtraction.opt.placesNone") }, { v: 1, label: T("subtraction.opt.placesN", { n: 1 }) },
+          { v: 2, label: T("subtraction.opt.placesN", { n: 2 }) }, { v: 3, label: T("subtraction.opt.placesN", { n: 3 }) },
+          { v: "mixed", label: T("subtraction.opt.placesMixed") }
         ]
       }, {
         key: "borrow",
-        label: "Borrowing",
-        short: "Borrowing",
+        label: T("subtraction.opt.borrow"),
+        short: T("subtraction.opt.borrow"),
         type: "choice",
         default: "any",
         appliesTo: ["decimals"],
-        values: [{ v: "any", label: "Either way" }, { v: "borrow", label: "Make it borrow" },
-          { v: "zeros", label: "Borrow across zeros" }, { v: "none", label: "No borrowing" }
+        values: [{ v: "any", label: T("subtraction.opt.borrowAny") }, { v: "borrow", label: T("subtraction.opt.borrowYes") },
+          { v: "zeros", label: T("subtraction.opt.borrowZeros") }, { v: "none", label: T("subtraction.opt.borrowNone") }
         ]
       }, {
         key: "denoms",
-        label: "Bottom numbers (denominators)",
-        short: "Bottom numbers (denominators)",
+        label: T("subtraction.opt.denoms"),
+        short: T("subtraction.opt.denoms"),
         type: "choice",
         default: "unlike",
         appliesTo: ["fractions"],
-        values: [{ v: "like", label: "The same" }, { v: "unlike", label: "Different" }, { v: "any", label: "Either" }]
+        values: [{ v: "like", label: T("subtraction.opt.denomsLike") }, { v: "unlike", label: T("subtraction.opt.denomsUnlike") },
+          { v: "any", label: T("subtraction.opt.denomsAny") }
+        ]
       }, {
         key: "maxDen",
-        label: "Biggest bottom number",
-        short: "Biggest bottom number",
+        label: T("subtraction.opt.maxDen"),
+        short: T("subtraction.opt.maxDen"),
         type: "choice",
         default: 12,
         appliesTo: ["fractions"],
         values: [{ v: 6, label: "6" }, { v: 12, label: "12" }, { v: 20, label: "20" }]
       },
-      { key: "mixed", label: "Mixed numbers", type: "toggle", default: false, appliesTo: ["fractions"], glyph: "2&frac12;" }, {
+      { key: "mixed", label: T("subtraction.opt.mixed"), type: "toggle", default: false, appliesTo: ["fractions"], glyph: "2&frac12;" }, {
         key: "regroup",
-        label: "Borrow from the whole number (like 3 1/4 − 1 3/4)",
+        label: T("subtraction.opt.regroup"),
         type: "toggle",
         default: false,
         appliesTo: ["fractions"],
         glyph: "&#8634;"
       }, {
         key: "simplify",
-        label: "Answer needs simplifying",
+        label: T("subtraction.opt.simplify"),
         type: "toggle",
         default: false,
         appliesTo: ["fractions"],
         glyph: "&divide;"
       }, {
         key: "negative",
-        label: "Allow negative answers",
+        label: T("subtraction.opt.negative"),
         type: "toggle",
         default: false,
         appliesTo: ["decimals", "fractions"],
@@ -3632,7 +3627,7 @@
           if (!op.appliesTo || op.appliesTo.indexOf(md) < 0) return;
           if (op.type === "toggle") {
             if (!togs) {
-              host.insertAdjacentHTML("beforeend", '<span class="lbl">Extras</span>');
+              host.insertAdjacentHTML("beforeend", '<span class="lbl">' + T("subtraction.extras") + "</span>");
               togs = document.createElement("div");
               togs.className = "toggles";
               host.appendChild(togs);
@@ -3689,16 +3684,13 @@
         r = null;
       if (!el) return;
       try { r = makeOne(S.mode, S.gen); } catch (e) { r = null; }
-      el.innerHTML = r ? "Makes problems like: <b>" + esc(describe(r.p).text) + "</b>" :
-        "Those choices don’t make a problem — try different ones.";
+      el.innerHTML = r ? T("subtraction.makesLike", { p: esc(describe(r.p).text) }) : T("subtraction.noneMade");
     }
     $("genBtn").addEventListener("click", function() {
       var r = makeOne(S.mode, S.gen);
-      if (!r) { $("genMsg").textContent = "Couldn’t make one with those settings — try different choices."; return; }
+      if (!r) { $("genMsg").textContent = T("subtraction.cantMake"); return; }
       $("genMsg").textContent = r.exact ? "" :
-        (S.mode === "dec" && S.gen.borrow === "zeros" ?
-          "Borrowing across zeros needs at least three columns — add digits or decimal places." :
-          "Couldn’t match every setting, so this one is a little different.");
+        T(S.mode === "dec" && S.gen.borrow === "zeros" ? "subtraction.zerosNeed" : "subtraction.notExact");
       S.step = 1;
       if (r.p.mode === "dec") {
         S.a = r.p.a;
@@ -3736,7 +3728,7 @@
     function schema() {
       return OPTS.map(function(op) {
         var o = { key: op.key, label: op.label, type: op.type, default: op.default };
-        o.values = op.type === "toggle" ? [{ v: false, label: "Off" }, { v: true, label: "On" }] :
+        o.values = op.type === "toggle" ? [{ v: false, label: T("common.off") }, { v: true, label: T("common.on") }] :
           op.values.map(function(v) { return { v: v.v, label: v.label }; });
         if (op.appliesTo) o.appliesTo = op.appliesTo.slice();
         return o;
@@ -3976,7 +3968,7 @@
       function show(t) {
         btn.textContent = t;
         clearTimeout(copyTimer);
-        copyTimer = setTimeout(function() { btn.textContent = "Copy link"; }, 2000);
+        copyTimer = setTimeout(function() { btn.textContent = T("common.copyLink"); }, 2000);
       }
 
       function fallback() {
@@ -3991,10 +3983,10 @@
         ta.select();
         try { ok = document.execCommand("copy"); } catch (e) {}
         document.body.removeChild(ta);
-        show(ok ? "Link copied ✓" : "Couldn’t copy — use the address bar");
+        show(ok ? T("common.linkCopied") + " ✓" : T("subtraction.copyFail"));
       }
       if (navigator.clipboard && navigator.clipboard.writeText)
-        navigator.clipboard.writeText(url).then(function() { show("Link copied ✓"); }, fallback);
+        navigator.clipboard.writeText(url).then(function() { show(T("common.linkCopied") + " ✓"); }, fallback);
       else fallback();
     });
     document.addEventListener("keydown", function(e) {
@@ -4016,7 +4008,7 @@
       return t ? t === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
     }
 
-    function paint() { themeBtn.textContent = isDark() ? "Light mode" : "Dark mode"; }
+    function paint() { themeBtn.textContent = T(isDark() ? "common.lightMode" : "common.darkMode"); }
     themeBtn.addEventListener("click", function() {
       document.documentElement.setAttribute("data-theme", isDark() ? "light" : "dark");
       paint();

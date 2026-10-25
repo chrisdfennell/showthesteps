@@ -16,6 +16,7 @@
 <link rel="canonical" href="https://showthesteps.org/helpers/fractions">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","name":"Fractions, step by step – The Fraction Bar","description":"Fractions themselves, one step at a time: simplify them, switch between fractions, mixed numbers, decimals and percents, put them in order, and fill in equivalent fractions — with pictures of the…","url":"https://showthesteps.org/helpers/fractions","inLanguage":"en-US","isAccessibleForFree":true,"learningResourceType":["Interactive worked examples","Practice problems"],"interactivityType":"active","educationalUse":["Practice","Self-assessment"],"teaches":"Fractions","educationalLevel":["Elementary school (grades K–5)","Middle school (grades 6–8)"],"audience":{"@type":"EducationalAudience","educationalRole":"student"},"publisher":{"@type":"Organization","name":"Show The Steps","url":"https://showthesteps.org/"},"isPartOf":{"@type":"WebSite","name":"Show The Steps","url":"https://showthesteps.org/"}}</script>
 <script src="../assets/site.js"></script>
+<script src="../assets/i18n.js" data-strings="fractions"></script>
 <script src="../assets/nav.js" defer></script>
 <script src="../assets/progress.js" defer></script>
 <link rel="stylesheet" href="../assets/fonts/fonts.css">
@@ -1679,9 +1680,9 @@
 <div class="page" id="page">
   <header class="masthead">
     <div>
-      <div class="eyebrow">Fractions, worked out</div>
+      <div class="eyebrow" data-i18n="fractions.eyebrow">Fractions, worked out</div>
       <h1>The Fraction <em>Bar</em></h1>
-      <p class="tagline">Fractions themselves, one step at a time: simplify them, switch between fractions,
+      <p class="tagline" data-i18n="fractions.tagline">Fractions themselves, one step at a time: simplify them, switch between fractions,
         mixed numbers, decimals and percents, put them in order, and fill in equivalent fractions &mdash; with
         pictures of the pieces and the reason for every move. Adding or multiplying fractions? That&rsquo;s on
         <a href="addition.html">+</a> <a href="subtraction.html">&minus;</a> <a href="multiplication.html">&times;</a>
@@ -1691,63 +1692,63 @@
   </header>
 
   <section class="problem">
-    <div class="modes" id="modeTabs" role="group" aria-label="What kind of problem">
-      <button type="button" data-mode="simplify" aria-pressed="true">Simplify</button>
-      <button type="button" data-mode="convert" aria-pressed="false">Convert</button>
-      <button type="button" data-mode="compare" aria-pressed="false">Compare &amp; order</button>
-      <button type="button" data-mode="equiv" aria-pressed="false">Equivalent</button>
+    <div class="modes" id="modeTabs" role="group" aria-label="What kind of problem" data-i18n-attr="aria-label=fractions.modesAria">
+      <button type="button" data-mode="simplify" aria-pressed="true" data-i18n="fractions.tab.simplify">Simplify</button>
+      <button type="button" data-mode="convert" aria-pressed="false" data-i18n="fractions.tab.convert">Convert</button>
+      <button type="button" data-mode="compare" aria-pressed="false" data-i18n="fractions.tab.compare">Compare &amp; order</button>
+      <button type="button" data-mode="equiv" aria-pressed="false" data-i18n="fractions.tab.equiv">Equivalent</button>
     </div>
     <div class="entry">
       <div class="numfield">
         <label for="in1" id="lab1">Your fraction</label>
         <input class="expr-in" id="in1" type="text" inputmode="text" autocomplete="off" spellcheck="false" value="">
       </div>
-      <div class="keys" id="keys" aria-label="Insert a symbol">
-        <button type="button" data-k="/" aria-label="Fraction bar">/</button>
-        <button type="button" class="sp" data-k=" " aria-label="Space, for a mixed number like 2 1/4">space</button>
-        <button type="button" data-k="." data-only="convert compare" aria-label="Decimal point">.</button>
+      <div class="keys" id="keys" aria-label="Insert a symbol" data-i18n-attr="aria-label=fractions.keys.aria">
+        <button type="button" data-k="/" aria-label="Fraction bar" data-i18n-attr="aria-label=fractions.keys.bar">/</button>
+        <button type="button" class="sp" data-k=" " aria-label="Space, for a mixed number like 2 1/4" data-i18n="fractions.keys.space" data-i18n-attr="aria-label=fractions.keys.spaceAria">space</button>
+        <button type="button" data-k="." data-only="convert compare" aria-label="Decimal point" data-i18n-attr="aria-label=fractions.keys.point">.</button>
         <button type="button" data-k="%" data-only="convert compare">%</button>
-        <button type="button" data-k="(" data-only="convert" aria-label="Start of the repeating digits">(</button>
-        <button type="button" data-k=")" data-only="convert" aria-label="End of the repeating digits">)</button>
-        <button type="button" data-k=", " data-only="compare" aria-label="Comma">,</button>
-        <button type="button" data-k="?" data-only="equiv" aria-label="Missing number">?</button>
+        <button type="button" data-k="(" data-only="convert" aria-label="Start of the repeating digits" data-i18n-attr="aria-label=fractions.keys.repStart">(</button>
+        <button type="button" data-k=")" data-only="convert" aria-label="End of the repeating digits" data-i18n-attr="aria-label=fractions.keys.repEnd">)</button>
+        <button type="button" data-k=", " data-only="compare" aria-label="Comma" data-i18n-attr="aria-label=fractions.keys.comma">,</button>
+        <button type="button" data-k="?" data-only="equiv" aria-label="Missing number" data-i18n-attr="aria-label=fractions.keys.missing">?</button>
         <button type="button" data-k=" = " data-only="equiv">=</button>
-        <button type="button" data-k="−" aria-label="Minus sign">&minus;</button>
+        <button type="button" data-k="−" aria-label="Minus sign" data-i18n-attr="aria-label=fractions.keys.minus">&minus;</button>
       </div>
     </div>
     <p class="hint" id="hint"></p>
     <div class="methodrow" id="gcfRow" hidden>
-      <span class="lbl2">Find the GCF by</span>
-      <div class="modes small" role="group" aria-label="How to find the greatest common factor">
-        <button type="button" data-gcf="list" aria-pressed="true">Listing factors</button>
-        <button type="button" data-gcf="prime" aria-pressed="false">Prime factors</button>
+      <span class="lbl2" data-i18n="fractions.gcfBy">Find the GCF by</span>
+      <div class="modes small" role="group" aria-label="How to find the greatest common factor" data-i18n-attr="aria-label=fractions.gcfByAria">
+        <button type="button" data-gcf="list" aria-pressed="true" data-i18n="fractions.gcf.list">Listing factors</button>
+        <button type="button" data-gcf="prime" aria-pressed="false" data-i18n="fractions.gcf.prime">Prime factors</button>
       </div>
     </div>
     <div class="methodrow" id="toRow" hidden>
-      <span class="lbl2">Convert to</span>
-      <div class="modes small" id="toBtns" role="group" aria-label="What to convert it to">
-        <button type="button" data-to="all" aria-pressed="true">Every form</button>
-        <button type="button" data-to="fraction" aria-pressed="false">Fraction</button>
-        <button type="button" data-to="mixed" aria-pressed="false">Mixed number</button>
-        <button type="button" data-to="improper" aria-pressed="false">Improper</button>
-        <button type="button" data-to="decimal" aria-pressed="false">Decimal</button>
-        <button type="button" data-to="percent" aria-pressed="false">Percent</button>
+      <span class="lbl2" data-i18n="fractions.convertTo">Convert to</span>
+      <div class="modes small" id="toBtns" role="group" aria-label="What to convert it to" data-i18n-attr="aria-label=fractions.convertToAria">
+        <button type="button" data-to="all" aria-pressed="true" data-i18n="fractions.to.all">Every form</button>
+        <button type="button" data-to="fraction" aria-pressed="false" data-i18n="fractions.to.fraction">Fraction</button>
+        <button type="button" data-to="mixed" aria-pressed="false" data-i18n="fractions.to.mixed">Mixed number</button>
+        <button type="button" data-to="improper" aria-pressed="false" data-i18n="fractions.to.improper">Improper</button>
+        <button type="button" data-to="decimal" aria-pressed="false" data-i18n="fractions.to.decimal">Decimal</button>
+        <button type="button" data-to="percent" aria-pressed="false" data-i18n="fractions.to.percent">Percent</button>
       </div>
     </div>
 
     <details class="maker" id="maker">
-      <summary>Make a problem for me <span>&mdash; pick what goes in it</span></summary>
+      <summary data-i18n="common.maker">Make a problem for me <span>&mdash; pick what goes in it</span></summary>
       <div class="maker-body" id="makerBody"></div>
     </details>
 
     <div class="examples">
-      <span class="lbl">Try</span>
+      <span class="lbl" data-i18n="common.try">Try</span>
       <span id="chips"></span>
       <span class="practice">
-        <div class="modes" role="group" aria-label="Practice mode">
-          <button type="button" id="pAll" aria-pressed="true">Show all work</button>
-          <button type="button" id="pStep" aria-pressed="false">One step at a time</button>
-          <button type="button" id="pCheck" aria-pressed="false">Check my answer</button>
+        <div class="modes" role="group" aria-label="Practice mode" data-i18n-attr="aria-label=common.practiceMode">
+          <button type="button" id="pAll" aria-pressed="true" data-i18n="common.showAll">Show all work</button>
+          <button type="button" id="pStep" aria-pressed="false" data-i18n="common.oneStep">One step at a time</button>
+          <button type="button" id="pCheck" aria-pressed="false" data-i18n="common.checkMine">Check my answer</button>
         </div>
       </span>
     </div>
@@ -1756,14 +1757,14 @@
   <div id="statusLine" role="status" aria-live="polite"></div>
 
   <section class="check" id="checkBox" hidden aria-labelledby="ckTitle">
-    <h2 id="ckTitle">Your answer</h2>
-    <p class="sub" id="ckSub">Work it out on paper, then type what you got. The work stays hidden until you check.</p>
+    <h2 id="ckTitle" data-i18n="common.yourAnswer">Your answer</h2>
+    <p class="sub" id="ckSub" data-i18n="fractions.ckSub">Work it out on paper, then type what you got. The work stays hidden until you check.</p>
     <div class="ck-fields" id="ckFields"></div>
     <div class="ck-go">
-      <button type="button" class="go" id="ckBtn">Check</button>
+      <button type="button" class="go" id="ckBtn" data-i18n="common.check">Check</button>
       <div class="ck-more" id="ckMore" hidden>
-        <button type="button" class="ghost" id="hintBtn">Show a hint</button>
-        <button type="button" class="ghost" id="showBtn">Show me the work</button>
+        <button type="button" class="ghost" id="hintBtn" data-i18n="common.hint">Show a hint</button>
+        <button type="button" class="ghost" id="showBtn" data-i18n="common.showWork">Show me the work</button>
       </div>
     </div>
     <div class="ck-fb" id="ckFb" aria-live="polite"></div>
@@ -1772,33 +1773,33 @@
   <div class="board" id="board">
     <section class="panel">
       <div class="panel-head">
-        <h2>The work</h2>
+        <h2 data-i18n="common.theWork">The work</h2>
         <div class="stepper" id="stepper" hidden>
-          <button type="button" id="prevBtn" aria-label="Previous step">&larr;</button>
+          <button type="button" id="prevBtn" aria-label="Previous step" data-i18n-attr="aria-label=common.prevStep">&larr;</button>
           <span class="count" id="stepCount"></span>
-          <button type="button" id="nextBtn" aria-label="Next step">&rarr;</button>
+          <button type="button" id="nextBtn" aria-label="Next step" data-i18n-attr="aria-label=common.nextStep">&rarr;</button>
         </div>
       </div>
       <div id="workHost"></div>
       <div class="legend" id="legend">
-        <div><span class="badge c-e">GCF</span> Factors &amp; multiples</div>
-        <div><span class="badge c-m">&times; &divide;</span> Same to top and bottom</div>
-        <div><span class="badge c-p">&#8644;</span> Change the form</div>
-        <div><span class="badge c-a">&check;</span> Result and checks</div>
+        <div data-i18n="fractions.legend.factors"><span class="badge c-e">GCF</span> Factors &amp; multiples</div>
+        <div data-i18n="fractions.legend.same"><span class="badge c-m">&times; &divide;</span> Same to top and bottom</div>
+        <div data-i18n="fractions.legend.form"><span class="badge c-p">&#8644;</span> Change the form</div>
+        <div data-i18n="fractions.legend.result"><span class="badge c-a">&check;</span> Result and checks</div>
       </div>
     </section>
 
     <section class="panel">
-      <div class="panel-head"><h2>Say it out loud</h2></div>
+      <div class="panel-head"><h2 data-i18n="common.sayIt">Say it out loud</h2></div>
       <ol class="log" id="log"></ol>
       <div class="closer" id="closer"></div>
     </section>
   </div>
 
   <div class="footnote">
-    <button class="print" type="button" id="printBtn">Print this work</button>
-    <button class="print" type="button" id="copyBtn">Copy link</button>
-    <span>One idea per step, nothing skipped. Adding, subtracting, multiplying or dividing fractions? Work it on
+    <button class="print" type="button" id="printBtn" data-i18n="common.print">Print this work</button>
+    <button class="print" type="button" id="copyBtn" data-i18n="common.copyLink">Copy link</button>
+    <span data-i18n="fractions.footnote">One idea per step, nothing skipped. Adding, subtracting, multiplying or dividing fractions? Work it on
       <a href="addition.html">+</a>, <a href="subtraction.html">&minus;</a>,
       <a href="multiplication.html">&times;</a> or <a href="division.html">&divide;</a>.</span>
   </div>
@@ -1827,6 +1828,8 @@
        practice  all | step | check — show all work, one step at a time, or check my answer
        The page keeps the address bar in step with the problem (history.replaceState); the theme is never put in it.
     */
+    if (window.HelperI18n) HelperI18n.apply();
+    var T = function(k, v) { return window.HelperI18n ? HelperI18n.t(k, v) : k; };
     var $ = function(id) { return document.getElementById(id); };
     var MODES = ["simplify", "convert", "compare", "equiv"];
     var TOS = ["all", "fraction", "mixed", "improper", "decimal", "percent"];
@@ -1850,7 +1853,11 @@
     function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
 
     function UserErr(msg) { this.user = msg; }
-    var WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
+    // number words, piece names and place names: tables in the locale files (fractions.words, fractions.pieces,
+    // fractions.places), so each language has its own forms
+    var WORDS = T_raw("fractions.words") || ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
+
+    function T_raw(k) { return window.HelperI18n ? HelperI18n.raw(k) : undefined; }
 
     function word(n) { n = Number(n); return n <= 10 ? WORDS[n] : String(n); }
 
@@ -1860,23 +1867,23 @@
         u = n % 10;
       return (t >= 11 && t <= 13) ? "th" : u === 1 ? "st" : u === 2 ? "nd" : u === 3 ? "rd" : "th";
     }
-    var ORD = ["", "wholes", "halves", "thirds", "fourths", "fifths", "sixths", "sevenths", "eighths", "ninths", "tenths",
+    var ORD = T_raw("fractions.pieces") || ["", "wholes", "halves", "thirds", "fourths", "fifths", "sixths", "sevenths", "eighths", "ninths", "tenths",
       "elevenths", "twelfths", "thirteenths", "fourteenths", "fifteenths", "sixteenths", "seventeenths",
       "eighteenths", "nineteenths", "twentieths"
     ];
 
     function pieceWord(d) {
       d = Number(d);
-      if (d < ORD.length) return ORD[d];
-      if (d === 100) return "hundredths";
-      if (d === 1000) return "thousandths";
-      return d + sfx(d) + "s";
+      if (d < ORD.length && ORD[d]) return ORD[d];
+      if (d === 100) return T("fractions.piece100");
+      if (d === 1000) return T("fractions.piece1000");
+      return T("fractions.pieceN", { d: d, sfx: sfx(d) });
     }
-    var PLACE = ["ones", "tenths", "hundredths", "thousandths", "ten-thousandths", "hundred-thousandths", "millionths"];
+    var PLACE = T_raw("fractions.places") || ["ones", "tenths", "hundredths", "thousandths", "ten-thousandths", "hundred-thousandths", "millionths"];
 
-    function placeWord(k) { return k < PLACE.length ? PLACE[k] : "1/" + "1" + new Array(k + 1).join("0") + " place"; }
+    function placeWord(k) { return k < PLACE.length ? PLACE[k] : T("fractions.placeN", { p: "1/" + "1" + new Array(k + 1).join("0") }); }
 
-    function andList(a) { return a.length < 2 ? (a[0] || "") : a.slice(0, -1).join(", ") + " and " + a[a.length - 1]; }
+    function andList(a) { return a.length < 2 ? (a[0] || "") : a.slice(0, -1).join(", ") + T("fractions.and") + a[a.length - 1]; }
 
     /* ===================== exact fractions ===================== */
     function babs(x) { return x < 0n ? -x : x; }
@@ -2145,25 +2152,26 @@
 
     function bigOf(str) {
       var t = str.replace(/^0+(?=\d)/, "");
-      if (t.length > 9) throw new UserErr("<b>" + esc(str) + "</b> is a lot of digits. Keep each number to 9 digits or fewer.");
+      if (t.length > 9) throw new UserErr(T("fractions.err.digits9", { x: esc(str) }));
       return BigInt(t);
     }
 
     function badNumber(raw) {
-      if (/[a-z]/i.test(raw)) return "I can only read numbers here, like <b>3/4</b>, <b>1 1/2</b>, <b>0.75</b> or <b>75%</b>. <b>" + esc(raw) + "</b> has letters in it.";
-      if (/\/\s*$/.test(raw)) return "<b>" + esc(raw) + "</b> has nothing under the fraction bar. Put the bottom number after the <b>/</b>.";
-      if (/^\s*\//.test(raw)) return "<b>" + esc(raw) + "</b> has nothing on top of the fraction bar. Put the top number before the <b>/</b>.";
-      if (/\/.*\//.test(raw)) return "<b>" + esc(raw) + "</b> has two fraction bars. Write one fraction at a time, like <b>3/4</b>.";
-      if (/\..*\./.test(raw.replace(/\.\.\.$/, ""))) return "<b>" + esc(raw) + "</b> has two decimal points — a number only gets one.";
-      if (/\d\.\d*\/|\/\d*\.\d/.test(raw)) return "Keep decimals out of fractions: instead of <b>" + esc(raw) + "</b>, use whole numbers on top and bottom (like <b>3/4</b>) or a plain decimal.";
-      if (/[()]/.test(raw)) return "Parentheses mark the repeating digits of a decimal, after the point: <b>0.(3)</b> or <b>0.1(6)</b>.";
-      return "I can’t read <b>" + esc(raw) + "</b> as a number. Try a fraction like <b>3/4</b>, a mixed number like <b>1 1/2</b>, a decimal like <b>0.75</b> or a percent like <b>75%</b>.";
+      var x = esc(raw);
+      if (/[a-z]/i.test(raw)) return T("fractions.err.letters", { x: x });
+      if (/\/\s*$/.test(raw)) return T("fractions.err.noBottom", { x: x });
+      if (/^\s*\//.test(raw)) return T("fractions.err.noTop", { x: x });
+      if (/\/.*\//.test(raw)) return T("fractions.err.twoBars", { x: x });
+      if (/\..*\./.test(raw.replace(/\.\.\.$/, ""))) return T("fractions.err.twoPoints", { x: x });
+      if (/\d\.\d*\/|\/\d*\.\d/.test(raw)) return T("fractions.err.decInFrac", { x: x });
+      if (/[()]/.test(raw)) return T("fractions.err.parens");
+      return T("fractions.err.cantRead", { x: x });
     }
 
     function parseNum(src) {
       var s = clean(src),
         raw = s;
-      if (!s) throw new UserErr("Type a number, like <b>3/4</b>.");
+      if (!s) throw new UserErr(T("fractions.err.typeNumber"));
       var pct = false,
         neg = false,
         m, P;
@@ -2174,7 +2182,7 @@
         pct = true;
         s = s.replace(/ ?percent$/i, "").trim();
       }
-      if (pct && !s) throw new UserErr("A % sign needs a number in front of it, like <b>45%</b>.");
+      if (pct && !s) throw new UserErr(T("fractions.err.pctAlone"));
       if (s.charAt(0) === "-" || s.charAt(0) === "+") {
         neg = s.charAt(0) === "-";
         s = s.slice(1).trim();
@@ -2188,14 +2196,14 @@
       else throw new UserErr(badNumber(raw));
       var v;
       if (P.form === "mixed" || P.form === "frac") {
-        if (P.d === 0n) throw new UserErr("<b>" + esc(raw) + "</b> has a bottom number of 0. You can’t cut a whole into 0 pieces, so that isn’t a number — change the bottom.");
+        if (P.d === 0n) throw new UserErr(T("fractions.err.bottom0", { x: esc(raw) }));
         v = R((P.w || 0n) * P.d + P.n, P.d);
       } else if (P.form === "int") v = R(P.n);
       else if (P.form === "dec") {
-        if ((P.ip.replace(/^0+/, "") + P.fp).length > 12) throw new UserErr("<b>" + esc(raw) + "</b> has a lot of digits. Keep decimals to 12 digits or fewer.");
+        if ((P.ip.replace(/^0+/, "") + P.fp).length > 12) throw new UserErr(T("fractions.err.digits12dec", { x: esc(raw) }));
         v = R(BigInt(P.ip + P.fp), P10(P.fp.length));
       } else {
-        if ((P.ip.replace(/^0+/, "") + P.pre + P.rep).length > 12) throw new UserErr("<b>" + esc(raw) + "</b> has a lot of digits. Keep it to 12 digits or fewer.");
+        if ((P.ip.replace(/^0+/, "") + P.pre + P.rep).length > 12) throw new UserErr(T("fractions.err.digits12", { x: esc(raw) }));
         var A = BigInt(P.ip + P.pre + P.rep),
           B = BigInt(P.ip + P.pre);
         v = R(A - B, P10(P.pre.length + P.rep.length) - P10(P.pre.length));
@@ -2217,12 +2225,12 @@
         while (p > 0 && D.charAt(p - 1) === D.charAt(p - 1 + L)) p--;
         return { form: "rep", ip: ip, pre: D.slice(0, p), rep: D.slice(p, p + L) };
       }
-      throw new UserErr("I can’t tell which digits repeat in <b>" + esc(raw) + "</b>. Put the repeating digits in parentheses, like <b>0.1(6)</b> for 0.1666… or <b>0.(27)</b> for 0.2727…");
+      throw new UserErr(T("fractions.err.whichRepeat", { x: esc(raw) }));
     }
 
     function kindWord(P) {
-      return P.pct ? "a percent" : P.form === "dec" || P.form === "rep" ? "a decimal" : P.form === "int" ? "a whole number" :
-        P.form === "mixed" ? "a mixed number" : babs(P.n) >= P.d ? "an improper fraction" : "a fraction";
+      return T("fractions.kind." + (P.pct ? "pct" : P.form === "dec" || P.form === "rep" ? "dec" : P.form === "int" ? "int" :
+        P.form === "mixed" ? "mixed" : babs(P.n) >= P.d ? "improper" : "frac"));
     }
 
     /* ===================== building the work ===================== */
@@ -2272,9 +2280,9 @@
     function flRow(k, v) { return '<div class="fl"><span class="fl-k">' + k + '</span><span class="fl-v">' + v + "</span></div>"; }
 
     function primeRow(n, ps, mark) {
-      if (n === 1) return flRow("1", '<span class="fc">1</span><span class="x">(no primes)</span>');
+      if (n === 1) return flRow("1", '<span class="fc">1</span><span class="x">' + T("fractions.gcf.noPrimes") + "</span>");
       var h = ps.map(function(p, i) { return (i ? '<span class="x">×</span>' : "") + '<span class="fc' + (mark[i] ? " com" : "") + '">' + p + "</span>"; }).join("");
-      return flRow(n + " =", h + (ps.length === 1 ? '<span class="x">(prime)</span>' : ""));
+      return flRow(n + " =", h + (ps.length === 1 ? '<span class="x">' + T("fractions.gcf.isPrime") + "</span>" : ""));
     }
 
     function primeCount(ps) {
@@ -2287,7 +2295,7 @@
         }
         c[p]++;
       });
-      return order.map(function(p) { return c[p] === 1 ? "one " + p : word(c[p]) + " " + p + "s"; });
+      return order.map(function(p) { return c[p] === 1 ? T("fractions.gcf.oneP", { p: p }) : T("fractions.gcf.manyP", { w: word(c[p]), p: p }); });
     }
     // the GCF of two whole numbers, by listing factors or by primes — work html and words
     function gcfBlock(n, d, method) {
@@ -2295,7 +2303,7 @@
         note = "";
       if (method !== "prime" && (Math.max(n, d) > 400 || factorsOf(n).length + factorsOf(d).length > 36)) {
         method = "prime";
-        note = " (These numbers have lots of factors, so this uses prime factors instead of listing them all.)";
+        note = T("fractions.gcf.tooMany");
       }
       if (method === "prime") {
         var pa = primesOf(n),
@@ -2314,15 +2322,13 @@
               return;
             }
         });
-        var gRow = !shared.length ? '<span class="fc gcf">1</span><span class="x">(nothing shared)</span>' :
+        var gRow = !shared.length ? '<span class="fc gcf">1</span><span class="x">' + T("fractions.gcf.noneShared") + "</span>" :
           shared.length === 1 ? '<span class="fc gcf">' + g + "</span>" :
           shared.map(function(p) { return '<span class="fc com">' + p + "</span>"; }).join('<span class="x">×</span>') + '<span class="x">=</span><span class="fc gcf">' + g + "</span>";
-        var html = primeRow(n, pa, ma) + primeRow(d, pb, mb) + flRow("GCF", gRow);
-        var t = "Break each number into primes (numbers that can’t be split any further): <b>" + n + " = " + (n === 1 ? "1" : pa.join(" × ")) + "</b> and <b>" +
-          d + " = " + (d === 1 ? "1" : pb.join(" × ")) + "</b>. ";
-        t += shared.length ? "They share " + andList(primeCount(shared)) + ", so the greatest common factor (GCF) is <b>" +
-          (shared.length > 1 ? shared.join(" × ") + " = " : "") + g + "</b>." :
-          "They don’t share a single prime, so the greatest common factor (GCF) is just <b>1</b>.";
+        var html = primeRow(n, pa, ma) + primeRow(d, pb, mb) + flRow(T("fractions.gcf.badge"), gRow);
+        var t = T("fractions.gcf.primes", { n: n, pn: n === 1 ? "1" : pa.join(" × "), d: d, pd: d === 1 ? "1" : pb.join(" × ") });
+        t += shared.length ? T("fractions.gcf.share", { list: andList(primeCount(shared)), g: (shared.length > 1 ? shared.join(" × ") + " = " : "") + g }) :
+          T("fractions.gcf.shareNone");
         return { g: g, html: html, text: t + note, method: "prime" };
       }
       var fa = factorsOf(n),
@@ -2335,11 +2341,10 @@
           cl.push(x);
         }
       });
-      var html2 = flRow("Factors of " + n, chips(fa, common, g)) + flRow("Factors of " + d, chips(fb, common, g));
-      var t2 = "Find the <strong>greatest common factor</strong> (GCF): the biggest number that divides both <b>" + n + "</b> and <b>" + d +
-        "</b> with nothing left over. List each one’s factors. ";
-      t2 += cl.length > 1 ? "Both lists have " + andList(cl.map(function(x) { return "<b>" + x + "</b>"; })) + " — the biggest of those is <b>" + g + "</b>." :
-        "The only number in both lists is <b>1</b>, so the GCF is 1.";
+      var html2 = flRow(T("fractions.gcf.factorsOf", { n: n }), chips(fa, common, g)) + flRow(T("fractions.gcf.factorsOf", { n: d }), chips(fb, common, g));
+      var t2 = T("fractions.gcf.listText", { n: n, d: d });
+      t2 += cl.length > 1 ? T("fractions.gcf.both", { list: andList(cl.map(function(x) { return "<b>" + x + "</b>"; })), g: g }) :
+        T("fractions.gcf.only1");
       return { g: g, html: html2, text: t2 + note, method: "list" };
     }
 
@@ -2355,7 +2360,7 @@
         b /= P;
         h += " → ÷ " + p + " → <b>" + fH(a, b) + "</b>";
       });
-      return "Don’t spot the GCF right away? Small bites work too: " + h + ". Keep dividing by anything that goes into both until only 1 does. The GCF just gets there in one jump.";
+      return T("fractions.gcf.bites", { h: h });
     }
 
     /* ===================== pictures ===================== */
@@ -2388,7 +2393,7 @@
           }
         }
         h += '<div class="brow c-' + r.cls + '"><span class="blab">' + r.lab + '</span><div class="btrack" role="img" aria-label="' +
-          esc(r.aria || (n + " of " + d + " equal pieces shaded")) + '">' + t + "</div>" + (r.cap ? '<span class="bcap">' + r.cap + "</span>" : "") + "</div>";
+          esc(r.aria || T("fractions.fig.barAria", { n: n, d: d })) + '">' + t + "</div>" + (r.cap ? '<span class="bcap">' + r.cap + "</span>" : "") + "</div>";
       });
       return h + "</div>";
     }
@@ -2435,8 +2440,8 @@
           '<text x="' + it.cx.toFixed(1) + '" y="' + (by + 15.5) + '" text-anchor="middle">' + esc(it.p.lbl) + "</text>" +
           '<circle cx="' + it.x.toFixed(1) + '" cy="' + axisY + '" r="6.5"/></g>';
       });
-      return '<div class="nl-scroll"><svg class="nl-svg" viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="Number line from ' +
-        lo + " to " + hi + ": " + esc(pts.map(function(p) { return p.lbl; }).join(", ")) + '">' + s + "</svg></div>";
+      return '<div class="nl-scroll"><svg class="nl-svg" viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="' +
+        T("fractions.fig.lineAria", { lo: lo, hi: hi, pts: esc(pts.map(function(p) { return p.lbl; }).join(", ")) }) + '">' + s + "</svg></div>";
     }
 
     function lineFor(v, lbl, cls) { // one value, between the whole numbers around it
@@ -2455,8 +2460,8 @@
     function solveSimplify(q, o) {
       var P = parseNum(q);
       if (P.pct || P.form === "dec" || P.form === "rep")
-        throw new UserErr("<b>" + shownH(P) + "</b> is " + kindWord(P) + ", not a fraction. To write it as a fraction in simplest form, use the <b>Convert</b> tab.");
-      if (P.form === "int") throw new UserErr("<b>" + shownH(P) + "</b> is a whole number — there’s nothing to simplify. Try a fraction like <b>18/24</b>.");
+        throw new UserErr(T("fractions.simp.notFrac", { x: shownH(P), kind: kindWord(P) }));
+      if (P.form === "int") throw new UserErr(T("fractions.simp.whole", { x: shownH(P) }));
       var c = new Ctx(),
         neg = P.neg,
         w = P.form === "mixed" ? P.w : null,
@@ -2473,19 +2478,17 @@
         d2 = d;
       if (w !== null) {
         c.add([
-          ["p", "Whole", "The whole number <b>" + w + "</b> just comes along for the ride. Only the fraction part, <b>" + fpH +
-            "</b>, needs simplifying."
-          ]
+          ["p", T("fractions.tag.whole"), T("fractions.simp.wholeAlong", { w: w, f: fpH })]
         ], null, [
-          ["Whole", "p", ex(orig + '<span class="note">keep the ' + w + ", simplify " + n + "/" + d + "</span>")]
+          [T("fractions.tag.whole"), "p", ex(orig + '<span class="note">' + T("fractions.simp.keepNote", { w: w, f: n + "/" + d }) + "</span>")]
         ]);
       }
       if (n === 0n) {
         figStep = c.add([
-            ["a", "Zero", "The top is 0: zero pieces of any size is nothing at all, so <b>" + fpH + " = 0</b>."]
+            ["a", T("fractions.tag.zero"), T("fractions.simp.zero", { f: fpH })]
           ], null,
           [
-            ["Done", "a", ex(fpH + eqs() + '<span class="res">0</span>')]
+            [T("fractions.tag.done"), "a", ex(fpH + eqs() + '<span class="res">0</span>')]
           ]);
       } else {
         gInfo = gcfBlock(Number(n), Number(d), o.gcf);
@@ -2493,98 +2496,90 @@
         n2 = n / g;
         d2 = d / g;
         var gs = c.add([
-          ["e", "GCF", gInfo.text]
+          ["e", T("fractions.gcf.badge"), gInfo.text]
         ], null, [
-          ["GCF", "e", gInfo.html]
+          [T("fractions.gcf.badge"), "e", gInfo.html]
         ]);
         if (g === 1n) {
           figStep = c.add([
-              ["a", "Simplest", "The only number that divides both <b>" + n + "</b> and <b>" + d + "</b> is 1, so <b>" + fpH +
-                "</b> is already in simplest form. There’s no bigger piece size that fits both counts exactly."
-              ]
+              ["a", T("fractions.tag.simplest"), T("fractions.simp.already", { n: n, d: d, f: fpH })]
             ], null,
             [
-              ["Done", "a", ex(s + fpH + '<span class="note">already in simplest form</span>')]
+              [T("fractions.tag.done"), "a", ex(s + fpH + '<span class="note">' + T("fractions.simp.alreadyNote") + "</span>")]
             ]);
         } else {
           figStep = c.add([
-              ["m", "Divide", "Divide the top <i>and</i> the bottom by the GCF, <b>" + g + "</b>: <b>" + n + " ÷ " + g + " = " + n2 +
-                "</b> and <b>" + d + " ÷ " + g + " = " + d2 + "</b>."
-              ],
-              ["p", "Why", "Dividing the top and the bottom by the same number is the same as dividing by <b>" + fH(g, g) +
-                "</b>, which is just 1 — so the amount doesn’t change. Each piece gets " + g + " times bigger, so you need " + g + " times fewer of them."
-              ]
+              ["m", T("fractions.tag.divide"), T("fractions.simp.divide", { g: g, n: n, n2: n2, d: d, d2: d2 })],
+              ["p", T("fractions.tag.why"), T("fractions.simp.why", { gg: fH(g, g), g: g })]
             ],
             bitesAside(n, d, g), [
               ["÷ " + g, "m", ex(xfH(neg && w === null, n, d, n2, d2, "÷", g))]
             ]);
           c.add([
-              ["a", "Check", "Can <b>" + fH(n2, d2) + "</b> go any further? " + (d2 === 1n ? "The bottom is 1, so it’s just the whole number <b>" + n2 + "</b>." :
-                n2 === 1n ? "The top is 1, and 1 can’t be divided any smaller — it’s in simplest form." :
-                "<b>" + n2 + "</b> and <b>" + d2 + "</b> share no factor except 1, so it’s in simplest form.")]
+              ["a", T("fractions.tag.check"), T("fractions.simp.further", { f: fH(n2, d2) }) + (d2 === 1n ? T("fractions.simp.bottom1", { n2: n2 }) :
+                n2 === 1n ? T("fractions.simp.top1") : T("fractions.simp.noShare", { n2: n2, d2: d2 }))]
             ], null,
             [
-              ["Done", "a", ex(s + (w !== null ? '<span class="wn">' + w + "</span>" : "") + '<span class="res">' + (d2 === 1n && w === null ? String(n2) : fH(n2, d2)) + "</span>")]
+              [T("fractions.tag.done"), "a", ex(s + (w !== null ? '<span class="wn">' + w + "</span>" : "") + '<span class="res">' + (d2 === 1n && w === null ? String(n2) : fH(n2, d2)) + "</span>")]
             ]);
         }
         if (w === null && n2 > d2 && d2 > 1n) {
           var mx = mixOf(R(n2, d2));
           c.add([
-              ["p", "Mixed", "The top is bigger than the bottom, so this is more than one whole. To write it as a mixed number: <b>" + n2 + " ÷ " + d2 + " = " +
-                mx.w + "</b> with <b>" + mx.n + "</b> left over, so <b>" + fH(n2, d2) + " = " + mixH(R(n2, d2)) + "</b>. Both are in simplest form — use whichever your teacher asks for."
-              ]
+              ["p", T("fractions.tag.mixed"), T("fractions.simp.mixed", { n2: n2, d2: d2, q: mx.w, r: mx.n, f: fH(n2, d2), m: mixH(R(n2, d2)) })]
             ],
             null, [
-              ["Mixed", "p", ex(s + fH(n2, d2) + eqs() + s + '<span class="res">' + mixH(R(n2, d2)) + "</span>")]
+              [T("fractions.tag.mixed"), "p", ex(s + fH(n2, d2) + eqs() + s + '<span class="res">' + mixH(R(n2, d2)) + "</span>")]
             ]);
         }
         if (w !== null && n2 >= d2) {
           var carry = n2 / d2,
             left = n2 % d2;
           c.add([
-            ["p", "Carry", "The fraction part <b>" + fH(n2, d2) + "</b> is " + (left === 0n ? "exactly " + carry + " whole" + (carry === 1n ? "" : "s") : "more than a whole: <b>" +
-                fH(n2, d2) + " = " + mixH(R(n2, d2)) + "</b>") + ". Add " + (carry === 1n ? "that 1" : "those " + carry) + " to the whole number: <b>" + w + " + " + carry + " = " + (w + carry) +
-              "</b>, so it’s <b>" + mixH(absR(v)) + "</b>."
-            ]
+            ["p", T("fractions.tag.carry"), T("fractions.simp.carry" + (left === 0n ? "Exact" : "More") + (carry === 1n ? "1" : "N"), {
+              f: fH(n2, d2),
+              m: mixH(R(n2, d2)),
+              c: carry,
+              w: w,
+              sum: w + carry,
+              res: mixH(absR(v))
+            })]
           ], null, [
-            ["Carry", "p", ex(s + '<span class="wn">' + w + "</span>" + fH(n2, d2) + eqs() + s + '<span class="res">' + mixH(absR(v)) + "</span>")]
+            [T("fractions.tag.carry"), "p", ex(s + '<span class="wn">' + w + "</span>" + fH(n2, d2) + eqs() + s + '<span class="res">' + mixH(absR(v)) + "</span>")]
           ]);
         }
       }
       // the picture: the same length bar, cut two ways
-      var rows = [{ n: n, d: d, lab: fpH, cls: "e", cap: n + " of " + d + " pieces shaded" }];
-      if (g > 1n) rows.push({ n: n2, d: d2, lab: fH(n2, d2), cls: "p", cap: n2 + " of " + d2 + " bigger pieces shaded" });
-      var cap = '<b class="lead">The fraction bars.</b> ' + (w !== null ? "This shows just the fraction part (the " + w + " whole" + (w === 1n ? "" : "s") + " would be more full bars). " : "") +
-        (g > 1n ? "Both bars are the same length. The top one is cut into <b>" + d + "</b> pieces with <b>" + n + "</b> shaded; the bottom one into <b>" + d2 +
-          "</b> bigger pieces with <b>" + n2 + "</b> shaded. The shaded amount is exactly the same — that’s why <b>" + fpH + " = " + fH(n2, d2) + "</b>." :
-          n === 0n ? "Nothing is shaded." : "The bar is cut into <b>" + d + "</b> pieces with <b>" + n + "</b> shaded. There’s no way to group those pieces into fewer, bigger equal pieces that line up exactly, so it stays as it is.") +
-        (Number(d) > 60 ? " (Too many pieces to draw each one, so the bar is just shaded.)" : "");
+      var rows = [{ n: n, d: d, lab: fpH, cls: "e", cap: T("fractions.fig.nOfD", { n: n, d: d }) }];
+      if (g > 1n) rows.push({ n: n2, d: d2, lab: fH(n2, d2), cls: "p", cap: T("fractions.fig.nOfDBigger", { n: n2, d: d2 }) });
+      var cap = T("fractions.fig.barsLead") + " " + (w !== null ? T("fractions.fig.justPart", { w: w, n: Number(w) }) + " " : "") +
+        (g > 1n ? T("fractions.fig.sameTwo", { d: d, n: n, d2: d2, n2: n2, f: fpH, f2: fH(n2, d2) }) :
+          n === 0n ? T("fractions.fig.nothing") : T("fractions.fig.stays", { d: d, n: n })) +
+        (Number(d) > 60 ? T("fractions.fig.tooMany") : "");
       if (!neg) c.fig(cap, barsHTML(rows), figStep);
       // answer
       var fracPart = R(n2, d2),
         simple, facts = [];
       if (w !== null) simple = mixH(absR(v));
       else simple = (d2 === 1n ? String(n2) : fH(n2, d2)) + (n2 > d2 && d2 > 1n ? eqs() + s + mixH(R(n2, d2)) : "");
-      if (gInfo) facts.push("GCF of <b>" + n + "</b> and <b>" + d + "</b>: <b>" + gInfo.g + "</b>");
+      if (gInfo) facts.push(T("fractions.fact.gcf", { n: n, d: d, g: gInfo.g }));
       if (!isInt(v)) {
-        facts.push("As a decimal: <b>" + decH(decInfo(v)) + "</b>");
-        facts.push("As a percent: <b>" + decH(pctInfo(v)) + "%</b>");
-        if (w !== null) facts.push("As an improper fraction: <b>" + fracH(v) + "</b>");
+        facts.push(T("fractions.fact.dec", { x: decH(decInfo(v)) }));
+        facts.push(T("fractions.fact.pct", { x: decH(pctInfo(v)) + "%" }));
+        if (w !== null) facts.push(T("fractions.fact.improper", { x: fracH(v) }));
       }
       var closer;
-      if (n === 0n) closer = "<b>Check:</b> 0 shared out any way is still 0 <span class=\"ok\">✓</span>";
-      else if (g > 1n) closer = "<b>Check</b> by working backwards: <b>" + n2 + " × " + g + " = " + n + "</b> and <b>" + d2 + " × " + g + " = " + d +
-        "</b> — back to " + fpH + ' <span class="ok">✓</span>';
-      else closer = "<b>Check:</b> " + (n === 1n ? "a top of 1 can’t get any smaller" : "no number bigger than 1 divides both " + n + " and " + d) +
-        ' <span class="ok">✓</span> Already as simple as it gets.';
+      if (n === 0n) closer = T("fractions.simp.closer0");
+      else if (g > 1n) closer = T("fractions.simp.closerBack", { n2: n2, g: g, n: n, d2: d2, d: d, f: fpH });
+      else closer = T(n === 1n ? "fractions.simp.closerTop1" : "fractions.simp.closerNone", { n: n, d: d });
       var ansT = w !== null ? mixT(v) : fracT(v) + (n2 > d2 && d2 > 1n ? " = " + mixT(v) : "");
       var ansI = w !== null ? iVal(v, "mixed") : iVal(v, "frac") + (n2 > d2 && d2 > 1n ? " = " + iVal(v, "mixed") : "");
       return {
         ctx: c,
-        band: { k: "Simplest form", v: '<span>' + s + "</span>" + simple, facts: facts },
+        band: { k: T("fractions.simp.band"), v: '<span>' + s + "</span>" + simple, facts: facts },
         closer: closer,
-        fields: [{ key: "a", kind: "simplest", label: "Simplest form", v: v, ctx: { n: n, d: d, w: w, neg: neg, n2: n2, d2: d2 } }],
-        api: { text: "Simplify " + shownT(P), html: "Simplify " + iShown(P), answer: ansT, answerHtml: ansI }
+        fields: [{ key: "a", kind: "simplest", label: T("fractions.simp.band"), v: v, ctx: { n: n, d: d, w: w, neg: neg, n2: n2, d2: d2 } }],
+        api: { text: T("fractions.api.simplify", { x: shownT(P) }), html: T("fractions.api.simplify", { x: iShown(P) }), answer: ansT, answerHtml: ansI }
       };
     }
 
@@ -2593,13 +2588,10 @@
       var N = w * d + n,
         s = sgn(neg);
       c.add([
-          ["m", "Improper", "Turn the whole number into pieces. One whole is " + d + " " + pieceWord(d) + ", so <b>" + w + "</b> whole" + (w === 1n ? "" : "s") +
-            " = <b>" + w + " × " + d + " = " + (w * d) + "</b> " + pieceWord(d) + ". Add the <b>" + n + "</b> you already have: <b>" + (w * d) + " + " + n + " = " + N +
-            "</b>. The pieces are still " + pieceWord(d) + ", so the bottom stays <b>" + d + "</b>."
-          ]
+          ["m", T("fractions.tag.improper"), T("fractions.cv.improper", { d: d, pw: pieceWord(d), w: w, wd: w * d, n: n, N: N })]
         ], null,
         [
-          ["Improper", "m", ex(s + '<span class="wn">' + w + "</span>" + fH(n, d) + eqs() + s + fH(w + " × " + d + " + " + n, d) + eqs() + s + '<span class="res">' + fH(N, d) + "</span>")]
+          [T("fractions.tag.improper"), "m", ex(s + '<span class="wn">' + w + "</span>" + fH(n, d) + eqs() + s + fH(w + " × " + d + " + " + n, d) + eqs() + s + '<span class="res">' + fH(N, d) + "</span>")]
         ]);
       return N;
     }
@@ -2611,24 +2603,23 @@
         out = R(N, d);
       if (r === 0n) {
         c.add([
-            ["p", "Whole", "<b>" + N + " ÷ " + d + " = " + q + "</b> exactly, with nothing left over — so <b>" + fH(N, d) + "</b> is the whole number <b>" + s + q + "</b>."]
+            ["p", T("fractions.tag.whole"), T("fractions.cv.wholeExact", { N: N, d: d, q: q, f: fH(N, d), sq: s + q })]
           ], null,
           [
-            ["Whole", "p", ex(s + fH(N, d) + eqs() + '<span class="res">' + s + q + "</span>")]
+            [T("fractions.tag.whole"), "p", ex(s + fH(N, d) + eqs() + '<span class="res">' + s + q + "</span>")]
           ]);
         return;
       }
       var rr = R(r, d),
         simp = !eqR(rr, { n: r, d: d });
       c.add([
-          ["p", "Mixed", "How many whole groups of <b>" + d + "</b> fit in <b>" + N + "</b>? <b>" + N + " ÷ " + d + " = " + q + "</b> with <b>" + r + "</b> left over. Every " +
-            d + " " + pieceWord(d) + " make one whole, so that’s <b>" + q + "</b> whole" + (q === 1n ? "" : "s") + " and <b>" + fH(r, d) + "</b> more: <b>" + s + q + " " + fH(r, d) + "</b>." +
-            (simp ? " The leftover part simplifies: <b>" + fH(r, d) + " = " + fracH(rr) + "</b>, so <b>" + s + mixH(absR(out)) + "</b>." : "")
+          ["p", T("fractions.tag.mixed"), T("fractions.cv.mixed", { d: d, N: N, q: q, r: r, pw: pieceWord(d), f: fH(r, d), sq: s + q }) +
+            (simp ? T("fractions.cv.mixedSimp", { f: fH(r, d), f2: fracH(rr), m: s + mixH(absR(out)) }) : "")
           ]
         ], null,
         [
-          ["Mixed", "p", ex(s + fH(N, d) + eqs() + s + '<span class="wn">' + q + "</span>" + fH(r, d) + (simp ? eqs() + s + '<span class="res">' + mixH(absR(out)) + "</span>" : "") +
-            '<span class="note">' + N + " ÷ " + d + " = " + q + " R " + r + "</span>")]
+          [T("fractions.tag.mixed"), "p", ex(s + fH(N, d) + eqs() + s + '<span class="wn">' + q + "</span>" + fH(r, d) + (simp ? eqs() + s + '<span class="res">' + mixH(absR(out)) + "</span>" : "") +
+            '<span class="note">' + T("fractions.cv.mixedNote", { N: N, d: d, q: q, r: r }) + "</span>")]
         ]);
     }
 
@@ -2638,12 +2629,10 @@
       var big = Number(n) > 100 || Number(d) > 100,
         G = gcfBlock(Number(n), Number(d), big ? "prime" : "list");
       c.add([
-          ["m", "Simplify", "Simplify <b>" + fH(n, d) + "</b>: the biggest number that divides both <b>" + n + "</b> and <b>" + d + "</b> is <b>" + g +
-            "</b> (the GCF). Divide the top and the bottom by it to get <b>" + fH(n / g, d / g) + "</b>. Dividing both by the same number never changes the amount."
-          ]
+          ["m", T("fractions.tag.simplify"), T("fractions.cv.simp", { f: fH(n, d), n: n, d: d, g: g, f2: fH(n / g, d / g) })]
         ], null,
         [
-          ["GCF", "e", G.html],
+          [T("fractions.gcf.badge"), "e", G.html],
           ["÷ " + g, "m", ex(xfH(neg, n, d, n / g, d / g, "÷", g))]
         ]);
       return [n / g, d / g];
@@ -2673,7 +2662,7 @@
         val = R(n + (w || 0n) * d, d),
         info = decInfo(val);
       if (neg) info.neg = true;
-      var tbl = '<table class="ld"><thead><tr><th>Divide</th><th>Digit</th><th>Left over</th><th>So far</th></tr></thead><tbody>';
+      var tbl = '<table class="ld"><thead><tr><th>' + T("fractions.ld.divide") + "</th><th>" + T("fractions.ld.digit") + "</th><th>" + T("fractions.ld.left") + "</th><th>" + T("fractions.ld.sofar") + "</th></tr></thead><tbody>";
       var sofar = String((w || 0n) + L.ip) + ".",
         shown = L.rows.length > 12 ? 9 : L.rows.length;
       tbl += "<tr><td>" + n + " ÷ " + d + '</td><td class="dg">' + L.ip + "</td><td>" + n + " − " + (L.ip * d) + " = " + L.first + '</td><td class="sf">' +
@@ -2681,21 +2670,20 @@
       L.rows.forEach(function(r, i) {
         sofar += r.dig;
         if (i < shown || i === L.rows.length - 1) {
-          if (i === L.rows.length - 1 && L.rows.length > shown + 1) tbl += '<tr class="more"><td colspan="4">⋯ ' + (L.rows.length - shown - 1) + " more rows like these ⋯</td></tr>";
+          if (i === L.rows.length - 1 && L.rows.length > shown + 1) tbl += '<tr class="more"><td colspan="4">' + T("fractions.ld.more", { n: L.rows.length - shown - 1 }) + "</td></tr>";
           var again = L.rep >= 0 && i === L.rows.length - 1;
           tbl += "<tr" + (again ? ' class="again"' : "") + "><td>" + r.bring + " ÷ " + d + '</td><td class="dg">' + r.dig + "</td><td>" + r.bring + " − " + r.prod + " = " + r.left +
             (again ? " ↺" : "") + '</td><td class="sf">' + sofar + "</td></tr>";
         }
       });
       tbl += "</tbody></table>";
-      var t1 = (w ? "The whole number <b>" + w + "</b> stays in front of the decimal point. For the fraction part, a" : "A") + " fraction bar means divide: <b>" + fH(n, d) + " = " + n + " ÷ " + d + "</b>. " +
-        (L.ip === 0n ? d + " doesn’t go into " + n + " at all, so start with <b>0.</b> " : "First the whole-number part: " + d + " goes into " + n + " <b>" + L.ip + "</b> time" + (L.ip === 1n ? "" : "s") + ", with <b>" + L.first + "</b> left over. ") +
-        (L.rows.length ? "Then keep going past the point: put a 0 on the end of what’s left over and divide again, one digit at a time." : "");
+      var t1 = T(w ? "fractions.cv.barDivideW" : "fractions.cv.barDivide", { w: w, f: fH(n, d), n: n, d: d }) +
+        (L.ip === 0n ? T("fractions.cv.start0", { d: d, n: n }) : T("fractions.cv.wholePart", { d: d, n: n, q: L.ip, r: L.first })) +
+        (L.rows.length ? T("fractions.cv.keepGoing") : "");
       var t2;
-      if (L.ends) t2 = L.rows.length ? "The leftover hit 0, so the decimal stops: <b>" + s + decH(info) + "</b>. That’s a <strong>terminating</strong> decimal." : "It divides exactly — no decimal part: <b>" + s + decH(info) + "</b>.";
-      else if (!info.long) t2 = "Leftover <b>" + L.rows[L.rep].start + "</b> came back — the same division starts over, so the same digits come round again forever: <b>" +
-        decT(info) + "</b>. Write it with a bar over the repeating part: <b>" + decH(info) + "</b>. That’s a <strong>repeating</strong> decimal.";
-      else t2 = "This one does repeat, but only after a very long run of digits, so round it: <b>" + decT(info) + "</b>.";
+      if (L.ends) t2 = L.rows.length ? T("fractions.cv.stops", { x: s + decH(info) }) : T("fractions.cv.exact", { x: s + decH(info) });
+      else if (!info.long) t2 = T("fractions.cv.repeats", { r: L.rows[L.rep].start, t: decT(info), x: decH(info) });
+      else t2 = T("fractions.cv.longRep", { t: decT(info) });
       var simpD = val.d,
         ps = primesOf(Number(simpD)),
         aside = null;
@@ -2704,21 +2692,27 @@
           var k = 0;
           while (P10(k) % simpD !== 0n && k < 4) k++;
           if (P10(k) % simpD === 0n && k > 0 && simpD !== P10(k) && simpD.toString().length <= 3)
-            aside = "Shortcut" + (babs(val.n) >= simpD ? " for the part after the point" : "") + ": make the bottom " + P10(k) + ". <b>" + fracH(R(babs(val.n) % simpD, simpD)) + " = " + fH(babs(val.n) % simpD * (P10(k) / simpD), P10(k)) + "</b> (multiply top and bottom by " +
-            (P10(k) / simpD) + "), and " + (babs(val.n) % simpD * (P10(k) / simpD)) + " " + placeWord(k) + " is <b>" + decH(decInfo(R(babs(val.n) % simpD, simpD))) + "</b>.";
-          else aside = "Why does it stop? In simplest form the bottom is <b>" + simpD + (ps.length > 1 ? " = " + ps.join(" × ") : "") + "</b> — only 2s and 5s. Those always fit evenly into some 10, 100, 1000…, so the division comes out even.";
+            aside = T(babs(val.n) >= simpD ? "fractions.cv.shortcutAfter" : "fractions.cv.shortcut", {
+              p: P10(k),
+              f: fracH(R(babs(val.n) % simpD, simpD)),
+              f2: fH(babs(val.n) % simpD * (P10(k) / simpD), P10(k)),
+              m: P10(k) / simpD,
+              c: babs(val.n) % simpD * (P10(k) / simpD),
+              place: placeWord(k),
+              x: decH(decInfo(R(babs(val.n) % simpD, simpD)))
+            });
+          else aside = T("fractions.cv.whyStop", { b: simpD + (ps.length > 1 ? " = " + ps.join(" × ") : "") });
         } else {
           var other = ps.filter(function(p) { return p !== 2 && p !== 5; });
-          aside = "Why does it repeat? In simplest form the bottom is <b>" + simpD + (ps.length > 1 ? " = " + ps.join(" × ") : "") + "</b>. The " + andList(other.filter(function(p, i) { return other.indexOf(p) === i; }).map(String)) +
-            " never fits evenly into 10, 100, 1000…, so the division never comes out even. And there are only so many possible leftovers, so one of them has to come back.";
+          aside = T("fractions.cv.whyRepeat", { b: simpD + (ps.length > 1 ? " = " + ps.join(" × ") : ""), list: andList(other.filter(function(p, i) { return other.indexOf(p) === i; }).map(String)) });
         }
       }
       c.add([
-          ["m", "Divide", t1],
-          ["a", L.ends ? "Stops" : "Repeats", t2]
+          ["m", T("fractions.tag.divide"), t1],
+          ["a", L.ends ? T("fractions.tag.stops") : T("fractions.tag.repeats"), t2]
         ], aside,
         [
-          ["Divide", "m", '<span class="wtext"><b>' + (w ? w + " + " : "") + n + " ÷ " + d + "</b></span>" + tbl +
+          [T("fractions.tag.divide"), "m", '<span class="wtext"><b>' + (w ? w + " + " : "") + n + " ÷ " + d + "</b></span>" + tbl +
             ex(s + (w ? '<span class="wn">' + w + "</span>" : "") + fH(n, d) + eqs() + '<span class="res">' + s + decH(info) + "</span>")
           ]
         ]);
@@ -2731,16 +2725,14 @@
         di = decInfo(a),
         pi = pctInfo(a),
         t, aside = null;
-      if (isInt(a)) t = "Percent means “out of 100”, and one whole is 100%. So multiply by 100: <b>" + a.n + " × 100 = " + (a.n * 100n) + "</b>, which is <b>" + s + (a.n * 100n) + "%</b>.";
+      if (isInt(a)) t = T("fractions.cv.pctWhole", { n: a.n, p: a.n * 100n, x: s + (a.n * 100n) + "%" });
       else {
-        t = "Percent means “out of 100”, so multiply by 100: <b>" + decT(di) + " × 100 = " + decT(pi) + "</b> — the decimal point hops two places to the right. So it’s <b>" +
-          s + decH(pi) + "%</b>.";
-        if (!pi.ends && !pi.long) t += " As a mixed number that’s <b>" + s + mixH(mul(a, HUNDRED)) + "%</b>.";
-        if (100n % a.d === 0n && a.d !== 100n && viaDec) aside = "Or straight from the fraction: <b>" + fracH(a) + " = " + fH(a.n * (100n / a.d), 100) + "</b> (×" + (100n / a.d) +
-          " top and bottom), and " + (a.n * (100n / a.d)) + " out of 100 is <b>" + (a.n * (100n / a.d)) + "%</b>.";
+        t = T("fractions.cv.pct", { d: decT(di), p: decT(pi), x: s + decH(pi) + "%" });
+        if (!pi.ends && !pi.long) t += T("fractions.cv.pctMixed", { x: s + mixH(mul(a, HUNDRED)) + "%" });
+        if (100n % a.d === 0n && a.d !== 100n && viaDec) aside = T("fractions.cv.pctStraight", { f: fracH(a), f2: fH(a.n * (100n / a.d), 100), k: 100n / a.d, c: a.n * (100n / a.d) });
       }
       c.add([
-        ["p", "Percent", t]
+        ["p", T("fractions.tag.percent"), t]
       ], aside, [
         ["× 100", "p", ex(s + (isInt(a) ? String(a.n) : decH(di)) + '<span class="op-s">×</span>100' + eqs() + '<span class="res">' + s + decH(pi) + "%</span>")]
       ]);
@@ -2753,12 +2745,20 @@
         D = P10(k),
         s = sgn(P.neg),
         last = P.fp.charAt(k - 1);
-      var t = "Read it by place value. The last digit, <b>" + last + "</b>, is in the <strong>" + placeWord(k) + "</strong> place, so <b>" + shownH({ form: "dec", ip: P.ip, fp: P.fp }) + "</b> means <b>" +
-        N + "</b> " + placeWord(k) + (ip > 0n ? " (" + ip + " whole" + (ip === 1n ? "" : "s") + " = " + (ip * D) + " " + placeWord(k) + ", plus " + BigInt(P.fp) + ")" : "") + ": <b>" + fH(N, D) + "</b>.";
+      var t = T(ip > 0n ? "fractions.cv.placeW" : "fractions.cv.place", {
+        last: last,
+        place: placeWord(k),
+        x: shownH({ form: "dec", ip: P.ip, fp: P.fp }),
+        N: N,
+        ip: ip,
+        ipD: ip * D,
+        fp: BigInt(P.fp),
+        f: fH(N, D)
+      });
       c.add([
-        ["p", "Fraction", t]
+        ["p", T("fractions.tag.fraction"), t]
       ], null, [
-        ["Place", "p", ex(s + BigInt(P.ip) + "." + P.fp + eqs() + s + fH(N, D) + '<span class="note">' + N + " " + placeWord(k) + "</span>")]
+        [T("fractions.tag.place"), "p", ex(s + BigInt(P.ip) + "." + P.fp + eqs() + s + fH(N, D) + '<span class="note">' + T("fractions.cv.placeNote", { N: N, place: placeWord(k) }) + "</span>")]
       ]);
       return cvSimp(c, N, D, P.neg);
     }
@@ -2784,31 +2784,30 @@
         vr = '<span class="vr">x</span>';
 
       function row(l, r, wds, cls) { return "<tr" + (cls ? ' class="' + cls + '"' : "") + '><td class="l">' + l + '</td><td class="q">=</td><td>' + r + '</td><td class="w">' + (wds || "") + "</td></tr>"; }
-      var tbl = '<table class="alg"><tbody>' + row(vr, xs, "call it x");
+      var tbl = '<table class="alg"><tbody>' + row(vr, xs, T("fractions.rep.callX"));
       c.add([
-        ["p", "Name it", "Call the number " + vr + ": <b>" + vr + " = " + xs + "</b>. The trick: make two copies of " + vr + " whose endless tails match exactly, then subtract so the tails cancel out."]
+        ["p", T("fractions.tag.nameIt"), T("fractions.rep.name", { x: vr, xs: xs })]
       ]);
       var hi = m1 + vr,
         lo = (m2 === 1n ? "" : m2) + vr;
       var t2 = a === 0 ?
-        "The repeating part, <b>" + P.rep + "</b>, has " + word(b) + " digit" + (b === 1 ? "" : "s") + ", so multiply by <b>" + m1 + "</b> to slide one copy of it in front of the point: <b>" + hi + " = " + shifted(b) + "</b>. Its tail is the same as " + vr + "’s." :
-        "Multiply by <b>" + m2 + "</b> to slide the non-repeating <b>" + P.pre + "</b> in front of the point: <b>" + lo + " = " + shifted(a) + "</b>. Multiply by <b>" + m1 +
-        "</b> to slide one copy of the repeating <b>" + P.rep + "</b> over too: <b>" + hi + " = " + shifted(a + b) + "</b>. Both tails are now the same endless " + P.rep + P.rep + "…";
+        T("fractions.rep.shift1", { rep: P.rep, w: word(b), b: b, m1: m1, hi: hi, s: shifted(b), x: vr }) :
+        T("fractions.rep.shift2", { m2: m2, pre: P.pre, lo: lo, s1: shifted(a), m1: m1, rep: P.rep, hi: hi, s2: shifted(a + b), tail: P.rep + P.rep + "…" });
       c.add([
-        ["m", "Shift", t2]
+        ["m", T("fractions.tag.shift"), t2]
       ], null, [
-        ["Shift", "m", '<table class="alg"><tbody>' + row(vr, xs) + (a ? row(lo, shifted(a), "× " + m2) : "") + row(hi, shifted(a + b), "× " + m1) + "</tbody></table>"]
+        [T("fractions.tag.shift"), "m", '<table class="alg"><tbody>' + row(vr, xs) + (a ? row(lo, shifted(a), "× " + m2) : "") + row(hi, shifted(a + b), "× " + m1) + "</tbody></table>"]
       ]);
       var coef = m1 - m2,
         diff = A - B;
       c.add([
-          ["a", "Subtract", "Subtract: <b>" + hi + " − " + lo + " = " + shifted(a + b) + " − " + (a ? shifted(a) : xs) + "</b>. The tails cancel exactly, leaving whole numbers: <b>" + coef + vr + " = " + diff + "</b>."]
+          ["a", T("fractions.tag.subtract"), T("fractions.rep.subtract", { hi: hi, lo: lo, s2: shifted(a + b), s1: a ? shifted(a) : xs, cx: coef + vr, diff: diff })]
         ], null,
         [
-          ["Subtract", "a", '<table class="alg"><tbody>' + row(hi, shifted(a + b)) + row("− " + lo, (a ? shifted(a) : xs)) + row(coef + vr, String(diff), "", "sub") + "</tbody></table>"]
+          [T("fractions.tag.subtract"), "a", '<table class="alg"><tbody>' + row(hi, shifted(a + b)) + row("− " + lo, (a ? shifted(a) : xs)) + row(coef + vr, String(diff), "", "sub") + "</tbody></table>"]
         ]);
       c.add([
-        ["m", "Divide", "Divide both sides by <b>" + coef + "</b>: <b>" + vr + " = " + fH(diff, coef) + "</b>."]
+        ["m", T("fractions.tag.divide"), T("fractions.rep.divide", { c: coef, x: vr, f: fH(diff, coef) })]
       ], null, [
         ["÷ " + coef, "m", ex(vr + eqs() + s + fH(diff, coef))]
       ]);
@@ -2821,11 +2820,11 @@
         di = decInfo(a),
         pi = pctInfo(a),
         t;
-      t = "Percent means “per hundred”, so divide by 100: the decimal point hops two places to the left. <b>" + s + decT(pi) + "% → " + s + decT(di) + "</b>.";
-      if (P.form === "int" && P.n < 10n) t += " (There’s only one digit, so a 0 fills the empty place.)";
-      if (P.form === "frac" || P.form === "mixed" || P.form === "rep") t = "Percent means “per hundred”, so divide by 100: <b>" + shownH(strip(P)) + " ÷ 100 = " + s + decT(di) + "</b>.";
+      t = T("fractions.cv.pctToDec", { p: s + decT(pi), d: s + decT(di) });
+      if (P.form === "int" && P.n < 10n) t += T("fractions.cv.oneDigit");
+      if (P.form === "frac" || P.form === "mixed" || P.form === "rep") t = T("fractions.cv.pctToDecDiv", { x: shownH(strip(P)), d: s + decT(di) });
       c.add([
-        ["p", "Decimal", t]
+        ["p", T("fractions.tag.decimal"), t]
       ], null, [
         ["÷ 100", "p", ex(s + decH(pi) + "%" + eqs() + s + decH(pi) + '<span class="op-s">÷</span>100' + eqs() + '<span class="res">' + s + decH(di) + "</span>")]
       ]);
@@ -2846,9 +2845,9 @@
         inner = strip(P);
       if (P.form === "int") {
         c.add([
-          ["p", "Fraction", "<b>" + P.n + "%</b> means <b>" + P.n + "</b> out of 100: <b>" + fH(P.n, 100) + "</b>."]
+          ["p", T("fractions.tag.fraction"), T("fractions.cv.pctInt", { n: P.n, f: fH(P.n, 100) })]
         ], null, [
-          ["Out of 100", "p", ex(s + P.n + "%" + eqs() + s + fH(P.n, 100))]
+          [T("fractions.tag.outOf100"), "p", ex(s + P.n + "%" + eqs() + s + fH(P.n, 100))]
         ]);
         return cvSimp(c, P.n, 100n, P.neg);
       }
@@ -2857,27 +2856,28 @@
           N = BigInt(P.ip + P.fp),
           D = 100n * P10(k);
         c.add([
-          ["p", "Fraction", "<b>" + shownH(inner) + "%</b> means <b>" + shownH(inner) + "</b> out of 100: <b>" + fH(shownH(inner), 100) + "</b>. A decimal on top looks odd, so multiply the top and the bottom by <b>" +
-            P10(k) + "</b> to make it whole: <b>" + fH(N, D) + "</b>."
-          ]
+          ["p", T("fractions.tag.fraction"), T("fractions.cv.pctDec", { x: shownH(inner), f: fH(shownH(inner), 100), k: P10(k), f2: fH(N, D) })]
         ], null, [
-          ["Out of 100", "p", ex(s + shownH(inner) + "%" + eqs() + s + fH(shownH(inner), 100) + eqs() + s + fH(N, D))]
+          [T("fractions.tag.outOf100"), "p", ex(s + shownH(inner) + "%" + eqs() + s + fH(shownH(inner), 100) + eqs() + s + fH(N, D))]
         ]);
         return cvSimp(c, N, D, P.neg);
       }
       var pf = R(p.n, p.d);
       c.add([
-        ["p", "Fraction", "<b>" + shownH(inner) + "%</b> means <b>" + shownH(inner) + " ÷ 100</b>. As a fraction, " + shownH(inner) + " = <b>" + fracH(pf) + "</b>, and dividing by 100 multiplies the bottom by 100: <b>" +
-          fH(pf.n, pf.d * 100n) + "</b>."
-        ]
+        ["p", T("fractions.tag.fraction"), T("fractions.cv.pctFrac", { x: shownH(inner), f: fracH(pf), f2: fH(pf.n, pf.d * 100n) })]
       ], null, [
         ["÷ 100", "p", ex(s + shownH(inner) + "%" + eqs() + s + fracH(pf) + '<span class="op-s">÷</span>100' + eqs() + s + fH(pf.n, pf.d * 100n))]
       ]);
       return cvSimp(c, pf.n, pf.d * 100n, P.neg);
     }
-    var TO_LABEL = { fraction: "a fraction in simplest form", mixed: "a mixed number", improper: "an improper fraction", decimal: "a decimal", percent: "a percent" };
-    var TO_K = { fraction: "As a fraction", mixed: "As a mixed number", improper: "As an improper fraction", decimal: "As a decimal", percent: "As a percent" };
-    var FIELD_LABEL = { fraction: "As a fraction (simplest form)", mixed: "As a mixed number", improper: "As an improper fraction", decimal: "As a decimal", percent: "As a percent" };
+    var TO_LABEL = {},
+      TO_K = {},
+      FIELD_LABEL = {};
+    ["fraction", "mixed", "improper", "decimal", "percent"].forEach(function(k) {
+      TO_LABEL[k] = T("fractions.toLabel." + k); // "Write 3/8 as a decimal and a percent"
+      TO_K[k] = T("fractions.toK." + k); // the answer band's heading
+      FIELD_LABEL[k] = T("fractions.field." + k); // check my answer
+    });
 
     function solveConvert(q, o) {
       var P = parseNum(q),
@@ -2904,14 +2904,15 @@
       } else targets = [to];
       // refuse the conversions that don't make sense, kindly
       function no(msg) { throw new UserErr(msg); }
-      if (to === "improper" && cmpR(a, R(1)) < 0) no("<b>" + what + "</b> is less than 1, so it can’t be an improper fraction (that’s a fraction with the top bigger than the bottom). Try <b>Decimal</b> or <b>Percent</b>.");
-      if (to === "improper" && improperFrac) no("<b>" + what + "</b> is already an improper fraction. To split it into wholes and a leftover part, pick <b>Mixed number</b>.");
-      if (to === "mixed" && cmpR(a, R(1)) < 0) no("<b>" + what + "</b> is less than 1 whole, so there’s no whole-number part — it can’t be a mixed number. Try <b>Decimal</b> or <b>Percent</b>.");
-      if (to === "mixed" && isInt(v)) no("<b>" + what + "</b> is a whole number — there’s no fraction part left over to write. Try <b>Percent</b>.");
-      if (to === "mixed" && kind === "mixed" && P.n < P.d && bgcd(P.n, P.d) === 1n) no("<b>" + what + "</b> is already a mixed number in simplest form. Try <b>Improper</b>, <b>Decimal</b> or <b>Percent</b>.");
-      if (to === "decimal" && (kind === "dec" || kind === "rep" || kind === "int")) no("<b>" + what + "</b> is already " + (kind === "int" ? "a whole number — as a decimal it’s just " + what : "a decimal") + ". Pick another form to convert it to.");
-      if (to === "percent" && kind === "pct") no("<b>" + what + "</b> is already a percent. Pick another form to convert it to.");
-      if (to === "fraction" && kind === "frac" && bgcd(P.n, P.d) === 1n && !improperFrac) no("<b>" + what + "</b> is already a fraction in simplest form. To see it as a decimal or percent, pick <b>Every form</b>.");
+      var W = { x: what };
+      if (to === "improper" && cmpR(a, R(1)) < 0) no(T("fractions.cvno.improperLess", W));
+      if (to === "improper" && improperFrac) no(T("fractions.cvno.improperAlready", W));
+      if (to === "mixed" && cmpR(a, R(1)) < 0) no(T("fractions.cvno.mixedLess", W));
+      if (to === "mixed" && isInt(v)) no(T("fractions.cvno.mixedWhole", W));
+      if (to === "mixed" && kind === "mixed" && P.n < P.d && bgcd(P.n, P.d) === 1n) no(T("fractions.cvno.mixedAlready", W));
+      if (to === "decimal" && (kind === "dec" || kind === "rep" || kind === "int")) no(T(kind === "int" ? "fractions.cvno.decWhole" : "fractions.cvno.decAlready", W));
+      if (to === "percent" && kind === "pct") no(T("fractions.cvno.pctAlready", W));
+      if (to === "fraction" && kind === "frac" && bgcd(P.n, P.d) === 1n && !improperFrac) no(T("fractions.cvno.fracAlready", W));
       var want = function(t) { return targets.indexOf(t) >= 0; };
       var nn, dd;
       if (kind === "frac") {
@@ -2946,10 +2947,10 @@
       } else if (kind === "int") {
         if (to === "percent" || to === "all") cvPercent(c, v, false);
         else c.add([
-            ["p", "Fraction", "Any whole number is itself over 1 — <b>" + what + "</b> wholes, each cut into 1 piece: <b>" + what + " = " + fH(P.n, 1) + "</b>."]
+            ["p", T("fractions.tag.fraction"), T("fractions.cv.over1", { x: what, f: fH(P.n, 1) })]
           ], null,
           [
-            ["Over 1", "p", ex(what + eqs() + '<span class="res">' + sgn(neg) + fH(P.n, 1) + "</span>")]
+            [T("fractions.tag.over1"), "p", ex(what + eqs() + '<span class="res">' + sgn(neg) + fH(P.n, 1) + "</span>")]
           ]);
       } else if (kind === "dec" || kind === "rep") {
         if (to === "percent") cvPercent(c, v, false);
@@ -2965,7 +2966,7 @@
           if ((to === "mixed" || (to !== "improper" && more1)) && r3[1] > 1n) cvMixed(c, r3[0], r3[1], neg);
         }
       }
-      if (!c.steps.length) no("There’s nothing to convert there.");
+      if (!c.steps.length) no(T("fractions.cvno.nothing"));
       var last = c.steps.length - 1;
       // pictures
       var simp = absR(v),
@@ -2975,16 +2976,14 @@
       var di = decInfo(v),
         lbl = (isInt(v) ? fracT(v) : fracT(v) + (di.long ? "" : " = " + decT(di).replace(/(\d)\1{3,}…$/, "$1$1$1…")));
       if (lbl.length > 26) lbl = fracT(v);
-      var body = (neg ? "" : barsHTML([{ n: barN, d: barD, lab: fH(barN, barD), cls: "p", cap: (barN > barD ? barN + " " + pieceWord(barD) + " shaded — more than one whole, so it spills into the next bar" : barN + " of " + barD + " pieces shaded") }])) +
+      var body = (neg ? "" : barsHTML([{ n: barN, d: barD, lab: fH(barN, barD), cls: "p", cap: (barN > barD ? T("fractions.fig.spills", { n: barN, pw: pieceWord(barD) }) : T("fractions.fig.nOfD", { n: barN, d: barD })) }])) +
         lineFor(v, lbl, "p");
-      c.fig('<b class="lead">The picture.</b> The bar shows the amount as pieces of a whole; the number line shows where it sits between ' +
-        (isInt(v) ? "whole numbers" : "the whole numbers <b>" + floorR(v) + "</b> and <b>" + (floorR(v) + 1n) + "</b>") +
-        (Number(v.d) <= 24 && !isInt(v) ? ", with the space between them cut into " + pieceWord(v.d) : "") + ". Every form on this page is a different name for that one point.", body, last);
+      c.fig(T(isInt(v) ? "fractions.fig.cvWhole" : Number(v.d) <= 24 ? "fractions.fig.cvCut" : "fractions.fig.cvBetween", { lo: floorR(v), hi: floorR(v) + 1n, pw: pieceWord(v.d) }), body, last);
       // answer
       var forms = { fraction: "frac", improper: "frac", mixed: "mixed", decimal: "dec", percent: "pct" };
       var bandV, bandK;
       if (to === "all") {
-        bandK = "Every form";
+        bandK = T("fractions.to.all");
         bandV = "<span>" + what + "</span>" + targets.map(function(t) { return eqs() + "<span>" + valH(v, forms[t]) + "</span>"; }).join("");
         if (kind === "dec" || kind === "rep") bandV = "<span>" + what + "</span>" + eqs() + "<span>" + fracH(v) + "</span>" + (more1 ? eqs() + "<span>" + mixH(v) + "</span>" : "") + eqs() + "<span>" + valH(v, "pct") + "</span>";
         if (kind === "pct") bandV = "<span>" + what + "</span>" + eqs() + "<span>" + valH(v, "dec") + "</span>" + eqs() + "<span>" + fracH(v) + "</span>" + (more1 ? eqs() + "<span>" + mixH(v) + "</span>" : "");
@@ -2997,20 +2996,20 @@
       }
       var facts = [];
       if (to !== "all") {
-        if (!(to === "fraction" || to === "improper") && !isInt(v)) facts.push("As a fraction: <b>" + fracH(v) + "</b>");
-        if (to !== "mixed" && to !== "fraction" && more1) facts.push("As a mixed number: <b>" + mixH(v) + "</b>");
-        if (to !== "decimal") facts.push("As a decimal: <b>" + valH(v, "dec") + "</b>");
-        if (to !== "percent") facts.push("As a percent: <b>" + valH(v, "pct") + "</b>");
+        if (!(to === "fraction" || to === "improper") && !isInt(v)) facts.push(T("fractions.fact.frac", { x: fracH(v) }));
+        if (to !== "mixed" && to !== "fraction" && more1) facts.push(T("fractions.fact.mixed", { x: mixH(v) }));
+        if (to !== "decimal") facts.push(T("fractions.fact.dec", { x: valH(v, "dec") }));
+        if (to !== "percent") facts.push(T("fractions.fact.pct", { x: valH(v, "pct") }));
       } else {
-        facts.push("You started with " + kindWord(P) + (isInt(v) ? " — it’s a whole number." : cmpR(a, R(1)) < 0 ? " — it’s less than 1." : " — it’s more than 1 whole."));
-        if (!isInt(v) && !di.ends) facts.push(di.long ? "The decimal repeats, but only after a very long run of digits." : "The bar covers the digits that repeat forever.");
+        facts.push(T(isInt(v) ? "fractions.fact.startedWhole" : cmpR(a, R(1)) < 0 ? "fractions.fact.startedLess" : "fractions.fact.startedMore", { kind: kindWord(P) }));
+        if (!isInt(v) && !di.ends) facts.push(T(di.long ? "fractions.fact.longRep" : "fractions.fact.barRep"));
       }
-      if (!di.ends && !di.long && to !== "percent" && !isInt(mul(a, HUNDRED))) facts.push("Percent as a mixed number: <b>" + sgn(neg) + mixH(mul(a, HUNDRED)) + "%</b>");
+      if (!di.ends && !di.long && to !== "percent" && !isInt(mul(a, HUNDRED))) facts.push(T("fractions.fact.pctMixed", { x: sgn(neg) + mixH(mul(a, HUNDRED)) + "%" }));
       // check: put it back
-      var closer = "<b>Check:</b> ";
-      if (isInt(v)) closer += "<b>" + what + "</b> wholes is " + (a.n * 100n) + " hundredths, which is " + (a.n * 100n) + '% <span class="ok">✓</span>';
-      else if (di.ends) closer += "<b>" + decT(di) + "</b> is " + (BigInt(di.ip.toString() + di.pre)) + " " + placeWord(di.pre.length) + ", which simplifies to <b>" + fracH(v) + '</b> <span class="ok">✓</span> — every form is the same amount.';
-      else closer += "multiply back: <b>" + fracH(v) + "</b> means " + babs(v.n) + " ÷ " + v.d + ", and " + decT(di) + " × " + v.d + " is just about <b>" + babs(v.n) + '</b> <span class="ok">✓</span> (the repeating digits never quite end, so it gets closer and closer).';
+      var closer;
+      if (isInt(v)) closer = T("fractions.cv.closerWhole", { x: what, h: a.n * 100n });
+      else if (di.ends) closer = T("fractions.cv.closerEnds", { t: decT(di), n: BigInt(di.ip.toString() + di.pre), place: placeWord(di.pre.length), f: fracH(v) });
+      else closer = T("fractions.cv.closerRep", { f: fracH(v), n: babs(v.n), d: v.d, t: decT(di) });
       var fields = targets.map(function(t, i) { return { key: "f" + i, kind: t, label: FIELD_LABEL[t], v: v, ctx: { P: P } }; });
       var asked = targets.map(function(t) { return TO_LABEL[t]; });
       var ansT = targets.map(function(t) { return (kind === "int" && forms[t] === "frac" ? sgn(neg) + a.n + "/1" : valT(v, forms[t])) + (t === "fraction" && more1 ? " = " + mixT(v) : ""); }).join(" = ");
@@ -3020,7 +3019,7 @@
         band: { k: bandK, v: bandV, facts: facts },
         closer: closer,
         fields: fields,
-        api: { text: "Write " + shownT(P) + " as " + andList(asked), html: "Write " + iShown(P) + " as " + andList(asked), answer: ansT, answerHtml: ansI }
+        api: { text: T("fractions.api.convert", { x: shownT(P), list: andList(asked) }), html: T("fractions.api.convert", { x: iShown(P), list: andList(asked) }), answer: ansT, answerHtml: ansI }
       };
     }
 
@@ -3029,11 +3028,11 @@
 
     function solveCompare(q) {
       var parts = clean(q).split(/\s*[,;]\s*/).filter(function(x) { return x !== ""; });
-      if (parts.length < 2) throw new UserErr("Type 2 to 5 numbers with commas between them, like <b>3/4, 5/8, 2/3</b>.");
-      if (parts.length > 5) throw new UserErr("That’s " + parts.length + " numbers — keep it to 5 or fewer so the work fits.");
+      if (parts.length < 2) throw new UserErr(T("fractions.cmp.errFew"));
+      if (parts.length > 5) throw new UserErr(T("fractions.cmp.errMany", { n: parts.length }));
       var items = parts.map(function(p, i) {
         var P;
-        try { P = parseNum(p); } catch (e) { if (e && e.user) throw new UserErr("Number " + (i + 1) + ": " + e.user); throw e; }
+        try { P = parseNum(p); } catch (e) { if (e && e.user) throw new UserErr(T("fractions.cmp.errNumber", { i: i + 1, msg: e.user })); throw e; }
         return { P: P, v: P.v, i: i, cls: COLORS[i], h: shownH(P), t: shownT(P) };
       });
       var c = new Ctx(),
@@ -3056,16 +3055,16 @@
         var a = absR(it.v);
         it.n = a.n;
         it.d = a.d;
-        rew.push("<b>" + it.h + " = " + fracH(it.v) + "</b>" + (P.pct ? " (out of 100, simplified)" : P.form === "int" ? " (a whole number over 1)" : " (by place value, simplified)"));
+        rew.push("<b>" + it.h + " = " + fracH(it.v) + "</b>" + T(P.pct ? "fractions.cmp.rewPct" : P.form === "int" ? "fractions.cmp.rewInt" : "fractions.cmp.rewDec"));
       });
       items.forEach(function(it) { it.sn = it.v.n < 0n ? -it.n : it.n; });
       var fracOf = function(it) { return sgn(it.v.n < 0n) + fH(it.n, it.d); };
       if (rew.length) {
         c.add([
-            ["p", "Rewrite", "To compare fairly, write them all the same way — as fractions. " + rew.join("; ") + "."]
+            ["p", T("fractions.tag.rewrite"), T("fractions.cmp.rewrite", { list: rew.join("; ") })]
           ], null,
           [
-            ["Fractions", "p", ex(items.map(function(it) { return '<span class="hl c-' + it.cls + '">' + fracOf(it) + "</span>"; }).join('<span class="op-s">,</span>'))]
+            [T("common.fractions"), "p", ex(items.map(function(it) { return '<span class="hl c-' + it.cls + '">' + fracOf(it) + "</span>"; }).join('<span class="op-s">,</span>'))]
           ]);
       }
       var dens = items.map(function(it) { return it.d; }),
@@ -3074,10 +3073,10 @@
       dens.forEach(function(x) { if (!uniq.some(function(y) { return y === x; })) uniq.push(x); });
       if (uniq.length === 1) {
         c.add([
-            ["e", "Same size", "They all have the same bottom number, <b>" + L + "</b>, so the pieces are already the same size — " + pieceWord(L) + ". Just compare the tops."]
+            ["e", T("fractions.tag.sameSize"), T("fractions.cmp.sameSize", { L: L, pw: pieceWord(L) })]
           ], null,
           [
-            ["Same", "e", ex(items.map(function(it) { return '<span class="hl c-' + it.cls + '">' + fracOf(it) + "</span>"; }).join('<span class="op-s">,</span>') + '<span class="note">all ' + pieceWord(L) + "</span>")]
+            [T("fractions.tag.same"), "e", ex(items.map(function(it) { return '<span class="hl c-' + it.cls + '">' + fracOf(it) + "</span>"; }).join('<span class="op-s">,</span>') + '<span class="note">' + T("fractions.cmp.allNote", { pw: pieceWord(L) }) + "</span>")]
           ]);
       } else {
         var listing = L <= 150n && uniq.every(function(x) { return L / x <= 15n; }),
@@ -3087,12 +3086,11 @@
           uniq.forEach(function(x) {
             var ms = [];
             for (var m = x; m <= L; m += x) ms.push('<span class="fc' + (m === L ? " gcf" : "") + '">' + m + "</span>");
-            html += flRow("Multiples of " + x, ms.join(""));
+            html += flRow(T("fractions.cmp.multiplesOf", { x: x }), ms.join(""));
           });
-          t = "To compare fairly, cut everything into the same size pieces. Find the <strong>least common denominator</strong> (LCD): the smallest number that " +
-            andList(uniq.map(function(x) { return "<b>" + x + "</b>"; })) + " all go into. Count up in multiples of each — the first number on every list is <b>" + L + "</b>.";
+          t = T("fractions.cmp.lcdList", { list: andList(uniq.map(function(x) { return "<b>" + x + "</b>"; })), L: L });
           var biggest = uniq.reduce(function(x, y) { return x > y ? x : y; });
-          if (biggest === L) t += " (The biggest bottom, " + L + ", already works — the others go into it.)";
+          if (biggest === L) t += T("fractions.cmp.biggestWorks", { L: L });
         } else {
           var mp = {};
           uniq.forEach(function(x) {
@@ -3104,25 +3102,25 @@
           });
           var lp = [];
           Object.keys(mp).sort(function(x, y) { return x - y; }).forEach(function(p) { for (var k = 0; k < mp[p]; k++) lp.push(p); });
-          html += flRow("LCD", lp.map(function(p) { return '<span class="fc com">' + p + "</span>"; }).join('<span class="x">×</span>') + '<span class="x">=</span><span class="fc gcf">' + L + "</span>");
-          t = "To compare fairly, cut everything into the same size pieces. Find the <strong>least common denominator</strong> (LCD) with prime factors: take each prime the most times it shows up in any one bottom number, and multiply. That gives <b>" + L + "</b>.";
+          html += flRow(T("fractions.cmp.lcd"), lp.map(function(p) { return '<span class="fc com">' + p + "</span>"; }).join('<span class="x">×</span>') + '<span class="x">=</span><span class="fc gcf">' + L + "</span>");
+          t = T("fractions.cmp.lcdPrimes", { L: L });
         }
         c.add([
-          ["e", "LCD", t]
+          ["e", T("fractions.cmp.lcd"), t]
         ], null, [
-          ["LCD " + L, "e", html]
+          [T("fractions.cmp.lcdBadge", { L: L }), "e", html]
         ]);
         var xs = items.map(function(it) {
           var k = L / it.d;
-          return '<span class="hl c-' + it.cls + '">' + (k === 1n ? fracOf(it) + '<span class="note" style="margin:0 .5ch">already</span>' : xfH(it.v.n < 0n, it.n, it.d, it.n * k, L, "×", k, it.cls)) + "</span>";
+          return '<span class="hl c-' + it.cls + '">' + (k === 1n ? fracOf(it) + '<span class="note" style="margin:0 .5ch">' + T("fractions.cmp.already") + "</span>" : xfH(it.v.n < 0n, it.n, it.d, it.n * k, L, "×", k, it.cls)) + "</span>";
         });
-        var said = items.map(function(it) { var k = L / it.d; return k === 1n ? "<b>" + fracOf(it) + "</b> already has " + L : "<b>" + fracOf(it) + " = " + sgn(it.v.n < 0n) + fH(it.n * k, L) + "</b> (×" + k + ")"; });
+        var said = items.map(function(it) { var k = L / it.d; return k === 1n ? T("fractions.cmp.alreadyHas", { f: fracOf(it), L: L }) : "<b>" + fracOf(it) + " = " + sgn(it.v.n < 0n) + fH(it.n * k, L) + "</b> (×" + k + ")"; });
         c.add([
-            ["m", "Rewrite", "Give each one " + L + " on the bottom. Whatever you multiply the bottom by, multiply the top by the same number: " + said.join(", ") + "."],
-            ["p", "Why", "Multiplying top and bottom by the same number is multiplying by 1 in disguise (like " + fH(2, 2) + " or " + fH(3, 3) + "), so none of the amounts change — only the piece size does."]
+            ["m", T("fractions.tag.rewrite"), T("fractions.cmp.giveEach", { L: L, list: said.join(", ") })],
+            ["p", T("fractions.tag.why"), T("fractions.cmp.why", { a: fH(2, 2), b: fH(3, 3) })]
           ],
           null, [
-            ["× to " + L, "m", ex(xs.join('<span class="op-s" style="padding:0 1ch"></span>'))]
+            [T("fractions.cmp.toBadge", { L: L }), "m", ex(xs.join('<span class="op-s" style="padding:0 1ch"></span>'))]
           ]);
       }
       items.forEach(function(it) { it.top = it.sn * (L / it.d); });
@@ -3134,12 +3132,12 @@
       function chainOf(fn) { var s = fn(sorted[0]); for (var j = 1; j < sorted.length; j++) s += " " + rel[j - 1] + " " + fn(sorted[j]); return s; }
       var ties = rel.indexOf("=") >= 0;
       c.add([
-          ["a", "Compare", "Now every piece is the same size (" + pieceWord(L) + "), so more pieces means more: <b>" + chainOf(function(it) { return String(it.top).replace("-", "−"); }) + "</b>." +
-            (anyNeg ? " (With negatives, the one furthest below zero is the least.)" : "") + (ties ? " Two of them have the same top — they’re equal, the same point on the number line." : "")
+          ["a", T("fractions.tag.compare"), T("fractions.cmp.compare", { pw: pieceWord(L), chain: chainOf(function(it) { return String(it.top).replace("-", "−"); }) }) +
+            (anyNeg ? T("fractions.cmp.negatives") : "") + (ties ? T("fractions.cmp.ties") : "")
           ]
         ], null,
         [
-          ["Compare", "a", ex(chainOf(function(it) { return '<span class="hl c-' + it.cls + '">' + sgn(it.top < 0n) + fH(babs(it.top), L) + "</span>"; }).replace(/ ([<=]) /g, '<span class="op-s">$1</span>'))]
+          [T("fractions.tag.compare"), "a", ex(chainOf(function(it) { return '<span class="hl c-' + it.cls + '">' + sgn(it.top < 0n) + fH(babs(it.top), L) + "</span>"; }).replace(/ ([<=]) /g, '<span class="op-s">$1</span>'))]
         ]);
       if (items.length === 2) {
         var A = items[0],
@@ -3148,19 +3146,17 @@
           bd = B.sn * A.d,
           sym = ad > bd ? ">" : ad < bd ? "<" : "=";
         c.add([
-            ["m", "Cross", "Shortcut for two fractions — <strong>cross-multiply</strong>: <b>" + A.sn + " × " + B.d + " = " + ad + "</b> goes with " + fracOf(A) + ", and <b>" + B.sn + " × " + A.d + " = " + bd +
-              "</b> goes with " + fracOf(B) + ". " + ad + " " + sym + " " + bd + ", so <b>" + A.h + " " + sym + " " + B.h + "</b> — the same answer, without finding the LCD."
-            ]
+            ["m", T("fractions.tag.cross"), T("fractions.cmp.cross", { an: A.sn, bd0: B.d, ad: ad, fa: fracOf(A), bn: B.sn, ad0: A.d, bd: bd, fb: fracOf(B), sym: sym, ah: A.h, bh: B.h })]
           ], null,
           [
-            ["Cross ×", "m", ex(fracOf(A) + '<span class="note" style="margin:0 1ch">vs</span>' + fracOf(B)) + '<span class="wtext"><b>' + A.sn + " × " + B.d + " = " + ad + "</b> &nbsp; " + sym + " &nbsp; <b>" + B.sn + " × " + A.d + " = " + bd + "</b></span>"]
+            [T("fractions.tag.crossX"), "m", ex(fracOf(A) + '<span class="note" style="margin:0 1ch">' + T("fractions.vs") + "</span>" + fracOf(B)) + '<span class="wtext"><b>' + A.sn + " × " + B.d + " = " + ad + "</b> &nbsp; " + sym + " &nbsp; <b>" + B.sn + " × " + A.d + " = " + bd + "</b></span>"]
           ]);
       }
       var last = c.add([
-          ["a", "Order", "So, from least to greatest: <b>" + chainOf(function(it) { return it.h; }) + "</b>." + (sorted[0].P.form !== "frac" || sorted[sorted.length - 1].P.form !== "frac" ? " (Written the way you typed them.)" : "")]
+          ["a", T("fractions.tag.order"), T("fractions.cmp.order", { chain: chainOf(function(it) { return it.h; }) }) + (sorted[0].P.form !== "frac" || sorted[sorted.length - 1].P.form !== "frac" ? T("fractions.cmp.asTyped") : "")]
         ], null,
         [
-          ["Order", "a", ex(chainOf(function(it) { return '<span class="hl c-' + it.cls + '">' + it.h + "</span>"; }).replace(/ ([<=]) /g, '<span class="op-s">$1</span>'))]
+          [T("fractions.tag.order"), "a", ex(chainOf(function(it) { return '<span class="hl c-' + it.cls + '">' + it.h + "</span>"; }).replace(/ ([<=]) /g, '<span class="op-s">$1</span>'))]
         ]);
       // pictures
       var minV = sorted[0].v,
@@ -3172,26 +3168,24 @@
       var sub = (L <= 24n && (hi - lo) * Number(L) <= 72) ? Number(L) : (hi - lo <= 4 ? 2 : 1);
       var body = lineSVG(items.map(function(it) { return { x: toNum(it.v), lbl: it.t, cls: it.cls }; }), lo, hi, sub);
       if (!anyNeg) body = barsHTML(items.map(function(it) { return { n: it.n, d: it.d, lab: it.h, cls: it.cls }; })) + body;
-      c.fig('<b class="lead">The picture.</b> ' + (anyNeg ? "" : "Every bar is the same length — one whole — so you can see which shaded part is longest. ") +
-        "On the number line, further right means bigger.", body, last);
-      var facts = ["Least: <b>" + sorted[0].h + "</b> &nbsp; Greatest: <b>" + sorted[sorted.length - 1].h + "</b>"];
-      if (uniq.length > 1) facts.push("Common denominator: <b>" + L + "</b>");
-      facts.push("As decimals: <b>" + items.map(function(it) { return decT(decInfo(it.v)).replace(/(\d{3})\d*…$/, "$1…"); }).join(", ") + "</b>");
-      var closer = "<b>Check with decimals:</b> " + chainOf(function(it) { return "<b>" + decT(decInfo(it.v)).replace(/(\.\d{3})\d*…$/, "$1…") + "</b>"; }).replace(/ < /g, " &lt; ") +
-        ' <span class="ok">✓</span> Same order.';
+      c.fig(T(anyNeg ? "fractions.fig.cmpNeg" : "fractions.fig.cmp"), body, last);
+      var facts = [T("fractions.fact.leastGreatest", { a: sorted[0].h, b: sorted[sorted.length - 1].h })];
+      if (uniq.length > 1) facts.push(T("fractions.fact.commonDen", { L: L }));
+      facts.push(T("fractions.fact.decimals", { x: items.map(function(it) { return decT(decInfo(it.v)).replace(/(\d{3})\d*…$/, "$1…"); }).join(", ") }));
+      var closer = T("fractions.cmp.closer", { chain: chainOf(function(it) { return "<b>" + decT(decInfo(it.v)).replace(/(\.\d{3})\d*…$/, "$1…") + "</b>"; }).replace(/ < /g, " &lt; ") });
       var bandV = chainOf(function(it) { return "<span>" + it.h + "</span>"; }).replace(/ ([<=]) /g, function(m0, op) { return '<span class="op-s">' + (op === "<" ? "&lt;" : op) + "</span>"; });
       var ansT = chainOf(function(it) { return it.t; });
       var ansI = chainOf(function(it) { return iShown(it.P); }).replace(/ < /g, " &lt; ");
       return {
         ctx: c,
-        band: { k: "Least to greatest", v: bandV, facts: facts },
+        band: { k: T("fractions.cmp.band"), v: bandV, facts: facts },
         closer: closer,
-        fields: [{ key: "order", kind: "order", label: "Order them, least to greatest", v: null, ctx: { items: items, sorted: sorted } },
-          { key: "max", kind: "max", label: "Which is biggest?", v: maxV, ctx: { items: items, sorted: sorted } }
+        fields: [{ key: "order", kind: "order", label: T("fractions.cmp.fieldOrder"), v: null, ctx: { items: items, sorted: sorted } },
+          { key: "max", kind: "max", label: T("fractions.cmp.fieldMax"), v: maxV, ctx: { items: items, sorted: sorted } }
         ],
         api: {
-          text: "Order from least to greatest: " + items.map(function(it) { return it.t; }).join(", "),
-          html: "Order from least to greatest: " + items.map(function(it) { return iShown(it.P); }).join(", &nbsp;"),
+          text: T("fractions.api.order", { list: items.map(function(it) { return it.t; }).join(", ") }),
+          html: T("fractions.api.order", { list: items.map(function(it) { return iShown(it.P); }).join(", &nbsp;") }),
           answer: ansT,
           answerHtml: ansI
         }
@@ -3203,20 +3197,20 @@
       var s = s0.trim(),
         neg = false,
         m;
-      if (!s) throw new UserErr("The " + which + " side of the = is empty.");
+      if (!s) throw new UserErr(T("fractions.eq.errEmpty." + which));
       if (s.charAt(0) === "-" || s.charAt(0) === "+") {
         neg = s.charAt(0) === "-";
         s = s.slice(1).trim();
       }
       if ((m = /^(\d+|\?) ?\/ ?(\d+|\?)$/.exec(s))) {
-        if (m[1] === "?" && m[2] === "?") throw new UserErr("Both the top and the bottom are missing on the " + which + " side — fill in one of them.");
+        if (m[1] === "?" && m[2] === "?") throw new UserErr(T("fractions.eq.errBoth." + which));
         var r = { q: m[1] === "?" ? "top" : m[2] === "?" ? "bottom" : null, neg: neg, n: m[1] === "?" ? null : bigOf(m[1]), d: m[2] === "?" ? null : bigOf(m[2]) };
-        if (r.d === 0n) throw new UserErr("The " + which + " fraction has a bottom of 0 — you can’t cut a whole into 0 pieces. Change it.");
+        if (r.d === 0n) throw new UserErr(T("fractions.eq.errZero." + which));
         return r;
       }
-      if (/\?/.test(s)) throw new UserErr("Put the <b>?</b> in the top or the bottom of a fraction, like <b>?/20</b> or <b>3/?</b>.");
+      if (/\?/.test(s)) throw new UserErr(T("fractions.eq.errQ"));
       var P = parseNum((neg ? "-" : "") + s);
-      if (P.pct || P.form === "dec" || P.form === "rep") throw new UserErr("Use fractions or whole numbers on both sides here — <b>" + shownH(P) + "</b> is " + kindWord(P) + ". The <b>Convert</b> tab turns it into a fraction.");
+      if (P.pct || P.form === "dec" || P.form === "rep") throw new UserErr(T("fractions.eq.errDec", { x: shownH(P), kind: kindWord(P) }));
       if (P.form === "frac") return { q: null, neg: P.neg, n: P.n, d: P.d };
       return { q: null, neg: P.neg, n: (P.w || 0n) * (P.d || 1n) + P.n, d: P.d || 1n, from: P };
     }
@@ -3224,11 +3218,11 @@
     function solveEquiv(q) {
       var s = clean(q).replace(/[_□▢■☐]+|\b[xXnN]\b/g, "?").replace(/\?+/g, "?").replace(/(^|=)\s*\//g, "$1?/").replace(/\/\s*(?==|$)/g, "/?");
       var sides = s.split("=");
-      if (sides.length !== 2) throw new UserErr(sides.length < 2 ? "Type two fractions with an equals sign between them, like <b>3/4 = ?/20</b>." : "Only one = sign, please — two fractions, like <b>3/4 = ?/20</b>.");
+      if (sides.length !== 2) throw new UserErr(T(sides.length < 2 ? "fractions.eq.errNoEq" : "fractions.eq.errTwoEq"));
       var Lf = parseSide(sides[0], "left"),
         Rf = parseSide(sides[1], "right"),
         c = new Ctx();
-      if (Lf.q && Rf.q) throw new UserErr("There’s a <b>?</b> on both sides. Fill in one side completely, like <b>3/4 = ?/20</b>.");
+      if (Lf.q && Rf.q) throw new UserErr(T("fractions.eq.errQBoth"));
 
       function fh(f, fill) { // a side as html; fill = the missing number (BigInt) or null
         var top = f.q === "top" ? (fill !== null ? '<span class="hl c-r">' + fill + "</span>" : '<span class="qm">?</span>') : String(f.n);
@@ -3251,12 +3245,17 @@
       }
       [Lf, Rf].forEach(function(f) {
         if (f.from) c.add([
-            ["p", "Rewrite", "Write <b>" + shownH(f.from) + "</b> as a single fraction first: <b>" + shownH(f.from) + " = " + sgn(f.neg) + fH(f.n, f.d) + "</b>" +
-              (f.from.form === "int" ? " (a whole number is itself over 1)." : " (" + f.from.w + " × " + f.from.d + " + " + f.from.n + " = " + f.n + ").")
-            ]
+            ["p", T("fractions.tag.rewrite"), T(f.from.form === "int" ? "fractions.eq.rewriteInt" : "fractions.eq.rewriteMixed", {
+              x: shownH(f.from),
+              f: sgn(f.neg) + fH(f.n, f.d),
+              w: f.from.w,
+              d: f.from.d,
+              n: f.from.n,
+              N: f.n
+            })]
           ], null,
           [
-            ["Rewrite", "p", ex(shownH(f.from) + eqs() + sgn(f.neg) + fH(f.n, f.d))]
+            [T("fractions.tag.rewrite"), "p", ex(shownH(f.from) + eqs() + sgn(f.neg) + fH(f.n, f.d))]
           ]);
       });
       var probT = ft(Lf, null) + " = " + ft(Rf, null),
@@ -3271,39 +3270,39 @@
           x2 = cc * b,
           same = x1 === x2;
         c.add([
-            ["m", "Cross", "Cross-multiply: each top times the other fraction’s bottom. <b>" + a + " × " + d + " = " + x1 + "</b> and <b>" + cc + " × " + b + " = " + x2 + "</b>."],
-            ["p", "Why", "That’s the same as giving both fractions the bottom " + b + " × " + d + " = " + (b * d) + " and comparing the tops."]
+            ["m", T("fractions.tag.cross"), T("fractions.eq.cross", { a: a, d: d, x1: x1, c: cc, b: b, x2: x2 })],
+            ["p", T("fractions.tag.why"), T("fractions.eq.crossWhy", { b: b, d: d, bd: b * d })]
           ], null,
           [
-            ["Cross ×", "m", ex(fh(Lf, null) + '<span class="note" style="margin:0 1ch">vs</span>' + fh(Rf, null)) + '<span class="wtext"><b>' + a + " × " + d + " = " + x1 + "</b> &nbsp;" + (same ? "=" : "≠") + "&nbsp; <b>" + cc + " × " + b + " = " + x2 + "</b></span>"]
+            [T("fractions.tag.crossX"), "m", ex(fh(Lf, null) + '<span class="note" style="margin:0 1ch">' + T("fractions.vs") + "</span>" + fh(Rf, null)) + '<span class="wtext"><b>' + a + " × " + d + " = " + x1 + "</b> &nbsp;" + (same ? "=" : "≠") + "&nbsp; <b>" + cc + " × " + b + " = " + x2 + "</b></span>"]
           ]);
         var v1 = R(a, b),
           v2 = R(cc, d);
         var lastE = c.add([
-            ["a", same ? "Equal" : "Not equal", same ? "The cross products match, so <b>yes</b> — they’re <strong>equivalent</strong>: the same amount, just cut into different pieces. Both simplify to <b>" + fracH(v1) + "</b>." :
-              "The cross products don’t match (" + x1 + " ≠ " + x2 + "), so <b>no</b> — they’re not equivalent. <b>" + (x1 > x2 ? fh(Lf, null) : fh(Rf, null)) + "</b> is bigger."
+            ["a", same ? T("fractions.tag.equal") : T("fractions.tag.notEqual"), same ? T("fractions.eq.yes", { f: fracH(v1) }) :
+              T("fractions.eq.no", { x1: x1, x2: x2, big: x1 > x2 ? fh(Lf, null) : fh(Rf, null) })
             ]
           ],
-          same ? "Another way: simplify both. " + fh(Lf, null) + " → <b>" + fracH(v1) + "</b> and " + fh(Rf, null) + " → <b>" + fracH(v2) + "</b>. Same simplest form, same amount." : null,
+          same ? T("fractions.eq.another", { a: fh(Lf, null), fa: fracH(v1), b: fh(Rf, null), fb: fracH(v2) }) : null,
           [
-            ["Verdict", "a", ex(fh(Lf, null) + '<span class="op-s">' + (same ? "=" : x1 > x2 ? "&gt;" : "&lt;") + "</span>" + fh(Rf, null))]
+            [T("fractions.tag.verdict"), "a", ex(fh(Lf, null) + '<span class="op-s">' + (same ? "=" : x1 > x2 ? "&gt;" : "&lt;") + "</span>" + fh(Rf, null))]
           ]);
-        if (!Lf.neg && !Rf.neg) c.fig('<b class="lead">The fraction bars.</b> Same length bars, cut into different numbers of pieces. ' + (same ? "The shaded parts line up exactly — equivalent." : "The shaded parts don’t line up, so the amounts are different."),
+        if (!Lf.neg && !Rf.neg) c.fig(T(same ? "fractions.fig.eqYes" : "fractions.fig.eqNo"),
           barsHTML([{ n: Lf.n, d: Lf.d, lab: fH(Lf.n, Lf.d), cls: "e" }, { n: Rf.n, d: Rf.d, lab: fH(Rf.n, Rf.d), cls: "p" }]), lastE);
         return {
           ctx: c,
           band: {
-            k: "Equivalent?",
-            v: '<span class="word">' + (same ? "Yes" : "No") + "</span>" + (same ? "" : "<span>" + fh(Lf, null) + '<span class="op-s">' + (x1 > x2 ? "&gt;" : "&lt;") + "</span>" + fh(Rf, null) + "</span>"),
-            facts: ["Simplest forms: <b>" + fracH(v1) + "</b> and <b>" + fracH(v2) + "</b>", "As decimals: <b>" + decH(decInfo(v1)) + "</b> and <b>" + decH(decInfo(v2)) + "</b>"]
+            k: T("fractions.eq.band"),
+            v: '<span class="word">' + (same ? T("fractions.yes") : T("fractions.no")) + "</span>" + (same ? "" : "<span>" + fh(Lf, null) + '<span class="op-s">' + (x1 > x2 ? "&gt;" : "&lt;") + "</span>" + fh(Rf, null) + "</span>"),
+            facts: [T("fractions.fact.simplests", { a: fracH(v1), b: fracH(v2) }), T("fractions.fact.decimals2", { a: decH(decInfo(v1)), b: decH(decInfo(v2)) })]
           },
-          closer: "<b>Check with decimals:</b> <b>" + decT(decInfo(v1)) + "</b> and <b>" + decT(decInfo(v2)) + "</b> — " + (same ? 'the same <span class="ok">✓</span>' : 'different <span class="ok">✓</span>'),
-          fields: [{ key: "yn", kind: "yesno", label: "Equivalent? (yes or no)", v: same, ctx: {} }],
+          closer: T(same ? "fractions.eq.closerSame" : "fractions.eq.closerDiff", { a: decT(decInfo(v1)), b: decT(decInfo(v2)) }),
+          fields: [{ key: "yn", kind: "yesno", label: T("fractions.eq.fieldYN"), v: same, ctx: {} }],
           api: {
-            text: "Are " + ft(Lf, null) + " and " + ft(Rf, null) + " equivalent?",
-            html: "Are " + fi(Lf, null) + " and " + fi(Rf, null) + " equivalent?",
-            answer: same ? "Yes" : "No (" + ft(Lf, null) + (x1 > x2 ? " > " : " < ") + ft(Rf, null) + ")",
-            answerHtml: same ? "Yes" : "No"
+            text: T("fractions.api.areEquiv", { a: ft(Lf, null), b: ft(Rf, null) }),
+            html: T("fractions.api.areEquiv", { a: fi(Lf, null), b: fi(Rf, null) }),
+            answer: same ? T("fractions.yes") : T("fractions.api.noAns", { rel: ft(Lf, null) + (x1 > x2 ? " > " : " < ") + ft(Rf, null) }),
+            answerHtml: same ? T("fractions.yes") : T("fractions.no")
           }
         };
       }
@@ -3315,12 +3314,9 @@
       var Kv = R(K.neg ? -K.n : K.n, K.d),
         src = pos === "top" ? K.d : K.n,
         other = pos === "top" ? K.n : K.d;
-      var part = pos === "top" ? "bottom" : "top",
-        partS = pos === "top" ? "bottoms" : "tops",
-        posS = pos;
-      if (pos === "bottom" && K.n === 0n) throw new UserErr(t === 0n ? "Both tops are 0, so the bottom could be any number at all — there’s no single answer. Change one of the tops." :
-        "The known fraction is 0, but the other top isn’t — no bottom number can make <b>" + t + "/?</b> equal 0.");
-      if (pos === "bottom" && t === 0n) throw new UserErr("A top of 0 makes the fraction 0, but " + fh(K, null) + " isn’t 0 — no bottom number works. (And a bottom of 0 isn’t allowed.)");
+      var part = pos === "top" ? "bottom" : "top"; // the known part (pos: the missing one)
+      if (pos === "bottom" && K.n === 0n) throw new UserErr(t === 0n ? T("fractions.eq.errTops0") : T("fractions.eq.errKnown0", { t: t }));
+      if (pos === "bottom" && t === 0n) throw new UserErr(T("fractions.eq.errTop0", { f: fh(K, null) }));
       var miss = pos === "top" ? mul(R(B.neg ? -1 : 1), mul(Kv, R(t))) : mul(R(B.neg ? -1 : 1), dvd(R(t), Kv));
       var missMag = absR(miss),
         whole = isInt(miss),
@@ -3348,43 +3344,43 @@
         Bh = fh(B, null),
         eqH = kLeft ? Kh + eqs() + Bh : Bh + eqs() + Kh;
       c.add([
-          ["p", "Look", "Find the parts you know on both sides. The " + partS + " are both known: <b>" + src + "</b> and <b>" + t + "</b>. The " + posS + " is the missing one. Equivalent fractions are the same amount cut into different pieces — so whatever happened to the " + part + ", the same thing happened to the " + posS + "."]
+          ["p", T("fractions.tag.look"), T("fractions.eq.look." + pos, { src: src, t: t })]
         ], null,
         [
-          ["Problem", "p", ex(eqH)]
+          [T("fractions.tag.problem"), "p", ex(eqH)]
         ]);
       var fillTxt = whole ? String(fill) : decT(decInfo(missMag)),
         fillS = (miss.n < 0n ? "−" : "") + fill;
       if (mode === "same") {
         c.add([
-          ["m", "Match", "The " + partS + " already match (" + src + " and " + t + "), so the " + posS + "s must match too: <b>? = " + other + "</b>."]
+          ["m", T("fractions.tag.match"), T("fractions.eq.match." + pos, { src: src, t: t, other: other })]
         ], null, [
-          ["Same", "m", ex(Kh + eqs() + fh(B, fillS))]
+          [T("fractions.tag.same"), "m", ex(Kh + eqs() + fh(B, fillS))]
         ]);
       } else if (mode === "mul") {
         c.add([
-            ["m", "Factor", "What times <b>" + src + "</b> makes <b>" + t + "</b>? <b>" + t + " ÷ " + src + " = " + kF + "</b>, so the " + part + " was multiplied by <b>" + kF + "</b>."]
+            ["m", T("fractions.tag.factor"), T("fractions.eq.mulFactor." + part, { src: src, t: t, k: kF })]
           ], null,
           [
             ["× " + kF, "m", '<span class="wtext"><b>' + src + " × " + kF + " = " + t + "</b></span>"]
           ]);
         c.add([
-            ["m", "Same ×", "Do the same to the " + posS + ": <b>" + other + " × " + kF + " = " + fill + "</b>."],
-            ["p", "Why", "Multiplying top and bottom by " + kF + " is multiplying by <b>" + fH(kF, kF) + "</b> = 1, so the amount can’t change. The pieces are cut " + kF + " times smaller, so you need " + kF + " times as many."]
+            ["m", T("fractions.tag.sameMul"), T("fractions.eq.sameMul." + pos, { other: other, k: kF, fill: fill })],
+            ["p", T("fractions.tag.why"), T("fractions.eq.mulWhy", { k: kF, kk: fH(kF, kF) })]
           ], null,
           [
             ["× " + kF, "m", ex(xfH(K.neg, K.n, K.d, pos === "top" ? fill : t, pos === "top" ? t : fill, "×", kF))]
           ]);
       } else if (mode === "div") {
         c.add([
-            ["m", "Factor", "<b>" + t + "</b> is smaller than <b>" + src + "</b>: <b>" + src + " ÷ " + t + " = " + kF + "</b>, so the " + part + " was divided by <b>" + kF + "</b>."]
+            ["m", T("fractions.tag.factor"), T("fractions.eq.divFactor." + part, { src: src, t: t, k: kF })]
           ], null,
           [
             ["÷ " + kF, "m", '<span class="wtext"><b>' + src + " ÷ " + kF + " = " + t + "</b></span>"]
           ]);
         c.add([
-            ["m", "Same ÷", "Do the same to the " + posS + ": <b>" + other + " ÷ " + kF + " = " + fill + "</b>."],
-            ["p", "Why", "Dividing top and bottom by the same number is dividing by <b>" + fH(kF, kF) + "</b> = 1: the same amount in bigger, fewer pieces."]
+            ["m", T("fractions.tag.sameDiv"), T("fractions.eq.sameDiv." + pos, { other: other, k: kF, fill: fill })],
+            ["p", T("fractions.tag.why"), T("fractions.eq.divWhy", { kk: fH(kF, kF) })]
           ], null,
           [
             ["÷ " + kF, "m", ex(xfH(K.neg, K.n, K.d, pos === "top" ? fill : t, pos === "top" ? t : fill, "÷", kF))]
@@ -3395,25 +3391,25 @@
           ss2 = pos === "top" ? sd2 : sn2,
           so2 = pos === "top" ? sn2 : sd2;
         c.add([
-            ["e", "Simplify", "<b>" + src + "</b> doesn’t go evenly into <b>" + t + "</b> (and " + t + " doesn’t go into " + src + "), so there’s no whole-number jump straight across. Simplify the known fraction first: divide its top and bottom by <b>" + simpK[2] + "</b> to get <b>" + sgn(K.neg) + fH(sn2, sd2) + "</b>."]
+            ["e", T("fractions.tag.simplify"), T("fractions.eq.simpFirst", { src: src, t: t, g: simpK[2], f: sgn(K.neg) + fH(sn2, sd2) })]
           ], null,
           [
             ["÷ " + simpK[2], "e", ex(xfH(K.neg, K.n, K.d, sn2, sd2, "÷", simpK[2], "e"))]
           ]);
         c.add([
-            ["m", "Factor", "Now <b>" + ss2 + " × " + kF + " = " + t + "</b>, so multiply the " + posS + " by <b>" + kF + "</b> too: <b>" + so2 + " × " + kF + " = " + fill + "</b>."],
-            ["p", "Why", "Both moves are ÷ and × by the same number top and bottom, so the amount never changes."]
+            ["m", T("fractions.tag.factor"), T("fractions.eq.simpFactor." + pos, { s: ss2, k: kF, t: t, o: so2, fill: fill })],
+            ["p", T("fractions.tag.why"), T("fractions.eq.simpWhy")]
           ], null,
           [
             ["× " + kF, "m", ex(xfH(K.neg, sn2, sd2, pos === "top" ? fill : t, pos === "top" ? t : fill, "×", kF))]
           ]);
       } else {
         c.add([
-            ["m", "Cross", "No whole number takes <b>" + src + "</b> to <b>" + t + "</b>, even after simplifying. Use cross-multiplying instead: <b>? = " + other + " × " + t + " ÷ " + src + " = " + (other * t) + " ÷ " + src + " = " + fillTxt + "</b>."]
+            ["m", T("fractions.tag.cross"), T("fractions.eq.crossFill", { src: src, t: t, other: other, ot: other * t, fill: fillTxt })]
           ],
-          "That’s not a whole number, so there’s no ‘nice’ equivalent fraction with that " + part + ". It still balances — just with a piece of a piece.",
+          T("fractions.eq.notWhole." + part),
           [
-            ["Cross ×", "m", '<span class="wtext"><b>? × ' + src + " = " + other + " × " + t + " = " + (other * t) + "</b> → <b>? = " + fillTxt + "</b></span>"]
+            [T("fractions.tag.crossX"), "m", '<span class="wtext"><b>? × ' + src + " = " + other + " × " + t + " = " + (other * t) + "</b> → <b>? = " + fillTxt + "</b></span>"]
           ]);
       }
       var fillShow = whole ? fillS : null,
@@ -3421,29 +3417,29 @@
       if (!whole) doneH = ex('<span class="res">? = ' + decH(decInfo(miss)) + "</span>");
       else doneH = ex(doneH);
       var lastQ = c.add([
-        ["a", "Done", "The missing number is <b>" + (miss.n < 0n ? "−" : "") + fillTxt + "</b>" + (whole ? ": <b>" + (kLeft ? Kh + " = " + fh(B, fillS) : fh(B, fillS) + " = " + Kh) + "</b>." : ".") +
-          (miss.n < 0n ? " (It’s negative because the other fraction is negative and this one has no minus sign of its own.)" : "")
+        ["a", T("fractions.tag.done"), T(whole ? "fractions.eq.done" : "fractions.eq.doneDec", { x: (miss.n < 0n ? "−" : "") + fillTxt, eq: kLeft ? Kh + " = " + fh(B, fillS) : fh(B, fillS) + " = " + Kh }) +
+          (miss.n < 0n ? T("fractions.eq.negative") : "")
         ]
       ], null, [
-        ["Done", "a", doneH]
+        [T("fractions.tag.done"), "a", doneH]
       ]);
       var completed = whole ? { n: pos === "top" ? fill : B.n, d: pos === "top" ? B.d : fill } : null;
       if (!K.neg && !B.neg && completed && miss.n >= 0n)
-        c.fig('<b class="lead">Same value, different pieces.</b> Both bars are the same length. One is cut into <b>' + K.d + "</b> pieces, the other into <b>" + completed.d + "</b> — and the shaded parts end at exactly the same place.",
-          barsHTML([{ n: K.n, d: K.d, lab: fH(K.n, K.d), cls: "e", cap: K.n + " of " + K.d }, { n: completed.n, d: completed.d, lab: fH(completed.n, completed.d), cls: "p", cap: completed.n + " of " + completed.d }]), lastQ);
-      var facts = ["Both are worth <b>" + decH(decInfo(Kv)) + "</b> (" + fracH(Kv) + " in simplest form)"];
-      if (kF && mode !== "same") facts.push("Factor: <b>" + (mode === "div" ? "÷" : "×") + kF + "</b>" + (mode === "simp" ? " after simplifying" : ""));
-      if (!whole) facts.push("As a fraction: <b>" + fracH(miss) + "</b>" + (cmpR(missMag, R(1)) > 0 ? " = <b>" + mixH(miss) + "</b>" : ""));
-      var closer = whole ? "<b>Check</b> by cross-multiplying: <b>" + (completed.n) + " × " + K.d + " = " + (completed.n * K.d) + "</b> and <b>" + K.n + " × " + completed.d + " = " + (K.n * completed.d) + '</b> — equal <span class="ok">✓</span>' :
-        "<b>Check:</b> " + fillTxt + " " + (pos === "top" ? "÷ " + t : "") + " … the cross products " + (other * t) + " and " + fillTxt + " × " + src + ' match <span class="ok">✓</span>';
+        c.fig(T("fractions.fig.eqSame", { a: K.d, b: completed.d }),
+          barsHTML([{ n: K.n, d: K.d, lab: fH(K.n, K.d), cls: "e", cap: T("fractions.fig.nOf", { n: K.n, d: K.d }) }, { n: completed.n, d: completed.d, lab: fH(completed.n, completed.d), cls: "p", cap: T("fractions.fig.nOf", { n: completed.n, d: completed.d }) }]), lastQ);
+      var facts = [T("fractions.fact.worth", { x: decH(decInfo(Kv)), f: fracH(Kv) })];
+      if (kF && mode !== "same") facts.push(T(mode === "simp" ? "fractions.fact.factorSimp" : "fractions.fact.factor", { k: (mode === "div" ? "÷" : "×") + kF }));
+      if (!whole) facts.push(T("fractions.fact.frac", { x: fracH(miss) }) + (cmpR(missMag, R(1)) > 0 ? " = <b>" + mixH(miss) + "</b>" : ""));
+      var closer = whole ? T("fractions.eq.closer", { cn: completed.n, kd: K.d, p1: completed.n * K.d, kn: K.n, cd: completed.d, p2: K.n * completed.d }) :
+        T("fractions.eq.closerDec", { fill: fillTxt, div: pos === "top" ? "÷ " + t : "", ot: other * t, src: src });
       var ansT = (miss.n < 0n ? "−" : "") + (whole ? String(fill) : decT(decInfo(missMag))) + (whole ? " (" + (kLeft ? ft(K, null) + " = " + ft(B, fillS) : ft(B, fillS) + " = " + ft(K, null)) + ")" : "");
       var ansI = (miss.n < 0n ? "−" : "") + (whole ? String(fill) : iVal(missMag, "dec")) + (whole ? " &nbsp;(" + (kLeft ? fi(K, null) + " = " + fi(B, fillS) : fi(B, fillS) + " = " + fi(K, null)) + ")" : "");
       return {
         ctx: c,
-        band: { k: "Missing number", v: "<span>? = " + (miss.n < 0n ? "−" : "") + (whole ? fill : decH(decInfo(missMag))) + "</span>" + (whole ? "<span class=\"op-s\" style=\"padding:0 1ch\"></span><span>" + (kLeft ? Kh + eqs() + fh(B, fillS) : fh(B, fillS) + eqs() + Kh) + "</span>" : ""), facts: facts },
+        band: { k: T("fractions.keys.missing"), v: "<span>? = " + (miss.n < 0n ? "−" : "") + (whole ? fill : decH(decInfo(missMag))) + "</span>" + (whole ? "<span class=\"op-s\" style=\"padding:0 1ch\"></span><span>" + (kLeft ? Kh + eqs() + fh(B, fillS) : fh(B, fillS) + eqs() + Kh) + "</span>" : ""), facts: facts },
         closer: closer,
-        fields: [{ key: "m", kind: "value", label: "The missing number", v: miss, ctx: { other: other, src: src, t: t, k: kF, mode: mode, pos: pos } }],
-        api: { text: "Fill in the missing number: " + probT, html: "Fill in the missing number: " + probI, answer: ansT, answerHtml: ansI }
+        fields: [{ key: "m", kind: "value", label: T("fractions.eq.fieldMissing"), v: miss, ctx: { other: other, src: src, t: t, k: kF, mode: mode, pos: pos } }],
+        api: { text: T("fractions.api.fill", { p: probT }), html: T("fractions.api.fill", { p: probI }), answer: ansT, answerHtml: ansI }
       };
     }
 
@@ -3471,8 +3467,8 @@
       var fp = fracPart(P),
         g = bgcd(fp.n, fp.d);
       if (ctx && ctx.d && fp.d < ctx.d && ctx.d % fp.d === 0n)
-        return "You divided by a common factor, but not the greatest one — <b>" + fp.n + "</b> and <b>" + fp.d + "</b> can both still be divided by <b>" + g + "</b>. Keep going!";
-      return "<b>" + fp.n + "</b> and <b>" + fp.d + "</b> still share the factor <b>" + g + "</b>.";
+        return T("fractions.ck.notGreatest", { n: fp.n, d: fp.d, g: g });
+      return T("fractions.ck.stillShare", { n: fp.n, d: fp.d, g: g });
     }
     // enough correct digits of a repeating decimal? k = digits typed after the point
     function closeDigits(U, v) {
@@ -3486,7 +3482,13 @@
       return k >= need ? 2 : 1;
     }
 
+    // a "right value, wrong form" message: the feedback then says it without "Almost!"
+    function RV(key, vars) { return { st: "part", msg: T(key, vars), rv: true }; }
+
     function judge(f, raw) {
+      // an answer typed in words (Spanish "tres cuartos", "1/2, 3/5 y 0.7"): what the reader knows, when that is all numbers
+      var nr = norm(raw);
+      if (nr !== raw && !/[a-z]/i.test(String(nr).replace(/\band\b/g, ""))) raw = nr;
       var r = judge1(f, raw),
         s = clean(raw);
       if (r.st !== "ok" && /\.\.\.%?$/.test(s) && f.kind !== "order") { // "…" may just mean "rounded"
@@ -3503,11 +3505,17 @@
       if (f.kind === "yesno") {
         var yes = /^(y|yes|yep|yeah|true|equal|equivalent|=|same)$/i.test(s),
           no = /^(n|no|nope|false|not( equal| equivalent)?|≠|!=|different)$/i.test(s);
-        if (!yes && !no) return { st: "bad", msg: "Answer <b>yes</b> or <b>no</b>." };
-        return yes === f.v ? { st: "ok" } : { st: "bad", msg: "Cross-multiply and compare the two products." };
+        // the language's own words for yes and no (fractions.ck.yesWords / noWords: a regular expression, Spanish sí / no …)
+        if (!yes && !no && window.HelperI18n && HelperI18n.has("fractions.ck.yesWords")) {
+          var sf = s.normalize ? s.normalize("NFD").replace(/[̀-ͯ]/g, "") : s;
+          yes = new RegExp(T("fractions.ck.yesWords"), "i").test(sf);
+          no = !yes && new RegExp(T("fractions.ck.noWords"), "i").test(sf);
+        }
+        if (!yes && !no) return { st: "bad", msg: T("fractions.ck.yesNo") };
+        return yes === f.v ? { st: "ok" } : { st: "bad", msg: T("fractions.ck.crossCompare") };
       }
       var U = readUser(s);
-      if (!U) return { st: "bad", msg: "I can’t read <b>" + esc(s) + "</b> as a number — try something like <b>3/4</b>, <b>1 1/2</b>, <b>0.75</b> or <b>75%</b>." };
+      if (!U) return { st: "bad", msg: T("fractions.ck.cantRead", { x: esc(s) }) };
       var v = f.v,
         u = U.v,
         ctx = f.ctx || {};
@@ -3519,49 +3527,49 @@
         case "simplest":
         case "fraction":
           if (eq) {
-            if (U.pct || isDecForm) return { st: "part", msg: "Right value — but write it as a fraction in simplest form." };
-            if (U.form === "mixed" && U.n >= U.d) return { st: "part", msg: "Right value — but the fraction part is a whole or more. Carry it into the whole number." };
-            if (!lowest(U)) return { st: "part", msg: "Right value — now simplify it. " + notSimpMsg(U, f.kind === "simplest" ? ctx : null) };
-            if (f.kind === "simplest" && ctx.w !== null && ctx.w !== undefined && U.form === "frac" && !isInt(v)) return { st: "ok", note: "(As a mixed number it’s " + mixT(v) + ".)" };
+            if (U.pct || isDecForm) return RV("fractions.ck.rvFrac");
+            if (U.form === "mixed" && U.n >= U.d) return RV("fractions.ck.rvCarry");
+            if (!lowest(U)) return RV("fractions.ck.rvSimplify", { why: notSimpMsg(U, f.kind === "simplest" ? ctx : null) });
+            if (f.kind === "simplest" && ctx.w !== null && ctx.w !== undefined && U.form === "frac" && !isInt(v)) return { st: "ok", note: T("fractions.ck.noteMixed", { m: mixT(v) }) };
             return { st: "ok" };
           }
           if (f.kind === "simplest") return simpDiag(U, v, ctx);
-          if (ctx.P && ctx.P.pct && eqR(u, mul(v, HUNDRED))) return { st: "bad", msg: "Percent means “out of 100” — put it over 100 first, then simplify." };
-          if (U.form === "frac" && (eqR(u, mul(v, R(10))) || eqR(u, dvd(v, R(10))))) return { st: "bad", msg: "Check the place value: the last digit sets the bottom number (tenths → 10, hundredths → 100, thousandths → 1000)." };
+          if (ctx.P && ctx.P.pct && eqR(u, mul(v, HUNDRED))) return { st: "bad", msg: T("fractions.ck.over100") };
+          if (U.form === "frac" && (eqR(u, mul(v, R(10))) || eqR(u, dvd(v, R(10))))) return { st: "bad", msg: T("fractions.ck.placeValue") };
           return { st: "bad" };
         case "improper":
           if (eq) {
             if (U.form === "frac" || U.form === "int") return { st: "ok" };
-            if (U.form === "mixed") return { st: "part", msg: "Right value — now write it as an improper fraction: one fraction, with the top bigger than the bottom." };
-            return { st: "part", msg: "Right value — but write it as an improper fraction, like <b>7/4</b>." };
+            if (U.form === "mixed") return RV("fractions.ck.rvImproperMixed");
+            return RV("fractions.ck.rvImproper");
           }
           var P0 = ctx.P;
-          if (P0 && P0.form === "mixed" && eqR(absR(u), R(P0.w + P0.n, P0.d))) return { st: "bad", msg: "Looks like you added the whole number to the top. Multiply the whole number by the bottom first (" + P0.w + " × " + P0.d + "), then add the top." };
+          if (P0 && P0.form === "mixed" && eqR(absR(u), R(P0.w + P0.n, P0.d))) return { st: "bad", msg: T("fractions.ck.addedWhole", { w: P0.w, d: P0.d }) };
           return { st: "bad" };
         case "mixed":
           if (eq) {
-            if (U.form === "mixed" && U.n < U.d) return lowest(U) ? { st: "ok" } : { st: "ok", note: "(You could simplify the fraction part: " + mixT(v) + ".)" };
+            if (U.form === "mixed" && U.n < U.d) return lowest(U) ? { st: "ok" } : { st: "ok", note: T("fractions.ck.noteSimpPart", { m: mixT(v) }) };
             if (U.form === "int" && isInt(v)) return { st: "ok" };
-            if (U.form === "mixed") return { st: "part", msg: "Right value — but the fraction part is a whole or more. Carry it into the whole number." };
-            return { st: "part", msg: "Right value — now write it as a mixed number: a whole number and a fraction, like <b>1 3/4</b>." };
+            if (U.form === "mixed") return RV("fractions.ck.rvCarry");
+            return RV("fractions.ck.rvMixed");
           }
-          if (U.form === "mixed" && U.w === mixOf(v).w) return { st: "bad", msg: "The whole-number part is right — check the leftover piece (the remainder goes on top)." };
+          if (U.form === "mixed" && U.w === mixOf(v).w) return { st: "bad", msg: T("fractions.ck.wholeRight") };
           return { st: "bad" };
         case "decimal":
           if (eq) {
-            if (U.pct) return { st: "part", msg: "Right value — but that’s written as a percent. The question wants the decimal." };
-            if (isFracForm) return { st: "part", msg: "Right value — now write it as a decimal (divide the top by the bottom)." };
+            if (U.pct) return RV("fractions.ck.rvDecPct");
+            if (isFracForm) return RV("fractions.ck.rvDec");
             return { st: "ok" };
           }
           if (!U.pct) {
             var cd = closeDigits(U, v, R(1));
-            if (cd === 2) return { st: "ok", note: "(Rounded is fine — exactly, it’s " + decT(decInfo(v)) + ")" };
-            if (cd === 1) return { st: "part", msg: "Close! Give a few more decimal places — or use bar notation, like <b>" + decQ(decInfo(v)) + "</b> for " + decT(decInfo(v)) + "." };
+            if (cd === 2) return { st: "ok", note: T("fractions.ck.noteRounded", { x: decT(decInfo(v)) }) };
+            if (cd === 1) return { st: "part", msg: T("fractions.ck.closeDec", { q: decQ(decInfo(v)), t: decT(decInfo(v)) }) };
           }
-          if (eqR(u, mul(v, HUNDRED))) return { st: "bad", msg: "That’s the percent. As a decimal it’s 100 times smaller — the point moves 2 places left." };
-          if (eqR(u, dvd(v, HUNDRED))) return { st: "bad", msg: "That’s 100 times too small — the point only moves 2 places." };
-          if (v.n !== 0n && eqR(u, dvd(R(1), v))) return { st: "bad", msg: "Looks like you divided the bottom by the top. Divide the <b>top</b> by the <b>bottom</b>." };
-          if (eqR(u, mul(v, R(10))) || eqR(u, dvd(v, R(10)))) return { st: "bad", msg: "The digits look right, but the decimal point is in the wrong place." };
+          if (eqR(u, mul(v, HUNDRED))) return { st: "bad", msg: T("fractions.ck.isPct") };
+          if (eqR(u, dvd(v, HUNDRED))) return { st: "bad", msg: T("fractions.ck.tooSmallDec") };
+          if (v.n !== 0n && eqR(u, dvd(R(1), v))) return { st: "bad", msg: T("fractions.ck.flipped") };
+          if (eqR(u, mul(v, R(10))) || eqR(u, dvd(v, R(10)))) return { st: "bad", msg: T("fractions.ck.pointPlace") };
           return { st: "bad" };
         case "percent":
           if (eq) return { st: "ok" };
@@ -3570,38 +3578,37 @@
               k = U.fp.length,
               need = info.ends ? 99 : Math.max(1, Math.min(info.pre.length + (info.rep || "x").length, 6) - 2);
             var err = absR(sub(U.pct ? mul(U.v, HUNDRED) : U.v, mul(v, HUNDRED)));
-            if (cmpR(mul(err, R(P10(k))), R(1)) < 0 && (k >= need)) return { st: "ok", note: "(Rounded is fine — exactly, it’s " + decT(info) + "%)" };
-            if (cmpR(mul(err, R(P10(k))), R(1)) < 0) return { st: "part", msg: "Close! Give another decimal place or two — or use bar notation like <b>" + decQ(info) + "%</b>." };
+            if (cmpR(mul(err, R(P10(k))), R(1)) < 0 && (k >= need)) return { st: "ok", note: T("fractions.ck.noteRounded", { x: decT(info) + "%" }) };
+            if (cmpR(mul(err, R(P10(k))), R(1)) < 0) return { st: "part", msg: T("fractions.ck.closePct", { q: decQ(info) + "%" }) };
           }
-          if (!U.pct && (eqR(U.v, v) || closeDigits(U, v))) return { st: "bad", msg: "That’s the decimal. For a percent, multiply by 100 — the point hops 2 places right." };
-          if (eqR(u, mul(v, HUNDRED))) return { st: "bad", msg: "That’s 100 times too big — multiply by 100 just once." };
-          if (eqR(u, dvd(v, HUNDRED))) return { st: "bad", msg: "That’s 100 times too small. Percent = decimal × 100." };
+          if (!U.pct && (eqR(U.v, v) || closeDigits(U, v))) return { st: "bad", msg: T("fractions.ck.isDec") };
+          if (eqR(u, mul(v, HUNDRED))) return { st: "bad", msg: T("fractions.ck.tooBigPct") };
+          if (eqR(u, dvd(v, HUNDRED))) return { st: "bad", msg: T("fractions.ck.tooSmallPct") };
           return { st: "bad" };
         case "value":
           if (eq) return { st: "ok" };
-          if (ctx.mode === "cross" && U.form === "dec") { var cv = closeDigits(U, v, R(1)); if (cv) return { st: cv === 2 ? "ok" : "part", msg: cv === 2 ? null : "Close — give a few more decimal places." }; }
+          if (ctx.mode === "cross" && U.form === "dec") { var cv = closeDigits(U, v, R(1)); if (cv) return { st: cv === 2 ? "ok" : "part", msg: cv === 2 ? null : T("fractions.ck.closeMore") }; }
           var um = absR(u);
           if (isInt(um)) {
             var x = um.n;
             var diff = ctx.t - ctx.src;
             if (diff !== 0n && x === ctx.other + diff) return {
               st: "bad",
-              msg: "It looks like you " + (diff > 0n ? "<b>added</b> " + diff + " to" : "<b>took</b> " + (-diff) + " away from") + " the " + ctx.pos +
-                ", the same as the other part changed by. Equivalent fractions come from multiplying (or dividing) the top and the bottom by the same number — not " + (diff > 0n ? "adding." : "subtracting.")
+              msg: T((diff > 0n ? "fractions.ck.added." : "fractions.ck.tookAway.") + ctx.pos, { n: diff > 0n ? diff : -diff })
             };
-            if (ctx.k && x === ctx.k && ctx.k !== babs(v.n)) return { st: "bad", msg: "That’s the factor — how many times bigger the other number got. Now do that same × or ÷ to the " + ctx.pos + "." };
-            if (ctx.mode === "mul" && ctx.k && ctx.other % ctx.k === 0n && x === ctx.other / ctx.k) return { st: "bad", msg: "Check the direction: that side got bigger, so the " + ctx.pos + " must get bigger too — multiply, don’t divide." };
-            if (ctx.mode === "div" && ctx.k && x === ctx.other * ctx.k) return { st: "bad", msg: "Check the direction: that side got smaller, so the " + ctx.pos + " must get smaller too — divide, don’t multiply." };
+            if (ctx.k && x === ctx.k && ctx.k !== babs(v.n)) return { st: "bad", msg: T("fractions.ck.isFactor." + ctx.pos) };
+            if (ctx.mode === "mul" && ctx.k && ctx.other % ctx.k === 0n && x === ctx.other / ctx.k) return { st: "bad", msg: T("fractions.ck.dirBigger." + ctx.pos) };
+            if (ctx.mode === "div" && ctx.k && x === ctx.other * ctx.k) return { st: "bad", msg: T("fractions.ck.dirSmaller." + ctx.pos) };
           }
           return { st: "bad" };
         case "max":
           var it = ctx.items,
             sorted = ctx.sorted;
           if (eq) return { st: "ok" };
-          if (!it.some(function(x) { return eqR(x.v, u); })) return { st: "bad", msg: "Pick one of the numbers in the list." };
-          if (eqR(u, sorted[0].v)) return { st: "bad", msg: "That’s the <b>smallest</b> one — the question asks for the biggest." };
+          if (!it.some(function(x) { return eqR(x.v, u); })) return { st: "bad", msg: T("fractions.ck.pickOne") };
+          if (eqR(u, sorted[0].v)) return { st: "bad", msg: T("fractions.ck.smallest") };
           var bigDen = it.slice().sort(function(a, b) { return a.d > b.d ? -1 : a.d < b.d ? 1 : 0; })[0];
-          if (eqR(u, bigDen.v)) return { st: "bad", msg: "Careful: a bigger bottom number means <b>smaller</b> pieces, not a bigger fraction." };
+          if (eqR(u, bigDen.v)) return { st: "bad", msg: T("fractions.ck.bigBottom") };
           return { st: "bad" };
       }
       return { st: "bad" };
@@ -3611,14 +3618,14 @@
       var n = ctx.n,
         d = ctx.d,
         u = U.v;
-      if (eqR(absR(u), absR(v)) && (u.n < 0n) !== (v.n < 0n)) return { st: "bad", msg: "Check the sign." };
-      if (ctx.w === null && U.form === "frac" && n !== 0n && eqR(u, R(ctx.neg ? -d : d, n))) return { st: "bad", msg: "Top and bottom are swapped — the top number stays on top." };
-      if (ctx.w !== null && U.form === "frac" && eqR(R(U.n, U.d), R(ctx.n2, ctx.d2))) return { st: "bad", msg: "Don’t forget the whole number, <b>" + ctx.w + "</b>." };
+      if (eqR(absR(u), absR(v)) && (u.n < 0n) !== (v.n < 0n)) return { st: "bad", msg: T("fractions.ck.sign") };
+      if (ctx.w === null && U.form === "frac" && n !== 0n && eqR(u, R(ctx.neg ? -d : d, n))) return { st: "bad", msg: T("fractions.ck.swapped") };
+      if (ctx.w !== null && U.form === "frac" && eqR(R(U.n, U.d), R(ctx.n2, ctx.d2))) return { st: "bad", msg: T("fractions.ck.forgotWhole", { w: ctx.w }) };
       var fp = fracPart(U);
       if (fp && ctx.w === null && fp.n > 0n && n % fp.n === 0n && d % fp.d === 0n && n / fp.n !== d / fp.d)
-        return { st: "bad", msg: "You divided the top by " + (n / fp.n) + " and the bottom by " + (d / fp.d) + ". To keep the amount the same, divide both by the <b>same</b> number." };
-      if (fp && ctx.w === null && n - fp.n === d - fp.d && n - fp.n > 0n) return { st: "bad", msg: "Taking the same amount away from the top and bottom changes the value — <b>divide</b> them by the same number instead." };
-      if (U.pct || U.form === "dec" || U.form === "rep") return { st: "bad", msg: "Write your answer as a fraction, like <b>3/4</b>." };
+        return { st: "bad", msg: T("fractions.ck.differentDiv", { a: n / fp.n, b: d / fp.d }) };
+      if (fp && ctx.w === null && n - fp.n === d - fp.d && n - fp.n > 0n) return { st: "bad", msg: T("fractions.ck.tookSame") };
+      if (U.pct || U.form === "dec" || U.form === "rep") return { st: "bad", msg: T("fractions.ck.asFraction") };
       return { st: "bad" };
     }
 
@@ -3627,33 +3634,33 @@
         sorted = f.ctx.sorted,
         desc = /[>≥]/.test(s) && !/[<≤]/.test(s);
       var parts = s.split(/\s*(?:[,;<>≤≥]|\band\b)\s*/i).filter(function(x) { return x !== ""; });
-      if (parts.length < 2) return { st: "bad", msg: "List all " + items.length + " numbers with commas between them, smallest first." };
+      if (parts.length < 2) return { st: "bad", msg: T("fractions.ck.listAll", { n: items.length }) };
       var vals = [];
       for (var i = 0; i < parts.length; i++) {
         var U = readUser(parts[i]);
-        if (!U) return { st: "bad", msg: "I can’t read <b>" + esc(parts[i]) + "</b> — use commas between the numbers." };
+        if (!U) return { st: "bad", msg: T("fractions.ck.cantReadPart", { x: esc(parts[i]) }) };
         vals.push(U.v);
       }
       if (desc) vals.reverse();
-      if (vals.length !== items.length) return { st: "bad", msg: "There are " + items.length + " numbers to put in order — you listed " + vals.length + "." };
+      if (vals.length !== items.length) return { st: "bad", msg: T("fractions.ck.count", { n: items.length, m: vals.length }) };
       var used = [],
         idx = [];
       for (var j = 0; j < vals.length; j++) {
         var k = -1;
         for (var m = 0; m < items.length; m++)
           if (!used[m] && eqR(items[m].v, vals[j])) { k = m; break; }
-        if (k < 0) return { st: "bad", msg: "<b>" + esc(parts[desc ? parts.length - 1 - j : j]) + "</b> isn’t one of the numbers (or equal to one of them)." };
+        if (k < 0) return { st: "bad", msg: T("fractions.ck.notOne", { x: esc(parts[desc ? parts.length - 1 - j : j]) }) };
         used[k] = true;
         idx.push(k);
       }
       var okOrder = true;
       for (var a = 1; a < vals.length; a++)
         if (cmpR(vals[a - 1], vals[a]) > 0) okOrder = false;
-      if (okOrder) return { st: "ok", note: desc ? "(You wrote it greatest first with > signs — that works too.)" : null };
+      if (okOrder) return { st: "ok", note: desc ? T("fractions.ck.noteDesc") : null };
       var rev = true;
       for (var b = 1; b < vals.length; b++)
         if (cmpR(vals[b - 1], vals[b]) < 0) rev = false;
-      if (rev) return { st: "bad", msg: "That’s greatest to least — flip it around so the smallest comes first." };
+      if (rev) return { st: "bad", msg: T("fractions.ck.reversed") };
 
       function seqBy(key, dir) {
         return items.slice().sort(function(x, y) {
@@ -3663,8 +3670,8 @@
         }).map(function(x) { return x.i; }).join(",");
       }
       var me = idx.join(",");
-      if (me === seqBy("d", -1) || me === seqBy("d", 1)) return { st: "bad", msg: "Looks like you ordered them by the bottom numbers. A bigger bottom means smaller pieces — give them all the same bottom first, then compare the tops." };
-      if (me === seqBy("n", 1)) return { st: "bad", msg: "Looks like you ordered them by the top numbers alone. The tops only compare fairly when the bottoms are the same — find a common denominator first." };
+      if (me === seqBy("d", -1) || me === seqBy("d", 1)) return { st: "bad", msg: T("fractions.ck.byBottoms") };
+      if (me === seqBy("n", 1)) return { st: "bad", msg: T("fractions.ck.byTops") };
       return { st: "bad" };
     }
 
@@ -3831,76 +3838,76 @@
     }
 
     /* ===================== the worksheet API ===================== */
-    var TOG = [{ v: true, label: "On" }, { v: false, label: "Off" }];
+    var TOG = [{ v: true, label: T("common.on") }, { v: false, label: T("common.off") }];
     var SCHEMA = [{
         key: "mode",
-        label: "Kind of problem",
+        label: T("fractions.schema.mode"),
         type: "choice",
         default: "simplify",
-        values: [{ v: "simplify", label: "Simplify" }, { v: "convert", label: "Convert (fractions, decimals, percents)" },
-          { v: "compare", label: "Compare & order" }, { v: "equiv", label: "Equivalent fractions (missing number)" }
+        values: [{ v: "simplify", label: T("fractions.schema.mode.simplify") }, { v: "convert", label: T("fractions.schema.mode.convert") },
+          { v: "compare", label: T("fractions.schema.mode.compare") }, { v: "equiv", label: T("fractions.schema.mode.equiv") }
         ]
       }, {
         key: "simplifyMax",
         forMode: "simplify",
-        label: "Simplify: biggest bottom number (denominator)",
+        label: T("fractions.schema.simplifyMax"),
         type: "choice",
         default: 24,
         values: [{ v: 12, label: "12" }, { v: 24, label: "24" }, { v: 50, label: "50" }, { v: 100, label: "100" }]
       },
-      { key: "simplifyMixed", forMode: "simplify", label: "Simplify: include mixed numbers", type: "toggle", default: false, values: TOG },
-      { key: "simplifyImproper", forMode: "simplify", label: "Simplify: include improper fractions", type: "toggle", default: false, values: TOG },
-      { key: "simplifySimplest", forMode: "simplify", label: "Simplify: some already in simplest form", type: "toggle", default: true, values: TOG }, {
+      { key: "simplifyMixed", forMode: "simplify", label: T("fractions.schema.simplifyMixed"), type: "toggle", default: false, values: TOG },
+      { key: "simplifyImproper", forMode: "simplify", label: T("fractions.schema.simplifyImproper"), type: "toggle", default: false, values: TOG },
+      { key: "simplifySimplest", forMode: "simplify", label: T("fractions.schema.simplifySimplest"), type: "toggle", default: true, values: TOG }, {
         key: "convertFrom",
         forMode: "convert",
-        label: "Convert: start with",
+        label: T("fractions.schema.convertFrom"),
         type: "choice",
         default: "any",
-        values: [{ v: "any", label: "Any" }, { v: "fraction", label: "Fractions" }, { v: "mixed", label: "Mixed numbers" }, { v: "improper", label: "Improper fractions (like 7/4)" },
-          { v: "decimal", label: "Decimals" }, { v: "percent", label: "Percents" }
+        values: [{ v: "any", label: T("fractions.schema.convertFrom.any") }, { v: "fraction", label: T("fractions.schema.convertFrom.fraction") }, { v: "mixed", label: T("fractions.schema.convertFrom.mixed") }, { v: "improper", label: T("fractions.schema.convertFrom.improper") },
+          { v: "decimal", label: T("fractions.schema.convertFrom.decimal") }, { v: "percent", label: T("fractions.schema.convertFrom.percent") }
         ]
       }, {
         key: "convertTo",
         forMode: "convert",
-        label: "Convert: turn it into",
+        label: T("fractions.schema.convertTo"),
         type: "choice",
         default: "all",
-        values: [{ v: "all", label: "Every form" }, { v: "fraction", label: "Fraction (simplest)" }, { v: "mixed", label: "Mixed number" }, { v: "improper", label: "Improper fraction" },
-          { v: "decimal", label: "Decimal" }, { v: "percent", label: "Percent" }
+        values: [{ v: "all", label: T("fractions.schema.convertTo.all") }, { v: "fraction", label: T("fractions.schema.convertTo.fraction") }, { v: "mixed", label: T("fractions.schema.convertTo.mixed") }, { v: "improper", label: T("fractions.schema.convertTo.improper") },
+          { v: "decimal", label: T("fractions.schema.convertTo.decimal") }, { v: "percent", label: T("fractions.schema.convertTo.percent") }
         ]
       },
-      { key: "convertRepeating", forMode: "convert", label: "Convert: repeating decimals", type: "toggle", default: false, values: TOG }, {
+      { key: "convertRepeating", forMode: "convert", label: T("fractions.schema.convertRepeating"), type: "toggle", default: false, values: TOG }, {
         key: "compareCount",
         forMode: "compare",
-        label: "Compare: how many numbers",
+        label: T("fractions.schema.compareCount"),
         type: "choice",
         default: 3,
         values: [{ v: 2, label: "2" }, { v: 3, label: "3" }, { v: 4, label: "4" }, { v: 5, label: "5" }]
       }, {
         key: "compareDen",
         forMode: "compare",
-        label: "Compare: bottom numbers (denominators)",
+        label: T("fractions.schema.compareDen"),
         type: "choice",
         default: "unlike",
-        values: [{ v: "unlike", label: "Different" }, { v: "like", label: "The same" }, { v: "either", label: "Either" }]
+        values: [{ v: "unlike", label: T("fractions.schema.compareDen.unlike") }, { v: "like", label: T("fractions.schema.compareDen.like") }, { v: "either", label: T("fractions.schema.compareDen.either") }]
       },
-      { key: "compareMixed", forMode: "compare", label: "Compare: include mixed numbers", type: "toggle", default: false, values: TOG },
-      { key: "compareDecimals", forMode: "compare", label: "Compare: include decimals", type: "toggle", default: false, values: TOG }, {
+      { key: "compareMixed", forMode: "compare", label: T("fractions.schema.compareMixed"), type: "toggle", default: false, values: TOG },
+      { key: "compareDecimals", forMode: "compare", label: T("fractions.schema.compareDecimals"), type: "toggle", default: false, values: TOG }, {
         key: "equivMissing",
         forMode: "equiv",
-        label: "Equivalent: missing number",
+        label: T("fractions.schema.equivMissing"),
         type: "choice",
         default: "either",
-        values: [{ v: "either", label: "Top or bottom" }, { v: "top", label: "Top" }, { v: "bottom", label: "Bottom" }]
+        values: [{ v: "either", label: T("fractions.schema.equivMissing.either") }, { v: "top", label: T("fractions.schema.equivMissing.top") }, { v: "bottom", label: T("fractions.schema.equivMissing.bottom") }]
       }, {
         key: "equivFactor",
         forMode: "equiv",
-        label: "Equivalent: multiply top and bottom by",
+        label: T("fractions.schema.equivFactor"),
         type: "choice",
         default: 5,
-        values: [{ v: 5, label: "up to 5" }, { v: 10, label: "up to 10" }]
+        values: [{ v: 5, label: T("fractions.schema.equivFactor.5") }, { v: 10, label: T("fractions.schema.equivFactor.10") }]
       },
-      { key: "equivSimplifyFirst", forMode: "equiv", label: "Equivalent: needs simplifying first", type: "toggle", default: false, values: TOG }
+      { key: "equivSimplifyFirst", forMode: "equiv", label: T("fractions.schema.equivSimplifyFirst"), type: "toggle", default: false, values: TOG }
     ];
 
     function optOf(o, key) {
@@ -3983,7 +3990,7 @@
     function writeLog(steps) {
       var html = "";
       steps.forEach(function(st, i) {
-        html += '<li data-step="' + i + '"><span class="n">Step&nbsp;' + (i + 1) + "</span>";
+        html += '<li data-step="' + i + '"><span class="n">' + T("common.step") + "&nbsp;" + (i + 1) + "</span>";
         st.lines.forEach(function(l) { html += '<div class="line"><span class="tag c-' + l[0] + '">' + l[1] + '</span><span class="txt">' + l[2] + "</span></div>"; });
         if (st.aside) html += '<div class="aside">' + st.aside + "</div>";
         html += "</li>";
@@ -4017,12 +4024,13 @@
     }
     var READ = null; // what understand() made of a problem typed in words (null: typed plainly)
     function render() {
-      var raw = S.inputs[S.mode],
+      var raw0 = S.inputs[S.mode],
+        raw = norm(raw0), // a problem typed in the visitor's language, in the words the reader knows
         u = null;
       try { u = understand(raw); } catch (e0) { u = null; }
       READ = u && !u.other ? u : null;
       if (READ && !READ.weak && READ.mode !== S.mode) {
-        S.inputs[READ.mode] = raw;
+        S.inputs[READ.mode] = raw0;
         S.mode = READ.mode;
         S.step = 1;
         paintMode();
@@ -4038,10 +4046,10 @@
       try {
         if (u && u.other) throw new UserErr(otherMsg(u));
         sol = solveAny(mode, q, { to: S.to, gcf: S.gcf });
-        if (READ && READ.q.replace(/\s+/g, "") !== clean(raw).replace(/\s+/g, ""))
-          sol.band.facts = ["Read as <b>" + esc(READ.q) + "</b>" + (mode === "convert" && S.to !== "all" ? " → " + esc(S.to === "mixed" ? "mixed number" : S.to === "improper" ? "improper fraction" : S.to) : "")].concat(sol.band.facts);
+        if ((READ || raw !== raw0) && String(q).replace(/\s+/g, "") !== clean(raw0).replace(/\s+/g, ""))
+          sol.band.facts = [T("fractions.readAs", { q: esc(q) }) + (mode === "convert" && S.to !== "all" ? " → " + esc(T("fractions.readTo." + S.to)) : "")].concat(sol.band.facts);
       } catch (e) {
-        if (e && e.user) fail(e.user === "zero" ? "Something in there divides by zero — that can’t be done." : e.user);
+        if (e && e.user) fail(e.user === "zero" ? T("fractions.err.zero") : e.user);
         else throw e;
       }
       var key = mode + "|" + clean(q) + "|" + (mode === "convert" ? S.to : "");
@@ -4064,7 +4072,7 @@
       }
       $("stepper").hidden = !(sol && S.practice === "step");
       if (sol && S.practice === "step") {
-        $("stepCount").textContent = S.step + " of " + total;
+        $("stepCount").textContent = T("fractions.stepOf", { n: S.step, m: total });
         $("prevBtn").disabled = S.step <= 1;
         $("nextBtn").disabled = S.step >= total;
       }
@@ -4089,8 +4097,8 @@
         var id = "ck_" + f.key;
         var div = document.createElement("div");
         div.className = "ck-field";
-        var ph = f.kind === "order" ? "e.g. 1/2, 3/5, 0.7" : f.kind === "yesno" ? "yes or no" : f.kind === "percent" ? "e.g. 40%" : f.kind === "decimal" ? "e.g. 0.75 or 0.1(6)" :
-          f.kind === "mixed" ? "e.g. 2 1/3" : "e.g. 3/4";
+        var ph = T("fractions.ph." + (f.kind === "order" ? "order" : f.kind === "yesno" ? "yesno" : f.kind === "percent" ? "percent" : f.kind === "decimal" ? "decimal" :
+          f.kind === "mixed" ? "mixed" : "frac"));
         div.innerHTML = '<label for="' + id + '">' + esc(f.label) + '</label><div class="ck-row"><input class="ck-in" id="' + id + '" type="text" autocomplete="off" spellcheck="false" inputmode="text" placeholder="' +
           esc(ph) + '"><span class="ck-mark" aria-hidden="true"></span></div>';
         host.appendChild(div);
@@ -4126,11 +4134,11 @@
       });
       var fb = $("ckFb"),
         allOk = results.every(function(r) { return r.st === "ok"; });
-      if (anyEmpty && !results.some(function(r) { return r.st !== "empty"; })) { fb.innerHTML = "Type your answer first" + (fields.length > 1 ? " — fill in every box." : "."); return; }
+      if (anyEmpty && !results.some(function(r) { return r.st !== "empty"; })) { fb.innerHTML = T(fields.length > 1 ? "fractions.ck.typeFirstAll" : "fractions.ck.typeFirst"); return; }
       if (allOk) {
         SOLVED = true;
         var notes = results.map(function(r) { return r.note; }).filter(Boolean);
-        fb.innerHTML = '<span class="ok">✓ Correct!</span> Compare your work with the steps below.' + (notes.length ? '<span class="tip">' + notes.join(" ") + "</span>" : "");
+        fb.innerHTML = '<span class="ok">' + T("common.correct") + "</span>" + T("fractions.ck.compareWork") + (notes.length ? '<span class="tip">' + notes.join(" ") + "</span>" : "");
         report("right");
       } else {
         TRIED = true;
@@ -4139,13 +4147,13 @@
         var label = function(r) { var i = results.indexOf(r); return fields.length > 1 ? "<b>" + esc(fields[i].label) + ":</b> " : ""; };
         if (bad.length) {
           var diag = bad.filter(function(r) { return r.msg; })[0];
-          fb.innerHTML = '<span class="bad">Not quite — try again.</span>' + (diag ? '<span class="tip">' + label(diag) + diag.msg + "</span>" : "") +
+          fb.innerHTML = '<span class="bad">' + T("common.notQuite") + "</span>" + (diag ? '<span class="tip">' + label(diag) + diag.msg + "</span>" : "") +
             (part.length ? '<span class="tip">' + label(part[0]) + part[0].msg + "</span>" : "");
           report("wrong");
         } else if (part.length) {
-          fb.innerHTML = '<span class="part">' + (part[0].msg.indexOf("Right value") === 0 ? "" : "Almost! ") + label(part[0]) + part[0].msg + "</span>";
+          fb.innerHTML = '<span class="part">' + (part[0].rv ? "" : T("fractions.ck.almost")) + label(part[0]) + part[0].msg + "</span>";
           report("simplify");
-        } else fb.innerHTML = "Fill in every box" + (fields.length > 1 ? " — " + results.filter(function(r) { return r.st === "empty"; }).length + " still empty." : ".");
+        } else fb.innerHTML = fields.length > 1 ? T("fractions.ck.fillEveryN", { n: results.filter(function(r) { return r.st === "empty"; }).length }) : T("fractions.ck.fillEvery");
       }
       paintCheck();
     }
@@ -4173,6 +4181,9 @@
       } catch (e) {}
     }
 
+    // a typed problem (the box, a q= link) in the visitor's language → what the readers know; English: unchanged
+    function norm(s) { return window.HelperI18n && s !== null && s !== undefined ? HelperI18n.normalize(String(s)) : s; }
+
     function inferMode(q) {
       var s = String(q);
       if (/[,;]/.test(s)) return "compare";
@@ -4189,8 +4200,8 @@
       mode = { equivalent: "equiv", equivalence: "equiv", order: "compare", compareorder: "compare", conversion: "convert", reduce: "simplify" } [mode] || mode;
       if (MODES.indexOf(mode) < 0) {
         var u = null;
-        try { u = q !== null ? understand(q) : null; } catch (e0) {}
-        mode = u && u.mode ? u.mode : q !== null ? inferMode(q) : "";
+        try { u = q !== null ? understand(norm(q)) : null; } catch (e0) {}
+        mode = u && u.mode ? u.mode : q !== null ? inferMode(norm(q)) : "";
       }
       if (mode) S.mode = mode;
       if (q !== null && mode) {
@@ -4417,17 +4428,17 @@
         var op = opm[2],
           sym = /^\+|plus|added/.test(op) ? "+" : /^\*|times|multiplied|^x/.test(op) ? "×" : /÷|divided/.test(op) ? "÷" : "−";
         var page = { "+": "addition.html", "−": "subtraction.html", "×": "multiplication.html", "÷": "division.html" } [sym];
-        var whatOp = { "+": "adding", "−": "subtracting", "×": "multiplying", "÷": "dividing" } [sym];
+        var whatOp = { "+": "add", "−": "sub", "×": "mul", "÷": "div" } [sym];
         return otherLink(page, opm[1] + " " + sym + " " + opm[3], whatOp);
       }
-      if (/\d%\s+of\s+\d/.test(s) || /\bpercent\b.*\bof\s+\d/.test(s)) return otherLink("percents.html", String(raw).trim(), "a percent of a number");
+      if (/\d%\s+of\s+\d/.test(s) || /\bpercent\b.*\bof\s+\d/.test(s)) return otherLink("percents.html", String(raw).trim(), "pctOf");
       if (new RegExp("(" + N + ")\\s+of\\s+(" + N + ")").test(s) && /\d\/\d/.test(s)) {
         var om = new RegExp("(" + N + ")\\s+of\\s+(" + N + ")").exec(s);
-        return otherLink("multiplication.html", om[1] + " × " + om[2], "a fraction of a number (that’s multiplying)");
+        return otherLink("multiplication.html", om[1] + " × " + om[2], "fracOf");
       }
       if (/\b(gcf|gcd|lcm|lcd|hcf|greatest common|least common|lowest common|highest common|prime|factors?|multiples?)\b/.test(s) && !/\d\/\d/.test(s))
-        return otherLink("factors.html", String(raw).trim(), "factors and multiples");
-      if (/\d\s*:\s*\d/.test(s) || /\bratio\b/.test(s)) return otherLink("ratios.html", String(raw).trim(), "a ratio");
+        return otherLink("factors.html", String(raw).trim(), "factors");
+      if (/\d\s*:\s*\d/.test(s) || /\bratio\b/.test(s)) return otherLink("ratios.html", String(raw).trim(), "ratio");
       // the numbers, in order, and the words left over
       var nums = [],
         rest = s.replace(NUMRE, function(m0, pre, n) { nums.push(n.replace(/\s+/g, " ").replace(/ ?\/ ?/g, "/").replace(/ %$/, "%")); return pre + " "; });
@@ -4472,32 +4483,30 @@
     }
 
     function otherMsg(u) {
-      return "That’s " + u.what + " — this page simplifies, converts, compares and matches fractions. " +
-        '<a href="' + esc(u.href) + '">Work <b>' + esc(u.q) + "</b> on " + esc(otherName(u.other)) + " →</a>";
+      return T("fractions.other.msg", { what: T("fractions.other.what." + u.what), href: esc(u.href), q: esc(u.q), page: esc(otherName(u.other)) });
     }
 
     function otherName(page) {
       var P = window.HelperSearch && window.HelperSearch.PAGE && window.HelperSearch.PAGE[page];
-      return P ? P[0] : ({
-        "addition.html": "the addition page",
-        "subtraction.html": "the subtraction page",
-        "multiplication.html": "the multiplication page",
-        "division.html": "the division page",
-        "percents.html": "the percents page",
-        "factors.html": "the factors page",
-        "ratios.html": "the ratios page"
-      } [page] || "another page");
+      return P ? P[0] : T("fractions.other.page." + ({
+        "addition.html": "addition",
+        "subtraction.html": "subtraction",
+        "multiplication.html": "multiplication",
+        "division.html": "division",
+        "percents.html": "percents",
+        "factors.html": "factors",
+        "ratios.html": "ratios"
+      } [page] || "another"));
     }
 
     /* ===================== wiring ===================== */
     var in1 = $("in1");
-    var HINTS = {
-      simplify: "A fraction like <code>18/24</code>, an improper one like <code>30/12</code>, or a mixed number with a space: <code>2 6/8</code>.",
-      convert: "Fractions <code>3/8</code>, mixed numbers <code>1 3/4</code>, decimals <code>0.375</code> or percents <code>45%</code>. For a repeating decimal, put the repeating digits in parentheses: <code>0.1(6)</code> is 0.1666…, <code>0.(27)</code> is 0.2727… (typing <code>0.1666...</code> works too).",
-      compare: "2 to 5 numbers with commas between them: <code>3/4, 5/8, 2/3</code>. Mixed numbers, decimals and percents are fine too.",
-      equiv: "Two fractions with an = between them and a <code>?</code> for the missing number: <code>3/4 = ?/20</code>. Leave out the <code>?</code> to check whether two fractions are equal: <code>3/4 = 6/8</code>."
-    };
-    var LABELS = { simplify: "Your fraction", convert: "Your number", compare: "Your numbers", equiv: "Your fractions" };
+    var HINTS = {},
+      LABELS = {};
+    MODES.forEach(function(m) {
+      HINTS[m] = T("fractions.hint." + m);
+      LABELS[m] = T("fractions.label." + m);
+    });
     var EX = {
       simplify: ["18/24", "12/16", "45/60", "2 6/8", "30/12", "7/9", "84/126", "36/48"],
       convert: ["3/8", "7/4", "1 3/4", "2/3", "0.375", "2.75", "0.1(6)", "45%", "12.5%"],
@@ -4597,39 +4606,41 @@
     });
 
     /* the maker's controls, per mode */
-    var FROM_L = { any: "Any", fraction: "Fraction", mixed: "Mixed number", improper: "Improper fraction", decimal: "Decimal", percent: "Percent" };
-    var TO_L = { all: "Every form", fraction: "Fraction (simplest)", mixed: "Mixed number", improper: "Improper fraction", decimal: "Decimal", percent: "Percent" };
+    var FROM_L = {},
+      TO_L = {};
+    ["any", "fraction", "mixed", "improper", "decimal", "percent"].forEach(function(k) { FROM_L[k] = T("fractions.mk.from." + k); });
+    ["all", "fraction", "mixed", "improper", "decimal", "percent"].forEach(function(k) { TO_L[k] = T("fractions.mk.to." + k); });
     var MAKER = {
-      simplify: [{ lbl: "Biggest bottom number (denominator)", seg: "max", vals: [12, 24, 50, 100], fmt: function(v) { return String(v); } }, {
-        lbl: "Extras",
+      simplify: [{ lbl: T("fractions.mk.max"), seg: "max", vals: [12, 24, 50, 100], fmt: function(v) { return String(v); } }, {
+        lbl: T("fractions.mk.extras"),
         togs: [
-          ["mixed", "2⅓", "Mixed numbers"],
-          ["improper", "7/4", "Improper fractions"],
-          ["simplest", "✓", "Some already in simplest form"]
+          ["mixed", "2⅓", T("fractions.mk.mixed")],
+          ["improper", "7/4", T("fractions.mk.improper")],
+          ["simplest", "✓", T("fractions.mk.simplest")]
         ]
       }],
-      convert: [{ lbl: "Start with", seg: "from", vals: ["any", "fraction", "mixed", "improper", "decimal", "percent"], fmt: function(v) { return FROM_L[v]; } },
-        { lbl: "Turn it into", seg: "to", vals: ["all", "fraction", "mixed", "improper", "decimal", "percent"], fmt: function(v) { return TO_L[v]; } }, {
-          lbl: "Extras",
+      convert: [{ lbl: T("fractions.mk.startWith"), seg: "from", vals: ["any", "fraction", "mixed", "improper", "decimal", "percent"], fmt: function(v) { return FROM_L[v]; } },
+        { lbl: T("fractions.mk.turnInto"), seg: "to", vals: ["all", "fraction", "mixed", "improper", "decimal", "percent"], fmt: function(v) { return TO_L[v]; } }, {
+          lbl: T("fractions.mk.extras"),
           togs: [
-            ["rep", "0.3̅", "Repeating decimals"]
+            ["rep", "0.3̅", T("fractions.mk.repeating")]
           ]
         }
       ],
-      compare: [{ lbl: "How many numbers", seg: "count", vals: [2, 3, 4, 5], fmt: function(v) { return String(v); } },
-        { lbl: "Bottom numbers (denominators)", seg: "den", vals: ["unlike", "like", "either"], fmt: function(v) { return { unlike: "Different", like: "The same", either: "Either" } [v]; } }, {
-          lbl: "Extras",
+      compare: [{ lbl: T("fractions.mk.howMany"), seg: "count", vals: [2, 3, 4, 5], fmt: function(v) { return String(v); } },
+        { lbl: T("fractions.mk.bottoms"), seg: "den", vals: ["unlike", "like", "either"], fmt: function(v) { return T("fractions.mk.den." + v); } }, {
+          lbl: T("fractions.mk.extras"),
           togs: [
-            ["mixed", "1½", "Mixed numbers"],
-            ["dec", ".5", "Decimals"]
+            ["mixed", "1½", T("fractions.mk.mixed")],
+            ["dec", ".5", T("common.decimals")]
           ]
         }
       ],
-      equiv: [{ lbl: "Missing number", seg: "miss", vals: ["either", "top", "bottom"], fmt: function(v) { return { either: "Top or bottom", top: "Top", bottom: "Bottom" } [v]; } },
-        { lbl: "Multiply top and bottom by", seg: "factor", vals: [5, 10], fmt: function(v) { return "up to " + v; } }, {
-          lbl: "Extras",
+      equiv: [{ lbl: T("fractions.keys.missing"), seg: "miss", vals: ["either", "top", "bottom"], fmt: function(v) { return T("fractions.mk.miss." + v); } },
+        { lbl: T("fractions.mk.factor"), seg: "factor", vals: [5, 10], fmt: function(v) { return T("fractions.mk.upTo", { n: v }); } }, {
+          lbl: T("fractions.mk.extras"),
           togs: [
-            ["first", "÷", "Needs simplifying first"]
+            ["first", "÷", T("fractions.mk.first")]
           ]
         }
       ]
@@ -4686,7 +4697,7 @@
       paintSample();
       var go = document.createElement("div");
       go.className = "maker-go";
-      go.innerHTML = '<button type="button" class="go" id="genBtn">New problem</button><span class="msg" id="genMsg"></span>';
+      go.innerHTML = '<button type="button" class="go" id="genBtn">' + T("common.newProblem") + '</button><span class="msg" id="genMsg"></span>';
       host.appendChild(go);
       $("genBtn").addEventListener("click", generate);
     }
@@ -4699,14 +4710,14 @@
         var g = genOne(S.mode, S.gen[S.mode]);
         t = solveAny(S.mode, g.q, { to: g.to || "all", gcf: "list" }).api.text;
       } catch (e) { t = null; }
-      el.innerHTML = t ? "Makes problems like: <b>" + esc(t) + "</b>" : "Those choices don’t make a problem — try different ones.";
+      el.innerHTML = t ? T("fractions.mk.sample", { x: esc(t) }) : T("fractions.mk.noSample");
     }
 
     function generate() {
       var G = S.gen[S.mode],
         r = genOne(S.mode, G),
         msg = "";
-      if (S.mode === "convert" && G.to !== "all" && r.to !== G.to) msg = "“" + FROM_L[G.from] + "” can’t turn into “" + TO_L[G.to] + "”, so this one shows every form.";
+      if (S.mode === "convert" && G.to !== "all" && r.to !== G.to) msg = T("fractions.mk.cantTurn", { a: FROM_L[G.from], b: TO_L[G.to] });
       $("genMsg").textContent = msg;
       setProblem(r.q, S.mode === "convert" ? r.to : null);
     }
@@ -4748,9 +4759,9 @@
 
     function copied(ok) {
       var b = $("copyBtn");
-      b.textContent = ok ? "Link copied ✓" : "Couldn’t copy — use the address bar";
+      b.textContent = ok ? T("common.linkCopied") + " ✓" : T("fractions.copyFailed");
       clearTimeout(copyTimer);
-      copyTimer = setTimeout(function() { b.textContent = "Copy link"; }, 2000);
+      copyTimer = setTimeout(function() { b.textContent = T("common.copyLink"); }, 2000);
     }
 
     function copyFallback(text) {
@@ -4797,7 +4808,7 @@
       return t ? t === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
     }
 
-    function paint() { themeBtn.textContent = isDark() ? "Light mode" : "Dark mode"; }
+    function paint() { themeBtn.textContent = isDark() ? T("common.lightMode") : T("common.darkMode"); }
     themeBtn.addEventListener("click", function() {
       document.documentElement.setAttribute("data-theme", isDark() ? "light" : "dark");
       paint();
@@ -4887,7 +4898,7 @@
           verdict: verdict,
           firstTry: verdict !== "shown" && r.graded === 0,
           hinted: r.hinted,
-          text: (({ simplify: "Simplify ", convert: "Convert ", compare: "Order " })[S.mode] || "") + String(S.inputs[S.mode]).slice(0, 120)
+          text: (S.mode === "equiv" ? "" : T("fractions.report." + S.mode)) + String(S.inputs[S.mode]).slice(0, 120)
         };
       if (verdict !== "shown") r.graded++;
       try { document.dispatchEvent(new CustomEvent("helper:checked", { detail: d })); } catch (e) {}

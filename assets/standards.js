@@ -26,6 +26,22 @@
 (function() {
   "use strict";
   if (window.HelperStandards) return;
+
+  /* ---- the words, in the visitor's language (assets/i18n.js): the standards.* keys, and en.js repeats the English for
+     translators. English always shows the words written here; so does a page without i18n.js. ---- */
+  function tr(key, en, vars) {
+    var I = window.HelperI18n;
+    if (I && I.lang && I.lang !== "en" && I.t) {
+      var s = I.t(key, vars);
+      if (s !== key) return s;
+    }
+    return vars ? String(en).replace(/\{(\w+)(\|[^{}]*)?\}/g, function(m, k, forms) { // {name}, and {n|one|other}
+      if (!Object.prototype.hasOwnProperty.call(vars, k)) return m;
+      if (!forms) return String(vars[k]);
+      var f = forms.slice(1).split("|");
+      return Number(vars[k]) === 1 ? f[0] : f[f.length - 1];
+    }) : en;
+  }
   try { main(); } catch (e) { if (window.console) console.warn("standards.js:", e); }
 
   function main() {
@@ -715,12 +731,13 @@
       shown = key;
       var list = forPage(id, mode),
         note = beyond(id);
-      var html;
+      var html,
+        head = "<b title=\"" + esc(tr("standards.unofficial", "An unofficial alignment to the Common Core State Standards for Mathematics")) + "\">" + tr("standards.cc", "Common Core") + "</b>";
       if (!list.length) {
-        html = note ? "<b title=\"An unofficial alignment to the Common Core State Standards for Mathematics\">Common Core</b>This part goes beyond Common Core." :
+        html = note ? head + tr("standards.beyond", "This part goes beyond Common Core.") :
           "";
       } else {
-        html = "<b title=\"An unofficial alignment to the Common Core State Standards for Mathematics\">Common Core</b>" +
+        html = head +
           list.map(function(s) {
             return "<a href=\"" + esc(url(s.code)) + "\" title=\"" + esc(s.code + (s.plus ? " (+)" : "") + ": " + s.text) + "\">" + esc(s.code) + "</a>";
           }).join("<span class=\"sep\" aria-hidden=\"true\">·</span> ");
@@ -746,7 +763,7 @@
         D.head.appendChild(st);
         line = D.createElement("p");
         line.className = "std-line";
-        line.setAttribute("aria-label", "Common Core standards this page teaches (unofficial)");
+        line.setAttribute("aria-label", tr("standards.aria", "Common Core standards this page teaches (unofficial)"));
         if (anchor && anchor.nextSibling) host.insertBefore(line, anchor.nextSibling);
         else host.appendChild(line);
         paint();

@@ -199,7 +199,8 @@
       ["mode=simplify", "Simplify"],
       ["mode=solve", "Solve"],
       ["mode=ineq", "Inequality"],
-      ["mode=sys", "System"]
+      ["mode=sys", "System"],
+      ["mode=formula", "Formula"]
     ],
     "lines.html": [
       ["mode=slope", "Slope"],
@@ -214,6 +215,7 @@
       ["mode=functions", "Functions"],
       ["mode=systems", "Systems"],
       ["mode=inequalities", "Inequalities"],
+      ["mode=optimize", "Optimization"],
       ["mode=transform", "Transformations"],
       ["mode=scatter", "Scatter plots"],
       ["mode=free", "Free plot"]
@@ -314,7 +316,9 @@
       ["mode=tangent", "Tangent lines"],
       ["mode=extrema", "Max & min"],
       ["mode=integral", "Integrals"],
-      ["mode=rate", "Rates of change"]
+      ["mode=rate", "Rates of change"],
+      ["mode=optimize", "Optimization"],
+      ["mode=related", "Related rates"]
     ],
     "college-statistics.html": [
       ["mode=z", "z-scores"],
@@ -619,6 +623,12 @@
     ".sitenav .sn-wmenu a[aria-current=\"page\"]{background:var(--surface-2);box-shadow:inset 3px 0 0 var(--nv)}" +
     ".sitenav .sn-wbtn b.it{font-style:italic;font-family:Georgia,\"Times New Roman\",serif;font-size:15px}" +
     ".sitenav .sn-wmenu a b.it{font-style:italic;font-family:Georgia,\"Times New Roman\",serif}" +
+    // the language: a quiet button like the tools' links, its menu under it
+    ".sitenav .sn-lang .sn-lbtn{padding:4px 8px;font-weight:600;color:var(--ink-3);border-color:transparent}" +
+    ".sitenav .sn-lang .sn-lbtn b{font-family:var(--f-body,inherit);font-size:11px;color:var(--ink-3);letter-spacing:-.04em}" +
+    ".sitenav .sn-lang .sn-lmenu{width:180px;left:auto;right:0}" +
+    ".sitenav .sn-lang .sn-lmenu a{font-weight:500}" +
+    ".sitenav .sn-lang .sn-lmenu a[aria-current]{font-weight:600}" +
     "@media (max-width:560px){.sitenav .sn-links a{padding:5px 9px;font-size:12.5px}.sitenav .sn-tools{margin-left:0}.sitenav .sn-wbtn{padding:5px 9px;font-size:12.5px}" +
     // phones: one column, the page's name beside its field
     ".sitenav .sn-wmenu.sn-wwork{grid-template-columns:1fr}.sitenav .sn-wwork a.sn-wh small{display:inline;margin:0 0 0 4px}}" +
@@ -628,6 +638,75 @@
 
   // where a page or file lives (site.js); without it, a name is taken as a file in the same folder
   function U(name) { return window.HelperSite ? window.HelperSite.url(name) : name; }
+
+  /* ---- the bar in the visitor's language (assets/i18n.js) ----
+     The lists above are the English; a translation is the key nav.<kind>.<name> in the language's file (en.js
+     repeats the English for translators, and scripts/i18n_check.py keeps the two the same). English always shows
+     the lists' own words. */
+  function tr(key, en, vars) {
+    var I = window.HelperI18n;
+    if (!I || I.lang === "en" || !I.has(key)) return vars ? fillIn(en, vars) : en;
+    return I.t(key, vars);
+  }
+
+  function fillIn(s, vars) { return s.replace(/\{(\w+)\}/g, function(m, k) { return vars.hasOwnProperty(k) ? vars[k] : m; }); }
+
+  function short(href) { return href.replace(/\.html$/, "").replace(/\/$/, "") || "index"; }
+
+  function attr(s) { return String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;"); }
+
+  /* A page that doesn't load i18n.js itself (in its <head>) gets it here, with the shared strings of the chosen
+     language, before search.js and tools.js; the bar is built once they're in. The choice is worked out as
+     i18n.js does it (the address, this visit, this device). */
+  var i18nWait = null;
+
+  function chosenLang() {
+    // the address as opened too: the page may already have rewritten its own without lang=
+    var first = "";
+    try {
+      var en = performance.getEntriesByType && performance.getEntriesByType("navigation")[0];
+      first = en && en.name ? en.name.split("#")[0].replace(/^[^?]*/, "") : "";
+    } catch (e) {}
+    var re = /[?&]lang=([A-Za-z]{2,3})(?:[-_][A-Za-z]+)?(?:&|#|$)/,
+      m = re.exec(location.search) || re.exec(first),
+      c = m ? m[1].toLowerCase() : "";
+    if (!c) {
+      try { if (window.top !== window.self && /\/tests\/(self-test|tests)(\.html)?$/i.test(window.top.location.pathname)) return "en"; } catch (e) {}
+      try { c = sessionStorage.getItem("helpers-lang-visit") || localStorage.getItem("helpers-lang") || ""; } catch (e) {}
+    }
+    c = String(c).toLowerCase().split(/[-_]/)[0];
+    return /^[a-z]{2,3}$/.test(c) ? c : "en";
+  }
+
+  function i18nBits(head) {
+    if (window.HelperI18n || loaded("i18n.js")) return;
+    var root = (window.HelperSite && window.HelperSite.root) || "";
+    var c = chosenLang(),
+      files = [U("i18n.js"), root + "assets/i18n/en.js"];
+    if (c !== "en") files.push(root + "assets/i18n/" + c + ".js");
+    var left = files.length;
+    i18nWait = [];
+    files.forEach(function(f, i) {
+      var sc = document.createElement("script");
+      sc.src = f;
+      sc.async = false;
+      if (i === 0) sc.setAttribute("data-by-nav", "");
+      sc.onload = sc.onerror = function() {
+        if (--left) return;
+        if (window.HelperI18n) window.HelperI18n._done();
+        var w = i18nWait;
+        i18nWait = null;
+        w.forEach(function(fn) { fn(); });
+      };
+      head.appendChild(sc);
+    });
+  }
+
+  function whenI18n(fn) {
+    if (i18nWait) i18nWait.push(fn);
+    else if (window.HelperI18n && window.HelperI18n.ready) window.HelperI18n.ready(fn);
+    else fn();
+  }
 
   function loaded(file) { return !!document.querySelector('script[src$="' + file + '"], script[src*="' + file + '?"]'); }
 
@@ -669,6 +748,8 @@
       g.defer = true;
       head.appendChild(g);
     }
+    // the strings in the visitor's language, first (tools.js waits for them)
+    i18nBits(head);
     // the search box, settings that follow you, read aloud, recent problems, shortcuts, next problem
     ["search.js", "tools.js"].forEach(function(src) {
       if (loaded(src)) return;
@@ -714,20 +795,53 @@
 
     var nav = document.createElement("nav");
     nav.className = "sitenav";
-    nav.setAttribute("aria-label", "All the helpers");
-    var html = '<a class="sn-home" href="' + U("index.html") + '"><span aria-hidden="true">←</span> All helpers</a><ul class="sn-links">';
+    nav.setAttribute("aria-label", tr("nav.label", "All the helpers"));
+    var html = '<a class="sn-home" href="' + U("index.html") + '"><span aria-hidden="true">←</span> ' + tr("nav.home", "All helpers") + '</a><ul class="sn-links">';
     SECTIONS.forEach(function(s, i) { html += sectionItem(s, i, here); });
     html += workItem(here);
-    html += '</ul><ul class="sn-tools" aria-label="Tools">';
+    html += '</ul><ul class="sn-tools" aria-label="' + attr(tr("nav.tools", "Tools")) + '">';
     TOOLS.forEach(function(p) {
-      html += '<li><a href="' + U(p.href) + '" title="' + p.title + '"' + (p.href === here ? ' aria-current="page"' : "") + ">" + p.name + "</a></li>";
+      var k = "nav.tool." + short(p.href);
+      html += '<li><a href="' + U(p.href) + '" title="' + attr(tr(k + ".title", p.title)) + '"' + (p.href === here ? ' aria-current="page"' : "") + ">" + tr(k, p.name) + "</a></li>";
     });
+    html += langItem();
     nav.innerHTML = html + "</ul>";
     page.insertBefore(nav, page.firstChild);
     try { menus(nav); } catch (e) {}
+    try { langLinks(nav); } catch (e) {}
+  }
+
+  /* ---- the language: a button at the end of the tools, a menu of the languages by their own names ---- */
+  function langItem() {
+    var I = window.HelperI18n;
+    if (!I || !I.langs || I.langs.length < 2) return "";
+    var cur = I.lang,
+      name = "";
+    var links = I.langs.map(function(l) {
+      if (l.code === cur) name = l.name;
+      var href = location.pathname + (location.search.replace(/([?&])lang=[^&]*&?/, "$1").replace(/[?&]$/, "") || "");
+      href += (href.indexOf("?") >= 0 ? "&" : "?") + "lang=" + l.code;
+      return '<li><a href="' + attr(href) + '" data-lang="' + l.code + '" lang="' + l.tag.split("-")[0] + '"' + (l.code === cur ? ' aria-current="true"' : "") + ">" +
+        (l.code === cur ? "✓ " : "") + l.name + "</a></li>";
+    }).join("");
+    return '<li class="sn-work sn-lang i18n-ui"><button type="button" class="sn-wbtn sn-lbtn" aria-expanded="false" aria-controls="snLangMenu" title="' +
+      attr(tr("lang.title", "Choose the language for the site")) + '" aria-label="' + attr(tr("lang.button", "Language") + ": " + name) + '">' +
+      '<b aria-hidden="true">文A</b>' + name + '<span class="sn-caret" aria-hidden="true">▾</span></button>' +
+      '<div class="sn-wmenu sn-lmenu" id="snLangMenu" hidden><ul aria-label="' + attr(tr("lang.menu", "Languages")) + '">' + links + "</ul></div></li>";
+  }
+
+  function langLinks(nav) {
+    [].forEach.call(nav.querySelectorAll("a[data-lang]"), function(a) {
+      a.addEventListener("click", function(e) {
+        if (!window.HelperI18n) return;
+        e.preventDefault();
+        window.HelperI18n.set(a.getAttribute("data-lang"));
+      });
+    });
   }
 
   /* ---- a section of helpers: a button in the bar, a panel of its helpers and their tabs ---- */
+  var SEC_KEYS = ["arith", "fracmoney", "alggraphs", "shapes", "college"];
   // a page's address with a query, through site.js
   function UQ(name, query) { return window.HelperSite ? window.HelperSite.url(name, query) : name + "?" + query; }
 
@@ -735,21 +849,23 @@
     var by = {};
     PAGES.forEach(function(p) { by[p.href] = p; });
     var on = s.pages.indexOf(here) >= 0,
-      id = "snSec" + i;
+      id = "snSec" + i,
+      sk = "nav.sec." + SEC_KEYS[i];
     var h = '<li class="sn-work"><button type="button" class="sn-wbtn' + (on ? " on" : "") + '" aria-expanded="false" aria-controls="' + id + '"' +
-      ' title="' + s.title + '" style="--nv:var(--nv-' + s.c + ')"><b' + (s.italic ? ' class="it"' : "") + ' aria-hidden="true">' + s.sign + "</b>" +
-      s.name + '<span class="sn-caret" aria-hidden="true">▾</span></button>' +
+      ' title="' + attr(tr(sk + ".title", s.title)) + '" style="--nv:var(--nv-' + s.c + ')"><b' + (s.italic ? ' class="it"' : "") + ' aria-hidden="true">' + s.sign + "</b>" +
+      tr(sk, s.name) + '<span class="sn-caret" aria-hidden="true">▾</span></button>' +
       '<div class="sn-wmenu sn-wide" id="' + id + '" hidden>';
     s.pages.forEach(function(href) {
       var p = by[href];
       if (!p) return;
+      var pk = short(href);
       h += '<div class="sn-wgrp" style="--nv:var(--nv-' + p.c + ')"><a class="sn-wh" href="' + U(href) + '" title="' + p.title + '"' +
         (href === here ? ' aria-current="page"' : "") + '><b' + (p.italic ? ' class="it"' : "") + ' aria-hidden="true">' + p.sign + "</b>" +
-        (FULL[href] || p.name) + "</a>";
+        (FULL[href] ? tr("nav.full." + pk, FULL[href]) : tr("nav.page." + pk, p.name)) + "</a>";
       var tabs = TABS[href] || [];
       if (tabs.length) {
         h += "<ul>";
-        tabs.forEach(function(t) { h += '<li><a href="' + UQ(href, t[0]) + '">' + t[1] + "</a></li>"; });
+        tabs.forEach(function(t) { h += '<li><a href="' + UQ(href, t[0]) + '">' + tr("nav.tab." + pk + "." + t[0].split("=")[1], t[1]) + "</a></li>"; });
         h += "</ul>";
       }
       h += "</div>";
@@ -776,19 +892,24 @@
     if (!WORK.length) return "";
     var on = WORK.some(function(g) { return workIsHere(g, here); }),
       one = WORK.length === 1;
+    var wk = function(g) { return "nav.work." + short(g.href); };
+    var fields = WORK.map(function(g) { return tr(wk(g), g.name).toLowerCase(); }).join(", ");
     var h = '<li class="sn-work"><button type="button" class="sn-wbtn' + (on ? " on" : "") + '" aria-expanded="false" aria-controls="snWorkMenu"' +
-      ' title="Math at work: ' + WORK.map(function(g) { return g.name.toLowerCase(); }).join(", ") + '" style="--nv:var(--nv-' + WORK[0].c + ')"><b aria-hidden="true">'
+      ' title="' + attr(tr("nav.workTitle", "Math at work: {fields}", { fields: fields })) + '" style="--nv:var(--nv-' + WORK[0].c + ')"><b aria-hidden="true">'
       // named for its one field while there is just one ("✈ Aviation"); "Math at work" once there are more
       +
-      (one ? WORK[0].sign : "⚒") + "</b>" + (one ? WORK[0].name : "Math at work") + '<span class="sn-caret" aria-hidden="true">▾</span></button>' +
+      (one ? WORK[0].sign : "⚒") + "</b>" + (one ? tr(wk(WORK[0]), WORK[0].name) : tr("nav.work", "Math at work")) + '<span class="sn-caret" aria-hidden="true">▾</span></button>' +
       // one field: a small list; more: a panel like the sections', one field per column
       '<div class="sn-wmenu' + (one ? "" : " sn-wide sn-wwork") + '" id="snWorkMenu" hidden>';
     WORK.forEach(function(g) {
       var cur = workIsHere(g, here);
       h += '<div class="sn-wgrp" style="--nv:var(--nv-' + g.c + ')"><a class="sn-wh" href="' + WU(g) + '"' + (cur ? ' aria-current="page"' : "") + '><b aria-hidden="true">' +
-        g.sign + "</b>" + g.name + " <small>" + g.title + "</small></a><ul>";
+        g.sign + "</b>" + tr(wk(g), g.name) + " <small>" + g.title + "</small></a><ul>";
       g.tabs.forEach(function(t) {
-        h += '<li><a href="' + WU(g, "mode=" + t[0]) + '"' + (t[2] && !one ? ' title="' + (t[1] + ": " + t[2]).replace(/&/g, "&amp;").replace(/"/g, "&quot;") + '"' : "") + ">" + t[1] + (t[2] ? " <small>" + t[2] + "</small>" : "") + "</a></li>";
+        var tk = wk(g) + "." + t[0],
+          name = tr(tk, t[1]),
+          hint = t[2] ? tr(tk + ".hint", t[2]) : "";
+        h += '<li><a href="' + WU(g, "mode=" + t[0]) + '"' + (hint && !one ? ' title="' + attr(name + ": " + hint) + '"' : "") + ">" + name + (hint ? " <small>" + hint + "</small>" : "") + "</a></li>";
       });
       h += "</ul></div>";
     });
@@ -892,6 +1013,7 @@
   }
 
   appBits();
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", build);
-  else build();
+  var start = function() { whenI18n(build); };
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start);
+  else start();
 })();

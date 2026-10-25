@@ -25,6 +25,11 @@
    practice=tutor in the link (or "Tutor me" picked on this page before, while the page still remembers step mode)
    turns it on. Embedded (embed=1, practice sets and worksheets) it only runs when the link says practice=tutor.
    window.HelperTutor = { active(), start(), stop(), speech(), peek(), pick(i), show() }   (peek/pick/show: for tests)
+   In another language (assets/i18n.js): its own words are the tutor.* keys; the choices are the page's own steps, so
+   they are in the page's language already. The page's parts are found by their ids and structure, and by their
+   English or translated words ("One step at a time": common.oneStep; "3 of 5" or "3 de 5"); the step text is read with
+   English patterns plus the language's own (tutor.re.* in its locale file: the tags that aren't moves, the words for
+   "or"/"and" between answers, …), so a language without them still works, with plainer choices and hints.
    Everything is wrapped so a problem here can never break a helper page. */
 (function() {
   "use strict";
@@ -43,6 +48,71 @@
   function $(id) { return document.getElementById(id); }
 
   function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+
+  /* ---- the words, in the visitor's language (assets/i18n.js): the tutor.* keys, and en.js repeats the English for
+     translators. English always shows the words written here; so does a page without i18n.js. The questions and
+     choices come from the page's own steps, so they are in the page's language already. ---- */
+  function tr(key, en, vars) {
+    var I = window.HelperI18n;
+    if (I && I.lang !== "en" && I.t) {
+      var s = I.t(key, vars);
+      if (s !== key) return s;
+    }
+    return vars ? fillIn(en, vars) : en;
+  }
+
+  function fillIn(s, vars) { // {name}, and {n|one|other}
+    return String(s).replace(/\{(\w+)(\|[^{}]*)?\}/g, function(m, k, forms) {
+      if (!Object.prototype.hasOwnProperty.call(vars, k)) return m;
+      if (!forms) return String(vars[k]);
+      var f = forms.slice(1).split("|");
+      return Number(vars[k]) === 1 ? f[0] : f[f.length - 1];
+    });
+  }
+
+  function foreign() { return !!(window.HelperI18n && window.HelperI18n.lang && window.HelperI18n.lang !== "en"); }
+
+  /* Reading the steps in another language: the English patterns below always apply; a language can add its own words
+     as a pattern string under a tutor.re.* (or tutor.g.<move>.skip) key, e.g. "tutor.re.meta": "nota|consejo|pista" */
+  var RE = {};
+
+  function langRe(key, wrap) {
+    if (!foreign()) return null;
+    var ck = key + "|" + (wrap || "");
+    if (Object.prototype.hasOwnProperty.call(RE, ck)) return RE[ck];
+    var I = window.HelperI18n,
+      r = null;
+    try {
+      var src = I.has(key) ? I.raw(key) : "";
+      if (src && typeof src === "string") r = new RegExp(wrap ? wrap.replace("@", function() { return src; }) : src, "i"); // wrap: "^(?:@)$"
+    } catch (e) { r = null; }
+    RE[ck] = r;
+    return r;
+  }
+
+  function anyRe(re, key, s, wrap) { // the English pattern, or the language's own
+    if (re && re.test(s)) return true;
+    var r = langRe(key, wrap);
+    return !!r && r.test(s);
+  }
+
+  // fn once the language's strings are in (at once without i18n.js; never later than 4 s)
+  function whenReady(fn) {
+    var done = false,
+      go = function() {
+        if (!done) {
+          done = true;
+          fn();
+        }
+      };
+    var I = window.HelperI18n;
+    if (I && I.ready) {
+      I.ready(go);
+      setTimeout(go, 4000);
+    } else go();
+  }
+
+  function cssText(s) { return '"' + String(s).replace(/\\/g, "\\\\").replace(/"/g, "\\\"").replace(/\n/g, " ") + '"'; }
 
   function load() { try { var v = JSON.parse(localStorage.getItem(STORE) || "null"); return v && typeof v === "object" && v.pages ? v : { pages: {} }; } catch (e) { return { pages: {} }; } }
 
@@ -108,7 +178,7 @@
     // blurred lines in "Say it out loud", so it's clear there's more)
     "html.ht-tmask .answer{position:relative;min-height:56px}" +
     "html.ht-tmask .answer > *{visibility:hidden !important}" +
-    "html.ht-tmask .answer::after{content:\"Finish the steps to see the answer\";visibility:visible;position:absolute;inset:0;display:flex;" +
+    "html.ht-tmask .answer::after{content:@FINISH@;visibility:visible;position:absolute;inset:0;display:flex;" +
     "align-items:center;justify-content:center;padding:8px 16px;text-align:center;font-family:var(--f-body,Arial,sans-serif);" +
     "font-size:15px;font-weight:600;color:var(--ink-2);filter:none}" +
     "html.ht-tmask #closer,html.ht-tmask .closer,html.ht-tmask .ht-tleak{visibility:hidden !important}" +
@@ -162,7 +232,8 @@
   function sentences(t) {
     var out = [],
       s = String(t || ""),
-      re = /[.!?](?=\s+[A-Z“"(\d−-]|\s*$)/g,
+      // a sentence starts with a capital, a quote, a bracket or a number (in another language also ¿ ¡ and À–Þ)
+      re = foreign() ? /[.!?](?=\s+[A-Z“"(\d−\-¿¡À-ÖØ-Þ]|\s*$)/g : /[.!?](?=\s+[A-Z“"(\d−-]|\s*$)/g,
       at = 0,
       m;
     while ((m = re.exec(s))) {
@@ -187,13 +258,15 @@
       var calc = /\d/.test(tail) && /[+×÷·\/^*−-]/.test(tail.replace(/^[−-]/, "")); // "0.1 × 30", "5x+7x+9x", "3(2)²"
       var named = m[1].indexOf(":") >= 0 && /^[A-Za-zα-ωθμσπ′'₀-₉\d()° ]{1,10}$/.test(tail); // "…: m", "…: P(4)", "…: sin 60°"
       var formula = (bare.replace(/\b(sin|cos|tan|log|ln|sqrt|lim)\b/g, "").match(/[a-z]{3,}/gi) || []).length === 0; // "f′(x) = 3x²": no words, all math
-      var value = /[\d√π]/.test(right) && !/\b(so|and|which|because|means|gives)\b/i.test(right);
+      var value = /[\d√π]/.test(right) && !anyRe(/\b(so|and|which|because|means|gives)\b/i, "tutor.re.notValue", right, "(?:^|[^\\wÀ-ÿ])(?:@)(?![\\wÀ-ÿ])");
       var equation = right === "0" && /[a-z]/i.test(tail); // "x − 3 = 0" stays as it is
       if ((calc || named || formula) && value && !equation) g = m[1] + " = ?";
     }
     return clip(g, 110);
   }
   var META = /^(why|because|note|tip|careful|hint|remember|aside|so)$/i;
+
+  function isMeta(tag) { return anyRe(META, "tutor.re.meta", tag, "^(?:@)$"); }
 
   function describe(k, lis) {
     var lines = [],
@@ -221,7 +294,7 @@
       seen = {};
     lines.forEach(function(l) {
       var t = l.tag;
-      if (t && !META.test(t) && !seen[norm(t)]) {
+      if (t && !isMeta(t) && !seen[norm(t)]) {
         seen[norm(t)] = 1;
         chips.push(t);
       }
@@ -259,17 +332,18 @@
     for (var k = 0; k < n; k++) out.push(groups[k] ? describe(k, groups[k]) : null);
     // a last step with nothing of its own to show is the answer itself (some pages save it for the end)
     if (n > 1 && !out[n - 1] && !document.querySelector('.board [data-step="' + (n - 1) + '"], #board [data-step="' + (n - 1) + '"]')) {
-      var t = "Put it all together and write down the answer.";
+      var t = tr("tutor.together", "Put it all together and write down the answer."),
+        ans = tr("common.answer", "Answer");
       out[n - 1] = {
         step: n,
         lis: [],
-        lines: [{ tag: "Answer", txt: t }],
+        lines: [{ tag: ans, txt: t }],
         aside: "",
-        chip: "Answer",
+        chip: ans,
         gist: t,
-        label: "Answer — " + t,
-        full: "Answer: " + t,
-        k: key("Answer|" + t),
+        label: ans + " — " + t,
+        full: ans + ": " + t,
+        k: key(ans + "|" + t),
         g: key(t),
         text: ""
       };
@@ -280,7 +354,9 @@
   function answerVals() {
     var out = [];
     [].forEach.call(document.querySelectorAll(".answer .v"), function(v) {
-      plain(v).split(/\s*(?:,|;|\||\bor\b|\band\b)\s*/i).forEach(function(x) {
+      // "3 or 5", "x = 2 and y = 3" (and the language's own words: tutor.re.or)
+      var or = langRe("tutor.re.or", "\\s*(?:,|;|\\||\\bor\\b|\\band\\b|\\s(?:@)\\s)\\s*") || /\s*(?:,|;|\||\bor\b|\band\b)\s*/i;
+      plain(v).split(or).forEach(function(x) {
         x = norm(x).replace(/[.]$/, "");
         if (x && x !== "?" && (/\d/.test(x) || x.length >= 3)) out.push(x);
         // "38 shells": the number on its own too
@@ -333,17 +409,17 @@
   /* ===================== the choices ===================== */
   // common wrong moves, for when the problem itself doesn't have enough other moves
   var GENERIC = [
-    { chip: "Guess", text: "Guess the answer and move on", why: "A guess skips the thinking: there’s a real move to make here.", skip: /guess|estimat|try a number/i },
-    { chip: "Answer", text: "Write down the final answer straight away", why: "There’s still work to do before the answer.", answer: true },
-    { chip: "Start over", text: "Start the whole problem again from the top", why: "No need to start again: the steps so far are right.", notFirst: true },
-    { chip: "Round", text: "Round every number off first", why: "Rounding would change the numbers, and this problem wants them exact.", skip: /round|estimat|≈|nearest|about|approx/i },
-    { chip: "Skip", text: "Leave this step out — it isn’t needed", why: "Every step here is needed to reach the answer.", skipRight: /check|graph|meaning|likely|picture|draw|another|way|pattern|why|ladder|plot|look/i },
-    { chip: "Copy", text: "Copy the problem out again without changing anything", why: "Copying it out again doesn’t get any closer to the answer.", notFirst: true },
-    { chip: "Last step", text: "Jump straight to the last step", why: "The steps build on each other, so the last one has to wait.", notLast: true },
-    { chip: "Add them all", text: "Add up every number in the problem", why: "Adding everything together isn’t what this problem asks for.", skip: /\badd|sum|total|plus|\+|combine|together|altogether/i },
+    { id: "guess", chip: "Guess", text: "Guess the answer and move on", why: "A guess skips the thinking: there’s a real move to make here.", skip: /guess|estimat|try a number/i },
+    { id: "answer", chip: "Answer", text: "Write down the final answer straight away", why: "There’s still work to do before the answer.", answer: true },
+    { id: "startOver", chip: "Start over", text: "Start the whole problem again from the top", why: "No need to start again: the steps so far are right.", notFirst: true },
+    { id: "round", chip: "Round", text: "Round every number off first", why: "Rounding would change the numbers, and this problem wants them exact.", skip: /round|estimat|≈|nearest|about|approx/i },
+    { id: "skip", chip: "Skip", text: "Leave this step out — it isn’t needed", why: "Every step here is needed to reach the answer.", skipRight: /check|graph|meaning|likely|picture|draw|another|way|pattern|why|ladder|plot|look/i },
+    { id: "copy", chip: "Copy", text: "Copy the problem out again without changing anything", why: "Copying it out again doesn’t get any closer to the answer.", notFirst: true },
+    { id: "lastStep", chip: "Last step", text: "Jump straight to the last step", why: "The steps build on each other, so the last one has to wait.", notLast: true },
+    { id: "addAll", chip: "Add them all", text: "Add up every number in the problem", why: "Adding everything together isn’t what this problem asks for.", skip: /\badd|sum|total|plus|\+|combine|together|altogether/i },
     // last resorts: always wrong while there's work left
-    { chip: "Stop", text: "Stop here — the problem is already done", why: "There’s still work to do before it’s finished.", notAtEnd: true },
-    { chip: "Change", text: "Change the numbers in the problem to easier ones", why: "Changing the numbers would make it a different problem.", skip: /round|estimat|easier|friendly|compatible|nearest|approx/i }
+    { id: "stop", chip: "Stop", text: "Stop here — the problem is already done", why: "There’s still work to do before it’s finished.", notAtEnd: true },
+    { id: "change", chip: "Change", text: "Change the numbers in the problem to easier ones", why: "Changing the numbers would make it a different problem.", skip: /round|estimat|easier|friendly|compatible|nearest|approx/i }
   ];
 
   function seeded(s) {
@@ -392,17 +468,20 @@
     later.slice(1, -1).forEach(function(s) { fromStep(s, "later"); });
     var everything = all.map(function(s) { return s.text; }).join(" "),
       rightWords = norm(right.chip + " " + right.gist);
-    var answerSoon = q >= n || ends.slice(0, q).some(Boolean) || /answer|result|final|simplest|^so\b/i.test(right.chip);
+    var answerSoon = q >= n || ends.slice(0, q).some(Boolean) || anyRe(/answer|result|final|simplest|^so\b/i, "tutor.re.answerSoon", right.chip);
     GENERIC.forEach(function(G) {
       if (opts.length >= 4) return;
-      if (G.skip && G.skip.test(everything)) return;
-      if (G.skipRight && G.skipRight.test(right.chip + " " + right.gist)) return;
+      var g = "tutor.g." + G.id + ".",
+        chip = tr(g + "chip", G.chip),
+        text = tr(g + "text", G.text);
+      if (G.skip && anyRe(G.skip, g + "skip", everything)) return;
+      if (G.skipRight && anyRe(G.skipRight, g + "skipRight", right.chip + " " + right.gist)) return;
       if (G.notFirst && q === 1) return;
       if (G.notLast && q >= n - 1) return; // the step after next is the last one: too close to call it wrong
       if (G.notAtEnd && (q >= n || answerSoon)) return;
       if (G.answer && answerSoon) return;
-      if (rightWords.indexOf(norm(G.chip)) >= 0) return;
-      add({ kind: "generic", chip: G.chip, text: G.text, k: key(G.chip + "|" + G.text), g: key(G.text), why: G.why });
+      if (rightWords.indexOf(norm(chip)) >= 0) return;
+      add({ kind: "generic", chip: chip, text: text, k: key(chip + "|" + text), g: key(text), why: tr(g + "why", G.why) });
     });
     earlier.slice(1).forEach(function(s) { fromStep(s, "earlier"); });
     // a steady order for this step of this problem, so a redraw doesn't shuffle them
@@ -429,26 +508,35 @@
 
   function fresh(sig) { return { sig: sig, res: {}, pre: false, q: null, tries: 0, fb: null, recorded: false, newest: 0, said: "" }; }
 
-  // the practice buttons: the group with "One step at a time" in it (aria-label "Practice mode" on most pages)
+  // "One step at a time", in English or in the page's language
+  function isStepLabel(t) {
+    t = String(t || "").trim();
+    return /^one step at a time$/i.test(t) || (foreign() && !!t && t === tr("common.oneStep", "One step at a time"));
+  }
+
+  // the practice buttons: the group with "One step at a time" in it (aria-label "Practice mode" on most pages; in
+  // another language, also the group that holds #stepBtn or #pStep)
   function group() {
     var g = document.querySelector('[role="group"][aria-label="Practice mode"]');
     if (g) return g;
-    return [].filter.call(document.querySelectorAll('[role="group"]'), function(x) {
-      return [].some.call(x.querySelectorAll("button"), function(b) { return /^one step at a time$/i.test(b.textContent.trim()); });
-    })[0] || null;
+    var all = [].slice.call(document.querySelectorAll('[role="group"]'));
+    return all.filter(function(x) {
+      return [].some.call(x.querySelectorAll("button"), function(b) { return isStepLabel(b.textContent); });
+    })[0] || (foreign() ? all.filter(function(x) { return !!x.querySelector("#stepBtn, #pStep"); })[0] : null) || null;
   }
 
-  function modeBtn(re) {
+  function stepBtn() {
     var g = group();
-    return g ? [].filter.call(g.querySelectorAll("button"), function(b) { return b !== btn && re.test(b.textContent.trim()); })[0] || null : null;
+    var b = g ? [].filter.call(g.querySelectorAll("button"), function(x) { return x !== btn && isStepLabel(x.textContent); })[0] : null;
+    return b || $("stepBtn") || $("pStep");
   }
 
-  function stepBtn() { return modeBtn(/^one step at a time$/i) || $("stepBtn") || $("pStep"); }
-
+  // step mode's "3 of 5" (or "3 de 5" in Spanish: any two numbers)
   function counter() {
     var el = $("stepCount");
     if (!el || el.closest("[hidden]")) return null;
-    var m = /(\d+)\s*of\s*(\d+)/.exec(el.textContent || "");
+    var t = el.textContent || "";
+    var m = /(\d+)\s*of\s*(\d+)/.exec(t) || (foreign() ? /(\d+)\D+(\d+)/.exec(t) : null);
     return m ? { cur: Number(m[1]), n: Number(m[2]) } : null;
   }
 
@@ -472,7 +560,7 @@
     box = document.createElement("section");
     box.className = "ht-tq";
     box.id = "htTutor";
-    box.setAttribute("aria-label", "Tutor me");
+    box.setAttribute("aria-label", tr("tutor.button", "Tutor me"));
     box.addEventListener("click", safe(onBoxClick));
     box.addEventListener("keydown", safe(onBoxKey));
     // the body is redrawn; the live region stays, so screen readers keep listening to it
@@ -581,39 +669,38 @@
       spoken = "";
     if (view === "ask") {
       var first = q.step === 1;
-      html = fb + '<div class="ht-tq-top"><h2 class="ht-tq-h" id="htTqH">' + (first ? "What would you do first?" : "What would you do next?") + "</h2>" +
-        '<span class="ht-tq-n">Step ' + q.step + " of " + c.n + "</span></div>" +
+      html = fb + '<div class="ht-tq-top"><h2 class="ht-tq-h" id="htTqH">' + question(first) + "</h2>" +
+        '<span class="ht-tq-n">' + stepOf(q.step, c.n) + "</span></div>" +
         '<div class="ht-tq-opts" role="group" aria-labelledby="htTqH">' +
         q.opts.map(function(o, i) {
           return '<button type="button" class="ht-tq-opt" data-i="' + i + '"' + (o.wrong ? " disabled" : "") + ">" +
             '<span class="ht-tq-k" aria-hidden="true">' + (i + 1) + "</span>" +
             '<span class="ht-tq-b">' + (o.chip ? '<span class="ht-tq-c">' + esc(o.chip) + "</span>" : "") +
             '<span class="ht-tq-t">' + esc(o.text) + "</span></span>" +
-            (o.wrong ? '<span class="ht-tq-sr"> (not this one)</span>' : "") + "</button>";
+            (o.wrong ? '<span class="ht-tq-sr">' + tr("tutor.notThis", " (not this one)") + "</span>" : "") + "</button>";
         }).join("") + "</div>" +
-        '<div class="ht-tq-acts"><button type="button" class="ht-tq-btn" data-act="show">Show me</button>' +
-        '<span class="ht-tq-keys">Pick one: click it, or press 1–' + q.opts.length + "</span></div>";
-      spoken = (T.fb ? T.fb.lead + T.fb.text + " " : "") + "Step " + q.step + " of " + c.n + ". " +
-        (first ? "What would you do first?" : "What would you do next?") + " " + q.opts.length + " choices.";
+        '<div class="ht-tq-acts"><button type="button" class="ht-tq-btn" data-act="show">' + tr("tutor.showMe", "Show me") + "</button>" +
+        '<span class="ht-tq-keys">' + tr("tutor.keys", "Pick one: click it, or press 1–{n}", { n: q.opts.length }) + "</span></div>";
+      spoken = (T.fb ? T.fb.lead + T.fb.text + " " : "") + tr("tutor.asked", "{step}. {question} {n} choices.", { step: stepOf(q.step, c.n), question: question(first), n: q.opts.length });
     } else if (view === "done") {
       var picked = 0,
         asked = 0;
       for (var s = 1; s <= c.n; s++) { if (T.res[s] === "first") picked++; if (T.res[s] && T.res[s] !== "skipped") asked++; }
-      var line = "You picked " + picked + " of " + c.n + " move" + (c.n === 1 ? "" : "s") + " first time.";
+      var line = tr("tutor.score", "You picked {picked} of {n} {n|move|moves} first time.", { picked: picked, n: c.n });
       html = fb + '<p class="ht-tq-score">' + (picked === c.n ? "★ " : "") + esc(line) + "</p>" +
-        '<div class="ht-tq-acts">' + (newProblemBtn() ? '<button type="button" class="ht-tq-btn" data-act="new">New problem</button>' : "") +
-        '<button type="button" class="ht-tq-btn" data-act="again">Do this one again</button></div>';
-      spoken = (T.fb ? T.fb.lead + T.fb.text + " " : "") + "That’s every step. " + line;
+        '<div class="ht-tq-acts">' + (newProblemBtn() ? '<button type="button" class="ht-tq-btn" data-act="new">' + tr("common.newProblem", "New problem") + "</button>" : "") +
+        '<button type="button" class="ht-tq-btn" data-act="again">' + tr("tutor.again", "Do this one again") + "</button></div>";
+      spoken = (T.fb ? T.fb.lead + T.fb.text + " " : "") + tr("tutor.everyStep", "That’s every step.") + " " + line;
       if (!T.recorded && asked) {
         T.recorded = true;
         record(picked, c.n);
       }
     } else if (view === "back") {
-      html = '<p class="ht-tq-fb">You’re looking back at step ' + c.cur + ". Press → or the Next step button to carry on.</p>";
+      html = '<p class="ht-tq-fb">' + tr("tutor.back", "You’re looking back at step {k}. Press → or the Next step button to carry on.", { k: c.cur }) + "</p>";
       spoken = "";
     } else {
-      html = fb + '<div class="ht-tq-acts"><span class="ht-tq-keys">This step has no explanation to ask about.</span>' +
-        '<button type="button" class="ht-tq-btn" data-act="show">Show the next step</button></div>';
+      html = fb + '<div class="ht-tq-acts"><span class="ht-tq-keys">' + tr("tutor.noExplain", "This step has no explanation to ask about.") + "</span>" +
+        '<button type="button" class="ht-tq-btn" data-act="show">' + tr("tutor.showNext", "Show the next step") + "</button></div>";
     }
     var hadFocus = b.contains(document.activeElement) || focusNext;
     var body = b.querySelector(".ht-tq-body"),
@@ -639,12 +726,23 @@
 
   function isOffscreen(el) { var r = el.getBoundingClientRect(); return r.top < 0 || r.top > (window.innerHeight || 800) - 80; }
 
-  function newProblemBtn() { return [].filter.call(document.querySelectorAll("button"), function(b) { return /^New problem$/i.test(b.textContent.trim()) && !b.closest(".ht-tq"); })[0] || null; }
+  function question(first) { return first ? tr("tutor.first", "What would you do first?") : tr("tutor.next", "What would you do next?"); }
+
+  function stepOf(k, n) { return tr("tutor.stepOf", "Step {k} of {n}", { k: k, n: n }); }
+
+  // the page's own New problem button (its words in English, or in the page's language)
+  function newProblemBtn() {
+    var mine = foreign() ? tr("common.newProblem", "New problem").toLowerCase() : "";
+    return [].filter.call(document.querySelectorAll("button"), function(b) {
+      var t = b.textContent.trim();
+      return (/^New problem$/i.test(t) || (!!mine && t.toLowerCase() === mine)) && !b.closest(".ht-tq");
+    })[0] || null;
+  }
 
   /* ===================== answering ===================== */
   // why the move is right: the step's reason (its aside), else the rest of what it says; never just the choice again
   function reason(s) {
-    var w = s.lines.filter(function(l) { return /^(why|because)$/i.test(l.tag); })[0];
+    var w = s.lines.filter(function(l) { return anyRe(/^(why|because)$/i, "tutor.re.why", l.tag, "^(?:@)$"); })[0];
     if (w) return w.txt;
     if (!s.aside) return "";
     var ss = sentences(s.aside);
@@ -652,9 +750,9 @@
   }
 
   function why(s) {
-    var rest = s.lines[1] ? (s.lines[1].tag && !META.test(s.lines[1].tag) ? s.lines[1].tag + ": " : "") + s.lines[1].txt : sentences(s.lines[0].txt).slice(1).join(" ");
+    var rest = s.lines[1] ? (s.lines[1].tag && !isMeta(s.lines[1].tag) ? s.lines[1].tag + ": " : "") + s.lines[1].txt : sentences(s.lines[0].txt).slice(1).join(" ");
     var t = reason(s) || rest;
-    if (!t) { t = s.lines[0].txt; if (key(t) === key(s.gist)) t = "that’s the next move."; }
+    if (!t) { t = s.lines[0].txt; if (key(t) === key(s.gist)) t = nextMove(); }
     return clip(t, 170);
   }
   // a gentle hint: the step's reason, else the first half of what it says (its result still left out)
@@ -668,6 +766,8 @@
   }
   var fbId = 0;
 
+  function nextMove() { return tr("tutor.nextMove", "that’s the next move."); }
+
   function feedback(cls, lead, text) { T.fb = { cls: cls, lead: lead, text: text, id: ++fbId }; }
 
   function pick(i) {
@@ -679,7 +779,7 @@
     focusNext = true;
     if (o.kind === "right") {
       T.res[q.step] = T.tries ? "later" : "first";
-      feedback("ok", "✓ Yes — ", why(s));
+      feedback("ok", tr("tutor.yes", "✓ Yes — "), why(s));
       reveal(q.step);
       return true;
     }
@@ -688,14 +788,14 @@
     if (T.tries >= 2) {
       T.res[q.step] = "missed";
       var y = why(s);
-      feedback("show", "Here’s the move: ", s.label + (/[.?!…]$/.test(s.label) ? "" : ".") + (/^that’s the next move/.test(y) ? "" : " " + y));
+      feedback("show", tr("tutor.theMove", "Here’s the move: "), s.label + (/[.?!…]$/.test(s.label) ? "" : ".") + (/^that’s the next move/.test(y) || y === nextMove() ? "" : " " + y));
       reveal(q.step);
       return false;
     }
-    var what = o.kind === "later" ? "That one comes later (step " + o.step + ")." :
-      o.kind === "earlier" ? "That one’s already done (step " + o.step + ")." :
+    var what = o.kind === "later" ? tr("tutor.later", "That one comes later (step {k}).", { k: o.step }) :
+      o.kind === "earlier" ? tr("tutor.earlier", "That one’s already done (step {k}).", { k: o.step }) :
       o.why;
-    feedback("no", "Not quite. ", what + " Hint: " + hint(s));
+    feedback("no", tr("tutor.notQuite", "Not quite. "), tr("tutor.hintLine", "{what} Hint: {hint}", { what: what, hint: hint(s) }));
     sync();
     return false;
   }
@@ -707,7 +807,7 @@
     var st = q ? q.step : (T.pre ? 1 : c.cur + 1);
     var s = T.steps && T.steps[st - 1];
     T.res[st] = T.res[st] || "shown";
-    if (s) feedback("show", "Here it is: ", s.label);
+    if (s) feedback("show", tr("tutor.hereItIs", "Here it is: "), s.label);
     else T.fb = null;
     focusNext = true;
     reveal(st);
@@ -800,11 +900,11 @@
     if (T.fb) parts.push({ text: T.fb.lead + T.fb.text });
     if (T.newest && T.steps && T.steps[T.newest - 1]) T.steps[T.newest - 1].lis.forEach(function(li) { parts.push({ el: li }); });
     if (open() && c) {
-      parts.push({ text: "Step " + open().step + " of " + c.n + ". " + (open().step === 1 ? "What would you do first?" : "What would you do next?") });
-      open().opts.forEach(function(o, i) { if (!o.wrong) parts.push({ text: "Choice " + (i + 1) + ": " + (o.chip ? o.chip + ". " : "") + o.text }); });
+      parts.push({ text: stepOf(open().step, c.n) + ". " + question(open().step === 1) });
+      open().opts.forEach(function(o, i) { if (!o.wrong) parts.push({ text: tr("tutor.choice", "Choice {i}: {text}", { i: i + 1, text: (o.chip ? o.chip + ". " : "") + o.text }) }); });
     } else {
       var sc = box.querySelector(".ht-tq-score");
-      if (sc) parts.push({ text: "That’s every step. " + sc.textContent.replace(/^★\s*/, "") });
+      if (sc) parts.push({ text: tr("tutor.everyStep", "That’s every step.") + " " + sc.textContent.replace(/^★\s*/, "") });
       else { var bk = box.querySelector(".ht-tq-fb:not(:empty)"); if (bk && !T.fb) parts.push({ text: bk.textContent }); }
     }
     return { box: box, parts: parts };
@@ -816,14 +916,14 @@
       sb = stepBtn();
     if (!g || !sb || !$("nextBtn") || !$("stepCount") || !document.querySelector(".log")) return;
     var st = document.createElement("style");
-    st.textContent = CSS;
+    st.textContent = CSS.replace("@FINISH@", function() { return cssText(tr("tutor.finish", "Finish the steps to see the answer")); });
     document.head.appendChild(st);
     btn = document.createElement("button");
     btn.type = "button";
     btn.id = "tutorBtn";
     btn.setAttribute("aria-pressed", "false");
-    btn.textContent = "Tutor me";
-    btn.title = "Before each step, pick what you’d do next";
+    btn.textContent = tr("tutor.button", "Tutor me");
+    btn.title = tr("tutor.buttonTitle", "Before each step, pick what you’d do next");
     g.appendChild(btn);
     btn.addEventListener("click", safe(function() {
       if (on) {
@@ -878,6 +978,7 @@
     show: function() { show(); },
     sync: function() { sync(); }
   };
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", main);
-  else main();
+  var begin = function() { whenReady(main); }; // the button's words in the page's language
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", begin);
+  else begin();
 })();

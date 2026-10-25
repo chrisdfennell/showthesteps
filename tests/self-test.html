@@ -601,6 +601,7 @@
       { page: "daily.html", name: "Problem of the day", kind: "tool" }, { page: "qr.js", name: "QR codes (qr.js)", kind: "tool" },
       { page: "embed.js", name: "Embed on another website (embed.js)", kind: "tool" },
       { page: "voice.js", name: "Say the problem (voice.js)", kind: "tool" },
+      { page: "i18n.js", name: "Languages (i18n.js)", kind: "tool" },
       { page: "keypad", name: "Math keys (tools.js)", kind: "tool" },
       { page: "speech", name: "Math in words (tools.js, a11y.js)", kind: "tool" },
       { page: "tutor.html", name: "Tutor me (tutor.js)", kind: "tool" },
@@ -667,6 +668,16 @@
         ["mode=descent&task=rule&from=7500&to=2000&gs=110", ["16.5", "550"]],
         ["q=" + encodeURIComponent("empty 1500 @ 38, pilot 170 @ 37, passenger 150 @ 37, fuel 40 gal @ 48, baggage 50 @ 95, limits 35 to 47.3, max 2550"), ["40.34", "2110"]],
         ["mode=weight&items=Empty:1650:39.2,Front:340:37,Rear:160:73,Fuel:48gal:48&fwd=35&aft=47.3", ["42.15", "2438"]],
+        // the CG envelope (weight up, CG across): takeoff and landing points, each checked at its own weight
+        ["q=" + encodeURIComponent("empty 1500 @ 38, pilot 170 @ 37, passenger 150 @ 37, fuel 40 gal @ 48, baggage 50 @ 95, envelope 35@1500, 35@1950, 38.5@2550, 47.3@2550, 47.3@1500, burn 30 gal"), ["40.34", "2110", "39.62", "1930", "~inside"]],
+        ["mode=weight&items=Empty:1700:36,Pilot:250:37,Passenger:250:37,Fuel:40gal:48&env=35@1500,35@1950,38.5@2550,47.3@2550,47.3@1500", ["37.39", "2440", "0.47", "37.86", "~in forward of the forward limit"]],
+        ["mode=weight&items=Empty:1500:39,Pilot:170:37,Fuel:30gal:48,Rear:340:73,Baggage:120:95&ex=4seat", ["47.47", "2310", "0.17", "~in aft of the aft limit (47.3 in"]],
+        ["mode=weight&items=Empty:1650:39,Pilot:220:37,Passenger:200:37,Fuel:50gal:48,Rear:250:73,Baggage:100:95&ex=4seat&burn=30gal", ["44.87", "2720", "170", "2550", "44.65", "2540", "~max takeoff weight"]],
+        ["mode=weight&items=Empty:1100:29,Pilot:120:38,Fuel:20gal:41&ex=2seat&burn=18gal", ["30.88", "1340", "29.99", "1232", "0.51", "~forward of the forward limit (30.5 in at 1,232 lb)"]],
+        ["q=" + encodeURIComponent("empty 2100 @ 84, pilot 190 @ 85, rear 300 @ 118, fuel 60 gal @ 75, baggage 60 @ 140, envelope 80@2000, 80@2600, 83@3200, 88@3200, 88@2000, burn 40 gal"), ["87.49", "3010", "88.57", "2770", "0.57", "~aft of the aft limit (88 in at 2,770 lb)"]],
+        ["mode=weight&items=Empty:1500:38,Pilot:170:37,Passenger:150:37,Fuel:30gal:48,Baggage:60:95&ex=4seat&util=1&burn=20gal", ["40.38", "2060", "39.91", "1940", "0.38", "~aft of the aft limit (40 in at 2,060 lb)"]],
+        ["mode=weight&items=Empty:1500:38,Pilot:170:37,Fuel:40gal:48&env=35@1500,35@1950,38.5@2550,47.3@2550,47.3@1500&burn=120&view=moment", ["39.17", "1910", "38.58", "1790"]],
+        ["q=" + encodeURIComponent("empty 1500 @ 38, pilot 170 @ 37, fuel 40 gal @ 48, limits 35 to 47.3, max 2550, burn 30 gal"), ["39.17", "1910", "38.25", "1730"]],
         ["q=" + encodeURIComponent("standard-rate turn at 120 knots"), ["19", "18.2", "3868"]],
         ["mode=turns&task=radius&tas=120&bank=30", ["2208"]],
         ["q=" + encodeURIComponent("glide ratio 9 from 6000 ft"), ["8.9"]],
@@ -1598,7 +1609,22 @@
         ["q=" + encodeURIComponent("simplify 2(x + 3) - 4x please"), ["-2", "6"]],
         ["q=" + encodeURIComponent("x + 5 = 9 (x = ?)"), ["4"]],
         ["q=" + encodeURIComponent("1) 4(x − 2) = 2(x + 3)"), ["7"]],
-        ["q=" + encodeURIComponent("solve for n: 4n − 7 = 13"), ["5"]]
+        ["q=" + encodeURIComponent("solve for n: 4n − 7 = 13"), ["5"]],
+        ["mode=formula&q=" + encodeURIComponent("A = lw") + "&for=w", ["~a/l"]],
+        ["q=" + encodeURIComponent("solve P = 2l + 2w for l"), ["~p−2w/2"]],
+        ["q=" + encodeURIComponent("make h the subject of A = 1/2bh"), ["~2a/b"]],
+        ["q=" + encodeURIComponent("solve 3x + 2y = 6 for y"), ["6", "2"]],
+        ["q=" + encodeURIComponent("solve C = 5/9(F − 32) for F"), ["9/5", "32"]],
+        ["mode=formula&q=" + encodeURIComponent("1/f = 1/a + 1/b") + "&for=b", ["~af/a−f"]],
+        ["q=" + encodeURIComponent("rearrange E = mc^2 for c"), ["~e/m"]],
+        ["mode=formula&q=" + encodeURIComponent("ax + bx = c") + "&for=x", ["~c/a+b"]],
+        ["mode=ineq&q=" + encodeURIComponent("-3 < 2x + 1 <= 7"), ["-2", "3"]],
+        ["q=" + encodeURIComponent("x < -1 or x > 3"), ["-1", "3", "~or"]],
+        ["q=" + encodeURIComponent("2x - 1 < 5 and 3x + 2 > -4"), ["-2", "3"]],
+        ["q=" + encodeURIComponent("|2x - 3| < 5"), ["-1", "4"]],
+        ["q=" + encodeURIComponent("|x + 1| >= 2"), ["-3", "1", "~or"]],
+        ["mode=ineq&q=" + encodeURIComponent("x < 1 and x > 3"), ["~no solution"]],
+        ["mode=ineq&q=" + encodeURIComponent("x < 3 or x > 1"), ["~all real numbers"]]
       ],
       "ratios.html": [
         ["mode=simplify&q=12:18", ["2", "3"]],
@@ -1670,7 +1696,15 @@
         ["q=" + encodeURIComponent("cylinder volume radius three height seven"), [{ f: 197.920337, loose: 0.001 }]],
         ["q=" + encodeURIComponent("Find the area of a circle with a radius of 7 inches. Use 3.14 for pi."), ["153.86"]],
         ["q=" + encodeURIComponent("what is the sum of the interior angles of a polygon with twelve sides"), ["1800"]],
-        ["q=" + encodeURIComponent("diagonal of a rectangle 6 by 8"), ["10"]]
+        ["q=" + encodeURIComponent("diagonal of a rectangle 6 by 8"), ["10"]],
+        ["mode=area&shape=heron&a=13&b=14&c=15", ["84", "42"]],
+        ["mode=area&shape=heron&a=3&b=4&c=5", ["6", "12"]],
+        ["q=" + encodeURIComponent("area of a triangle with sides 5, 6 and 7"), [Fl(14.6969), "18"]],
+        ["q=" + encodeURIComponent("area of a triangle with sides 2, 3 and 4"), [Fl(2.9047)]],
+        ["q=" + encodeURIComponent("Heron's formula 13 14 15"), ["84"]],
+        ["q=" + encodeURIComponent("triangle ABC with AB = 5, BC = 6, CA = 7"), [Fl(14.6969)]],
+        ["q=" + encodeURIComponent("right triangle ABC, ∠C = 90°, AC = 3, BC = 4, find AB"), ["5"]],
+        ["q=" + encodeURIComponent("In right triangle PQR, angle Q = 90, PQ = 5, PR = 13, find QR"), ["12"]]
       ],
       "scratch.html": [
         ["op=add&q=478%2B356", ["834"]],
@@ -1709,7 +1743,16 @@
         ["q=" + encodeURIComponent("rotate (1,1) (3,1) (1,4) ninety degrees counterclockwise"), ["-1", "-4"]],
         ["q=" + encodeURIComponent("table of values y = x^2, x from -2 to 2"), ["4", "1", "0"]],
         ["q=" + encodeURIComponent("move (1, 5) by (-1, -4)"), ["0", "1"]],
-        ["q=" + encodeURIComponent("is (0,5) (1,8) (2,11) (3,14) linear"), ["~linear"]]
+        ["q=" + encodeURIComponent("is (0,5) (1,8) (2,11) (3,14) linear"), ["~linear"]],
+        ["mode=optimize&q=" + encodeURIComponent("maximize P = 3x + 5y; x + y <= 10; 2x + y <= 16; x >= 0; y >= 0"), ["50", "0", "10"]],
+        ["q=" + encodeURIComponent("minimize C = 2x + 4y subject to x + y >= 6, x + 3y >= 10, x, y >= 0"), ["16", "4", "2"]],
+        ["q=" + encodeURIComponent("maximize P = 2x + 3y; x + y <= 4; x + y >= 6; x >= 0; y >= 0"), ["~no feasible region"]],
+        ["q=" + encodeURIComponent("maximize P = x + y; x + y >= 4; x >= 0; y >= 0"), ["~unbounded"]],
+        ["q=" + encodeURIComponent("maximize P = x + y; 3x + 2y <= 12; x + 3y <= 9; x >= 0; y >= 0"), ["33/7", "18/7", "15/7"]],
+        ["q=" + encodeURIComponent("maximize P = x + y; 3x + 2y <= 12; x + 3y <= 9; x >= 0; y >= 0; whole numbers"), ["4", "2"]],
+        ["mode=optimize&goal=max&obj=5x%2B4y&name=P&cons=" + encodeURIComponent("2x+3y<=12;2x+y<=8;x>=0;y>=0") + "&int=1", ["23", "3", "2"]],
+        ["q=" + encodeURIComponent("A bakery makes cakes and pies. Each cake takes 2 hours of baking and 1 hour of decorating. Each pie takes 1 hour of baking and 1 hour of decorating. There are at most 16 hours of baking and 10 hours of decorating each day. The profit is $3 per cake and $5 per pie. How many of each should the bakery make to maximize profit?"), ["50", "0", "10"]],
+        ["q=" + encodeURIComponent("A farmer mixes two feeds, A and B. Each bag of feed A contains 2 units of protein and 1 unit of fat, and costs $4. Each bag of feed B contains 1 unit of protein and 3 units of fat, and costs $3. The mix needs at least 8 units of protein and at least 9 units of fat. How many bags of each should she use to minimize cost?"), ["18", "3", "2"]]
       ],
       "exponents.html": [
         ["mode=eval&b=2&e=5", ["32"]],
@@ -1795,7 +1838,26 @@
         ["q=" + encodeURIComponent("if f(x) = x^4, what is f'(2)?"), ["32"]],
         ["q=" + encodeURIComponent("Find the area under the curve y = x^2 between x = 1 and x = 3"), ["26/3"]],
         ["q=" + encodeURIComponent("A particle moves with position s(t) = t^2 − 4t + 3. Find its velocity at t = 5."), ["6"]],
-        ["q=" + encodeURIComponent("slope of the tangent line to x^2 + 1 at x = 2"), ["~4x"]]
+        ["q=" + encodeURIComponent("slope of the tangent line to x^2 + 1 at x = 2"), ["~4x"]],
+        // word problems (mode=optimize, mode=related)
+        ["mode=optimize&kind=box&a=12&b=12&u=in", ["2", "128"]],
+        ["q=" + encodeURIComponent("An open box is to be made from a square piece of cardboard 18 inches on a side by cutting equal squares from each corner and turning up the sides. Find the largest volume."), ["3", "432"]],
+        ["q=" + encodeURIComponent("A rectangular sheet of metal measures 8 in by 15 in. Equal squares are cut from the corners to make an open box. What size cut gives the maximum volume?"), ["5/3", "2450/27"]],
+        ["q=" + encodeURIComponent("A farmer has 2400 ft of fencing and wants to fence off a rectangular field that borders a straight river. He needs no fence along the river. What are the dimensions of the field that has the largest area?"), ["600", "1200", "720000"]],
+        ["q=" + encodeURIComponent("A rectangular garden of 200 square feet is to be fenced along a wall on one side. What dimensions require the least fencing?"), ["10", "20", "40"]],
+        ["q=" + encodeURIComponent("A cylindrical can must hold 1000 cm³. What radius and height use the least material?"), [{ f: 5.4193, loose: 0.001 }, { f: 10.8385, loose: 0.001 }]],
+        ["q=" + encodeURIComponent("Find two positive numbers whose sum is 60 and whose product is a maximum."), ["30", "900"]],
+        ["q=" + encodeURIComponent("A store sells 100 shirts a week at $20 each. For every $1 decrease in price, it sells 10 more shirts. What price maximizes revenue?"), ["15", "2250"]],
+        ["q=" + encodeURIComponent("Find the point on y = x^2 closest to (3, 0)."), ["1", { f: 2.2361, loose: 0.001 }]],
+        ["q=" + encodeURIComponent("A Norman window has a perimeter of 16 ft. What dimensions let in the most light?"), [{ f: 4.4808, loose: 0.001 }, { f: 2.2404, loose: 0.001 }]],
+        ["mode=related&kind=ladder&L=13&r=2&g=x&at=x&p=5&u=ft&tu=s", ["-5/6"]],
+        ["q=" + encodeURIComponent("A 13 ft ladder leans against a wall. The bottom slides away at 2 ft/s. How fast is the top sliding down when the bottom is 5 ft from the wall?"), ["-5/6"]],
+        ["q=" + encodeURIComponent("A stone makes a circular ripple whose radius grows at 3 cm/s. How fast is the area growing when the radius is 10 cm?"), [{ f: 188.4956, loose: 0.001 }]],
+        ["q=" + encodeURIComponent("Air is being pumped into a spherical balloon so that its volume increases at a rate of 100 cm^3/s. How fast is the radius of the balloon increasing when the diameter is 50 cm?"), [{ f: 0.012732, loose: 0.002 }]],
+        ["q=" + encodeURIComponent("A water tank has the shape of an inverted circular cone with base radius 2 m and height 4 m. If water is being pumped into the tank at a rate of 2 m^3/min, find the rate at which the water level is rising when the water is 3 m deep."), [{ f: 0.28294, loose: 0.002 }]],
+        ["q=" + encodeURIComponent("A man 6 ft tall walks at a rate of 5 ft/s away from a light that is 15 ft above the ground. When he is 10 ft from the base of the light, at what rate is the tip of his shadow moving?"), ["25/3"]],
+        ["q=" + encodeURIComponent("Car A is traveling west at 50 mi/h and car B is traveling north at 60 mi/h. Both are headed for the intersection of the two roads. At what rate are the cars approaching each other when car A is 0.3 mi and car B is 0.4 mi from the intersection?"), ["-78"]],
+        ["q=" + encodeURIComponent("An oil spill spreads in a circle. Its area grows at 100 m²/min. How fast is the radius growing when the radius is 20 m?"), [{ f: 0.79577, loose: 0.002 }]]
       ],
       "wordproblems.html": [
         ["q=" + encodeURIComponent("Ana has 12 shells. That is 5 more than Ben has. How many shells does Ben have?"), ["7"]],
@@ -2051,6 +2113,18 @@
         ["mode=descent&task=rate&from=9500&to=2500&gs=120&fpm=500", ["28", "14"], "right"],
         ["mode=weight&items=Empty:1500:38,Pilot:170:37,Fuel:40gal:48&fwd=35&aft=47.3", ["1910", "39.17"], "right"],
         ["mode=weight&items=Empty:1500:38,Pilot:170:37,Fuel:40gal:48&fwd=35&aft=47.3", ["1910", "41"], "wrong"],
+        ["mode=weight&items=Empty:1500:38,Pilot:170:37,Passenger:150:37,Fuel:40gal:48,Baggage:50:95&env=35@1500,35@1950,38.5@2550,47.3@2550,47.3@1500&burn=30gal", ["2110", "40.34", "in", "1930", "39.62", "inside"], "right"],
+        ["mode=weight&items=Empty:1500:38,Pilot:170:37,Passenger:150:37,Fuel:40gal:48,Baggage:50:95&env=35@1500,35@1950,38.5@2550,47.3@2550,47.3@1500&burn=30gal", ["2110", "40.34", "in", "1930", "40.34", "in"], "wrong"],
+        ["mode=weight&items=Empty:1700:36,Pilot:250:37,Passenger:250:37,Fuel:40gal:48&env=35@1500,35@1950,38.5@2550,47.3@2550,47.3@1500", ["2440", "37.39", "out, forward"], "right"],
+        ["mode=weight&items=Empty:1700:36,Pilot:250:37,Passenger:250:37,Fuel:40gal:48&env=35@1500,35@1950,38.5@2550,47.3@2550,47.3@1500", ["2440", "37.39", "out"], "wrong"],
+        ["mode=weight&items=Empty:1700:36,Pilot:250:37,Passenger:250:37,Fuel:40gal:48&env=35@1500,35@1950,38.5@2550,47.3@2550,47.3@1500", ["2440", "37.39", "aft"], "wrong"],
+        ["mode=weight&items=Empty:1700:36,Pilot:250:37,Passenger:250:37,Fuel:40gal:48&env=35@1500,35@1950,38.5@2550,47.3@2550,47.3@1500", ["2440", "39.5", "in"], "wrong"],
+        ["mode=weight&items=Empty:1700:36,Pilot:250:37,Passenger:250:37,Fuel:40gal:48&env=35@1500,35@1950,38.5@2550,47.3@2550,47.3@1500", ["2240", "37.39", "forward"], "wrong"],
+        ["mode=weight&items=Empty:1100:29,Pilot:120:38,Fuel:20gal:41&ex=2seat&burn=18gal", ["1340", "30.88", "in", "1232", "29.99", "out forward"], "right"],
+        ["mode=weight&items=Empty:1100:29,Pilot:120:38,Fuel:20gal:41&ex=2seat&burn=18gal", ["1340", "30.88", "in", "1232", "29.99", "in"], "wrong"],
+        ["mode=weight&items=Empty:1650:39,Pilot:220:37,Passenger:200:37,Fuel:50gal:48,Rear:250:73,Baggage:100:95&ex=4seat&burn=30gal", ["2720", "44.87", "over", "2540", "44.65", "in"], "right"],
+        ["mode=weight&items=Empty:1500:38,Pilot:170:37,Passenger:150:37,Fuel:30gal:48,Baggage:60:95&ex=4seat&util=1", ["2060", "40.38", "in", "out aft"], "right"],
+        ["mode=weight&items=Empty:1500:38,Pilot:170:37,Passenger:150:37,Fuel:30gal:48,Baggage:60:95&ex=4seat&util=1", ["2060", "40.38", "in", "in"], "wrong"],
         ["mode=turns&task=std&tas=120", ["19", "3868"], "right"],
         ["mode=turns&task=glide&ratio=9&alt=6000", ["10.2"], "wrong"],
         ["mode=units&v=120&from=kt&to=mph", ["138.09"], "right"],
@@ -2729,7 +2803,15 @@
         ["mode=ineq&q=" + encodeURIComponent("-3x + 4 > 19"), ["x < -5"], "right"],
         ["mode=ineq&q=" + encodeURIComponent("-3x + 4 > 19"), ["x > -5"], "wrong"],
         ["mode=simplify&q=" + encodeURIComponent("3(x + 2) - x"), ["2x + 6"], "right"],
-        ["mode=simplify&q=" + encodeURIComponent("3(x + 2) - x"), ["3x + 6 - x"], "simplify"]
+        ["mode=simplify&q=" + encodeURIComponent("3(x + 2) - x"), ["3x + 6 - x"], "simplify"],
+        ["mode=formula&q=" + encodeURIComponent("P = 2l + 2w") + "&for=l", ["P/2 - w"], "right"],
+        ["mode=formula&q=" + encodeURIComponent("P = 2l + 2w") + "&for=l", ["(P + 2w)/2"], "wrong"],
+        ["mode=formula&q=" + encodeURIComponent("E = mc^2") + "&for=c", ["c = sqrt(E/m)"], "right"],
+        ["mode=formula&q=" + encodeURIComponent("E = mc^2") + "&for=c", ["E/(2m)"], "wrong"],
+        ["mode=ineq&q=" + encodeURIComponent("-3 <= -2x + 1 < 7"), ["(-3, 2]"], "right"],
+        ["mode=ineq&q=" + encodeURIComponent("-3 <= -2x + 1 < 7"), ["2 <= x < -3"], "wrong"],
+        ["mode=ineq&q=" + encodeURIComponent("|x + 1| >= 2"), ["x <= -3 or x >= 1"], "right"],
+        ["mode=ineq&q=" + encodeURIComponent("|x + 1| >= 2"), ["-3 <= x <= 1"], "wrong"]
       ],
       "ratios.html": [
         ["mode=simplify&q=12:18", ["2:3"], "right"],
@@ -2749,13 +2831,23 @@
       "geometry.html": [
         ["mode=area&shape=rect&l=8&w=5", ["40", "26"], "right"],
         ["mode=area&shape=rect&l=8&w=5", ["26", "40"], "wrong"],
-        ["mode=area&shape=circle&r=5&rd=r", ["25π", "10π"], "right"]
+        ["mode=area&shape=circle&r=5&rd=r", ["25π", "10π"], "right"],
+        ["mode=area&shape=heron&a=5&b=6&c=7", ["6√6", "18"], "right"],
+        ["mode=area&shape=heron&a=5&b=6&c=7", ["14.70", "18"], "right"],
+        ["mode=area&shape=heron&a=5&b=6&c=7", ["√216", "18"], "simplify"],
+        ["mode=area&shape=heron&a=5&b=6&c=7", ["216", "18"], "wrong"],
+        ["mode=area&shape=heron&a=13&b=14&c=15", ["84", "42"], "right"]
       ],
       "graphing.html": [
         ["mode=points&task=midpoint&pts=2%2C3%3B8%2C-1", ["(5, 1)"], "right"],
         ["mode=points&task=midpoint&pts=2%2C3%3B8%2C-1", ["(1, 5)"], "wrong"],
         ["mode=systems&e1=x%2By%3D6&e2=x-y%3D2", ["(4, 2)"], "right"],
-        ["mode=systems&e1=x%2By%3D6&e2=x-y%3D2", ["(2, 4)"], "wrong"]
+        ["mode=systems&e1=x%2By%3D6&e2=x-y%3D2", ["(2, 4)"], "wrong"],
+        ["mode=optimize&goal=max&obj=3x%2B5y&name=P&cons=" + encodeURIComponent("x+y<=10;2x+y<=16;x>=0;y>=0"), ["(0, 10)", "50"], "right"],
+        ["mode=optimize&goal=max&obj=3x%2B5y&name=P&cons=" + encodeURIComponent("x+y<=10;2x+y<=16;x>=0;y>=0"), ["(6, 4)", "38"], "wrong"],
+        ["mode=optimize&goal=max&obj=x%2By&name=P&cons=" + encodeURIComponent("3x+2y<=12;x+3y<=9;x>=0;y>=0"), ["(18/7, 15/7)", "66/14"], "simplify"],
+        ["mode=optimize&goal=max&obj=x%2By&name=P&cons=" + encodeURIComponent("3x+2y<=12;x+3y<=9;x>=0;y>=0") + "&int=1", ["(18/7, 15/7)", "33/7"], "wrong"],
+        ["mode=optimize&goal=max&obj=2x%2B3y&name=P&cons=" + encodeURIComponent("x+y<=4;x+y>=6;x>=0;y>=0"), ["none"], "right"]
       ],
       "exponents.html": [
         ["mode=eval&b=2&e=3", ["8"], "right"],
@@ -2789,7 +2881,20 @@
         ["mode=limit&f=" + encodeURIComponent("(x^2-9)/(x-3)") + "&a=3", ["6"], "right"],
         ["mode=limit&f=" + encodeURIComponent("(x^2-9)/(x-3)") + "&a=3", ["5"], "wrong"],
         ["mode=integral&f=" + encodeURIComponent("3x^2") + "&a=0&b=2", ["8"], "right"],
-        ["mode=integral&f=" + encodeURIComponent("3x^2") + "&a=0&b=2", ["12"], "wrong"]
+        ["mode=integral&f=" + encodeURIComponent("3x^2") + "&a=0&b=2", ["12"], "wrong"],
+        ["mode=optimize&kind=box&a=12&b=12&u=in", ["2", "128"], "right"],
+        ["mode=optimize&kind=box&a=12&b=12&u=in", ["6", "0"], "wrong"],
+        ["mode=optimize&kind=box&a=12&b=12&u=in", ["2 in", "2"], "wrong"],
+        ["mode=optimize&kind=fence&L=400&sides=3&pens=1&u=ft&edge=river", ["100, 200", "20000"], "right"],
+        ["mode=optimize&kind=can&V=1000&top=closed&u=cm", ["5.42", "10.84"], "right"],
+        ["mode=optimize&kind=revenue&form=steps&p0=10&q0=200&dp=1&dq=10&goal=revenue&inc=inc", ["$15", "$2,250"], "right"],
+        ["mode=optimize&kind=revenue&form=steps&p0=10&q0=200&dp=1&dq=10&goal=revenue&inc=inc", ["5", "2250"], "wrong"],
+        ["mode=related&kind=ladder&L=13&r=2&g=x&at=x&p=5&u=ft&tu=s", ["-5/6"], "right"],
+        ["mode=related&kind=ladder&L=13&r=2&g=x&at=x&p=5&u=ft&tu=s", ["decreasing at 5/6 ft/s"], "right"],
+        ["mode=related&kind=ladder&L=13&r=2&g=x&at=x&p=5&u=ft&tu=s", ["5/6"], "wrong"],
+        ["mode=related&kind=ladder&L=13&r=2&g=x&at=x&p=5&u=ft&tu=s", ["0"], "wrong"],
+        ["mode=related&kind=circle&k=r&r=3&want=A&at=r&p=10&u=cm&tu=s&ctx=ripple", ["60pi"], "right"],
+        ["mode=related&kind=circle&k=r&r=3&want=A&at=r&p=10&u=cm&tu=s&ctx=ripple", ["20pi"], "wrong"]
       ],
       "wordproblems.html": [
         ["type=compare&a=7&b=12&v=1", ["5"], "right"],
@@ -3050,6 +3155,66 @@
       var f = function(x, y) { var env = { x: R(x), y: R(y) }; return sub(evaluate(sides[0], env), evaluate(sides[1], env)); };
       var k = f(0, 0);
       return [sub(f(1, 0), k), sub(f(0, 1), k), sub(R(0), k)];
+    }
+
+    // optimization, worked out here: the crossings of the boundary lines that keep to every limit, and the best one
+    function gLP(o) {
+      var cons = [],
+        max = o.goal !== "min",
+        i, j;
+      String(o.cons || "").split(";").filter(function(t) { return t.trim(); }).forEach(function(t) {
+        var parts = t.replace(/[−–]/g, "-").replace(/≤/g, "<=").replace(/≥/g, ">=").split(/(<=|>=|<|>|=)/);
+        for (var k = 1; k < parts.length; k += 2) {
+          var L = parts[k - 1],
+            Rt = parts[k + 1],
+            f = function(x, y) { var env = { x: R(x), y: R(y) }; return sub(evaluate(L, env), evaluate(Rt, env)); },
+            z = f(0, 0);
+          cons.push({ a: sub(f(1, 0), z), b: sub(f(0, 1), z), c: sub(R(0), z), rel: /</.test(parts[k]) ? -1 : />/.test(parts[k]) ? 1 : 0 });
+        }
+      });
+      var fits = function(x, y) { return cons.every(function(c) { var v = cmp(add(mul(c.a, x), mul(c.b, y)), c.c); return c.rel < 0 ? v <= 0 : c.rel > 0 ? v >= 0 : v === 0; }); },
+        val = function(x, y) { return evaluate(o.obj, { x: x, y: y }); },
+        pts = [];
+      for (i = 0; i < cons.length; i++)
+        for (j = i + 1; j < cons.length; j++) {
+          var A = cons[i],
+            B = cons[j],
+            det = sub(mul(A.a, B.b), mul(B.a, A.b));
+          if (!cmp(det, R(0))) continue;
+          var x = div(sub(mul(A.c, B.b), mul(B.c, A.b)), det),
+            y = div(sub(mul(A.a, B.c), mul(B.a, A.c)), det);
+          if (fits(x, y)) pts.push([x, y]);
+        }
+      if (!pts.length) return { none: true };
+      var open = false,
+        better = false,
+        o0 = val(R(0), R(0));
+      cons.forEach(function(c) {
+        [
+          [sub(R(0), c.b), c.a],
+          [c.b, sub(R(0), c.a)]
+        ].forEach(function(d) {
+          if (!cons.every(function(k) { var v = cmp(add(mul(k.a, d[0]), mul(k.b, d[1])), R(0)); return k.rel < 0 ? v <= 0 : k.rel > 0 ? v >= 0 : v === 0; })) return;
+          open = true;
+          var g = cmp(sub(val(d[0], d[1]), o0), R(0));
+          if (max ? g > 0 : g < 0) better = true;
+        });
+      });
+      if (better) return { unb: true };
+      var cand = pts;
+      if (o.int === "1") {
+        if (open) return { skip: true };
+        cand = [];
+        var xs = pts.map(function(p) { return F(p[0]); }),
+          ys = pts.map(function(p) { return F(p[1]); });
+        for (var gx = Math.floor(Math.min.apply(null, xs)); gx <= Math.ceil(Math.max.apply(null, xs)); gx++)
+          for (var gy = Math.floor(Math.min.apply(null, ys)); gy <= Math.ceil(Math.max.apply(null, ys)); gy++)
+            if (fits(R(gx), R(gy))) cand.push([R(gx), R(gy)]);
+        if (!cand.length) return { skip: true };
+      }
+      var best = val(cand[0][0], cand[0][1]);
+      cand.forEach(function(p) { var v = val(p[0], p[1]); if (max ? cmp(v, best) > 0 : cmp(v, best) < 0) best = v; });
+      return { v: best, pts: cand.filter(function(p) { return eq(val(p[0], p[1]), best); }) };
     }
 
     function gMove(P, t) {
@@ -3428,6 +3593,242 @@
         s = f(a) + f(b);
       for (var i = 1; i < n; i++) s += (i % 2 ? 4 : 2) * f(a + i * h);
       return s * h / 3;
+    }
+
+    /* the Rate Machine's word problems (mode=optimize, mode=related), worked out again here: optimization by searching
+       the function over its whole domain, related rates by letting a moment of time pass in the story and measuring */
+    function calcWord(o, t) {
+      var miss = [],
+        q = function(k) { return o[k] === undefined || o[k] === "" ? null : nxv(o[k]); };
+
+      function res() { return miss.length ? { ok: false, msg: miss.join("; ") } : { ok: true }; }
+
+      function valOf(v) { // "≈ 5.419 cm", "2∛(500/π) ≈ 10.84 cm", "−5/6 ≈ −0.8333 ft/s", "$2,250", "128 in³"
+        v = String(v).replace(/[−–]/g, "-");
+        var ap = /≈\s*(-?\$?\s*-?[\d,]*\.?\d+(?:e-?\d+)?)/.exec(v);
+        if (ap) { var s = ap[1].replace(/[$,\s]/g, ""); return { v: Number(s), tol: Math.max(6e-4, Math.pow(10, -(s.split(".")[1] || "").length) * 0.51 / Math.max(1e-12, Math.abs(Number(s)))) }; }
+        v = v.replace(/\$/g, "").replace(/(\d),(?=\d{3})/g, "$1").replace(/\s*(?:in|ft|yd|mi|nmi|mm|cm|m|km)(?:[²³]|\^[23])?(?:\/(?:s|min|h))?\s*$/, "").trim();
+        return { v: nxv(v), tol: 1e-7 };
+      }
+
+      function parts() { // "name = value" pieces of the answer, by the last word of each name
+        var out = {};
+        t.split(";").forEach(function(p) {
+          var k = p.indexOf("="),
+            name, val;
+          if (k >= 0) {
+            name = p.slice(0, k);
+            val = p.slice(k + 1);
+          } else {
+            var m = /^([^$\d≈-]*)(.*)$/.exec(p.trim());
+            name = m[1];
+            val = m[2];
+          }
+          name = name.trim().split(/\s+/).pop();
+          if (name && val.trim()) out[name] = val;
+        });
+        return out;
+      }
+
+      function want(name, text, w) {
+        if (text === undefined || text === null) { miss.push("no " + name); return; }
+        var g = valOf(text);
+        if (!(Math.abs(g.v - w) <= g.tol * Math.max(1, Math.abs(w)) + 1e-9)) miss.push(name + " should be " + w.toPrecision(7) + ", the page says " + String(text).trim());
+      }
+
+      function best(f, lo, hi, max) { // the best value of f on (lo, hi): a fine search, then narrowing in
+        var n = 6000,
+          bx = null,
+          bv = max ? -Infinity : Infinity;
+        for (var i = 1; i < n; i++) {
+          var x = lo + (hi - lo) * i / n,
+            y = f(x);
+          if (isFinite(y) && (max ? y > bv : y < bv)) {
+            bv = y;
+            bx = x;
+          }
+        }
+        var a = Math.max(lo, bx - (hi - lo) / n),
+          b = Math.min(hi, bx + (hi - lo) / n);
+        for (var k = 0; k < 200; k++) {
+          var m1 = a + (b - a) / 3,
+            m2 = b - (b - a) / 3;
+          if (max ? f(m1) < f(m2) : f(m1) > f(m2)) a = m1;
+          else b = m2;
+        }
+        return { x: (a + b) / 2, v: f((a + b) / 2) };
+      }
+      var A = parts(),
+        u;
+      if (o.mode === "optimize") switch (o.kind) {
+        case "box":
+          var a = q("a"),
+            b = o.b ? q("b") : a,
+            B1 = best(function(x) { return x * (a - 2 * x) * (b - 2 * x); }, 0, Math.min(a, b) / 2, true);
+          want("x", A.x, B1.x);
+          want("V", A.V, B1.v);
+          return res();
+        case "fence":
+        case "fencemin":
+          var pens = Number(o.pens || 1),
+            na = pens + 1,
+            nb = o.sides === "3" ? 1 : 2;
+          if (o.kind === "fence") {
+            var L = q("L"),
+              B2 = best(function(x) { return x * (L - na * x) / nb; }, 0, L / na, true);
+            want("x", A.x, B2.x);
+            want("y", A.y, (L - na * B2.x) / nb);
+            want("A", A.A, B2.v);
+          } else {
+            var Ar = q("A"),
+              B3 = best(function(x) { return na * x + nb * Ar / x; }, 0, 50 * Math.sqrt(Ar) + 50, false);
+            want("x", A.x, B3.x);
+            want("y", A.y, Ar / B3.x);
+            want("F", A.F, B3.v);
+          }
+          return res();
+        case "can":
+          var V = q("V"),
+            c = o.top === "open" ? 1 : 2,
+            B4 = best(function(r) { return c * Math.PI * r * r + 2 * V / r; }, 0, 10 * Math.cbrt(V) + 10, false);
+          want("r", A.r, B4.x);
+          want("h", A.h, V / (Math.PI * B4.x * B4.x));
+          want("S", A.S, B4.v);
+          return res();
+        case "numbers":
+          var nm = /numbers\s+(.+?)\s+and\s+([^;]+)/.exec(t);
+          if (!nm) return { ok: false, msg: "no numbers" };
+          var x0, y0, v0;
+          if (o.ask === "minsum") {
+            var p = q("p"),
+              B5 = best(function(x) { return x + p / x; }, 0, p + 10, false);
+            x0 = B5.x;
+            y0 = p / B5.x;
+            v0 = B5.v;
+          } else {
+            var s = q("s"),
+              g = o.ask === "prodsq" ? function(x) { return x * (s - x) * (s - x); } : o.ask === "sumsq" ? function(x) { return x * x + (s - x) * (s - x); } : o.ask === "diffprod" ? function(x) { return x * (x - s); } : function(x) { return x * (s - x); };
+            var B6 = o.ask === "sumsq" || o.ask === "diffprod" ? best(g, -Math.abs(s) - 10, Math.abs(s) + 10, false) : best(g, 0, s, true);
+            x0 = B6.x;
+            y0 = o.ask === "diffprod" ? B6.x - s : s - B6.x;
+            v0 = B6.v;
+          }
+          want("the first number", nm[1], x0);
+          want("the second number", nm[2], y0);
+          var last = t.split(";").pop();
+          want("the value", last.slice(last.indexOf("=") + 1), v0);
+          return res();
+        case "revenue":
+          var cc = q("c") || 0,
+            F = q("F") || 0,
+            alpha, beta;
+          if (o.form === "line") { // p = A − Bx: x = (A − p)/B
+            beta = 1 / q("B");
+            alpha = q("A") / q("B");
+          } else if (o.form === "qline") {
+            alpha = q("A");
+            beta = q("B");
+          } else {
+            beta = q("dq") / q("dp");
+            alpha = q("q0") + beta * q("p0");
+          }
+          var B7 = best(function(pr) { return (pr - cc) * (alpha - beta * pr) - F; }, Math.max(0, cc), alpha / beta, true);
+          want("the price", A.p, B7.x);
+          want("the most " + (o.goal || "revenue"), A[o.goal === "profit" ? "profit" : "revenue"], B7.v);
+          want("the number sold", A.sold, alpha - beta * B7.x);
+          return res();
+        case "closest":
+          var gfn = NX(o.g),
+            px = q("px"),
+            py = q("py"),
+            d2 = function(x) { var y = gfn(x); return (x - px) * (x - px) + (y - py) * (y - py); },
+            lo = px - 60,
+            hi = px + 60;
+          var B8 = best(d2, lo, hi, false),
+            xs = [],
+            re = /x\s*=\s*([^,;]+)/g,
+            m;
+          if (isFinite(d2(lo + 1e-9)) === false || !isFinite(gfn(-1e-9))) { var at0 = d2(0); if (isFinite(at0) && at0 < B8.v) B8 = { x: 0, v: at0 }; }
+          while ((m = re.exec(t))) xs.push(m[1]);
+          if (!xs.length) miss.push("no closest point");
+          xs.forEach(function(xt) { var xv = valOf(xt).v; if (!(Math.abs(d2(xv) - B8.v) <= 1e-6 * Math.max(1, B8.v))) miss.push("x = " + xt.trim() + " isn’t a closest point (D² there is " + d2(xv) + ", the least is " + B8.v + ")"); });
+          want("D", A.D, Math.sqrt(B8.v));
+          return res();
+        case "window":
+          var Pp = q("P"),
+            B9 = best(function(r) { return Pp * r - 2 * r * r - Math.PI * r * r / 2; }, 0, Pp / (2 + Math.PI), true);
+          want("the width", A["2r"], 2 * B9.x);
+          want("h", A.h, (Pp - 2 * B9.x - Math.PI * B9.x) / 2);
+          want("A", A.A, B9.v);
+          return res();
+      }
+      if (o.mode === "related") {
+        var dm = /\bd(\w+)\/dt\s*=\s*([^;]+)/.exec(t);
+        if (!dm) return { ok: false, msg: "no rate in the answer" };
+        var rate = q("r"),
+          h = 1e-6,
+          sim = null,
+          pi = Math.PI;
+        switch (o.kind) {
+          case "ladder":
+            var Ld = q("L"),
+              pv = q("p"),
+              ox = o.at === "y" ? Math.sqrt(Ld * Ld - pv * pv) : pv,
+              oy = o.at === "y" ? pv : Math.sqrt(Ld * Ld - pv * pv);
+            sim = o.g === "y" ? function(tt) { var yy = oy + rate * tt; return Math.sqrt(Ld * Ld - yy * yy); } : function(tt) { var xx = ox + rate * tt; return Math.sqrt(Ld * Ld - xx * xx); };
+            break;
+          case "circle":
+          case "sphere":
+            var pp = q("p"),
+              sph = o.kind === "sphere",
+              k = o.k || (sph ? "V" : "r"),
+              wnt = o.want || (k === "A" || k === "V" || k === "S" ? "r" : sph ? "V" : "A");
+            var r0 = o.at === "d" ? pp / 2 : o.at === "A" ? Math.sqrt(pp / pi) : pp;
+            var rad = function(tt) {
+              if (k === "r") return r0 + rate * tt;
+              if (k === "d") return r0 + rate / 2 * tt;
+              if (k === "A") return Math.sqrt((pi * r0 * r0 + rate * tt) / pi);
+              if (k === "V") return Math.cbrt((4 / 3 * pi * r0 * r0 * r0 + rate * tt) * 3 / (4 * pi));
+              return Math.sqrt((4 * pi * r0 * r0 + rate * tt) / (4 * pi)); // S
+            };
+            sim = function(tt) { var rr = rad(tt); return wnt === "r" ? rr : wnt === "d" ? 2 * rr : wnt === "C" ? 2 * pi * rr : wnt === "A" ? pi * rr * rr : wnt === "S" ? 4 * pi * rr * rr : 4 / 3 * pi * rr * rr * rr; };
+            break;
+          case "cone":
+            var R = q("R"),
+              Hc = q("H"),
+              h0 = q("h"),
+              c3 = pi * R * R / (3 * Hc * Hc);
+            sim = function(tt) { var hh = Math.cbrt((c3 * h0 * h0 * h0 + rate * tt) / c3); return o.want === "r" ? hh * R / Hc : hh; };
+            break;
+          case "shadow":
+            var Hl = q("H"),
+              hp = q("hp"),
+              xs0 = q("x") || 10;
+            sim = function(tt) {
+              var xx = xs0 + rate * tt,
+                ss = hp * xx / (Hl - hp);
+              return o.want === "tip" ? xx + ss : ss;
+            };
+            break;
+          case "cars":
+            var va = q("a"),
+              vb = q("b"),
+              tt0 = q("t"),
+              X0 = tt0 ? vb * tt0 : q("x0"),
+              Y0 = tt0 ? va * tt0 : q("y0");
+            sim = function(tt) {
+              var xx = X0 + vb * tt,
+                yy = Y0 + va * tt;
+              return Math.sqrt(xx * xx + yy * yy);
+            };
+            break;
+        }
+        if (!sim) return { skip: true };
+        var est = (sim(h) - sim(-h)) / (2 * h);
+        want("d" + dm[1] + "/dt", dm[2], est);
+        return res();
+      }
+      return { skip: true };
     }
 
     function rhsOf(part) { var k = part.indexOf("="); return k < 0 ? part : part.slice(k + 1); }
@@ -5722,6 +6123,74 @@
       }
       throw new Error("unknown mode " + o.mode);
     }
+    // aviation.html, Weight & balance with a CG envelope (env, uenv, or ex=4seat|2seat with util) or a fuel burn: the takeoff
+    // and landing points worked out here on their own, each checked against the envelope at its weight (or the plain limits)
+    function aviWb(o, toks, ansText) {
+      var EXE = { "4seat": ["35@1500,35@1950,38.5@2550,47.3@2550,47.3@1500", "35@1500,35@1950,35.9@2100,40@2100,40@1500"], "2seat": ["30.5@1000,30.5@1300,32@1650,36@1650,36@1000", "30.5@1000,30.5@1300,31.1@1440,35@1440,35@1000"] };
+      var pts = function(s) { return s ? String(s).split(",").map(function(p) { var q = p.split("@"); return [Number(q[0]), Number(q[1])]; }) : null; },
+        r2 = function(x) { return aviR(x, 2); };
+      var env = o.ex ? pts(EXE[o.ex][0]) : pts(o.env),
+        uenv = o.ex ? (o.util ? pts(EXE[o.ex][1]) : null) : pts(o.uenv);
+      var W = 0,
+        Mo = 0,
+        fuel = null;
+      String(o.items).split(",").forEach(function(it) {
+        var p = it.split(":"),
+          w = parseFloat(p[1]),
+          jet = /jet/i.test(p[1]),
+          gal = jet || /gal/i.test(p[1]),
+          lb = jet ? w * 6.7 : gal ? w * 6 : w;
+        W += lb;
+        Mo += lb * Number(p[2]);
+        if (!fuel && gal) fuel = { arm: Number(p[2]), jet: jet };
+      });
+      W = r2(W);
+      Mo = r2(Mo);
+      var pt = [{ W: W, M: Mo }];
+      if (o.burn) {
+        var bm = /^([\d.]+)(gal|jet)?$/.exec(o.burn),
+          arm = o.barm !== undefined ? Number(o.barm) : fuel.arm,
+          d = bm[2] === "jet" || (bm[2] === "gal" && o.barm === undefined && fuel.jet) ? 6.7 : bm[2] ? 6 : 1,
+          b = r2(Number(bm[1]) * d);
+        pt.push({ W: r2(W - b), M: r2(Mo - r2(b * arm)) });
+      }
+      pt.forEach(function(p) { p.cg = r2(p.M / p.W); });
+      var mx = o.max !== undefined ? Number(o.max) : env ? Math.max.apply(null, env.map(function(q) { return q[1]; })) : null;
+      var test = function(E, p, m) { // "in", or which way it is out
+        if (!E) {
+          if (o.fwd !== undefined && p.cg < Number(o.fwd)) return "forward";
+          if (o.aft !== undefined && p.cg > Number(o.aft)) return "aft";
+          return m !== null && p.W > m ? "over" : "in";
+        }
+        var lo = Math.min.apply(null, E.map(function(q) { return q[1]; })),
+          hi = Math.max.apply(null, E.map(function(q) { return q[1]; })),
+          xs = [];
+        if (m !== null && p.W > m) return "over";
+        if (p.W > hi) return "above";
+        if (p.W < lo) return "below";
+        E.forEach(function(a, i) {
+          var c = E[(i + 1) % E.length];
+          if (p.W < Math.min(a[1], c[1]) || p.W > Math.max(a[1], c[1])) return;
+          if (a[1] === c[1]) xs.push(a[0], c[0]);
+          else xs.push(a[0] + (p.W - a[1]) / (c[1] - a[1]) * (c[0] - a[0]));
+        });
+        return p.cg < r2(Math.min.apply(null, xs)) ? "forward" : p.cg > r2(Math.max.apply(null, xs)) ? "aft" : "in";
+      };
+      var r = need(toks, [pt[0].cg, pt[0].W].concat(pt[1] ? [pt[1].cg, pt[1].W] : []).map(function(v) { return X(String(v)); }));
+      if (!r.ok || !(env || o.fwd !== undefined || o.aft !== undefined || o.max !== undefined)) return r;
+      var parts = String(ansText || "").toLowerCase().split(";"),
+        word = { "in": env ? "inside the envelope" : "within limits", forward: "forward of the forward limit", aft: "aft of the aft limit", over: "lb over the", above: "above the top of the", below: "below the bottom of the" },
+        chk = [
+          [test(env, pt[0], mx), parts[0], "takeoff"]
+        ];
+      if (pt[1]) chk.push([test(env, pt[1], mx), parts[1] || "", "landing"]);
+      if (uenv) chk.push([test(uenv, pt[0], null), parts[parts.length - 1], "utility (takeoff)"]);
+      for (var i = 0; i < chk.length; i++) {
+        var w = chk[i][0] === "in" && uenv && i === chk.length - 1 ? "inside" : word[chk[i][0]];
+        if (chk[i][1].indexOf(w) < 0) return { ok: false, msg: chk[i][2] + " should be " + chk[i][0] + " (“" + w + "”)" };
+      }
+      return { ok: true };
+    }
     // aviation.html, the Weather tab (mode=metar): read the made report here, on its own, and work its question (ask)
     function aviMetar(o, toks, ansText) {
       var g = String(o.m || "").toUpperCase().split(/\s+/),
@@ -5840,7 +6309,13 @@
       }
       var A = Number(o.alt);
       if (o.ask === "interp") { var w1 = at(A); return lvw(w1, w1.t === null ? [] : [X2(w1.t)]); }
-      if (o.ask === "isa") { var w2 = at(A); return need(toks, [X2(aviR(isa(A), 1)), X2(w2.t), X2(aviR(w2.t - isa(A), 1))]); }
+      if (o.ask === "isa") {
+        var w2 = at(A);
+        // no temperature there (a level within 2,500 ft of the station, like SLC's 6,000 ft, or 3,000 ft): the page
+        // works the wind at that altitude instead
+        if (w2.t === null) return lvw(w2, []);
+        return need(toks, [X2(aviR(isa(A), 1)), X2(w2.t), X2(aviR(w2.t - isa(A), 1))]);
+      }
       var tc = o.tc !== undefined ? Number(o.tc) : hdg(Number(o.mc) + (/w$/i.test(o["var"]) ? -1 : 1) * parseFloat(o["var"]));
       if (o.ask === "wca") {
         var w3 = at(A),
@@ -7553,7 +8028,7 @@
         }
         return need(a, [X(R(v))]);
       },
-      "aviation.html": function(p, a, t) { var o = P(p); return o.mode === "metar" ? aviMetar(o, a, t) : o.mode === "windsaloft" ? aviFb(o, a, t) : need(a, aviWork(o).map(function(v) { return X(v); })); },
+      "aviation.html": function(p, a, t) { var o = P(p); return o.mode === "metar" ? aviMetar(o, a, t) : o.mode === "windsaloft" ? aviFb(o, a, t) : o.mode === "weight" && (o.env || o.ex || o.burn) ? aviWb(o, a, t) : need(a, aviWork(o).map(function(v) { return X(v); })); },
       "nursing.html": function(p, a) { return need(a, nurWork(P(p)).map(function(v) { return X(v); })); },
       "carpentry.html": function(p, a) { return need(a, crpWork(P(p)).map(function(v) { return X(v); })); },
       "electrical.html": function(p, a, t) {
@@ -8718,6 +9193,14 @@
             var pd = pr ? (pr[1].split(".")[1] || "").length : 0; // "≈ 115" is rounded to a whole number
             var okP = !o.px || (pr && Math.abs(Number(pr[1].replace("−", "-")) - (sl * Number(o.px) + ic)) <= 0.5 * Math.pow(10, -pd) + 0.01);
             return okL && okP ? { ok: true } : { ok: false, msg: "expected y ≈ " + sl.toFixed(3) + "x + " + ic.toFixed(2) + (o.px ? ", " + (sl * Number(o.px) + ic).toFixed(2) + " at x = " + o.px : "") };
+          case "optimize":
+            var lp = gLP(o);
+            if (lp.skip) return { skip: true };
+            if (lp.none) return /no solution/i.test(t) ? { ok: true } : { ok: false, msg: "expected no feasible region (no solution)" };
+            if (lp.unb) return /unbounded/i.test(t) ? { ok: true } : { ok: false, msg: "expected no " + (o.goal === "min" ? "minimum" : "maximum") + " (unbounded)" };
+            var bp = gPairs(t)[0];
+            if (!bp || !lp.pts.some(function(q) { return eq(q[0], bp[0]) && eq(q[1], bp[1]); })) return { ok: false, msg: "expected the best point " + lp.pts.map(function(q) { return "(" + txt(q[0]) + ", " + txt(q[1]) + ")"; }).join(" or ") };
+            return need(a, [X(lp.v)]);
           case "inequalities":
             return { skip: true };
         }
@@ -9234,6 +9717,7 @@
         return { skip: true };
       },
       "calculus.html": function(p, a, ansText) {
+        if (/(?:^|&)mode=(?:optimize|related)(?:&|$)/.test(p)) return calcWord(P(p), String(ansText));
         var o = P(p),
           t = String(ansText).replace(/[−–]/g, "-"),
           f = calcF(o),
@@ -9422,6 +9906,136 @@
         var letters = (q.match(/[a-z]/gi) || []).filter(function(v, i, arr) { return arr.indexOf(v) === i; });
         var nums = a.filter(function(t) { return t.exact; });
         var A = String(ansText).replace(/[−–]/g, "-");
+        // a formula solved for one letter: put the answer back into the formula at random numbers
+        if (mode === "formula") {
+          var fx = function(src, env, pm) { // floats: + − × ÷ / ^ ² ³ √ ∛ ± π, letters next to each other multiply
+            var s = String(src).replace(/[−–]/g, "-").replace(/[×·∙⋅*]/g, "*").replace(/÷/g, "/").replace(/\bpi\b/g, "π").replace(/\+-|\+\/-/g, "±"),
+              i = 0;
+
+            function sp() { while (s[i] === " ") i++; }
+
+            function ex() {
+              var v = tm();
+              for (;;) {
+                sp();
+                var c = s[i];
+                if (c === "+" || c === "-") {
+                  i++;
+                  v = c === "+" ? v + tm() : v - tm();
+                } else if (c === "±") {
+                  i++;
+                  v = v + pm * tm();
+                } else return v;
+              }
+            }
+
+            function tm() {
+              var v = un();
+              for (;;) {
+                sp();
+                var c = s[i];
+                if (c === "*" || c === "/") {
+                  i++;
+                  var b = un();
+                  v = c === "*" ? v * b : v / b;
+                } else if (c && /[A-Za-zπ(√∛]/.test(c)) v = v * pw();
+                else return v;
+              }
+            }
+
+            function un() {
+              sp();
+              if (s[i] === "-") { i++; return -un(); }
+              if (s[i] === "+") { i++; return un(); }
+              if (s[i] === "±") { i++; return pm * un(); }
+              return pw();
+            }
+
+            function pw() {
+              var b = pr();
+              sp();
+              if (s[i] === "²") { i++; return b * b; }
+              if (s[i] === "³") { i++; return b * b * b; }
+              if (s[i] === "^") { i++; return Math.pow(b, un()); }
+              return b;
+            }
+
+            function pr() {
+              sp();
+              var c = s[i],
+                m = /^\d*\.?\d+/.exec(s.slice(i));
+              if (m) { i += m[0].length; return Number(m[0]); }
+              if (c === "π") { i++; return Math.PI; }
+              if (c === "√" || c === "∛") { i++; var r = pw(); return c === "√" ? Math.sqrt(r) : Math.cbrt(r); }
+              if (c === "(") {
+                i++;
+                var v = ex();
+                sp();
+                if (s[i] !== ")") throw new Error("missing )");
+                i++;
+                return v;
+              }
+              if (c && /[A-Za-z]/.test(c)) { i++; if (!(c in env)) throw new Error("unknown " + c); return env[c]; }
+              throw new Error("can't read " + c);
+            }
+            var out = ex();
+            sp();
+            if (i < s.length) throw new Error("left over " + s.slice(i));
+            return out;
+          };
+          var want = String(o["for"] || ""),
+            m2 = /^\s*([A-Za-z])\s*=\s*(.+)$/.exec(A),
+            sides = q.split("=");
+          if (!m2 || m2[1] !== want) return { ok: false, msg: "the answer isn’t " + want + " = …" };
+          var lets = (q.replace(/π|\bpi\b/g, "").match(/[A-Za-z]/g) || []).filter(function(v, i, arr) { return arr.indexOf(v) === i && v !== want; }),
+            tried = 0;
+          for (var t = 0; t < 20; t++) {
+            var e0 = {};
+            lets.forEach(function(L) { e0[L] = 1.3 + Math.random() * 8; });
+            for (var pm = 1; pm >= -1; pm -= 2) {
+              var val = fx(m2[2], e0, pm);
+              if (!isFinite(val)) continue;
+              e0[want] = val;
+              var l = fx(sides[0], e0, 1),
+                r = fx(sides[1], e0, 1);
+              if (!isFinite(l) || !isFinite(r)) continue;
+              tried++;
+              if (Math.abs(l - r) > 1e-7 * Math.max(1, Math.abs(l), Math.abs(r))) return { ok: false, msg: want + " = " + m2[2] + " doesn’t make both sides equal" };
+            }
+          }
+          return tried >= 4 ? { ok: true } : { ok: false, msg: "couldn’t test the answer at enough numbers" };
+        }
+        // compound inequalities: the answer has to be true for exactly the same numbers as the problem
+        if (mode === "ineq" && (/\||\bor\b|\band\b/.test(q) || (q.match(/<=|>=|≤|≥|<|>/g) || []).length === 2)) {
+          var truth = function(src, x) {
+            var s = "",
+              bars = 0;
+            String(src).replace(/[−–]/g, "-").split("").forEach(function(c) { // 3|x − 7| means 3 × |x − 7|
+              if (c === "|" && bars++ % 2 === 0 && /[\d)]\s*$/.test(s)) s += "*";
+              s += c;
+            });
+            if (/no solution/i.test(s)) return false;
+            if (/all real/i.test(s)) return true;
+            return s.split(/\bor\b/).some(function(p) {
+              return p.split(/\band\b/).every(function(a) {
+                var rels = a.match(/<=|>=|≤|≥|≠|<|>|=/g) || [],
+                  vals = a.split(/<=|>=|≤|≥|≠|<|>|=/).map(function(t) { return evaluate(t, { x: x }); });
+                return rels.every(function(rl, k) {
+                  var c = cmp(vals[k], vals[k + 1]);
+                  return rl === "<" ? c < 0 : rl === ">" ? c > 0 : rl === "<=" || rl === "≤" ? c <= 0 : rl === ">=" || rl === "≥" ? c >= 0 : rl === "≠" ? c !== 0 : c === 0;
+                });
+              });
+            });
+          };
+          var ptsC = [R(0), R(1000), R(-1000), R(1, 3)];
+          tokens(A).concat(tokens(q)).forEach(function(tk) {
+            if (!tk.exact) return;
+            [R(0), R(1, 2), R(-1, 2), R(1, 1000), R(-1, 1000)].forEach(function(d) { ptsC.push(add(tk.exact, d)); });
+          });
+          for (var pi2 = 0; pi2 < ptsC.length; pi2++)
+            if (truth(q, ptsC[pi2]) !== truth(A, ptsC[pi2])) return { ok: false, msg: "the answer and the problem disagree at x = " + txt(ptsC[pi2]) };
+          return { ok: true };
+        }
 
         function env(vals) {
           var e = {};
@@ -9800,6 +10414,10 @@
             break;
           case "vol:pyr":
             want = [sq(g("s")) * g("h") / 3];
+            break;
+          case "area:heron":
+            var hs = (g("a") + g("b") + g("c")) / 2;
+            want = [Math.sqrt(hs * (hs - g("a")) * (hs - g("b")) * (hs - g("c"))), 2 * hs];
             break;
           case "right:hyp":
             want = [Math.sqrt(sq(g("a")) + sq(g("b")))];
@@ -10930,6 +11548,221 @@
           cell(T.page, "links", '<span class="na">—</span>');
         });
       },
+      /* i18n.js, the languages: the six Spanish pilots open in Spanish with lang=es (the same answers, the practice
+         buttons in Spanish, no key or {placeholder} left, nothing missing) and in English without it; lang=es stays in
+         the address and gives a page without its own strings a Spanish bar; problems typed in Spanish are read; problems
+         typed in English come back from normalize() exactly as they were; numbers and dates in the language's way */
+      "i18n.js": function(T) {
+        var kp = 0,
+          kf = 0,
+          visit = saveVisit();
+
+        function check(okay, what, link) {
+          if (okay) {
+            kp++;
+            pass();
+          } else {
+            kf++;
+            fail(T.page, "known answer", what, link || "i18n.js");
+          }
+        }
+
+        function until(test, ms) {
+          var t0 = Date.now();
+          return new Promise(function(ok) {
+            (function poll() {
+              var v = false;
+              try { v = test(); } catch (e) {}
+              if (v || Date.now() - t0 > ms) ok(!!v);
+              else setTimeout(poll, 80);
+            })();
+          });
+        }
+
+        function flat(s) { return String(s).replace(/(\d),(?=\d{3}\b)/g, "$1").replace(/[^0-9.]+/g, " ").trim(); }
+
+        function answerOf(doc) { return [].map.call(doc.querySelectorAll(".answer .v"), function(e) { return e.innerText.replace(/\s+/g, " "); }).join(" | "); }
+
+        // the wanted numbers in a row in the answer, as numbers ("6" is shown by "$6.00", "3/4" by a stacked 3 over 4)
+        function shows(doc, want) {
+          var a = flat(answerOf(doc)).split(" ").map(Number),
+            w = flat(want).split(" ").map(Number);
+          for (var i = 0; i + w.length <= a.length; i++)
+            if (w.every(function(x, j) { return a[i + j] === x; })) return true;
+          return false;
+        }
+
+        // the practice button that shows all the work (its id differs from page to page)
+        function allButton(doc, text) { return [].filter.call(doc.querySelectorAll("button"), function(b) { return b.textContent.trim() === text; })[0] || null; }
+        var PILOTS = [
+          ["addition.html?q=47%2B38", ["85"]],
+          ["subtraction.html?q=52-17", ["35"]],
+          ["multiplication.html?q=23*14", ["322"]],
+          ["division.html?q=847%C3%B712&ans=remainder", ["70", "7"]],
+          ["fractions.html?mode=simplify&q=18/24", ["3/4"]],
+          ["percents.html?q=" + encodeURIComponent("15% of 80"), ["12"]]
+        ];
+        var RAW = /\b(?:common|lang|nav|tools|play|tutor|voice|photo|addition|subtraction|multiplication|division|fractions|percents|assign|standards|qr|embed|glossary|progress)\.[a-z]\w*/,
+          HOLE = /\{[A-Za-z_]\w*[|}]/;
+        // typed in Spanish, on its helper: a number the answer must show ("" when any answer will do)
+        var TYPED = [
+          ["addition", "cuánto es 47 más 38", "85"],
+          ["addition", "suma 38 a 47", "85"],
+          ["addition", "la suma de 12, 15 y 20", "47"],
+          ["addition", "dos y tres cuartos más uno y cinco sextos", "4 7/12"],
+          ["addition", "3/4 más 5/6", "1 7/12"],
+          ["addition", "veinticinco punto cuatro más tres punto setenta y cinco", "29.15"],
+          ["addition", "$12.50 más $3.75", "16.25"],
+          ["addition", "muéstrame paso a paso 2508 + 4796", "7,304"],
+          ["addition", "¿Cuánto es mil doscientos más trescientos cuarenta?", "1,540"],
+          ["subtraction", "cuánto es 52 menos 17", "35"],
+          ["subtraction", "resta 17 de 52", "35"],
+          ["subtraction", "quita 299 a 845", "546"],
+          ["subtraction", "la diferencia entre 845 y 299", "546"],
+          ["subtraction", "ochocientos cuarenta y cinco menos doscientos noventa y nueve", "546"],
+          ["subtraction", "tres y cuatro quintos menos uno y dos tercios", "2 2/15"],
+          ["subtraction", "$20.00 menos $7.35", "12.65"],
+          ["subtraction", "17 menos 52", "35"],
+          ["multiplication", "cuánto es 12 por 3", "36"],
+          ["multiplication", "12 veces 3", "36"],
+          ["multiplication", "multiplica 47 por 23", "1,081"],
+          ["multiplication", "el producto de 304 y 26", "7,904"],
+          ["multiplication", "siete por ocho", "56"],
+          ["multiplication", "3 grupos de 4", "12"],
+          ["multiplication", "un medio de tres cuartos", "3/8"],
+          ["multiplication", "dos tercios por tres cuartos", "1/2"],
+          ["multiplication", "$4.25 por 3", "12.75"],
+          ["division", "cuánto es 847 dividido entre 12", "70"],
+          ["division", "divide 847 entre 12", "70"],
+          ["division", "cuántas veces cabe 12 en 144", "12"],
+          ["division", "cuántos 8 hay en 1000", "125"],
+          ["division", "el cociente de 619 y 5", "123"],
+          ["division", "847 ÷ 12 como decimal", "70.583333"],
+          ["division", "tres cuartos dividido entre un medio", "1 1/2"],
+          ["division", "$10 entre 4", "2.5"],
+          ["division", "847 ÷ 12 as a decimal", "70.583333"],
+          ["fractions", "convert 0.375 to a fraction", "3/8"],
+          ["percents", "what is 120 percent of the number 90", "108"],
+          ["fractions", "simplifica 18/24", "3/4"],
+          ["fractions", "18 sobre 24 en su mínima expresión", "3/4"],
+          ["fractions", "reduce dieciocho veinticuatroavos", "3/4"],
+          ["fractions", "3/4 como decimal", "0.75"],
+          ["fractions", "convierte 0.375 a fracción", "3/8"],
+          ["fractions", "cuál es mayor, 3/4 o 5/8", "3/4"],
+          ["fractions", "es 3/4 igual a 6/8", ""],
+          ["fractions", "dos y tres cuartos como fracción impropia", "11/4"],
+          ["fractions", "tres cuartos como porcentaje", "75"],
+          ["percents", "cuánto es el 15% de 80", "12"],
+          ["percents", "15 por ciento de ochenta", "12"],
+          ["percents", "el 15 por ciento de 80", "12"],
+          ["multiplication", "tres cuartos de veinte", "15"],
+          ["percents", "18 es qué porcentaje de 72", "25"],
+          ["percents", "qué porcentaje de 72 es 18", "25"],
+          ["percents", "15 es el 20% de qué número", "75"],
+          ["percents", "cambio porcentual de 80 a 92", "15"],
+          ["percents", "20% de descuento en 45", "36"],
+          ["percents", "impuesto del 8% sobre 45", "48.6"],
+          ["percents", "propina del 15% sobre 40", "6"],
+          ["percents", "interés de 500 al 4% por 3 años", "560"],
+          ["percents", "veinte por ciento de qué número es quince", "75"]
+        ];
+        if (depth !== "thorough") TYPED = TYPED.filter(function(c, i) { return i % 8 === 0; });
+        var chain = Promise.resolve();
+        // the pilots in Spanish, then in English
+        PILOTS.forEach(function(P) {
+          chain = chain.then(function() {
+            var link = P[0] + "&lang=es&practice=all";
+            return load(link).then(function(fr) {
+              var d = docOf(fr),
+                w = fr.f.contentWindow;
+              return until(function() { return d.querySelector(".answer .v") && w.HelperI18n && w.HelperI18n.lang === "es"; }, 6000).then(function() {
+                var btn = allButton(d, "Ver todo el procedimiento");
+                check(d.documentElement.lang === "es", link + ": <html lang> is " + d.documentElement.lang + ", not es", link);
+                check(P[1].every(function(x) { return shows(d, x); }), link + ": the answer is “" + answerOf(d) + "”, expected " + P[1].join(", "), link);
+                check(btn && !allButton(d, "Show all work"), link + ": no “Ver todo el procedimiento” button" + (btn ? " (and an English one)" : ""), link);
+                var miss = w.HelperI18n && w.HelperI18n.missing ? w.HelperI18n.missing() : ["(no HelperI18n)"];
+                check(!miss.length, link + ": keys es.js doesn’t have: " + miss.slice(0, 5).join(", "), link);
+                var txt = (d.querySelector(".page") || d.body).innerText,
+                  raw = RAW.exec(txt) || HOLE.exec(txt);
+                check(!raw, link + ": “" + (raw ? raw[0] : "") + "” left in the page", link);
+                check(/(?:^|[?&])lang=es(?:&|#|$)/.test(w.location.search) && (w.location.search.match(/lang=/g) || []).length === 1, link + ": the address became " + w.location.search, link);
+                drop(fr);
+              });
+            });
+          }).then(function() {
+            var link = P[0] + "&practice=all";
+            return load(link).then(function(fr) {
+              var d = docOf(fr),
+                w = fr.f.contentWindow;
+              return until(function() { return d.querySelector(".answer .v"); }, 6000).then(function() {
+                var btn = allButton(d, "Show all work");
+                check(d.documentElement.lang === "en" && (!w.HelperI18n || w.HelperI18n.lang === "en"), link + ": opened in " + (w.HelperI18n ? w.HelperI18n.lang : d.documentElement.lang) + ", not English", link);
+                check(P[1].every(function(x) { return shows(d, x); }), link + ": the answer is “" + answerOf(d) + "”, expected " + P[1].join(", "), link);
+                check(btn && !allButton(d, "Ver todo el procedimiento"), link + ": no “Show all work” button", link);
+                drop(fr);
+              });
+            });
+          });
+        });
+        // a page without its own strings: lang=es gives it the Spanish bar; numbers and dates the language's way
+        chain = chain.then(function() {
+          var link = "ratios.html?lang=es";
+          return load(link).then(function(fr) {
+            var d = docOf(fr),
+              w = fr.f.contentWindow;
+            return until(function() { var n = d.querySelector(".sitenav"); return w.HelperI18n && w.HelperI18n.lang === "es" && n && /Aritmética/.test(n.textContent); }, 8000).then(function(got) {
+              check(got, link + ": no Spanish bar (" + (w.HelperI18n ? "HelperI18n.lang " + w.HelperI18n.lang : "no HelperI18n") + ")", link);
+              var I = w.HelperI18n;
+              check(I && I.n && I.n(1234.5) === "1,234.5", link + ": HelperI18n.n(1234.5) is " + (I && I.n ? I.n(1234.5) : "missing"), link);
+              var dt = I && I.d ? I.d(new Date(2026, 9, 25)) : "";
+              check(/octubre/i.test(dt), link + ": HelperI18n.d(25 October 2026) is “" + dt + "”", link);
+              drop(fr);
+            });
+          });
+        });
+        // Spanish typed problems, each on its helper
+        TYPED.forEach(function(c) {
+          chain = chain.then(function() {
+            var link = c[0] + ".html?lang=es&practice=all&q=" + encodeURIComponent(c[1]);
+            return load(link).then(function(fr) {
+              var d = docOf(fr);
+              return until(function() { return d.querySelector(".answer .v"); }, 5000).then(function() {
+                var note = [].map.call(d.querySelectorAll(".notice"), function(e) { return e.innerText; }).join(" ").replace(/\s+/g, " ").trim();
+                check((c[2] ? shows(d, c[2]) : !!answerOf(d)) && !note, "typed “" + c[1] + "”: the answer is “" + answerOf(d) + "”" + (note ? ", with the note “" + note.slice(0, 80) + "”" : "") + (c[2] ? ", expected " + c[2] : ""), link);
+                drop(fr);
+              });
+            });
+          });
+        });
+        // English typed problems: normalize() leaves every known problem's text exactly as it is
+        chain = chain.then(function() {
+          return load("addition.html?q=47%2B38").then(function(fr) {
+            var w = fr.f.contentWindow,
+              I = w.HelperI18n,
+              texts = [],
+              bad = [];
+            Object.keys(KNOWN).forEach(function(pg) {
+              KNOWN[pg].forEach(function(k) {
+                var m = /(?:^|&)q=([^&]*)/.exec(k[0]);
+                if (m) try { texts.push(decodeURIComponent(m[1].replace(/\+/g, " "))); } catch (e) {}
+              });
+            });
+            check(I && I.normalize, "addition.html: no HelperI18n.normalize", "addition.html?q=47%2B38");
+            if (I && I.normalize) texts.forEach(function(x) { if (I.normalize(x) !== x) bad.push(x + " → " + I.normalize(x)); });
+            check(texts.length > 100 && !bad.length, "normalize() changed English (" + texts.length + " known problems): " + bad.slice(0, 3).join("; "), "addition.html?q=47%2B38");
+            drop(fr);
+          });
+        });
+        return chain.then(function() {
+          restoreVisit(visit);
+          score(T.page, "known", kp, kf);
+          score(T.page, "load", 1, 0);
+          cell(T.page, "links", '<span class="na">—</span>');
+        }, function(e) {
+          restoreVisit(visit);
+          throw e;
+        });
+      },
       "qr.js": function(T) {
         // checked against modules made by the Python qrcode package (same text, level and mask)
         var REF = [{
@@ -11586,6 +12419,17 @@
       } catch (e) {}
     }
 
+    // the language chosen for this visit (assets/i18n.js keeps it in sessionStorage; a frame opened with lang=es sets it).
+    // localStorage, where the device's choice (helpers-lang, helpers-lang-offer) is kept, is saved and put back whole
+    function saveVisit() { try { return sessionStorage.getItem("helpers-lang-visit"); } catch (e) { return null; } }
+
+    function restoreVisit(v) {
+      try {
+        if (v === null) sessionStorage.removeItem("helpers-lang-visit");
+        else sessionStorage.setItem("helpers-lang-visit", v);
+      } catch (e) {}
+    }
+
     function run() {
       $("runBtn").disabled = true;
       $("runBtn").textContent = "Running…";
@@ -11595,7 +12439,8 @@
       $("failBox").hidden = true;
       summary();
       rows();
-      var store = saveStore();
+      var store = saveStore(),
+        visit = saveVisit();
       var list = PAGES.filter(function(T) { return chosen[T.page]; });
       return list.reduce(function(chain, T) {
         return chain.then(function() {
@@ -11629,6 +12474,7 @@
         });
       }, Promise.resolve()).then(function() {
         restoreStore(store);
+        restoreVisit(visit);
         $("runBtn").disabled = false;
         $("runBtn").textContent = "Run all tests again";
         document.title = (totals.fail ? "✗ " : "✓ ") + "Self Test";

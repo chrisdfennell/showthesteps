@@ -2,7 +2,10 @@
    Take a photo (phones), pick a picture or screenshot, paste one into the box, or drop one on it: the writing in it is
    read on this device and put into the box, where the page reads it as if it had been typed.
    - The picture never leaves the device. The reading engine (Tesseract.js and its English data, about 7 MB, from
-     jsDelivr) is downloaded only the first time a picture is read; the browser keeps it after that.
+     jsDelivr) is downloaded only the first time a picture is read; the browser keeps it after that. A page in another
+     language reads with that language's data when its locale file names it ("photo.ocrLang": "spa" in es.js; it reads
+     digits and math as well as the English data does, and the words with their accents and ¿ ¡).
+   - The words it shows are in the visitor's language (assets/i18n.js, the photo.* keys); English when there is none.
    - If the browser has its own text reader (TextDetector, behind a flag in Chrome), that is tried first.
    - What was read is tidied up for math (× ÷ − ½, 1 for l, 0 for O inside numbers, question numbers like "3."), and
      shown in the box so it can be fixed.
@@ -20,6 +23,15 @@
     corePath: "https://cdn.jsdelivr.net/npm/tesseract.js-core@5.1.1",
     langPath: "https://cdn.jsdelivr.net/npm/@tesseract.js-data/eng@1.0.0/4.0.0_best_int"
   };
+  /* the reading data: English, or the language of the page when its locale file names Tesseract's data for it
+     ("photo.ocrLang": "spa"), from the same place (@tesseract.js-data/<code>) */
+  function ocrLang() {
+    var I = window.HelperI18n,
+      c = foreign() && I.has && I.has("photo.ocrLang") ? String(I.raw("photo.ocrLang") || "") : "";
+    return /^[a-z]{3}(_[a-z]{3,4})?$/.test(c) ? c : "eng";
+  }
+
+  function langPath(code) { return code === "eng" ? ENGINE.langPath : "https://cdn.jsdelivr.net/npm/@tesseract.js-data/" + code + "@1.0.0/4.0.0_best_int"; }
   var root = document.documentElement;
 
   function warn(e) { if (window.console) console.warn("photo.js:", e); }
@@ -29,6 +41,45 @@
   function el(tag, cls, html) { var x = document.createElement(tag); if (cls) x.className = cls; if (html) x.innerHTML = html; return x; }
 
   function fire(box, type) { box.dispatchEvent(new Event(type, { bubbles: true })); }
+
+  /* ---- the words, in the visitor's language (assets/i18n.js): the photo.* keys, and en.js repeats the English for
+     translators. English always shows the words written here; so does a page without i18n.js. ---- */
+  function tr(key, en, vars) {
+    var I = window.HelperI18n;
+    if (I && I.lang !== "en" && I.t) {
+      var s = I.t(key, vars);
+      if (s !== key) return s;
+    }
+    return vars ? fillIn(en, vars) : en;
+  }
+
+  function fillIn(s, vars) { return String(s).replace(/\{(\w+)\}/g, function(m, k) { return Object.prototype.hasOwnProperty.call(vars, k) ? String(vars[k]) : m; }); }
+
+  function foreign() { return !!(window.HelperI18n && window.HelperI18n.lang && window.HelperI18n.lang !== "en"); }
+
+  // fn once the language's strings are in (at once without i18n.js; never later than 4 s)
+  function whenReady(fn) {
+    var done = false,
+      go = function() {
+        if (!done) {
+          done = true;
+          fn();
+        }
+      };
+    var I = window.HelperI18n;
+    if (I && I.ready) {
+      I.ready(go);
+      setTimeout(go, 4000);
+    } else go();
+  }
+
+  // a button's words as they read on screen ("Show the steps", without its arrow)
+  function label(b) {
+    if (!b) return "";
+    var c = b.cloneNode(true);
+    [].forEach.call(c.querySelectorAll('[aria-hidden="true"], svg'), function(x) { x.parentNode.removeChild(x); });
+    return c.textContent.replace(/\s+/g, " ").trim();
+  }
 
   function visible(x) { return !!x && x.offsetParent !== null; }
   var coarse = !!(window.matchMedia && window.matchMedia("(pointer: coarse)").matches);
@@ -58,6 +109,29 @@
   var QNUM = /^\s*(?:(?:problem|question|exercise|ex|no|q)\.?\s*#?\s*\d{1,3}\s*[.:)]?|#\s*\d{1,3}[.:)]?|\(?\d{1,3}\s*[.)]|\(?[a-h]\))(?=\s)\s*/i;
   var BAR = /^(?:[\s\-–—−_=~.·]{2,}|[\-–—−_])$/; // a line drawn under a sum, or a fraction bar
   var MATHWORDS = /^(solve|find|simplify|evaluate|factor|expand|graph|what|is|of|the|and|for|if|work|out|show|your|answer|calculate|compute|value|write|each|name|date)$/i;
+  // in another language, its words too (a page in Spanish: "Problema 3.", "Resuelve", "¿Cuánto es…?"); photo.re.* keys
+  function langRe(key, wrap) {
+    if (!foreign()) return null;
+    var I = window.HelperI18n;
+    try {
+      var src = I.has(key) ? I.raw(key) : "";
+      return src && typeof src === "string" ? new RegExp(wrap.replace("@", function() { return src; }), "i") : null;
+    } catch (e) { return null; }
+  }
+  var QNUM_L = null,
+    MATH_L = null,
+    QWORD_L = null;
+
+  function langWords() {
+    if (QNUM_L !== null || !foreign()) return;
+    QNUM_L = langRe("photo.re.qnum", "^\\s*(?:(?:@)\\.?\\s*#?\\s*\\d{1,3}\\s*[.:)]?)(?=\\s)\\s*") || false;
+    MATH_L = langRe("photo.re.mathWords", "^(?:@)$") || false;
+    QWORD_L = langRe("photo.re.question", "^(?:¿|(?:@)(?![a-zà-ÿ]))") || false;
+  }
+
+  function isQnum(l) { return QNUM.test(l) || (!!QNUM_L && QNUM_L.test(l)); }
+
+  function dropQnum(l) { return QNUM.test(l) ? l.replace(QNUM, "") : QNUM_L && QNUM_L.test(l) ? l.replace(QNUM_L, "") : l; }
 
   function nineFix(t) {
     return t.replace(/(^|[\s(])[gq](?=\s+[A-Za-z]{3,})/g, function(m, pre, at, all) {
@@ -85,8 +159,8 @@
   }
 
   function isStory(lines) {
-    var words = lines.join(" ").match(/[A-Za-z]{3,}/g) || [];
-    return words.filter(function(w) { return !MATHWORDS.test(w); }).length >= 5;
+    var words = lines.join(" ").match(MATH_L ? /[A-Za-zÀ-ÖØ-öø-ÿ]{3,}/g : /[A-Za-z]{3,}/g) || [];
+    return words.filter(function(w) { return !MATHWORDS.test(w) && !(MATH_L && MATH_L.test(w)); }).length >= 5;
   }
 
   function tidyMath(t) {
@@ -111,11 +185,12 @@
     t = numFix(nineFix(t)).replace(/(\d)\s+[xX×]\s+(?=\d)/g, "$1 × ").replace(/[ \t]+/g, " ").replace(/ ([,.;:?!])/g, "$1").trim();
     // a question mark read as an apostrophe: "How many apples does she have now’"
     var q = /(?:^|[.!?]\s+)([^.!?]*)[’'`"”]$/.exec(t);
-    if (q && /^(how|what|which|who|when|where|why|can|could|does|do|did|is|are|was|will|would)\b/i.test(q[1])) t = t.slice(0, -1) + "?";
+    if (q && (/^(how|what|which|who|when|where|why|can|could|does|do|did|is|are|was|will|would)\b/i.test(q[1]) || (QWORD_L && QWORD_L.test(q[1])))) t = t.slice(0, -1) + "?";
     return t;
   }
   /* raw text → { text, problems:[...] } (more than one when the picture holds a numbered list) */
   function cleanAll(raw, keepBreaks) {
+    langWords();
     var t = String(raw || "").replace(/\r\n?/g, "\n")
       .replace(/[‘’‛]/g, "'").replace(/[“”]/g, "\"")
       .replace(/[⁄∕]/g, "/").replace(/[•∙⋅]/g, "·").replace(/[✕✖]/g, "×").replace(/ﬁ/g, "fi").replace(/ﬂ/g, "fl")
@@ -149,13 +224,13 @@
     if (seq.length >= 2 && seq.every(function(e, j) { return j === 0 || (e.n > seq[j - 1].n && e.n <= seq[j - 1].n + 2); })) // 1, 2, 3 (or 1, 3: a line not read)
       seq.forEach(function(e) { lines[e.j] = lines[e.j].replace(LEAD, "$1. "); });
     // a numbered list ("1. 47 + 38", "2. 56 + 27"): one problem each, with any lines that run on
-    var nums = lines.filter(function(l) { return QNUM.test(l); }).length,
+    var nums = lines.filter(isQnum).length,
       groups = [];
     if (nums >= 2) {
       var cur = null;
       lines.forEach(function(l) {
-        if (QNUM.test(l)) {
-          cur = [l.replace(QNUM, "")];
+        if (isQnum(l)) {
+          cur = [dropQnum(l)];
           groups.push(cur);
         } else if (cur && l) cur.push(l);
         else if (cur && !l && cur[cur.length - 1] !== "") cur.push("");
@@ -164,7 +239,7 @@
       var all = lines.slice();
       var first = 0;
       while (first < all.length && !all[first]) first++;
-      if (first < all.length) all[first] = all[first].replace(QNUM, "");
+      if (first < all.length) all[first] = dropQnum(all[first]);
       groups.push(all);
     }
     var problems = groups.map(function(g) {
@@ -202,6 +277,7 @@
       return {
         box: function() { return ask; },
         go: "Show the steps",
+        goBtn: function() { return row.querySelector(".go-btn") || (form.querySelector ? form.querySelector('button[type="submit"]') : null); },
         drop: row,
         place: function(b) {
           row.insertBefore(b, row.querySelector(".go-btn"));
@@ -257,6 +333,7 @@
       return {
         box: function() { return box; },
         go: go,
+        goBtn: function() { return start && start.isConnected ? start : null; },
         drop: inRow ? parent : null,
         place: function(b) {
           if (inRow) { parent.insertBefore(b, box.nextSibling); return; }
@@ -350,8 +427,8 @@
   function makeButton() {
     var b = el("button", "ht-cam", CAM);
     b.type = "button";
-    b.setAttribute("aria-label", "Read the problem from a photo or picture");
-    b.title = coarse ? "Take a photo of the problem, or choose a picture" : "Read the problem from a picture or screenshot (you can also paste or drop one into the box)";
+    b.setAttribute("aria-label", tr("photo.button", "Read the problem from a photo or picture"));
+    b.title = coarse ? tr("photo.titleTouch", "Take a photo of the problem, or choose a picture") : tr("photo.title", "Read the problem from a picture or screenshot (you can also paste or drop one into the box)");
     b.addEventListener("click", onButton);
     btns.push(b);
     return b;
@@ -374,8 +451,11 @@
     return f;
   }
 
+  var statusKind = ""; // "reading": the line that counts the percent up
+
   function setStatus(html, cls, keep) {
     if (!statusEl) return;
+    statusKind = "";
     clearTimeout(hideTimer);
     statusEl.className = "ht-cam-status" + (spot && spot.bar ? " ht-cam-float" : "") + (cls ? " " + cls : "");
     statusEl.innerHTML = html;
@@ -397,14 +477,19 @@
 
   function onButton(e) {
     if (e) e.stopPropagation();
-    if (busy) { setStatus(statusEl && !statusEl.hidden ? statusEl.innerHTML : "Still reading the last picture…", "busy"); return; }
+    if (busy) {
+      var kind = statusKind;
+      setStatus(statusEl && !statusEl.hidden ? statusEl.innerHTML : tr("photo.still", "Still reading the last picture…"), "busy");
+      if (statusEl && !statusEl.hidden) statusKind = kind;
+      return;
+    }
     var b = this;
     if (!coarse) { filePick.click(); return; }
     // phones and tablets: the camera, or a picture already on the device (a screenshot)
     if (menu) { closeMenu(); return; }
     menu = el("div", "ht-cam-menu");
     menu.setAttribute("role", "menu");
-    menu.innerHTML = '<button type="button" role="menuitem" data-k="cam">Take a photo</button><button type="button" role="menuitem" data-k="pick">Choose a picture</button>';
+    menu.innerHTML = '<button type="button" role="menuitem" data-k="cam">' + tr("photo.take", "Take a photo") + '</button><button type="button" role="menuitem" data-k="pick">' + tr("photo.choose", "Choose a picture") + "</button>";
     document.body.appendChild(menu);
     var r = b.getBoundingClientRect(),
       w = menu.offsetWidth;
@@ -612,12 +697,12 @@
           res({ gray: canvasOf(g), ink: canvasOf(ink), lineH: lineH, zoom: z });
         } catch (e) {
           warn(e);
-          rej(bad("This picture couldn’t be opened. Try a JPG or PNG, or a screenshot."));
+          rej(bad(tr("photo.err.open", "This picture couldn’t be opened. Try a JPG or PNG, or a screenshot.")));
         }
       };
       img.onerror = function() {
         URL.revokeObjectURL(url);
-        rej(bad("This browser can’t open that kind of picture. Try a JPG or PNG, or take a screenshot of it."));
+        rej(bad(tr("photo.err.kind", "This browser can’t open that kind of picture. Try a JPG or PNG, or take a screenshot of it.")));
       };
       img.src = url;
     });
@@ -648,7 +733,8 @@
     idle = null;
 
   function offline() { return navigator.onLine === false; }
-  var NEED_NET = "Reading a picture needs an internet connection the first time, to download the reading engine (about 7 MB). Connect and try again. After that it works offline.";
+
+  function needNet() { return tr("photo.needNet", "Reading a picture needs an internet connection the first time, to download the reading engine (about 7 MB). Connect and try again. After that it works offline."); }
 
   function loadEngine() {
     if (window.Tesseract) return Promise.resolve();
@@ -661,11 +747,11 @@
       sc.integrity = TESS_SRI;
       sc.onload = function() {
         if (window.Tesseract) res();
-        else rej(bad("The reading engine didn’t start. Try again, or type the problem."));
+        else rej(bad(tr("photo.err.start", "The reading engine didn’t start. Try again, or type the problem.")));
       };
       sc.onerror = function() {
         sc.remove();
-        rej(bad(offline() ? NEED_NET : "The reading engine couldn’t be downloaded. Check the connection and try again."));
+        rej(bad(offline() ? needNet() : tr("photo.err.download", "The reading engine couldn’t be downloaded. Check the connection and try again.")));
       };
       document.head.appendChild(sc);
     });
@@ -678,18 +764,19 @@
     if (workerWait) return workerWait;
     var failed = null;
     workerWait = loadEngine().then(function() {
+      var code = ocrLang();
       var opts = {
         workerPath: ENGINE.workerPath,
         corePath: ENGINE.corePath,
-        langPath: ENGINE.langPath,
+        langPath: langPath(code),
         logger: function(m) { if (onProgress) safe(onProgress)(m); },
         errorHandler: function(e) {
           failed = e;
           warn(e);
         }
       };
-      return timeout(window.Tesseract.createWorker("eng", 1, opts), 120000,
-        offline() ? NEED_NET : "Getting the reading engine ready took too long. Check the connection and try again.");
+      return timeout(window.Tesseract.createWorker(code, 1, opts), 120000,
+        offline() ? needNet() : tr("photo.err.slowSetup", "Getting the reading engine ready took too long. Check the connection and try again."));
     }).then(function(w) {
       if (failed) throw failed;
       worker = w;
@@ -698,7 +785,7 @@
     }, function(e) {
       workerWait = null;
       if (e && e.friendly) throw e;
-      throw bad(offline() ? NEED_NET : "The reading engine couldn’t be set up. Check the connection and try again.");
+      throw bad(offline() ? needNet() : tr("photo.err.setup", "The reading engine couldn’t be set up. Check the connection and try again."));
     });
     return workerWait;
   }
@@ -822,15 +909,17 @@
       var w0;
       return getWorker().then(function(w) {
         w0 = w;
-        setStatus("Reading the picture… <span aria-hidden=\"true\">0%</span>", "busy");
-        return timeout(w.recognize(pic.ink), 90000, "Reading the picture took too long. Try a smaller or clearer picture.");
+        setStatus(tr("photo.reading", "Reading the picture…") + " <span aria-hidden=\"true\">0%</span>", "busy");
+        statusKind = "reading";
+        return timeout(w.recognize(pic.ink), 90000, tr("photo.err.slow", "Reading the picture took too long. Try a smaller or clearer picture."));
       }).then(function(r) {
         var a = linesOf(r && r.data, pic.ink);
         last = { ink: a, lineH: pic.lineH, zoom: pic.zoom };
         if (a.conf >= 80) return a;
         // not sure: read the plain gray picture too, and keep the surer reading
-        setStatus("Reading the picture again, another way… <span aria-hidden=\"true\">0%</span>", "busy");
-        return timeout(w0.recognize(pic.gray), 90000, "Reading the picture took too long. Try a smaller or clearer picture.").then(function(r2) {
+        setStatus(tr("photo.readingAgain", "Reading the picture again, another way…") + " <span aria-hidden=\"true\">0%</span>", "busy");
+        statusKind = "reading";
+        return timeout(w0.recognize(pic.gray), 90000, tr("photo.err.slow", "Reading the picture took too long. Try a smaller or clearer picture.")).then(function(r2) {
           var b = linesOf(r2 && r2.data, pic.ink);
           last.gray = b;
           return b.conf > a.conf + 3 || (!/[A-Za-z0-9]/.test(a.text) && /[A-Za-z0-9]/.test(b.text)) ? b : a;
@@ -838,19 +927,21 @@
       });
     });
   }
-  var STAGES = {
-    "loading tesseract core": "Downloading the reading engine (first time only)…",
-    "initializing tesseract": "Getting the reading engine ready…",
-    "loading language traineddata": "Downloading the English reading data (first time only)…",
-    "initializing api": "Getting the reading engine ready…"
+  var STAGES = { // what the engine is doing: [key, English]
+    "loading tesseract core": ["photo.stage.engine", "Downloading the reading engine (first time only)…"],
+    "initializing tesseract": ["photo.stage.ready", "Getting the reading engine ready…"],
+    "loading language traineddata": ["photo.stage.data", "Downloading the English reading data (first time only)…"],
+    "initializing api": ["photo.stage.ready", "Getting the reading engine ready…"]
   };
+
+  function stage(st) { var x = STAGES[st]; return x ? tr(x[0], x[1]) : ""; }
 
   function readFile(file) {
     if (busy || !spot) return;
     closeMenu();
-    if (!file || (file.type && !/^image\//i.test(file.type))) { setStatus("That isn’t a picture. Choose a photo or a screenshot (JPG or PNG).", "err"); return; }
+    if (!file || (file.type && !/^image\//i.test(file.type))) { setStatus(tr("photo.err.notPicture", "That isn’t a picture. Choose a photo or a screenshot (JPG or PNG)."), "err"); return; }
     setBusy(true);
-    setStatus("Opening the picture…", "busy");
+    setStatus(tr("photo.opening", "Opening the picture…"), "busy");
     var lastPct = -1;
     onProgress = function(m) {
       if (!m || !statusEl) return;
@@ -859,16 +950,16 @@
         if (pct === lastPct) return;
         lastPct = pct;
         var s = statusEl.querySelector("span");
-        if (s && /^Reading the picture/.test(statusEl.textContent)) s.textContent = pct + "%";
-      } else if (STAGES[m.status] && statusEl.textContent.indexOf(STAGES[m.status]) !== 0) {
-        setStatus(STAGES[m.status] + (m.progress > 0 && m.progress < 1 ? " <span aria-hidden=\"true\">" + Math.round(m.progress * 100) + "%</span>" : ""), "busy");
+        if (s && statusKind === "reading") s.textContent = pct + "%";
+      } else if (STAGES[m.status] && statusEl.textContent.indexOf(stage(m.status)) !== 0) {
+        setStatus(stage(m.status) + (m.progress > 0 && m.progress < 1 ? " <span aria-hidden=\"true\">" + Math.round(m.progress * 100) + "%</span>" : ""), "busy");
       } else if (STAGES[m.status] && m.progress > 0 && m.progress < 1) {
         var sp = statusEl.querySelector("span");
         if (sp) sp.textContent = Math.round(m.progress * 100) + "%";
       }
     };
     prepare(file).then(function(pic) {
-      setStatus(window.Tesseract || worker ? "Reading the picture…" : "Downloading the reading engine (first time only)…", "busy");
+      setStatus(window.Tesseract || worker ? tr("photo.reading", "Reading the picture…") : stage("loading tesseract core"), "busy");
       return ocr(pic);
     }).then(function(r) {
       setBusy(false);
@@ -876,13 +967,13 @@
       rest();
       var box = spot.box();
       var res = cleanAll(r.text, !!box && box.tagName === "TEXTAREA");
-      if (!res.text || r.conf < 50) { setStatus("No writing could be read in the picture. Try again closer up, in good light, with the problem filling most of the picture. Printed problems work best.", "err"); return; }
+      if (!res.text || r.conf < 50) { setStatus(tr("photo.err.nothing", "No writing could be read in the picture. Try again closer up, in good light, with the problem filling most of the picture. Printed problems work best."), "err"); return; }
       show(res, r.conf);
     })["catch"](function(e) {
       setBusy(false);
       onProgress = null;
       warn(e);
-      setStatus((e && e.friendly) || "Something went wrong reading the picture. Try again, or type the problem.", "err", !!(e && e.friendly === NEED_NET));
+      setStatus((e && e.friendly) || tr("photo.err.other", "Something went wrong reading the picture. Try again, or type the problem."), "err", !!(e && e.friendly === needNet()));
     });
   }
   var lastRes = null,
@@ -904,18 +995,25 @@
     fire(box, "input");
     if (!spot.go) fire(box, "change"); // a whole problem in the first box: the page reads it now
     if (!coarse || spot.go) { try { box.focus(); var n = box.value.length; if (box.setSelectionRange) box.setSelectionRange(n, n); } catch (e) {} }
-    var msg = spot.go ? "Check the text, then press " + spot.go + "." : "Check the text, and fix anything the picture got wrong.";
-    if (lastConf < 65) msg = "Parts of the picture were hard to read (printed problems work best). " + msg;
+    var msg = spot.go ? tr("photo.checkPress", "Check the text, then press {button}.", { button: goLabel() }) : tr("photo.check", "Check the text, and fix anything the picture got wrong.");
+    if (lastConf < 65) msg = tr("photo.hard", "Parts of the picture were hard to read (printed problems work best). {msg}", { msg: msg });
     var picks = "";
     if (res.problems.length > 1) {
-      picks = " The picture has " + res.problems.length + " problems. Showing: " + res.problems.slice(0, 12).map(function(p, i) {
-        return '<button type="button" class="ht-cam-pick" data-p="' + i + '" aria-pressed="' + (i === k) + '" aria-label="Problem ' + (i + 1) + ": " + escAttr(p) + '">' + (i + 1) + "</button>";
+      picks = " " + tr("photo.many", "The picture has {n} problems. Showing:", { n: res.problems.length }) + " " + res.problems.slice(0, 12).map(function(p, i) {
+        return '<button type="button" class="ht-cam-pick" data-p="' + i + '" aria-pressed="' + (i === k) + '" aria-label="' + escAttr(tr("photo.problemN", "Problem {i}: {problem}", { i: i + 1, problem: p })) + '">' + (i + 1) + "</button>";
       }).join("");
     }
     setStatus(msg + picks, "", res.problems.length > 1);
   }
 
   function escAttr(s) { return String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;"); }
+
+  // the button to press after checking, by its words now (in English: what spot.go says)
+  function goLabel() {
+    if (!foreign()) return spot.go;
+    if (spot.go === "Enter") return tr("photo.enter", "Enter");
+    return label(spot.goBtn && spot.goBtn()) || spot.go;
+  }
 
   /* ===================== paste and drop ===================== */
   function imageFrom(dt) {
@@ -975,7 +1073,7 @@
         e.stopPropagation();
       }
       if (f) readFile(f);
-      else if (hasFiles(e.dataTransfer)) setStatus("That isn’t a picture. Drop a photo or a screenshot (JPG or PNG).", "err");
+      else if (hasFiles(e.dataTransfer)) setStatus(tr("photo.err.notPictureDrop", "That isn’t a picture. Drop a photo or a screenshot (JPG or PNG)."), "err");
     }));
   }
 
@@ -1009,6 +1107,7 @@
   }
 
   window.HelperPhoto = { clean: clean, cleanAll: cleanAll, read: function(file) { readFile(file); }, spot: function() { return spot; }, last: function() { return last; }, prepare: prepare };
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", safe(start));
-  else safe(start)();
+  var begin = function() { whenReady(safe(start)); }; // the button's words in the page's language
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", begin);
+  else begin();
 })();

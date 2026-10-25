@@ -74,9 +74,22 @@
 
   // what a piece says on its own, read as part of what's around it
   function pieceName(el, words) {
-    var b = before(el);
+    var b = before(el),
+      L = HT() && HT().speechWords ? HT().speechWords() : null; // the math words of the page's language (null: English)
+    if (L) return pieceNameL(el, words, b, L);
     if (el.matches(".fr, .frac, .fraction") && /\d$/.test(b.tail) && !/[÷×+−=\/·*.,]\s*\d+$/.test(b.tail) && /^\d+ [a-z]/.test(words) && !/ over /.test(words)) return "and " + words; // 1 and 3 quarters, not "÷ 6" then 3/4
     if (el.matches(".rad, .rt") && !b.gap && /(\d|(^|[^A-Za-z])[A-Za-z]|\))$/.test(b.tail) && /^the square root of /.test(words) && !/ the quantity /.test(words)) return words.replace(/^the square root of /, "root "); // 6 root 2
+    return words;
+  }
+
+  // the same in another language, with its speech table's words (tools.js, "tools.speech" in assets/i18n/<lang>.js):
+  // "2 y 3 cuartos" (its "and"), "6 por la raíz cuadrada de 2" (its "times")
+  function pieceNameL(el, words, b, L) {
+    var over = String((L.fractions || {}).over || "").replace(/\{[ab]\}/g, "").trim(),
+      root2 = String((L.roots || {})["2"] || ""),
+      qty = String(L.quantity || "");
+    if (el.matches(".fr, .frac, .fraction") && /\d$/.test(b.tail) && !/[÷×+−=\/·*.,]\s*\d+$/.test(b.tail) && /^(?:\d+|[^\s\d]+) [^\s\d]/.test(words) && !(over && (" " + words + " ").indexOf(" " + over + " ") >= 0)) return (L.and || "and") + " " + words;
+    if (el.matches(".rad, .rt") && !b.gap && /(\d|(^|[^A-Za-z])[A-Za-z]|\))$/.test(b.tail) && root2 && words.indexOf(root2 + " ") === 0 && !(qty && words.indexOf(" " + qty + " ") >= 0)) return (L.times || "times") + " " + words;
     return words;
   }
 

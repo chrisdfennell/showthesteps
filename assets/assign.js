@@ -10,6 +10,22 @@
 (function() {
   "use strict";
   if (window.HelperAssign) return;
+
+  /* ---- the words, in the visitor's language (assets/i18n.js): the assign.* keys, and en.js repeats the English for
+     translators. English always shows the words written here; so does a page without i18n.js. ---- */
+  function tr(key, en, vars) {
+    var I = window.HelperI18n;
+    if (I && I.lang && I.lang !== "en" && I.t) {
+      var s = I.t(key, vars);
+      if (s !== key) return s;
+    }
+    return vars ? String(en).replace(/\{(\w+)(\|[^{}]*)?\}/g, function(m, k, forms) { // {name}, and {n|one|other}
+      if (!Object.prototype.hasOwnProperty.call(vars, k)) return m;
+      if (!forms) return String(vars[k]);
+      var f = forms.slice(1).split("|");
+      return Number(vars[k]) === 1 ? f[0] : f[f.length - 1];
+    }) : en;
+  }
   var KEY = "assignment-draft",
     MAX = 100;
   var SITE = window.HelperSite;
@@ -286,18 +302,18 @@
     if (!link) return;
     var n = count();
     link.hidden = !n;
-    link.textContent = n + " in your assignment";
+    link.textContent = tr("assign.count", "{n} in your assignment", { n: n });
     link.href = builder();
-    link.title = "Open the assignment builder: put the problems in order, add a due date and share one link";
+    link.title = tr("assign.countTitle", "Open the assignment builder: put the problems in order, add a due date and share one link");
   }
 
   function onAdd() {
     var page = here(),
       what = add(page, location.search);
-    var txt = { added: "Added ✓", already: "Already in it ✓", full: "Assignment full (100)", error: "Couldn’t save it here" } [what] || "Added ✓";
+    var txt = { added: tr("assign.added", "Added ✓"), already: tr("assign.already", "Already in it ✓"), full: tr("assign.full", "Assignment full (100)"), error: tr("assign.error", "Couldn’t save it here") } [what] || tr("assign.added", "Added ✓");
     btn.textContent = txt;
     clearTimeout(timer);
-    timer = setTimeout(function() { btn.textContent = "Add to assignment"; }, 2200);
+    timer = setTimeout(function() { btn.textContent = tr("assign.add", "Add to assignment"); }, 2200);
     paintCount();
   }
 
@@ -314,8 +330,8 @@
     btn.type = "button";
     btn.id = "htAssign";
     btn.className = copy.className;
-    btn.textContent = "Add to assignment";
-    btn.title = "Add this problem, just as it is, to the assignment you’re building on this device";
+    btn.textContent = tr("assign.add", "Add to assignment");
+    btn.title = tr("assign.addTitle", "Add this problem, just as it is, to the assignment you’re building on this device");
     btn.addEventListener("click", onAdd);
     link = document.createElement("a");
     link.className = "ha-count";

@@ -1,11 +1,12 @@
 /* Keeps a copy of the site so it works offline once it has been opened.
    Pages are fetched fresh whenever there's a connection (so updates show straight away),
    and the saved copy is used when there isn't. The fonts are the site's own files too (assets/fonts).
-   Adding a page: put it in PAGES (its real file, with its folder). Change VERSION to throw away everything saved before.
+   Adding a page: put it in PAGES (its real file, with its folder); a language adds its files under assets/i18n/ here too.
+   Change VERSION to throw away everything saved before.
    Pages are opened by readable addresses (helpers/order-of-operations, no .html): offline, such an address is found
    under its file's name.
    This file stays at the top of the site: a service worker only looks after the pages in its own folder and below. */
-var VERSION = "v10";
+var VERSION = "v11";
 var CACHE = "helpers-" + VERSION;
 var PAGES = [
   "./", "index.html", "404.html",
@@ -22,6 +23,10 @@ var PAGES = [
   "practice/sets.html", "practice/worksheets.html", "practice/flash-cards.html", "practice/problem-of-the-day.html", "practice/progress.html", "practice/skills.html", "practice/review.html", "practice/class-results.html",
   "reference/sheets.html", "reference/definitions.html", "info/about.html", "info/privacy.html", "info/help.html", "info/embed.html", "tests/self-test.html",
   "assets/site.js", "assets/nav.js", "assets/progress.js", "assets/glossary.js", "assets/search.js", "assets/tools.js", "assets/tutor.js", "assets/play.js", "assets/a11y.js", "assets/embed.js", "assets/qr.js", "assets/standards.js", "assets/assign.js", "assets/photo.js", "assets/voice.js",
+  // the site in other languages (assets/i18n.js): the shared strings of each language, and each helper's own
+  "assets/i18n.js", "assets/i18n/en.js", "assets/i18n/es.js",
+  "assets/i18n/en/addition.js", "assets/i18n/en/subtraction.js", "assets/i18n/en/multiplication.js", "assets/i18n/en/division.js", "assets/i18n/en/fractions.js", "assets/i18n/en/percents.js",
+  "assets/i18n/es/addition.js", "assets/i18n/es/subtraction.js", "assets/i18n/es/multiplication.js", "assets/i18n/es/division.js", "assets/i18n/es/fractions.js", "assets/i18n/es/percents.js",
   "reference/standards.html", "learn/index.html",
   "assets/fonts/fonts.css", "assets/fonts/archivo-latin.woff2", "assets/fonts/IBMPlexSans-Regular-Latin1.woff2", "assets/fonts/IBMPlexSans-Medium-Latin1.woff2",
   "assets/fonts/IBMPlexSans-SemiBold-Latin1.woff2", "assets/fonts/IBMPlexMono-Regular-Latin1.woff2", "assets/fonts/IBMPlexMono-SemiBold-Latin1.woff2",

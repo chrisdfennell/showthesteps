@@ -1855,13 +1855,13 @@
      exactly this problem. Theme is never put in the URL.
 
      mode=area|vol|right|angle
-     shape=<id>          area:  rect, square, tri, para, trap, circle, lshape
+     shape=<id>          area:  rect, square, tri, heron (a triangle from its three sides), para, trap, circle, lshape
                          vol:   box, cube, cyl, cone, sphere, tprism, pyr
                          right: hyp, leg, check
                          angle: tri, line, comp, point, vert, par, poly
                          (if mode is missing, a shape id that only one mode has picks the mode)
      then one parameter per measurement, named like the field's key:
-       rect l, w · square s · tri b, h, s1, s2 · para b, h, s · trap a, b, h, c, d ·
+       rect l, w · square s · tri b, h, s1, s2 · heron a, b, c · para b, h, s · trap a, b, h, c, d ·
        circle r + rd=r|d (r is the radius, or the diameter when rd=d) · lshape W, H, w, h (case matters) ·
        box l, w, h · cube s · cyl r, h, rd · cone r, h, rd · sphere r, rd · tprism b, h, l, s1, s2 · pyr s, h ·
        hyp a, b · leg a, c · check a, b, c ·
@@ -1879,7 +1879,9 @@
        square pyramid 6 4 · hypotenuse 3 4 · legs 3 and 4 · leg 5 hypotenuse 13 · missing leg 5 13 ·
        is 5 12 13 a right triangle · triangle angles 50 60 · supplement of 130 · straight line 130 · complement of 35 ·
        around a point 90 120 75 · vertical angles 65 · parallel lines angle 3 = 65 · hexagon ·
-       interior angles of a 7-sided polygon.
+       interior angles of a 7-sided polygon · area of a triangle with sides 5, 6 and 7 · Heron's formula 13 14 15 ·
+       sides named by their corners: triangle ABC with AB = 5, BC = 6, CA = 7 (Heron) · right triangle ABC, ∠C = 90°,
+       AC = 3, BC = 4, find AB (the legs are the sides at the right angle; side a is BC, across from A).
        A unit written after a number (8 cm by 5 cm) sets the units. Anything it can't read gets a friendly
        notice with examples; the other parameters (unit, pi, practice) still apply alongside q.
        Also read: a label and polite words ("Problem 4:", "can you please", "show your work"), number words (radius six,
@@ -4371,6 +4373,167 @@
         "<b>So:</b> " + vT(left.v) + " ≠ " + vT(right.v) + " — not a right triangle <span class=\"no\">✗</span>";
     }
 
+    /* ---------- a triangle from its three sides: Heron's formula ---------- */
+    // √q for a fraction q, as exactly as it goes: {exact:true, v} (a fraction), or k√m / d (simplified), or only a decimal
+    function rootExact(q) {
+      var info = sqrtInfo(q);
+      if (info.exact) return { exact: true, v: info.v, f: toF(info.v) };
+      var rd = isqrt(q.d),
+        sqD = rd * rd === q.d, // √(n/16) = √n ÷ 4; otherwise √(n/d) = √(n·d) ÷ d
+        N = sqD ? q.n : q.n * q.d,
+        out = { exact: false, f: Math.sqrt(Number(q.n) / Number(q.d)), N: N, d: sqD ? rd : q.d, sqD: sqD, k: null, m: null };
+      if (N < 10n ** 13n) {
+        var k = isqrt(N);
+        for (; k > 1n; k--)
+          if (N % (k * k) === 0n) break;
+        var c = R(k, out.d); // = k√m / d
+        out.k = k;
+        out.m = N / (k * k);
+        out.c = c;
+      }
+      return out;
+    }
+
+    function rootH(r) { // k√m / d, simplified
+      if (r.exact) return vH(r.v);
+      if (r.m === null) return radH(esc(String(r.N))) + (r.d !== 1n ? " ÷ " + esc(String(r.d)) : "");
+      var top = (r.c.n === 1n ? "" : esc(String(r.c.n))) + radH(esc(String(r.m)));
+      return r.c.d === 1n ? top : '<span class="fr"><span class="nu">' + top + '</span><span class="de">' + esc(String(r.c.d)) + "</span></span>";
+    }
+
+    function rootT(r) {
+      if (r.exact) return vT(r.v);
+      if (r.m === null) return "√" + r.N + (r.d !== 1n ? " ÷ " + r.d : "");
+      return (r.c.n === 1n ? "" : String(r.c.n)) + "√" + r.m + (r.c.d === 1n ? "" : "/" + r.c.d);
+    }
+
+    function runHeron(C, g) {
+      var a = g("a"),
+        b = g("b"),
+        c = g("c");
+      var o = [a, b, c].slice().sort(function(p, q) { return p.f - q.f; });
+      var sumS = apply("+", o[0].v, o[1].v),
+        okT = sumS.n * o[2].v.d > o[2].v.n * sumS.d;
+      if (!okT) throw new UserErr("Those three sides can’t make a triangle: the two shorter ones, <b>" + o[0].t + " + " + o[1].t + " = " + vT(sumS) + "</b>, " +
+        (sumS.n * o[2].v.d === o[2].v.n * sumS.d ? "only just equal" : "don’t reach past") + " the longest one, <b>" + o[2].t + "</b>. Any two sides of a triangle have to add up to <i>more</i> than the third (the <b>triangle inequality</b>), or the ends can’t meet" +
+        (sumS.n * o[2].v.d === o[2].v.n * sumS.d ? " — they’d lie flat in a straight line" : "") + ".");
+      var lab3 = { a: "a", b: "b", c: "c" };
+      // 0. it can be a triangle
+      var B0 = { kind: "note", title: "Can it be a triangle?", html: "" };
+      C.blocks.push(B0);
+      var s0 = logItem(C, [
+        ["a", "Check", "First make sure the sides can make a triangle: the two shorter ones have to add up to more than the longest. <b>" + o[0].t + " + " + o[1].t + " = " + vH(sumS) + "</b>, which is more than <b>" + o[2].t + "</b> ✓ (the <b>triangle inequality</b>)."]
+      ]);
+      B0.html = '<span data-step="' + s0 + '">' + o[0].t + " + " + o[1].t + " = " + vH(sumS) + " &gt; " + o[2].t + ' <span class="ok">✓</span></span>';
+      // 1. the perimeter, and half of it
+      var P = chain(C, block(C, "Perimeter", "the three sides added up"), { lhs: lhsH("P"), f: "a + b + c", vars: { a: a, b: b, c: c }, pow: 1, why: WHY.triP, sum: true });
+      var sv = chain(C, block(C, "Half the perimeter", "Heron’s formula starts from s, the semi-perimeter"), { lhs: lhsH("s"), f: "P ÷ 2", vars: { P: num(P.v) }, noFinal: true, why: "Heron’s formula needs <b>s</b>, half the perimeter (the <b>semi-perimeter</b>): <b>s = (a + b + c) ÷ 2</b>.", ftag: "s" });
+      // 2. Heron: A² = s(s − a)(s − b)(s − c)
+      var B2 = block(C, "Area", "Heron’s formula, from the three sides");
+      var sq = chain(C, B2, { lhs: lhsH("A²"), lhsT: "A²", f: "s × (s − a) × (s − b) × (s − c)", vars: { s: num(sv.v), a: a, b: b, c: c }, noFinal: true, ftag: "Heron", why: "<b>Heron’s formula</b> gives the area from the three sides alone — no height needed: <b>A = √(s(s − a)(s − b)(s − c))</b>. Work out what’s under the root first: each bracket is how much longer s is than one side.", aside: "It’s named after Hero of Alexandria, who wrote it down about 2,000 years ago." });
+      var r = rootExact(sq.v),
+        sqH = vH(sq.v),
+        dec = fmtF(r.f, 2),
+        unit2 = unitH(2);
+      if (r.exact) {
+        var sE = logItem(C, [
+          ["e", "Root", "Take the square root: <b>√" + sqH + " = " + vH(r.v) + "</b>, because <b>" + vH(r.v) + " × " + vH(r.v) + " = " + sqH + "</b>."]
+        ]);
+        addRow(B2, { lhs: lhsH("A"), rel: "=", expr: radH(sqH), step: sE });
+        addRow(B2, { rel: "=", expr: vH(r.v) + unit2, step: sE, cls: "result" });
+        if (!isTermD(r.v.d) || places(r.v.d) > 4) {
+          var sE2 = logItem(C, [
+            ["p", "Round", "As a decimal, <b>≈ " + esc(dec) + "</b>, to 2 decimal places."]
+          ]);
+          addRow(B2, { rel: "≈", expr: esc(dec) + unit2, step: sE2, cls: "result" });
+        }
+      } else {
+        var lines = [],
+          sR;
+        sR = logItem(C, [
+          ["e", "Root", "Take the square root: <b>A = √" + sqH + "</b>. It isn’t a perfect square, so keep it as a root and simplify it." + (r.d === 1n ? "" : " It’s a fraction, " + sqH + " = " + frHTML(String(sq.v.n), String(sq.v.d)) + ", so " + (r.sqD ? "take the root of the top and the bottom: <b>√" + sq.v.n + " ÷ √" + sq.v.d + " = √" + r.N + " ÷ " + r.d + "</b>." : "multiply its top and bottom by " + sq.v.d + " to make the bottom a perfect square: <b>√(" + r.N + " ÷ " + sq.v.d + "²) = √" + r.N + " ÷ " + r.d + "</b>."))]
+        ]);
+        addRow(B2, { lhs: lhsH("A"), rel: "=", expr: radH(sqH), step: sR });
+        if (r.d !== 1n) addRow(B2, { rel: "=", expr: radH(esc(String(r.N))) + '<span class="op-s">÷</span>' + esc(String(r.d)), step: sR });
+        if (r.m !== null && r.k > 1n) {
+          var kk = (r.k * r.k).toString();
+          var sS = logItem(C, [
+            ["e", "Simplify", "Find the biggest perfect square in " + r.N + ": <b>" + r.N + " = " + kk + " × " + r.m + "</b>, and √" + kk + " = " + r.k + ", so <b>√" + r.N + " = " + r.k + "√" + r.m + "</b>" + (r.d !== 1n ? ", and " + r.k + "√" + r.m + " ÷ " + r.d + " = <b>" + esc(rootT(r)) + "</b>" : "") + "."]
+          ]);
+          addRow(B2, { rel: "=", expr: radH(kk + '<span class="op-s">×</span>' + r.m) + (r.d !== 1n ? '<span class="op-s">÷</span>' + esc(String(r.d)) : ""), step: sS });
+          addRow(B2, { rel: "=", expr: rootH(r) + unit2, step: sS, cls: "result" });
+        } else if (r.m !== null) {
+          C.log[sR].lines.push(["e", "Simplify", "No perfect square (4, 9, 16, 25, …) goes into " + r.N + ", so √" + r.N + " is as simple as it gets" + (r.d !== 1n ? ": <b>A = " + esc(rootT(r)) + "</b>" : "") + "."]);
+          if (r.d !== 1n) addRow(B2, { rel: "=", expr: rootH(r) + unit2, step: sR, cls: "result" });
+        }
+        var sD = logItem(C, [
+          ["p", "Round", "As a decimal: <b>A ≈ " + esc(dec) + "</b>, rounded to 2 decimal places."]
+        ]);
+        addRow(B2, { rel: "≈", expr: esc(dec) + unit2, step: sD, cls: "result" });
+      }
+      C.lastStep = C.log.length - 1;
+      // 3. a right triangle? then ½ × leg × leg gives the same
+      var x = o[0],
+        y = o[1],
+        z = o[2],
+        x2 = apply("×", x.v, x.v),
+        y2 = apply("×", y.v, y.v),
+        z2 = apply("×", z.v, z.v),
+        l2 = apply("+", x2, y2),
+        isR = l2.n * z2.d === z2.n * l2.d;
+      var half = apply("×", V(1, 2), apply("×", x.v, y.v));
+      if (isR) {
+        var sRt = logItem(C, [
+          ["a", "Right?", "These sides fit <b>a² + b² = c²</b>: " + x.t + "² + " + y.t + "² = " + vH(x2) + " + " + vH(y2) + " = " + vH(l2) + " = " + z.t + "². So it’s a <b>right triangle</b>, and its two legs are a base and a height: <b>½ × " + x.t + " × " + y.t + " = " + vH(half) + "</b> — the same area ✓."]
+        ]);
+        note(C, "It’s a right triangle", '<span data-step="' + sRt + '">' + x.t + "² + " + y.t + "² = " + z.t + "², so ½ × " + x.t + " × " + y.t + " = " + vH(half) + ' <span class="ok">✓</span></span>');
+        C.facts.push("It’s a right triangle (" + esc(x.t) + "² + " + esc(y.t) + "² = " + esc(z.t) + "²), so ½ × leg × leg = ½ × " + esc(x.t) + " × " + esc(y.t) + " = <b>" + vH(half) + "</b> checks it");
+      }
+      // the drawing, to scale: B and C along the bottom, A above
+      var ax = (a.f * a.f + c.f * c.f - b.f * b.f) / (2 * a.f),
+        ay = Math.sqrt(Math.max(0, c.f * c.f - ax * ax));
+      var PB = [0, 0],
+        PC = [a.f, 0],
+        PA = [ax, ay],
+        Fg = new Fig([PB, PC, PA, [Math.min(0, ax), 0],
+          [Math.max(a.f, ax), 0]
+        ], { H: 280 }),
+        cc = cen([PA, PB, PC]);
+      Fg.poly([PA, PB, PC], "shp");
+      Fg.poly([PA, PB, PC], "out");
+      if (isR) {
+        var rv = z === a ? [PA, PB, PC] : z === b ? [PB, PC, PA] : [PC, PA, PB]; // the corner across from the longest side
+        Fg.ra(rv[0], rv[1], rv[2], 10);
+      }
+      Fg.label(PB, PC, lab(lab3.a, a), "", PA);
+      Fg.label(PC, PA, lab(lab3.b, b), "", PB);
+      Fg.label(PA, PB, lab(lab3.c, c), "", PC);
+      var vtx = ["A", "B", "C"];
+      [
+        [PA, vtx[0]],
+        [PB, vtx[1]],
+        [PC, vtx[2]]
+      ].forEach(function(p) {
+        var dx = p[0][0] - cc[0],
+          dy = p[0][1] - cc[1],
+          L = Math.sqrt(dx * dx + dy * dy) || 1,
+          P0 = Fg.p(p[0]);
+        Fg.textPx([P0[0] + dx / L * 16, P0[1] - dy / L * 16 + 5], esc(p[1]), "big", "middle");
+      });
+      addFig(C, Fg.svg("A triangle with sides " + a.t + ", " + b.t + " and " + c.t + ", drawn to scale"), "<b class=\"lead\">Drawn to scale.</b> Three sides fix the triangle’s shape completely — that’s why Heron’s formula needs nothing else." + (isR ? " The square corner is across from the longest side." : ""));
+      // the answers
+      var facts = ["s = " + vH(sv.v) + ", and A² = s(s − a)(s − b)(s − c) = <b>" + sqH + "</b>"];
+      if (r.exact) answer(C, "Area", { x: r.v, v: r.v }, 2);
+      else {
+        facts.push("<b>" + rootH(r) + "</b> is the exact area; the decimal is rounded to 2 places");
+        C.answers.push({ k: "Area", main: rootH(r) + " ≈ " + esc(dec) + unit2, mainT: rootT(r) + " ≈ " + dec + (unitT(2) ? " " + unitT(2) : ""), facts: facts, ck: { c: r.f, pi: false, pow: 2, simp: rootT(r) } });
+      }
+      if (r.exact) C.answers[0].facts = facts.concat(C.answers[0].facts);
+      answer(C, "Perimeter", P, 1);
+      C.closer = isR ? "<b>Check:</b> it’s a right triangle, so ½ × " + x.t + " × " + y.t + " = <b>" + vH(half) + "</b> — the same as Heron’s formula <span class=\"ok\">✓</span>" :
+        "<b>Check:</b> stand it on side " + esc(lab3.a) + " = " + a.t + ". Corner A is " + fmtF(ax, 2) + " along from B, so its height is √(" + c.t + "² − " + fmtF(ax, 2) + "²) ≈ <b>" + fmtF(ay, 2) + "</b>, and ½ × " + a.t + " × " + fmtF(ay, 2) + " ≈ <b>" + fmtF(a.f * ay / 2, 2) + "</b> <span class=\"ok\">✓</span>";
+    }
+
     /* ---------- angles ---------- */
     function sumF(list) { return list.reduce(function(s, x) { return s + x.f; }, 0); }
 
@@ -4588,6 +4751,7 @@
         { id: "rect", name: "Rectangle", f: [F("l", "Length", "l"), F("w", "Width", "w")], d: { l: "8", w: "5" }, run: function(C, g) { runRect(C, g, false); } },
         { id: "square", name: "Square", f: [F("s", "Side", "s")], d: { s: "6" }, run: function(C, g) { runRect(C, g, true); } },
         { id: "tri", name: "Triangle", f: [F("b", "Base", "b"), F("h", "Height", "h"), F("s1", "Left side", "s₁", { opt: "for perimeter" }), F("s2", "Right side", "s₂", { opt: "for perimeter" })], d: { b: "6", h: "4", s1: "5", s2: "5" }, run: runTri },
+        { id: "heron", name: "Triangle from 3 sides", f: [F("a", "Side", "a"), F("b", "Side", "b"), F("c", "Side", "c")], d: { a: "5", b: "6", c: "7" }, run: runHeron },
         { id: "para", name: "Parallelogram", f: [F("b", "Base", "b"), F("h", "Height", "h"), F("s", "Slanted side", "s", { opt: "for perimeter" })], d: { b: "9", h: "4", s: "5" }, run: runPara },
         { id: "trap", name: "Trapezoid", f: [F("a", "Top", "a"), F("b", "Bottom", "b"), F("h", "Height", "h"), F("c", "Left side", "c", { opt: "for perimeter" }), F("d", "Right side", "d", { opt: "for perimeter" })], d: { a: "4", b: "10", h: "4", c: "5", d: "5" }, run: runTrap },
         { id: "circle", name: "Circle", f: [F("r", "Radius", "r", { rd: true })], d: { r: "5", rd: "r" }, pi: true, run: runCircle },
@@ -4923,6 +5087,8 @@
         ["Triangle b 6, h 4", "tri", { b: "6", h: "4", s1: "5", s2: "5" }],
         ["Triangle b 7, h 3", "tri", { b: "7", h: "3", s1: "", s2: "" }],
         ["Leaning triangle", "tri", { b: "4", h: "12", s1: "13", s2: "15" }],
+        ["Sides 5, 6, 7", "heron", { a: "5", b: "6", c: "7" }],
+        ["Sides 13, 14, 15", "heron", { a: "13", b: "14", c: "15" }],
         ["Parallelogram 9 by 4", "para", { b: "9", h: "4", s: "5" }],
         ["Trapezoid 4 & 10", "trap", { a: "4", b: "10", h: "4", c: "5", d: "5" }],
         ["Circle r 5", "circle", { r: "5", rd: "r" }],
@@ -5061,6 +5227,38 @@
             msg = "Numbers this small can’t make a whole-number triangle with a whole height, so the slanted sides are left out.";
           }
           if (d.id === "tprism") v.l = gv(2, M, dec);
+          break;
+        case "area:heron":
+          var HT = [
+            [3, 4, 5],
+            [5, 5, 6],
+            [5, 5, 8],
+            [6, 8, 10],
+            [5, 12, 13],
+            [10, 13, 13],
+            [13, 14, 15],
+            [9, 10, 17],
+            [8, 15, 17],
+            [13, 20, 21],
+            [10, 17, 21],
+            [11, 13, 20],
+            [7, 15, 20],
+            [9, 12, 15],
+            [4, 13, 15],
+            [7, 24, 25],
+            [12, 16, 20]
+          ].filter(function(t) { return t[2] <= Mx; });
+          var ht;
+          if (HT.length && Math.random() < .55) ht = pickOf(HT).slice();
+          else {
+            for (var hk = 0; hk < 60; hk++) {
+              ht = [rint(2, Math.max(2, Mx)), rint(2, Math.max(2, Mx)), rint(2, Math.max(2, Mx))].sort(function(p, q) { return p - q; });
+              if (ht[0] + ht[1] > ht[2]) break;
+            }
+            if (ht[0] + ht[1] <= ht[2]) ht = [5, 6, 7];
+          }
+          ht.sort(function() { return Math.random() - .5; });
+          v = { a: sc(ht[0]), b: sc(ht[1]), c: sc(ht[2]) };
           break;
         case "area:para":
           var T1 = triples(Mx).filter(function(t) { return t[0] < Mx; });
@@ -5449,7 +5647,60 @@
       return s.replace(/(\d+) and (?:a |one )?half\b/g, "$1.5").replace(/\b(\d+) hundred\b/g, function(m, n) { return String(+n * 100); });
     }
 
+    // sides named by their corners: "triangle ABC with AB = 5, BC = 6, CA = 7", "right triangle ABC, ∠C = 90°, AC = 3, BC = 4, find AB"
+    function segRead(raw) {
+      var src = String(raw),
+        segs = [],
+        m, re = /\b([A-Z])([A-Z])\s*(?:=|is|:|of)?\s*(\d+(?:\.\d+)?(?:\/\d+)?|\.\d+)(?![\d.\/])/g;
+      while ((m = re.exec(src)))
+        if (m[1] !== m[2] && !segs.some(function(x) { return (x.p + x.q === m[1] + m[2]) || (x.q + x.p === m[1] + m[2]); })) segs.push({ p: m[1], q: m[2], v: m[3] });
+      if (!segs.length) return null;
+      var tri = /\btriangle\s+([A-Z])([A-Z])([A-Z])\b/.exec(src),
+        L = tri ? [tri[1], tri[2], tri[3]] : [];
+      segs.forEach(function(x) {
+        [x.p, x.q].forEach(function(c) { if (L.indexOf(c) < 0) L.push(c); });
+      });
+      var rv = /(?:∠\s*|\bangle\s+)([A-Z])\s*(?:=|is)?\s*90\b|\bright angle\s+(?:at|is)\s+(?:∠\s*|angle\s+)?([A-Z])\b|\b([A-Z])\s+is\s+(?:a|the)\s+right angle/.exec(src),
+        hy = /\bhypotenuse\s+(?:is\s+)?([A-Z])([A-Z])\b|\b([A-Z])([A-Z])\s*(?:\(the hypotenuse\)|is the hypotenuse|,?\s*the hypotenuse)/.exec(src);
+      return {
+        segs: segs,
+        L: L,
+        right: rv ? (rv[1] || rv[2] || rv[3]) : null,
+        hyp: hy ? [hy[1] || hy[3], hy[2] || hy[4]] : null,
+        text: src.replace(re, function(all, p, q, v) { return p !== q ? " " + v : all; })
+      };
+    }
+
     function parseQ(raw) {
+      var SG = segRead(raw),
+        segOut = null;
+      if (SG && SG.L.length === 3 && (SG.segs.length >= 2 || /\btriangle\b/i.test(raw))) {
+        var lowS = String(raw).toLowerCase(),
+          has3 = function(c) { return SG.segs.filter(function(x) { return x.p !== c && x.q !== c; })[0]; };
+        if (SG.segs.length === 3) { // three sides: a is across from the first corner (BC in triangle ABC)
+          var sa = has3(SG.L[0]),
+            sb = has3(SG.L[1]),
+            sc0 = has3(SG.L[2]);
+          if (sa && sb && sc0) segOut = /\bright\b/.test(lowS) && /\b(?:is|are|can|could|does|do|will|would|check|form|make|test|determine)\b|\?/.test(lowS) && !/\barea\b/.test(lowS) ? ["right", "check", { a: sa.v, b: sb.v, c: sc0.v }] : ["area", "heron", { a: sa.v, b: sb.v, c: sc0.v }];
+        } else if (SG.segs.length === 2 && (SG.right || /\bright\b|hypotenuse|pythag|\blegs?\b/.test(lowS))) {
+          // the right angle: given, or the corner across from a named hypotenuse, or the corner the two given sides share
+          var V0 = SG.right,
+            H0 = SG.hyp;
+          if (!V0 && H0) V0 = SG.L.filter(function(c) { return H0.indexOf(c) < 0; })[0];
+          if (!V0) V0 = [SG.segs[0].p, SG.segs[0].q].filter(function(c) { return c === SG.segs[1].p || c === SG.segs[1].q; })[0];
+          var legs = SG.segs.filter(function(x) { return x.p === V0 || x.q === V0; }),
+            hyps = SG.segs.filter(function(x) { return x.p !== V0 && x.q !== V0; });
+          if (legs.length === 2 && /\barea\b/.test(lowS)) {
+            var la0 = qf(legs[0].v),
+              lb0 = qf(legs[1].v),
+              lc0 = Math.sqrt(la0 * la0 + lb0 * lb0),
+              whole = Math.abs(lc0 - Math.round(lc0)) < 1e-9;
+            segOut = ["area", "tri", { b: legs[0].v, h: legs[1].v, s1: whole ? legs[1].v : null, s2: whole ? String(Math.round(lc0)) : null }];
+          } else if (legs.length === 2) segOut = ["right", "hyp", { a: legs[0].v, b: legs[1].v }];
+          else if (legs.length === 1 && hyps.length === 1) segOut = ["right", "leg", { a: legs[0].v, c: hyps[0].v }];
+        }
+        if (!segOut) raw = SG.text; // otherwise read the numbers without the corner names
+      }
       var s = " " + qWords(String(raw).toLowerCase()
           .replace(/[−–—]/g, "-").replace(/°/g, " deg ")
           .replace(/(\d),(\d{3})(?!\d)/g, "$1$2"))
@@ -5536,6 +5787,11 @@
       }
       var v = {},
         m, R, nm, pn = null;
+      if (segOut) return out(segOut[0], segOut[1], segOut[2]);
+      /* Heron's formula: a triangle's area from its three sides */
+      R = rest();
+      if (has(/\bheron/) || (has(/\barea\b/) && has(/\bsides?\b|\btriangle\b/) && R.length === 3 && !has(/\bbase\b|\bheight\b|\bhigh\b|\btall\b|\bangles?\b|\bdeg\b|\bprism|pyramid|\bbox\b|\bcubes?\b|cylind|\bcones?\b|spher|rectang|trapez|parallelogram|circle|\bsquare\b|\blegs?\b|\bhyp/)))
+        return out("area", "heron", R.length >= 3 ? { a: R[0], b: R[1], c: R[2] } : {});
 
       /* polygons */
       for (nm in QPOLY)
@@ -5649,7 +5905,7 @@
       }
       if (has(/triangle/)) {
         // three sides and no height ("sides 5, 5 and 6"): the page needs the height, so it asks for it
-        if (has(/\bsides?\b/) && !has(/\bbase\b|\bheight\b|\bb\s+\d|\bh\s+\d/)) { R = rest(); if (R.length === 3) return out("area", "tri", { b: R[0], h: "", s1: R[1], s2: R[2] }); }
+        if (has(/\bsides?\b/) && !has(/\bbase\b|\bheight\b|\bb\s+\d|\bh\s+\d/)) { R = rest(); if (R.length === 3) return out("area", "heron", { a: R[0], b: R[1], c: R[2] }); } // three sides: Heron's formula
         v.b = take("base|b");
         v.h = take("height|h");
         return out("area", "tri", fill(["b", "h", "s1", "s2"], v));
@@ -5709,6 +5965,7 @@
       function add(label, ck, alts, more) {
         if (!ck) return;
         T.push({
+          simp: ck.simp || null,
           label: label,
           pow: ck.pow || 0,
           pi: !!ck.pi,
@@ -5749,6 +6006,16 @@
             aA.push(al([N(b * x1 / 2), N(b * x2 / 2)], DIAG.slant), al([N(b * x1), N(b * x2)], DIAG.slant + " And remember the ½."));
             pA.push(al([N(b + h + x1), N(b + h + x2), N(b + h + x1 + x2)], "The height isn’t part of the edge — it’s inside the triangle. Add the three sides: b + s₁ + s₂."));
           }
+        } else if (id === "heron") {
+          var ha = f("a"),
+            hb = f("b"),
+            hc = f("c"),
+            hs = (ha + hb + hc) / 2,
+            h2 = hs * (hs - ha) * (hs - hb) * (hs - hc);
+          aA.push(al([N(h2)], "That’s A² — what’s under the square root. Take the square root to get the area."),
+            al([N(Math.sqrt(hs * (hs - ha) * (hs - hb) * (hs - hc) * 4)), N(Math.sqrt(2 * hs * (hs - ha) * (hs - hb) * (hs - hc)))], "Use s, half the perimeter, in every part of the formula: s(s − a)(s − b)(s − c)."),
+            al([N(ha * hb / 2), N(hb * hc / 2), N(ha * hc / 2)], "½ × one side × another only works when those two sides meet at a right angle (the legs). With three sides, use Heron’s formula."));
+          pA.push(al([N(hs)], "That’s s, half the perimeter. The perimeter is all three sides: a + b + c."));
         } else if (id === "para") {
           b = f("b");
           h = f("h");
@@ -6085,6 +6352,15 @@
         best = null,
         i;
       t.cands.forEach(function(c) { best = bestOf(best, matchV(u, c)); });
+      // the right value as a root that still has a square inside (√216 for 6√6)
+      var ur = t.simp && /√|sqrt|root/.test(s) ? /(?:√|sqrt|square root of|root)\s*\(?\s*(\d+)/.exec(s) : null;
+      if (ur && best === "exact") {
+        var un = Number(ur[1]),
+          sqf = false;
+        for (var dd = 2; dd * dd <= un; dd++)
+          if (un % (dd * dd) === 0) sqf = true;
+        if (sqf) return { st: "no", unread: true, msg: "Right value — now simplify the square root: it’s <b>" + esc(t.simp) + "</b>.", note: note };
+      }
       if (best === "exact" || best === "round") return { st: "ok", note: note };
       for (i = 0; i < t.alts.length; i++) {
         if (t.alts[i].cands.some(function(c) { var r = matchV(u, c); return r === "exact" || r === "round"; })) return { st: "no", msg: t.alts[i].msg, note: note };
@@ -6293,7 +6569,7 @@
 
     function answerParts(C, pi) {
       return C.answers.map(function(a) {
-        var v = h2t(a.main),
+        var v = a.mainT || h2t(a.main),
           u = a.ck && a.ck.pow ? unitT(a.ck.pow) : "";
         if (a.ck && a.ck.pi && pi === "exact") v += " (≈ " + fmtF(a.ck.c * Math.PI, 2) + (u ? " " + u : "") + ")";
         return { k: h2t(a.k), v: v, eq: /class="sym"|∠/.test(a.k) };
@@ -6346,6 +6622,8 @@
         case "area:tri":
           return v.s1 && v.s2 ? "Find the area and perimeter of a triangle with base " + L(v.b) + ", height " + L(v.h) + " and slanted sides of " + L(v.s1) + " and " + L(v.s2) + "." :
             "Find the area of a triangle with base " + L(v.b) + " and height " + L(v.h) + ".";
+        case "area:heron":
+          return "Find the area and perimeter of a triangle with sides of " + and([L(v.a), L(v.b), L(v.c)]) + ".";
         case "area:para":
           return v.s ? "Find the area and perimeter of a parallelogram with base " + L(v.b) + ", height " + L(v.h) + " and slanted sides of " + L(v.s) + "." :
             "Find the area of a parallelogram with base " + L(v.b) + " and height " + L(v.h) + ".";

@@ -347,6 +347,13 @@
     padding: 0 4px;
     white-space: nowrap
   }
+  /* the Optimization tab's long examples wrap on a phone instead of pushing the page sideways */
+  @media (max-width: 600px) {
+    .hint code {
+      white-space: normal;
+      overflow-wrap: anywhere
+    }
+  }
   .ask {
     margin: -4px 0 0;
     font-size: 14px;
@@ -2656,7 +2663,7 @@
       <h1>The Graph <em>Paper</em></h1>
       <p class="tagline">Everything on the coordinate plane, one step at a time: plot and read points, find distances and
         midpoints, fill tables of values, graph functions and find their key features, solve systems and inequalities by
-        graphing, move shapes around, and fit a trend line to a scatter plot &mdash; with the reason for every move.
+        graphing, find the best corner of a region (optimization), move shapes around, and fit a trend line to a scatter plot &mdash; with the reason for every move.
         Just straight lines and slope? That&rsquo;s on <a href="lines-and-slope.html">the Slope Grid</a>.</p>
     </div>
     <button class="theme-btn" id="themeBtn" type="button">Dark mode</button>
@@ -2669,6 +2676,7 @@
       <button type="button" data-mode="functions" aria-pressed="false">Functions</button>
       <button type="button" data-mode="systems" aria-pressed="false">Systems</button>
       <button type="button" data-mode="inequalities" aria-pressed="false">Inequalities</button>
+      <button type="button" data-mode="optimize" aria-pressed="false">Optimization</button>
       <button type="button" data-mode="transform" aria-pressed="false">Transformations</button>
       <button type="button" data-mode="scatter" aria-pressed="false">Scatter plots</button>
       <button type="button" data-mode="free" aria-pressed="false">Free plot</button>
@@ -2687,12 +2695,12 @@
         <button type="button" data-k="^" aria-label="To the power" data-only="table functions">^</button>
         <button type="button" data-k="|" aria-label="Absolute value bar" data-only="table functions">|</button>
         <button type="button" data-k="√" aria-label="Square root" data-only="table functions">&radic;</button>
-        <button type="button" data-k=" = " data-only="table functions systems">=</button>
-        <button type="button" data-k=" ≤ " aria-label="Less than or equal to" data-only="inequalities">&le;</button>
-        <button type="button" data-k=" ≥ " aria-label="Greater than or equal to" data-only="inequalities">&ge;</button>
-        <button type="button" data-k="; " aria-label="Semicolon (another one)" data-only="functions systems scatter">;</button>
+        <button type="button" data-k=" = " data-only="table functions systems optimize">=</button>
+        <button type="button" data-k=" ≤ " aria-label="Less than or equal to" data-only="inequalities optimize">&le;</button>
+        <button type="button" data-k=" ≥ " aria-label="Greater than or equal to" data-only="inequalities optimize">&ge;</button>
+        <button type="button" data-k="; " aria-label="Semicolon (another one)" data-only="functions systems scatter optimize">;</button>
         <button type="button" class="vk" data-k="x">x</button>
-        <button type="button" class="vk" data-k="y" data-only="table functions systems inequalities">y</button>
+        <button type="button" class="vk" data-k="y" data-only="table functions systems inequalities optimize">y</button>
       </div>
     </div>
     <p class="hint" id="hint"></p>
@@ -2831,10 +2839,12 @@
 
 <script>
   /* ===================== URL parameters =====================
-     graphing.html?mode=points|table|functions|systems|inequalities|transform|scatter&q=<problem>&practice=all|step|check
+     graphing.html?mode=points|table|functions|systems|inequalities|optimize|transform|scatter&q=<problem>&practice=all|step|check
        mode      which tab. Optional — when it's missing it is worked out from q:
                    scatter, data, trend, predict, correlation, line of best fit            → scatter
                    translate, reflect, rotate, dilate (or slide, flip, turn, enlarge)     → transform
+                   maximize / minimize with limits (< > ≤ ≥), subject to, constraints, feasible region, or a
+                   story about the most profit or the least cost ("each … takes …, how many …")      → optimize
                    any of < > ≤ ≥ (or <= >=)                                              → inequalities
                    table, "for x =", or a table like "x: 1 2 3, y: 4 6 8"                  → table
                    two equations joined by "and", or the words solve / system / intersect /
@@ -2842,7 +2852,8 @@
                    y = …, f(x) = …, or several y = … split by ";"                          → functions
                    anything else with points (plot, read, distance, midpoint, area …)      → points
                  Also accepted: point, plane, coordinates, tables, values, function, graph, graphs, system, sys,
-                 inequality, ineq, transformations, transformation, moves, scatterplot, data.
+                 inequality, ineq, optimization, optimisation, optimise, lp, linear-programming, transformations,
+                 transformation, moves, scatterplot, data.
        q         the problem in plain words, URL-encoded (encodeURIComponent). Forgiving: − – — and - all mean minus,
                  extra words are fine, a raw "+" is read as a plus sign when reading it as a space doesn't work.
                    points        q=plot (3, -2)    q=plot (1,2) (-3,4) (0,-5)    q=read (3, -2)    q=which quadrant is (-4, 1)
@@ -2860,6 +2871,14 @@
                    inequalities  q=x > 3    q=-2 < x <= 3    q=x < -1 or x >= 2    q=2x + 1 > 7
                                  q=y < 2x + 1    q=2x + 3y >= 6    q=y > x - 1 and y <= -2x + 4   (a system: the overlap)
                                  q=read y < 2x + 1   (a "read" problem: the picture is given, write the inequality)
+                   optimize      q=maximize P = 3x + 5y; x + y <= 10; 2x + y <= 16; x >= 0; y >= 0
+                                 q=minimize C = 2x + 4y subject to x + y >= 6, x + 3y >= 10, x, y >= 0
+                                 q=maximize 2x + 3y; x + y <= 4; x - y >= 5   (no feasible region)
+                                 add "x = cakes, y = pies" to name them, "whole numbers" (or "how many") for whole-number answers.
+                                 A story works too: q=A bakery makes cakes and pies. Each cake takes 2 hours of baking and
+                                 1 hour of decorating … There are at most 16 hours of baking … The profit is $3 per cake and
+                                 $5 per pie. How many of each should it make to maximize profit?   (read into x, y and the limits;
+                                 a story it can't read gets a notice with the structured form to type instead)
                    transform     q=reflect (1,2) (4,2) (4,5) over the y-axis    q=rotate triangle (1,1) (3,1) (1,4) 90 clockwise
                                  q=translate (2,3) by (-4, 1)    q=dilate (2,4) (6,4) by 1/2    q=rotate (2,1) 180 about (1,1)
                                  q=reflect (1,2) (3,2) (3,5) over x = 4    q=reflect (1,1) (4,1) (1,3) over the x-axis then translate by (2, 3)
@@ -2873,6 +2892,8 @@
                    functions     f=<expression>;<expression>…   (each one is the right side of y = …)
                    systems       e1=<equation>  e2=<equation>   [plan=1 [unit=visits]: e1, e2 are the two plans' costs, as expressions in x]
                    inequalities  task=graph|read  ineq=<inequality>  [ineq2=<second inequality>: a system]
+                   optimize      goal=max|min  obj=<expression in x and y>  cons=<limit>;<limit>…  [name=P (a letter)]
+                                 [int=1: whole numbers only]  [xl=<what x counts> yl=<what y counts>]
                    transform     pts=x,y;x,y;…  t=<move>  [t2=<second move>]
                                  moves: translate:a,b | reflect:x-axis | reflect:y-axis | reflect:y=x | reflect:y=-x |
                                  reflect:x=k | reflect:y=k | rotate:90cw | rotate:90ccw | rotate:180 | rotate:270cw |
@@ -2897,7 +2918,7 @@
        {type:"helper:make", id, count, options} → {type:"helper:made", id, page:"graphing.html", problems:[{text, html, params, answer, answerHtml}]}
                                                   (html carries a small blank grid where the answer is a picture)
      Option keys (each option lists the modes it applies to in "modes"):
-       mode        points | table | functions | systems | inequalities | transform | scatter
+       mode        points | table | functions | systems | inequalities | optimize | transform | scatter
        pointTask   points:       plot | read | distance | midpoint | polygon | any
        quadrants   points, transform: all four quadrants (toggle; off = first quadrant only)
        max         points, systems, transform: coordinates up to 5 | 10
@@ -2911,6 +2932,8 @@
        sysKind     systems:      grid (crosses on a grid point) | fraction (crosses between grid lines) | parallel | same | plans | any
        sysForm     systems:      slope (y = mx + b) | standard (Ax + By = C) | any
        ineqKind    inequalities: one | compound | two | system | read | any
+       optKind     optimize:     max (maximize, a closed region) | min (minimize, an open region) | story (a story, in
+                                 whole numbers) | special (no feasible region, or no maximum) | any
        moveKind    transform:    translate | reflect | rotate | dilate | sequence | any
        shape       transform:    point | triangle | quad | any
        assoc       scatter:      positive | negative | none | any
@@ -2920,7 +2943,7 @@
   (function() {
     "use strict";
     var $ = function(id) { return document.getElementById(id); };
-    var MODES = ["points", "table", "functions", "systems", "inequalities", "transform", "scatter"];
+    var MODES = ["points", "table", "functions", "systems", "inequalities", "optimize", "transform", "scatter"];
     var PRACTICE = ["all", "step", "check"];
     var S = {
       mode: "points",
@@ -2934,6 +2957,7 @@
         functions: "y = x^2 − 4x + 3",
         systems: "x + y = 6 and x − y = 2",
         inequalities: "y < 2x + 1",
+        optimize: "maximize P = 3x + 5y; x + y ≤ 10; 2x + y ≤ 16; x ≥ 0; y ≥ 0",
         transform: "reflect (1, 2) (4, 2) (4, 5) over the y-axis",
         scatter: "scatter (1, 2) (2, 4) (3, 5) (4, 4) (5, 6) predict x = 8"
       },
@@ -2944,6 +2968,7 @@
         functions: { family: "any", form: "any", irr: false, two: false },
         systems: { kind: "any", form: "any", max: 10 },
         inequalities: { kind: "any" },
+        optimize: { kind: "any" },
         transform: { kind: "any", shape: "any", quads: true, max: 10 },
         scatter: { assoc: "any", outlier: false, predict: true }
       }
@@ -8745,6 +8770,877 @@
       };
     }
 
+    /* ===================== Optimization: the best corner of a region (linear programming) ===================== */
+    var LPREL = { "<": "≤", ">": "≥", "≤": "≤", "≥": "≥", "=": "=" };
+    // one limit, or a chained one (0 ≤ x ≤ 6) as two → [{E:{A, B, C}, rel:"≤"|"≥"|"=", strict, L, R, html, text}]
+    function lpCons(src) {
+      var r = parseRel(src),
+        out = [];
+      if (!r.rels.length) throw new UserErr("<b>" + esc(src) + "</b> has no sign. Each limit needs one, like <b>x + y ≤ 10</b> or <b>x ≥ 0</b>.");
+      for (var i = 0; i < r.rels.length; i++) {
+        var rel = r.rels[i];
+        if (!LPREL[rel] || (rel === "=" && r.rels.length > 1)) throw new UserErr("Use <b>≤ ≥ &lt; &gt;</b> (or one <b>=</b>) in a limit — <b>" + esc(src) + "</b> doesn’t work here.");
+        var L = r.sides[i],
+          Rt = r.sides[i + 1],
+          a = linOf(L),
+          b = linOf(Rt);
+        if (!a || !b) throw new UserErr("<b>" + esc(src) + "</b> isn’t a straight-line limit: " + vH("x") + " and " + vH("y") + " to the first power only.");
+        var E = { A: sub(a.x, b.x), B: sub(a.y, b.y), C: sub(b.k, a.k) };
+        if (isZ(E.A) && isZ(E.B)) throw new UserErr("<b>" + esc(src) + "</b> has no " + vH("x") + " or " + vH("y") + " left once it’s tidied up, so it isn’t a line on the graph.");
+        if (tooBig(E.A) || tooBig(E.B) || tooBig(E.C)) throw new UserErr("Those numbers are too big to draw on a grid. Try smaller ones.");
+        out.push({ E: E, rel: LPREL[rel], strict: rel === "<" || rel === ">", L: L, R: Rt, html: exH(L) + opS(rel) + exH(Rt), text: exT(L) + " " + rel + " " + exT(Rt) });
+      }
+      return out;
+    }
+
+    function lpHolds(c, Q) {
+      var v = add(mul(c.E.A, Q.x), mul(c.E.B, Q.y)),
+        k = cmpR(v, c.E.C);
+      return c.rel === "≤" ? k <= 0 : c.rel === "≥" ? k >= 0 : k === 0;
+    }
+
+    function lpFail(cons, Q) {
+      for (var i = 0; i < cons.length; i++)
+        if (!lpHolds(cons[i], Q)) return i;
+      return -1;
+    }
+    // a direction the region goes on forever in: every limit stays true moving that way
+    function lpRayOK(cons, d) {
+      return cons.every(function(c) {
+        var v = add(mul(c.E.A, d.x), mul(c.E.B, d.y)),
+          k = sgn(v);
+        return c.rel === "≤" ? k <= 0 : c.rel === "≥" ? k >= 0 : k === 0;
+      });
+    }
+    // a·x + b·y + k, shown
+    function lpLinT(a, b, k) {
+      var s = "";
+      [
+        [a, "x"],
+        [b, "y"]
+      ].forEach(function(t) {
+        if (isZ(t[0])) return;
+        var mag = (isOne(absR(t[0])) ? "" : magT(absR(t[0]))) + t[1];
+        s += !s ? (sgn(t[0]) < 0 ? "−" : "") + mag : (sgn(t[0]) < 0 ? " − " : " + ") + mag;
+      });
+      if (k && !isZ(k)) s += !s ? numT(k) : (sgn(k) < 0 ? " − " : " + ") + numT(absR(k));
+      return s || "0";
+    }
+
+    function lpLinH(a, b, k) {
+      var s = "";
+      [
+        [a, "x"],
+        [b, "y"]
+      ].forEach(function(t) {
+        if (isZ(t[0])) return;
+        var mag = (isOne(absR(t[0])) ? "" : nH(absR(t[0]))) + vH(t[1]);
+        s += !s ? (sgn(t[0]) < 0 ? SG : "") + mag : opS(sgn(t[0]) < 0 ? "−" : "+") + mag;
+      });
+      if (k && !isZ(k)) s += !s ? nH(k) : opS(sgn(k) < 0 ? "−" : "+") + nH(absR(k));
+      return s || "0";
+    }
+    // the value to make biggest or smallest: c·x + d·y + k
+    function lpObj(src) {
+      var ast = parseExpr(String(src), "There’s nothing after <b>maximize</b> or <b>minimize</b> — add what to make biggest or smallest, like <b>3x + 5y</b>.");
+      var l = linOf(ast);
+      if (!l) throw new UserErr("What’s maximized or minimized has to be a straight-line expression like <b>3x + 5y</b> (no powers or " + vH("x") + "·" + vH("y") + ").");
+      if (isZ(l.x) && isZ(l.y)) throw new UserErr("<b>" + exH(ast) + "</b> has no " + vH("x") + " or " + vH("y") + " in it, so every point gives the same value.");
+      if (tooBig(l.x) || tooBig(l.y) || tooBig(l.k)) throw new UserErr("Those numbers are too big to work with here. Try smaller ones.");
+      return { ast: ast, cx: l.x, cy: l.y, k: l.k };
+    }
+
+    function lpVal(ob, Q) { return add(add(mul(ob.cx, Q.x), mul(ob.cy, Q.y)), ob.k); }
+
+    function lpSide(c) { // which side of its boundary line is kept
+      if (c.rel === "=") return "on the line itself";
+      var ge = c.rel === "≥";
+      if (!isZ(c.E.B)) return (sgn(c.E.B) > 0) === ge ? "above" : "below";
+      return (sgn(c.E.A) > 0) === ge ? "to the right of" : "to the left of";
+    }
+
+    function lpDirT(d) {
+      var h = sgn(d.x),
+        v = sgn(d.y);
+      return !v ? (h > 0 ? "to the right" : "to the left") : !h ? (v > 0 ? "straight up" : "straight down") : (v > 0 ? "up" : "down") + " and to the " + (h > 0 ? "right" : "left");
+    }
+    // the whole-number points of the region in a box, and the best of them
+    function lpWhole(cons, ob, max, x0, x1, y0, y1) {
+      var best = null,
+        list = [];
+      for (var x = x0; x <= x1; x++)
+        for (var y = y0; y <= y1; y++) {
+          var Q = P(R(x), R(y));
+          if (lpFail(cons, Q) >= 0) continue;
+          var v = lpVal(ob, Q),
+            k = best === null ? 1 : cmpR(v, best);
+          if (!max) k = -k;
+          if (best === null || k > 0) {
+            best = v;
+            list = [Q];
+          } else if (k === 0) list.push(Q);
+        }
+      return best === null ? null : { v: best, pts: list };
+    }
+
+    // the corner put into the objective: 3·0 + 5·10
+    function lpPlugH(ob, Q) {
+      var s = "",
+        n = 0;
+      [
+        [ob.cx, Q.x],
+        [ob.cy, Q.y]
+      ].forEach(function(t) {
+        if (isZ(t[0])) return;
+        var mag = (isOne(absR(t[0])) ? "" : nH(absR(t[0])) + "·") + nP(t[1]);
+        s += !n++ ? (sgn(t[0]) < 0 ? SG : "") + mag : opS(sgn(t[0]) < 0 ? "−" : "+") + mag;
+      });
+      if (!isZ(ob.k)) s += opS(sgn(ob.k) < 0 ? "−" : "+") + nH(absR(ob.k));
+      return s;
+    }
+
+    function lpRelS(c) { return c.rel === "=" ? "=" : c.strict ? (c.rel === "≤" ? "<" : ">") : c.rel; }
+
+    function lpWords(pr, Q) { return pr.xl && pr.yl ? esc(pr.xl) + ": " + numT(Q.x) + ", " + esc(pr.yl) + ": " + numT(Q.y) : ""; }
+
+    function solveOpt(pr) {
+      var ctx = new Ctx(),
+        ob = lpObj(pr.obj),
+        max = pr.goal !== "min",
+        nm = pr.name || (max ? "P" : "C"),
+        cons = [],
+        i, j;
+      pr.cons.forEach(function(s) { lpCons(s).forEach(function(c) { cons.push(c); }); });
+      if (cons.length < 2) throw new UserErr("A region needs at least two limits (the constraints), like <b>x + y ≤ 10; x ≥ 0; y ≥ 0</b>.");
+      if (cons.length > 8) throw new UserErr("Up to 8 limits at a time, please.");
+      var crossing = false;
+      for (i = 0; i < cons.length && !crossing; i++)
+        for (j = i + 1; j < cons.length; j++)
+          if (meet(cons[i].E, cons[j].E)) { crossing = true; break; }
+      if (!crossing) throw new UserErr("All of these boundary lines are parallel, so they never cross and the region has no corners. Add limits that cross them — often <b>x ≥ 0</b> and <b>y ≥ 0</b>.");
+      var nmH = vH(nm),
+        objH = lpLinH(ob.cx, ob.cy, ob.k),
+        objT = lpLinT(ob.cx, ob.cy, ob.k),
+        word = max ? "maximize" : "minimize",
+        big = max ? "biggest" : "smallest";
+      var spec = { kind: "plane", focus: { xs: [], ys: [] }, lines: [], shades: [], pts: [] };
+      // 0. a story: what x and y stand for, and each sentence as a limit
+      if (pr.read) {
+        var rd0 = pr.read,
+          tb0 = '<div class="scroll"><table class="vt"><tr><th class="plain">In the story</th><th class="plain">' + esc(pr.xl) + '</th><th class="plain">' + esc(pr.yl) + '</th><th class="plain">so</th></tr>';
+        rd0.rows.forEach(function(r) { tb0 += '<tr><td class="w">' + esc(r.what) + "</td><td>" + nH(r.a) + '</td><td class="k2">' + nH(r.b) + '</td><td class="pt">' + r.h + "</td></tr>"; });
+        tb0 += "</table></div>";
+        ctx.add([
+          ["p", "Read it", "Name the two unknowns: <b>" + vH("x") + " = the number of " + esc(pr.xl) + "</b> and <b>" + vH("y") + " = the number of " + esc(pr.yl) + "</b>. Then turn each fact into math: " +
+            rd0.rows.map(function(r) { return esc(r.what) + " → <b>" + r.h + "</b>"; }).join("; ") + ". And you can’t make a negative number of anything, so <b>" + vH("x") + " ≥ 0</b> and <b>" + vH("y") + " ≥ 0</b>."
+          ]
+        ], rd0.note || null, [
+          ["story", "p", tb0]
+        ]);
+      }
+      // 1. the goal
+      ctx.add([
+        ["p", "Goal", "The goal is to <b>" + word + " " + nmH + " = " + objH + "</b>: find the point that makes " + nmH + " as " + (max ? "big" : "small") + " as it can be while keeping to every limit (the <strong>constraints</strong>)" + (pr.int ? " — and since you can’t make part of one, " + vH("x") + " and " + vH("y") + " have to be <strong>whole numbers</strong>" : "") + "."]
+      ], ctx.once("lpwhy") ? "This is called <b>linear programming</b>: the limits are straight lines, and what you want to make " + big + " is a straight-line expression too." : null, [
+        [word.slice(0, 3), "p", ex(nmH + opS("=") + objH, "res")]
+      ]);
+      // 2. graph each limit
+      var rows2 = cons.map(function(c, k) {
+        var cls = k < 5 ? SER[k] : "gr-aux";
+        spec.lines.push(lineF(c.E, cls, -1, { solid: !c.strict, dash: c.strict, name: "boundary line " + (k + 1), E: c.E }));
+        if (!isZ(c.E.B)) {
+          spec.focus.xs.push(0);
+          spec.focus.ys.push(F(yintOfE(c.E)));
+        }
+        if (!isZ(c.E.A)) {
+          var xi = F(dvd(c.E.C, c.E.A));
+          if (Math.abs(xi) < 60) {
+            spec.focus.xs.push(xi);
+            spec.focus.ys.push(0);
+          }
+        }
+        return [String(k + 1), k < 5 ? SERC[k] : "a", ex(c.html + opS("→") + lineH(c.E) + wd(", keep " + lpSide(c).replace(/ of$/, "")))];
+      });
+      var sL = ctx.add([
+        ["m", "Limits", "Graph each limit the way you graph an inequality: draw its boundary line (the same thing with an = sign) and keep the side where it’s true. " + cons.map(function(c) { return "<b>" + c.html + "</b>: " + lpSide(c) + " " + lineH(c.E); }).join("; ") + "."]
+      ], cons.some(function(c) { return c.strict; }) ? "A strict &lt; or &gt; leaves its boundary line out (dashed), so a best point on it can only be come close to, not reached. It’s worked out here as ≤ or ≥, the way these problems usually mean it." : null, rows2);
+      spec.lines.forEach(function(l) { l.step = sL; });
+      // 3. the corners: every pair of boundary lines, crossed
+      var pairs = [],
+        corners = [];
+      for (i = 0; i < cons.length; i++)
+        for (j = i + 1; j < cons.length; j++) {
+          var Q = meet(cons[i].E, cons[j].E);
+          if (!Q) { pairs.push({ i: i, j: j, par: true }); continue; }
+          var bad = lpFail(cons, Q);
+          pairs.push({ i: i, j: j, Q: Q, bad: bad });
+          if (bad >= 0) continue;
+          var seen = corners.filter(function(c) { return ptEq(c.Q, Q); })[0];
+          if (seen) {
+            if (seen.on.indexOf(i) < 0) seen.on.push(i);
+            if (seen.on.indexOf(j) < 0) seen.on.push(j);
+          } else corners.push({ Q: Q, on: [i, j] });
+        }
+      corners.forEach(function(c) {
+        spec.focus.xs.push(F(c.Q.x));
+        spec.focus.ys.push(F(c.Q.y));
+      });
+      if (corners.length > 2) { // go around the region
+        var cx0 = 0,
+          cy0 = 0;
+        corners.forEach(function(c) {
+          cx0 += F(c.Q.x) / corners.length;
+          cy0 += F(c.Q.y) / corners.length;
+        });
+        corners.sort(function(a, b) { return Math.atan2(F(a.Q.y) - cy0, F(a.Q.x) - cx0) - Math.atan2(F(b.Q.y) - cy0, F(b.Q.x) - cx0); });
+      }
+      var hps = [];
+      cons.forEach(function(c) {
+        var h = { A: F(c.E.A), B: F(c.E.B), C: F(c.E.C) };
+        if (c.rel !== "≥") hps.push({ A: h.A, B: h.B, C: h.C, ge: false });
+        if (c.rel !== "≤") hps.push({ A: h.A, B: h.B, C: h.C, ge: true });
+      });
+      var pairTb = "";
+      if (pairs.length <= 15) {
+        pairTb = '<div class="scroll"><table class="vt"><tr><th class="plain">lines</th><th class="plain">cross at</th><th class="plain">keeps to every limit?</th></tr>';
+        pairs.forEach(function(p) {
+          pairTb += "<tr" + (p.Q && p.bad < 0 ? ' class="hit"' : "") + '><td class="w">' + (p.i + 1) + " and " + (p.j + 1) + "</td><td>" + (p.par ? wd("parallel — they never cross") : ptH(p.Q)) + "</td><td>" + (p.par ? "" : p.bad < 0 ? wd("yes, a corner") + OK : wd("no — it breaks limit " + (p.bad + 1)) + BAD) + "</td></tr>";
+        });
+        pairTb += "</table></div>";
+      }
+      if (!corners.length) {
+        var sE = ctx.add([
+          ["a", "Region", "Look for the part of the graph where every kept side overlaps. Each place two boundary lines cross breaks at least one other limit" + (pairs.length <= 15 ? " (see the table)" : "") + ", so the sides never all overlap: there’s <strong>no feasible region</strong>. No point keeps to every limit, so there’s nothing to " + word + " — <strong>no solution</strong>."]
+        ], "When limits ask for opposite things (like at most 4 and at least 6 of the same thing), no point can keep to them all.", [
+          ["region", "a", (pairTb || "") + ex(wd("no feasible region: no solution"), "res")]
+        ]);
+        spec.shades.push({ hp: hps, cls: "gr-shade3", step: sE });
+        spec.aria = "Graph of the limits " + cons.map(function(c) { return c.text; }).join(", ") + ": their kept sides never all overlap, so there is no feasible region";
+        ctx.fig(CAP + "Each boundary line is drawn; the kept sides never all overlap, so nothing is shaded.", spec);
+        return lpFinish(pr, ctx, spec, cons, ob, { none: true, nm: nm, max: max, objT: objT });
+      }
+      var sR = ctx.add([
+          ["a", "Region", "Where every kept side overlaps is the <strong>feasible region</strong> (shaded): the points there keep to every limit at once. Its corners are where boundary lines cross — so cross each pair of lines (solve the two equations together) and keep the crossings that fit every other limit too. " +
+            "The corners: " + andList(corners.map(function(c) { return "<b>" + ptH(c.Q) + "</b>"; })) + "."
+          ]
+        ], ctx.once("lpcorner") ? "Why only the corners? " + nmH + " changes steadily as you move in a straight line, so across a flat region it’s always " + big + " at an edge, and along an edge it’s " + big + " at one end — a corner." : null,
+        [
+          ["corners", "a", pairTb || ex(andList(corners.map(function(c) { return ptH(c.Q); })))]
+        ]);
+      spec.shades.push({ hp: hps, cls: "gr-shade3", step: sR });
+      corners.forEach(function(c) { spec.pts.push({ x: F(c.Q.x), y: F(c.Q.y), cls: "p2", lbl: ptT(c.Q), step: sR, tip: "Corner " + ptT(c.Q) }); });
+      // 4. the value at each corner
+      corners.forEach(function(c) { c.v = lpVal(ob, c.Q); });
+      var bestV = corners[0].v;
+      corners.forEach(function(c) { var k = cmpR(c.v, bestV); if (max ? k > 0 : k < 0) bestV = c.v; });
+      var bests = corners.filter(function(c) { return eqR(c.v, bestV); });
+      var tb = '<div class="scroll"><table class="vt"><tr><th class="plain">corner</th><th>' + nmH + " = " + objH + "</th><th>" + nmH + "</th></tr>";
+      corners.forEach(function(c) { tb += "<tr" + (eqR(c.v, bestV) ? ' class="hit"' : "") + '><td class="pt">' + ptH(c.Q) + '</td><td class="w">' + lpPlugH(ob, c.Q) + "</td><td>" + nH(c.v) + "</td></tr>"; });
+      tb += "</table></div>";
+      var sV = ctx.add([
+        ["e", "Test", "Put each corner into " + nmH + " = " + objH + ": " + corners.map(function(c) { return ptH(c.Q) + " gives <b>" + nH(c.v) + "</b>"; }).join(", ") + "."]
+      ], null, [
+        ["test", "e", tb]
+      ]);
+      // 5. closed in, or open? (a region that goes on forever may have no best value)
+      var rays = [];
+      cons.forEach(function(c, k) {
+        [P(neg(c.E.B), c.E.A), P(c.E.B, neg(c.E.A))].forEach(function(d) {
+          if (!lpRayOK(cons, d)) return;
+          if (rays.some(function(r) { return isZ(sub(mul(r.d.x, d.y), mul(r.d.y, d.x))) && sgn(add(mul(r.d.x, d.x), mul(r.d.y, d.y))) > 0; })) return;
+          rays.push({ d: d, k: k });
+        });
+      });
+      var gain = function(d) { var g = sgn(add(mul(ob.cx, d.x), mul(ob.cy, d.y))); return max ? g > 0 : g < 0; };
+      var away = rays.filter(function(r) { return gain(r.d); })[0];
+
+      function rayT(r) {
+        var on = corners.filter(function(c) { return c.on.indexOf(r.k) >= 0; })[0];
+        return "along " + lineH(cons[r.k].E) + (on ? " from " + ptH(on.Q) : "") + " " + lpDirT(r.d);
+      }
+      var sB;
+      if (!rays.length) sB = ctx.add([
+        ["m", "Closed", "The region is closed in on every side (it’s <strong>bounded</strong>), so " + nmH + " has a " + big + " value, and it’s at a corner."]
+      ]);
+      else if (away) sB = ctx.add([
+        ["m", "Open", "The region isn’t closed in: it goes on forever " + rayT(away) + ". Going that way " + nmH + " keeps getting " + (max ? "bigger" : "smaller") + " with no end, so there’s <strong>no " + (max ? "maximum" : "minimum") + "</strong> — " + nmH + " can be as " + (max ? "big" : "small") + " as you like (it’s <strong>unbounded</strong>)."]
+      ], "An open region can have a best value one way and none the other: here the corners still give the " + (max ? "smallest" : "biggest") + " " + nmH + ", if that were the question.", [
+        ["open", "m", ex(wd("no " + (max ? "maximum" : "minimum") + ": unbounded"), "res")]
+      ]);
+      else sB = ctx.add([
+        ["m", "Open", "The region isn’t closed in: it goes on forever " + rays.map(rayT).join(" and ") + ". But going that way only makes " + nmH + " " + (max ? "smaller" : "bigger") + " (or keeps it the same), so the " + big + " " + nmH + " is still at a corner."]
+      ]);
+      if (away) {
+        spec.aria = "Graph of the limits " + cons.map(function(c) { return c.text; }).join(", ") + ": the feasible region is shaded; it is unbounded, so there is no " + (max ? "maximum" : "minimum");
+        ctx.fig(CAP + "The feasible region is shaded; it goes on forever, so " + esc(nm) + " has no " + (max ? "maximum" : "minimum") + ".", spec);
+        return lpFinish(pr, ctx, spec, cons, ob, { unb: true, nm: nm, max: max, objT: objT, corners: corners, ray: away });
+      }
+      // 6. the best corner, and the objective line through it
+      var b0 = bests[0];
+      var objE = { A: ob.cx, B: ob.cy, C: sub(bestV, ob.k) };
+      var sBest = ctx.add([
+        ["p", "Best", "The " + big + " " + nmH + " is <b>" + nH(bestV) + "</b>, at <b>" + ptH(b0.Q) + "</b>" + (bests.length > 1 ? " — and also at " + andList(bests.slice(1).map(function(c) { return "<b>" + ptH(c.Q) + "</b>"; })) + ": they tie, so <strong>every point on the edge between them</strong> gives " + nmH + " = " + nH(bestV) + " too" : "") + "." +
+          " Check it with the <strong>objective line</strong> " + lpLinH(ob.cx, ob.cy, ZERO) + opS("=") + nH(objE.C) + " (dashed): every point on it gives " + nmH + " = " + nH(bestV) + ", and it only just touches the region — slide it any further " + (max ? "out" : "in") + " and it leaves the region."
+        ]
+      ], null, [
+        ["best", "p", ex(nmH + opS("=") + nH(bestV) + wd("&nbsp;at&nbsp;") + ptH(b0.Q) + (bests.length > 1 ? wd("&nbsp;and&nbsp;") + bests.slice(1).map(function(c) { return ptH(c.Q); }).join(wd("&nbsp;and&nbsp;")) : ""), "res")]
+      ]);
+      spec.lines.push(lineF(objE, "gr-s3", sBest, { dash: true, noHeads: false, name: "objective line", E: objE }));
+      bests.forEach(function(c) {
+        var p0 = spec.pts.filter(function(p) { return p.x === F(c.Q.x) && p.y === F(c.Q.y); })[0];
+        if (p0) {
+          p0.cls = "p4";
+          p0.ring = true;
+          p0.tip = "Best corner " + ptT(c.Q) + ": " + nm + " = " + numT(bestV);
+        }
+      });
+      var res = { nm: nm, max: max, objT: objT, corners: corners, bestV: bestV, bests: bests, objE: objE, bounded: !rays.length };
+      // 7. whole numbers only
+      if (pr.int) {
+        var wholeC = bests.filter(function(c) { return isInt(c.Q.x) && isInt(c.Q.y); });
+        if (wholeC.length) {
+          res.iv = bestV;
+          res.ipts = wholeC.map(function(c) { return c.Q; });
+          ctx.add([
+            ["a", "Whole?", "The best corner " + ptH(wholeC[0].Q) + " is already in whole numbers" + OK + (pr.xl ? " — " + lpWords(pr, wholeC[0].Q) : "") + "."]
+          ]);
+        } else {
+          var bx = F(b0.Q.x),
+            by = F(b0.Q.y),
+            near = [];
+          [Math.floor(bx), Math.ceil(bx)].forEach(function(x, a) {
+            if (a && Math.ceil(bx) === Math.floor(bx)) return;
+            [Math.floor(by), Math.ceil(by)].forEach(function(y, b) {
+              if (b && Math.ceil(by) === Math.floor(by)) return;
+              var Q = P(R(x), R(y)),
+                f = lpFail(cons, Q);
+              near.push({ Q: Q, ok: f < 0, f: f, v: lpVal(ob, Q) });
+            });
+          });
+          // every whole-number point in (or near) the region, to be sure
+          var xs = corners.map(function(c) { return F(c.Q.x); }),
+            ys = corners.map(function(c) { return F(c.Q.y); });
+          var x0 = Math.floor(Math.min.apply(null, xs)),
+            x1 = Math.ceil(Math.max.apply(null, xs)),
+            y0 = Math.floor(Math.min.apply(null, ys)),
+            y1 = Math.ceil(Math.max.apply(null, ys));
+          if (rays.length) {
+            var pad = Math.max(5, x1 - x0, y1 - y0);
+            x0 -= pad;
+            x1 += pad;
+            y0 -= pad;
+            y1 += pad;
+          }
+          var all = (x1 - x0 + 1) * (y1 - y0 + 1) <= 40000;
+          if (!all) {
+            x0 = Math.floor(bx) - 4;
+            x1 = Math.ceil(bx) + 4;
+            y0 = Math.floor(by) - 4;
+            y1 = Math.ceil(by) + 4;
+          }
+          var W = lpWhole(cons, ob, max, x0, x1, y0, y1);
+          var ntb = '<div class="scroll"><table class="vt"><tr><th class="plain">whole point</th><th class="plain">keeps to every limit?</th><th>' + nmH + "</th></tr>";
+          near.forEach(function(n) { ntb += "<tr" + (W && n.ok && eqR(n.v, W.v) ? ' class="hit"' : "") + '><td class="pt">' + ptH(n.Q) + "</td><td>" + (n.ok ? wd("yes") + OK : wd("no — breaks limit " + (n.f + 1)) + BAD) + "</td><td>" + (n.ok ? nH(n.v) : "") + "</td></tr>"; });
+          ntb += "</table></div>";
+          var fromNear = W && near.some(function(n) { return n.ok && eqR(n.v, W.v); });
+          res.iv = W ? W.v : null;
+          res.ipts = W ? W.pts : [];
+          var sW = ctx.add([
+            ["a", "Whole?", "But " + ptH(b0.Q) + " isn’t whole numbers, and you can’t make part of one. Try the whole-number points around it: " + near.map(function(n) { return ptH(n.Q) + (n.ok ? " gives " + nH(n.v) : " breaks limit " + (n.f + 1)); }).join(", ") + ". " +
+              (W ? (fromNear ? "" : "None of those is best, so check every whole-number point " + (all ? "in the region" : "nearby") + ": ") + "the " + big + " " + nmH + " in whole numbers is <b>" + nH(W.v) + "</b>, at <b>" + ptH(W.pts[0]) + "</b>" + (W.pts.length > 1 ? " (or " + andList(W.pts.slice(1).map(ptH)) + ")" : "") + (pr.xl ? " — " + lpWords(pr, W.pts[0]) : "") + ". That’s a bit " + (max ? "less" : "more") + " than the corner’s " + nH(bestV) + ", the price of whole numbers." :
+                "No whole-number point keeps to every limit, so in whole numbers there’s <strong>no solution</strong>.")
+            ]
+          ], ctx.once("lpround") ? "Just rounding the corner can break a limit — always check the whole points still fit." : null, [
+            ["whole", "a", ntb + (W ? ex(nmH + opS("=") + nH(W.v) + wd("&nbsp;at&nbsp;") + ptH(W.pts[0]), "res") : "")]
+          ]);
+          if (W) W.pts.slice(0, 3).forEach(function(Q) { spec.pts.push({ x: F(Q.x), y: F(Q.y), cls: "mine", lbl: ptT(Q), step: sW, tip: "Best whole-number point " + ptT(Q) + ": " + nm + " = " + numT(W.v) }); });
+        }
+      }
+      spec.aria = "Graph of the limits " + cons.map(function(c) { return c.text; }).join(", ") + ": the feasible region is shaded, its corners are " + corners.map(function(c) { return ptT(c.Q); }).join(", ") + "; the best is " + ptT(b0.Q) + " where " + nm + " = " + numT(bestV) + ", on the dashed objective line " + lpLinT(ob.cx, ob.cy, ZERO) + " = " + numT(objE.C);
+      var key = '<div class="gkey"><div><span>The shaded region keeps to every limit; the corners are marked, the best one ringed.</span></div><div>' + '<svg width="30" height="10" viewBox="0 0 30 10" aria-hidden="true"><line class="gr-s3" style="stroke-dasharray:6 4" x1="2" y1="5" x2="28" y2="5"/></svg>' + "<span>The objective line " + lpLinH(ob.cx, ob.cy, ZERO) + " = " + nH(objE.C) + "</span></div></div>";
+      ctx.fig(CAP + "The feasible region is shaded. Each corner is a candidate; the best one is ringed, with the objective line through it.", spec, key);
+      return lpFinish(pr, ctx, spec, cons, ob, res);
+    }
+
+    // the answer band, the check-my-answer fields and the worksheet copy
+    function lpFinish(pr, ctx, spec, cons, ob, res) {
+      var nm = res.nm,
+        max = res.max,
+        nmH = vH(nm),
+        word = max ? "maximize" : "minimize",
+        Mx = max ? "Maximum" : "Minimum";
+      var askT = pr.story ? pr.story : (max ? "Maximize " : "Minimize ") + nm + " = " + res.objT + " subject to " + cons.map(function(c) { return c.text; }).join(", ") + (pr.int ? ", with x and y whole numbers" : "") + ".";
+      var ask = pr.story ? esc(pr.story) : word.charAt(0).toUpperCase() + word.slice(1) + " <b>" + nmH + " = " + lpLinH(ob.cx, ob.cy, ob.k) + "</b> subject to " + cons.map(function(c) { return "<b>" + c.html + "</b>"; }).join(", ") + (pr.int ? ", with " + vH("x") + " and " + vH("y") + " whole numbers" : "") + ".";
+      var bandK, bandV, ansT, facts = [],
+        fields, closer;
+      var wantPt = res.none || res.unb ? null : pr.int ? (res.ipts && res.ipts.length ? res.ipts : null) : res.bests.map(function(c) { return c.Q; });
+      var wantV = res.none || res.unb ? null : pr.int ? res.iv : res.bestV;
+      if (res.none) {
+        bandK = "No solution";
+        bandV = "<span>no feasible region</span>" + '<span class="word">no point keeps to every limit</span>';
+        ansT = "no solution (no feasible region)";
+        facts.push("Every crossing of two boundary lines breaks some other limit.");
+        closer = "<b>Check:</b> try any point — it breaks at least one of " + cons.map(function(c) { return c.html; }).join(", ") + ".";
+      } else if (res.unb) {
+        bandK = "No " + Mx.toLowerCase();
+        bandV = "<span>" + nmH + "&nbsp;is unbounded</span>" + '<span class="word">' + esc(nm) + " can be as " + (max ? "big" : "small") + " as you like</span>";
+        ansT = "no " + Mx.toLowerCase() + " (unbounded)";
+        facts.push("The corners are " + res.corners.map(function(c) { return ptH(c.Q) + " (" + nmH + " = " + nH(c.v) + ")"; }).join(", "));
+        closer = "<b>Check:</b> keep going " + lpDirT(res.ray.d) + " and " + nmH + " keeps " + (max ? "growing" : "shrinking") + " — no point is " + (max ? "biggest" : "smallest") + ".";
+      } else if (!wantPt) {
+        bandK = "No whole-number solution";
+        bandV = "<span>no whole-number point fits</span>";
+        ansT = "no solution in whole numbers";
+        facts.push("Without whole numbers: " + Mx.toLowerCase() + " " + nmH + " = " + nH(res.bestV) + " at " + ptH(res.bests[0].Q));
+        closer = "<b>Check:</b> every whole-number point near the region breaks a limit.";
+      } else {
+        var Q0 = wantPt[0];
+        bandK = Mx;
+        bandV = "<span>" + nmH + "&nbsp;=&nbsp;" + nH(wantV) + "&nbsp;at&nbsp;" + ptH(Q0) + "</span>" + (pr.xl ? '<span class="word">' + lpWords(pr, Q0) + "</span>" : "") +
+          (wantPt.length > 1 ? '<span class="word">(a tie: also&nbsp;' + wantPt.slice(1, 4).map(ptH).join(",&nbsp;") + ")</span>" : "");
+        ansT = Mx.toLowerCase() + " " + nm + " = " + numT(wantV) + " at " + ptT(Q0) + (pr.xl ? "; " + lpWords(pr, Q0) : "");
+        if (pr.int && !eqR(wantV, res.bestV)) facts.push("In whole numbers. The best corner, " + ptH(res.bests[0].Q) + ", gives " + nmH + " = " + nH(res.bestV) + ", but it isn’t whole numbers");
+        facts.push("Corners: " + res.corners.map(function(c) { return ptH(c.Q) + " → " + nH(c.v); }).join(", "));
+        if (res.bounded && res.corners.length > 1 && !pr.int) {
+          var other = res.corners[0];
+          res.corners.forEach(function(c) { var k = cmpR(c.v, other.v); if (max ? k < 0 : k > 0) other = c; });
+          facts.push("The other way: the " + (max ? "minimum" : "maximum") + " is " + nmH + " = " + nH(other.v) + " at " + ptH(other.Q));
+        }
+        closer = "<b>Check:</b> " + ptH(Q0) + " keeps to every limit: " + cons.map(function(c) { return "<b>" + subXY(c.L, Q0) + " " + esc(lpRelS(c)) + " " + subXY(c.R, Q0) + "</b>" + OK; }).join(", ") + ".";
+      }
+      var ptLab = pr.xl ? "How many " + pr.xl + " and " + pr.yl + ", as (x, y)" : "The best point (x, y)";
+      if (wantPt) fields = [
+        { key: "bp", kind: "lppt", label: ptLab, v: wantPt, ctx: { cons: cons, ob: ob, max: max, nm: nm, res: res, int: !!pr.int } },
+        { key: "bv", kind: "lpval", label: "The " + (max ? "maximum" : "minimum") + " " + nm, v: wantV, ctx: { ob: ob, max: max, nm: nm, res: res, int: !!pr.int } }
+      ];
+      else fields = [{ key: "bp", kind: "lppt", label: ptLab + " — or none", v: null, ctx: { cons: cons, ob: ob, max: max, nm: nm, res: res, int: !!pr.int } }];
+      var guide = { kind: "plane", focus: spec.focus, lines: cons.map(function(c) { return lineF(c.E, "gr-aux", -1, { noHeads: true }); }), aria: "Answer grid with the boundary lines drawn thin" };
+      var bv = autoView(spec);
+      return {
+        ctx: ctx,
+        band: { k: bandK, v: bandV, facts: facts },
+        closer: closer,
+        fields: fields,
+        ask: ask,
+        askText: askT,
+        pic: { spec: guide },
+        api: { text: askT, html: ask + "<br>" + gridSVG(guide, bv, { inline: true }), answer: ansT, answerHtml: bandV + "<br>" + gridSVG(spec, bv, { inline: true }) }
+      };
+    }
+
+    /* ---- optimization: reading it ---- */
+    var LP_GOAL = /\b(maximi[sz]e|maximi[sz]ing|maximum|max|minimi[sz]e|minimi[sz]ing|minimum|min)\b/i;
+    var LP_EX = "maximize P = 3x + 5y; x + y ≤ 10; 2x + y ≤ 16; x ≥ 0; y ≥ 0";
+    // "x = cakes, y = pies", "(x = the number of chairs)" → {xl, yl, s}
+    function lpLabels(s) {
+      var xl = null,
+        yl = null;
+      s = String(s).replace(/\(\s*([xy]\s*(?:=|is|:)\s*[a-z][^()]*)\)/gi, " ; $1 ; ");
+
+      function grab(v) {
+        var re = new RegExp("\\b(?:let\\s+)?" + v + "\\s*(?:=|is|be|represents?|stands for|:)\\s*(?:the\\s+)?(?:number\\s+of\\s+)?([a-z][a-z' -]{1,30}?)\\s*(?=[,;)]|$|\\band\\b|\\b[xy]\\s*(?:=|is|be|represents?|:)\\s*[a-z])", "i"),
+          m = re.exec(s);
+        if (!m || /^(?:x|y|xy|yx)$/i.test(m[1].trim())) return null;
+        s = s.slice(0, m.index) + " ; " + s.slice(m.index + m[0].length);
+        return m[1].trim().toLowerCase();
+      }
+      xl = grab("x");
+      yl = grab("y");
+      return { xl: xl, yl: yl, s: s };
+    }
+    // the typed form: "maximize P = 3x + 5y subject to x + y ≤ 10, 2x + y ≤ 16, x, y ≥ 0"
+    function lpTyped(src) {
+      var lab = lpLabels(src),
+        s = lab.s,
+        gm = LP_GOAL.exec(s);
+      if (!gm) return null;
+      var goal = /^min/i.test(gm[1]) ? "min" : "max";
+      var whole = /\bwhole(?:[- ]numbers?)?\b|\bintegers?\b|\bhow many\b/i.test(s);
+      s = s.replace(/\b(?:in\s+|with\s+)?(?:x\s+and\s+y\s+)?(?:as\s+)?whole(?:[- ]numbers?)?(?:\s+only)?\b|\b(?:in\s+)?integers?(?:\s+only)?\b|\bhow many\b/gi, " ; ")
+        .replace(/\bsubject\s+to\b|\bsuch\s+that\b|\bs\.\s*t\.?|\bwith\s+(?:the\s+)?(?:constraints?|limits?)\b|\bwith\b|\b(?:the\s+)?(?:constraints?|limits?)\s*(?:are|:)?|\bwhere\b|\bgiven\b|\bwhen\b|\bif\b/gi, " ; ")
+        .replace(/\b(x)\s*(?:,|and)\s*(y)\s*(≥|>=|>|≤|<=|<)\s*0\b/gi, "x $3 0 ; y $3 0").replace(/\bboth\b/gi, " ");
+      gm = LP_GOAL.exec(s);
+      var head = s.slice(0, gm.index),
+        tail = s.slice(gm.index + gm[0].length).replace(/^\s*(?:the\s+)?(?:value\s+of\s+)?(?:(?:the\s+)?(?:objective(?:\s+function)?|profit|cost|revenue|function|value)\s*)?(?:of\s+)?:?\s*/i, ""),
+        name = null,
+        obj = null,
+        om = /^([a-wzA-WZ])\s*(?:\(\s*x\s*,\s*y\s*\))?\s*=\s*/.exec(tail);
+      if (om) {
+        name = om[1].toUpperCase();
+        tail = tail.slice(om[0].length);
+      }
+      var em = /^[^;,<>≤≥=]*/.exec(tail)[0];
+      if (/[xy]/i.test(em)) {
+        obj = em.trim();
+        tail = tail.slice(em.length);
+      } else { // "P = 3x + 5y; maximize", "objective: z = x + y … minimize"
+        var all = head + " ; " + tail,
+          o2 = /\b([a-wzA-WZ])\s*(?:\(\s*x\s*,\s*y\s*\))?\s*=\s*([^;,<>≤≥=]*[xy][^;,<>≤≥=]*)/i.exec(all);
+        if (!o2) return null;
+        name = o2[1].toUpperCase();
+        obj = o2[2].trim();
+        all = all.slice(0, o2.index) + " ; " + all.slice(o2.index + o2[0].length);
+        head = "";
+        tail = all;
+      }
+      var cons = [],
+        bad = null;
+      (head + " ; " + tail).split(/\s*[;,\n]\s*|\s+and\s+/i).forEach(function(t) {
+        t = t.replace(/^\s*(?:find|solve|graph|with|and|the|then|also)\b\s*/i, "").trim();
+        if (!t || /^[a-z\s.:]*$/i.test(t) && !/\b[xy]\b/i.test(t)) return;
+        if (!/[<>≤≥=]/.test(t)) { bad = bad || t; return; }
+        cons.push(minusA(t).replace(/≤/g, "<=").replace(/≥/g, ">=").replace(/\s+/g, " ").trim());
+      });
+      if (bad && !cons.length) throw new UserErr("I can’t tell what <b>" + esc(bad) + "</b> is. Write each limit with a sign, like <b>x + y ≤ 10</b>, split by <b>;</b> — for example <b>" + LP_EX + "</b>.");
+      if (bad) throw new UserErr("<b>" + esc(bad) + "</b> has no sign. Each limit needs one, like <b>x + y ≤ 10</b> or <b>x ≥ 0</b>.");
+      if (!cons.length) throw new UserErr("Add the limits (the constraints) after the goal, split by <b>;</b> — like <b>" + LP_EX + "</b>.");
+      if (cons.length > 8) throw new UserErr("Up to 8 limits at a time, please.");
+      return { goal: goal, name: name || (goal === "max" ? "P" : "C"), obj: exA(lpObj(obj).ast), cons: cons, int: whole, xl: lab.xl && lab.yl ? lab.xl : null, yl: lab.xl && lab.yl ? lab.yl : null };
+    }
+
+    /* a story: "A bakery makes cakes and pies. Each cake takes 2 hours of baking and 1 hour of decorating …" */
+    var LP_NW = { a: 1, an: 1, one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12, thirteen: 13, fourteen: 14, fifteen: 15, sixteen: 16, seventeen: 17, eighteen: 18, nineteen: 19, twenty: 20, thirty: 30, forty: 40, fifty: 50, sixty: 60, seventy: 70, eighty: 80, ninety: 90, hundred: 100 };
+    var LP_UNIT = "hours?|hrs?|minutes?|mins?|days?|weeks?|pounds?|lbs?|ounces?|oz|cups?|tablespoons?|tbsp|teaspoons?|tsp|grams?|kilograms?|kg|liters?|litres?|milliliters?|ml|gallons?|quarts?|pints?|units?|square (?:feet|foot|meters?|metres?|yards?)|sq\\.? ?ft|board feet|feet|foot|ft|yards?|yd|meters?|metres?|inches|acres?|tons?|sheets?|boards?|pieces?|bags?|eggs?|calories|milligrams?|mg|workers?|people|crates?|bottles?|packs?|bushels?|scoops?|servings?|loads?|trips?|spools?|yards?|rolls?|cans?|jars?|batches?|parts?|kits?";
+    var LP_STOP = { the: 1, a: 1, an: 1, of: 1, each: 1, every: 1, kinds: 1, kind: 1, types: 1, type: 1, sorts: 1, two: 1, both: 1, number: 1, many: 1, how: 1, some: 1 };
+
+    function lpStem(w) { w = String(w).toLowerCase().replace(/ing$|ed$|ies$|es$|s$|e$|y$/, ""); return w.replace(/([bcdfgklmnprstz])\1$/, "$1"); }
+
+    function lpAlts(w) { // a word, singular or plural
+      var a = [w, w.replace(/s$/, ""), w.replace(/es$/, ""), w.replace(/ies$/, "y"), w.replace(/ves$/, "f"), w.replace(/ves$/, "fe"), w.replace(/fe?$/, "ves"), w.replace(/y$/, "ies"), w + "s", w + "es"];
+      return a.filter(function(x, i) { return x.length >= 3 && a.indexOf(x) === i; });
+    }
+
+    function lpNum(t) { // "3", "2.5", "1/2"
+      if (/\//.test(t)) { var b = t.split("/"); return R(BigInt(b[0]), BigInt(b[1])); }
+      return readNumber(t);
+    }
+
+    function lpStory(raw) {
+      var t = " " + String(raw).toLowerCase().replace(/[−–—]/g, "-").replace(/[’‘]/g, "'").replace(/(\d),(\d{3})\b/g, "$1$2").replace(/\s+/g, " ") + " ";
+      t = t.replace(/\b(twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety)[- ](one|two|three|four|five|six|seven|eight|nine)\b/g, function(m, a, b) { return String(LP_NW[a] + LP_NW[b]); })
+        .replace(/\bhalf (?:an?|of an?) (hour|cup|pound|day|gallon|acre|unit)\b/g, "0.5 $1")
+        .replace(/\b(one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety|hundred)\b/g, function(m) { return String(LP_NW[m]); })
+        .replace(new RegExp("\\ban? (" + LP_UNIT + ")\\b", "g"), "1 $1").replace(/(\d+(?:\.\d+)?)\s*(?:dollars?|bucks)\b/g, "$$$1").replace(/(\d+)\s*cents?\b/g, function(m, c) { return "$" + (Number(c) / 100); })
+        .replace(/(\d)\s+(\d+)\s*\/\s*(\d+)/g, function(m, a, b, c) { return String(Number(a) + Number(b) / Number(c)); }).replace(/\$\s+(?=\d)/g, "$");
+      var found = [],
+        m, mm;
+      // 1. the two things: "let x be the number of …", "makes cakes and pies", "each chair … each table …"
+      var LW = "(?!(?:on|in|at|for|to|with|each|every|per|that|which|and|but|the|a|an|from|by|this|it|daily|weekly|using|out|of|is|are|was|were|has|have|who|where|its|their)\\b)",
+        NOUN = "([a-z][a-z-]*(?:\\s+" + LW + "[a-z][a-z-]*)?)";
+      var items = null;
+      if ((m = /\blet\s+x\s+(?:be|=|represent|stand for)\s+(?:the\s+)?(?:number\s+of\s+)?([a-z][a-z -]*?)\s+and\s+(?:let\s+)?y\s+(?:be\s+|=\s*|represent\s+|stand for\s+)?(?:the\s+)?(?:number\s+of\s+)?([a-z][a-z -]*?)\s*[.,;]/.exec(t))) items = [m[1], m[2]];
+      if (!items && (m = new RegExp("\\b(?:makes?|making|produces?|producing|manufactures?|builds?|building|sells?|selling|bakes?|baking|grows?|growing|plants?|planting|assembles?|crafts?|knits?|creates?|offers?|raises?|prints?|ships?|buys?|mixes?|stocks?|designs?|sews?|brews?|packs?|carves?|paints?|blends?|cooks?|fills?|delivers?|repairs?|trains?)\\s+(?:only\\s+)?(?:(?:two|2)\\s+(?:kinds|types|sorts|models|styles|products|sizes)\\s+of\\s+[a-z]+\\s*[:,-]?\\s*)?(?:both\\s+)?" + NOUN + "\\s+and\\s+" + NOUN + "\\b").exec(t))) items = [m[1], m[2]];
+      if (!items && (m = /\b(?:two|2)\s+(?:kinds\s+of\s+|types\s+of\s+|brands\s+of\s+)?([a-z]+?)s?\s*,?\s+(?:called\s+|named\s+)?([a-z0-9])\s+and\s+([a-z0-9])\b/.exec(t))) items = [m[1] + " " + m[2], m[1] + " " + m[3]];
+      if (!items) {
+        var each = [],
+          re1 = /\b(?:each|every|a|an|one)\s+([a-z][a-z-]+)\s+(?:takes|needs|requires|uses|contains|has|provides|gives|costs|earns|makes|calls for)\b/g;
+        while ((m = re1.exec(t)))
+          if (each.indexOf(m[1]) < 0) each.push(m[1]);
+        if (each.length >= 2) items = each.slice(0, 2).map(function(w) { return /(?:s|x|ch|sh)$/.test(w) ? w + "es" : /[^aeiou]y$/.test(w) ? w.slice(0, -1) + "ies" : /f$/.test(w) ? w.slice(0, -1) + "ves" : w + "s"; });
+      }
+      if (!items) throw new UserErr(lpNote(raw, "the two things to count"));
+      items = items.map(function(w) { return w.trim().replace(/^(?:the|some|both)\s+/, ""); });
+      var words = items.map(function(w) { var ws = w.split(/\s+/); return ws.filter(function(x, j) { return !LP_STOP[x] || (x.length === 1 && j === ws.length - 1 && ws.length > 1); }); });
+      if (words[0].length === 1 && words[1].length === 2 && words[0][0] !== words[1][1]) { // "small and large boxes": the boxes are both
+        words[0].push(words[1][1]);
+        items[0] += " " + words[1][1];
+      }
+      var shared = words[0].filter(function(x) { return words[1].indexOf(x) >= 0; });
+      var keys = words.map(function(ws, i) { var o = words[1 - i]; var k = ws.filter(function(x) { return o.indexOf(x) < 0; }); return k.length ? k : ws; });
+      var ALT = keys.map(function(ks) {
+        if (ks.length === 1 && ks[0].length === 1 && shared.length) return "(?:" + shared.map(function(w) { return lpAlts(w).join("|"); }).join("|") + ")\\s+" + ks[0]; // feed a, feed b
+        var a = [];
+        ks.forEach(function(k) { a = a.concat(lpAlts(k)); });
+        return "(?:" + a.join("|") + ")";
+      });
+      var itemRe = ALT.map(function(a) { return new RegExp("\\b" + a + "\\b", "g"); });
+      var cap = function(w) { return w.replace(/\s([a-z0-9])$/, function(m, c) { return " " + c.toUpperCase(); }); }, // feed A
+        xl = cap(items[0]),
+        yl = cap(items[1]);
+      found.push("x = " + xl + ", y = " + yl);
+
+      function whichItem(s) { for (var i = 0; i < 2; i++) { itemRe[i].lastIndex = 0; if (itemRe[i].test(s)) return i; } return -1; }
+      // 2. the profit (or cost) of each
+      var coef = [null, null],
+        money = "",
+        NUM = "(\\d+(?:\\.\\d+)?)";
+      [0, 1].forEach(function(i) {
+        var it = "\\b" + ALT[i] + "\\b",
+          pats = [
+            new RegExp("\\$" + NUM + "\\s*(?:in\\s+|of\\s+)?(?:profit|revenue|income|each|apiece)?\\s*(?:per|for each|for every|on each|on every|from each|each|for one|on one|on a|on an|for a|for an|a|an|with each|with every)\\s+" + it),
+            new RegExp(it + "(?:\\s+[^\\s$.;]+){0,14}?\\s+(?:earns?|makes?|brings?(?:\\s+in)?|yields?|gives?|nets?|sells?\\s+for|costs?|is\\s+sold\\s+for|returns?|generates?|is\\s+worth|has\\s+a\\s+(?:profit|cost)\\s+of|profits?)\\s+(?:a\\s+)?(?:profit\\s+of\\s+|revenue\\s+of\\s+|cost\\s+of\\s+)?(?:only\\s+|just\\s+)?\\$" + NUM + "(?!\\d|\\.\\d|\\s*(?:per|for each|on each|each|a|an)\\s+" + ALT[1 - i] + ")"),
+            new RegExp("(?:profit|revenue|income|cost)\\s+(?:on|of|for|from)\\s+(?:each|a|an|one|every)?\\s*" + it + "\\s+(?:is|was|=|of)\\s+\\$" + NUM)
+          ];
+        for (var k = 0; k < pats.length && !coef[i]; k++)
+          if ((mm = pats[k].exec(t))) {
+            coef[i] = lpNum(mm[1]);
+            money += " " + mm[0];
+            t = t.slice(0, mm.index) + mm[0].replace(/\$\d+(?:\.\d+)?/, " ") + t.slice(mm.index + mm[0].length); // the rest may say what it uses
+          }
+      });
+      if (!coef[0] && !coef[1] && (mm = /\$(\d+(?:\.\d+)?)\s*(?:and|,)\s*\$(\d+(?:\.\d+)?)[^.]*\brespectively\b/.exec(t))) { // "$3 and $5 profit respectively"
+        coef = [lpNum(mm[1]), lpNum(mm[2])];
+        money += " " + mm[0];
+        t = t.replace(mm[0], " ");
+      }
+      var costy = /\bcosts?\b|\bspend|\bcheap|\bexpens/.test(money + " " + t) && !/\bprofit|\brevenue|\bearn|\bincome/.test(money);
+      var goal = /\bminimi|\bleast (?:cost|expensive|money|amount)|\blowest\b|\bcheapest\b|\bsmallest (?:cost|amount)|\bminimum cost\b|\bas little\b|\bfewest\b/.test(t) ? "min" :
+        /\bmaximi|\b(?:the\s+)?most (?:profit|money|revenue|income)|\bgreatest\b|\blargest\b|\bhighest\b|\bbiggest\b|\bmaximum (?:profit|revenue|income)/.test(t) ? "max" : costy ? "min" : "max";
+      var name = /\brevenue|\bincome|\bsales\b/.test(money + t) && !/\bprofit/.test(money) ? "R" : goal === "min" ? "C" : "P";
+      if (!coef[0] || !coef[1]) throw new UserErr(lpNote(raw, "the " + (goal === "min" ? "cost" : "profit") + " for each of the " + (coef[0] ? yl : xl), found));
+      found.push((goal === "max" ? "maximize " : "minimize ") + name + " = " + lpLinT(coef[0], coef[1], ZERO));
+      var cons = [],
+        rows = [];
+
+      function rowAdd(what, a, b, rel, c) {
+        rows.push({ what: what, a: a, b: b, h: lpLinH(a, b, ZERO) + " " + rel + " " + nH(c) });
+        cons.push(lpLinT(a, b, ZERO).replace(/−/g, "-") + " " + (rel === "≤" ? "<=" : rel === "≥" ? ">=" : "=") + " " + numA(c));
+      }
+      var LIMLO = "at least|no fewer than|no less than|a minimum of|not less than|not fewer than",
+        LIMHI = "at most|no more than|up to|not more than|a maximum of|only|fewer than|less than|a total of at most|cannot exceed|can't exceed|no greater than",
+        LOre = new RegExp("^(?:" + LIMLO + ")$");
+      // 3. limits on the two things themselves: "at most 10 cakes and pies in all", "at least 2 cakes", "at least twice as many pies as cakes"
+      var both = new RegExp("\\b(" + LIMLO + "|" + LIMHI + "|a total of|exactly)\\s+(\\d+(?:\\.\\d+)?)\\s+(?:total\\s+|in all\\s+)?(?:items|things|products|pieces|units(?!\\s+of\\b)|of them|altogether|in all|combined|total|" + shared.map(function(w) { return lpAlts(w).join("|") + "|"; }).join("") + ALT[0] + "\\s+and\\s+" + ALT[1] + "(?:\\s+(?:in all|altogether|combined|in total|total))?)(?![a-z])", "g");
+      while ((mm = both.exec(t))) {
+        rowAdd(mm[0].trim(), ONE, ONE, LOre.test(mm[1]) ? "≥" : mm[1] === "exactly" ? "=" : "≤", lpNum(mm[2]));
+        t = t.replace(mm[0], " ");
+        both.lastIndex = 0;
+      }
+      var times = /\b(at least|no more than|at most|no less than)\s+(twice|three times|(\d+(?:\.\d+)?) times)?\s*as many\s+([a-z-]+(?:\s+[a-z-]+)?)\s+as\s+([a-z-]+(?:\s+[a-z-]+)?)\b/g;
+      while ((mm = times.exec(t))) {
+        var p = whichItem(mm[4]),
+          q = whichItem(mm[5]);
+        if (p < 0 || q < 0 || p === q) continue;
+        var kf = !mm[2] ? ONE : mm[2] === "twice" ? TWO : mm[2] === "three times" ? R(3) : lpNum(mm[3]),
+          co = [ZERO, ZERO];
+        co[p] = ONE;
+        co[q] = neg(kf);
+        rowAdd(mm[0].trim(), co[0], co[1], /least/.test(mm[1]) ? "≥" : "≤", ZERO);
+        t = t.replace(mm[0], " ");
+        times.lastIndex = 0;
+      }
+      [0, 1].forEach(function(i) {
+        var it = ALT[i] + "(?![a-z])",
+          re = new RegExp("\\b(" + LIMLO + "|" + LIMHI + "|exactly)\\s+(\\d+(?:\\.\\d+)?)\\s+(?:of\\s+the\\s+)?" + it, "g"),
+          re2 = new RegExp("\\b(\\d+(?:\\.\\d+)?)\\s+or\\s+(more|fewer|less)\\s+" + it, "g"),
+          co = i ? [ZERO, ONE] : [ONE, ZERO];
+        while ((mm = re.exec(t))) {
+          rowAdd(mm[0].trim(), co[0], co[1], LOre.test(mm[1]) ? "≥" : mm[1] === "exactly" ? "=" : "≤", lpNum(mm[2]));
+          t = t.replace(mm[0], " ");
+          re.lastIndex = 0;
+        }
+        while ((mm = re2.exec(t))) {
+          rowAdd(mm[0].trim(), co[0], co[1], mm[2] === "more" ? "≥" : "≤", lpNum(mm[1]));
+          t = t.replace(mm[0], " ");
+          re2.lastIndex = 0;
+        }
+      });
+      // 4. what each one uses, and how much of it there is
+      var RES = "((?:machine|line|station|oven|plant|department|shop|team|stage|step|process|mine|warehouse|factory|crew)s?\\s+[a-z0-9](?![a-z0-9])|[a-z][a-z-]*)";
+      var QRE = new RegExp("(?:^|[^$\\d.])(\\d+(?:\\.\\d+)?(?:/\\d+)?)\\s*(" + LP_UNIT + ")?(?![a-z])(?:\\s+(?:of|for|in|on|to|at|with)\\s+(?:the\\s+|a\\s+|an\\s+)?" + RES + ")?(?:\\s+" + RES + ")?", "g");
+      var LIMW = new RegExp("\\b(?:" + LIMLO + "|" + LIMHI + "|available|has|have|there (?:are|is)|a total of|is limited|limit|can spend|can use|can work|on hand|in stock|supply|budget|allows?|maximum|minimum|must|needs? at least|requires? at least|daily|weekly)\\b");
+      var LIM2 = new RegExp("\\b(" + LIMLO + "|" + LIMHI + ")\\b", "g");
+
+      function resOf(q) { // what a quantity is of: "2 hours of baking", "3 eggs", "1 hour in the oven"
+        var u = q[2] || "",
+          r = q[3] || "",
+          nx = q[4] || "";
+        if (/^(?:time|work|labor|labour)$/.test(r) && u) r = "";
+        var w = r || (!u ? nx : "");
+        if (/^(?:time|each|per|and|to|of|for|or|hours?|units?|available|total|in|on|a|an|the|more|fewer|less)$/.test(w)) w = "";
+        if (!w && u && /^(?:of\s+)?(?:labor|labour|work)$/.test(nx)) w = nx;
+        var key = w ? w.split(/\s+/).map(function(x, i) { return i ? x : lpStem(x); }).join(" ") : u ? lpStem(u) : "";
+        return { key: key, unit: u ? lpStem(u) : "", word: w || u };
+      }
+      var use = {},
+        lims = [],
+        order = [];
+      t.split(/[.!?;]\s|\n/).forEach(function(sen) {
+        // cut the sentence where each thing is named: the part before the first one, and a later clause with a limit word, are totals
+        var cuts = [];
+        [0, 1].forEach(function(i) {
+          itemRe[i].lastIndex = 0;
+          var q;
+          while ((q = itemRe[i].exec(sen))) cuts.push({ at: q.index, i: i });
+        });
+        cuts.sort(function(a, b) { return a.at - b.at; });
+        var parts = [{ i: -1, s: sen.slice(0, cuts.length ? cuts[0].at : sen.length) }];
+        cuts.forEach(function(c, k) { parts.push({ i: c.i, s: sen.slice(c.at, k + 1 < cuts.length ? cuts[k + 1].at : sen.length) }); });
+        parts.forEach(function(pt) {
+          var s = pt.s,
+            lim = null;
+          if (pt.i >= 0) {
+            var br = /(?:,\s*(?:and|but|while|so)?|\s(?:and|but|while|so))\s+(?=(?:the|there|it|they|she|he|we|you|i|its|their|our|his|her|a total|at most|at least|only|no more|up to|all|this|that)\b)/g,
+              b;
+            while ((b = br.exec(s)))
+              if (LIMW.test(s.slice(b.index))) {
+                lim = s.slice(b.index);
+                s = s.slice(0, b.index);
+                break;
+              }
+          } else lim = s;
+          if (pt.i >= 0) {
+            var q;
+            QRE.lastIndex = 0;
+            while ((q = QRE.exec(s))) {
+              var r = resOf(q);
+              if (!r.key) continue;
+              if (!use[r.key]) {
+                use[r.key] = { a: ZERO, b: ZERO, word: r.word, unit: r.unit };
+                order.push(r.key);
+              }
+              use[r.key][pt.i ? "b" : "a"] = lpNum(q[1]);
+            }
+          }
+          if (lim) {
+            var q2;
+            QRE.lastIndex = 0;
+            while ((q2 = QRE.exec(lim))) {
+              var r2 = resOf(q2);
+              if (!r2.key) continue;
+              var before = lim.slice(0, q2.index + 1),
+                lw = null,
+                z;
+              LIM2.lastIndex = 0;
+              while ((z = LIM2.exec(before))) lw = z[1];
+              var ge = (lw ? LOre.test(lw) : /\b(?:needs?|requires?|must (?:have|get|contain))\b/.test(before)) || /^\s*or more\b/.test(lim.slice(q2.index + q2[0].length));
+              var said = q2[1] + (q2[2] ? " " + q2[2] : "") + (q2[3] ? " of " + q2[3] : !q2[2] && q2[4] ? " " + q2[4] : "");
+              lims.push({ key: r2.key, unit: r2.unit, v: lpNum(q2[1]), ge: ge, txt: (lw ? lw + " " : ge ? "at least " : "") + said, ctx: lim, at: q2.index });
+            }
+          }
+        });
+      });
+      // "uses 5 square feet" with no "of …": the only other thing measured that way ("2 square feet of cardboard")
+      order.slice().forEach(function(k) {
+        var U = use[k];
+        if (!U.unit || U.unit !== k) return;
+        var same = order.filter(function(o) { return o !== k && use[o].unit === U.unit; });
+        if (same.length !== 1) return;
+        var T = use[same[0]];
+        if (isZ(T.a)) T.a = U.a;
+        if (isZ(T.b)) T.b = U.b;
+        order.splice(order.indexOf(k), 1);
+        delete use[k];
+      });
+      var used = {};
+
+      function stemRe(o) { return o.split(" ").map(function(x, i) { return i ? "\\s+" + x : x + "[a-z]*"; }).join(""); }
+      lims.forEach(function(L) {
+        var k = use[L.key] ? L.key : null;
+        if (!k) { // "machine A is free for 15 hours": the nearest thing named before it; else the only thing measured in hours
+          var best = -1;
+          order.forEach(function(o) {
+            var re = new RegExp("\\b" + stemRe(o) + "(?![a-z])", "g"),
+              z, last = -1;
+            while ((z = re.exec(L.ctx)) && z.index < L.at) last = z.index;
+            if (last > best) {
+              best = last;
+              k = o;
+            }
+          });
+          if (best < 0) {
+            var byU = order.filter(function(o) { return use[o].unit && use[o].unit === L.unit; });
+            k = byU.length === 1 ? byU[0] : null;
+          }
+        }
+        if (!k || used[k]) return;
+        used[k] = 1;
+        var U = use[k];
+        rowAdd(L.txt + (U.word && L.txt.indexOf(U.word) < 0 ? " (" + U.word + ")" : ""), U.a, U.b, L.ge ? "≥" : "≤", L.v);
+      });
+      var missing = order.filter(function(k) { return !used[k]; });
+      if (!rows.length) throw new UserErr(lpNote(raw, "the limits — how much there is of what they use", found));
+      if (missing.length && !rows.some(function(r) { return !isZ(r.a) && !isZ(r.b); })) throw new UserErr(lpNote(raw, "how much " + use[missing[0]].word + " there is", found));
+      cons.push("x >= 0", "y >= 0");
+      var low = String(raw).toLowerCase(),
+        whole = /\bhow many\b/.test(low) && !/\bhow many (?:acres|pounds|lbs|ounces|kilograms|kg|grams|gallons|liters|litres|hours|tons|cups|square)\b/.test(low);
+      rows.push({ what: name === "R" ? "the revenue" : goal === "max" ? "the profit" : "the cost", a: coef[0], b: coef[1], h: vH(name) + opS("=") + lpLinH(coef[0], coef[1], ZERO) });
+      return {
+        goal: goal,
+        name: name,
+        obj: lpLinT(coef[0], coef[1], ZERO).replace(/−/g, "-"),
+        cons: cons,
+        int: whole,
+        xl: xl,
+        yl: yl,
+        story: String(raw).replace(/\s+/g, " ").trim(),
+        read: { rows: rows, note: missing.length ? "I couldn’t find how much " + andList(missing.map(function(k) { return use[k].word; })) + " there is in all, so that isn’t a limit here." : null }
+      };
+    }
+
+    function lpNote(raw, what, found) {
+      return "I couldn’t read that story all the way: I couldn’t find " + esc(what) + "." + (found && found.length ? " (I did find " + esc(found.join("; ")) + ".)" : "") +
+        " Write it as the goal and the limits instead, like <b>maximize P = 3x + 5y; 2x + y ≤ 16; x + y ≤ 10; x ≥ 0; y ≥ 0; x = cakes, y = pies; how many</b> — " + vH("x") + " and " + vH("y") + " are the two numbers to find.";
+    }
+
+    function lpStoryish(s) { return /\b(?:each|per|every|how many|profit|costs?|earns?|takes|needs|requires|sells?|makes?|available)\b/i.test(s) && (String(s).match(/[a-z]{3,}/gi) || []).length >= 8; }
+
+    function lpRead(raw, src) {
+      var p = null;
+      try { p = lpTyped(src); } catch (e) {
+        if (!(e && e.user) || !lpStoryish(raw)) throw e;
+      }
+      if (p) return p;
+      if (!lpStoryish(raw)) throw new UserErr("Start with the goal — <b>maximize</b> or <b>minimize</b>, and what to make biggest or smallest — then the limits: <b>" + LP_EX + "</b>.");
+      return lpStory(raw);
+    }
+
+    /* ---- optimization: checking an answer ---- */
+    var LP_NONE = /^(?:none|no|nothing|n\/?a|dne|no solutions?|no feasible region|not feasible|infeasible|empty|unbounded|it'?s unbounded|no max(?:imum)?|no min(?:imum)?|no best(?: point)?|no optimal(?: point| solution)?|does ?n[o’']?t exist|there is none|no answer)$/i;
+
+    function judgeLpPt(f, raw) {
+      var s = String(raw).trim(),
+        c = f.ctx,
+        res = c.res,
+        nmH = vH(c.nm);
+      if (!s) return { st: "empty" };
+      if (LP_NONE.test(s)) {
+        if (f.v) return { st: "bad", msg: "There is a best point: test the region’s corners in " + nmH + "." };
+        if (res.none && /unbounded|no max|no min/i.test(s)) return { st: "bad", msg: "It isn’t unbounded — there’s no region at all: no point keeps to every limit. That’s <b>no solution</b>." };
+        if (res.unb && /solution|feasible|empty/i.test(s)) return { st: "bad", msg: "There is a region — it just goes on forever, so " + nmH + " has no " + (c.max ? "maximum" : "minimum") + ". That’s <b>unbounded</b>." };
+        return { st: "ok" };
+      }
+      var r = parseTypedPts(s);
+      if (r.pts.length !== 1 || r.junk) return { st: "unread", msg: "Type one point like <b>(3, 7)</b>" + (f.v ? "" : ", or <b>none</b>") + "." };
+      var Q = r.pts[0];
+      if (!f.v) return { st: "bad", msg: res.none ? "Check that point in every limit — it breaks one. Here no point keeps to them all, so there’s <b>no solution</b>." : "The region goes on forever and " + nmH + " keeps getting " + (c.max ? "bigger" : "smaller") + ", so no point is best: <b>unbounded</b> (none)." };
+      if (f.v.some(function(W) { return ptEq(W, Q); })) return { st: "ok", note: f.v.length > 1 ? "That’s one of the points that tie for best." : null };
+      var near = /\./.test(s) && f.v.filter(function(W) { return closeTo(F(Q.x), F(W.x), 0.0151) && closeTo(F(Q.y), F(W.y), 0.0151); })[0];
+      if (near) return { st: "ok", note: "Rounded is fine — exactly, it’s <b>" + ptH(near) + "</b>." };
+      if (f.v.some(function(W) { return ptEq(P(W.y, W.x), Q); }) && !ptEq(P(Q.y, Q.x), Q)) return { st: "bad", msg: "The " + vH("x") + " and " + vH("y") + " are swapped — (" + vH("x") + ", " + vH("y") + "), " + vH("x") + " first." };
+      var fl = lpFail(c.cons, Q);
+      if (fl >= 0) {
+        var k = c.cons[fl];
+        return { st: "bad", msg: "That point breaks limit " + (fl + 1) + ": in <b>" + k.html + "</b> it gives <b>" + subXY(k.L, Q) + " " + esc(lpRelS(k)) + " " + subXY(k.R, Q) + "</b>, which isn’t true. The answer has to be in the feasible region." };
+      }
+      var v = lpVal(c.ob, Q);
+      if (c.int && (!isInt(Q.x) || !isInt(Q.y))) return { st: "bad", msg: (res.bests.some(function(b) { return ptEq(b.Q, Q); }) ? "That’s the best corner — but it" : "That point") + " isn’t whole numbers, and you can’t make part of one. Check the whole-number points near the best corner." };
+      if (res.corners.some(function(k2) { return ptEq(k2.Q, Q); })) return { st: "bad", msg: "That’s a corner, but it gives " + nmH + " = " + nH(v) + ". Another " + (c.int ? "whole-number point" : "corner") + " gives a " + (c.max ? "bigger" : "smaller") + " " + nmH + " — test them all." };
+      if (c.int) return { st: "bad", msg: "That point keeps to every limit, but it gives " + nmH + " = " + nH(v) + ". A whole-number point closer to the best corner gives a " + (c.max ? "bigger" : "smaller") + " " + nmH + "." };
+      return { st: "bad", msg: "That point keeps to every limit, but it isn’t a corner — it gives " + nmH + " = " + nH(v) + ". The best value is always at a corner of the region." };
+    }
+
+    function judgeLpVal(f, raw) {
+      var s = String(raw).replace(/^\s*(?:the\s+)?(?:max(?:imum)?|min(?:imum)?|[a-z])\s*(?:=|is|:)\s*/i, "").replace(/^\$\s*/, "").trim(),
+        c = f.ctx,
+        res = c.res,
+        T = f.v;
+      if (!s) return { st: "empty" };
+      if (LP_NONE.test(s)) return { st: "bad", msg: "There is a " + (c.max ? "biggest" : "smallest") + " value: put the best point into " + vH(c.nm) + "." };
+      var U = readNumU(s),
+        z = U ? null : evalAns(s);
+      if (!U && !z) return { st: "unread", msg: "Type a number like <b>44</b> or <b>45.5</b>." };
+      if (U && eqR(U.v, T)) return unsimp(U) ? { st: "part", msg: "Right value — now simplify the fraction: <b>" + nH(T) + "</b>." } : { st: "ok" };
+      var fv = U ? F(U.v) : z.f,
+        dec = U ? U.form === "dec" : z.dec,
+        places = U ? U.places : z.places;
+      if (dec && closeTo(fv, F(T), tolOf({ dec: true, places: places || 2 }))) return { st: "ok", note: isInt(T) ? null : "Rounded is fine — exactly, it’s <b>" + nH(T) + "</b>." };
+      if (c.int && closeTo(fv, F(res.bestV), 1e-9) && !eqR(res.bestV, T)) return { st: "bad", msg: "That’s " + vH(c.nm) + " at the best corner — but that corner isn’t whole numbers. Use the best whole-number point." };
+      var hit = res.corners.filter(function(k) { return closeTo(fv, F(k.v), 1e-9); })[0];
+      if (hit) return { st: "bad", msg: "That’s " + vH(c.nm) + " at the corner " + ptH(hit.Q) + ", but another " + (c.int ? "point" : "corner") + " gives a " + (c.max ? "bigger" : "smaller") + " value." };
+      return { st: "bad" };
+    }
+
     /* ===================== Transformations ===================== */
     // a move as a map: x′ = ax·x + bx·y + cx, y′ = ay·x + by·y + cy
     function mapOf(mv) {
@@ -9154,6 +10050,7 @@
       functions: "Type a function like <b>y = x^2 − 4x + 3</b> — or several, split by <b>;</b>.",
       systems: "Type two equations like <b>x + y = 6 and x − y = 2</b>, or two plans like <b>20 + 5x; 8x</b>.",
       inequalities: "Type an inequality like <b>y &lt; 2x + 1</b>, <b>x &gt; 3</b> or <b>−2 &lt; x &lt;= 3</b>.",
+      optimize: "Type what to maximize or minimize, then the limits: <b>maximize P = 3x + 5y; x + y ≤ 10; 2x + y ≤ 16; x ≥ 0; y ≥ 0</b> — or paste a story problem.",
       transform: "Type a move and the points, like <b>reflect (1, 2) (4, 2) (4, 5) over the y-axis</b> or <b>translate (2, 3) by (−4, 1)</b>.",
       scatter: "Type the data as pairs, like <b>(1, 2) (2, 4) (3, 5) (4, 4) (5, 6) predict x = 8</b>."
     };
@@ -9195,7 +10092,7 @@
     function parseQ(mode, q) {
       var src = cleanQ(q);
       if (!src) throw new UserErr(EMPTY[mode]);
-      if (src.length > 400) throw new UserErr("That’s a long problem! Keep it under 400 characters.");
+      if (src.length > (mode === "optimize" ? 800 : 400)) throw new UserErr("That’s a long problem! Keep it under " + (mode === "optimize" ? 800 : 400) + " characters.");
       var low = src.toLowerCase(),
         g, m;
       if (mode === "points") {
@@ -9279,6 +10176,7 @@
         });
         return { e1: eqs[0], e2: eqs[1], plan: false };
       }
+      if (mode === "optimize") return lpRead(q, src);
       if (mode === "inequalities") {
         var read = /^\s*read\b|write the inequalit|what inequalit|which inequalit/i.test(src);
         var plane = /\b(?:in|on) the (?:coordinate )?(?:plane|grid)\b|\bon a (?:coordinate )?grid\b/i.test(src);
@@ -9417,9 +10315,19 @@
     }
 
     /* ---- which tab, when the link doesn't say ---- */
+    // optimization: maximize / minimize with limits, or a story about the most profit or the least cost
+    function lpLike(low, src) {
+      if (/\b(?:linear programming|feasible region|objective function|subject to)\b|\bs\.\s*t\.(?=\s)/.test(low)) return true;
+      var goal = /\b(?:maximi[sz]e|minimi[sz]e|optimi[sz]e|maximum|minimum|max|min)\b/.test(low);
+      if (goal && /[<>≤≥]/.test(low) && /\b[xy]\b|\d[xy]\b/.test(low) && /;|,|\band\b/.test(low)) return true;
+      return /\b(?:maximi[sz]e|minimi[sz]e)\b|\b(?:most|greatest|largest|maximum|highest) (?:profit|revenue|income)\b|\b(?:least|lowest|smallest|minimum) (?:cost|expense)\b|\bcheapest\b/.test(low) &&
+        /\b(?:each|per|every|how many)\b/.test(low) && lpStoryish(src) && !/\by\s*=|\bf\s*\(\s*x\s*\)/.test(low);
+    }
+
     function inferMode(q) {
       var src = cleanQ(q),
         low = src.toLowerCase();
+      if (lpLike(low, src)) return "optimize";
       if (/scatter|trend|best fit|predict|correlat|association/.test(low)) return "scatter";
       if (/translat|reflect|rotat|dilat|\bslide\b|\bflip\b|\bturn\b|enlarge|\bimage\b|\bmove\b|\bshift\b/.test(low)) return "transform";
       if (/[<>≤≥]/.test(low)) return "inequalities";
@@ -9462,6 +10370,16 @@
         } else {
           p.set("e1", exA(pr.e1.L) + "=" + exA(pr.e1.R));
           p.set("e2", exA(pr.e2.L) + "=" + exA(pr.e2.R));
+        }
+      } else if (mode === "optimize") {
+        p.set("goal", pr.goal === "min" ? "min" : "max");
+        p.set("obj", exA(lpObj(pr.obj).ast));
+        p.set("name", pr.name || (pr.goal === "min" ? "C" : "P"));
+        p.set("cons", pr.cons.join(";"));
+        if (pr.int) p.set("int", "1");
+        if (pr.xl && pr.yl) {
+          p.set("xl", pr.xl);
+          p.set("yl", pr.yl);
         }
       } else if (mode === "inequalities") {
         p.set("task", pr.task);
@@ -9521,6 +10439,13 @@
         var mk = function(s) { var r = parseRel(s); if (r.rels.length !== 1 || r.rels[0] !== "=") throw new UserErr("bad"); return { L: r.sides[0], R: r.sides[1] }; };
         return { e1: mk(g("e1")), e2: mk(g("e2")), plan: false };
       }
+      if (mode === "optimize") {
+        if (!g("obj") || !g("cons")) return null;
+        var gl = g("goal") === "min" ? "min" : "max",
+          cs = g("cons").split(";").map(function(t) { return t.trim(); }).filter(Boolean);
+        cs.forEach(lpCons);
+        return { goal: gl, name: /^[a-wz]$/i.test(g("name") || "") ? g("name").toUpperCase() : gl === "max" ? "P" : "C", obj: exA(lpObj(g("obj")).ast), cons: cs, int: /^(1|true|yes)$/i.test(g("int") || ""), xl: g("xl") && g("yl") ? g("xl") : null, yl: g("xl") && g("yl") ? g("yl") : null };
+      }
       if (mode === "inequalities") {
         if (!g("ineq")) return null;
         var task = g("task") === "read" ? "read" : "graph",
@@ -9556,6 +10481,12 @@
         if (pr.plan) return "plan A " + exT(pr.e1.R) + "; plan B " + exT(pr.e2.R) + (pr.unit && pr.unit !== "visits" ? " (x = " + pr.unit + ")" : "");
         return exT(pr.e1.L) + " = " + exT(pr.e1.R) + " and " + exT(pr.e2.L) + " = " + exT(pr.e2.R);
       }
+      if (mode === "optimize") {
+        var ob = lpObj(pr.obj),
+          cs2 = [];
+        pr.cons.forEach(function(t) { lpCons(t).forEach(function(c) { cs2.push(c.text); }); });
+        return (pr.goal === "min" ? "minimize " : "maximize ") + (pr.name || (pr.goal === "min" ? "C" : "P")) + " = " + lpLinT(ob.cx, ob.cy, ob.k) + "; " + cs2.join("; ") + (pr.xl && pr.yl ? "; x = " + pr.xl + ", y = " + pr.yl : "") + (pr.int ? "; whole numbers" : "");
+      }
       if (mode === "inequalities") {
         var nice = function(s) { return s.replace(/<=/g, "≤").replace(/>=/g, "≥").replace(/-/g, "−"); };
         return (pr.task === "read" ? "read " : "") + (pr.kind === "one" ? nice(pr.src) : pr.list.map(nice).join(" and ") + (/y/i.test(pr.list.join(" ")) ? "" : " in the plane"));
@@ -9581,6 +10512,7 @@
         try { sol = solveFunctions(pr); } finally { DEGMODE = od; }
       } else if (mode === "systems") sol = solveSystems(pr);
       else if (mode === "inequalities") sol = pr.kind === "one" ? solveIneq1(pr) : solveIneq2(pr);
+      else if (mode === "optimize") sol = solveOpt(pr);
       else if (mode === "transform") sol = solveTransform(pr);
       else sol = solveScatter(pr);
       sol.pr = pr;
@@ -10244,6 +11176,10 @@
           return judgeIneq2(f, raw);
         case "syspt":
           return judgeSys(f, raw);
+        case "lppt":
+          return judgeLpPt(f, raw);
+        case "lpval":
+          return judgeLpVal(f, raw);
         case "assoc":
           return judgeAssoc(f, raw);
         case "pred":
@@ -10633,6 +11569,90 @@
     }
     var FLIPA = { "<": ">", ">": "<", "<=": ">=", ">=": "<=" };
 
+    // optimization: two limits through a corner, x ≥ 0 and y ≥ 0, and something to maximize or minimize
+    function lpTerm(a, v) { return (a === 1 ? "" : String(a)) + v; }
+
+    function lpS(a, b, rel, c, keep) { // a limit, with any common factor taken out
+      var g = keep ? 1 : Number(bgcd(bgcd(BigInt(a), BigInt(b)), BigInt(c)));
+      return lpTerm(a / g, "x") + " + " + lpTerm(b / g, "y") + " " + rel + " " + c / g;
+    }
+    var LP_STORY = [
+      { who: "A bakery", verb: "makes", it: "the bakery", make: "make", x: ["cake", "cakes"], y: ["pie", "pies"], r: ["baking", "decorating"], u: ["hour", "hours"], when: "each day", each: "takes", money: function(p, q) { return "The profit is $" + p + " per cake and $" + q + " per pie."; } },
+      { who: "A workshop", verb: "builds", it: "the workshop", make: "build", x: ["chair", "chairs"], y: ["table", "tables"], r: ["carpentry", "painting"], u: ["hour", "hours"], when: "each week", each: "needs", k: 10, money: function(p, q) { return "Each chair earns $" + p + " and each table earns $" + q + "."; } },
+      { who: "A toy factory", verb: "makes", it: "the factory", make: "make", x: ["truck", "trucks"], y: ["doll", "dolls"], r: ["assembly", "packing"], u: ["minute", "minutes"], when: "each hour", each: "takes", m: 3, money: function(p, q) { return "It makes a profit of $" + p + " on each truck and $" + q + " on each doll."; } },
+      { who: "A jeweler", verb: "makes", it: "the jeweler", make: "make", x: ["ring", "rings"], y: ["necklace", "necklaces"], r: ["design", "polishing"], u: ["hour", "hours"], when: "each week", each: "requires", k: 5, money: function(p, q) { return "The profit is $" + p + " on a ring and $" + q + " on a necklace."; } }
+    ];
+
+    function lpQty(n, u) { return n + " " + (n === 1 ? u[0] : u[1]); }
+
+    function genOpt(G) {
+      var kind = G.kind === "any" ? pickOf(["max", "max", "min", "story", "special"]) : G.kind;
+      for (var t = 0; t < 400; t++) {
+        var a1 = rint(1, 4),
+          b1 = rint(1, 4),
+          a2 = rint(1, 4),
+          b2 = rint(1, 4);
+        if (a1 * b2 === a2 * b1) continue;
+        var p = rint(1, 8),
+          q = rint(1, 8),
+          c1, c2;
+        if (kind === "story" && chance(0.45)) { // a corner that may not be whole numbers
+          c1 = a1 * p + b1 * q + rint(-2, 2);
+          c2 = a2 * p + b2 * q + rint(-2, 2);
+        } else {
+          c1 = a1 * p + b1 * q;
+          c2 = a2 * p + b2 * q;
+        }
+        if (c1 < 2 || c2 < 2) continue;
+        // the corner where the two lines cross is a corner of the region only if each line cuts off one axis first
+        if (!((c1 / a1 - c2 / a2) * (c1 / b1 - c2 / b2) < 0)) continue;
+        if (kind !== "story" && chance(0.75) && (c1 % a1 || c1 % b1 || c2 % a2 || c2 % b2)) continue;
+        var cx = rint(1, 9),
+          cy = rint(1, 9),
+          pr;
+        if (kind !== "special" && chance(0.7)) { // usually the best corner is where the two limits cross
+          var l1 = rint(1, 3),
+            l2 = rint(1, 3),
+            g0;
+          cx = l1 * a1 + l2 * a2;
+          cy = l1 * b1 + l2 * b2;
+          g0 = kind === "story" ? 1 : Number(bgcd(BigInt(cx), BigInt(cy)));
+          cx /= g0;
+          cy /= g0;
+        }
+        if (kind === "special") {
+          if (chance(0.5)) { // no feasible region: at most … and at least more than it can reach
+            var top = Math.max(a2 * c1 / a1, b2 * c1 / b1);
+            pr = { goal: pickOf(["max", "min"]), name: null, obj: lpTerm(cx, "x") + "+" + lpTerm(cy, "y"), cons: [lpS(a1, b1, "<=", c1), lpS(a2, b2, ">=", Math.floor(top) + rint(1, 4)), "x >= 0", "y >= 0"], int: false };
+          } else pr = { goal: "max", name: null, obj: lpTerm(cx, "x") + "+" + lpTerm(cy, "y"), cons: [lpS(a1, b1, ">=", c1), lpS(a2, b2, ">=", c2), "x >= 0", "y >= 0"], int: false };
+          pr.name = pr.goal === "max" ? "P" : "C";
+        } else if (kind === "min") pr = { goal: "min", name: "C", obj: lpTerm(cx, "x") + "+" + lpTerm(cy, "y"), cons: [lpS(a1, b1, ">=", c1), lpS(a2, b2, ">=", c2), "x >= 0", "y >= 0"], int: false };
+        else if (kind === "story") {
+          var T = pickOf(LP_STORY),
+            k = T.k || 1,
+            mm = T.m || 1;
+          var A1 = a1 * mm,
+            B1 = b1 * mm,
+            A2 = a2 * mm,
+            B2 = b2 * mm,
+            C1 = c1 * mm,
+            C2 = c2 * mm;
+          var story = T.who + " " + T.verb + " " + T.x[1] + " and " + T.y[1] + ". Each " + T.x[0] + " " + T.each + " " + lpQty(A1, T.u) + " of " + T.r[0] + " and " + lpQty(A2, T.u) + " of " + T.r[1] + ". Each " + T.y[0] + " " + T.each + " " + lpQty(B1, T.u) + " of " + T.r[0] + " and " + lpQty(B2, T.u) + " of " + T.r[1] + ". " +
+            "There are at most " + lpQty(C1, T.u) + " of " + T.r[0] + " and " + lpQty(C2, T.u) + " of " + T.r[1] + " " + T.when + ". " + T.money(cx * k, cy * k) + " How many " + T.x[1] + " and " + T.y[1] + " should " + T.it + " " + T.make + " to maximize profit?";
+          try { pr = lpStory(story); } catch (e) { continue; }
+          var want = [lpS(A1, B1, "<=", C1, true), lpS(A2, B2, "<=", C2, true), "x >= 0", "y >= 0"].join(";").replace(/\s+/g, "");
+          if (pr.cons.join(";").replace(/\s+/g, "") !== want) continue;
+        } else pr = { goal: "max", name: "P", obj: lpTerm(cx, "x") + "+" + lpTerm(cy, "y"), cons: [lpS(a1, b1, "<=", c1), lpS(a2, b2, "<=", c2), "x >= 0", "y >= 0"], int: false };
+        var sol;
+        try { sol = solveOpt(pr); } catch (e2) { continue; }
+        var f0 = sol.fields[0];
+        if (kind !== "special" && (!f0.v || f0.v.length !== 1 || (f0.v[0] && isZ(f0.v[0].x) && isZ(f0.v[0].y)))) continue;
+        if (kind === "special" && f0.v) continue;
+        return pr;
+      }
+      return { goal: "max", name: "P", obj: "3x+5y", cons: ["x + y <= 10", "2x + y <= 16", "x >= 0", "y >= 0"], int: false };
+    }
+
     function genTransform(G) {
       var kind = G.kind === "any" ? pickOf(["translate", "reflect", "rotate", "dilate", "sequence"]) : G.kind,
         shape = G.shape === "any" ? pickOf(["point", "triangle", "triangle", "quad"]) : G.shape,
@@ -10741,7 +11761,7 @@
 
     function genOne(mode, G) {
       return mode === "points" ? genPoints(G) : mode === "table" ? genTable(G) : mode === "functions" ? genFunctions(G) : mode === "systems" ? genSystems(G) :
-        mode === "inequalities" ? genIneq(G) : mode === "transform" ? genTransform(G) : genScatter(G);
+        mode === "inequalities" ? genIneq(G) : mode === "optimize" ? genOpt(G) : mode === "transform" ? genTransform(G) : genScatter(G);
     }
 
     /* ===================== the worksheet API ===================== */
@@ -10754,6 +11774,7 @@
     var L_SK = { grid: "They cross on a grid point", fraction: "They cross between grid lines (exact answer by algebra)", parallel: "Parallel: no solution", same: "The same line: infinitely many", plans: "Two plans: when do they cost the same?", any: "A mix" };
     var L_SF = { slope: "Written as y = mx + b", standard: "Written as Ax + By = C", any: "Either way" };
     var L_IK = { one: "One variable, on a number line", compound: "Compound (and / or), on a number line", two: "Two variables: shade the plane", system: "A system of two: shade the overlap", read: "Read the graph and write the inequality", any: "A mix" };
+    var L_OK = { max: "Maximize, in a closed region", min: "Minimize, in an open region", story: "A story problem, in whole numbers", special: "No feasible region, or no maximum", any: "A mix" };
     var L_MK = { translate: "Slides (translations)", reflect: "Flips (reflections)", rotate: "Turns (rotations)", dilate: "Stretches (dilations)", sequence: "Two moves in a row", any: "A mix" };
     var L_SH = { point: "A single point", triangle: "Triangles", quad: "Four-sided shapes", any: "A mix" };
     var L_AS = { positive: "Positive (going up together)", negative: "Negative (one up, one down)", none: "No association", any: "A mix" };
@@ -10767,7 +11788,7 @@
         default: "points",
         modes: MODES.slice(),
         values: [{ v: "points", label: "Points on the coordinate plane" }, { v: "table", label: "Tables of values" }, { v: "functions", label: "Graphing functions" }, { v: "systems", label: "Systems by graphing" },
-          { v: "inequalities", label: "Graphing inequalities" }, { v: "transform", label: "Transformations" }, { v: "scatter", label: "Scatter plots and trend lines" }
+          { v: "inequalities", label: "Graphing inequalities" }, { v: "optimize", label: "Optimization (linear programming)" }, { v: "transform", label: "Transformations" }, { v: "scatter", label: "Scatter plots and trend lines" }
         ]
       },
       { key: "pointTask", label: "What to do", type: "choice", default: "any", modes: ["points"], values: vals(L_PT, ["plot", "read", "distance", "midpoint", "polygon", "any"]) },
@@ -10783,6 +11804,7 @@
       { key: "sysKind", label: "How the lines meet", type: "choice", default: "any", modes: ["systems"], values: vals(L_SK, ["grid", "fraction", "parallel", "same", "plans", "any"]) },
       { key: "sysForm", label: "How the equations are written", type: "choice", default: "any", modes: ["systems"], values: vals(L_SF, ["slope", "standard", "any"]) },
       { key: "ineqKind", label: "Kind of inequality", type: "choice", default: "any", modes: ["inequalities"], values: vals(L_IK, ["one", "compound", "two", "system", "read", "any"]) },
+      { key: "optKind", label: "Kind of optimization", type: "choice", default: "any", modes: ["optimize"], values: vals(L_OK, ["max", "min", "story", "special", "any"]) },
       { key: "moveKind", label: "The move", type: "choice", default: "any", modes: ["transform"], values: vals(L_MK, ["translate", "reflect", "rotate", "dilate", "sequence", "any"]) },
       { key: "shape", label: "What moves", type: "choice", default: "any", modes: ["transform"], values: vals(L_SH, ["point", "triangle", "quad", "any"]) },
       { key: "assoc", label: "The pattern", type: "choice", default: "any", modes: ["scatter"], values: vals(L_AS, ["positive", "negative", "none", "any"]) },
@@ -10809,6 +11831,7 @@
       if (mode === "functions") return { family: optOf(o, "family"), form: optOf(o, "quadForm"), irr: optOf(o, "irrational"), two: optOf(o, "twoGraphs") };
       if (mode === "systems") return { kind: optOf(o, "sysKind"), form: optOf(o, "sysForm"), max: optOf(o, "max") };
       if (mode === "inequalities") return { kind: optOf(o, "ineqKind") };
+      if (mode === "optimize") return { kind: optOf(o, "optKind") };
       if (mode === "transform") return { kind: optOf(o, "moveKind"), shape: optOf(o, "shape"), quads: optOf(o, "quadrants"), max: optOf(o, "max") };
       return { assoc: optOf(o, "assoc"), outlier: optOf(o, "outlier"), predict: optOf(o, "predict") };
     }
@@ -11921,6 +12944,8 @@
       ineq1: "e.g. x > 3",
       ineq2: "e.g. y < 2x + 1",
       syspt: "e.g. (2, 4), or no solution",
+      lppt: "e.g. (3, 7), or none",
+      lpval: "e.g. 44",
       assoc: "e.g. strong positive",
       pred: "e.g. 7.8"
     };
@@ -11942,7 +12967,7 @@
       fields.forEach(function(f) {
         var id = "ck_" + f.key,
           div = document.createElement("div");
-        div.className = "ck-field" + (f.kind === "pts" || f.kind === "syspt" || f.kind === "region" || f.kind === "xints" || f.kind === "rule" || f.kind === "assoc" ? " wide" : "") + (f.kind === "cell" ? "" : "");
+        div.className = "ck-field" + (f.kind === "pts" || f.kind === "syspt" || f.kind === "lppt" || f.kind === "region" || f.kind === "xints" || f.kind === "rule" || f.kind === "assoc" ? " wide" : "") + (f.kind === "cell" ? "" : "");
         if (f.kind === "choice") {
           div.innerHTML = '<span class="flab" id="' + id + '_l">' + esc(f.label) + '</span><div class="ck-row"><div class="choice" role="group" aria-labelledby="' + id + '_l" id="' + id + '" data-v="">' +
             f.opts.map(function(o) { return '<button type="button" data-v="' + esc(o[0]) + '" aria-pressed="false">' + esc(o[1]) + "</button>"; }).join("") + '</div><span class="ck-mark" aria-hidden="true"></span></div>';
@@ -12163,6 +13188,12 @@
       sys: "systems",
       inequality: "inequalities",
       ineq: "inequalities",
+      optimization: "optimize",
+      optimisation: "optimize",
+      optimise: "optimize",
+      optimizing: "optimize",
+      lp: "optimize",
+      "linear-programming": "optimize",
       transformations: "transform",
       transformation: "transform",
       moves: "transform",
@@ -12172,7 +13203,7 @@
       data: "scatter",
       trend: "scatter"
     };
-    var STRUCT_KEYS = ["pts", "task", "rule", "xs", "tbl", "f", "e1", "e2", "plan", "unit", "ineq", "ineq2", "t", "t2", "data", "px", "xl", "yl", "ask"];
+    var STRUCT_KEYS = ["obj", "cons", "goal", "pts", "task", "rule", "xs", "tbl", "f", "e1", "e2", "plan", "unit", "ineq", "ineq2", "t", "t2", "data", "px", "xl", "yl", "ask"];
 
     function readURL() {
       var P0;
@@ -12188,9 +13219,9 @@
       // the structured form
       var has = STRUCT_KEYS.some(function(k) { return P0.get(k) !== null; });
       if (has) {
-        var guess = m || (P0.get("f") ? "functions" : P0.get("e1") ? "systems" : P0.get("ineq") ? "inequalities" : P0.get("t") ? "transform" : P0.get("data") ? "scatter" : (P0.get("rule") || P0.get("tbl")) ? "table" : P0.get("pts") ? "points" : null);
+        var guess = m || ((P0.get("obj") || P0.get("cons")) ? "optimize" : P0.get("f") ? "functions" : P0.get("e1") ? "systems" : P0.get("ineq") ? "inequalities" : P0.get("t") ? "transform" : P0.get("data") ? "scatter" : (P0.get("rule") || P0.get("tbl")) ? "table" : P0.get("pts") ? "points" : null);
         if (guess) {
-          ["f", "e1", "e2", "rule", "ineq", "ineq2"].forEach(function(k) {
+          ["f", "e1", "e2", "rule", "ineq", "ineq2", "obj", "cons"].forEach(function(k) {
             var lit = rawParam(k),
               v = P0.get(k);
             if (lit !== null && v !== null && lit !== v && lit.indexOf("+") >= 0) {
@@ -12218,7 +13249,7 @@
       }
       var q = P0.get("q");
       if (q !== null && q.trim() && !(m && S.struct[m] && S.structText[m] === S.inputs[m] && has)) {
-        q = q.slice(0, 400);
+        q = q.slice(0, (m || inferMode(q.slice(0, 800))) === "optimize" ? 800 : 400);
         var lit2 = rawParam("q");
         if (lit2 !== null && lit2 !== q && lit2.indexOf("+") >= 0) {
           var works = function(src) { try { parseQ(m || inferMode(src), src); return true; } catch (x) { return false; } };
@@ -12253,16 +13284,21 @@
       functions: "<code>y = x^2 − 4x + 3</code>, <code>y = 2(x − 1)^2 − 8</code>, <code>y = |x − 2|</code>, <code>y = sqrt(x + 4)</code>, <code>y = 2^x</code>, <code>y = 1/(x − 2) + 1</code>, <code>y = x^3</code>. Several at once: split with <code>;</code>.",
       systems: "Two equations: <code>x + y = 6 and x − y = 2</code>, <code>y = 2x − 1; 3x + 2y = 12</code>. Two plans: <code>20 + 5x; 8x</code> (add a word like <code>months</code> for the story).",
       inequalities: "One variable: <code>x &gt; 3</code>, <code>2x + 1 &gt;= 7</code>, <code>−2 &lt; x &lt;= 3</code>, <code>x &lt; −1 or x &gt;= 2</code>. Two: <code>y &lt; 2x + 1</code>, <code>y &gt; x − 1 and y &lt;= −2x + 4</code>. <code>read …</code> to practice reading a graph.",
+      optimize: "The goal, then the limits: <code>maximize P = 3x + 5y; x + y ≤ 10; 2x + y ≤ 16; x ≥ 0; y ≥ 0</code>, <code>minimize C = 2x + 4y subject to x + y ≥ 6, x + 3y ≥ 10, x, y ≥ 0</code>. Add <code>x = cakes, y = pies</code> and <code>whole numbers</code> for a story — or paste the story itself.",
       transform: "<code>reflect (1, 2) (4, 2) (4, 5) over the y-axis</code> · <code>rotate (1, 1) (3, 1) (1, 4) 90 clockwise</code> · <code>translate (2, 3) by (−4, 1)</code> · <code>dilate (2, 4) (6, 4) by 1/2</code> · <code>… then …</code> for two moves.",
       scatter: "Pairs like <code>(1, 2) (2, 4) (3, 5)</code>, or <code>x: 1 2 3, y: 2 4 5</code>, or paste rows of two numbers. Add <code>predict x = 8</code>, and names like <code>x = hours, y = score</code>."
     };
-    var LABELS = { points: "Points, and what to find", table: "A rule and x-values — or a table", functions: "y = … (split several with ;)", systems: "Two equations, or two plans", inequalities: "An inequality (or two)", transform: "The move and the points", scatter: "The data pairs" };
+    var LABELS = { points: "Points, and what to find", table: "A rule and x-values — or a table", functions: "y = … (split several with ;)", systems: "Two equations, or two plans", inequalities: "An inequality (or two)", optimize: "What to maximize or minimize, and the limits", transform: "The move and the points", scatter: "The data pairs" };
     var EX = {
       points: ["plot (3, −2)", "plot (−4, 1) (0, −3) (2, 5)", "read (−3, 4)", "distance (1, 2) (4, 6)", "distance (−2, 3) (4, −1)", "midpoint of (2, 3) and (8, −1)", "area of (0, 0) (4, 0) (4, 3)", "area and perimeter of (1, 1) (6, 2) (3, 5)"],
       table: ["table y = 3x − 1 for x = −2..2", "y = x^2 for x = −3, −2, −1, 0, 1, 2, 3", "y = 12/x for x = 1, 2, 3, 4, 6", "x: 1 2 3 4, y: 3 6 9 12", "x: 0 1 2 3, y: 5 8 11 14", "x: 1 2 3 4, y: 1 4 9 16"],
       functions: ["y = x^2 − 4x + 3", "y = 2(x − 1)^2 − 8", "y = x^2 − 2x − 2", "y = −(x + 1)(x − 3)", "y = |x − 2| − 1", "y = sqrt(x + 4) − 1", "y = 2^x", "y = 1/(x − 2) + 1", "y = 2x − 1; y = −x + 5"],
       systems: ["x + y = 6 and x − y = 2", "y = 2x − 1 and y = −x + 5", "y = x + 1; 2x + 3y = 12", "y = 2x + 1 and y = 2x − 3", "20 + 5x; 8x", "plan A 30 + 2x; plan B 5x months"],
       inequalities: ["x > 3", "2x + 1 <= 7", "−2 < x <= 3", "x < −1 or x >= 2", "y < 2x + 1", "2x + 3y >= 6", "y > x − 1 and y <= −2x + 4", "read y >= −x + 2"],
+      optimize: ["maximize P = 3x + 5y; x + y ≤ 10; 2x + y ≤ 16; x ≥ 0; y ≥ 0", "minimize C = 2x + 4y; x + y ≥ 6; x + 3y ≥ 10; x ≥ 0; y ≥ 0", "maximize P = 5x + 4y; 2x + 3y ≤ 12; 2x + y ≤ 8; x ≥ 0; y ≥ 0; whole numbers",
+        "maximize P = x + y; x + y ≥ 4; x ≥ 0; y ≥ 0", "maximize P = 2x + 3y; x + y ≤ 4; x + y ≥ 6; x ≥ 0; y ≥ 0",
+        "A bakery makes cakes and pies. Each cake takes 2 hours of baking and 1 hour of decorating. Each pie takes 1 hour of baking and 1 hour of decorating. There are at most 16 hours of baking and 10 hours of decorating each day. The profit is $3 per cake and $5 per pie. How many of each should the bakery make to maximize profit?"
+      ],
       transform: ["reflect (1, 2) (4, 2) (4, 5) over the y-axis", "rotate (1, 1) (3, 1) (1, 4) 90 clockwise", "translate (2, 3) by (−4, 1)", "dilate (2, 4) (6, 4) (6, 8) by 1/2", "reflect (1, 1) (4, 1) (1, 3) over the x-axis then translate by (2, 3)", "rotate (2, 1) 180 about (1, 1)"],
       scatter: ["scatter (1, 2) (2, 4) (3, 5) (4, 4) (5, 6) predict x = 8", "(1, 52) (2, 58) (3, 61) (4, 70) (5, 74) (6, 80) x = hours, y = score predict x = 7", "(1, 30) (2, 27) (4, 22) (5, 18) (7, 12) (8, 9)", "(1, 5) (2, 9) (3, 2) (4, 8) (5, 3) (6, 7)"]
     };
@@ -12429,6 +13465,7 @@
         { lbl: "Biggest number", seg: "max", vals: [5, 10], fmt: function(v) { return "up to " + v; } }
       ],
       inequalities: [{ lbl: "Kind of inequality", seg: "kind", vals: ["one", "compound", "two", "system", "read", "any"], fmt: function(v) { return L_IK[v]; } }],
+      optimize: [{ lbl: "Kind of problem", seg: "kind", vals: ["max", "min", "story", "special", "any"], fmt: function(v) { return L_OK[v]; } }],
       transform: [{ lbl: "The move", seg: "kind", vals: ["translate", "reflect", "rotate", "dilate", "sequence", "any"], fmt: function(v) { return L_MK[v]; } },
         { lbl: "What moves", seg: "shape", vals: ["point", "triangle", "quad", "any"], fmt: function(v) { return L_SH[v]; } }, {
           lbl: "Also",
@@ -12631,6 +13668,7 @@
       functions: { family: ["linear", "quadratic", "absolute", "sqrt", "cubic", "exponential", "reciprocal", "any"], form: ["standard", "vertex", "factored", "any"], irr: "b", two: "b" },
       systems: { kind: ["grid", "fraction", "parallel", "same", "plans", "any"], form: ["slope", "standard", "any"], max: [5, 10] },
       inequalities: { kind: ["one", "compound", "two", "system", "read", "any"] },
+      optimize: { kind: ["max", "min", "story", "special", "any"] },
       transform: { kind: ["translate", "reflect", "rotate", "dilate", "sequence", "any"], shape: ["point", "triangle", "quad", "any"], quads: "b", max: [5, 10] },
       scatter: { assoc: ["positive", "negative", "none", "any"], outlier: "b", predict: "b" }
     };
@@ -12664,7 +13702,7 @@
           var PF = new URLSearchParams(v.free);
           frLoad(PF.get("paper"), PF.get("obj"));
         }
-        if (v.inputs) MODES.forEach(function(m) { if (typeof v.inputs[m] === "string") S.inputs[m] = v.inputs[m].slice(0, 400); });
+        if (v.inputs) MODES.forEach(function(m) { if (typeof v.inputs[m] === "string") S.inputs[m] = v.inputs[m].slice(0, m === "optimize" ? 800 : 400); });
         if (v.struct && v.structText) MODES.forEach(function(m) {
           if (typeof v.struct[m] === "string" && typeof v.structText[m] === "string") {
             S.struct[m] = v.struct[m].slice(0, 2000);

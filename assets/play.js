@@ -20,6 +20,8 @@
    Not in embeds (embed=1: practice sets and worksheets). Nothing is remembered inside another page.
    window.HelperPlay = { active(), playing(), start(), play(), pause(), toggle(), next(), prev(), restart(), close(),
      sound(on), state() }   (state: for tests)
+   In another language (assets/i18n.js) its words are the play.* keys; the steps and the answer are read as the page
+   says them, and the page's parts are found by ids and structure (and "One step at a time" by common.oneStep).
    Everything is wrapped so a problem here can never break a helper page. */
 (function() {
   "use strict";
@@ -29,10 +31,48 @@
   var STORE = "helpers-play"; // { sound:false }: the sound was turned off in the player
   var KEY = "helpers-settings"; // tools.js's settings: the voice (voice) and the speed (rate)
   var SPEEDS = [
-    ["Slower", 0.85],
-    ["Normal", 1],
-    ["Faster", 1.15]
+    ["Slower", 0.85, "play.slower"],
+    ["Normal", 1, "play.normal"],
+    ["Faster", 1.15, "play.faster"]
   ]; // the same three as tools.js's Voice menu
+
+  /* ---- the words, in the visitor's language (assets/i18n.js): the play.* keys, and en.js repeats the English for
+     translators. English always shows the words written here; so does a page without i18n.js. ---- */
+  function tr(key, en, vars) {
+    var I = window.HelperI18n;
+    if (I && I.lang !== "en" && I.t) {
+      var s = I.t(key, vars);
+      if (s !== key) return s;
+    }
+    return vars ? fillIn(en, vars) : en;
+  }
+
+  function fillIn(s, vars) { // {name}, and {n|one|other}
+    return String(s).replace(/\{(\w+)(\|[^{}]*)?\}/g, function(m, k, forms) {
+      if (!Object.prototype.hasOwnProperty.call(vars, k)) return m;
+      if (!forms) return String(vars[k]);
+      var f = forms.slice(1).split("|");
+      return Number(vars[k]) === 1 ? f[0] : f[f.length - 1];
+    });
+  }
+
+  function foreign() { return !!(window.HelperI18n && window.HelperI18n.lang && window.HelperI18n.lang !== "en"); }
+
+  // fn once the language's strings are in (at once without i18n.js; never later than 4 s)
+  function whenReady(fn) {
+    var done = false,
+      go = function() {
+        if (!done) {
+          done = true;
+          fn();
+        }
+      };
+    var I = window.HelperI18n;
+    if (I && I.ready) {
+      I.ready(go);
+      setTimeout(go, 4000);
+    } else go();
+  }
   var framed = true;
   try { framed = window.top !== window.self; } catch (e) {}
 
@@ -130,30 +170,42 @@
 
   function svg(name) { return '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="' + ICON[name] + '"/></svg>'; }
 
+  function attr(s) { return String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;"); }
+
   /* ===================== the page's step mode ===================== */
   var btn = null, // ▶ Play, with the practice buttons
     bar = null, // the player
     selfClick = false;
 
-  // the practice buttons: the group with "One step at a time" in it (aria-label "Practice mode" on most pages)
+  // "One step at a time", in English or in the page's language
+  function isStepLabel(t) {
+    t = String(t || "").trim();
+    return /^one step at a time$/i.test(t) || (foreign() && !!t && t === tr("common.oneStep", "One step at a time"));
+  }
+
+  // the practice buttons: the group with "One step at a time" in it (aria-label "Practice mode" on most pages; in
+  // another language, also the group that holds #stepBtn or #pStep)
   function group() {
     var g = document.querySelector('[role="group"][aria-label="Practice mode"]');
     if (g) return g;
-    return [].filter.call(document.querySelectorAll('[role="group"]'), function(x) {
-      return [].some.call(x.querySelectorAll("button"), function(b) { return /^one step at a time$/i.test(b.textContent.trim()); });
-    })[0] || null;
+    var all = [].slice.call(document.querySelectorAll('[role="group"]'));
+    return all.filter(function(x) {
+      return [].some.call(x.querySelectorAll("button"), function(b) { return isStepLabel(b.textContent); });
+    })[0] || (foreign() ? all.filter(function(x) { return !!x.querySelector("#stepBtn, #pStep"); })[0] : null) || null;
   }
 
   function stepBtn() {
     var g = group();
-    var b = g ? [].filter.call(g.querySelectorAll("button"), function(x) { return /^one step at a time$/i.test(x.textContent.trim()); })[0] : null;
+    var b = g ? [].filter.call(g.querySelectorAll("button"), function(x) { return isStepLabel(x.textContent); })[0] : null;
     return b || $("stepBtn") || $("pStep");
   }
 
+  // step mode's "3 of 5" (or "3 de 5" in Spanish: any two numbers)
   function counter() {
     var el = $("stepCount");
     if (!el || el.closest("[hidden]")) return null;
-    var m = /(\d+)\s*of\s*(\d+)/.exec(el.textContent || "");
+    var t = el.textContent || "";
+    var m = /(\d+)\s*of\s*(\d+)/.exec(t) || (foreign() ? /(\d+)\D+(\d+)/.exec(t) : null);
     return m ? { cur: Number(m[1]), n: Number(m[2]) } : null;
   }
 
@@ -235,10 +287,12 @@
       if (!k && vs.length === 1) k = band.querySelector(".k");
       var c = v.cloneNode(true); // "40 cm²", not "40cm²"
       [].forEach.call(c.querySelectorAll("span, b, i, sub"), function(x) { if (!x.closest(".fr, .frac, .fraction") || x.matches(".fr, .frac, .fraction")) x.insertAdjacentText("beforebegin", " "); });
-      var val = spokenOf(c).replace(/(\d)\s*:\s*(?=\d)/g, "$1 to ").replace(/\s+/g, " ").trim(), // a ratio, 2:3: "2 to 3"
+      var to = tr("play.ratioTo", "to"); // a ratio, 2:3: "2 to 3"
+      var val = spokenOf(c).replace(/(\d)\s*:\s*(?=\d)/g, function(m, d) { return d + " " + to + " "; }).replace(/\s+/g, " ").trim(),
         lab = k ? spokenOf(k).replace(/[.:\s]+$/, "") : "";
       if (!val) return;
-      out.push((!lab || /^answer$/i.test(lab) ? "The answer" : lab) + ": " + val + ".");
+      var plainLab = !lab || /^answer$/i.test(lab) || (foreign() && lab.toLowerCase() === tr("common.answer", "Answer").toLowerCase());
+      out.push(tr("play.answerLine", "{label}: {value}.", { label: plainLab ? tr("play.theAnswer", "The answer") : lab, value: val }));
     });
     return out.map(function(t) { return { text: t, ms: estimate(t) }; }); // "Sum: 29.15." in one breath
   }
@@ -414,7 +468,7 @@
     markStep(k);
     scrollToNow();
     paint();
-    if (!useSpeech()) say("Step " + k + " of " + P.n);
+    if (!useSpeech()) say(tr("play.stepOf", "Step {k} of {n}", { k: k, n: P.n }));
     run();
   }
 
@@ -451,7 +505,7 @@
     P.phase = "done";
     if (markAnswer()) scrollToNow();
     paint();
-    say("That’s the end. The answer is shown.");
+    say(tr("play.end", "That’s the end. The answer is shown."));
   }
 
   // move the page to step `target` with its own buttons; cb(true) once it's there
@@ -521,7 +575,7 @@
     unlock();
     stepMode(function(c) {
       if (!c) {
-        say("Nothing to play yet: type a problem first.");
+        say(tr("play.nothing", "Nothing to play yet: type a problem first."));
         paint();
         return;
       }
@@ -549,7 +603,7 @@
     P.playing = false;
     stopAll();
     paint();
-    if (!quiet) say("Paused at step " + P.cur + " of " + P.n);
+    if (!quiet) say(tr("play.pausedAt", "Paused at step {k} of {n}", { k: P.cur, n: P.n }));
   }
 
   function toggle() {
@@ -644,7 +698,7 @@
       run();
     } // the same sentence again, now with (or without) the voice
     paint();
-    say(P.sound ? (synth ? "Sound on" : "This browser can’t read aloud") : "Sound off");
+    say(P.sound ? (synth ? tr("play.soundOn", "Sound on") : tr("play.cantRead", "This browser can’t read aloud")) : tr("play.soundOff", "Sound off"));
   }
 
   function setRate(r) {
@@ -659,7 +713,7 @@
     }
     paint();
     var name = SPEEDS.filter(function(s) { return s[1] === r; })[0];
-    say("Speed: " + (name ? name[0] : r).toString().toLowerCase());
+    say(tr("play.speedSaid", "Speed: {speed}", { speed: (name ? tr(name[2], name[0]) : r).toString().toLowerCase() }));
   }
 
   /* ===================== the step being read ===================== */
@@ -745,27 +799,28 @@
     bar = document.createElement("section");
     bar.className = "ht-play";
     bar.id = "htPlay";
-    bar.setAttribute("aria-label", "Play the steps");
+    bar.setAttribute("aria-label", tr("play.bar", "Play the steps"));
     bar.hidden = true;
+    var closeLab = attr(tr("play.close", "Close the player"));
     bar.innerHTML =
-      '<div class="hp-gate" hidden><button type="button" class="hp-big" data-act="go">' + svg("play") + "Play</button>" +
-      "<p>Watch the steps one at a time, read aloud. Press Play to start.</p>" +
-      '<button type="button" class="hp-b hp-x" data-act="close" aria-label="Close the player" title="Not now (the page stays in One step at a time)">' + svg("close") + "</button></div>" +
+      '<div class="hp-gate" hidden><button type="button" class="hp-big" data-act="go">' + svg("play") + tr("play.play", "Play") + "</button>" +
+      "<p>" + tr("play.gate", "Watch the steps one at a time, read aloud. Press Play to start.") + "</p>" +
+      '<button type="button" class="hp-b hp-x" data-act="close" aria-label="' + closeLab + '" title="' + attr(tr("play.notNow", "Not now (the page stays in One step at a time)")) + '">' + svg("close") + "</button></div>" +
       '<div class="hp-row" data-part="main">' +
       '<div class="hp-ctl">' +
-      '<button type="button" class="hp-b" data-act="restart" aria-label="Restart from step 1" title="Restart from step 1">' + svg("restart") + "</button>" +
-      '<button type="button" class="hp-b" data-act="prev" aria-label="Previous step" title="Previous step (←)">' + svg("prev") + "</button>" +
-      '<button type="button" class="hp-b hp-main" data-act="toggle" title="Play or pause (space)"><span class="hp-ico"></span><span class="hp-lab"></span></button>' +
-      '<button type="button" class="hp-b" data-act="next" aria-label="Next step" title="Next step (→)">' + svg("next") + "</button>" +
+      '<button type="button" class="hp-b" data-act="restart" aria-label="' + attr(tr("play.restart", "Restart from step 1")) + '" title="' + attr(tr("play.restart", "Restart from step 1")) + '">' + svg("restart") + "</button>" +
+      '<button type="button" class="hp-b" data-act="prev" aria-label="' + attr(tr("common.prevStep", "Previous step")) + '" title="' + attr(tr("play.prevTitle", "Previous step (←)")) + '">' + svg("prev") + "</button>" +
+      '<button type="button" class="hp-b hp-main" data-act="toggle" title="' + attr(tr("play.toggleTitle", "Play or pause (space)")) + '"><span class="hp-ico"></span><span class="hp-lab"></span></button>' +
+      '<button type="button" class="hp-b" data-act="next" aria-label="' + attr(tr("common.nextStep", "Next step")) + '" title="' + attr(tr("play.nextTitle", "Next step (→)")) + '">' + svg("next") + "</button>" +
       "</div>" +
       '<span class="hp-n"></span>' +
       '<span class="hp-brk"></span>' +
       '<div class="hp-opts">' +
-      '<div class="hp-speed" role="group" aria-label="Speed">' + SPEEDS.map(function(s) { return '<button type="button" data-rate="' + s[1] + '" aria-pressed="false">' + s[0] + "</button>"; }).join("") + "</div>" +
-      '<button type="button" class="hp-b hp-snd" data-act="sound" aria-label="Sound" aria-pressed="true" title="Read the steps aloud, or play them silently"><span class="hp-ico"></span><span class="hp-st">Sound</span></button>' +
+      '<div class="hp-speed" role="group" aria-label="' + attr(tr("play.speed", "Speed")) + '">' + SPEEDS.map(function(s) { return '<button type="button" data-rate="' + s[1] + '" aria-pressed="false">' + tr(s[2], s[0]) + "</button>"; }).join("") + "</div>" +
+      '<button type="button" class="hp-b hp-snd" data-act="sound" aria-label="' + attr(tr("play.sound", "Sound")) + '" aria-pressed="true" title="' + attr(tr("play.soundTitle", "Read the steps aloud, or play them silently")) + '"><span class="hp-ico"></span><span class="hp-st">' + tr("play.sound", "Sound") + "</span></button>" +
       '<span class="hp-note" hidden></span>' +
       "</div>" +
-      '<button type="button" class="hp-b hp-x" data-act="close" aria-label="Close the player" title="Close the player (the page stays in One step at a time)">' + svg("close") + "</button>" +
+      '<button type="button" class="hp-b hp-x" data-act="close" aria-label="' + closeLab + '" title="' + attr(tr("play.closeTitle", "Close the player (the page stays in One step at a time)")) + '">' + svg("close") + "</button>" +
       "</div>" +
       '<div class="hp-bar" aria-hidden="true"><i></i></div>' +
       '<div class="hp-sr" role="status" aria-live="polite"></div>';
@@ -830,13 +885,13 @@
     bar.querySelector(".hp-gate").hidden = !P.gate;
     bar.querySelector('[data-part="main"]').hidden = P.gate;
     var main = bar.querySelector(".hp-main"),
-      lab = P.playing ? "Pause" : P.phase === "done" ? "Again" : "Play";
+      lab = P.playing ? tr("play.pause", "Pause") : P.phase === "done" ? tr("play.again", "Again") : tr("play.play", "Play");
     main.querySelector(".hp-ico").innerHTML = svg(P.playing ? "pause" : P.phase === "done" ? "restart" : "play");
     main.querySelector(".hp-lab").textContent = lab;
-    main.setAttribute("aria-label", P.playing ? "Pause" : P.phase === "done" ? "Play again from step 1" : "Play");
+    main.setAttribute("aria-label", P.playing ? tr("play.pauseLabel", "Pause") : P.phase === "done" ? tr("play.againLabel", "Play again from step 1") : tr("play.playLabel", "Play"));
     bar.querySelector('[data-act="prev"]').disabled = !c || (cur <= 1 && P.phase === "step");
     bar.querySelector('[data-act="next"]').disabled = !c || (cur >= n && P.phase === "done");
-    bar.querySelector(".hp-n").innerHTML = !n ? "" : P.phase === "step" ? '<span class="hp-sw">Step </span>' + cur + " of " + n : "Answer";
+    bar.querySelector(".hp-n").innerHTML = !n ? "" : P.phase === "step" ? tr("play.counter", '<span class="hp-sw">Step </span>{k} of {n}', { k: cur, n: n }) : tr("common.answer", "Answer");
     var done = !n ? 0 : P.phase !== "step" ? 1 : (cur - 1 + (P.parts && P.at === cur ? Math.min(1, P.k / Math.max(1, P.parts.length)) : 0)) / n;
     bar.querySelector(".hp-bar i").style.width = Math.round(done * 1000) / 10 + "%";
     var r = rate();
@@ -846,8 +901,8 @@
     snd.setAttribute("aria-pressed", String(P.sound));
     snd.querySelector(".hp-ico").innerHTML = svg(P.sound ? "sound" : "mute");
     var note = bar.querySelector(".hp-note");
-    note.textContent = !synth ? "This browser can’t read aloud: the steps move on by themselves." :
-      P.sound && noVoice ? "No voice to read with here: the steps move on by themselves." : "";
+    note.textContent = !synth ? tr("play.noSynth", "This browser can’t read aloud: the steps move on by themselves.") :
+      P.sound && noVoice ? tr("play.noVoice", "No voice to read with here: the steps move on by themselves.") : "";
     note.hidden = !note.textContent;
   }
 
@@ -949,8 +1004,8 @@
     btn.type = "button";
     btn.id = "playBtn";
     btn.setAttribute("aria-pressed", "false");
-    btn.textContent = "▶︎ Play";
-    btn.title = "Watch the steps one at a time, read aloud (space: play or pause)";
+    btn.textContent = tr("play.button", "▶︎ Play");
+    btn.title = tr("play.buttonTitle", "Watch the steps one at a time, read aloud (space: play or pause)");
     g.appendChild(btn);
     // after the other practice buttons, Tutor me too (tutor.js may add it after this)
     new MutationObserver(function() { if (btn.parentNode === g && g.lastElementChild !== btn) g.appendChild(btn); }).observe(g, { childList: true });
@@ -1027,6 +1082,7 @@
       };
     }
   };
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", main);
-  else main();
+  var begin = function() { whenReady(main); }; // the button's words in the page's language
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", begin);
+  else begin();
 })();

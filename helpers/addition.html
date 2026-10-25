@@ -16,6 +16,7 @@
 <link rel="canonical" href="https://showthesteps.org/helpers/addition">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","name":"Addition with carrying, step by step – The Carry Column","description":"Line up the decimal points, or find a common denominator — then watch every carry and every renamed fraction get written down.","url":"https://showthesteps.org/helpers/addition","inLanguage":"en-US","isAccessibleForFree":true,"learningResourceType":["Interactive worked examples","Practice problems"],"interactivityType":"active","educationalUse":["Practice","Self-assessment"],"teaches":"Addition with carrying","educationalLevel":["Elementary school (grades K–5)","Middle school (grades 6–8)"],"audience":{"@type":"EducationalAudience","educationalRole":"student"},"publisher":{"@type":"Organization","name":"Show The Steps","url":"https://showthesteps.org/"},"isPartOf":{"@type":"WebSite","name":"Show The Steps","url":"https://showthesteps.org/"}}</script>
 <script src="../assets/site.js"></script>
+<script src="../assets/i18n.js" data-strings="addition"></script>
 <script src="../assets/nav.js" defer></script>
 <script src="../assets/progress.js" defer></script>
 <link rel="stylesheet" href="../assets/fonts/fonts.css">
@@ -1642,63 +1643,63 @@
 <div class="page" id="page">
   <header class="masthead">
     <div>
-      <div class="eyebrow">Adding, worked out</div>
+      <div class="eyebrow" data-i18n="addition.eyebrow">Adding, worked out</div>
       <h1>The Carry <em>Column</em></h1>
-      <p class="tagline">Line up the decimal points, or find a common denominator &mdash; then watch
+      <p class="tagline" data-i18n="addition.tagline">Line up the decimal points, or find a common denominator &mdash; then watch
         every carry and every renamed fraction get written down.</p>
     </div>
     <button class="theme-btn" id="themeBtn" type="button">Dark mode</button>
   </header>
 
   <section class="problem">
-    <div class="modes" role="group" aria-label="What kind of numbers">
-      <button type="button" data-mode="dec" aria-pressed="true">Decimals</button>
-      <button type="button" data-mode="frac" aria-pressed="false">Fractions</button>
+    <div class="modes" role="group" aria-label="What kind of numbers" data-i18n-attr="aria-label=addition.kindAria">
+      <button type="button" data-mode="dec" aria-pressed="true" data-i18n="common.decimals">Decimals</button>
+      <button type="button" data-mode="frac" aria-pressed="false" data-i18n="common.fractions">Fractions</button>
     </div>
 
     <div class="entry" id="decEntry"></div>
 
     <div class="entry hide" id="fracEntry">
       <div class="mixfield">
-        <span class="fieldcap">First</span>
-        <input class="whole" id="w1" type="text" inputmode="numeric" value="2" aria-label="First whole number">
+        <span class="fieldcap" data-i18n="addition.first">First</span>
+        <input class="whole" id="w1" type="text" inputmode="numeric" value="2" aria-label="First whole number" data-i18n-attr="aria-label=addition.w1Aria">
         <div class="stackfield">
-          <input id="n1" type="text" inputmode="numeric" value="3" aria-label="First numerator">
+          <input id="n1" type="text" inputmode="numeric" value="3" aria-label="First numerator" data-i18n-attr="aria-label=addition.n1Aria">
           <div class="fbar"></div>
-          <input id="d1" type="text" inputmode="numeric" value="4" aria-label="First denominator">
+          <input id="d1" type="text" inputmode="numeric" value="4" aria-label="First denominator" data-i18n-attr="aria-label=addition.d1Aria">
         </div>
       </div>
       <span class="plus">+</span>
       <div class="mixfield">
-        <span class="fieldcap">Second</span>
-        <input class="whole" id="w2" type="text" inputmode="numeric" value="1" aria-label="Second whole number">
+        <span class="fieldcap" data-i18n="addition.second">Second</span>
+        <input class="whole" id="w2" type="text" inputmode="numeric" value="1" aria-label="Second whole number" data-i18n-attr="aria-label=addition.w2Aria">
         <div class="stackfield">
-          <input id="n2" type="text" inputmode="numeric" value="5" aria-label="Second numerator">
+          <input id="n2" type="text" inputmode="numeric" value="5" aria-label="Second numerator" data-i18n-attr="aria-label=addition.n2Aria">
           <div class="fbar"></div>
-          <input id="d2" type="text" inputmode="numeric" value="6" aria-label="Second denominator">
+          <input id="d2" type="text" inputmode="numeric" value="6" aria-label="Second denominator" data-i18n-attr="aria-label=addition.d2Aria">
         </div>
       </div>
     </div>
 
     <details class="maker" id="maker">
-      <summary>Make a problem for me <span>&mdash; pick what goes in it</span></summary>
+      <summary data-i18n="common.maker">Make a problem for me <span>&mdash; pick what goes in it</span></summary>
       <div class="maker-body" id="makerDec"></div>
       <div class="maker-body" id="makerFrac" hidden></div>
       <p class="sample" id="sample"></p>
       <div class="maker-go">
-        <button type="button" class="go" id="genBtn">New problem</button>
+        <button type="button" class="go" id="genBtn" data-i18n="common.newProblem">New problem</button>
         <span class="msg" id="genMsg" aria-live="polite"></span>
       </div>
     </details>
 
     <div class="examples">
-      <span class="lbl">Try</span>
+      <span class="lbl" data-i18n="common.try">Try</span>
       <span id="chips"></span>
       <span class="practice">
-        <div class="modes" role="group" aria-label="Practice mode">
-          <button type="button" id="allBtn" aria-pressed="true">Show all work</button>
-          <button type="button" id="stepBtn" aria-pressed="false">One step at a time</button>
-          <button type="button" id="checkBtn" aria-pressed="false">Check my answer</button>
+        <div class="modes" role="group" aria-label="Practice mode" data-i18n-attr="aria-label=common.practiceMode">
+          <button type="button" id="allBtn" aria-pressed="true" data-i18n="common.showAll">Show all work</button>
+          <button type="button" id="stepBtn" aria-pressed="false" data-i18n="common.oneStep">One step at a time</button>
+          <button type="button" id="checkBtn" aria-pressed="false" data-i18n="common.checkMine">Check my answer</button>
         </div>
       </span>
     </div>
@@ -1707,16 +1708,16 @@
   <div id="statusLine" role="status" aria-live="polite"></div>
   <div class="linknote" id="linkNote" hidden></div>
 
-  <section class="try" id="tryBox" hidden aria-label="Check my answer">
-    <label class="k" for="tryIn">Your answer</label>
+  <section class="try" id="tryBox" hidden aria-label="Check my answer" data-i18n-attr="aria-label=common.checkMine">
+    <label class="k" for="tryIn" data-i18n="common.yourAnswer">Your answer</label>
     <div class="try-row">
       <input class="try-in" id="tryIn" type="text" inputmode="text" autocomplete="off" spellcheck="false" placeholder="?">
-      <button type="button" class="go" id="tryBtn">Check</button>
+      <button type="button" class="go" id="tryBtn" data-i18n="common.check">Check</button>
     </div>
     <p class="try-msg" id="tryMsg" aria-live="polite"></p>
     <div class="try-more" id="tryMore" hidden>
-      <button type="button" class="tog" id="hintBtn">Show a hint</button>
-      <button type="button" class="tog" id="showBtn">Show me the work</button>
+      <button type="button" class="tog" id="hintBtn" data-i18n="common.hint">Show a hint</button>
+      <button type="button" class="tog" id="showBtn" data-i18n="common.showWork">Show me the work</button>
     </div>
     <p class="try-hint" id="tryHint"></p>
   </section>
@@ -1724,11 +1725,11 @@
   <div class="board" id="board">
     <section class="panel">
       <div class="panel-head">
-        <h2>The work</h2>
+        <h2 data-i18n="common.theWork">The work</h2>
         <div class="stepper" id="stepper" hidden>
-          <button type="button" id="prevBtn" aria-label="Previous step">&larr;</button>
+          <button type="button" id="prevBtn" aria-label="Previous step" data-i18n-attr="aria-label=common.prevStep">&larr;</button>
           <span class="count" id="stepCount"></span>
-          <button type="button" id="nextBtn" aria-label="Next step">&rarr;</button>
+          <button type="button" id="nextBtn" aria-label="Next step" data-i18n-attr="aria-label=common.nextStep">&rarr;</button>
         </div>
       </div>
       <div id="workHost"></div>
@@ -1736,16 +1737,16 @@
     </section>
 
     <section class="panel">
-      <div class="panel-head"><h2>Say it out loud</h2></div>
+      <div class="panel-head"><h2 data-i18n="common.sayIt">Say it out loud</h2></div>
       <ol class="log" id="log"></ol>
       <div class="closer" id="closer"></div>
     </section>
   </div>
 
   <div class="footnote">
-    <button class="print" type="button" id="printBtn">Print this work</button>
-    <button class="print" type="button" id="copyBtn">Copy link</button>
-    <span>Right to left, one column at a time. If a column makes 10 or more, the extra ten moves next door.</span>
+    <button class="print" type="button" id="printBtn" data-i18n="common.print">Print this work</button>
+    <button class="print" type="button" id="copyBtn" data-i18n="common.copyLink">Copy link</button>
+    <span data-i18n="addition.footnote">Right to left, one column at a time. If a column makes 10 or more, the extra ten moves next door.</span>
   </div>
 </div>
 
@@ -1778,6 +1779,8 @@
      ============================================================================= */
   (function() {
     "use strict";
+    if (window.HelperI18n) HelperI18n.apply();
+    var T = function(k, v) { return window.HelperI18n ? HelperI18n.t(k, v) : k; };
     var $ = function(id) { return document.getElementById(id); };
     var lastDec = null;
     var S = {
@@ -1828,11 +1831,13 @@
 
     function lcm(a, b) { return a / gcd(a, b) * b; }
 
-    function placeName(e) {
-      var pos = ["ones", "tens", "hundreds", "thousands", "ten thousands", "hundred thousands", "millions"];
-      var neg = ["tenths", "hundredths", "thousandths", "ten-thousandths", "hundred-thousandths"];
-      return e >= 0 ? (pos[e] || "big place") : (neg[-e - 1] || "tiny place");
-    }
+    /* a place's key: "p0" ones … "p6" millions, "n1" tenths … "n5" hundred-thousandths, else "big" / "tiny".
+       addition.place.<id> is its name, addition.art.<id> its article ("las decenas"), addition.count.<id> "{n} tens" */
+    function placeId(e) { return e >= 0 ? (e <= 6 ? "p" + e : "big") : (e >= -5 ? "n" + (-e) : "tiny"); }
+
+    function placeName(e) { return T("addition.place." + placeId(e)); }
+
+    function placeArt(e) { return T("addition.art." + placeId(e)); }
 
     /* ===================== decimal addition ===================== */
     function addDecimals(nums) {
@@ -1913,11 +1918,10 @@
       var nums = S.dec.map(parseNum);
       if (nums.some(function(n) { return !n; })) {
         var whole = typedIn();
-        return fail(whole ? "That box has a whole problem in it &mdash; press Enter to work out <b>" + esc(whole) + "</b>." :
-          "Type a number in every box &mdash; digits and at most one decimal point.");
+        return fail(whole ? T("addition.wholeInBox", { p: esc(whole) }) : T("addition.typeNumber"));
       }
       if (nums.some(function(n) { return (n.i + n.f).length > 12; }))
-        return fail("Keep each number to 12 digits or fewer so the columns stay readable.");
+        return fail(T("addition.tooLong"));
 
       var A = addDecimals(nums);
       lastDec = A;
@@ -2012,80 +2016,78 @@
 
       var facts = [];
       var est = nums.reduce(function(a, n) { return a + Math.round(Number(numStr(n))); }, 0);
-      facts.push("Rounded estimate: " + nums.map(function(n) { return Math.round(Number(numStr(n))); }).join(" + ") +
-        " = <b>" + est + "</b>");
+      facts.push(T("addition.estimate", { sum: nums.map(function(n) { return Math.round(Number(numStr(n))); }).join(" + "), est: est }));
       if (A.maxF > 0) {
         var pads = nums.filter(function(n) { return n.f.length < A.maxF; }).length;
-        if (pads) facts.push("Added zeros so every number has <b>" + A.maxF +
-          "</b> decimal place" + (A.maxF > 1 ? "s" : "") + ".");
+        if (pads) facts.push(T("addition.padded", { n: A.maxF }));
       }
       var ff = fracFact(shown);
       if (ff) facts.push(ff);
-      band('<span class="k">Sum</span><span class="v">' + esc(commas(shown)) + "</span>", facts, "answer");
+      band('<span class="k">' + T("addition.sum") + '</span><span class="v">' + esc(commas(shown)) + "</span>", facts, "answer");
 
       /* words */
       var items = [],
         pads = nums.filter(function(n) { return n.f.length < A.maxF; });
       if (A.maxF > 0) {
         items.push({
-          n: "Set&nbsp;up",
+          n: T("addition.setup"),
           lines: [
-            ["p", "Line up",
-              "Stack the numbers so the decimal points sit in one straight line — that’s the dashed line " +
-              "on the left. Every digit lands in its own place-value column."
-            ]
+            ["p", T("addition.tag.lineUp"), T("addition.lineUp")]
           ],
           aside: pads.length ?
-            "One number is shorter, so fill the empty places with <b>0</b>. " +
-            esc(numStr(pads[0])) + " becomes <b>" +
-            esc(pads[0].i + "." + (pads[0].f + new Array(A.maxF - pads[0].f.length + 1).join("0"))) +
-            "</b>. A zero on the end of a decimal never changes its value." : null
+            T("addition.padAside", {
+              from: esc(numStr(pads[0])),
+              to: esc(pads[0].i + "." + (pads[0].f + new Array(A.maxF - pads[0].f.length + 1).join("0")))
+            }) : null
         });
       }
       A.steps.forEach(function(s, idx) {
         var vals = s.parts.filter(function(p) { return !p.blank; }).map(function(p) { return p.v; });
-        var sum = vals.join(" + ") + (s.carryIn ? " + " + s.carryIn + " carried" : "");
+        var sum = vals.join(" + ") + (s.carryIn ? T("addition.plusCarried", { c: s.carryIn }) : "");
         var lines = [
-          ["p", "Column", "The <b>" + placeName(s.exp) + "</b> column."]
+          ["p", T("addition.tag.column"), T("addition.column", { place: placeName(s.exp), art: placeArt(s.exp) })]
         ];
-        lines.push(["a", "Add", sum + " = <b>" + s.total + "</b>."]);
+        lines.push(["a", T("addition.tag.add"), T("addition.addLine", { sum: sum, total: s.total })]);
         var aside = null;
         if (s.carryOut > 0) {
-          lines.push(["c", "Carry", "<b>" + s.total + "</b> is too big for one column, so write the " +
-            "<b>" + s.digit + "</b> here and carry the <b>" + s.carryOut + "</b> to the " +
-            placeName(s.exp + 1) + "."
-          ]);
-          aside = "That carried <b>" + s.carryOut + "</b> isn’t really a " + s.carryOut + " — it’s " +
-            s.carryOut + " " + placeName(s.exp + 1) + ". Ten of anything trades up for one of " +
-            "the next thing over.";
+          lines.push(["c", T("addition.tag.carry"), T("addition.carry", {
+            total: s.total,
+            d: s.digit,
+            c: s.carryOut,
+            next: placeName(s.exp + 1),
+            art: placeArt(s.exp + 1)
+          })]);
+          aside = T("addition.carryAside", {
+            c: s.carryOut,
+            count: T("addition.count." + placeId(s.exp + 1), { n: s.carryOut })
+          });
         } else {
-          lines.push(["c", "Write", "Write <b>" + s.digit + "</b> under the line. Nothing to carry."]);
+          lines.push(["c", T("addition.tag.write"), T("addition.write", { d: s.digit })]);
         }
-        items.push({ n: "Step&nbsp;" + (idx + 1), lines: lines, aside: aside, step: idx });
+        items.push({ n: T("addition.stepN", { n: idx + 1 }), lines: lines, aside: aside, step: idx });
       });
       writeLog(items);
 
       var exact = nums.reduce(function(a, n) { return a + Number(numStr(n)); }, 0);
       var ok = Math.abs(exact - Number(total)) < 1e-9;
-      $("closer").innerHTML = "<b>Check:</b> the estimate was <b>" + est + "</b> and the answer is <b>" +
-        esc(shown) + "</b> — close enough to be believable" +
-        (ok ? ' <span class="ok">✓</span>' : "") + ".";
+      $("closer").innerHTML = T("addition.closer", { est: est, ans: esc(shown), ok: ok ? ' <span class="ok">✓</span>' : "" });
 
       $("legend").innerHTML =
-        '<div><i class="sw-k"></i> Carried tens</div>' +
-        '<div><i class="sw-a"></i> The sum</div>' +
-        '<div><i class="sw-w"></i> Place-value names</div>';
+        '<div><i class="sw-k"></i> ' + T("addition.legend.carried") + "</div>" +
+        '<div><i class="sw-a"></i> ' + T("addition.legend.sum") + "</div>" +
+        '<div><i class="sw-w"></i> ' + T("addition.legend.places") + "</div>";
       /* the parts laid end to end make the whole */
       if (Number(shown) > 0) {
-        mountTape("Lay the parts end to end and measure the whole tape: " +
-          nums.map(function(n) { return "<b>" + esc(commaNum(numStr(n))) + "</b>"; }).join(" + ") +
-          " = <b>" + esc(commaNum(shown)) + "</b>.", {
-            total: esc(commaNum(shown)),
-            totalCls: "ans",
-            segs: nums.map(function(n, i) {
-              return { w: Number(numStr(n)), html: esc(commaNum(numStr(n))), cls: i % 2 ? "b" : "" };
-            })
-          });
+        mountTape(T("addition.tapeDec", {
+          parts: nums.map(function(n) { return "<b>" + esc(commaNum(numStr(n))) + "</b>"; }).join(" + "),
+          total: esc(commaNum(shown))
+        }), {
+          total: esc(commaNum(shown)),
+          totalCls: "ans",
+          segs: nums.map(function(n, i) {
+            return { w: Number(numStr(n)), html: esc(commaNum(numStr(n))), cls: i % 2 ? "b" : "" };
+          })
+        });
       }
       /* area model: break every number into place-value boxes, add down each column */
       var places = {};
@@ -2112,18 +2114,17 @@
             amHtml += amCell(r + 2, c + 2, d ? commaNum(amFmt(d, e)) : "0", d ? "r" + (r % 2) : "zero");
           });
         });
-        amHtml += '<div class="hd side" style="grid-row:' + R + ';grid-column:1">total</div>';
+        amHtml += '<div class="hd side" style="grid-row:' + R + ';grid-column:1">' + T("addition.areaTotal") + "</div>";
         pcols.forEach(function(e, c) {
           var v = colTot[c] ? commaNum(amFmt(colTot[c], e)) : "0";
           if (colTot[c]) parts.push(v);
           if (colTot[c] >= 10) spill = true;
           amHtml += amCell(R, c + 2, v, colTot[c] ? "tot" : "zero");
         });
-        mountArea("Break each number into place-value boxes, one column per place. " +
-          (parts.length > 1 ?
-            "Add down each column, then add the column totals: " + parts.join(" + ") + " = <b>" :
-            "Add down the column: <b>") + esc(commaNum(shown)) + "</b>." +
-          (spill ? " A column total of ten or more is a carry waiting to happen — it spills into the next place." : ""),
+        mountArea((parts.length > 1 ?
+            T("addition.areaDecMany", { parts: parts.join(" + "), total: esc(commaNum(shown)) }) :
+            T("addition.areaDecOne", { total: esc(commaNum(shown)) })) +
+          (spill ? T("addition.areaSpill") : ""),
           '<div class="am-scroll"><div class="am" aria-hidden="true" style="gap:3px;grid-template-columns:auto repeat(' +
           pcols.length + ',minmax(max-content,1fr));grid-template-rows:auto repeat(' + (nums.length + 1) +
           ',44px)">' + amHtml + "</div></div>");
@@ -2154,11 +2155,11 @@
       var m1 = S.frac[0],
         m2 = S.frac[1];
       if ([m1, m2].some(function(m) { return !isFinite(m[0]) || !isFinite(m[1]) || !isFinite(m[2]); }))
-        return fail("Fill in every box. Use 0 for the whole number if you only want a fraction.");
+        return fail(T("addition.fillAll"));
       if (m1[2] === 0 || m2[2] === 0)
-        return fail("A denominator can’t be 0 — you can’t cut something into zero pieces.");
+        return fail(T("addition.zeroDen"));
       if (m1[2] > 999 || m2[2] > 999 || m1[1] > 9999 || m2[1] > 9999)
-        return fail("Keep the numbers small enough to work with by hand (denominators under 1000).");
+        return fail(T("addition.tooBig"));
 
       var a = toImproper(m1),
         b = toImproper(m2);
@@ -2177,67 +2178,73 @@
         items = [];
 
       function step(html, eq, lines, aside, result) {
-        items.push({ n: "Step&nbsp;" + (rows.length + 1), step: rows.length, lines: lines, aside: aside || null });
+        items.push({ n: T("addition.stepN", { n: rows.length + 1 }), step: rows.length, lines: lines, aside: aside || null });
         rows.push({ eq: eq, html: html, result: !!result });
       }
 
       step(termHTML(m1) + '<span class="op-s">+</span>' + termHTML(m2), "",
         [
-          ["p", "Look", "You can only add fractions when the pieces are the same size — same denominator. " +
-            "Here they’re <b>" + a.d + "ths</b> and <b>" + b.d + "ths</b>."
-          ]
+          ["p", T("addition.tag.look"), T("addition.look", { a: a.d, b: b.d })]
         ],
-        a.d === b.d ? "These already match, so you can add them straight away." : null);
+        a.d === b.d ? T("addition.lookSame") : null);
 
       if (mixedIn) {
         step(fracHTML(a.n, a.d) + '<span class="op-s">+</span>' + fracHTML(b.n, b.d), "=",
           [
-            ["a", "Convert", "<b>" + m1[0] + " " + m1[1] + "/" + m1[2] + "</b> means <b>" + m1[0] + " × " +
-              m1[2] + " + " + m1[1] + " = " + a.n + "</b> pieces, so <b>" + a.n + "/" + a.d +
-              "</b>. The other becomes <b>" + b.n + "/" + b.d + "</b>."
-            ]
+            ["a", T("addition.tag.convert"), T("addition.convert", {
+              w: m1[0],
+              n: m1[1],
+              d: m1[2],
+              an: a.n,
+              ad: a.d,
+              bn: b.n,
+              bd: b.d
+            })]
           ],
-          "Improper fractions are easier to add than mixed numbers. You turn it back at the end.");
+          T("addition.convertAside"));
       }
       if (a.d !== b.d) {
         step(fracHTML(a.n * fa, L) + '<span class="op-s">+</span>' + fracHTML(b.n * fb, L), "=",
           [
-            ["p", "Find LCD", "Multiples of <b>" + a.d + "</b>: " + multiples(a.d, L) +
-              ". Multiples of <b>" + b.d + "</b>: " + multiples(b.d, L) +
-              ". The smallest one they share is <b>" + L + "</b>."
-            ],
-            ["a", "Rename", "<b>" + a.n + "/" + a.d + "</b> × <b>" + fa + "/" + fa + "</b> = <b>" +
-              (a.n * fa) + "/" + L + "</b>, and <b>" + b.n + "/" + b.d + "</b> × <b>" + fb + "/" + fb +
-              "</b> = <b>" + (b.n * fb) + "/" + L + "</b>."
-            ]
+            ["p", T("addition.tag.lcd"), T("addition.lcd", { a: a.d, ma: multiples(a.d, L), b: b.d, mb: multiples(b.d, L), L: L })],
+            ["a", T("addition.tag.rename"), T("addition.rename", {
+              an: a.n,
+              ad: a.d,
+              fa: fa,
+              ra: a.n * fa,
+              bn: b.n,
+              bd: b.d,
+              fb: fb,
+              rb: b.n * fb,
+              L: L
+            })]
           ],
-          "Multiplying the top and bottom by the same number doesn’t change the value — it just cuts " +
-          "the same amount into more, smaller pieces.");
+          T("addition.renameAside"));
       }
       step(fracHTML(sum.n, L), "=",
         [
-          ["a", "Add", "<b>" + (a.n * fa) + " + " + (b.n * fb) + " = " + sum.n + "</b> pieces, each one a <b>" +
-            L + "th</b>. So <b>" + sum.n + "/" + L + "</b>."
-          ]
+          ["a", T("addition.tag.add"), T("addition.addFrac", { a: a.n * fa, b: b.n * fb, s: sum.n, L: L })]
         ],
-        "The denominator stays <b>" + L + "</b>. You’re counting pieces, not resizing them.",
+        T("addition.addFracAside", { L: L }),
         simp.by === 1 && !needsMixedOut);
 
       if (simp.by > 1) {
         step(simp.d === 1 ? '<span class="mx">' + simp.n + "</span>" : fracHTML(simp.n, simp.d), "=",
           [
-            ["c", "Simplify", "<b>" + sum.n + "</b> and <b>" + L + "</b> both divide by <b>" + simp.by +
-              "</b>, giving <b>" + simp.n + "/" + simp.d + "</b>" +
-              (simp.d === 1 ? " — that’s just <b>" + simp.n + "</b>" : "") + "."
-            ]
+            ["c", T("addition.tag.simplify"), T("addition.simplify", {
+              s: sum.n,
+              L: L,
+              g: simp.by,
+              n: simp.n,
+              d: simp.d,
+              whole: simp.d === 1 ? T("addition.simplifyWhole", { n: simp.n }) : ""
+            })]
           ], null, !needsMixedOut);
       }
       if (needsMixedOut) {
         step(mixedHTML(mixed.w, mixed.n, mixed.d), "=",
           [
-            ["c", "Mixed", "<b>" + simp.n + " ÷ " + simp.d + " = " + mixed.w + "</b> remainder <b>" +
-              mixed.n + "</b>, so <b>" + mixed.w + " " + mixed.n + "/" + mixed.d + "</b>."
-            ]
+            ["c", T("addition.tag.mixed"), T("addition.mixed", { n: simp.n, d: simp.d, w: mixed.w, r: mixed.n })]
           ], null, true);
       }
 
@@ -2282,14 +2289,19 @@
           }, k === 0 ? N + "/" + P : "");
         }
         var simpTxt = needsMixedOut ? mixed.w + " " + mixed.n + "/" + mixed.d : simp.n + "/" + simp.d;
-        mountArea("Cut <b>" + n1 + "/" + d1 + "</b> into columns and <b>" + n2 + "/" + d2 + "</b> into rows. " +
-          "Put both sets of cuts on each square and every piece is the same size: <b>1/" + P + "</b>. " +
-          "The first covers <b>" + A1 + "</b> pieces and the second <b>" + B1 + "</b>, so slide them " +
-          "together: <b>" + N + "/" + P + "</b>" +
-          (simpTxt !== N + "/" + P ? ", which is <b>" + simpTxt + "</b>" : "") + "." +
-          (N > P ? " That’s more than one whole square, so it spills into a second." : "") +
-          (P !== L ? " (Cutting both ways always works. The steps above found a smaller common " +
-            "denominator, <b>" + L + "</b> — either gives the same answer.)" : ""),
+        mountArea(T("addition.areaGrid", {
+            n1: n1,
+            d1: d1,
+            n2: n2,
+            d2: d2,
+            P: P,
+            A1: A1,
+            B1: B1,
+            N: N,
+            which: simpTxt !== N + "/" + P ? T("addition.whichIs", { s: simpTxt }) : ""
+          }) +
+          (N > P ? T("addition.areaGridMore") : "") +
+          (P !== L ? T("addition.areaGridAlt", { L: L }) : ""),
           '<div class="fgrids">' +
           fGrid(d1, d2, function(c) { return c < n1 ? "a" : ""; }, n1 + "/" + d1 + " = " + A1 + "/" + P) +
           '<span class="op">+</span>' +
@@ -2303,11 +2315,16 @@
         var squares = Math.ceil(A2 / L) + Math.ceil(B2 / L) + Math.ceil((A2 + B2) / L);
         if (A2 + B2 > 0 && L <= 48 && cut.cols <= 12 && squares <= 10) {
           var sumTxt = fracTxt(simp.n, simp.d);
-          mountArea("Cut every square into <b>" + L + "</b> equal pieces, so each piece is <b>1/" + L + "</b>. " +
-            "<b>" + mText(m1) + "</b> fills <b>" + pieces(A2) + "</b> and <b>" + mText(m2) + "</b> fills <b>" +
-            pieces(B2) + "</b>. Slide them together: <b>" + (A2 + B2) + "/" + L + "</b>" +
-            (sumTxt !== (A2 + B2) + "/" + L ? ", which is <b>" + sumTxt + "</b>" : "") + "." +
-            (A2 + B2 > L ? " Every full square is one whole." : ""),
+          mountArea(T("addition.areaPieces", {
+              L: L,
+              a: mText(m1),
+              pa: pieces(A2),
+              b: mText(m2),
+              pb: pieces(B2),
+              S: A2 + B2,
+              which: sumTxt !== (A2 + B2) + "/" + L ? T("addition.whichIs", { s: sumTxt }) : ""
+            }) +
+            (A2 + B2 > L ? T("addition.areaPiecesMore") : ""),
             '<div class="fgrids">' +
             pieceSquares(A2, L, cut, function(i) { return i < A2 ? "a" : ""; }, A2 + "/" + L) +
             '<span class="op">+</span>' +
@@ -2317,8 +2334,7 @@
               (A2 + B2) + "/" + L) +
             "</span></div>");
         } else {
-          mountArea('<span class="areanote">Cut into ' + L + " pieces across " + squares +
-            " squares — too many to draw clearly. The chain above is the whole story.</span>", "");
+          mountArea('<span class="areanote">' + T("addition.areaTooMany", { L: L, sq: squares }) + "</span>", "");
         }
       }
 
@@ -2334,32 +2350,39 @@
           tsegs.push({ w: b.n / b.d, html: esc(mText(m2)), cls: "b" });
           tunders.push({ from: tsegs.length, to: tsegs.length, label: (b.n * fb) + "/" + L });
         }
-        mountTape("Lay <b>" + esc(mText(m1)) + "</b> and <b>" + esc(mText(m2)) + "</b> end to end. " +
-          "The whole tape is <b>" + fracTxt(simp.n, simp.d) + "</b>" +
-          (a.d !== b.d ? " — measured underneath in pieces of <b>1/" + L + "</b>, so the pieces match." : "."), { total: esc(fracTxt(simp.n, simp.d)), totalCls: "ans", segs: tsegs, unders: tunders });
+        mountTape(T(a.d !== b.d ? "addition.tapeFracDiff" : "addition.tapeFracSame", {
+          a: esc(mText(m1)),
+          b: esc(mText(m2)),
+          t: fracTxt(simp.n, simp.d),
+          L: L
+        }), { total: esc(fracTxt(simp.n, simp.d)), totalCls: "ans", segs: tsegs, unders: tunders });
       }
 
       var final = simp.d === 1 ? '<span class="mx">' + simp.n + "</span>" :
         (simp.n >= simp.d ? mixedHTML(mixed.w, mixed.n, mixed.d) : fracHTML(simp.n, simp.d));
       var dec = (simp.n / simp.d);
-      band('<span class="k">Sum</span><span class="v">' + final + "</span>", [
-        "As a decimal: <b>" + trimNum(dec) + "</b>",
-        "Common denominator used: <b>" + L + "</b>"
+      band('<span class="k">' + T("addition.sum") + '</span><span class="v">' + final + "</span>", [
+        T("addition.asDecimal", { d: trimNum(dec) }),
+        T("addition.denUsed", { L: L })
       ], "answer");
 
       writeLog(items);
 
       var d1 = a.n / a.d,
         d2 = b.n / b.d;
-      $("closer").innerHTML = "<b>Check with decimals:</b> " + trimNum(d1) + " + " + trimNum(d2) +
-        " = <b>" + trimNum(d1 + d2) + "</b>, and our answer is <b>" + trimNum(dec) + "</b>" +
-        (Math.abs(d1 + d2 - dec) < 1e-9 ? ' <span class="ok">✓</span>' : "") + ".";
+      $("closer").innerHTML = T("addition.closerFrac", {
+        a: trimNum(d1),
+        b: trimNum(d2),
+        s: trimNum(d1 + d2),
+        ans: trimNum(dec),
+        ok: Math.abs(d1 + d2 - dec) < 1e-9 ? ' <span class="ok">✓</span>' : ""
+      });
 
       $("legend").innerHTML =
-        '<div><i class="sw-l"></i> First fraction</div>' +
-        '<div><i class="sw-w"></i> Second fraction</div>' +
-        (showBars ? '<div><i class="sw-k"></i> The sum</div>' +
-          '<div>Every bar is cut into ' + L + ' equal pieces</div>' : "");
+        '<div><i class="sw-l"></i> ' + T("addition.legend.first") + "</div>" +
+        '<div><i class="sw-w"></i> ' + T("addition.legend.second") + "</div>" +
+        (showBars ? '<div><i class="sw-k"></i> ' + T("addition.legend.sum") + "</div>" +
+          "<div>" + T("addition.legend.bars", { L: L }) + "</div>" : "");
       return rows.length;
     }
 
@@ -2429,7 +2452,7 @@
       return (w ? w + " " : "") + r + "/" + d;
     }
 
-    function pieces(n) { return n + (n === 1 ? " piece" : " pieces"); }
+    function pieces(n) { return T("addition.pieces", { n: n }); }
 
     function mText(m) { // a mixed number as typed
       if (m[1] === 0) return String(m[0]);
@@ -2438,7 +2461,7 @@
 
     function mountArea(cap, inner) {
       $("workHost").insertAdjacentHTML("beforeend",
-        '<div class="areawrap"><div class="tapecap"><b class="lead">Area model.</b> ' + cap + "</div>" +
+        '<div class="areawrap"><div class="tapecap"><b class="lead">' + T("addition.areaLead") + "</b> " + cap + "</div>" +
         inner + "</div>");
     }
 
@@ -2467,7 +2490,7 @@
           '<div class="t-lbl under" style="grid-row:5;grid-column:' + c + '">' + u.label + "</div>";
       });
       $("workHost").insertAdjacentHTML("beforeend",
-        '<div class="tapewrap"><div class="tapecap"><b class="lead">Tape diagram.</b> ' + cap + "</div>" +
+        '<div class="tapewrap"><div class="tapecap"><b class="lead">' + T("addition.tapeLead") + "</b> " + cap + "</div>" +
         '<div class="tape-scroll"><div class="tape" aria-hidden="true" style="grid-template-columns:' +
         cols + '">' + html + "</div></div></div>");
     }
@@ -2494,7 +2517,7 @@
       if (a > BigInt(1)) parts.push(sg + n0 + "/" + d0);
       parts.push(sg + n + "/" + d);
       if (w > BigInt(0)) parts.push(sg + w + " " + (n % d) + "/" + d);
-      return "As a fraction: <b>" + parts.join(" = ") + "</b>";
+      return T("addition.asFraction", { f: parts.join(" = ") });
     }
 
     function band(inner, facts, cls) {
@@ -2553,7 +2576,9 @@
       if (S.step < 1) S.step = 1;
       $("stepper").hidden = !S.stepMode;
       if (S.stepMode) {
-        $("stepCount").textContent = S.step + " of " + total;
+        $("stepCount").textContent = T("addition.stepOf", { s: S.step, n: total });
+        $("stepCount").setAttribute("data-cur", S.step); // the numbers, for scripts that can't read "3 de 5"
+        $("stepCount").setAttribute("data-total", total);
         $("prevBtn").disabled = S.step <= 1;
         $("nextBtn").disabled = S.step >= total;
       }
@@ -2605,7 +2630,7 @@
         inp.type = "text";
         inp.inputMode = "decimal";
         inp.value = v;
-        inp.setAttribute("aria-label", "Number " + (i + 1));
+        inp.setAttribute("aria-label", T("addition.numberAria", { n: i + 1 }));
         inp.addEventListener("input", function() {
           S.dec[i] = inp.value;
           inp.style.width = Math.max(4, Math.min(14, inp.value.length + 1)) + "ch";
@@ -2620,7 +2645,7 @@
           x.className = "drop";
           x.type = "button";
           x.innerHTML = "&times;";
-          x.setAttribute("aria-label", "Remove number " + (i + 1));
+          x.setAttribute("aria-label", T("addition.removeAria", { n: i + 1 }));
           x.addEventListener("click", function() {
             S.dec.splice(i, 1);
             S.step = 1;
@@ -2635,7 +2660,7 @@
       var more = document.createElement("button");
       more.className = "more";
       more.type = "button";
-      more.textContent = "+ another number";
+      more.textContent = T("addition.another");
       if (S.dec.length >= 4) more.hidden = true;
       more.addEventListener("click", function() {
         S.dec.push("1.5");
@@ -3109,6 +3134,7 @@
     }
     /* the problem as typed, or else as readTyped reads its words ("what is forty-seven plus 38?") */
     function parseQ(raw, hint) {
+      if (window.HelperI18n) raw = HelperI18n.normalize(raw); // a problem typed in Spanish …: what the readers know
       var r = parseQ1(raw, hint);
       if (!r.err) return r;
       var T = readTyped(raw);
@@ -3118,26 +3144,26 @@
     function parseQ1(raw, hint) {
       var s = String(raw).replace(/[−–—]/g, "-").replace(/＋/g, "+").replace(/\s+/g, " ").trim();
       if (/^\([^()]*\)$/.test(s)) s = s.slice(1, -1).trim();
-      if (!s) return { err: "it was empty" };
+      if (!s) return { err: T("addition.err.empty") };
       if (/[×*÷:]|\d\s*[xX]\s*\d/.test(s))
-        return { err: "this page only adds, so join the numbers with + (the Product Ladder does ×, the Division House does ÷)" };
-      if (/\^/.test(s)) return { err: "this page only adds (powers are on the Order Stack)" };
-      if (/-/.test(s)) return { err: "this page only adds, so join the numbers with + (the Borrow Bank does subtracting)" };
+        return { err: T("addition.err.timesDivide") };
+      if (/\^/.test(s)) return { err: T("addition.err.powers") };
+      if (/-/.test(s)) return { err: T("addition.err.minus") };
       var parts = s.split("+").map(function(t) { return t.trim(); });
       if (parts.length < 2 || parts.some(function(t) { return !t; }))
-        return { err: "it needs two or more numbers joined by +" };
+        return { err: T("addition.err.twoOrMore") };
       if (parts.some(function(t) { return /,/.test(t) && !/^\d{1,3}(?:,\d{3})+(?:\.\d*)?$/.test(t); }))
-        return { err: "a comma can only group thousands, like 12,345 — write decimals with a point, like 3.5" };
+        return { err: T("addition.err.comma") };
       if (hint !== "frac" && s.indexOf("/") < 0) {
-        if (parts.length > 4) return { err: "the page adds up to four numbers at a time" };
+        if (parts.length > 4) return { err: T("addition.err.four") };
         var dec = parts.map(cleanNum);
         if (dec.some(function(t) { return !parseNum(t); }))
-          return { err: "each number should be digits with at most one decimal point" };
+          return { err: T("addition.err.digits") };
         return { p: { mode: "dec", dec: dec } };
       }
-      if (parts.length !== 2) return { err: "fractions are added two at a time" };
+      if (parts.length !== 2) return { err: T("addition.err.twoFrac") };
       var f = parts.map(readTerm);
-      if (!f[0] || !f[1]) return { err: "write fractions like 3/4 and mixed numbers like 2 3/4" };
+      if (!f[0] || !f[1]) return { err: T("addition.err.fracForm") };
       return { p: { mode: "frac", frac: f } };
     }
     /* q, read by hand so a raw "+" can still mean plus (URLSearchParams turns it into a space) */
@@ -3159,19 +3185,19 @@
         if (pr === "all" || pr === "step" || pr === "check") {
           S.practice = pr;
           S.stepMode = pr === "step";
-        } else notes.push("“practice” can be all, step or check");
+        } else notes.push(T("addition.link.practice"));
       }
       var md = sp.get("mode"),
         hint = null;
       if (md !== null) {
         md = md.trim().toLowerCase();
         hint = (md === "dec" || md === "decimals") ? "dec" : (md === "frac" || md === "fractions") ? "frac" : null;
-        if (!hint) notes.push("“mode” can be decimals or fractions");
+        if (!hint) notes.push(T("addition.link.mode"));
       }
       if (sp.has("q")) {
         var raw = rawParam("q") || "",
           r = parseQ(raw, hint);
-        if (r.err) notes.unshift("its problem, “" + esc(raw) + "”, couldn’t be read: " + r.err);
+        if (r.err) notes.unshift(T("addition.link.q", { q: esc(raw), err: r.err }));
         else {
           S.mode = r.p.mode;
           S.step = 1;
@@ -3180,7 +3206,7 @@
         }
       } else if (hint) S.mode = hint;
       if (!notes.length) return null;
-      return "That link didn’t quite work — " + notes.join("; ") + ". Here’s the last problem instead.";
+      return T("addition.link.bad", { notes: notes.join("; ") });
     }
 
     /* ===================== check my answer ===================== */
@@ -3223,12 +3249,12 @@
       return out;
     }
     var WHY = {
-      carry: "It looks like a carry went missing. When a column makes 10 or more, write the ones digit and carry the 1 into the next column.",
-      align: "It looks like the numbers were lined up on the right instead of at the decimal point. Line the decimal points up first, and fill the gaps with zeros.",
-      tops: "It looks like the tops and the bottoms were both added. Only the tops add — rename both fractions to a common denominator first, and the denominator stays the same.",
-      rename: "It looks like the tops were added before the pieces were the same size. Find a common denominator and rename both fractions first.",
-      wholes: "Don’t forget the whole numbers — add them too.",
-      round: "So close — but that decimal is rounded. Give the exact answer as a fraction or mixed number."
+      carry: T("addition.why.carry"),
+      align: T("addition.why.align"),
+      tops: T("addition.why.tops"),
+      rename: T("addition.why.rename"),
+      wholes: T("addition.why.wholes"),
+      round: T("addition.why.round")
     };
     /* what common mistake would give exactly u? */
     function diagnose(p, u, ans) {
@@ -3285,17 +3311,15 @@
 
     function correctNote(p, u, ans) {
       if (p.mode === "dec")
-        return (u.form === "frac" || u.form === "mixed") ?
-          " As a decimal that’s <b>" + esc(ans.text) + "</b>, the way the page writes it." : "";
+        return (u.form === "frac" || u.form === "mixed") ? " " + T("addition.note.asDecimal", { a: esc(ans.text) }) : "";
       var imp = String(ans.r.n) + "/" + String(ans.r.d);
       if (ans.form === "mixed") {
-        if (u.form === "frac") return " Improper <b>" + imp + "</b> and mixed <b>" + esc(ans.text) +
-          "</b> are both right — the page shows the mixed number.";
-        if (u.form === "dec") return " That’s the same as <b>" + esc(ans.text) + "</b>, the mixed number the page shows.";
-        return " Mixed <b>" + esc(ans.text) + "</b> is how the page shows it too (improper <b>" + imp + "</b> is also right).";
+        if (u.form === "frac") return " " + T("addition.note.improperToo", { imp: imp, a: esc(ans.text) });
+        if (u.form === "dec") return " " + T("addition.note.sameMixed", { a: esc(ans.text) });
+        return " " + T("addition.note.mixedToo", { imp: imp, a: esc(ans.text) });
       }
       if (ans.form === "frac" && u.form === "dec")
-        return " That’s the same as <b>" + esc(ans.text) + "</b>, the fraction the page shows.";
+        return " " + T("addition.note.sameFrac", { a: esc(ans.text) });
       return "";
     }
 
@@ -3303,10 +3327,10 @@
       var n = u.top,
         d = u.bot,
         g = bgcd(n, d);
-      if (d === ONE) return "Anything over 1 is just a whole number.";
-      if (n === Z) return u.form === "mixed" ? "No pieces left over — it’s just the whole number." : "Zero pieces is just 0.";
-      if (u.form === "mixed" && n >= d) return "The fraction part is a whole or more — trade it into the whole number.";
-      return "<b>" + n + "</b> and <b>" + d + "</b> both divide by <b>" + g + "</b>.";
+      if (d === ONE) return T("addition.tip.overOne");
+      if (n === Z) return u.form === "mixed" ? T("addition.tip.noPieces") : T("addition.tip.zero");
+      if (u.form === "mixed" && n >= d) return T("addition.tip.tradeWhole");
+      return T("addition.tip.divide", { n: String(n), d: String(d), g: String(g) });
     }
 
     function say(html, cls) {
@@ -3335,31 +3359,29 @@
       $("page").classList.toggle("checking", ok && S.practice === "check" && !S.chk.revealed);
       $("tryMore").hidden = !S.chk.tries || S.chk.revealed;
       $("hintBtn").hidden = S.chk.keep;
-      $("tryHint").textContent = S.mode === "dec" ?
-        "Decimals, fractions or mixed numbers all count — 3.5, 7/2 and 3 1/2 are the same." :
-        "Write a fraction like 5/6, a mixed number like 4 7/12, or an improper fraction like 55/12.";
+      $("tryHint").textContent = S.mode === "dec" ? T("addition.hintDec") : T("addition.hintFrac");
     }
 
     function checkAnswer() {
       var p = problemFromState();
-      if (problemBad(p)) { say('<span class="lead">Fix the problem above first,</span> then check.', "no"); return; }
+      if (problemBad(p)) { say(T("addition.fixFirst"), "no"); return; }
       var u = readAnswer($("tryIn").value);
-      if (!u) { say('<span class="lead">Type your answer as a number</span> — like 12.5, 7/2 or 3 1/2.', "no"); return; }
-      if (u.bad) { say('<span class="lead">A denominator can’t be 0.</span>', "no"); return; }
+      if (!u) { say(T("addition.typeAnswer"), "no"); return; }
+      if (u.bad) { say('<span class="lead">' + T("addition.zeroDenShort") + "</span>", "no"); return; }
       var ans = answerOf(p);
       if (rEq(u.r, ans.r) && p.mode === "frac" && !u.simple) {
         S.chk.tries++;
-        say('<span class="lead">Right value — now simplify it.</span> ' + simplifyTip(u), "half");
+        say('<span class="lead">' + T("addition.rightValue") + "</span> " + simplifyTip(u), "half");
         report("simplify");
       } else if (rEq(u.r, ans.r)) {
-        say('<span class="lead">✓ Correct!</span>' + correctNote(p, u, ans), "ok");
+        say('<span class="lead">' + T("common.correct") + "</span>" + correctNote(p, u, ans), "ok");
         report("right");
         S.chk.revealed = true;
         if (S.stepMode) S.step = 999;
       } else {
         S.chk.tries++;
         var why = diagnose(p, u, ans);
-        say('<span class="lead">Not quite — try again.</span>' + (why ? " " + why : ""), "no");
+        say('<span class="lead">' + T("common.notQuite") + "</span>" + (why ? " " + why : ""), "no");
         report("wrong");
       }
       render();
@@ -3392,66 +3414,70 @@
     /* one list drives the maker on the page and the worksheet API's options */
     var OPTS = [{
         key: "mode",
-        label: "Kind of numbers",
+        label: T("addition.opt.mode"),
         type: "choice",
         default: "decimals",
-        values: [{ v: "decimals", label: "Decimals" }, { v: "fractions", label: "Fractions" }]
+        values: [{ v: "decimals", label: T("common.decimals") }, { v: "fractions", label: T("common.fractions") }]
       }, {
         key: "count",
-        label: "How many numbers",
-        short: "How many numbers",
+        label: T("addition.opt.count"),
+        short: T("addition.opt.count"),
         type: "choice",
         default: 2,
         appliesTo: ["decimals"],
-        values: [{ v: 2, label: "2 numbers" }, { v: 3, label: "3 numbers" }, { v: 4, label: "4 numbers" }]
+        values: [2, 3, 4].map(function(v) { return { v: v, label: T("addition.opt.countN", { n: v }) }; })
       }, {
         key: "digits",
-        label: "Digits in each number",
-        short: "Digits in each number",
+        label: T("addition.opt.digits"),
+        short: T("addition.opt.digits"),
         type: "choice",
         default: 2,
         appliesTo: ["decimals"],
         values: [1, 2, 3, 4, 5, 6].map(function(v) {
-          return { v: v, label: v + " (like " + ["7", "47", "347", "5347", "65,347", "865,347"][v - 1] + ")" };
+          return { v: v, label: T("addition.opt.digitsN", { n: v, ex: ["7", "47", "347", "5347", "65,347", "865,347"][v - 1] }) };
         })
       }, {
         key: "places",
-        label: "Decimal places",
-        short: "Decimal places",
+        label: T("addition.opt.places"),
+        short: T("addition.opt.places"),
         type: "choice",
         default: 0,
         appliesTo: ["decimals"],
-        values: [{ v: 0, label: "None" }, { v: 1, label: "1 place" }, { v: 2, label: "2 places" }, { v: 3, label: "3 places" },
-          { v: "mixed", label: "A mix" }
-        ]
+        values: [{ v: 0, label: T("addition.opt.placesNone") }].concat([1, 2, 3].map(function(v) {
+          return { v: v, label: T("addition.opt.placesN", { n: v }) };
+        }), [{ v: "mixed", label: T("addition.opt.placesMix") }])
       }, {
         key: "carry",
-        label: "Carrying",
-        short: "Carrying",
+        label: T("addition.opt.carry"),
+        short: T("addition.opt.carry"),
         type: "choice",
         default: "any",
         appliesTo: ["decimals"],
-        values: [{ v: "any", label: "Either way" }, { v: "carry", label: "Make it carry" }, { v: "none", label: "No carrying" }]
+        values: [{ v: "any", label: T("addition.opt.carryAny") }, { v: "carry", label: T("addition.opt.carryYes") },
+          { v: "none", label: T("addition.opt.carryNo") }
+        ]
       }, {
         key: "denoms",
-        label: "Bottom numbers (denominators)",
-        short: "Bottom numbers (denominators)",
+        label: T("addition.opt.denoms"),
+        short: T("addition.opt.denoms"),
         type: "choice",
         default: "unlike",
         appliesTo: ["fractions"],
-        values: [{ v: "like", label: "The same" }, { v: "unlike", label: "Different" }, { v: "any", label: "Either" }]
+        values: [{ v: "like", label: T("addition.opt.denomsLike") }, { v: "unlike", label: T("addition.opt.denomsUnlike") },
+          { v: "any", label: T("addition.opt.denomsAny") }
+        ]
       }, {
         key: "maxDen",
-        label: "Biggest bottom number",
-        short: "Biggest bottom number",
+        label: T("addition.opt.maxDen"),
+        short: T("addition.opt.maxDen"),
         type: "choice",
         default: 12,
         appliesTo: ["fractions"],
         values: [{ v: 6, label: "6" }, { v: 12, label: "12" }, { v: 20, label: "20" }]
       },
-      { key: "mixed", label: "Mixed numbers", type: "toggle", default: false, appliesTo: ["fractions"], glyph: "2&frac12;" }, {
+      { key: "mixed", label: T("addition.opt.mixed"), type: "toggle", default: false, appliesTo: ["fractions"], glyph: "2&frac12;" }, {
         key: "simplify",
-        label: "Answer needs simplifying",
+        label: T("addition.opt.simplify"),
         type: "toggle",
         default: false,
         appliesTo: ["fractions"],
@@ -3583,7 +3609,7 @@
           if (!op.appliesTo || op.appliesTo.indexOf(md) < 0) return;
           if (op.type === "toggle") {
             if (!togs) {
-              host.insertAdjacentHTML("beforeend", '<span class="lbl">Extras</span>');
+              host.insertAdjacentHTML("beforeend", '<span class="lbl">' + T("addition.opt.extras") + "</span>");
               togs = document.createElement("div");
               togs.className = "toggles";
               host.appendChild(togs);
@@ -3640,13 +3666,12 @@
         r = null;
       if (!el) return;
       try { r = makeOne(S.mode, S.gen); } catch (e) { r = null; }
-      el.innerHTML = r ? "Makes problems like: <b>" + esc(describe(r.p).text) + "</b>" :
-        "Those choices don’t make a problem — try different ones.";
+      el.innerHTML = r ? T("addition.sample", { p: esc(describe(r.p).text) }) : T("addition.sampleNone");
     }
     $("genBtn").addEventListener("click", function() {
       var r = makeOne(S.mode, S.gen);
-      if (!r) { $("genMsg").textContent = "Couldn’t make one with those settings — try different choices."; return; }
-      $("genMsg").textContent = r.exact ? "" : "Couldn’t match every setting, so this one is a little different.";
+      if (!r) { $("genMsg").textContent = T("addition.genNone"); return; }
+      $("genMsg").textContent = r.exact ? "" : T("addition.genInexact");
       S.step = 1;
       if (r.p.mode === "dec") {
         S.dec = r.p.dec.slice();
@@ -3683,7 +3708,7 @@
     function schema() {
       return OPTS.map(function(op) {
         var o = { key: op.key, label: op.label, type: op.type, default: op.default };
-        o.values = op.type === "toggle" ? [{ v: false, label: "Off" }, { v: true, label: "On" }] :
+        o.values = op.type === "toggle" ? [{ v: false, label: T("common.off") }, { v: true, label: T("common.on") }] :
           op.values.map(function(v) { return { v: v.v, label: v.label }; });
         if (op.appliesTo) o.appliesTo = op.appliesTo.slice();
         return o;
@@ -3859,7 +3884,7 @@
       function show(t) {
         btn.textContent = t;
         clearTimeout(copyTimer);
-        copyTimer = setTimeout(function() { btn.textContent = "Copy link"; }, 2000);
+        copyTimer = setTimeout(function() { btn.textContent = T("common.copyLink"); }, 2000);
       }
 
       function fallback() {
@@ -3874,10 +3899,10 @@
         ta.select();
         try { ok = document.execCommand("copy"); } catch (e) {}
         document.body.removeChild(ta);
-        show(ok ? "Link copied ✓" : "Couldn’t copy — use the address bar");
+        show(ok ? T("common.linkCopied") + " ✓" : T("addition.copyFail"));
       }
       if (navigator.clipboard && navigator.clipboard.writeText)
-        navigator.clipboard.writeText(url).then(function() { show("Link copied ✓"); }, fallback);
+        navigator.clipboard.writeText(url).then(function() { show(T("common.linkCopied") + " ✓"); }, fallback);
       else fallback();
     });
     document.addEventListener("keydown", function(e) {
@@ -3899,7 +3924,7 @@
       return t ? t === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
     }
 
-    function paint() { themeBtn.textContent = isDark() ? "Light mode" : "Dark mode"; }
+    function paint() { themeBtn.textContent = isDark() ? T("common.lightMode") : T("common.darkMode"); }
     themeBtn.addEventListener("click", function() {
       document.documentElement.setAttribute("data-theme", isDark() ? "light" : "dark");
       paint();

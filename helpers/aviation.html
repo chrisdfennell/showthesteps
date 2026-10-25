@@ -1353,6 +1353,75 @@
   .av-mk.k {
     stroke: var(--key)
   }
+  /* the weight-and-balance envelope chart */
+  .av-plot {
+    fill: none;
+    stroke: var(--rule);
+    stroke-width: 1
+  }
+  .av-uenv {
+    fill: none;
+    stroke: var(--v);
+    stroke-width: 1.8;
+    stroke-dasharray: 6 4
+  }
+  .av-maxw {
+    stroke: var(--bad);
+    stroke-width: 1.4;
+    stroke-dasharray: 5 4
+  }
+  .av-burn {
+    stroke: var(--ink-2);
+    stroke-width: 1.6;
+    stroke-dasharray: 3 3
+  }
+  .av-burnh {
+    fill: var(--ink-2)
+  }
+  .av-pt {
+    fill: var(--key);
+    stroke: var(--surface);
+    stroke-width: 1.5
+  }
+  .av-pt.bad {
+    fill: var(--bad)
+  }
+  .av-pt.ld {
+    fill: var(--surface);
+    stroke: var(--key);
+    stroke-width: 2.2
+  }
+  .av-pt.ld.bad {
+    stroke: var(--bad)
+  }
+  .av-l.bad {
+    fill: var(--bad)
+  }
+  .wbview {
+    margin: 8px 0 4px
+  }
+  .wbex {
+    color: var(--warm);
+    font-weight: 600
+  }
+  .wbpre {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 10px;
+    margin-top: -4px
+  }
+  .wbpre .wbl {
+    font-family: var(--f-mono);
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    color: var(--ink-3)
+  }
+  .wbpre .wxnote {
+    flex-basis: 100%
+  }
   .av-ground {
     fill: var(--e-bg);
     stroke: var(--e);
@@ -2033,6 +2102,12 @@
     </div>
     <div class="reads" id="reads"></div>
     <p class="hint" id="hint"></p>
+    <div class="wbpre" id="wbPre" hidden>
+      <span class="wbl">Example envelopes</span>
+      <button type="button" class="ghost" data-wbex="4seat">Four-seat trainer</button>
+      <button type="button" class="ghost" data-wbex="2seat">Two-seat trainer</button>
+      <span class="wxnote">Example envelopes, typical of a trainer, with a utility envelope inside: not any real aircraft&rsquo;s limits. Use your aircraft&rsquo;s POH, not these.</span>
+    </div>
     <div class="wxget" id="wxGet" hidden>
       <label for="wxIcao">Latest METAR</label>
       <input id="wxIcao" type="text" maxlength="4" autocomplete="off" spellcheck="false" placeholder="KSEA" aria-label="Airport code (ICAO)">
@@ -2141,6 +2216,9 @@
                  TC 090 variation 10 E deviation 2 W · CH 045 deviation 2 E variation 10 W           -> headings
                  descend from 9500 to 2500 at 120 knots 500 fpm · … in 20 nm · … on a 3° path       -> descent
                  empty 1500 @ 38, pilot 170 @ 37, fuel 40 gal @ 48, limits 35 to 47.3, max 2550     -> weight
+                 (or, for the CG envelope chart: … envelope 35@1500, 35@1950, 38.5@2550, 47.3@2550, 47.3@1500
+                 [utility envelope 35@1500, …] [burn 30 gal] [moment view] · … example four-seat envelope with
+                 utility · … example two-seat envelope — example shapes, typical of a trainer, not any real aircraft's)
                  standard-rate turn at 120 knots · turn radius at 120 knots, 30° bank
                  glide ratio 9 from 6000 ft                                                         -> turns
                  120 knots to mph · 29.92 inHg to hPa · 15 °C to °F · 40 gal avgas to lb            -> units
@@ -2164,6 +2242,14 @@
        descent   task=rate|dist|angle|rule&from=<ft>&to=<ft>&gs=<knots>[&fpm=…|&nm=…|&ang=<degrees>]
        weight    items=<name>:<weight>[gal|jet]:<arm>,…[&fwd=<in>][&aft=<in>][&max=<lb>]   (gal: avgas at 6 lb/gal,
                  jet: Jet A at 6.7 lb/gal)
+                 [&env=<cg>@<lb>,…][&uenv=<cg>@<lb>,…] the CG envelope (normal, utility) as corners in order around it,
+                 or [&ex=4seat|2seat[&util=1]] an example envelope; not with fwd/aft (the envelope has the limits). Its top
+                 is the maximum takeoff weight unless max says otherwise. [&burn=<n>gal|<n>jet|<n>] fuel burned before
+                 landing (gallons of avgas, of Jet A, or pounds) [&barm=<in>] at that arm (else the fuel item's arm): the
+                 landing point. [&view=moment] the chart as moment ÷ 1,000 against weight (the POH's other view).
+                 Each point is checked inside the envelope at its weight: the limits there are read along a level line,
+                 interpolated along a sloping edge. Check my answer then asks in or out (and which limit: forward, aft,
+                 over) for takeoff, landing and the utility category.
        turns     task=std&tas=… · task=radius&tas=…&bank=<degrees> · task=glide&ratio=<n>&alt=<ft>
        units     v=<number>&from=<unit>&to=<unit>[&fuel=avgas|jet]   units: kt mph kmh fpm mps nm sm km ft m inhg
                  hpa c f gal l lb kg
@@ -2206,7 +2292,9 @@
        wind: windStrength (any light strong) · runway: rwyWind (any head tail), rwyGust (toggle)
        trip: tripTask (any time dist speed fuel), tripReserve (toggle) · altitude: altTask (any pa da tas), altTemp (toggle)
        headings: hdgDir (any down up), hdgWca (toggle) · descent: desTask (any rate dist angle rule)
-       weight: wbSize (small full), wbLimits (toggle) · turns: turnTask (any std radius glide)
+       weight: wbSize (small full), wbEnv (limits example made), wbLanding (auto takeoff both: auto = landing with
+         an envelope), wbLimits (toggle: plain limits and max, without an envelope), wbUtility (toggle: a utility envelope)
+       turns: turnTask (any std radius glide)
        units: unitKind (any speed dist press temp fuel)
        metar: wxAsk (any cat xw base wx rh da), wxRegion (any us intl), wxRmk (toggle: US remarks)
        windsaloft: fbAsk (any dec interp wca isa best), fbJet (toggle: a jet stream, 100 kt and more)
@@ -3783,6 +3871,418 @@
     var DENS = { avgas: 6, jet: 6.7 };
 
     function tidyName(n, i) { n = String(n || "").replace(/[:=,]+/g, " ").replace(/\s+/g, " ").trim(); return n ? cap(n) : "Item " + (i + 1); }
+    // Example envelopes, as corners "CG in inches @ weight in lb", listed in order around the shape. They are made-up shapes,
+    // typical of small trainers: not any real aircraft's certified limits (the page says so wherever one is used). Each has a
+    // smaller utility-category envelope, and the arms and weights its made loadings use.
+    var WB_EX = {
+      "4seat": {
+        seats: "four-seat",
+        env: "35@1500,35@1950,38.5@2550,47.3@2550,47.3@1500",
+        util: "35@1500,35@1950,35.9@2100,40@2100,40@1500",
+        arm: { empty: [36, 41], front: 37, rear: 73, fuel: 48, bag: 95 },
+        empty: [1450, 1700],
+        gal: [10, 50],
+        bag: 24
+      },
+      "2seat": {
+        seats: "two-seat",
+        env: "30.5@1000,30.5@1300,32@1650,36@1650,36@1000",
+        util: "30.5@1000,30.5@1300,31.1@1440,35@1440,35@1000",
+        arm: { empty: [28.5, 31.5], front: 38, rear: null, fuel: 41, bag: 62 },
+        empty: [1080, 1160],
+        gal: [6, 26],
+        bag: 20
+      }
+    };
+
+    function exLabel(k) { return "Example envelope, typical of a " + WB_EX[k].seats + " trainer — use your aircraft’s POH, not this"; }
+
+    // one corner, typed: 35@1500, 38.5 @ 2,550 lb, 35 in at 1950
+    var WB_PT = "\\d+(?:\\.\\d+)?\\s*(?:in(?:ches)?|\")?\\s*(?:@|at)\\s*(?:\\d{1,3}(?:,\\d{3})+|\\d+)(?:\\.\\d+)?(?:\\s*(?:lbs?|pounds?))?",
+      WB_PTS = WB_PT + "(?:\\s*[,;]?\\s*" + WB_PT + ")*",
+      RE_UENV = new RegExp("\\butility(?:\\s+category)?(?:\\s+cg)?(?:\\s+envelope)?\\s*(?:is|are|of|:|=)?\\s*(" + WB_PTS + ")", "i"),
+      RE_ENV = new RegExp("\\b(?:normal(?:\\s+category)?\\s+)?(?:cg\\s+)?envelope\\s*(?:is|are|of|:|=)?\\s*(" + WB_PTS + ")", "i");
+
+    function wbPts(s) {
+      var re = /(\d+(?:\.\d+)?)\s*(?:in(?:ches)?|")?\s*(?:@|at)\s*((?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?)/gi,
+        m, out = [];
+      while ((m = re.exec(String(s)))) out.push({ cg: +m[1], w: toNum(m[2]) });
+      return out;
+    }
+
+    function envClose(pts) { // the last corner may repeat the first, to close the shape
+      var n = pts.length;
+      if (n > 3 && pts[0].cg === pts[n - 1].cg && pts[0].w === pts[n - 1].w) pts.pop();
+      return pts;
+    }
+
+    function ptsSp(v) { // corners from the link: 35@1500,35@1950,…
+      var out = String(v).split(",").filter(Boolean).map(function(s) {
+        var p = s.split("@");
+        if (p.length !== 2 || !/^\d+(?:\.\d+)?$/.test(p[0].trim()) || !/^\d+(?:\.\d+)?$/.test(p[1].trim())) throw new UserErr(LINKBAD);
+        return { cg: +p[0], w: +p[1] };
+      });
+      if (!out.length) throw new UserErr(LINKBAD);
+      return envClose(out);
+    }
+
+    function ptsA(pts) { return pts.map(function(p) { return nA(p.cg) + "@" + nA(p.w); }).join(","); }
+
+    function ptsT(pts) { return pts.map(function(p) { return nA(p.cg) + "@" + nA(p.w); }).join(", "); }
+
+    function ptsR(pts) { return pts.map(function(p) { return "(" + gv(p.cg) + " in, " + nf(p.w, 2) + " lb)"; }).join(", "); }
+
+    function envTop(pts) { return Math.max.apply(null, pts.map(function(p) { return p.w; })); }
+
+    function envBot(pts) { return Math.min.apply(null, pts.map(function(p) { return p.w; })); }
+
+    function segX(a, b, c, d) { // do segments ab and cd cross each other (not just touch)?
+      var o = function(p, q, r) { var v = (q.cg - p.cg) * (r.w - p.w) - (q.w - p.w) * (r.cg - p.cg); return v > 1e-9 ? 1 : v < -1e-9 ? -1 : 0; };
+      return o(a, b, c) * o(a, b, d) < 0 && o(c, d, a) * o(c, d, b) < 0;
+    }
+
+    function envOk(pts, what) {
+      var n = pts.length,
+        i, j, EXP = B("35@1500, 35@1950, 38.5@2550, 47.3@2550, 47.3@1500");
+      need(n >= 3, what + " needs at least three corners, each as CG @ weight, in order around it: " + EXP + ".");
+      need(n <= 20, "Up to 20 corners for an envelope, please.");
+      pts.forEach(function(p) { need(p.cg > 0 && p.cg <= 10000 && p.w > 0 && p.w <= 1000000, "Each corner is a CG in inches @ a weight in pounds, both positive numbers: " + B("35@1500") + "."); });
+      var area = 0;
+      for (i = 0; i < n; i++) area += pts[i].cg * pts[(i + 1) % n].w - pts[(i + 1) % n].cg * pts[i].w;
+      need(Math.abs(area) > 1e-6, what + "’s corners don’t enclose any area: list them in order around it, like " + EXP + ".");
+      for (i = 0; i < n; i++)
+        for (j = i + 2; j < n; j++) {
+          if (i === 0 && j === n - 1) continue;
+          need(!segX(pts[i], pts[(i + 1) % n], pts[j], pts[(j + 1) % n]), what + "’s edges cross each other: list the corners in order around it — " + EXP + " goes up the forward edge, across the top and down the aft edge.");
+        }
+      var ws = pts.map(function(p) { return p.w; }).sort(function(a, b) { return a - b; });
+      for (i = 0; i + 1 < ws.length; i++) {
+        if (ws[i + 1] - ws[i] < 1e-9) continue;
+        var y = (ws[i] + ws[i + 1]) / 2,
+          c = 0;
+        for (j = 0; j < n; j++)
+          if ((pts[j].w - y) * (pts[(j + 1) % n].w - y) < 0) c++;
+        need(c <= 2, what + " has to be one shape with a forward edge and an aft edge, so that a level line at any weight crosses it only twice.");
+      }
+    }
+
+    // where a level line at weight w meets the envelope: the forward-most and aft-most crossings, and the edge each is on
+    function envAt(pts, w) {
+      var n = pts.length,
+        xs = [];
+      for (var i = 0; i < n; i++) {
+        var p = pts[i],
+          q = pts[(i + 1) % n];
+        if (w < Math.min(p.w, q.w) - 1e-9 || w > Math.max(p.w, q.w) + 1e-9) continue;
+        if (Math.abs(q.w - p.w) < 1e-9) {
+          xs.push({ x: p.cg, p: p, q: q, flat: true }, { x: q.cg, p: p, q: q, flat: true });
+          continue;
+        }
+        var lo = p.w < q.w ? p : q,
+          hi = lo === p ? q : p;
+        xs.push({ x: lo.cg + (w - lo.w) / (hi.w - lo.w) * (hi.cg - lo.cg), p: lo, q: hi, flat: false });
+      }
+      if (!xs.length) return null;
+      // at a corner two edges meet at the same point: prefer the straight-up one, it's the easier to read
+      xs.sort(function(a, b) { return a.x - b.x || (Math.abs(a.p.cg - a.q.cg) - Math.abs(b.p.cg - b.q.cg)); });
+      var f = xs[0],
+        a = xs[xs.length - 1];
+      xs.forEach(function(e) { if (Math.abs(e.x - a.x) < 1e-9 && !e.flat && Math.abs(e.p.cg - e.q.cg) < Math.abs(a.p.cg - a.q.cg)) a = e; });
+      return { f: f, a: a };
+    }
+
+    // is a point (weight W, CG cgR to a hundredth) inside the envelope (and under mx, the maximum weight)?
+    function envTest(pts, W, cgR, mx, name) {
+      var c = { env: true, name: name || "envelope", W: W, cgR: cgR, wmin: envBot(pts), wmax: envTop(pts), mx: mx, inside: false, why: null, by: 0, lim: null, at: null, fwd: null, aft: null, all: [] };
+      if (mx !== null && W > mx + 1e-9) {
+        c.why = "over";
+        c.by = rnd(W - mx, 2);
+        c.lim = mx;
+      } else if (W > c.wmax + 1e-9) {
+        c.why = "above";
+        c.by = rnd(W - c.wmax, 2);
+        c.lim = c.wmax;
+      } else if (W < c.wmin - 1e-9) {
+        c.why = "below";
+        c.by = rnd(c.wmin - W, 2);
+        c.lim = c.wmin;
+      } else {
+        c.at = envAt(pts, W);
+        c.fwd = rnd(c.at.f.x, 2);
+        c.aft = rnd(c.at.a.x, 2);
+        if (cgR < c.fwd) {
+          c.why = "fwd";
+          c.by = rnd(c.fwd - cgR, 2);
+          c.lim = c.fwd;
+        } else if (cgR > c.aft) {
+          c.why = "aft";
+          c.by = rnd(cgR - c.aft, 2);
+          c.lim = c.aft;
+        } else c.inside = true;
+      }
+      if (c.why) c.all = [c.why];
+      return c;
+    }
+
+    function limTest(P, W, cgR) { // the same, with plain forward and aft limits (and a maximum weight)
+      var c = { env: false, W: W, cgR: cgR, mx: P.max, inside: false, why: null, by: 0, lim: null, fwd: P.fwd, aft: P.aft, all: [] };
+      if (P.fwd !== null && cgR < P.fwd) c.all.push({ why: "fwd", by: rnd(P.fwd - cgR, 2), lim: P.fwd });
+      if (P.aft !== null && cgR > P.aft) c.all.push({ why: "aft", by: rnd(cgR - P.aft, 2), lim: P.aft });
+      if (P.max !== null && W > P.max + 1e-9) c.all.push({ why: "over", by: rnd(W - P.max, 2), lim: P.max });
+      if (c.all.length) {
+        c.why = c.all[0].why;
+        c.by = c.all[0].by;
+        c.lim = c.all[0].lim;
+        c.more = c.all.slice(1);
+        c.all = c.all.map(function(x) { return x.why; });
+      } else c.inside = true;
+      return c;
+    }
+
+    function wbPhrase(c, ld) { // how far outside, in words
+      if (c.why === "fwd") return nf(c.by, 2) + " in forward of the forward limit (" + nf(c.lim, 2) + " in at " + nf(c.W, 2) + " lb)";
+      if (c.why === "aft") return nf(c.by, 2) + " in aft of the aft limit (" + nf(c.lim, 2) + " in at " + nf(c.W, 2) + " lb)";
+      if (c.why === "over") return nf(c.by, 2) + " lb over the " + nf(c.lim, 2) + " lb max" + (ld ? "imum" : " takeoff") + " weight";
+      if (c.why === "above") return nf(c.by, 2) + " lb above the top of the " + (c.name || "envelope") + " (" + nf(c.lim, 2) + " lb)";
+      return nf(c.by, 2) + " lb below the bottom of the " + (c.name || "envelope") + " (" + nf(c.lim, 2) + " lb)";
+    }
+
+    function wbAll(c, ld) { // every limit broken (plain limits can break two at once)
+      return [wbPhrase(c, ld)].concat((c.more || []).map(function(x) { return wbPhrase({ why: x.why, by: x.by, lim: x.lim, W: c.W }, ld); })).join(", and ");
+    }
+
+    function wbStat(c, ld) { return c.inside ? '<span class="good">inside ✓</span>' : '<span class="bad">outside ✗</span> <span class="sm">' + esc(wbAll(c, ld)) + "</span>"; }
+
+    // how the limit on one side is read at weight W: straight up an edge, along a level edge, or interpolated along a sloping one
+    function edgeH(e, W, side) {
+      var p = e.p,
+        q = e.q;
+      if (e.flat) return { h: whyH("At exactly " + nf(W, 2) + " lb a level edge runs across, so the " + side + " limit is its " + side + " end: " + B(nf(e.x, 2) + " in") + "."), s: side + " limit " + nf(e.x, 2) + " in (a level edge)" };
+      if (Math.abs(p.cg - q.cg) < 1e-9) return { h: whyH("The " + side + " edge goes straight up at " + B(gv(p.cg) + " in") + " from " + nf(p.w, 2) + " to " + nf(q.w, 2) + " lb, so at " + nf(W, 2) + " lb the " + side + " limit is " + B(gv(p.cg) + " in") + "."), s: side + " limit " + gv(p.cg) + " in (straight up)" };
+      var t = (W - p.w) / (q.w - p.w),
+        x = p.cg + t * (q.cg - p.cg);
+      return {
+        h: whyH("The " + side + " edge slopes from " + B(gv(p.cg) + " in at " + nf(p.w, 2) + " lb") + " to " + B(gv(q.cg) + " in at " + nf(q.w, 2) + " lb") + ". " + nf(W, 2) + " lb is " + frH(nf(W - p.w, 2), nf(q.w - p.w, 2)) + " = " + nf(t, 4) + " of the way up it, so the limit is that part of the way from " + gv(p.cg) + " to " + gv(q.cg) + " in:") +
+          eqL(side + " limit = " + gv(p.cg) + " + " + frH(nf(W, 2) + " − " + nf(p.w, 2), nf(q.w, 2) + " − " + nf(p.w, 2)) + " × (" + gv(q.cg) + " − " + gv(p.cg) + ")" + exactOr(x, 2) + res(nf(x, 2) + " in")),
+        s: side + " limit " + gv(p.cg) + " + " + nf(t, 4) + " × " + nf(q.cg - p.cg, 4) + " = " + nf(x, 2) + " in (along the sloping edge)"
+      };
+    }
+
+    // a point checked against an envelope (or plain limits), in plain words: {h: html, s: the say line}
+    function pointH(c, nm, ld) {
+      var Wt = nf(c.W, 2) + " lb",
+        cg = nf(c.cgR, 2, true);
+      if (!c.env) {
+        var cmp = c.fwd !== null && c.cgR < c.fwd ? cg + " < " + gv(c.fwd) + " (the forward limit)" : c.aft !== null && c.cgR > c.aft ? cg + " > " + gv(c.aft) + " (the aft limit)" :
+          (c.fwd !== null ? gv(c.fwd) + " ≤ " : "") + cg + (c.aft !== null ? " ≤ " + gv(c.aft) : "");
+        var mxs = c.mx !== null ? " Weight " + Wt + (c.W <= c.mx + 1e-9 ? " ≤ " : " > ") + nf(c.mx, 2) + " lb max." : "";
+        return {
+          h: eqL(cmp) + whyH(c.inside ? cap(nm) + " is inside the limits" + OKM + "." + mxs : '<span class="no">' + cap(nm) + " is outside: " + esc(wbAll(c, ld)) + " ✗</span>" + mxs),
+          s: cap(nm) + ": " + cmp + "." + mxs + " " + (c.inside ? "Inside." : "Outside: " + wbAll(c, ld) + ".")
+        };
+      }
+      if (c.why === "over") return { h: whyH('<span class="no">' + Wt + " is more than the " + nf(c.mx, 2) + " lb max" + (ld ? "imum" : " takeoff") + " weight: " + nf(c.by, 2) + " lb over ✗</span> Too heavy, whatever the CG: weight has to come off (less fuel, baggage or people)."), s: cap(nm) + " weight " + Wt + " > " + nf(c.mx, 2) + " lb: " + nf(c.by, 2) + " lb over." };
+      if (c.why === "above" || c.why === "below") return { h: whyH('<span class="no">The ' + c.name + " covers " + nf(c.wmin, 2) + " to " + nf(c.wmax, 2) + " lb, and " + Wt + " is " + (c.why === "above" ? "above its top" : "below its bottom") + " by " + nf(c.by, 2) + " lb ✗</span> There are no limits for that weight, so it is outside."), s: cap(nm) + " weight " + Wt + " is outside the " + c.name + "’s " + nf(c.wmin, 2) + " to " + nf(c.wmax, 2) + " lb." };
+      var f = edgeH(c.at.f, c.W, "forward"),
+        a = edgeH(c.at.a, c.W, "aft");
+      var cmp2 = c.why === "fwd" ? cg + " < " + nf(c.fwd, 2) + " (the forward limit)" : c.why === "aft" ? cg + " > " + nf(c.aft, 2) + " (the aft limit)" : nf(c.fwd, 2) + " ≤ " + cg + " ≤ " + nf(c.aft, 2);
+      var verdict = c.inside ? "The CG is between the two limits, so the " + nm + " point is <b>inside</b> the " + c.name + OKM + "." :
+        '<span class="no">The CG is ' + esc(wbPhrase(c, ld)) + " ✗</span>" + (c.why === "fwd" ? " Too nose-heavy: move weight aft, or carry less up front." : " Too tail-heavy — an aft CG can make the airplane unstable and hard to recover from a stall: move weight forward, or carry less in the back.");
+      return {
+        h: whyH("Weight: the " + c.name + " covers " + nf(c.wmin, 2) + " to " + nf(c.wmax, 2) + " lb, and " + Wt + " is in that range" + OKM + ". Now the CG limits at " + Wt + ", along a level line across the envelope:") + f.h + a.h + eqL(cmp2) + whyH(verdict),
+        s: "At " + Wt + ": " + f.s + "; " + a.s + ". " + cmp2 + ": " + (c.inside ? "inside." : wbPhrase(c, ld) + ".")
+      };
+    }
+
+    function niceStep(span, n) {
+      var raw = span / n,
+        p = Math.pow(10, Math.floor(Math.log(raw) / Math.LN10)),
+        r = raw / p;
+      return (r <= 1 ? 1 : r <= 2 ? 2 : r <= 2.5 ? 2.5 : r <= 5 ? 5 : 10) * p;
+    }
+
+    // the envelope chart: weight up, CG across (or the POH's moment ÷ 1,000 across), with the takeoff and landing points
+    function envFig(P, R) {
+      var mom = P.view === "moment",
+        Wd = 340,
+        Ht = 324,
+        X0 = 50,
+        X1 = 330,
+        Y0 = 26,
+        Y1 = 262;
+      var tx = function(cg, w) { return mom ? cg * w / 1000 : cg; };
+      var trace = function(pts) { // each edge, in chart units (a sloping edge bends in the moment view, so it's sampled)
+        var out = [];
+        pts.forEach(function(p, i) {
+          var q = pts[(i + 1) % pts.length],
+            k = mom && p.cg !== q.cg && p.w !== q.w ? 16 : 1;
+          for (var s = 0; s < k; s++) {
+            var t = s / k;
+            out.push([tx(p.cg + t * (q.cg - p.cg), p.w + t * (q.w - p.w)), p.w + t * (q.w - p.w)]);
+          }
+        });
+        return out;
+      };
+      var ne = trace(P.env),
+        ue = P.uenv ? trace(P.uenv) : null;
+      var dots = [{ k: "takeoff", x: mom ? R.to.M / 1000 : R.to.cgR, y: R.to.W, bad: !!(R.to.c && !R.to.c.inside) }];
+      if (R.ld) dots.push({ k: "landing", x: mom ? R.ld.M / 1000 : R.ld.cgR, y: R.ld.W, bad: !!(R.ld.c && !R.ld.c.inside) });
+      var xv = [],
+        yv = [];
+      ne.concat(ue || []).forEach(function(p) {
+        xv.push(p[0]);
+        yv.push(p[1]);
+      });
+      dots.forEach(function(d) {
+        xv.push(d.x);
+        yv.push(d.y);
+      });
+      if (P.max !== null) yv.push(P.max);
+      var xa = Math.min.apply(null, xv),
+        xb = Math.max.apply(null, xv),
+        ya = Math.min.apply(null, yv),
+        yb = Math.max.apply(null, yv),
+        dx = (xb - xa) * 0.08 || 1,
+        dy = (yb - ya) * 0.08 || 50;
+      xa -= dx;
+      xb += dx;
+      ya -= dy;
+      yb += dy;
+      var sx = niceStep(xb - xa, 5),
+        sy = niceStep(yb - ya, 5),
+        i;
+      var px = function(x) { return X0 + (x - xa) / (xb - xa) * (X1 - X0); },
+        py = function(y) { return Y1 - (y - ya) / (yb - ya) * (Y1 - Y0); };
+      var out = rect(X0, Y0, X1 - X0, Y1 - Y0, "av-plot");
+      for (i = Math.ceil(xa / sx - 1e-9); i * sx <= xb + 1e-9; i++) out += line(px(i * sx), Y0, px(i * sx), Y1, "av-grid") + svgT(px(i * sx), Y1 + 15, nf(i * sx, 2), "av-l dim sm");
+      for (i = Math.ceil(ya / sy - 1e-9); i * sy <= yb + 1e-9; i++) out += line(X0, py(i * sy), X1, py(i * sy), "av-grid") + svgT(X0 - 5, py(i * sy) + 4, nf(i * sy, 0), "av-l dim sm", "end");
+      out += svgT(4, Y0 - 10, "weight, lb", "av-l dim sm", "start");
+      out += svgT((X0 + X1) / 2, Y1 + 32, mom ? "moment ÷ 1,000 (lb-in) →" : "CG, inches aft of the datum →", "av-l dim sm");
+      var dPath = function(s) { return "M" + s.map(function(p) { return f1(px(p[0])) + " " + f1(py(p[1])); }).join(" L") + " Z"; };
+      out += '<path class="av-env" d="' + dPath(ne) + '"/>';
+      if (ue) out += '<path class="av-uenv" d="' + dPath(ue) + '"/>';
+      if (P.max !== null && Math.abs(P.max - envTop(P.env)) > 1e-9) out += line(X0, py(P.max), X1, py(P.max), "av-maxw") + svgT(X1 - 4, py(P.max) - 5, "max " + nf(P.max, 0) + " lb", "av-l bad sm", "end");
+      var D = dots.map(function(d) { return { x: px(d.x), y: py(d.y), d: d }; });
+      if (D.length > 1) {
+        var L = Math.sqrt(sq(D[1].x - D[0].x) + sq(D[1].y - D[0].y)),
+          ang = Math.atan2(D[1].y - D[0].y, D[1].x - D[0].x);
+        out += line(D[0].x, D[0].y, D[1].x, D[1].y, "av-burn");
+        if (L > 28) out += arrowHead((D[0].x + D[1].x) / 2 + Math.cos(ang) * 4, (D[0].y + D[1].y) / 2 + Math.sin(ang) * 4, ang, "av-burnh", 8);
+      }
+      D.forEach(function(p, j) { out += '<circle class="av-pt' + (j ? " ld" : "") + (p.d.bad ? " bad" : "") + '" cx="' + f1(p.x) + '" cy="' + f1(p.y) + '" r="' + (j ? 5 : 5.5) + '"/>'; });
+      D.forEach(function(p, j) { // each label on the side away from the other point
+        var ux = 0,
+          uy = -1;
+        if (D.length > 1) {
+          var o = D[1 - j],
+            l = Math.sqrt(sq(p.x - o.x) + sq(p.y - o.y));
+          if (l > 0.5) {
+            ux = (p.x - o.x) / l;
+            uy = (p.y - o.y) / l;
+          } else uy = j ? 1 : -1;
+        }
+        var lx = p.x + ux * 15,
+          ly = p.y + uy * 15 + 4,
+          an = ux > 0.35 ? "start" : ux < -0.35 ? "end" : "middle";
+        if (an === "start" && lx > X1 - 58) {
+          an = "end";
+          lx = p.x - 9;
+        } else if (an === "end" && lx < X0 + 58) {
+          an = "start";
+          lx = p.x + 9;
+        } else if (an === "middle") lx = Math.min(Math.max(lx, X0 + 30), X1 - 30);
+        ly = Math.min(Math.max(ly, Y0 + 12), Y1 - 4);
+        out += svgT(lx, ly, p.d.k, "av-l sm " + (p.d.bad ? "bad" : "gnd"), an);
+      });
+      var gx = 8,
+        gy = Ht - 8;
+      out += rect(gx, gy - 9, 14, 10, "av-env", 2) + svgT(gx + 19, gy, "normal", "av-l dim sm", "start");
+      gx += 72;
+      if (ue) {
+        out += line(gx, gy - 4, gx + 16, gy - 4, "av-uenv") + svgT(gx + 21, gy, "utility", "av-l dim sm", "start");
+        gx += 78;
+      }
+      out += '<circle class="av-pt" cx="' + (gx + 6) + '" cy="' + (gy - 4) + '" r="5"/>' + svgT(gx + 15, gy, "takeoff", "av-l dim sm", "start");
+      gx += 80;
+      if (R.ld) out += '<circle class="av-pt ld" cx="' + (gx + 6) + '" cy="' + (gy - 4) + '" r="4.5"/>' + svgT(gx + 15, gy, "landing", "av-l dim sm", "start");
+      var lab = "The envelope chart, " + (mom ? "moment" : "CG") + " against weight: takeoff at " + nf(R.to.cgR, 2) + " in and " + nf(R.to.W, 2) + " lb, " + (R.to.c.inside ? "inside" : "outside") +
+        (R.ld ? "; landing at " + nf(R.ld.cgR, 2) + " in and " + nf(R.ld.W, 2) + " lb, " + (R.ld.c.inside ? "inside" : "outside") : "") + ".";
+      return xs(svgWrap(Wd, Ht, lab, out));
+    }
+
+    // made loadings: the items for an airplane with these arms and weights, leaning toward a kind of answer
+    function wbItems(A, EW, GL, bagMax, size, want) {
+      var r1 = function(a, b) { return rint(Math.round(a * 10), Math.round(b * 10)) / 10; },
+        fwdL = want === "fwd" || want === "land",
+        heavy = want === "over",
+        aftL = want === "aft",
+        full = size === "full";
+      var it = [{ n: "Empty", w: rint(Math.ceil(EW[0] / 5), Math.floor(EW[1] / 5)) * 5, arm: fwdL ? r1(A.empty[0], (A.empty[0] + A.empty[1]) / 2) : r1(A.empty[0], A.empty[1]), gal: false, jet: false },
+        { n: "Pilot", w: (heavy || (fwdL && Math.random() < 0.6) ? rint(38, 48) : fwdL ? rint(24, 30) : rint(24, 48)) * 5, arm: A.front, gal: false, jet: false }
+      ];
+      if (full || heavy || Math.random() < (fwdL ? 0.6 : 0.5)) it.push({ n: "Front passenger", w: (heavy || (fwdL && it[1].w >= 190) ? rint(36, 46) : rint(22, 46)) * 5, arm: A.front, gal: false, jet: false });
+      it.push({ n: "Fuel", w: fwdL ? rint(GL[0], Math.round((GL[0] + GL[1]) / 2)) : heavy ? rint(Math.round((GL[0] + GL[1]) / 2), GL[1]) : rint(GL[0], GL[1]), arm: A.fuel, gal: true, jet: false });
+      if (A.rear !== null && (full || heavy || aftL || Math.random() < 0.4) && !fwdL) it.push({ n: "Rear seats", w: rint(aftL || heavy ? 30 : 0, 64) * 5, arm: A.rear, gal: false, jet: false });
+      if ((full || aftL || heavy || Math.random() < 0.5) && !fwdL) it.push({ n: "Baggage", w: rint(aftL ? Math.round(bagMax / 2) : 2, bagMax) * 5, arm: A.bag, gal: false, jet: false });
+      return it;
+    }
+
+    function burnFor(items) { // the fuel burned before landing: part of the fuel on board
+      var f = items.filter(function(x) { return x.gal; })[0];
+      if (!f) return null;
+      var g = Math.max(3, Math.min(f.w - 1, Math.round(f.w * (0.35 + Math.random() * 0.45))));
+      return Math.random() < 0.8 ? { w: g, gal: true, jet: false, arm: null } : { w: g * 6, gal: false, jet: false, arm: null };
+    }
+
+    function landOut(P, R) { // the smallest burn (whole gallons) that puts the landing point forward or aft of the envelope
+      var f = P.items.filter(function(x) { return x.gal; })[0];
+      if (!f) return null;
+      for (var g = 3; g < f.w; g++) {
+        var bl = rnd(g * DENS[f.jet ? "jet" : "avgas"], 2),
+          LW = rnd(R.W - bl, 2),
+          LM = rnd(R.M - rnd(bl * f.arm, 2), 2),
+          c = envTest(P.env, LW, rnd(LM / LW, 2), R.mtow);
+        if (c.why === "fwd" || c.why === "aft") return { w: g, gal: true, jet: false, arm: null };
+      }
+      return null;
+    }
+
+    function madeEnv(util) { // a made-up envelope: a forward edge that slopes above a break weight, an aft edge, a top
+      var f0 = rint(60, 80) / 2,
+        wmin = rint(18, 32) * 50,
+        wmax = wmin + rint(16, 24) * 50,
+        wb = wmin + Math.round((wmax - wmin) * (0.35 + Math.random() * 0.25) / 50) * 50,
+        f1 = f0 + rint(4, 10) / 2,
+        aft = f0 + rint(16, 26) / 2,
+        env = [{ cg: f0, w: wmin }, { cg: f0, w: wb }, { cg: f1, w: wmax }];
+      if (Math.random() < 0.35) env.push({ cg: aft - rint(2, 4) / 2, w: wmax }, { cg: aft, w: wmax - rint(3, 6) * 50 });
+      else env.push({ cg: aft, w: wmax });
+      env.push({ cg: aft, w: wmin });
+      var uenv = null;
+      if (util) {
+        var wu = Math.min(wb + rint(2, 5) * 50, wmax - 100),
+          fu = rnd(f0 + (wu - wb) / (wmax - wb) * (f1 - f0), 1),
+          au = f0 + Math.round((aft - f0) * 0.6 * 2) / 2;
+        uenv = [{ cg: f0, w: wmin }, { cg: f0, w: wb }, { cg: fu, w: wu }, { cg: au, w: wu }, { cg: au, w: wmin }];
+      }
+      var fwdFuel = Math.random() < 0.4; // a tank ahead of the CG: burning it moves the CG aft
+      return {
+        env: env,
+        uenv: uenv,
+        arm: { empty: [f0 + 1, f0 + 5], front: f0 + 2, rear: rnd(aft + rint(20, 28), 1), fuel: fwdFuel ? f0 + rint(2, 6) / 2 : f0 + rint(24, 30) / 2, bag: rnd(aft + rint(36, 50), 1) },
+        empty: [wmin - 100, wmin + Math.round((wmax - wmin) * 0.2)],
+        gal: [8, Math.max(12, Math.round((wmax - wmin) * 0.25 / 6))],
+        bag: 24
+      };
+    }
+
+    function wbKind(R) { // what a made loading turned out to be
+      var c = R.to && R.to.c;
+      if (!c) return "none";
+      if (!c.inside) return c.why === "above" ? "over" : c.why;
+      if (R.ld && R.ld.c && !R.ld.c.inside) return "land";
+      return "in";
+    }
 
     function cgFig(P, R) {
       var lo = Math.min(P.fwd !== null ? P.fwd : R.cg, R.cg),
@@ -3816,7 +4316,32 @@
         var T = new Txt(String(t).replace(/\n/g, ", ")),
           m, fwd = null,
           aft = null,
-          max = null;
+          max = null,
+          env = null,
+          uenv = null,
+          ex = null,
+          util = false,
+          burn = null,
+          view = "cg";
+        // the envelope first (its corners have @ in them, like the items): utility, normal, or an example one
+        if ((m = T.take(RE_UENV))) uenv = envClose(wbPts(m[1]));
+        if ((m = T.take(RE_ENV))) env = envClose(wbPts(m[1]));
+        if ((m = T.take(/\b(?:(?:an?|the)\s+)?example\s+(?:(four|4|two|2)[-\s]*seat(?:er)?\s+)?(?:trainer\s+)?(?:cg\s+)?envelope(?:\s+(?:for\s+)?(?:an?\s+)?(four|4|two|2)[-\s]*seat(?:er)?(?:\s+trainer)?)?/i)) ||
+          (m = T.take(/\b(four|4|two|2)[-\s]*seat(?:er)?\s+(?:trainer\s+)?example(?:\s+cg)?\s+envelope()/i))) ex = /^(?:two|2)$/i.test(m[1] || m[2] || "") ? "2seat" : "4seat";
+        if (T.take(/\b(?:with\s+(?:an?\s+|the\s+|its\s+)?)?utility(?:\s+category)?(?:\s+envelope)?(?:\s+too)?\b/i)) util = true;
+        if ((m = T.take(/\b(?:fuel\s+)?(?:burn(?:ed|t|s)?|used)\s*(?:of|is|=|:)?\s*(\d+(?:\.\d+)?)\s*(lbs?|pounds?|gal(?:lons?|s)?)?(?:\s*(?:of\s+)?(jet(?:\s*a)?|kerosene|avgas))?(?:\s*(?:@|at)\s*(?:arm\s*)?(\d+(?:\.\d+)?)\s*(?:in(?:ches)?|")?)?/i)) ||
+          (m = T.take(/\b(\d+(?:\.\d+)?)\s*(lbs?|pounds?|gal(?:lons?|s)?)\s*(?:of\s+)?(jet(?:\s*a)?|kerosene|avgas)?\s*(?:of\s+)?(?:fuel\s+)?(?:burn(?:ed|t)?|used)(?:\s*(?:@|at)\s*(?:arm\s*)?(\d+(?:\.\d+)?)\s*(?:in(?:ches)?|")?)?/i))) {
+          need(!!m[2], "Say whether the fuel burned is in gallons or pounds: " + B("burn 30 gal") + " or " + B("burn 180 lb") + ".");
+          var bg = /^gal/i.test(m[2]);
+          burn = { w: +m[1], gal: bg, jet: bg && !!m[3] && !/avgas/i.test(m[3]), arm: m[4] ? +m[4] : null };
+        }
+        if (T.take(/\b(?:moments?\s+(?:vs\.?|versus|against|and|over)\s+weights?|moments?\s+(?:view|chart|graph|plot)|(?:view|chart|graph|plot)\s*(?::|=|as|by|of)?\s*moments?)\b/i)) view = "moment";
+        T.take(/\b(?:cg\s+(?:vs\.?|versus|against)\s+weights?|cg\s+(?:view|chart|graph))\b/i);
+        if (ex) {
+          need(!env && !uenv, "Use either the example envelope or your own corners, not both.");
+          env = wbPts(WB_EX[ex].env);
+          if (util) uenv = wbPts(WB_EX[ex].util);
+        } else need(!util || uenv, "Give the utility envelope’s corners too, each as CG @ weight: " + B("utility envelope 35@1500, 35@1950, 35.9@2100, 40@2100, 40@1500") + ".");
         if ((m = T.take(/\b(?:cg\s+)?(?:limits?|range|envelope)\s*(?:are|is|of|:|=)?\s*(\d+(?:\.\d+)?)\s*(?:in(?:ches)?|")?\s*(?:to|-|and|through)\s*(\d+(?:\.\d+)?)\s*(?:in(?:ches)?|")?/i))) {
           fwd = +m[1];
           aft = +m[2];
@@ -3835,9 +4360,9 @@
             name = tidyName(r[1], items.length);
           items.push({ n: name, w: toNum(r[2]), arm: +r[4], gal: gal, jet: gal && /\bjet\b|kerosene/i.test(name) });
         });
-        if (bad.length) throw new UserErr("Couldn’t read " + B(esc(bad[0])) + ". Write each item as a name, its weight and its arm: " + B("pilot 170 @ 37") + " (fuel can be in gallons: " + B("fuel 40 gal @ 48") + ").");
+        if (bad.length) throw new UserErr("Couldn’t read " + B(esc(bad[0])) + ". Write each item as a name, its weight and its arm: " + B("pilot 170 @ 37") + " (fuel can be in gallons: " + B("fuel 40 gal @ 48") + ")" + (env ? "" : ", and an envelope as its corners, CG @ weight: " + B("envelope 35@1500, 35@1950, 38.5@2550, 47.3@2550, 47.3@1500")) + ".");
         if (!items.length) throw new UserErr("List the items with their weights and arms, then the limits: " + B("empty 1500 @ 38, pilot 170 @ 37, fuel 40 gal @ 48, limits 35 to 47.3, max 2550") + ".");
-        return { mode: "weight", items: items, fwd: fwd, aft: aft, max: max };
+        return { mode: "weight", items: items, fwd: fwd, aft: aft, max: max, env: env, uenv: uenv, ex: ex, burn: burn, view: view };
       },
       fromSp: function(sp) {
         if (!sp.has("items")) return null;
@@ -3848,18 +4373,43 @@
           return { n: tidyName(p[0], i), w: +w[1], arm: toNum(p[2]), gal: !!w[2], jet: /jet/i.test(w[2] || "") };
         });
         if (!items.length) throw new UserErr(LINKBAD);
-        return { mode: "weight", items: items, fwd: pn(sp, "fwd", true), aft: pn(sp, "aft", true), max: pn(sp, "max", true) };
+        var P = { mode: "weight", items: items, fwd: pn(sp, "fwd", true), aft: pn(sp, "aft", true), max: pn(sp, "max", true), env: null, uenv: null, ex: null, burn: null, view: "cg" };
+        var ex = sp.get("ex");
+        if (ex) {
+          if (!Object.prototype.hasOwnProperty.call(WB_EX, ex)) throw new UserErr(LINKBAD);
+          P.ex = ex;
+          P.env = wbPts(WB_EX[ex].env);
+          if (tog(sp.get("util"), false)) P.uenv = wbPts(WB_EX[ex].util);
+        } else {
+          if (sp.get("env")) P.env = ptsSp(sp.get("env"));
+          if (sp.get("uenv")) P.uenv = ptsSp(sp.get("uenv"));
+        }
+        var b = sp.get("burn");
+        if (b) {
+          var bm = /^(\d+(?:\.\d+)?)(gal|jet|lb)?$/i.exec(b);
+          if (!bm) throw new UserErr(LINKBAD);
+          P.burn = { w: +bm[1], gal: /gal|jet/i.test(bm[2] || ""), jet: /jet/i.test(bm[2] || ""), arm: pn(sp, "barm", true) };
+        }
+        if (String(sp.get("view") || "").toLowerCase() === "moment") P.view = "moment";
+        return P;
       },
       params: function(P) {
         var it = P.items.map(function(x) { return encodeURIComponent(x.n.replace(/[:,]/g, " ")) + ":" + nA(x.w) + (x.gal ? (x.jet ? "jet" : "gal") : "") + ":" + nA(x.arm); }).join(",");
-        return "mode=weight&items=" + it + (P.fwd !== null ? "&fwd=" + nA(P.fwd) : "") + (P.aft !== null ? "&aft=" + nA(P.aft) : "") + (P.max !== null ? "&max=" + nA(P.max) : "");
+        return "mode=weight&items=" + it + (P.fwd !== null ? "&fwd=" + nA(P.fwd) : "") + (P.aft !== null ? "&aft=" + nA(P.aft) : "") + (P.max !== null ? "&max=" + nA(P.max) : "") +
+          (P.ex ? "&ex=" + P.ex + (P.uenv ? "&util=1" : "") : (P.env ? "&env=" + ptsA(P.env) : "") + (P.uenv ? "&uenv=" + ptsA(P.uenv) : "")) +
+          (P.burn ? "&burn=" + nA(P.burn.w) + (P.burn.gal ? (P.burn.jet ? "jet" : "gal") : "") + (P.burn.arm !== null ? "&barm=" + nA(P.burn.arm) : "") : "") + (P.view === "moment" ? "&view=moment" : "");
       },
       text: function(P) {
         return P.items.map(function(x) { return x.n.replace(/[:,]/g, " ") + " " + nA(x.w) + (x.gal ? " gal" : "") + " @ " + nA(x.arm); }).join(", ") +
-          (P.fwd !== null && P.aft !== null ? ", limits " + nA(P.fwd) + " to " + nA(P.aft) : P.fwd !== null ? ", forward limit " + nA(P.fwd) : P.aft !== null ? ", aft limit " + nA(P.aft) : "") + (P.max !== null ? ", max " + nA(P.max) : "");
+          (P.fwd !== null && P.aft !== null ? ", limits " + nA(P.fwd) + " to " + nA(P.aft) : P.fwd !== null ? ", forward limit " + nA(P.fwd) : P.aft !== null ? ", aft limit " + nA(P.aft) : "") + (P.max !== null ? ", max " + nA(P.max) : "") +
+          (P.ex ? ", example " + WB_EX[P.ex].seats + " envelope" + (P.uenv ? " with utility" : "") : (P.env ? ", envelope " + ptsT(P.env) : "") + (P.uenv ? ", utility envelope " + ptsT(P.uenv) : "")) +
+          (P.burn ? ", burn " + nA(P.burn.w) + (P.burn.gal ? " gal" + (P.burn.jet ? " jet" : "") : " lb") + (P.burn.arm !== null ? " @ " + nA(P.burn.arm) : "") : "") + (P.view === "moment" ? ", moment view" : "");
       },
       reads: function(P) {
-        return P.items.length + " item" + (P.items.length === 1 ? "" : "s") + (P.fwd !== null || P.aft !== null ? ' <span class="nm">·</span> CG limits ' + (P.fwd !== null ? gv(P.fwd) : "…") + " to " + (P.aft !== null ? gv(P.aft) : "…") + " in" : "") + (P.max !== null ? ' <span class="nm">·</span> max ' + nf(P.max, 2) + " lb" : "");
+        var dot = ' <span class="nm">·</span> ';
+        return P.items.length + " item" + (P.items.length === 1 ? "" : "s") + (P.fwd !== null || P.aft !== null ? dot + "CG limits " + (P.fwd !== null ? gv(P.fwd) : "…") + " to " + (P.aft !== null ? gv(P.aft) : "…") + " in" : "") + (P.max !== null ? dot + "max " + nf(P.max, 2) + " lb" : "") +
+          (P.ex ? dot + "example " + WB_EX[P.ex].seats + " envelope (not a real aircraft’s)" : P.env ? dot + "envelope, " + P.env.length + " corners" : "") + (P.uenv ? dot + "utility envelope" : "") +
+          (P.burn ? dot + "burn " + gv(P.burn.w) + (P.burn.gal ? " gal" : " lb") : "") + (P.view === "moment" ? dot + "moment vs weight" : "");
       },
       compute: function(P) {
         need(P.items.length <= 30, "Up to 30 items, please.");
@@ -3894,6 +4444,51 @@
           });
           return m / w;
         })() : null;
+        if (!P.env && !P.burn) return R;
+        // the envelope, and the landing point
+        need(!P.env || (P.fwd === null && P.aft === null), "Give either the CG limits or an envelope, not both: the envelope has the limits in it.");
+        need(!P.uenv || P.env, "A utility envelope sits inside the normal one: give the normal envelope too (" + B("envelope 35@1500, …") + ").");
+        if (P.env) envOk(P.env, "The envelope");
+        if (P.uenv) envOk(P.uenv, "The utility envelope");
+        var fuelRows = rows.filter(function(r) { return r.gal; }),
+          fuelIt = fuelRows[0] || rows.filter(function(r) { return /\bfuel\b/i.test(r.n); })[0] || null;
+        R.noFuel = null;
+        if (fuelIt) {
+          var fw = 0,
+            fm = 0;
+          (fuelRows.length ? fuelRows : [fuelIt]).forEach(function(r) {
+            fw += r.lb;
+            fm += r.mom;
+          });
+          if (fw > 0 && W - fw > 0) R.noFuel = { W: rnd(W - fw, 2), cg: (Mo - fm) / (W - fw) };
+        }
+        R.galW = fuelRows.length ? rnd(rows.reduce(function(s, r) { return s + (r.gal ? r.given : r.lb); }, 0), 2) : null;
+        R.mtow = P.max !== null ? P.max : P.env ? envTop(P.env) : null;
+        R.to = { W: R.W, M: R.M, cg: R.cg, cgR: R.cgR, c: null, u: null };
+        var limits = P.env || P.fwd !== null || P.aft !== null || P.max !== null;
+        if (P.env) R.to.c = envTest(P.env, R.W, R.cgR, R.mtow);
+        else if (limits) R.to.c = limTest(P, R.W, R.cgR);
+        if (P.uenv) R.to.u = envTest(P.uenv, R.W, R.cgR, null, "utility envelope");
+        R.ld = null;
+        if (P.burn) {
+          var arm = P.burn.arm !== null ? P.burn.arm : fuelIt ? fuelIt.arm : null;
+          need(arm !== null, "Which arm does the burned fuel come from? Add the fuel as an item (" + B("fuel 40 gal @ 48") + "), or give its arm: " + B("burn 30 gal @ 48") + ".");
+          need(P.burn.w > 0 && P.burn.w <= 100000 && arm >= 0 && arm <= 10000, "The fuel burned is a positive amount, at an arm in inches aft of the datum.");
+          var bJet = P.burn.gal && (P.burn.jet || (P.burn.arm === null && !!fuelIt && fuelIt.jet)),
+            bd = P.burn.gal ? DENS[bJet ? "jet" : "avgas"] : 1,
+            bl = rnd(P.burn.w * bd, 2);
+          if (fuelIt && P.burn.arm === null) need(bl <= fuelIt.lb + 1e-9, "That burns more fuel (" + nf(bl, 2) + " lb) than the " + esc(fuelIt.n.toLowerCase()) + " has on board (" + nf(fuelIt.lb, 2) + " lb).");
+          need(bl < R.W, "That burns more than the airplane weighs.");
+          var LW = rnd(R.W - bl, 2),
+            bm = rnd(bl * arm, 2),
+            LM = rnd(R.M - bm, 2);
+          R.ld = { W: LW, M: LM, cg: LM / LW, cgR: rnd(LM / LW, 2), bl: bl, bd: bd, bJet: bJet, arm: arm, bm: bm, from: P.burn.arm === null ? fuelIt.n : null, c: null, u: null };
+          if (P.env) R.ld.c = envTest(P.env, LW, R.ld.cgR, R.mtow);
+          else if (limits) R.ld.c = limTest(P, LW, R.ld.cgR);
+          if (P.uenv) R.ld.u = envTest(P.uenv, LW, R.ld.cgR, null, "utility envelope");
+          R.ld.noMom = R.M / LW;
+          R.ld.galB = P.burn.gal && R.W - P.burn.w > 0 ? { W: rnd(R.W - P.burn.w, 2), cg: (R.M - P.burn.w * arm) / (R.W - P.burn.w) } : null;
+        }
         return R;
       },
       draw: function(P, R) {
@@ -3908,7 +4503,9 @@
         W.add("<b>What we have.</b> Each item’s weight and its <b>arm</b>: how many inches it sits behind the datum (a reference point the POH picks, often the firewall or the wing’s leading edge).",
           xs('<table class="tbl"><thead><tr><th class="l">Item</th><th>Weight</th><th>Arm (in)</th></tr></thead><tbody>' + rows.map(function(r) { return '<tr><td class="l">' + esc(r.n) + "</td><td>" + gv(r.given) + (r.gal ? " gal" : " lb") + "</td><td>" + gv(r.arm) + "</td></tr>"; }).join("") + "</tbody></table>"),
           [
-            ["p", "read", rows.length + " item" + (rows.length === 1 ? "" : "s") + (P.fwd !== null || P.aft !== null ? "; the CG must stay between " + B((P.fwd !== null ? gv(P.fwd) : "…") + " and " + (P.aft !== null ? gv(P.aft) : "…") + " in") : "") + (P.max !== null ? ", and the total at most " + B(nf(P.max, 2) + " lb") : "") + "."]
+            ["p", "read", rows.length + " item" + (rows.length === 1 ? "" : "s") + (P.fwd !== null || P.aft !== null ? "; the CG must stay between " + B((P.fwd !== null ? gv(P.fwd) : "…") + " and " + (P.aft !== null ? gv(P.aft) : "…") + " in") : "") + (P.max !== null ? ", and the total at most " + B(nf(P.max, 2) + " lb") : "") +
+              (P.env ? "; the CG must stay inside " + (P.ex ? "an example envelope" : "the envelope") + (P.uenv ? " (and a utility envelope)" : "") : "") + (P.burn ? "; " + gv(P.burn.w) + (P.burn.gal ? " gal" : " lb") + " of fuel is burned before landing" : "") + "."
+            ]
           ]);
         if (fuel.length) W.add("<b>Fuel in pounds.</b> Avgas weighs about 6 lb a gallon (Jet A about 6.7).",
           fuel.map(function(r) { return eqL(gv(r.given) + " gal × " + gv(r.d) + " lb/gal = " + nf(r.lb, 2) + " lb"); }).join(""),
@@ -3935,40 +4532,189 @@
           (R.inside ? "Inside the limits" + OKM + ": " : '<span class="no">Outside the limits ✗</span>: ') + (P.fwd !== null ? gv(P.fwd) + (R.fwdOk ? " ≤ " : " > ") : "") + nf(R.cgR, 2, true) + (P.aft !== null ? (R.aftOk ? " ≤ " : " > ") + gv(P.aft) : "") + "." +
           (!R.fwdOk ? " The CG is too far <b>forward</b>: move weight aft, or take some off the front." : !R.aftOk ? " The CG is too far <b>aft</b> — an aft CG can make the airplane unstable and hard to recover from a stall: move weight forward, or carry less in the back." : "");
         var mx = P.max === null ? "" : R.maxOk ? " Weight " + nf(R.W, 2) + " lb ≤ " + nf(P.max, 2) + " lb max" + OKM : ' <span class="no">Weight ' + nf(R.W, 2) + " lb is " + nf(R.W - P.max, 2) + " lb over the " + nf(P.max, 2) + " lb maximum ✗</span>";
-        W.add("<b>Check the limits.</b>", cgFig(P, R) + whyH(lim + mx),
+        if (!P.env) W.add("<b>Check the limits.</b>", cgFig(P, R) + whyH(lim + mx),
           [
             ["a", "check", stripTags(lim + mx).replace(/\s+/g, " ").trim()]
           ]);
+        else {
+          var mom = P.view === "moment",
+            wl = envBot(P.env),
+            wh = envTop(P.env);
+          W.add("<b>The envelope.</b> Its corners, each a CG and a weight, in order around it. At any weight the CG has to be inside this shape; often the forward edge slopes, so the heavier the airplane, the farther aft the CG has to be.",
+            (P.ex ? '<div class="why wbex">' + esc(exLabel(P.ex)) + ".</div>" : "") +
+            xs('<table class="tbl"><thead><tr><th class="l">Corner</th><th>CG (in)</th><th>Weight (lb)</th>' + (mom ? "<th>Moment ÷ 1,000</th>" : "") + "</tr></thead><tbody>" +
+              P.env.map(function(p, i) { return '<tr><td class="l">' + (i + 1) + "</td><td>" + gv(p.cg) + "</td><td>" + nf(p.w, 2) + "</td>" + (mom ? '<td class="m">' + nf(p.cg * p.w / 1000, 2) + "</td>" : "") + "</tr>"; }).join("") + "</tbody></table>") +
+            (P.max !== null ? whyH("The maximum takeoff weight is " + B(nf(P.max, 2) + " lb") + (Math.abs(P.max - wh) > 1e-9 ? " (the envelope’s top is " + nf(wh, 2) + " lb)" : "") + ".") : whyH("The top of the envelope, " + B(nf(wh, 2) + " lb") + ", is the maximum takeoff weight.")),
+            [
+              ["p", "read", P.env.length + " corners, from " + B(nf(wl, 2) + " to " + nf(wh, 2) + " lb") + (P.ex ? " — an example envelope, not any real aircraft’s limits" : "") + "."]
+            ],
+            mom ? "In the moment view each corner is (CG × weight ÷ 1,000, weight): the same shape, with its sloping edges bent into curves, because moment = CG × weight." : "");
+          var tk = pointH(R.to.c, "takeoff", false);
+          W.add("<b>Takeoff: is the point inside?</b> The takeoff point is CG " + B(nf(R.cgR, 2, true) + " in") + " at " + B(nf(R.W, 2) + " lb") + ". Check the weight, then read the limits at that weight off the envelope’s edges.", tk.h,
+            [
+              ["a", "check", tk.s]
+            ]);
+        }
+        if (R.ld) {
+          var L = R.ld,
+            arT = L.from ? "the " + esc(L.from.toLowerCase()) + "’s arm, " + gv(L.arm) + " in" : gv(L.arm) + " in";
+          W.add("<b>Fuel burned: the landing point.</b> The fuel burned comes off at " + arT + ". Take its weight off the total, and its moment off the total moment.",
+            (P.burn.gal ? eqL(gv(P.burn.w) + " gal × " + gv(L.bd) + " lb/gal = " + nf(L.bl, 2) + " lb") : "") +
+            eqL("landing weight = " + nf(R.W, 2) + " − " + nf(L.bl, 2) + " = " + nf(L.W, 2) + " lb") +
+            eqL("landing moment = " + nf(R.M, 2) + " − " + nf(L.bl, 2) + " × " + gv(L.arm) + " = " + nf(R.M, 2) + " − " + nf(L.bm, 2) + " = " + nf(L.M, 2) + " lb-in") +
+            eqL("landing CG = " + frH(nf(L.M, 2), nf(L.W, 2)) + exactOr(L.cg, 2) + res(nf(L.cgR, 2, true) + " in")),
+            [
+              ["u", "lb", P.burn.gal ? B(gv(P.burn.w) + " gal × " + gv(L.bd) + " = " + nf(L.bl, 2) + " lb") + " burned." : B(nf(L.bl, 2) + " lb") + " burned."],
+              ["m", "−", "Weight " + B(nf(R.W, 2) + " − " + nf(L.bl, 2) + " = " + nf(L.W, 2) + " lb") + "; moment " + B(nf(R.M, 2) + " − " + nf(L.bm, 2) + " = " + nf(L.M, 2)) + "."],
+              ["v", "÷", "Landing CG " + B(nf(L.M, 2) + " ÷ " + nf(L.W, 2) + " = " + nf(L.cgR, 2, true) + " in") + "."]
+            ],
+            "The CG moves " + (L.cgR < R.cgR ? "forward" : L.cgR > R.cgR ? "aft" : "nowhere") + " as fuel burns, because the fuel sits " + (L.arm > R.cg ? "aft" : "forward") + " of the CG: check both points, not just takeoff.");
+          if (L.c) {
+            var lk = pointH(L.c, "landing", true);
+            W.add("<b>Landing: is the point inside?</b> The landing point is CG " + B(nf(L.cgR, 2, true) + " in") + " at " + B(nf(L.W, 2) + " lb") + ".", (P.env ? "" : cgFig(P, { cg: L.cg, cgR: L.cgR, inside: L.c.inside || L.c.why === "over" })) + lk.h,
+              [
+                ["a", "check", lk.s]
+              ]);
+          }
+        }
+        if (R.to && R.to.u) {
+          var u1 = pointH(R.to.u, "takeoff", false),
+            u2 = R.ld ? pointH(R.ld.u, "landing", true) : null;
+          W.add("<b>Utility category.</b> Some airplanes have a smaller utility-category envelope, for the maneuvers the POH allows only in that category. The same check, with its edges.",
+            whyH("<b>Takeoff.</b>") + u1.h + (u2 ? whyH("<b>Landing.</b>") + u2.h : ""),
+            [
+              ["a", "utility", "Takeoff: " + (R.to.u.inside ? "inside" : wbPhrase(R.to.u, false)) + (u2 ? "; landing: " + (R.ld.u.inside ? "inside" : wbPhrase(R.ld.u, true)) : "") + "."]
+            ]);
+        }
+        if (P.env) {
+          var sumT = "Takeoff " + (R.to.c.inside ? "inside" : "outside") + (R.ld ? ", landing " + (R.ld.c.inside ? "inside" : "outside") : "") + (R.to.u ? "; utility category at takeoff: " + (R.to.u.inside ? "inside" : "outside") : "") + ".";
+          W.add("<b>On the chart.</b> " + (mom ? "Moment ÷ 1,000 across, weight up: each point is (total moment ÷ 1,000, total weight)." : "CG across, weight up: each point is (CG, total weight).") + (R.ld ? " The dashed line runs from takeoff to landing as the fuel burns." : ""),
+            envFig(P, R) + '<div class="wbview"><button type="button" class="ghost" data-wbview="' + (mom ? "cg" : "moment") + '">' + (mom ? "Show CG vs weight" : "Show moment vs weight (the POH’s other chart)") + "</button></div>" + whyH(sumT),
+            [
+              ["a", "✓", sumT]
+            ]);
+        }
         var stat = P.fwd === null && P.aft === null ? "no limits given" : R.inside ? '<span class="good">inside ✓</span>' : '<span class="bad">' + (R.fwdOk ? "aft" : "forward") + " of the limit ✗</span>";
-        bandCells([{ k: "Center of gravity", v: nf(R.cgR, 2, true) + " in" }, { k: "Total weight", v: nf(R.W, 2) + " lb" }, { k: "CG limits", v: stat, s: stripTags(stat) }].concat(P.max !== null ? [{ k: "Max weight", v: R.maxOk ? '<span class="good">under ✓</span>' : '<span class="bad">' + nf(R.W - P.max, 2) + " lb over ✗</span>" }] : []),
-          ["Total moment " + B(nf(R.M, 2) + " lb-in")]);
-        return finish(W, '<div class="ck">CG <b>' + nf(R.cgR, 2, true) + " in</b> at <b>" + nf(R.W, 2) + " lb</b>" + (P.fwd !== null || P.aft !== null ? (R.inside ? ", inside the limits" : ", <b>outside</b> the limits") : "") + (P.max !== null && !R.maxOk ? ", and over the maximum weight" : "") + ".</div>");
+        var maxCell = { k: "Max weight", v: R.maxOk ? '<span class="good">under ✓</span>' : '<span class="bad">' + nf(R.W - P.max, 2) + " lb over ✗</span>" };
+        var safe = '<div class="ck">For learning: use your aircraft’s POH and its weight-and-balance records.</div>';
+        if (!P.env && !P.burn) {
+          bandCells([{ k: "Center of gravity", v: nf(R.cgR, 2, true) + " in" }, { k: "Total weight", v: nf(R.W, 2) + " lb" }, { k: "CG limits", v: stat, s: stripTags(stat) }].concat(P.max !== null ? [maxCell] : []),
+            ["Total moment " + B(nf(R.M, 2) + " lb-in")]);
+          return finish(W, '<div class="ck">CG <b>' + nf(R.cgR, 2, true) + " in</b> at <b>" + nf(R.W, 2) + " lb</b>" + (P.fwd !== null || P.aft !== null ? (R.inside ? ", inside the limits" : ", <b>outside</b> the limits") : "") + (P.max !== null && !R.maxOk ? ", and over the maximum weight" : "") + ".</div>" + safe);
+        }
+        var cells = [{ k: "Center of gravity", v: nf(R.cgR, 2, true) + " in" }, { k: "Total weight", v: nf(R.W, 2) + " lb" }];
+        if (P.env) cells.push({ k: "Takeoff", v: wbStat(R.to.c, false) });
+        else {
+          cells.push({ k: "CG limits", v: stat, s: stripTags(stat) });
+          if (P.max !== null) cells.push(maxCell);
+        }
+        if (R.ld) {
+          cells.push({ k: "Landing CG", v: nf(R.ld.cgR, 2, true) + " in" }, { k: "Landing weight", v: nf(R.ld.W, 2) + " lb" });
+          if (R.ld.c) cells.push({ k: "Landing", v: wbStat(R.ld.c, true) });
+        }
+        if (R.to.u) cells.push({ k: "Utility category", v: wbStat(R.to.u, false) });
+        bandCells(cells, ["Total moment " + B(nf(R.M, 2) + " lb-in")].concat(R.ld ? ["Landing moment " + B(nf(R.ld.M, 2) + " lb-in")] : []).concat(P.ex ? [esc(exLabel(P.ex))] : []));
+        var say = function(c, nm, ld) { return c ? (c.inside ? ", inside" + (P.env ? " the envelope" : " the limits") : ", <b>outside</b>: " + esc(wbAll(c, ld))) : ""; };
+        return finish(W, '<div class="ck">Takeoff: CG <b>' + nf(R.cgR, 2, true) + " in</b> at <b>" + nf(R.W, 2) + " lb</b>" + say(R.to.c, "takeoff", false) + "." +
+          (R.ld ? " Landing: CG <b>" + nf(R.ld.cgR, 2, true) + " in</b> at <b>" + nf(R.ld.W, 2) + " lb</b>" + say(R.ld.c, "landing", true) + "." : "") + "</div>" + safe);
       },
       record: function(P, R) {
         var list = P.items.map(function(x) { return x.n + " " + gv(x.w) + (x.gal ? " gal" + (x.jet ? " of Jet A" : "") : " lb") + " at " + gv(x.arm) + " in"; });
         var lim = (P.fwd !== null || P.aft !== null ? " The CG limits are " + (P.fwd !== null ? gv(P.fwd) : "…") + " to " + (P.aft !== null ? gv(P.aft) : "…") + " in" + (P.max !== null ? " and the maximum weight is " + nf(P.max, 2) + " lb" : "") + "." : "");
-        var t = "Weight and balance: " + list.join("; ") + "." + lim + " Find the total weight and the CG" + (lim ? ", and say whether it is within limits." : ".");
-        var a = "CG " + nf(R.cgR, 2, true) + " in, " + nf(R.W, 2) + " lb" + (P.fwd !== null || P.aft !== null ? (R.inside ? ", within limits" : ", outside the limits") : "") + (P.max !== null && !R.maxOk ? ", over max weight" : "");
-        return { text: t, html: esc(t), short: list.length + " items, " + nf(R.W, 2) + " lb", answer: a, answerHtml: "<b>" + esc(a) + "</b>" };
+        if (!P.env && !P.burn) {
+          var t = "Weight and balance: " + list.join("; ") + "." + lim + " Find the total weight and the CG" + (lim ? ", and say whether it is within limits." : ".");
+          var a = "CG " + nf(R.cgR, 2, true) + " in, " + nf(R.W, 2) + " lb" + (P.fwd !== null || P.aft !== null ? (R.inside ? ", within limits" : ", outside the limits") : "") + (P.max !== null && !R.maxOk ? ", over max weight" : "");
+          return { text: t, html: esc(t), short: list.length + " items, " + nf(R.W, 2) + " lb", answer: a, answerHtml: "<b>" + esc(a) + "</b>" };
+        }
+        if (!lim && P.max !== null) lim = " The maximum weight is " + nf(P.max, 2) + " lb.";
+        var envT = P.env ? " The CG envelope" + (P.ex ? " (an example, typical of a " + WB_EX[P.ex].seats + " trainer — not any real aircraft’s limits)" : "") + " has the corners " + ptsR(P.env) + "." +
+          (P.uenv ? " The utility-category envelope has the corners " + ptsR(P.uenv) + "." : "") + (P.max !== null ? " The maximum takeoff weight is " + nf(P.max, 2) + " lb." : "") : lim;
+        var burnT = P.burn ? " Before landing, " + gv(P.burn.w) + (P.burn.gal ? " gal" + (R.ld.bJet ? " of Jet A" : "") : " lb") + " of fuel is burned" + (P.burn.arm !== null ? " (at " + gv(P.burn.arm) + " in)" : "") + "." : "";
+        var ask = " Find the takeoff weight and CG" + (R.ld ? " and the landing weight and CG" : "") +
+          (R.to.c ? ", and say whether " + (R.ld && R.ld.c ? "each" : "it") + " is " + (P.env ? "inside the envelope" : "within limits") + " (and if not, which limit it breaks)" + (R.to.u ? ", and whether the takeoff point is inside the utility envelope" : "") : "") + ".";
+        var stA = function(c, ld) { return c ? (c.inside ? (P.env ? ", inside the envelope" : ", within limits") : ", outside: " + wbAll(c, ld)) : ""; };
+        var t2 = "Weight and balance: " + list.join("; ") + "." + envT + burnT + ask;
+        var a2 = "CG " + nf(R.cgR, 2, true) + " in, " + nf(R.W, 2) + " lb" + stA(R.to.c, false) + (R.ld ? "; landing CG " + nf(R.ld.cgR, 2, true) + " in, " + nf(R.ld.W, 2) + " lb" + stA(R.ld.c, true) : "") +
+          (R.to.u ? "; utility category: " + (R.to.u.inside ? "inside" : "outside, " + wbPhrase(R.to.u, false)) : "");
+        return { text: t2, html: esc(t2), short: list.length + " items, " + nf(R.W, 2) + " lb" + (P.env ? ", envelope" : "") + (R.ld ? ", landing" : ""), answer: a2, answerHtml: "<b>" + esc(a2) + "</b>" };
       },
       fields: function(P, R) {
         var alts = [{ v: R.avgArm, msg: "The CG isn’t the average of the arms: heavy items count more. Divide the total moment by the total weight." }];
         if (R.galAsLb !== null) alts.push({ v: R.galAsLb, msg: "The fuel is in gallons: change it to pounds (6 lb a gallon of avgas) before multiplying by the arm." });
-        return [{ k: "w", label: "Total weight", unit: "lb", type: "num", want: R.W, tol: 0.5, alts: [] },
+        var f = [{ k: "w", label: "Total weight", unit: "lb", type: "num", want: R.W, tol: 0.5, alts: [] },
           { k: "cg", label: "CG", unit: "in", type: "num", want: R.cg, tol: 0.051, alts: alts }
         ];
+        if (!P.env && !P.burn) return f;
+        if (R.galW !== null) f[0].alts.push({ v: R.galW, msg: "The fuel is in gallons: change it to pounds (× 6 for avgas, × 6.7 for Jet A) before adding it in." });
+        if (R.noFuel) {
+          f[0].alts.push({ v: R.noFuel.W, msg: "That leaves the fuel out: its weight counts too (gallons × 6 lb for avgas)." });
+          f[1].alts.push({ v: R.noFuel.cg, msg: "That CG leaves the fuel out: add its weight and its moment (weight × arm) to the totals." });
+        }
+        var ph = "in, or out: forward, aft, over";
+        if (R.to.c) f.push({ k: "toin", label: P.env ? "Takeoff: in the envelope?" : "Takeoff: within limits?", unit: "", type: "wbin", want: R.to.c, alts: [], ph: ph, im: "text" });
+        if (R.ld) {
+          var lwA = [{ v: R.W, msg: "That’s the takeoff weight. Take the fuel burned off it." }],
+            lcA = [{ v: R.cg, msg: "That’s the takeoff CG. Take the burned fuel’s weight and its moment (weight × arm) off the totals, then divide again." }, { v: R.ld.noMom, msg: "Take the burned fuel’s moment off too (its weight × " + gv(R.ld.arm) + " in), not just its weight." }];
+          if (R.ld.galB) {
+            lwA.push({ v: R.ld.galB.W, msg: "The burn is in gallons: change it to pounds (× " + gv(R.ld.bd) + ") before taking it off." });
+            lcA.push({ v: R.ld.galB.cg, msg: "The burn is in gallons: change it to pounds (× " + gv(R.ld.bd) + ") before working its moment." });
+          }
+          f.push({ k: "lw", label: "Landing weight", unit: "lb", type: "num", want: R.ld.W, tol: 0.5, alts: lwA }, { k: "lcg", label: "Landing CG", unit: "in", type: "num", want: R.ld.cg, tol: 0.051, alts: lcA });
+          if (R.ld.c) f.push({ k: "ldin", label: P.env ? "Landing: in the envelope?" : "Landing: within limits?", unit: "", type: "wbin", want: R.ld.c, other: R.to.c, alts: [], ph: ph, im: "text" });
+        }
+        if (R.to.u) f.push({ k: "utin", label: "Utility category (takeoff)?", unit: "", type: "wbin", want: R.to.u, util: true, alts: [], ph: ph, im: "text" });
+        return f;
       },
       note: "The CG to one or two decimal places is fine.",
-      hint: function() { return "Moment = weight × arm for each item (fuel in pounds first). CG = total moment ÷ total weight."; },
+      hint: function(P) {
+        return "Moment = weight × arm for each item (fuel in pounds first). CG = total moment ÷ total weight." +
+          (P && P.env ? " Then, at that weight, read the forward and aft limits off the envelope’s edges (along a sloping edge, go the same part of the way across as up)." : "") +
+          (P && P.burn ? " For landing, take the burned fuel’s weight and its moment off the totals, and divide again." : "");
+      },
       gen: function(G) {
-        var it = [{ n: "Empty", w: rint(270, 340) * 5, arm: rint(72, 80) / 2, gal: false, jet: false }, { n: "Pilot", w: rint(26, 46) * 5, arm: 37, gal: false, jet: false }];
-        if (G.size === "full" || Math.random() < 0.5) it.push({ n: "Front passenger", w: rint(22, 44) * 5, arm: 37, gal: false, jet: false });
-        it.push({ n: "Fuel", w: rint(4, 10) * 5, arm: 48, gal: true, jet: false });
-        if (G.size === "full") {
-          it.push({ n: "Rear seats", w: rint(0, 64) * 5, arm: 73, gal: false, jet: false });
-          it.push({ n: "Baggage", w: rint(2, 24) * 5, arm: 95, gal: false, jet: false });
-        } else if (Math.random() < 0.5) it.push({ n: "Baggage", w: rint(2, 12) * 5, arm: 95, gal: false, jet: false });
-        return G.limits ? { mode: "weight", items: it, fwd: 35, aft: 47.3, max: 2550 } : { mode: "weight", items: it, fwd: null, aft: null, max: null };
+        var envK = G.env || "limits",
+          land = G.flight === "both" || (G.flight !== "takeoff" && envK !== "limits"),
+          P;
+        if (envK === "limits") {
+          var it = [{ n: "Empty", w: rint(270, 340) * 5, arm: rint(72, 80) / 2, gal: false, jet: false }, { n: "Pilot", w: rint(26, 46) * 5, arm: 37, gal: false, jet: false }];
+          if (G.size === "full" || Math.random() < 0.5) it.push({ n: "Front passenger", w: rint(22, 44) * 5, arm: 37, gal: false, jet: false });
+          it.push({ n: "Fuel", w: rint(4, 10) * 5, arm: 48, gal: true, jet: false });
+          if (G.size === "full") {
+            it.push({ n: "Rear seats", w: rint(0, 64) * 5, arm: 73, gal: false, jet: false });
+            it.push({ n: "Baggage", w: rint(2, 24) * 5, arm: 95, gal: false, jet: false });
+          } else if (Math.random() < 0.5) it.push({ n: "Baggage", w: rint(2, 12) * 5, arm: 95, gal: false, jet: false });
+          P = G.limits ? { mode: "weight", items: it, fwd: 35, aft: 47.3, max: 2550 } : { mode: "weight", items: it, fwd: null, aft: null, max: null };
+          P.env = null;
+          P.uenv = null;
+          P.ex = null;
+          P.burn = land ? burnFor(it) : null;
+          P.view = "cg";
+          return P;
+        }
+        var E, ex = null;
+        if (envK === "example") {
+          ex = Math.random() < 0.6 ? "4seat" : "2seat";
+          E = { env: wbPts(WB_EX[ex].env), uenv: G.util ? wbPts(WB_EX[ex].util) : null, arm: WB_EX[ex].arm, empty: WB_EX[ex].empty, gal: WB_EX[ex].gal, bag: WB_EX[ex].bag };
+        } else E = madeEnv(G.util);
+        // aim for a mix: mostly inside, some forward, aft, overweight, and (with landing) some that only the landing point fails
+        var want = pickOf(land ? ["in", "in", "in", "fwd", "aft", "over", "land", "land"] : ["in", "in", "in", "fwd", "aft", "over"]),
+          best = null;
+        for (var k = 0; k < 250; k++) {
+          P = { mode: "weight", items: wbItems(E.arm, E.empty, E.gal, E.bag, G.size, want === "land" ? (k % 2 ? "fwd" : "aft") : want), fwd: null, aft: null, max: null, env: E.env, uenv: E.uenv, ex: ex, burn: null, view: "cg" };
+          if (land) P.burn = burnFor(P.items);
+          var R;
+          try { R = M.weight.compute(P); } catch (e) { continue; }
+          best = P;
+          if (wbKind(R) === want) return P;
+          if (want === "land" && R.to.c.inside && R.ld) { // is there a burn that takes the landing point out?
+            var b2 = landOut(P, R);
+            if (b2) {
+              P.burn = b2;
+              return P;
+            }
+          }
+        }
+        return best || P;
       }
     };
 
@@ -6651,11 +7397,30 @@
       return { st: "bad", msg: "Not all of it. Read it in parts: " + f.parts.map(function(p) { return B(esc(p[0])) + " " + p[1]; }).join(", ") + "." };
     }
 
+    function gradeWb(f, s) { // weight and balance: in or out of the envelope (or limits), and if out, past which limit
+      var t = " " + s.toLowerCase().replace(/[^a-z]+/g, " ") + " ",
+        said = { fwd: /\b(?:fwd|forward|front|nose)\b/.test(t), aft: /\b(?:aft|rear|back|tail|behind)\b/.test(t), over: /\b(?:over|overweight|heavy|heavier|too\s+much|max|maximum|mtow|above|top)\b/.test(t), below: /\b(?:under|underweight|below|bottom|light|lighter)\b/.test(t) },
+        out = said.fwd || said.aft || said.over || said.below || /\b(?:out|outside|not|no|isn|exceeds?|beyond|fails?)\b/.test(t),
+        ins = /\b(?:in|inside|within|ok|okay|yes|good|fine|safe|legal)\b/.test(t),
+        c = f.want;
+      if (!out && !ins) return { st: "bad", msg: "Type " + B("in") + ", or " + B("out") + " and which limit: " + B("forward") + ", " + B("aft") + " or " + B("over") + " (the maximum weight)." };
+      if (c.inside) return out ? { st: "bad", msg: f.util ? "Check the utility envelope’s own edges: find its limits at this weight." : "Look again: find the forward and aft limits at this weight (along the edges) and see whether the CG falls between them, and compare the weight with the maximum." } : { st: "ok" };
+      if (!out) {
+        if (f.k === "ldin" && f.other && f.other.inside) return { st: "bad", msg: "The takeoff point is inside, but the landing point has its own weight and CG: check it against the " + (c.env ? "envelope" : "limits") + " too." };
+        return { st: "bad", msg: f.util ? "The utility envelope is smaller than the normal one: check against its edges." : "Not inside: compare the CG with the limits at this weight, and the weight with the maximum." };
+      }
+      var whys = c.all.map(function(w) { return w === "above" ? "over" : w; });
+      if (!said.fwd && !said.aft && !said.over && !said.below) return { st: "bad", msg: "Outside, yes — but past which limit? Type " + B("forward") + ", " + B("aft") + " or " + B("over") + " (the maximum weight)." };
+      if (whys.some(function(w) { return said[w]; })) return { st: "ok" };
+      return { st: "bad", msg: "It is outside, but not past that limit: check the " + (whys[0] === "over" || whys[0] === "below" ? "weight against the envelope’s top and bottom" : "CG against both limits at this weight") + "." };
+    }
+
     function gradeField(f, raw) {
       var s = cleanUser(raw),
         v;
       if (!s) return { st: "empty" };
       if (f.type === "pick" || f.type === "ceil" || f.type === "vis" || f.type === "words" || f.type === "fbdir" || f.type === "fbspd") return gradeWx(f, s);
+      if (f.type === "wbin") return gradeWb(f, s);
       if (f.type === "time") { v = parseMinutes(s); if (v === null) return { st: "bad", msg: "Type a time like " + B("2:24") + " or " + B("2 h 24 min") + "." }; } else { v = parseNum(s); if (v === null) return { st: "bad", msg: "Type a number." }; }
       var hd = f.type === "hdg";
       if (f.type === "hw") {
@@ -6899,7 +7664,10 @@
       ],
       descent: [{ key: "desTask", seg: "task", lbl: "Given", vals: { any: "A mix", rate: "A descent rate (fpm)", dist: "A distance (nm)", angle: "A path angle (3°)", rule: "The 3:1 rule" }, d: "any" }],
       weight: [{ key: "wbSize", seg: "size", lbl: "Items", vals: { small: "3–5 items", full: "6 items" }, d: "small" },
-        { key: "wbLimits", tog: "limits", sym: "✓", lbl: "CG limits and a maximum weight", d: true }
+        { key: "wbEnv", seg: "env", lbl: "Limits", vals: { limits: "Forward and aft limits", example: "An example envelope", made: "A made-up envelope" }, d: "limits" },
+        { key: "wbLanding", seg: "flight", lbl: "Check", vals: { auto: "Landing too, with an envelope", takeoff: "Takeoff only", both: "Takeoff and landing" }, d: "auto" },
+        { key: "wbLimits", tog: "limits", sym: "✓", lbl: "CG limits and a maximum weight (without an envelope)", d: true },
+        { key: "wbUtility", tog: "util", sym: "U", lbl: "A utility-category envelope (with an envelope)", d: true }
       ],
       turns: [{ key: "turnTask", seg: "task", lbl: "Find", vals: { any: "A mix", std: "Standard-rate bank", radius: "Turn radius", glide: "Glide distance" }, d: "any" }],
       units: [{ key: "unitKind", seg: "kind", lbl: "Units", vals: { any: "A mix", speed: "Speed", dist: "Distance and height", press: "Pressure", temp: "Temperature", fuel: "Fuel" }, d: "any" }],
@@ -7103,7 +7871,7 @@
       altitude: "<code>pressure altitude elevation 5000 altimeter 29.82</code>, <code>density altitude 5000 ft 30 C</code>, <code>TAS for 120 KIAS at 6000 ft</code> (add a temperature for the density formula).",
       headings: "A heading, then variation and deviation with E or W: <code>TC 090 variation 10 E deviation 2 W</code>, <code>CH 045 deviation 2 E variation 10 W</code>, <code>TC 180 WCA 6 R variation 15 W</code>.",
       descent: "The altitudes, ground speed and a rate, distance or angle: <code>descend from 9500 to 2500 at 120 knots 500 fpm</code>, <code>… in 20 nm</code>, <code>… on a 3° path</code>.",
-      weight: "Each item as weight @ arm (fuel can be gallons), then the limits: <code>empty 1500 @ 38, pilot 170 @ 37, fuel 40 gal @ 48, limits 35 to 47.3, max 2550</code>.",
+      weight: "Each item as weight @ arm (fuel can be gallons), then the limits: <code>empty 1500 @ 38, pilot 170 @ 37, fuel 40 gal @ 48, limits 35 to 47.3, max 2550</code>. Or an envelope as its corners, CG @ weight: <code>envelope 35@1500, 35@1950, 38.5@2550, 47.3@2550, 47.3@1500</code> (and <code>utility envelope …</code>), with <code>burn 30 gal</code> for the landing point and <code>moment view</code> for the POH’s other chart.",
       turns: "<code>standard-rate turn at 120 knots</code>, <code>turn radius at 120 knots, 30° bank</code>, <code>glide ratio 9 from 6000 ft</code>.",
       units: "<code>120 knots to mph</code>, <code>29.92 inHg to hPa</code>, <code>15 °C to °F</code>, <code>5000 ft to m</code>, <code>40 gal avgas to lb</code>, <code>300 lb Jet A to gal</code>.",
       metar: "Paste a METAR, SPECI or TAF (US or international). Add <code>runway 16</code> for the crosswind and <code>elevation 433</code> for density altitude, or ask <code>what does -SHRA mean</code>. Nothing is sent anywhere unless you press <b>Get the latest METAR</b> (US airports).",
@@ -7129,7 +7897,10 @@
       altitude: ["pressure altitude elevation 5000 altimeter 29.82", "density altitude 5000 ft 30 C", "density altitude elevation 3500 altimeter 30.12 OAT 25 C", "TAS for 120 KIAS at 6000 ft", "TAS for 130 KIAS at 8000 ft 0 C", "pressure altitude elevation 1200 altimeter 1003 hPa"],
       headings: ["TC 090 variation 10 E deviation 2 W", "TH 352 variation 12 W deviation 3 E", "TC 180 WCA 6 R variation 15 W deviation 2 E", "CH 045 deviation 2 E variation 10 W", "MH 270 variation 7 E"],
       descent: ["descend from 9500 to 2500 at 120 knots 500 fpm", "descend from 8500 to 3000 at 140 knots in 20 nm", "descend from 11500 to 1500 at 150 knots on a 3° path", "descend from 7500 to 2000 at 110 knots using the 3:1 rule"],
-      weight: ["empty 1500 @ 38, pilot 170 @ 37, passenger 150 @ 37, fuel 40 gal @ 48, baggage 50 @ 95, limits 35 to 47.3, max 2550", "empty 1650 @ 39.2, front 340 @ 37, rear 160 @ 73, fuel 48 gal @ 48, limits 35 to 47.3", "empty 1200 @ 34, pilot 200 @ 36, fuel 24 gal @ 40, forward limit 32.5, aft limit 36.5"],
+      weight: ["empty 1500 @ 38, pilot 170 @ 37, passenger 150 @ 37, fuel 40 gal @ 48, baggage 50 @ 95, limits 35 to 47.3, max 2550", "empty 1650 @ 39.2, front 340 @ 37, rear 160 @ 73, fuel 48 gal @ 48, limits 35 to 47.3", "empty 1200 @ 34, pilot 200 @ 36, fuel 24 gal @ 40, forward limit 32.5, aft limit 36.5",
+        "empty 1500 @ 38, pilot 170 @ 37, passenger 150 @ 37, fuel 40 gal @ 48, baggage 50 @ 95, envelope 35@1500, 35@1950, 38.5@2550, 47.3@2550, 47.3@1500, burn 30 gal",
+        "empty 1550 @ 36.2, pilot 230 @ 37, passenger 220 @ 37, fuel 40 gal @ 48, example four-seat envelope with utility, burn 25 gal", "empty 1110 @ 30.2, pilot 180 @ 38, passenger 160 @ 38, fuel 24 gal @ 41, baggage 30 @ 62, example two-seat envelope, burn 15 gal"
+      ],
       turns: ["standard-rate turn at 120 knots", "turn radius at 120 knots, 30° bank", "glide ratio 9 from 6000 ft", "standard-rate turn at 250 knots", "glide ratio 12:1 from 3500 ft"],
       units: ["120 knots to mph", "29.92 inHg to hPa", "15 °C to °F", "5000 ft to m", "40 gal avgas to lb", "300 lb Jet A to gal", "100 km/h to knots", "50 nm to sm"],
       metar: ["KSEA 241753Z 18012G22KT 10SM -SHRA FEW025 BKN040 12/07 A2992 RMK AO2 SLP132 T01220067 runway 16", "KDEN 241653Z 35008KT 3SM BR FEW005 OVC008 02/01 A3021 elevation 5434",
@@ -7179,6 +7950,7 @@
       buildChips();
       $("wxGet").hidden = S.mode !== "metar" || EMBED;
       $("fbGet").hidden = S.mode !== "windsaloft" || EMBED;
+      $("wbPre").hidden = S.mode !== "weight" || EMBED;
       buildMaker();
       inp.value = S.inputs[S.mode] === "\u0000link" ? "" : S.inputs[S.mode];
     }
@@ -7230,6 +8002,45 @@
       S.inputs[m] = b.getAttribute("data-q") || "";
       setMode(m);
       try { window.scrollTo(0, Math.max(0, $("modeTabs").getBoundingClientRect().top + window.pageYOffset - 70)); } catch (x) {}
+    });
+
+    // weight and balance: the chart's view (CG or moment vs weight), and the example envelopes
+    function wbCopy(P) {
+      var o = {};
+      for (var k in P)
+        if (Object.prototype.hasOwnProperty.call(P, k) && k !== "_fields") o[k] = P[k];
+      return o;
+    }
+    document.addEventListener("click", function(e) {
+      var b = e.target && e.target.closest ? e.target.closest("[data-wbview]") : null;
+      if (!b || !CUR || CUR.mode !== "weight") return;
+      var P2 = wbCopy(CUR);
+      P2.view = b.getAttribute("data-wbview") === "moment" ? "moment" : "cg";
+      LINKERR = null;
+      S.linkP = P2;
+      S.linkText = M.weight.text(P2);
+      S.inputs.weight = S.linkText;
+      inp.value = S.linkText;
+      CK.sig = paramsOf(P2); // only the picture changes: keep what was typed in Check my answer
+      render();
+      save();
+    });
+    document.addEventListener("click", function(e) {
+      var b = e.target && e.target.closest ? e.target.closest("[data-wbex]") : null;
+      if (!b || EMBED || S.mode !== "weight" || inp.readOnly) return;
+      var k = b.getAttribute("data-wbex"),
+        P2;
+      if (!Object.prototype.hasOwnProperty.call(WB_EX, k)) return;
+      try { P2 = wbCopy(CUR && CUR.mode === "weight" ? CUR : M.weight.read(curText("weight"))); } catch (x) { P2 = wbCopy(M.weight.read(EX.weight[0])); }
+      P2.fwd = null; // the envelope has the limits in it
+      P2.aft = null;
+      P2.max = null;
+      P2.ex = k;
+      P2.env = wbPts(WB_EX[k].env);
+      P2.uenv = wbPts(WB_EX[k].util);
+      if (P2.burn === undefined) P2.burn = null;
+      if (!P2.view) P2.view = "cg";
+      setProblem(M.weight.text(P2));
     });
 
     function setPractice(p) {

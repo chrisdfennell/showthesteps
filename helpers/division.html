@@ -16,6 +16,7 @@
 <link rel="canonical" href="https://showthesteps.org/helpers/division">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","name":"Long division, step by step – The Division House","description":"Remainders, long decimals, or fractions — with every multiply, subtract, bring-down and flip written out the way your teacher wants it.","url":"https://showthesteps.org/helpers/division","inLanguage":"en-US","isAccessibleForFree":true,"learningResourceType":["Interactive worked examples","Practice problems"],"interactivityType":"active","educationalUse":["Practice","Self-assessment"],"teaches":"Long division","educationalLevel":["Elementary school (grades K–5)","Middle school (grades 6–8)"],"audience":{"@type":"EducationalAudience","educationalRole":"student"},"publisher":{"@type":"Organization","name":"Show The Steps","url":"https://showthesteps.org/"},"isPartOf":{"@type":"WebSite","name":"Show The Steps","url":"https://showthesteps.org/"}}</script>
 <script src="../assets/site.js"></script>
+<script src="../assets/i18n.js" data-strings="division"></script>
 <script src="../assets/nav.js" defer></script>
 <script src="../assets/progress.js" defer></script>
 <link rel="stylesheet" href="../assets/fonts/fonts.css">
@@ -1740,71 +1741,71 @@
 
   <header class="masthead">
     <div>
-      <div class="eyebrow">Long division, worked out</div>
+      <div class="eyebrow" data-i18n="division.eyebrow">Long division, worked out</div>
       <h1>The Division <span class="div-sign">House</span></h1>
-      <p class="tagline">Remainders, long decimals, or fractions &mdash; with every multiply,
+      <p class="tagline" data-i18n="division.tagline">Remainders, long decimals, or fractions &mdash; with every multiply,
         subtract, bring-down and flip written out the way your teacher wants it.</p>
     </div>
     <button class="theme-btn" id="themeBtn" type="button">Dark mode</button>
   </header>
 
   <section class="problem">
-    <div class="segmented" id="numsSwitch" role="group" aria-label="What kind of numbers"
+    <div class="segmented" id="numsSwitch" role="group" aria-label="What kind of numbers" data-i18n-attr="aria-label=division.numsKind"
          style="align-self:flex-start">
-      <button type="button" data-nums="dec" aria-pressed="true">Decimals</button>
-      <button type="button" data-nums="frac" aria-pressed="false">Fractions</button>
+      <button type="button" data-nums="dec" aria-pressed="true" data-i18n="common.decimals">Decimals</button>
+      <button type="button" data-nums="frac" aria-pressed="false" data-i18n="common.fractions">Fractions</button>
     </div>
 
     <div class="equation" id="decEntry">
       <div class="num-field">
-        <label for="dividend">Dividend <span class="what">the number being divided</span></label>
+        <label for="dividend" data-i18n="division.dividendLbl">Dividend <span class="what">the number being divided</span></label>
         <input id="dividend" type="text" inputmode="decimal" autocomplete="off"
                spellcheck="false" value="619" aria-describedby="statusLine">
       </div>
       <div class="obelus" aria-hidden="true">&divide;</div>
       <div class="num-field">
-        <label for="divisor">Divisor <span class="what">what you divide by</span></label>
+        <label for="divisor" data-i18n="division.divisorLbl">Divisor <span class="what">what you divide by</span></label>
         <input id="divisor" type="text" inputmode="decimal" autocomplete="off"
                spellcheck="false" value="5">
       </div>
       <button class="swap-btn" id="swapBtn" type="button" title="Swap the two numbers"
-              aria-label="Swap the two numbers">&#8646;</button>
+              aria-label="Swap the two numbers" data-i18n-attr="title=division.swap;aria-label=division.swap">&#8646;</button>
     </div>
 
     <div class="equation hide" id="fracEntry">
       <div class="mixfield">
-        <span class="fieldcap">Dividend</span>
-        <input class="whole" id="w1" type="text" inputmode="numeric" value="0" aria-label="First whole number">
+        <span class="fieldcap" data-i18n="division.dividend">Dividend</span>
+        <input class="whole" id="w1" type="text" inputmode="numeric" value="0" aria-label="First whole number" data-i18n-attr="aria-label=division.w1">
         <div class="stackfield">
-          <input id="n1" type="text" inputmode="numeric" value="3" aria-label="First numerator">
+          <input id="n1" type="text" inputmode="numeric" value="3" aria-label="First numerator" data-i18n-attr="aria-label=division.n1">
           <div class="fbar"></div>
-          <input id="d1" type="text" inputmode="numeric" value="4" aria-label="First denominator">
+          <input id="d1" type="text" inputmode="numeric" value="4" aria-label="First denominator" data-i18n-attr="aria-label=division.d1">
         </div>
       </div>
       <div class="obelus" aria-hidden="true">&divide;</div>
       <div class="mixfield">
-        <span class="fieldcap">Divisor</span>
-        <input class="whole" id="w2" type="text" inputmode="numeric" value="0" aria-label="Second whole number">
+        <span class="fieldcap" data-i18n="division.divisor">Divisor</span>
+        <input class="whole" id="w2" type="text" inputmode="numeric" value="0" aria-label="Second whole number" data-i18n-attr="aria-label=division.w2">
         <div class="stackfield">
-          <input id="n2" type="text" inputmode="numeric" value="1" aria-label="Second numerator">
+          <input id="n2" type="text" inputmode="numeric" value="1" aria-label="Second numerator" data-i18n-attr="aria-label=division.n2">
           <div class="fbar"></div>
-          <input id="d2" type="text" inputmode="numeric" value="2" aria-label="Second denominator">
+          <input id="d2" type="text" inputmode="numeric" value="2" aria-label="Second denominator" data-i18n-attr="aria-label=division.d2">
         </div>
       </div>
     </div>
 
     <div class="controls" id="decControls">
       <div class="ctl" id="answerAsCtl">
-        <span>Answer as</span>
-        <div class="segmented" role="group" aria-label="Answer format">
-          <button type="button" data-mode="remainder" aria-pressed="true">Quotient &amp; remainder</button>
-          <button type="button" data-mode="fraction" aria-pressed="false">Fraction</button>
-          <button type="button" data-mode="decimal" aria-pressed="false">Decimal</button>
+        <span data-i18n="division.answerAs">Answer as</span>
+        <div class="segmented" role="group" aria-label="Answer format" data-i18n-attr="aria-label=division.answerFormat">
+          <button type="button" data-mode="remainder" aria-pressed="true" data-i18n="division.ansRem">Quotient &amp; remainder</button>
+          <button type="button" data-mode="fraction" aria-pressed="false" data-i18n="division.ansFrac">Fraction</button>
+          <button type="button" data-mode="decimal" aria-pressed="false" data-i18n="division.ansDec">Decimal</button>
         </div>
       </div>
       <div class="ctl places-ctl" id="placesCtl" hidden>
-        <span>Stop after</span>
-        <select class="places" id="places" aria-label="Maximum decimal places">
+        <span data-i18n="division.stopAfter">Stop after</span>
+        <select class="places" id="places" aria-label="Maximum decimal places" data-i18n-attr="aria-label=division.maxPlaces">
           <option value="3">3 decimal places</option>
           <option value="6" selected>6 decimal places</option>
           <option value="9">9 decimal places</option>
@@ -1812,58 +1813,58 @@
         </select>
       </div>
       <div class="ctl">
-        <span>Practice</span>
-        <div class="segmented" role="group" aria-label="Step-through mode">
-          <button type="button" id="allBtn" aria-pressed="true">Show all work</button>
-          <button type="button" id="stepBtn" aria-pressed="false">One step at a time</button>
-          <button type="button" id="checkBtn" aria-pressed="false">Check my answer</button>
+        <span data-i18n="division.practice">Practice</span>
+        <div class="segmented" role="group" aria-label="Step-through mode" data-i18n-attr="aria-label=division.stepThrough">
+          <button type="button" id="allBtn" aria-pressed="true" data-i18n="common.showAll">Show all work</button>
+          <button type="button" id="stepBtn" aria-pressed="false" data-i18n="common.oneStep">One step at a time</button>
+          <button type="button" id="checkBtn" aria-pressed="false" data-i18n="common.checkMine">Check my answer</button>
         </div>
       </div>
     </div>
 
     <details class="maker" id="maker">
-      <summary>Make a problem for me <span>&mdash; pick what goes in it</span></summary>
+      <summary data-i18n="common.maker">Make a problem for me <span>&mdash; pick what goes in it</span></summary>
       <div class="maker-body">
         <div class="mrow" data-for="dec">
-          <span class="lbl">Digits in the number being divided</span>
-          <div class="segmented small" id="gDvd" role="group" aria-label="Digits in the number being divided"></div>
+          <span class="lbl" data-i18n="division.mkDvd">Digits in the number being divided</span>
+          <div class="segmented small" id="gDvd" role="group" aria-label="Digits in the number being divided" data-i18n-attr="aria-label=division.mkDvd"></div>
         </div>
         <div class="mrow" data-for="dec">
-          <span class="lbl">Digits in the number you divide by</span>
-          <div class="segmented small" id="gDvs" role="group" aria-label="Digits in the number you divide by"></div>
+          <span class="lbl" data-i18n="division.mkDvs">Digits in the number you divide by</span>
+          <div class="segmented small" id="gDvs" role="group" aria-label="Digits in the number you divide by" data-i18n-attr="aria-label=division.mkDvs"></div>
         </div>
         <div class="mrow" data-for="dec">
-          <span class="lbl">Remainder</span>
-          <div class="segmented small" id="gRem" role="group" aria-label="Remainder"></div>
+          <span class="lbl" data-i18n="division.remainder">Remainder</span>
+          <div class="segmented small" id="gRem" role="group" aria-label="Remainder" data-i18n-attr="aria-label=division.remainder"></div>
         </div>
         <div class="mrow" data-for="dec">
-          <span class="lbl">Decimals</span>
-          <div class="segmented small" id="gDec" role="group" aria-label="Decimals"></div>
+          <span class="lbl" data-i18n="common.decimals">Decimals</span>
+          <div class="segmented small" id="gDec" role="group" aria-label="Decimals" data-i18n-attr="aria-label=common.decimals"></div>
         </div>
         <div class="mrow" data-for="dec">
-          <span class="lbl">Answer as</span>
-          <div class="segmented small" id="gAns" role="group" aria-label="Answer as"></div>
+          <span class="lbl" data-i18n="division.answerAs">Answer as</span>
+          <div class="segmented small" id="gAns" role="group" aria-label="Answer as" data-i18n-attr="aria-label=division.answerAs"></div>
         </div>
         <div class="mrow" data-for="dec">
-          <span class="lbl">Extras</span>
+          <span class="lbl" data-i18n="division.extras">Extras</span>
           <div class="toggles">
-            <button type="button" class="tog" id="gZero"><b>0</b> A zero in the answer (like 618 ÷ 6 = 103)</button>
+            <button type="button" class="tog" id="gZero" data-i18n="division.zeroTog"><b>0</b> A zero in the answer (like 618 ÷ 6 = 103)</button>
           </div>
         </div>
         <div class="mrow" data-for="frac">
-          <span class="lbl">Kind of fractions</span>
-          <div class="segmented small" id="gKind" role="group" aria-label="Kind of fractions"></div>
+          <span class="lbl" data-i18n="division.mkKind">Kind of fractions</span>
+          <div class="segmented small" id="gKind" role="group" aria-label="Kind of fractions" data-i18n-attr="aria-label=division.mkKind"></div>
         </div>
         <p class="sample" id="sample"></p>
         <div class="maker-go">
-          <button type="button" class="go" id="genBtn">New problem</button>
+          <button type="button" class="go" id="genBtn" data-i18n="common.newProblem">New problem</button>
           <span class="msg" id="genMsg"></span>
         </div>
       </div>
     </details>
 
     <div class="examples">
-      <span class="lbl">Try</span>
+      <span class="lbl" data-i18n="common.try">Try</span>
       <span id="chips"></span>
     </div>
   </section>
@@ -1872,46 +1873,46 @@
 
   <section class="check" id="checkBox" hidden aria-labelledby="checkTitle">
     <div class="check-head">
-      <h2 id="checkTitle">Your answer</h2>
+      <h2 id="checkTitle" data-i18n="common.yourAnswer">Your answer</h2>
       <span id="checkNote"></span>
     </div>
     <form class="check-row" id="checkForm" novalidate>
       <div class="num-field" id="ansOne">
-        <label for="ansIn">Answer</label>
+        <label for="ansIn" data-i18n="common.answer">Answer</label>
         <input id="ansIn" type="text" inputmode="text" autocomplete="off" spellcheck="false">
       </div>
       <div class="num-field" id="ansQBox">
-        <label for="ansQ">Quotient</label>
+        <label for="ansQ" data-i18n="division.quotient">Quotient</label>
         <input id="ansQ" type="text" inputmode="text" autocomplete="off" spellcheck="false">
       </div>
       <div class="obelus" id="ansRSep" aria-hidden="true">R</div>
       <div class="num-field" id="ansRBox">
-        <label for="ansR">Remainder</label>
+        <label for="ansR" data-i18n="division.remainder">Remainder</label>
         <input id="ansR" type="text" inputmode="numeric" autocomplete="off" spellcheck="false">
       </div>
-      <button type="submit" class="go" id="checkGo">Check</button>
+      <button type="submit" class="go" id="checkGo" data-i18n="common.check">Check</button>
     </form>
     <p class="check-tip" id="checkTip"></p>
     <div class="check-fb" id="checkFb" aria-live="polite"></div>
     <div class="check-more" id="checkMore" hidden>
-      <button type="button" class="ghost" id="hintBtn">Show a hint</button>
-      <button type="button" class="ghost" id="showBtn">Show me the work</button>
+      <button type="button" class="ghost" id="hintBtn" data-i18n="common.hint">Show a hint</button>
+      <button type="button" class="ghost" id="showBtn" data-i18n="common.showWork">Show me the work</button>
     </div>
   </section>
 
   <div class="board" id="board">
     <section class="panel">
       <div class="panel-head">
-        <h2>The work</h2>
+        <h2 data-i18n="common.theWork">The work</h2>
         <div class="stepper" id="stepperWork" hidden>
-          <button type="button" id="prevBtn" aria-label="Previous step">&larr;</button>
+          <button type="button" id="prevBtn" aria-label="Previous step" data-i18n-attr="aria-label=common.prevStep">&larr;</button>
           <span class="count" id="stepCount">1 of 3</span>
-          <button type="button" id="nextBtn" aria-label="Next step">&rarr;</button>
+          <button type="button" id="nextBtn" aria-label="Next step" data-i18n-attr="aria-label=common.nextStep">&rarr;</button>
         </div>
       </div>
       <div class="shiftstep" id="shiftstep" hidden></div>
       <div class="work-scroll" id="workScroll">
-        <div class="work" id="work" role="img" aria-label="Long division worked out"></div>
+        <div class="work" id="work" role="img" aria-label="Long division worked out" data-i18n-attr="aria-label=division.workAria"></div>
       </div>
       <div class="chain" id="chain" hidden></div>
       <div class="fitwrap" id="fitwrap" hidden></div>
@@ -1920,16 +1921,16 @@
     </section>
 
     <section class="panel">
-      <div class="panel-head"><h2>Say it out loud</h2></div>
+      <div class="panel-head"><h2 data-i18n="common.sayIt">Say it out loud</h2></div>
       <ol class="log" id="log"></ol>
       <div class="closer" id="closer"></div>
     </section>
   </div>
 
   <div class="footnote">
-    <button class="print" type="button" id="printBtn">Print this work</button>
-    <button class="print" type="button" id="copyBtn">Copy link</button>
-    <span>D&#8202;&middot;&#8202;M&#8202;&middot;&#8202;S&#8202;&middot;&#8202;B &mdash;
+    <button class="print" type="button" id="printBtn" data-i18n="common.print">Print this work</button>
+    <button class="print" type="button" id="copyBtn" data-i18n="common.copyLink">Copy link</button>
+    <span data-i18n="division.dmsb">D&#8202;&middot;&#8202;M&#8202;&middot;&#8202;S&#8202;&middot;&#8202;B &mdash;
       Divide, Multiply, Subtract, Bring down. Then do it again.</span>
   </div>
 </div>
@@ -1953,6 +1954,14 @@
      "worksheet API" near the end. */
   (function() {
     "use strict";
+    if (window.HelperI18n) HelperI18n.apply();
+    // the words, in the visitor's language (assets/i18n/en/division.js, es/division.js …)
+    var T = function(k, v) { return window.HelperI18n ? HelperI18n.t(k, v) : k; };
+    if (window.HelperI18n && HelperI18n.lang !== "en") {
+      Array.prototype.forEach.call(document.querySelectorAll("#places option"), function(o) {
+        o.textContent = T("division.placesN", { n: Number(o.value) });
+      });
+    }
 
     /* ============================== state ============================== */
     var S = {
@@ -2301,47 +2310,29 @@
         var st = r.steps[t],
           lines = [];
         if (st.q === 0) {
-          lines.push(["d", "Divide", "<b>" + D + "</b> doesn’t fit into <b>" + st.cur +
-            "</b> even once, so write <b>0</b> in the answer. There’s nothing to subtract here."
-          ]);
+          lines.push(["d", T("division.tagDivide"), T("division.zeroFit", { D: D, cur: st.cur })]);
         } else {
-          lines.push(["d", "Divide", "How many <b>" + D + "</b>s fit into <b>" + st.cur + "</b>? <b>" +
-            st.q + "</b>. Write it above the " + ordinalCol(st.i, r) + "."
-          ]);
-          lines.push(["m", "Multiply", "<b>" + st.q + " × " + D + " = " + st.sub + "</b>. Write that underneath."]);
-          lines.push(["s", "Subtract", "<b>" + st.cur + " − " + st.sub + " = " + st.rem + "</b>."]);
+          lines.push(["d", T("division.tagDivide"), T("division.howMany", { D: D, cur: st.cur, q: st.q, col: ordinalCol(st.i, r) })]);
+          lines.push(["m", T("division.tagMultiply"), T("division.mulLine", { q: st.q, D: D, sub: st.sub })]);
+          lines.push(["s", T("division.tagSubtract"), "<b>" + st.cur + " − " + st.sub + " = " + st.rem + "</b>."]);
         }
 
         var nx = st.i + 1,
           aside = null;
         if (nx < r.dg.length) {
           var added = nx >= r.origLen;
-          lines.push(["b", "Bring down", "Bring down the <b>" + r.dg[nx] + "</b>" +
-            (added ? " (a zero we added on the end)" : "") +
-            " to make <b>" + (st.rem * 10 + Number(r.dg[nx])) + "</b>."
-          ]);
-          if (nx === r.pointIdx && r.hasPoint) {
-            aside = "You just crossed the decimal point. Put a decimal point in your answer too — " +
-              "straight up above the one in the dividend — before you write the next digit.";
-          }
-          if (added && nx === r.origLen) {
-            aside = (aside ? aside + " " : "") +
-              "There were no digits left to bring down, so add a <b>0</b> on the end of the dividend. " +
-              "It doesn’t change the value — 619 is the same as 619.0.";
-          }
+          lines.push(["b", T("division.tagBring"), T(added ? "division.bringDownAdded" : "division.bringDown", {
+            d: r.dg[nx],
+            n: st.rem * 10 + Number(r.dg[nx])
+          })]);
+          if (nx === r.pointIdx && r.hasPoint) aside = T("division.crossPoint");
+          if (added && nx === r.origLen) aside = (aside ? aside + " " : "") + T("division.addZero");
         } else {
-          lines.push(["b", "Bring down", st.rem === 0 ?
-            "Nothing left to bring down, and nothing left over. Done." :
-            "Nothing left to bring down. <b>" + st.rem + "</b> is what’s left over."
-          ]);
+          lines.push(["b", T("division.tagBring"), st.rem === 0 ? T("division.doneNoRem") : T("division.doneRem", { rem: st.rem })]);
         }
         if (r.repeat && st.i === r.repeat.end) {
           var incoming = (st.cur - Number(r.dg[st.i])) / 10;
-          aside = (aside ? aside + " " : "") +
-            "Look closely: you started this step with a leftover of <b>" + incoming +
-            "</b> — the exact same leftover as a few steps back. Once a leftover comes around " +
-            "again, you’ll get the same digits over and over forever. That’s a " +
-            "<b>repeating decimal</b>.";
+          aside = (aside ? aside + " " : "") + T("division.repeatAside", { x: incoming });
         }
         out.push({ lines: lines, aside: aside });
       }
@@ -2349,10 +2340,10 @@
     }
 
     function ordinalCol(i, r) {
-      if (i >= r.pointIdx) return "digit you just brought down";
+      if (i >= r.pointIdx) return T("division.colBrought");
       var fromRight = r.pointIdx - 1 - i;
-      var names = ["ones", "tens", "hundreds", "thousands", "ten-thousands", "hundred-thousands"];
-      return names[fromRight] ? names[fromRight] + " place" : "next digit";
+      var names = ["colOnes", "colTens", "colHundreds", "colThousands", "colTenThousands", "colHundredThousands"];
+      return names[fromRight] ? T("division." + names[fromRight]) : T("division.colNext");
     }
 
     /* ============================== fractions ============================== */
@@ -2405,17 +2396,16 @@
       var m1 = S.frac[0],
         m2 = S.frac[1];
       if ([m1, m2].some(function(m) { return m.some(function(v) { return !isFinite(v); }); }))
-        return fail("Fill in every box. Use 0 for the whole number if you only want a fraction.");
+        return fail(T("division.errFill"));
       if (m1[2] === 0 || m2[2] === 0)
-        return fail("A denominator can’t be 0 — you can’t cut something into zero pieces.");
+        return fail(T("division.errDen0"));
       if (m1[2] > 999 || m2[2] > 999 || m1[1] > 9999 || m2[1] > 9999)
-        return fail("Keep the numbers small enough to work by hand (denominators under 1000).");
+        return fail(T("division.errBig"));
 
       var a = toImproper(m1),
         b = toImproper(m2);
       if (b.n === 0)
-        return fail("You can’t divide by zero. Flipping <b>0</b> would put a <b>0</b> on the bottom, " +
-          "and nothing can be divided into zero-sized pieces.");
+        return fail(T("division.errFracZero"));
 
       $("shiftstep").hidden = true;
       $("workScroll").hidden = true;
@@ -2442,83 +2432,66 @@
         items = [];
 
       function step(html, eq, lines, aside, result) {
-        items.push({ n: "Step&nbsp;" + (rows.length + 1), step: rows.length, lines: lines, aside: aside || null });
+        items.push({ n: T("division.stepN", { n: rows.length + 1 }), step: rows.length, lines: lines, aside: aside || null });
         rows.push({ eq: eq, html: html, result: !!result });
       }
 
       step(termHTML(m1) + '<span class="op-s">÷</span>' + termHTML(m2), "",
         [
-          ["d", "Ask", "Dividing asks <em>how many of these fit inside that</em> — the same question as <b>" +
-            "619 ÷ 5</b>, just with fraction-sized pieces."
-          ]
+          ["d", T("division.tagAsk"), T("division.askLine")]
         ],
-        "You never divide fractions directly. You turn it into a multiplication instead.");
+        T("division.askAside"));
 
       if (mixedIn) {
         step(frHTML(a.n, a.d) + '<span class="op-s">÷</span>' + frHTML(b.n, b.d), "=",
           [
-            ["s", "Convert", "<b>" + m1[0] + " " + m1[1] + "/" + m1[2] + "</b> is <b>" + m1[0] + " × " +
-              m1[2] + " + " + m1[1] + " = " + a.n + "</b> pieces, so <b>" + a.n + "/" + a.d +
-              "</b>. The other becomes <b>" + b.n + "/" + b.d + "</b>."
-            ]
+            ["s", T("division.tagConvert"), T("division.convertLine", { w: m1[0], n: m1[1], d: m1[2], an: a.n, ad: a.d, bn: b.n, bd: b.d })]
           ],
-          "You must do this before flipping — flipping a mixed number is meaningless.");
+          T("division.convertAside"));
       }
 
       step(frHTML(a.n, a.d) + '<span class="op-s">×</span>' +
         '<span class="flipped">' + frHTML(recip.n, recip.d) + "</span>", "=",
         [
-          ["d", "Keep", "Keep the first fraction exactly as it is: <b>" + a.n + "/" + a.d + "</b>."],
-          ["m", "Change", "Change the <b>÷</b> into a <b>×</b>."],
-          ["b", "Flip", "Flip the second one upside down: <b>" + b.n + "/" + b.d + "</b> becomes <b>" +
-            recip.n + "/" + recip.d + "</b>."
-          ]
+          ["d", T("division.tagKeep"), T("division.keepLine", { n: a.n, d: a.d })],
+          ["m", T("division.tagChange"), T("division.changeLine")],
+          ["b", T("division.tagFlip"), T("division.flipLine", { n: b.n, d: b.d, rn: recip.n, rd: recip.d })]
         ],
-        "Why it works: dividing by <b>" + b.n + "/" + b.d + "</b> is the same as asking how many " +
-        "<b>" + b.n + "/" + b.d + "</b>-sized pieces fit in — and that’s multiplying by its flip. " +
-        "Teachers call it <b>keep, change, flip</b>.");
+        T("division.whyAside", { n: b.n, d: b.d }));
 
       if (canCancel) {
         step(frCancel(an, g1 > 1 ? a.n : null, ad, g2 > 1 ? a.d : null) +
           '<span class="op-s">×</span>' +
           frCancel(rn, g2 > 1 ? recip.n : null, rd, g1 > 1 ? recip.d : null), "=",
           [
-            ["b", "Cancel", cancelWords(a, recip, g1, g2)]
+            ["b", T("division.tagCancel"), cancelWords(a, recip, g1, g2)]
           ],
-          "Cancel diagonally before you multiply and the numbers stay small.");
+          T("division.cancelAside"));
       }
 
       step(frHTML(prod.n, prod.d), "=",
         [
-          ["m", "Multiply", "Straight across. Tops: <b>" + an + " × " + rn + " = " + prod.n +
-            "</b>. Bottoms: <b>" + ad + " × " + rd + " = " + prod.d + "</b>."
-          ]
+          ["m", T("division.tagMultiply"), T("division.fracMulLine", { an: an, rn: rn, pn: prod.n, ad: ad, rd: rd, pd: prod.d })]
         ],
         null, simp.by === 1 && !needsMixedOut && !wholeOut);
 
       if (simp.by > 1) {
         step(frHTML(simp.n, simp.d), "=",
           [
-            ["b", "Simplify", "<b>" + prod.n + "</b> and <b>" + prod.d + "</b> both divide by <b>" +
-              simp.by + "</b>, giving <b>" + simp.n + "/" + simp.d + "</b>."
-            ]
+            ["b", T("division.tagSimplify"), T("division.fracSimpLine", { a: prod.n, b: prod.d, g: simp.by, n: simp.n, d: simp.d })]
           ],
           null, !needsMixedOut && !wholeOut);
       }
       if (wholeOut) {
         step('<span class="mx">' + simp.n + "</span>", "=",
           [
-            ["b", "Whole", "A bottom number of <b>1</b> just means whole things — <b>" + simp.n + "/1</b> " +
-              "is <b>" + simp.n + "</b>. It fits in exactly, with nothing left over."
-            ]
+            ["b", T("division.tagWhole"), T("division.wholeLine", { n: simp.n })]
           ], null, true);
       }
       if (needsMixedOut) {
         step(mixHTML(w, rest, simp.d), "=",
           [
-            ["b", "Mixed", "<b>" + simp.n + " ÷ " + simp.d + " = " + w + "</b> remainder <b>" + rest +
-              "</b>, so <b>" + w + " " + rest + "/" + simp.d + "</b>."
-            ]
+            ["b", T("division.tagMixed"), T("division.mixedLine", { n: simp.n, d: simp.d, w: w, r: rest })]
           ], null, true);
       }
 
@@ -2540,22 +2513,24 @@
       var final = needsMixedOut ? mixHTML(w, rest, simp.d) :
         (simp.d === 1 ? '<span class="mx">' + simp.n + "</span>" : frHTML(simp.n, simp.d));
       var dec = simp.n / simp.d;
-      band('<span class="k">Answer</span><span class="v">' + final + "</span>", [
-        "As a decimal: <b>" + decOf(dec) + "</b>",
-        canCancel ? "Cross-canceled before multiplying." : "Nothing to cancel — straight across."
+      band('<span class="k">' + T("common.answer") + '</span><span class="v">' + final + "</span>", [
+        T("division.asDecimal", { x: decOf(dec) }),
+        canCancel ? T("division.crossCanceled") : T("division.noCancel")
       ]);
       writeLog(items);
 
       var d1 = a.n / a.d,
         d2 = b.n / b.d;
-      elCloser.innerHTML = "<b>Check by multiplying back:</b> " + decOf(dec) + " × " + decOf(d2) +
-        " = <b>" + decOf(dec * d2) + "</b>" +
-        (Math.abs(dec * d2 - d1) < 1e-9 ?
-          ' <span class="ok">✓ back to ' + fracText(m1) + "</span>" : "") + ".";
+      elCloser.innerHTML = T("division.checkBack", {
+        a: decOf(dec),
+        b: decOf(d2),
+        c: decOf(dec * d2),
+        ok: Math.abs(dec * d2 - d1) < 1e-9 ? ' <span class="ok">' + T("division.backTo", { f: fracText(m1) }) + "</span>" : ""
+      });
 
       $("legend").innerHTML =
-        '<div><i class="sw-a"></i> Whole groups of ' + fracText(m2) + '</div>' +
-        '<div><i class="sw-c"></i> Left over — part of another group</div>';
+        '<div><i class="sw-a"></i> ' + T("division.legendGroups", { f: fracText(m2) }) + '</div>' +
+        '<div><i class="sw-c"></i> ' + T("division.legendPart") + '</div>';
       return rows.length;
     }
 
@@ -2589,22 +2564,21 @@
         segs.push({ w: 1, html: per, cls: "" });
       }
       var span = segs.length;
-      under = full > 0 ? full + " group" + (full === 1 ? "" : "s") + " of " + per : "";
+      under = full > 0 ? T("division.groupsOf", { n: full, per: per }) : "";
       if (left > 0) segs.push({ w: left / bP, html: esc(redText(left, L)), cls: "left" + (full === 0 ? " solo" : "") });
       if (full === 0) {
         segs.push({ w: (bP - left) / bP, html: "", cls: "ghost" });
         topSpan = 1;
         span = 2;
-        under = "one " + per;
+        under = T("division.onePer", { per: per });
       }
       var cap = full === 0 ?
-        "Not even one <b>" + per + "</b> fits in <b>" + total + "</b>. It covers <b>" + esc(redText(left, bP)) +
-        "</b> of one " + per + ", so the answer is <b>" + esc(ansTxt) + "</b>." :
-        "How many <b>" + per + "</b>s fit in <b>" + total + "</b>? <b>" + full + "</b>" +
-        (left > 0 ? ", with <b>" + esc(redText(left, L)) + "</b> left over — that’s <b>" + esc(redText(left, bP)) +
-          "</b> of another " + per + ". So the answer is <b>" + esc(ansTxt) + "</b>." :
-          " exactly, with nothing left over.") +
-        (many ? " (Too many to draw them all — the dashed box stands for the ones in the middle.)" : "");
+        T("division.notEvenFrac", { per: per, total: total, part: esc(redText(left, bP)), ans: esc(ansTxt) }) :
+        (left > 0 ?
+          T("division.tapeLeft", { per: per, total: total, full: full, left: esc(redText(left, L)), part: esc(redText(left, bP)) }) +
+          " " + T("division.soAnswer", { ans: esc(ansTxt) }) :
+          T("division.tapeExact", { per: per, total: total, full: full })) +
+        (many ? " " + T("division.tooMany") : "");
       drawTape(segs, span, topSpan, total, under, cap);
     }
 
@@ -2620,9 +2594,8 @@
       el.hidden = false;
       el.classList.add("tapemode");
       if (L > 48 || cols > 12 || squares > 8) {
-        el.innerHTML = '<div class="fitcap"><b style="font-family:var(--f-body)">Area model.</b> ' +
-          '<span class="areanote">Cut into ' + L + " pieces across " + squares +
-          " square" + (squares === 1 ? "" : "s") + " — too many to draw clearly. The tape diagram tells the same story.</span></div>";
+        el.innerHTML = '<div class="fitcap"><b style="font-family:var(--f-body)">' + T("division.areaModel") + '</b> ' +
+          '<span class="areanote">' + T("division.areaTooMany", { L: L, n: squares }) + "</span></div>";
         return;
       }
       var html = "";
@@ -2639,27 +2612,26 @@
       }
       var p1 = esc(fracText(m1)),
         p2 = esc(fracText(m2));
-      el.innerHTML = '<div class="fitcap"><b style="font-family:var(--f-body)">Area model.</b> ' +
-        "Cut every square into <b>" + L + "</b> equal pieces. <b>" + p1 + "</b> covers <b>" + aP +
-        "</b> of them and one <b>" + p2 + "</b> is <b>" + bP + "</b>. Count off the shaded pieces <b>" +
-        bP + "</b> at a time" + (full > 1 ? " (the colors take turns)" : "") + ": " +
-        (full === 0 ?
-          "not even one group fills up — only <b>" + left + "</b> of the <b>" + bP + "</b> pieces, which is <b>" +
-          esc(redText(left, bP)) + "</b> of a group" :
-          "<b>" + full + "</b> whole group" + (full === 1 ? "" : "s") +
-          (left > 0 ? ", plus <b>" + left + "</b> of the <b>" + bP + "</b> pieces the next one needs — <b>" +
-            esc(redText(left, bP)) + "</b> of a group" : "")) +
-        ". So the answer is <b>" + esc(ansTxt) + "</b>.</div>" +
+      var part = esc(redText(left, bP));
+      el.innerHTML = '<div class="fitcap"><b style="font-family:var(--f-body)">' + T("division.areaModel") + '</b> ' +
+        T("division.areaMain", {
+          L: L,
+          p1: p1,
+          aP: aP,
+          p2: p2,
+          bP: bP,
+          turns: full > 1 ? T("division.areaTurns") : "",
+          rest: full === 0 ? T("division.areaNone", { left: left, bP: bP, part: part }) : left > 0 ? T("division.areaFullLeft", { n: full, left: left, bP: bP, part: part }) : T("division.areaFull", { n: full }),
+          ans: esc(ansTxt)
+        }) + "</div>" +
         '<div class="fgset" aria-hidden="true">' + html + "</div>";
     }
 
     function cancelWords(a, r, g1, g2) {
       var parts = [];
-      if (g1 > 1) parts.push("<b>" + a.n + "</b> and <b>" + r.d + "</b> both divide by <b>" + g1 +
-        "</b> → <b>" + (a.n / g1) + "</b> and <b>" + (r.d / g1) + "</b>");
-      if (g2 > 1) parts.push("<b>" + r.n + "</b> and <b>" + a.d + "</b> both divide by <b>" + g2 +
-        "</b> → <b>" + (r.n / g2) + "</b> and <b>" + (a.d / g2) + "</b>");
-      return "Look diagonally, top of one against bottom of the other: " + parts.join(", and ") + ".";
+      if (g1 > 1) parts.push(T("division.cancelPart", { a: a.n, b: r.d, g: g1, a2: a.n / g1, b2: r.d / g1 }));
+      if (g2 > 1) parts.push(T("division.cancelPart", { a: r.n, b: a.d, g: g2, a2: r.n / g2, b2: a.d / g2 }));
+      return T("division.cancelLine", { parts: parts.join(T("division.cancelJoin")) });
     }
 
     /* ============================== render ============================== */
@@ -2677,7 +2649,7 @@
         if (S.step < 1) S.step = 1;
         elStepper.hidden = !S.stepMode;
         if (S.stepMode) {
-          elCount.textContent = S.step + " of " + ftotal;
+          elCount.textContent = T("division.stepOf", { n: S.step, m: ftotal });
           $("prevBtn").disabled = S.step <= 1;
           $("nextBtn").disabled = S.step >= ftotal;
         }
@@ -2690,10 +2662,10 @@
       $("fitwrap").hidden = true;
       $("areawrap").hidden = true;
       $("legend").innerHTML =
-        '<div><i class="sw-a"></i> Answer on top</div>' +
-        '<div><i class="sw-b"></i> Multiply &amp; subtract</div>' +
-        '<div><i class="sw-c"></i> What’s left over</div>' +
-        '<div><span style="color:var(--ink-3);font-weight:600">↓</span> Brought down</div>';
+        '<div><i class="sw-a"></i> ' + T("division.legendTop") + '</div>' +
+        '<div><i class="sw-b"></i> ' + T("division.legendMulSub") + '</div>' +
+        '<div><i class="sw-c"></i> ' + T("division.legendLeft") + '</div>' +
+        '<div><span style="color:var(--ink-3);font-weight:600">↓</span> ' + T("division.legendDown") + '</div>';
       renderDecimals();
     }
 
@@ -2704,17 +2676,18 @@
       if (!dvd || !dvs) {
         var whole = boxProblem(S.dividend) || boxProblem(S.divisor),
           hint = whole ? "" : otherSign(S.dividend + " " + S.divisor);
-        return fail(whole ? "That box has a whole problem in it — press Enter to work out <b>" + esc(problemText(whole)) + "</b>." :
-          hint || "Type a number in both boxes — digits and one decimal point.");
+        return fail(whole ? T("division.errWhole", { p: esc(problemText(whole)) }) :
+          hint || T("division.errType"));
       }
-      if (isZero(dvs)) return fail("You can’t divide by zero. Every other number works!");
+      if (isZero(dvs)) return fail(T("division.errZero"));
       if ((dvd.i + dvd.f).length > 15 || (dvs.i + dvs.f).length > 9) {
-        return fail("That’s a lot of digits. Keep the dividend under 15 digits and the divisor under 9.");
+        return fail(T("division.errDigits"));
       }
       if (S.mode !== "decimal" && (dvd.f || dvs.f)) {
-        return fail((S.mode === "fraction" ? "Fraction answers" : "Remainders") +
-          " are for whole numbers. Switch to <b>Decimal</b> to divide " +
-          esc(numStr(dvd)) + " by " + esc(numStr(dvs)) + ".", true);
+        return fail(T(S.mode === "fraction" ? "division.errFracWhole" : "division.errRemWhole", {
+          a: esc(numStr(dvd)),
+          b: esc(numStr(dvs))
+        }), true);
       }
 
       // Step 0: slide the decimal point until the divisor is a whole number.
@@ -2745,15 +2718,10 @@
           }).join("");
         };
         var zeros = padF.length - dvd.f.length;
-        ss.innerHTML = '<div class="cap"><b>' + esc(numStr(dvs)) + "</b> isn’t a whole number, and you " +
-          "can only divide by a whole number in the house. " +
+        ss.innerHTML = '<div class="cap">' + T("division.shiftNotWhole", { dvs: esc(numStr(dvs)) }) + " " +
           (zeros > 0 ?
-            "First add <b>" + zeros + "</b> zero" + (zeros > 1 ? "s" : "") + " to <b>" +
-            esc(numStr(dvd)) + "</b> so it has <b>" + shift + "</b> decimal places — that doesn’t " +
-            "change its value. Then slide " :
-            "Slide ") +
-          "the point <b>" + shift + "</b> place" + (shift > 1 ? "s" : "") + " right in <em>both</em> " +
-          "numbers.</div>" +
+            T("division.shiftAddZeros", { z: zeros, dvd: esc(numStr(dvd)), shift: shift }) :
+            T("division.shiftSlide", { shift: shift })) + "</div>" +
           '<div class="digits">' + glyphs(padded, addedFrom) +
           '<span class="sym">÷</span>' + glyphs(numStr(dvs), -1) +
           '<span class="arrow">→</span>' + glyphs(commas(sDvs.i === "0" ? "0" : numStr(sDvd)), -1) +
@@ -2769,7 +2737,7 @@
       var qt = quotientText(r);
       var band = document.createElement("div");
       band.className = "answer";
-      var head = '<span class="k">Answer</span>';
+      var head = '<span class="k">' + T("common.answer") + '</span>';
       var value, facts = [];
 
       if (S.mode === "fraction") {
@@ -2778,48 +2746,50 @@
         value = '<span class="v">' + (r.rem === 0 ? esc(commas(qF)) :
           (qF !== "0" ? esc(commas(qF)) + " " : "") + '<span class="r-mark">' + frHTML(r.rem / gF, D / gF) + "</span>") + "</span>";
         if (r.rem > 0) {
-          facts.push("<b>" + esc(commas(qF)) + " R " + r.rem + "</b>: the <b>" + r.rem + "</b> left over is <b>" +
-            r.rem + "/" + D + "</b> of another " + esc(commas(sDvs.i)) +
-            (gF > 1 ? ", which simplifies to <b>" + (r.rem / gF) + "/" + (D / gF) + "</b>" : "") + ".");
+          facts.push(T(gF > 1 ? "division.fracFactSimp" : "division.fracFact", {
+            q: esc(commas(qF)),
+            r: r.rem,
+            D: D,
+            dvs: esc(commas(sDvs.i)),
+            sn: r.rem / gF,
+            sd: D / gF
+          }));
           var decF = divide(digits.slice(), pointIdx, D, "decimal", 6);
-          facts.push("As a decimal: <b>" + (barNotation(decF) || esc(quotientText(decF).text) + (decF.capped ? "…" : "")) + "</b>");
+          facts.push(T("division.asDecimal", { x: barNotation(decF) || esc(quotientText(decF).text) + (decF.capped ? "…" : "") }));
         } else {
-          facts.push("It divides evenly — no remainder, so no fraction needed.");
+          facts.push(T("division.evenNoFrac"));
         }
       } else if (S.mode === "remainder") {
         var qInt = r.steps.length ? qt.text : "0";
         value = '<span class="v">' + esc(commas(qInt)) +
           (r.rem > 0 ? ' <span class="r-mark">R ' + r.rem + "</span>" : "") + "</span>";
-        facts.push("<b>" + esc(commas(qInt)) + "</b> groups of <b>" + esc(commas(sDvs.i)) + "</b>" +
-          (r.rem > 0 ? ", with <b>" + r.rem + "</b> left over" : ", exactly"));
+        facts.push(r.rem > 0 ?
+          T("division.groupsLeft", { q: esc(commas(qInt)), d: esc(commas(sDvs.i)), r: r.rem }) :
+          T("division.groupsExact", { q: esc(commas(qInt)), d: esc(commas(sDvs.i)) }));
         if (r.rem > 0) {
           var g = gcd(r.rem, D),
             frac = (r.rem / g) + "/" + (D / g);
           facts.push(qInt === "0" ?
-            "As a fraction: <b>" + frac + "</b>" :
-            "As a mixed number: <b>" + esc(commas(qInt)) + " " + frac + "</b>");
+            T("division.asFraction", { x: frac }) :
+            T("division.asMixed", { x: esc(commas(qInt)) + " " + frac }));
           var dec = divide(digits.slice(), pointIdx, D, "decimal", 6);
           var db = barNotation(dec);
-          facts.push("As a decimal: <b>" +
-            (db || esc(quotientText(dec).text) + (dec.capped ? "…" : "")) + "</b>");
+          facts.push(T("division.asDecimal", { x: db || esc(quotientText(dec).text) + (dec.capped ? "…" : "") }));
         }
       } else {
         value = '<span class="v">' + esc(qt.text) + (r.capped ? "…" : "") + "</span>";
         if (r.repeat) {
-          facts.push("Written exactly: <b>" + barNotation(r) +
-            "</b> — the bar means those digits repeat forever.");
-          facts.push("As a fraction: <b>" + esc(fractionMixed(dvd, dvs)) + "</b>");
+          facts.push(T("division.writtenExactly", { x: barNotation(r) }));
+          facts.push(T("division.asFraction", { x: esc(fractionMixed(dvd, dvs)) }));
         } else if (r.capped) {
-          facts.push("Stopped after " + S.places + " decimal places — there’s still a remainder of <b>" +
-            r.rem + "</b>.");
-          facts.push("As a fraction: <b>" + esc(fractionMixed(dvd, dvs)) + "</b>");
+          facts.push(T("division.stoppedAfter", { n: S.places, r: r.rem }));
+          facts.push(T("division.asFraction", { x: esc(fractionMixed(dvd, dvs)) }));
         } else {
-          facts.push("It divides evenly — no remainder at all.");
-          if (/\./.test(qt.text)) facts.push("As a fraction: <b>" + esc(fractionMixed(dvd, dvs)) + "</b>");
+          facts.push(T("division.evenNoRem"));
+          if (/\./.test(qt.text)) facts.push(T("division.asFraction", { x: esc(fractionMixed(dvd, dvs)) }));
         }
         if (shift > 0) {
-          facts.push("Moved the point <b>" + shift + "</b> place" + (shift > 1 ? "s" : "") +
-            " right in both numbers first.");
+          facts.push(T("division.movedPoint", { n: shift }));
         }
       }
       band.innerHTML = head + value + '<div class="facts">' +
@@ -2831,57 +2801,49 @@
       var pre = [];
       if (shift > 0) {
         pre.push({
-          n: "Set&nbsp;up",
+          n: T("division.setUp"),
           lines: [
-            ["d", "Move it", "<b>" + esc(numStr(dvs)) + "</b> isn’t a whole number, and you can only " +
-              "divide by whole numbers in the house. Slide the decimal point <b>" + shift + "</b> place" +
-              (shift > 1 ? "s" : "") + " to the right in <em>both</em> numbers: <b>" + esc(numStr(dvd)) +
-              " ÷ " + esc(numStr(dvs)) + "</b> becomes <b>" + esc(numStr(sDvd)) + " ÷ " +
-              esc(sDvs.i) + "</b>."
-            ]
+            ["d", T("division.tagMove"), T("division.moveLine", {
+              dvs: esc(numStr(dvs)),
+              shift: shift,
+              dvd: esc(numStr(dvd)),
+              sdvd: esc(numStr(sDvd)),
+              sdvs: esc(sDvs.i)
+            })]
           ],
-          aside: "Moving the point the same amount in both numbers doesn’t change the answer — " +
-            "it’s the same as multiplying the top and bottom of a fraction by 10."
+          aside: T("division.moveAside")
         });
       }
 
       var w = words(r, wm, D);
       if (r.steps.length === 0) {
         pre.push({
-          n: "Only&nbsp;step",
+          n: T("division.onlyStep"),
           lines: [
-            ["d", "Divide", "<b>" + D + "</b> is bigger than <b>" + esc(numStr(sDvd)) +
-              "</b>, so it fits <b>0</b> times. The quotient is <b>0</b> and the whole " +
-              "<b>" + esc(numStr(sDvd)) + "</b> is the remainder."
-            ]
+            ["d", T("division.tagDivide"), T("division.onlyLine", { D: D, x: esc(numStr(sDvd)) })]
           ],
-          aside: S.mode === "remainder" ?
-            "Want to keep going? Switch to <b>Decimal</b> and we’ll add zeros and divide further." : null
+          aside: S.mode === "remainder" ? T("division.onlyAside") : null
         });
       }
 
       var frag = document.createDocumentFragment();
       pre.forEach(function(p) { frag.appendChild(logItem(p.n, p.lines, p.aside, undefined)); });
       w.forEach(function(p, idx) {
-        frag.appendChild(logItem("Step&nbsp;" + (idx + 1), p.lines, p.aside, idx));
+        frag.appendChild(logItem(T("division.stepN", { n: idx + 1 }), p.lines, p.aside, idx));
       });
       if (S.mode === "fraction" && r.rem > 0) {
         var gL = gcd(r.rem, D),
           qL = r.steps.length ? qt.text : "0";
         var fLines = [
-          ["b", "Fraction", "The <b>" + r.rem + "</b> left over still has to be shared into <b>" + esc(commas(sDvs.i)) +
-            "</b>, so it’s <b>" + r.rem + "/" + D + "</b> of one more. Write the remainder over the divisor: <b>" +
-            (qL !== "0" ? esc(commas(qL)) + " " : "") + r.rem + "/" + D + "</b>."
-          ]
+          ["b", T("division.tagFraction"), T("division.fracLine", {
+            r: r.rem,
+            dvs: esc(commas(sDvs.i)),
+            D: D,
+            lead: qL !== "0" ? esc(commas(qL)) + " " : ""
+          })]
         ];
-        fLines.push(gL > 1 ? ["b", "Simplify", "<b>" + r.rem + "</b> and <b>" + D + "</b> both divide by <b>" + gL + "</b>: <b>" +
-          r.rem + "/" + D + " = " + (r.rem / gL) + "/" + (D / gL) + "</b>."
-        ] : ["b", "Simplify", "<b>" + r.rem + "</b> and <b>" + D + "</b> share no factor bigger than 1, so <b>" +
-          r.rem + "/" + D + "</b> is already in simplest form."
-        ]);
-        frag.appendChild(logItem("Last&nbsp;step", fLines,
-          "The remainder becomes the top of the fraction and the divisor becomes the bottom — " +
-          "that’s all a remainder is: part of one more group.", w.length ? w.length - 1 : undefined));
+        fLines.push(gL > 1 ? ["b", T("division.tagSimplify"), T("division.simpLine", { r: r.rem, D: D, g: gL, a: r.rem / gL, b: D / gL })] : ["b", T("division.tagSimplify"), T("division.simplestLine", { r: r.rem, D: D })]);
+        frag.appendChild(logItem(T("division.lastStep"), fLines, T("division.lastAside"), w.length ? w.length - 1 : undefined));
       }
       elLog.appendChild(frag);
 
@@ -2894,7 +2856,7 @@
       /* ---- step-through ---- */
       elStepper.hidden = !S.stepMode || total === 0;
       if (S.stepMode && total > 0) {
-        elCount.textContent = S.step + " of " + total;
+        elCount.textContent = T("division.stepOf", { n: S.step, m: total });
         $("prevBtn").disabled = S.step <= 1;
         $("nextBtn").disabled = S.step >= total;
       }
@@ -2918,8 +2880,7 @@
     function checkLine(r, dvd, dvs, sDvd, sDvs, qt, D) {
       if (S.mode !== "decimal") {
         if (r.steps.length === 0) {
-          return "<b>Check:</b> 0 × " + esc(commas(sDvs.i)) + " + " + r.rem + " = " +
-            esc(commas(numStr(dvd))) + ' <span class="ok">✓</span>';
+          return T("division.checkZero", { d: esc(commas(sDvs.i)), r: r.rem, dvd: esc(commas(numStr(dvd))) });
         }
         var q = BigInt(qt.text || "0"),
           Db = BigInt(sDvs.i),
@@ -2927,21 +2888,27 @@
         var prod = q * Db,
           sum = prod + rb;
         var ok = sum.toString() === (sDvd.i + sDvd.f).replace(/^0+(?=\d)/, "");
-        return "<b>Check:</b> " + esc(commas(qt.text)) + " × " + esc(commas(sDvs.i)) + " = " +
-          esc(commas(prod.toString())) + ", and " + esc(commas(prod.toString())) + " + " + r.rem +
-          " = " + esc(commas(sum.toString())) +
-          (ok ? ' <span class="ok">✓ matches the dividend</span>' : "");
+        return T("division.checkQR", {
+          q: esc(commas(qt.text)),
+          d: esc(commas(sDvs.i)),
+          p: esc(commas(prod.toString())),
+          r: r.rem,
+          s: esc(commas(sum.toString())),
+          ok: ok ? ' <span class="ok">' + T("division.matches") + "</span>" : ""
+        });
       }
       if (r.repeat || r.capped) {
-        return "<b>No clean check here</b> — this decimal never ends, so multiplying back would " +
-          "always be a hair off. That’s the sign the answer really belongs as a fraction: <b>" +
-          esc(fractionOf(dvd, dvs)) + "</b>.";
+        return T("division.noCleanCheck", { f: esc(fractionOf(dvd, dvs)) });
       }
       var qn = parseNum(qt.text) || { i: "0", f: "" };
       var back = mulDec(qn, dvs),
         want = trimDec(numStr(dvd));
-      return "<b>Check:</b> " + esc(commas(qt.text)) + " × " + esc(numStr(dvs)) + " = " + esc(back) +
-        (back === want ? ' <span class="ok">✓ matches the dividend</span>' : "");
+      return T("division.checkDec", {
+        q: esc(commas(qt.text)),
+        d: esc(numStr(dvs)),
+        b: esc(back),
+        ok: back === want ? ' <span class="ok">' + T("division.matches") + "</span>" : ""
+      });
     }
 
     /* ============================== tape diagram ============================== */
@@ -2989,14 +2956,15 @@
       if (sharing) {
         for (var i = 0; i < D; i++) segs.push({ w: 1, html: answer, cls: "" });
         span = D;
-        under = D === 1 ? "1 part" : D + " equal parts";
+        under = T("division.partsUnder", { n: D });
         if (remMode && r.rem > 0)
           segs.push({ w: r.rem / Number(qt.text), html: "R " + r.rem, cls: "left" });
-        cap = "Share <b>" + total + "</b> out into <b>" + D + "</b> equal part" + (D === 1 ? "" : "s") +
-          ". Each part " + (remMode ? "gets" : "is") + " <b>" + answer + "</b>" +
-          (remMode && r.rem > 0 ?
-            ", and <b>" + r.rem + "</b> is left over — not enough to give every part one more." :
-            (remMode ? ", with nothing left over." : "."));
+        cap = T(!remMode ? "division.shareDec" : r.rem > 0 ? "division.shareRemLeft" : "division.shareRemExact", {
+          total: total,
+          n: D,
+          ans: answer,
+          r: r.rem
+        });
       } else {
         var many = Q > 12n,
           drawn = many ? 4 : Number(Q);
@@ -3007,7 +2975,7 @@
         }
         span = segs.length;
         var qStr = commas(Q.toString());
-        under = Q > 0n ? qStr + " group" + (Q === 1n ? "" : "s") + " of " + per : "";
+        under = Q > 0n ? T("division.groupsOf", { n: qStr, per: per }) : "";
         var lv = esc(commaNum(scaledStr(R, k)));
         if (R > 0n)
           segs.push({ w: Number(R) / Number(B), html: (remMode ? "R " : "") + lv, cls: "left" + (Q === 0n ? " solo" : "") });
@@ -3017,15 +2985,13 @@
           segs.push({ w: Number(B - R) / Number(B), html: "", cls: "ghost" });
           topSpan = 1;
           span = 2;
-          under = "one " + per;
+          under = T("division.onePer", { per: per });
         }
         cap = Q === 0n ?
-          "Not even one <b>" + per + "</b> fits in <b>" + total + "</b>. All of <b>" + total +
-          "</b> is left over — that’s <b>" + part + "</b> of one " + per + "." :
-          "How many <b>" + per + "</b>s fit in <b>" + total + "</b>? <b>" + qStr + "</b>" +
-          (R > 0n ? ", with <b>" + lv + "</b> left over — that’s <b>" + part + "</b> of another " +
-            per + "." : " exactly, with nothing left over.");
-        if (!remMode && R > 0n) cap += " So the answer is <b>" + answer + "</b>.";
+          T("division.notEvenDec", { per: per, total: total, part: part }) :
+          R > 0n ? T("division.tapeLeft", { per: per, total: total, full: qStr, left: lv, part: part }) :
+          T("division.tapeExact", { per: per, total: total, full: qStr });
+        if (!remMode && R > 0n) cap += " " + T("division.soAnswer", { ans: answer });
       }
 
       drawTape(segs, span, topSpan, total, under, cap);
@@ -3052,7 +3018,7 @@
 
       fw.hidden = false;
       fw.classList.add("tapemode");
-      fw.innerHTML = '<div class="fitcap"><b style="font-family:var(--f-body)">Tape diagram.</b> ' + cap +
+      fw.innerHTML = '<div class="fitcap"><b style="font-family:var(--f-body)">' + T("division.tapeDiagram") + '</b> ' + cap +
         '</div><div class="tape-scroll"><div class="tape" aria-hidden="true" style="grid-template-columns:' +
         cols + '">' + html + "</div></div>";
     }
@@ -3079,9 +3045,8 @@
       });
       if (!pieces.length || pieces.length > 8) {
         el.hidden = false;
-        el.innerHTML = '<div class="fitcap"><b style="font-family:var(--f-body)">Area model.</b> <span class="areanote">' +
-          (pieces.length ? "This one needs more than 8 chunks — too many to draw clearly. The tape diagram tells the same story." :
-            "Nothing fits even once, so there’s no rectangle to build — it’s all left over.") +
+        el.innerHTML = '<div class="fitcap"><b style="font-family:var(--f-body)">' + T("division.areaModel") + '</b> <span class="areanote">' +
+          (pieces.length ? T("division.amTooMany") : T("division.amNothing")) +
           "</span></div>";
         return;
       }
@@ -3108,18 +3073,18 @@
 
       var total = esc(commaNum(numStr(sDvd)));
       var answer = esc(commas(qt.text)) + (left && !remMode ? "…" : "");
-      var cap = (shift ? "After moving the point, this is <b>" + total + " ÷ " + dS + "</b>. " : "") +
-        "Build a rectangle <b>" + dS + "</b> tall that covers an area of <b>" + total + "</b>, " +
-        "using chunks you can multiply in your head: " +
-        pieces.map(function(p) { return dS + " × " + esc(commaNum(p.q)) + " = " + esc(commaNum(p.a)); }).join(", ") +
-        ". The widths along the top add up to the answer: " +
-        pieces.map(function(p) { return esc(commaNum(p.q)); }).join(" + ") + " = <b>" + answer + "</b>" +
-        (!left ? "." :
-          remMode ? ", with <b>" + left + "</b> left over that’s too small for another whole row." :
-          ", and there’s still a sliver of <b>" + esc(left) + "</b> uncovered — the decimal keeps going.");
+      var cap = (shift ? T("division.amShift", { t: total, d: dS }) + " " : "") +
+        T("division.amBuild", {
+          d: dS,
+          t: total,
+          list: pieces.map(function(p) { return dS + " × " + esc(commaNum(p.q)) + " = " + esc(commaNum(p.a)); }).join(", "),
+          sum: pieces.map(function(p) { return esc(commaNum(p.q)); }).join(" + "),
+          ans: answer,
+          end: !left ? T("division.amEnd") : remMode ? T("division.amEndRem", { left: left }) : T("division.amEndDec", { left: esc(left) })
+        });
 
       el.hidden = false;
-      el.innerHTML = '<div class="fitcap"><b style="font-family:var(--f-body)">Area model.</b> ' + cap +
+      el.innerHTML = '<div class="fitcap"><b style="font-family:var(--f-body)">' + T("division.areaModel") + '</b> ' + cap +
         '</div><div class="am-scroll"><div class="am" aria-hidden="true" style="grid-template-columns:' +
         cols.join(" ") + '">' + html + "</div></div>";
     }
@@ -3163,7 +3128,7 @@
         var b = document.createElement("button");
         b.className = "ghost";
         b.type = "button";
-        b.textContent = "Switch to decimal";
+        b.textContent = T("division.switchDec");
         b.addEventListener("click", function() { setMode("decimal"); });
         n.appendChild(b);
       }
@@ -3217,22 +3182,24 @@
     /* a whole problem typed (or pasted) into one box, like "847/12" or "divide 847 by 12" */
     function boxProblem(v) {
       v = String(v || "");
+      if (window.HelperI18n) v = String(HelperI18n.normalize(v)); // a problem typed in Spanish …: the words the reader knows
       if (parseNum(v) || !/[^\d.,\s_]/.test(v)) return null;
       var p = readQ(v);
       return qReads(p) ? p : null;
     }
     /* a box that holds another kind of problem: say which page does it */
     function otherSign(v) {
-      var T = readTyped(v),
-        t = T ? T.q : String(v);
-      if ((t.match(/[*×·⋅÷:+^]|\d\s*[xX]\s*[\d.(]|\d\s*-\s*[\d.(]/g) || []).length > 1) return "This page divides two numbers at a time. For a longer problem, try the Order Stack.";
-      if (/(?:^|[^\d\s.)])\s*-\s*[\d.]/.test(t)) return "This page divides numbers from 0 up. Negative numbers are on the Number Line.";
+      if (window.HelperI18n) v = HelperI18n.normalize(v);
+      var R = readTyped(v),
+        t = R ? R.q : String(v);
+      if ((t.match(/[*×·⋅÷:+^]|\d\s*[xX]\s*[\d.(]|\d\s*-\s*[\d.(]/g) || []).length > 1) return T("division.osLong");
+      if (/(?:^|[^\d\s.)])\s*-\s*[\d.]/.test(t)) return T("division.osNeg");
       var into = /(\d[\d,.]*)\s+(?:into|goes into)\s+(\d[\d,.]*)/i.exec(String(v));
-      if (into) return "“" + esc(into[0]) + "” can be read two ways. Type it with ÷ — for “how many " + esc(into[1]) + "s in " + esc(into[2]) + "”, that’s <b>" + esc(into[2]) + " ÷ " + esc(into[1]) + "</b>.";
-      if (/\d\s*\+\s*\d/.test(t)) return "This page divides. To add, try the Carry Column.";
-      if (/\d\s*-\s*\d/.test(t)) return "This page divides. To subtract, try the Borrow Bank.";
-      if (/×|\*|\d\s*x\s*\d/i.test(t)) return "This page divides. To multiply, try the Product Ladder.";
-      if (/\^/.test(t)) return "This page divides two numbers. Powers are on the Order Stack.";
+      if (into) return T("division.osInto", { x: esc(into[0]), a: esc(into[1]), b: esc(into[2]) });
+      if (/\d\s*\+\s*\d/.test(t)) return T("division.osAdd");
+      if (/\d\s*-\s*\d/.test(t)) return T("division.osSub");
+      if (/×|\*|\d\s*x\s*\d/i.test(t)) return T("division.osMul");
+      if (/\^/.test(t)) return T("division.osPow");
       return "";
     }
 
@@ -3551,7 +3518,7 @@
 
     function pl(n) { return Number(n) === 1 ? "" : "s"; }
 
-    function tenTimes(k) { return ["", "10", "100", "1,000", "10,000"][Math.abs(k)] || "many"; }
+    function tenTimes(k) { return ["", "10", "100", "1,000", "10,000"][Math.abs(k)] || T("division.many"); }
     /* a stacked fraction with inline styles only, for the answer box and the worksheet page */
     function frIn(n, d) {
       return '<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;' +
@@ -3722,15 +3689,13 @@
         checking = S.practice === "check";
       $("checkBox").hidden = !(valid && (checking || S.keepCheck || EMBED));
       document.querySelector(".page").classList.toggle("checking", valid && checking && !S.revealed);
-      $("checkNote").textContent = checking && !S.revealed ? "The work stays hidden until you check." : "";
+      $("checkNote").textContent = checking && !S.revealed ? T("division.checkNote") : "";
       var qr = S.nums === "dec" && S.mode === "remainder";
       $("ansOne").hidden = qr;
       $("ansQBox").hidden = $("ansRSep").hidden = $("ansRBox").hidden = !qr;
-      $("checkTip").textContent = S.nums === "frac" ?
-        "Type a fraction like 3/2 or a mixed number like 1 1/2. A decimal works too." :
-        S.mode === "remainder" ? "Type the quotient and what’s left over — or the whole thing, like 97 R 8, in the first box." :
-        S.mode === "fraction" ? "Write the remainder as a fraction, like 70 7/12 — or as one fraction, like 847/12." :
-        "Type the decimal, like 4.25. If it goes on forever, round to 2 or more places, or put the repeating digits in brackets: 0.1(6).";
+      $("checkTip").textContent = T(S.nums === "frac" ? "division.tipFrac" :
+        S.mode === "remainder" ? "division.tipRem" :
+        S.mode === "fraction" ? "division.tipFraction" : "division.tipDec");
     }
 
     function say(kind, head, why, more) {
@@ -3748,21 +3713,20 @@
 
     function correct(note) {
       report("right");
-      say("ok", "✓ Correct!", note || "", false);
+      say("ok", T("common.correct"), note || "", false);
       reveal();
     }
 
     function simplifyWhy(ans) {
-      if (ans.form === "frac" && ans.d === B1) return "A bottom number of 1 means whole ones — write it as a whole number.";
-      if (ans.form === "mixed" && ans.n >= ans.d) return "The fraction part is 1 or more — take the whole ones out of it.";
+      if (ans.form === "frac" && ans.d === B1) return T("division.simpWhole");
+      if (ans.form === "mixed" && ans.n >= ans.d) return T("division.simpMixed");
       var g = bigGcd(ans.n, ans.d);
-      return "<b>" + ans.n + "</b> and <b>" + ans.d + "</b> can both be divided by <b>" + g + "</b>.";
+      return T("division.simpBy", { n: ans.n, d: ans.d, g: g });
     }
 
     function unreadable() {
-      say("no", "I can’t read that as a number.", S.mode === "remainder" && S.nums === "dec" ?
-        "Type the quotient in the first box and what’s left over in the second — or <b>97 R 8</b> in one box." :
-        "Try something like <b>4.25</b>, <b>3/4</b> or <b>2 1/2</b>.", false);
+      say("no", T("division.unreadable"), S.mode === "remainder" && S.nums === "dec" ?
+        T("division.unreadQR") : T("division.unreadTry"), false);
     }
 
     function checkNow() {
@@ -3770,20 +3734,17 @@
       if (!sol) return;
       if (sol.kind === "qr") return checkQR(sol);
       var raw = $("ansIn").value;
-      if (!raw.trim()) return say("plain", "Type your answer in the box first.", "", false);
+      if (!raw.trim()) return say("plain", T("division.typeFirst"), "", false);
       var a = readAnswer(raw);
-      if (a && a.bad) return say("no", "A fraction can’t have 0 on the bottom.", "", false);
+      if (a && a.bad) return say("no", T("division.den0"), "", false);
       if (!a) return unreadable();
       if (a.qr) {
         report("wrong");
         if (sol.whole && a.q === sol.q && a.r === sol.r)
-          return say("near", "That’s the quotient and remainder — now one more step.", sol.kind === "frac" ?
-            "Write the remainder as a fraction of the divisor: <b>" + sol.r + "</b> left over out of <b>" +
-            commas(String(sol.D)) + "</b> is <b>" + sol.r + "/" + sol.D + "</b> of another one." :
-            "Keep dividing: put a decimal point after the <b>" + commas(sol.q.toString()) +
-            "</b>, add a zero to the dividend, bring it down and carry on.", true);
-        return say("no", "Not quite — try again.", sol.kind === "dec" ?
-          "This one wants a decimal answer, like 4.25." : "This one wants a fraction or a mixed number, like 2 3/4.", true);
+          return say("near", T("division.qrOneMore"), sol.kind === "frac" ?
+            T("division.qrToFrac", { r: sol.r, D: commas(String(sol.D)), d: sol.D }) :
+            T("division.qrToDec", { q: commas(sol.q.toString()) }), true);
+        return say("no", T("common.notQuite"), sol.kind === "dec" ? T("division.wantsDec") : T("division.wantsFrac"), true);
       }
       valueCheck(a, sol, raw, "");
     }
@@ -3793,27 +3754,25 @@
       if (c === "exact" && a.simplest === false) report("simplify");
       else if (c !== "exact" && c !== "ok") report("wrong");
       if (c === "exact") {
-        if (a.simplest === false) return say("near", "Right value — now simplify it.", simplifyWhy(a), false);
+        if (a.simplest === false) return say("near", T("division.rightSimplify"), simplifyWhy(a), false);
         var same = String(raw).replace(/[,\s]+/g, "") === sol.text.replace(/[,\s]+/g, "");
-        return correct(note || (same ? "" : "The work writes it as <b>" + sol.html + "</b>."));
+        return correct(note || (same ? "" : T("division.writesAs", { x: sol.html })));
       }
-      if (c === "ok") return correct(note || ("Rounded just right. Exactly, it’s <b>" + (sol.exact || sol.html) + "</b>."));
-      if (c === "trunc") return say("near", "So close — round the last digit.",
-        "The next digit is 5 or more, so the last one goes up. Or show the repeating part in brackets, like <b>0.1(6)</b>.", true);
-      if (c === "few") return say("near", "Right so far — give at least 2 decimal places.", "", true);
-      if (c === "ends") return say("no", "Not quite — that’s been rounded.",
-        "This answer stops after a few decimal places, so write every digit.", true);
-      say("no", "Not quite — try again.", diagnoseValue(a, sol) || "", true);
+      if (c === "ok") return correct(note || T("division.roundedRight", { x: sol.exact || sol.html }));
+      if (c === "trunc") return say("near", T("division.soClose"), T("division.soCloseWhy"), true);
+      if (c === "few") return say("near", T("division.fewPlaces"), "", true);
+      if (c === "ends") return say("no", T("division.rounded"), T("division.roundedWhy"), true);
+      say("no", T("common.notQuite"), diagnoseValue(a, sol) || "", true);
     }
 
     function checkQR(sol) {
       var rq = $("ansQ").value.trim(),
         rr = $("ansR").value.trim();
-      if (!rq && !rr) return say("plain", "Type your answer in the boxes first.", "", false);
-      if (!rq) return say("plain", "Fill in the quotient too.", "", false);
+      if (!rq && !rr) return say("plain", T("division.typeBoxes"), "", false);
+      if (!rq) return say("plain", T("division.fillQuot"), "", false);
       var a = readAnswer(rq),
         uq, ur = null;
-      if (a && a.bad) return say("no", "A fraction can’t have 0 on the bottom.", "", false);
+      if (a && a.bad) return say("no", T("division.den0"), "", false);
       if (a && a.qr) {
         uq = a.q;
         ur = a.r;
@@ -3822,24 +3781,22 @@
         if (rr) {
           var rv = readAnswer(rr.replace(/^r(em(ainder)?)?\.?\s*/i, ""));
           if (!rv || rv.form !== "int" || rv.scaled < B0)
-            return say("no", "The remainder should be a whole number — what’s left over.", "", false);
+            return say("no", T("division.remWhole"), "", false);
           ur = rv.scaled;
         }
       } else if (a && a.v && !rr) // 97 2/3 or 97.67 typed in one box: fine too
-        return valueCheck(a, sol, rq, "As a quotient and remainder, that’s <b>" + esc(sol.text) + "</b>.");
+        return valueCheck(a, sol, rq, T("division.asQR", { x: esc(sol.text) }));
       else return unreadable();
       if (uq === sol.q && (ur === null ? B0 : ur) === sol.r) return correct("");
       report("wrong");
-      say("no", "Not quite — try again.", diagnoseQR(uq, ur, sol) || "", true);
+      say("no", T("common.notQuite"), diagnoseQR(uq, ur, sol) || "", true);
     }
 
     /* the usual slips, worked out for this problem and compared with what was typed */
-    var ZERO_MSG = "It looks like a zero went missing in the quotient. When the divisor doesn’t fit into the " +
-      "number you’ve brought down, write <b>0</b> in the answer before you bring down the next digit.";
+    var ZERO_MSG = T("division.zeroMsg");
 
     function wrongWay(sol) {
-      return "That’s <b>" + esc(numStr(sol.dvs)) + " ÷ " + esc(numStr(sol.dvd)) + "</b> — the wrong way round. " +
-        "The first number (the dividend) goes inside the house, and you divide it by the second.";
+      return T("division.wrongWay", { a: esc(numStr(sol.dvs)), b: esc(numStr(sol.dvd)) });
     }
 
     function dropZeros(s) { // "103" -> ["13"]; "4.05" -> ["4.5"]; "1020" -> ["120","102","12"]
@@ -3862,15 +3819,12 @@
         dvsI = BigInt(sol.dvs.i);
       if (dvsI < dvdI && uq === B0 && ur !== null && ur === dvsI) return wrongWay(sol); // 12 ÷ 847 = 0 R 12
       if (ur !== null && ur >= D) return ur === D ?
-        "Your remainder is the same as the divisor — that means one more <b>" + Ds + "</b> fits. Add 1 to the quotient." :
-        "Your remainder (<b>" + commas(ur.toString()) + "</b>) is bigger than the divisor (<b>" + Ds + "</b>), so another <b>" +
-        Ds + "</b> still fits in. A remainder always has to be smaller than the divisor.";
+        T("division.remEqD", { D: Ds }) :
+        T("division.remBig", { r: commas(ur.toString()), D: Ds });
       if (uq === sol.q) {
         if (sol.r > B0 && (ur === null || ur === B0))
-          return "The quotient is right, but you forgot the remainder — what’s left over after <b>" +
-            commas(sol.q.toString()) + " × " + Ds + "</b>?";
-        return "The quotient is right — check the remainder. It’s what’s left after you take away <b>" +
-          commas(sol.q.toString()) + " × " + Ds + "</b>.";
+          return T("division.forgotRem", { q: commas(sol.q.toString()), D: Ds });
+        return T("division.checkRem", { q: commas(sol.q.toString()), D: Ds });
       }
       if (dropZeros(sol.q.toString()).indexOf(uq.toString()) >= 0) return ZERO_MSG;
       return null;
@@ -3888,20 +3842,17 @@
           fb = Rat(BigInt(Bf.n), BigInt(Bf.d));
         var inv = rDiv(fb, fa);
         if (inv && !rEq(inv, V) && nearValue(a, inv))
-          return "That’s upside down. Keep the <b>first</b> fraction as it is and flip the <b>second</b> — it looks like " +
-            "the first one got flipped (or the division went the wrong way round).";
+          return T("division.upsideDown");
         var noflip = rMul(fa, fb);
         if (!rEq(noflip, V) && nearValue(a, noflip))
-          return "It looks like you multiplied without flipping. Keep, change, flip: change ÷ to × <em>and</em> flip the " +
-            "second fraction — <b>" + Bf.n + "/" + Bf.d + "</b> becomes <b>" + Bf.d + "/" + Bf.n + "</b>.";
+          return T("division.noFlip", { n: Bf.n, d: Bf.d });
         var both = noflip.n === B0 ? null : rDiv(Rat(B1), noflip);
         if (both && !rEq(both, V) && nearValue(a, both))
-          return "Only flip the <b>second</b> fraction — the first one stays exactly as it is.";
+          return T("division.onlySecond");
         if (m2[0] && m2[1]) {
           var sep = rAdd(Rat(BigInt(m1[0]), BigInt(m2[0])), rDiv(Rat(BigInt(m1[1]), BigInt(m1[2])), Rat(BigInt(m2[1]), BigInt(m2[2]))));
           if (sep && !rEq(sep, V) && nearValue(a, sep))
-            return "Mixed numbers can’t be divided in pieces. Turn each one into an improper fraction first (<b>" +
-              fracText(m2) + " = " + Bf.n + "/" + Bf.d + "</b>), then keep, change, flip.";
+            return T("division.mixedPieces", { m: fracText(m2), n: Bf.n, d: Bf.d });
         }
         return null;
       }
@@ -3909,12 +3860,10 @@
         Ds = commas(String(sol.D));
       if (!isWhole && a.form === "int" && a.scaled === sol.q)
         return sol.kind === "frac" ?
-          "That’s the whole-number part, but there’s <b>" + sol.r + "</b> left over. Write it as a fraction of the divisor " +
-          "and put it beside the <b>" + commas(sol.q.toString()) + "</b>." :
+          T("division.wholePartFrac", { r: sol.r, q: commas(sol.q.toString()) }) :
           sol.kind === "qr" ?
-          "That’s the quotient — now add the remainder." :
-          "That’s only the whole-number part. Put a decimal point after <b>" + commas(sol.q.toString()) +
-          "</b>, add a zero to the dividend and keep dividing.";
+          T("division.wholePartQR") :
+          T("division.wholePartDec", { q: commas(sol.q.toString()) });
       var drops = dropZeros(sol.kind === "dec" ? sol.qtext : sol.q.toString());
       for (i = 0; i < drops.length; i++) {
         var cand = readAnswer(drops[i]);
@@ -3924,11 +3873,8 @@
       }
       for (k = -6; k <= 6; k++) {
         if (!k || !nearValue(a, rShift(V, k))) continue;
-        return "The digits are right, but your answer is " + tenTimes(k) + " times too " + (k > 0 ? "big" : "small") +
-          " — the decimal point is in the wrong place. " + (sol.shift ?
-            "After you slide the point <b>" + sol.shift + "</b> place" + pl(sol.shift) + " right in both numbers, " +
-            "the point in the answer goes straight up from the one in the dividend." :
-            "The point in the answer sits straight above the point in the dividend.");
+        return T(k > 0 ? "division.tooBig" : "division.tooSmall", { k: tenTimes(k) }) + " " + (sol.shift ?
+          T("division.pointShift", { n: sol.shift }) : T("division.pointAbove"));
       }
       var inv2 = rDiv(Rat(B1), V);
       if (inv2 && !rEq(inv2, V) && nearValue(a, inv2)) return wrongWay(sol);
@@ -4329,6 +4275,7 @@
       if ([3, 6, 9, 12].indexOf(pls) >= 0) S.places = pls;
       var q = sp.get("q");
       if (q === null) { if (okAns) S.mode = ans; return; }
+      if (window.HelperI18n) q = HelperI18n.normalize(q); // a problem typed in Spanish …: the words the reader knows
       var p = readQ(q);
       S.nums = p.nums;
       if (p.nums === "frac") { S.frac = p.frac; if (okAns) S.mode = ans; return; }
@@ -4342,9 +4289,9 @@
         url = location.href;
 
       function done(ok) {
-        btn.textContent = ok ? "Link copied ✓" : "Copy the address bar instead";
+        btn.textContent = ok ? T("common.linkCopied") + " ✓" : T("division.copyFallback");
         clearTimeout(copyTimer);
-        copyTimer = setTimeout(function() { btn.textContent = "Copy link"; }, 2000);
+        copyTimer = setTimeout(function() { btn.textContent = T("common.copyLink"); }, 2000);
       }
 
       function fallback() {
@@ -4497,16 +4444,17 @@
         $(host).appendChild(b);
       });
     }
-    segs("gDvd", [2, 3, 4, 5, 6], function(v) { return v + " digits"; }, "dividend");
-    segs("gDvs", [1, 2, 3], function(v) { return v + " digit" + pl(v); }, "divisor");
-    segs("gRem", ["none", "some", "any"], function(v) { return { none: "None", some: "Always", any: "Either" } [v]; }, "rem");
-    segs("gDec", ["none", "dividend", "divisor"], function(v) {
-      return { none: "None", dividend: "In the number being divided", divisor: "In the number you divide by" } [v];
-    }, "dec");
-    segs("gAns", ["remainder", "fraction", "decimal"], function(v) {
-      return { remainder: "Quotient & remainder (like 97 R 8)", fraction: "Fraction", decimal: "Decimal" } [v];
-    }, "ans");
-    segs("gKind", ["proper", "mixed"], function(v) { return v === "proper" ? "Less than 1 (like 3/4)" : "Mixed numbers (like 2 1/2)"; }, "kind");
+    var nDigits = function(v) { return T("division.nDigits", { n: v }); };
+    var REM_W = { none: "division.remNone", some: "division.remSome", any: "division.remAny" },
+      DEC_W = { none: "division.decNone", dividend: "division.decDvd", divisor: "division.decDvs" },
+      ANS_W = { remainder: "division.ansRemLike", fraction: "division.ansFrac", decimal: "division.ansDec" },
+      KIND_W = { proper: "division.kindProper", mixed: "division.kindMixed" };
+    segs("gDvd", [2, 3, 4, 5, 6], nDigits, "dividend");
+    segs("gDvs", [1, 2, 3], nDigits, "divisor");
+    segs("gRem", ["none", "some", "any"], function(v) { return T(REM_W[v]); }, "rem");
+    segs("gDec", ["none", "dividend", "divisor"], function(v) { return T(DEC_W[v]); }, "dec");
+    segs("gAns", ["remainder", "fraction", "decimal"], function(v) { return T(ANS_W[v]); }, "ans");
+    segs("gKind", ["proper", "mixed"], function(v) { return T(KIND_W[v]); }, "kind");
 
     function paintGen() {
       var G = S.gen;
@@ -4538,8 +4486,7 @@
       o.mode = S.nums;
       o.places = S.places;
       try { r = makeDiv(genOpts(o), {}); } catch (e) { r = null; }
-      el.innerHTML = r ? "Makes problems like: <b>" + esc(problemText(r.p)) + "</b>" :
-        "Those choices don’t make a problem — try different ones.";
+      el.innerHTML = r ? T("division.sample", { p: esc(problemText(r.p)) }) : T("division.sampleNone");
     }
     $("gZero").addEventListener("click", function() {
       S.gen.zero = !S.gen.zero;
@@ -4554,8 +4501,8 @@
       var seen = {};
       seen[qText(curProblem())] = true;
       var r = makeDiv(genOpts(o), seen);
-      if (!r) { $("genMsg").textContent = "Couldn’t make one with those settings — try different choices."; return; }
-      $("genMsg").textContent = r.exact ? "" : "Couldn’t fit everything you picked into one problem, so this one bends a rule. Try other choices.";
+      if (!r) { $("genMsg").textContent = T("division.genFail"); return; }
+      $("genMsg").textContent = r.exact ? "" : T("division.genBend");
       loadProblem(r.p);
     });
 
@@ -4578,56 +4525,42 @@
       };
     }
     var API_OPTIONS = [
-      apiChoice("mode", "Numbers", [
-          ["decimals", "Whole numbers & decimals"],
-          ["fractions", "Fractions"]
+      apiChoice("mode", T("division.apiNumbers"), [
+          ["decimals", T("division.apiWholeDec")],
+          ["fractions", T("common.fractions")]
         ], "decimals",
         ["decimals", "fractions"]),
-      apiChoice("ans", "Answer as", [
-          ["remainder", "Quotient & remainder (like 97 R 8)"],
-          ["fraction", "Fraction"],
-          ["decimal", "Decimal"]
+      apiChoice("ans", T("division.answerAs"), [
+          ["remainder", T("division.ansRemLike")],
+          ["fraction", T("division.ansFrac")],
+          ["decimal", T("division.ansDec")]
         ],
         "remainder", ["decimals"]),
-      apiChoice("dividend", "Digits in the number being divided", [
-          [2, "2 digits"],
-          [3, "3 digits"],
-          [4, "4 digits"],
-          [5, "5 digits"],
-          [6, "6 digits"]
-        ],
+      apiChoice("dividend", T("division.mkDvd"), [2, 3, 4, 5, 6].map(function(v) { return [v, nDigits(v)]; }),
         3, ["decimals"]),
-      apiChoice("divisor", "Digits in the number you divide by", [
-        [1, "1 digit"],
-        [2, "2 digits"],
-        [3, "3 digits"]
-      ], 1, ["decimals"]),
-      apiChoice("rem", "Remainder", [
-        ["none", "None"],
-        ["some", "Always"],
-        ["any", "Either"]
+      apiChoice("divisor", T("division.mkDvs"), [1, 2, 3].map(function(v) { return [v, nDigits(v)]; }), 1, ["decimals"]),
+      apiChoice("rem", T("division.remainder"), [
+        ["none", T("division.remNone")],
+        ["some", T("division.remSome")],
+        ["any", T("division.remAny")]
       ], "any", ["decimals"]), {
         key: "zero",
-        label: "A zero in the answer (like 618 ÷ 6 = 103)",
+        label: T("division.zeroLabel"),
         type: "toggle",
         modes: ["decimals"],
-        values: [{ v: false, label: "Off" }, { v: true, label: "On" }],
+        values: [{ v: false, label: T("common.off") }, { v: true, label: T("common.on") }],
         "default": false
       },
-      apiChoice("dec", "Decimals", [
-          ["none", "None"],
-          ["dividend", "In the number being divided"],
-          ["divisor", "In the number you divide by"]
+      apiChoice("dec", T("common.decimals"), [
+          ["none", T("division.decNone")],
+          ["dividend", T("division.decDvd")],
+          ["divisor", T("division.decDvs")]
         ],
         "none", ["decimals"]),
-      apiChoice("places", "Stop after", [
-        [3, "3 decimal places"],
-        [6, "6 decimal places"],
-        [9, "9 decimal places"]
-      ], 6, ["decimals"]),
-      apiChoice("kind", "Kind of fractions", [
-          ["proper", "Less than 1 (like 3/4)"],
-          ["mixed", "Mixed numbers (like 2 1/2)"]
+      apiChoice("places", T("division.stopAfter"), [3, 6, 9].map(function(v) { return [v, T("division.placesN", { n: v })]; }), 6, ["decimals"]),
+      apiChoice("kind", T("division.mkKind"), [
+          ["proper", T("division.kindProper")],
+          ["mixed", T("division.kindMixed")]
         ], "proper",
         ["fractions"])
     ];
@@ -4671,7 +4604,7 @@
       return window.matchMedia("(prefers-color-scheme: dark)").matches;
     }
 
-    function paintThemeBtn() { themeBtn.textContent = currentDark() ? "Light mode" : "Dark mode"; }
+    function paintThemeBtn() { themeBtn.textContent = currentDark() ? T("common.lightMode") : T("common.darkMode"); }
     themeBtn.addEventListener("click", function() {
       document.documentElement.setAttribute("data-theme", currentDark() ? "light" : "dark");
       paintThemeBtn();

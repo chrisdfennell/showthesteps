@@ -29,6 +29,22 @@
 (function() {
   "use strict";
   if (window.HelperGlossary) return; // loaded twice (the page and nav.js): the first copy does the work
+
+  /* ---- the words, in the visitor's language (assets/i18n.js): the glossary.* keys, and en.js repeats the English for
+     translators. English always shows the words written here; so does a page without i18n.js. ---- */
+  function tr(key, en, vars) {
+    var I = window.HelperI18n;
+    if (I && I.lang && I.lang !== "en" && I.t) {
+      var s = I.t(key, vars);
+      if (s !== key) return s;
+    }
+    return vars ? String(en).replace(/\{(\w+)(\|[^{}]*)?\}/g, function(m, k, forms) { // {name}, and {n|one|other}
+      if (!Object.prototype.hasOwnProperty.call(vars, k)) return m;
+      if (!forms) return String(vars[k]);
+      var f = forms.slice(1).split("|");
+      return Number(vars[k]) === 1 ? f[0] : f[f.length - 1];
+    }) : en;
+  }
   try { main(); } catch (e) {} // a bug in here must never break a helper page
 
   function main() {
@@ -943,10 +959,10 @@
       bit("b", "gl-t", t.term);
       bit("span", "gl-d", t.short);
       if (t.example) bit("span", "gl-x", t.example);
-      var more = bit("a", "gl-more", "More \u2192");
+      var more = bit("a", "gl-more", tr("glossary.more", "More \u2192"));
       more.href = wordList("#" + t.id);
       more.tabIndex = -1;
-      more.setAttribute("aria-label", "More about " + t.term.replace(/\s*\([^)]*\)\s*$/, ""));
+      more.setAttribute("aria-label", tr("glossary.moreAbout", "More about {t}", { t: t.term.replace(/\s*\([^)]*\)\s*$/, "") }));
       if (isEmbed()) {
         more.target = "_blank";
         more.rel = "noopener";

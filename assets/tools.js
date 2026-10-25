@@ -11,6 +11,8 @@
    - Tutor me (practice=tutor), the fourth practice mode: tutor.js, next to this file, is fetched on pages that have
      the practice buttons and a "Say it out loud" list (embedded, only when the link asks for it); while it's on,
      Read aloud reads its question and choices
+   - all of it in the visitor's language (assets/i18n.js, the "tools" part of assets/i18n/<lang>.js), the math read
+     aloud too (MATH below; HelperTools.speechLang() / speechWords() for the other scripts); a Language row in "?"
    Everything is wrapped so a problem here can never break a helper page. */
 (function() {
   "use strict";
@@ -48,6 +50,28 @@
   function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
 
   function safe(fn) { return function() { try { return fn.apply(this, arguments); } catch (e) { if (window.console) console.warn("tools.js:", e); } }; }
+
+  /* ---- the visitor's language (assets/i18n.js; the strings are the "tools" part of assets/i18n/<lang>.js) ----
+     T(key, english, vars): the string in the language in use; English (and a page without i18n.js) gets the English
+     written here, exactly as it always was. */
+  function fillIn(s, vars) { return String(s).replace(/\{(\w+)\}/g, function(m, k) { return vars && vars.hasOwnProperty(k) ? vars[k] : m; }); }
+
+  function T(key, en, vars) {
+    var I = window.HelperI18n;
+    if (I && I.lang && I.lang !== "en" && I.t) {
+      var s = I.t(key, vars);
+      if (s !== key) return s;
+    }
+    return vars ? fillIn(en, vars) : en;
+  }
+  // the language the page's own text is in: a page with its own strings (i18n.js data-strings=…) is in the visitor's
+  // language; the others are still English, so they are read in English with an English voice
+  function speechLang() {
+    var I = window.HelperI18n;
+    if (!I || !I.lang || I.lang === "en") return String(root.lang || "en").toLowerCase().split("-")[0];
+    var own = [].some.call(document.querySelectorAll("script[data-strings]"), function(s) { return /\S/.test(s.getAttribute("data-strings")); });
+    return own ? I.lang : "en";
+  }
   var S = load(KEY, {});
   if (typeof S !== "object" || !S) S = {};
 
@@ -139,7 +163,7 @@
 
   function paintThemeBtn() {
     themeBtn = themeBtn || document.getElementById("themeBtn");
-    if (themeBtn) themeBtn.textContent = isDark() ? "Light mode" : "Dark mode";
+    if (themeBtn) themeBtn.textContent = isDark() ? T("common.lightMode", "Light mode") : T("common.darkMode", "Dark mode");
   }
 
   function applySettings() {
@@ -176,7 +200,7 @@
     S.scale = SCALES[i];
     save(KEY, S);
     applySettings();
-    announce("Text size " + Math.round(S.scale * 100) + "%");
+    announce(T("tools.textSize", "Text size {n}%", { n: Math.round(S.scale * 100) }));
   }
 
   /* ===================== big-screen mode ===================== */
@@ -188,7 +212,7 @@
       exitBtn = document.createElement("button");
       exitBtn.type = "button";
       exitBtn.className = "ht-exit";
-      exitBtn.textContent = "Exit big screen ✕";
+      exitBtn.textContent = T("tools.exitBig", "Exit big screen ✕");
       exitBtn.addEventListener("click", function() { setBig(false); });
       document.body.appendChild(exitBtn);
     }
@@ -196,7 +220,7 @@
     var b = document.getElementById("htBig");
     if (b) b.setAttribute("aria-pressed", String(on));
     applySettings();
-    announce(on ? "Big screen on. Press Escape to leave." : "Big screen off");
+    announce(on ? T("tools.bigOn", "Big screen on. Press Escape to leave.") : T("tools.bigOff", "Big screen off"));
   }
 
   /* ===================== read aloud ===================== */
@@ -861,7 +885,134 @@
         .replace(/,(?=\s*(?:$|[.;:!?]))/g, "").replace(/^[\s,]+/, "").trim();
     }
 
+    /* ---- the math in another language. Its words are data: HelperI18n.raw("tools.speech"), in the "tools" part of
+       assets/i18n/<lang>.js (es.js says what each entry is). It covers what the helpers' explanations hold: the
+       operations and relations, negative numbers, fractions (by name, mixed, "a over b"), powers, roots, money,
+       decimals, big numbers, remainders, ratios and repeating digits. Units, clock times, functions, calculus, sets
+       and matrices are left as they are written, for the voice to read. English never comes here. ---- */
+    function lex() {
+      if (speechLang() === "en" || !window.HelperI18n || !HelperI18n.raw) return null;
+      var L = HelperI18n.raw("tools.speech");
+      return L && typeof L === "object" ? L : null;
+    }
+
+    function one(forms, n) { return fillIn(Number(n) === 1 ? forms[0] : forms[1], { n: n }); } // ["un dólar", "{n} dólares"]
+
+    function fracL(L, n, d) {
+      var F = L.fractions || {},
+        a = String(n).replace(/\s+/g, " ").trim(),
+        b = String(d).replace(/\s+/g, " ").trim(),
+        m = /^([−-])?(\d+)$/.exec(a);
+      if (m && /^\d+$/.test(b)) {
+        var k = Number(b),
+          top = Number(m[2]),
+          name = F.names && F.names[k];
+        if (name && !(top > 20 && top > 3 * k)) return (m[1] ? L.negative + " " : "") + (top === 1 ? fillIn(name[0], { n: m[2] }) : fillIn(name[1], { n: m[2] }));
+      }
+      return fillIn(F.over, { a: simple(a) ? a : a + ",", b: simple(b) ? b : L.quantity + " " + b + END });
+    }
+
+    function moneyL(L, t) {
+      var M = L.money;
+      return t.replace(/([−-]?)\$\s?(\d{1,3}(?:,\d{3})+|\d+)?(?:\.(\d+))?/g, function(m, neg, d, c) {
+          if (!d && !c) return m;
+          d = String(d || "0").replace(/,/g, "");
+          var dn = Number(d),
+            cn = c ? Number(c) : 0,
+            s;
+          if (c && c.length !== 2) s = fillIn(M.dollar[1], { n: d + "." + c }); // $2.5: 2.5 dollars
+          else if (c && dn === 0) s = one(M.cent, cn); // $0.50: 50 cents
+          else {
+            s = one(M.dollar, dn === 1 ? 1 : d);
+            if (cn) s = fillIn(M.both, { d: s, c: one(M.cent, cn) }); // $12.50: 12 dollars and 50 cents
+          }
+          return (neg ? L.negative + " " : "") + s;
+        }).replace(/(\d+)\s?¢/g, function(m, n) { return one(M.cent, n); })
+        .replace(/(\d[\d,.]*)\s?€|€\s?(\d[\d,.]*)/g, function(m, a, b) { return fillIn(M.euro, { n: a || b }); })
+        .replace(/£\s?(\d[\d,.]*)/g, function(m, n) { return fillIn(M.pound, { n: n }); });
+    }
+
+    function powerL(L, e) {
+      var P = L.powers;
+      e = String(e).replace(/-/g, "−").replace(/\s+/g, " ").trim();
+      if (P[e]) return P[e];
+      if (/^−\d+(\.\d+)?$/.test(e)) return fillIn(P.negative, { n: e.slice(1) });
+      if (/^[′'″]+$/.test(e)) return e;
+      return fillIn(P.n, { n: e });
+    }
+
+    function rootsL(L, s) {
+      var R = L.roots,
+        re = new RegExp("(\\d+(?:\\.\\d+)?|[a-zA-Zθπ])?(\\s?)(?:" + PO + "(\\d+|[a-z])" + PC + ")?([√∛∜])\\s?(" + RO + "([^" + RO + RC + "]*)" + RC + "|\\d+(?:\\.\\d+)?[a-zA-Z]?|[a-zA-Zθπ])?", "g");
+      return s.replace(re, function(m, coef, sp, idx, sign, rad, rin, at, all) {
+        var pre = coef ? "" : sp;
+        if (coef && /[A-Za-z]/.test(coef) && /[A-Za-zÀ-ÿ]/.test(all.charAt(at - 1))) { // a word, not a number in front
+          pre = coef + sp;
+          coef = "";
+        }
+        var k = idx || ROOT[sign],
+          name = R[k] || fillIn(R.n, { n: k }),
+          what = rin !== undefined ? rin : rad || "",
+          r = !what ? name : rin !== undefined && !simple(rin.replace(new RegExp("[" + PO + PC + "]", "g"), "")) ? name + " " + L.quantity + " " + what + END : name + " " + what;
+        return pre + (coef ? fillIn(R.times, { c: coef, r: r }) : r) + " ";
+      });
+    }
+
+    function wordsL(L, t) {
+      var F = L.fractions,
+        s = prep(t).replace(/\.\.\.(?!\.)/g, "…");
+      s = moneyL(L, s);
+      s = s.replace(/(^|[^\d.,])(\d{1,3}(?:,\d{3})+)(?!\d|,\d)/g, function(m, pre, n) { return pre + n.replace(/,/g, ""); }); // 1,200 is one number
+      // repeating digits: 0.(3), 0.1(6), and the page's marked ones
+      s = s.replace(/(\d*\.\d*)\((\d+)\)/g, function(m, a, r) { return a + EO + r + EC; });
+      s = s.replace(new RegExp("([\\d.]*)" + EO + "([^" + EC + "]*)" + EC, "g"), function(m, a, r) {
+        r = r.replace(/\D/g, "");
+        if (!r) return a;
+        if (!a || /\.$/.test(a)) return fillIn(L.repeat.all, { n: a + r });
+        return fillIn(L.repeat.part, { a: a, r: r.split("").join(" ") });
+      });
+      s = s.replace(/(\d)(?::|\s:\s)(?=\d)/g, "$1 " + L.ratio + " "); // 3:2
+      s = rootsL(L, s);
+      var guard = 0,
+        pw = new RegExp(PO + "([^" + PO + PC + "]*)" + PC),
+        sb = new RegExp(BO + "([^" + BO + BC + "]*)" + BC);
+      while (pw.test(s) && guard++ < 40) s = s.replace(pw, function(m, e) { return " " + powerL(L, e) + " "; });
+      while (sb.test(s) && guard++ < 80) s = s.replace(sb, function(m, c) { return " " + L.sub + " " + c.trim() + " "; });
+      // the page's stacked fractions; a whole number just before one makes a mixed number
+      var fr = new RegExp("(\\d+\\s?)?" + FO + "([^" + FO + FM + FC + "]*)" + FM + "([^" + FO + FM + FC + "]*)" + FC);
+      guard = 0;
+      while (fr.test(s) && guard++ < 30) s = s.replace(fr, function(m, w, a, b, at, all) {
+        var mixed = w && /^\s*\d+\s*$/.test(a) && /^\s*\d+\s*$/.test(b) && !/[\d.,]/.test(all.charAt(at - 1));
+        if (mixed) return fillIn(F.mixed, { w: w.trim(), f: fracL(L, a, b) }) + " ";
+        return (w ? w.trim() + " " : "") + fracL(L, a, b) + " ";
+      });
+      // 1 3/4, 3/4, −3/4; x/3
+      s = s.replace(/(\d+\s)?([−-]?)(\d+)\/(\d+)(?![\d\/]|\.\d)/g, function(m, w, neg, a, b, at, all) {
+        var pre = all.charAt(at - 1);
+        if (/[\d.,\/]/.test(pre) || (!w && /[\w.]/.test(pre))) return m;
+        if (w && Number(a) >= Number(b)) return w + (neg ? L.negative + " " : "") + fillIn(F.over, { a: a, b: b });
+        var f = (neg ? L.negative + " " : "") + fracL(L, a, b);
+        return w ? fillIn(F.mixed, { w: w.trim(), f: f }) : f;
+      });
+      s = s.replace(/(^|[\s(])([a-zA-Z0-9.θπ]+)\s?\/\s?([a-zA-Z0-9.θπ]+)(?=$|[\s),.;:!?])/g, function(m, pre, a, b) {
+        return /\d/.test(a + b) ? pre + fillIn(F.over, { a: a, b: b }) : m; // x/3, not y/o
+      });
+      s = s.replace(/(\d)\s*R\s*(\d+)/g, function(m, q, r) { return fillIn(L.remainder, { q: q, r: r }); });
+      // a minus sign at the start, after a bracket or a sign, or right before a number: negative
+      s = s.replace(/(^|[\[(=,:;<>≤≥≈±+×÷·])(\s*)−(?=\s?(?:\.?\d|[√π∞a-zA-Zθ]))/g, "$1$2" + L.negative + " ").replace(/(\s)−(?=\.?\d|[√π∞])/g, "$1" + L.negative + " ");
+      s = s.replace(/[−–]/g, " " + L.minus + " ").replace(/\s*[×·*]\s*/g, " " + L.times + " ");
+      s = s.replace(/(^|[(,:;]\s*)[≈~]\s?(?=\d)/g, "$1" + L.about + " ").replace(/#(?=\d)/g, L.number + " ").replace(/✓/g, " ");
+      if (L.blank) s = s.replace(/(^|[\s(=×÷+−])\?(?=\s*(?:$|[=×÷+−),]))/g, "$1 " + L.blank + " "); // 0.2 × ? = 15: the number to find
+      for (var k in L.sym)
+        if (L.sym.hasOwnProperty(k)) s = s.split(k).join(" " + L.sym[k] + " ");
+      // decimals: 25.4 is "25 point 4"
+      s = s.replace(/(\d)\.(?=\d)/g, "$1 " + L.point + " ").replace(/(^|[^\w])\.(?=\d)/g, "$1" + L.point + " ");
+      return tidy(s);
+    }
+
     function words(t) {
+      var L = lex();
+      if (L) return wordsL(L, t);
       raw = [];
       done = [];
       plain = [];
@@ -899,11 +1050,12 @@
       // the inside ones first: powers, then roots and fractions (whose parts may hold powers), then matrices
       q(".sep").forEach(function(x) { x.textContent = "; "; }); // GCF 6 · LCM 36
       // the arrow between two fractions, the same step above and below it: "÷6" over "÷6"
+      var L = lex();
       q(".xa").forEach(function(x) {
         var k = [].map.call(x.children, function(y) { return y.textContent.trim(); }),
           m = /^([÷×])\s?(\d+)$/.exec(k[0] || "");
-        if (m && k.length === 2 && k[0] === k[1]) x.textContent = ", " + (m[1] === "÷" ? "divide" : "multiply") + " the top and the bottom by " + m[2] + ", to get ";
-        else if (k.length) x.textContent = " " + k.join(" and ") + " ";
+        if (m && k.length === 2 && k[0] === k[1]) x.textContent = ", " + (L ? fillIn(L.steps[m[1] === "÷" ? "div" : "mul"], { n: m[2] }) : (m[1] === "÷" ? "divide" : "multiply") + " the top and the bottom by " + m[2] + ", to get") + " ";
+        else if (k.length) x.textContent = " " + k.join(L ? " " + L.and + " " : " and ") + " ";
       });
       q(".wk, .op-s").forEach(function(x) {
         x.insertBefore(document.createTextNode(" "), x.firstChild);
@@ -939,6 +1091,7 @@
         if (nu && de) fr.textContent = (/[\w)]/.test(lastChar(fr)) ? " " : "") + FO + nu.textContent.trim() + FM + de.textContent.trim() + FC + " ";
       });
       q(".mx").reverse().forEach(function(mx) {
+        if (L && !mx.children.length) return; // the helpers' whole number in a mixed number, not a matrix (English still says "the column" here)
         var cells = [].slice.call(mx.children).map(function(e) { var t = txt(e); return /^[\s·•?…]*$/.test(t) ? "blank" : t; }), // a cell still to work out shows a dot
           m = /repeat\(\s?(\d+)/.exec(mx.getAttribute("style") || ""),
           n = m ? Number(m[1]) : Math.round(Math.sqrt(cells.length)) || 1,
@@ -950,7 +1103,7 @@
       return words(c.textContent).replace(/\s+\./g, ".").replace(/([.!?:;])(?:\s*\.)+/g, "$1").replace(/^\.\s*/, "");
     }
 
-    return { words: words, spoken: spoken };
+    return { words: words, spoken: spoken, lex: lex };
   })();
 
   function spoken(el) { return MATH.spoken(el); }
@@ -972,7 +1125,7 @@
     try { window.speechSynthesis.cancel(); } catch (e) {}
     [].forEach.call(document.querySelectorAll(".ht-reading"), function(x) { x.classList.remove("ht-reading"); });
     if (readBtn) {
-      readBtn.textContent = "Read aloud";
+      readBtn.textContent = T("tools.readAloud", "Read aloud");
       readBtn.setAttribute("aria-pressed", "false");
     }
   }
@@ -983,7 +1136,7 @@
   function voiceScore(v) {
     var n = v.name || "",
       l = String(v.lang || "").toLowerCase().replace("_", "-"),
-      want = String(root.lang || "en").toLowerCase().split("-")[0];
+      want = speechLang();
     if (l.indexOf(want) !== 0) return -1; // another language
     if (NOVELTY.test(n)) return 0; // the joke voices on a Mac
     var s = 10;
@@ -993,8 +1146,9 @@
     if (/^google/i.test(n)) s += 60; // Chrome's own voices
     if (/\b(samantha|ava|allison|zoe|susan|serena|daniel|karen|moira|tessa|evan|nathan|noelle|joelle)\b/i.test(n)) s += 25;
     if (/desktop|espeak|mbrola|pico/i.test(n)) s -= 30; // the old robotic ones
-    if (l === "en-us") s += 6;
-    else if (l === "en-gb") s += 4;
+    if (want === "es" && /\b(paloma|dalia|elena|jorge|paulina|monica|juan|sabina|helena|laura|pablo|alvaro|elvira|ximena|marisol|diego|jimena)\b/i.test(n)) s += 25;
+    if (l === "en-us" || l === "es-us") s += 6; // Spanish: the US and Mexican voices, as in US schools
+    else if (l === "en-gb" || l === "es-mx") s += 4;
     if (v["default"]) s += 2;
     return Math.max(1, s); // a robotic voice is still better than none
   }
@@ -1027,7 +1181,7 @@
       if (v) {
         u.voice = v;
         u.lang = v.lang;
-      }
+      } else if (speechLang() !== "en" && window.HelperI18n && HelperI18n.tag) u.lang = HelperI18n.tag; // no voice of its own: the browser's, in the language
       u.rate = S.rate || 1;
       u.pitch = 1;
       u.onend = function() { if (tok === sayTok && (speaking || !done)) one(); };
@@ -1063,17 +1217,17 @@
       speaking = true;
       tutorReading = true;
       if (readBtn) {
-        readBtn.textContent = "Stop reading";
+        readBtn.textContent = T("tools.stopReading", "Stop reading");
         readBtn.setAttribute("aria-pressed", "true");
       }
       readTutor();
       return;
     }
     var items = logItems();
-    if (!items.length) { announce("Nothing to read yet"); return; }
+    if (!items.length) { announce(T("tools.nothingToRead", "Nothing to read yet")); return; }
     try { window.speechSynthesis.cancel(); } catch (e) {}
     speaking = true;
-    readBtn.textContent = "Stop reading";
+    readBtn.textContent = T("tools.stopReading", "Stop reading");
     readBtn.setAttribute("aria-pressed", "true");
     var i = 0;
     (function next() {
@@ -1086,31 +1240,36 @@
     })();
   }
   var SPEEDS = [
-    ["Slower", 0.85],
-    ["Normal", 1],
-    ["Faster", 1.15]
+    ["Slower", 0.85, "tools.slower"],
+    ["Normal", 1, "tools.normal"],
+    ["Faster", 1.15, "tools.faster"]
   ];
+
+  function anyVoices() { try { return (window.speechSynthesis.getVoices() || []).length > 0; } catch (e) { return false; } }
 
   function voiceMenu(anchor) {
     var all = rankedVoices().slice(0, 10),
       cur = pickVoice();
-    var html = "<h3>Voice</h3>" + (all.length ?
+    var none = speechLang() !== "en" && anyVoices() ? // voices, but none in the page's language
+      T("tools.voiceNoneHere", "This device has no voice in this language yet. More can be added in its speech settings.") :
+      T("tools.voicesNotYet", "This browser hasn’t listed its voices yet. Try again in a moment.");
+    var html = "<h3>" + T("tools.voice", "Voice") + "</h3>" + (all.length ?
         all.map(function(v) {
           var on = cur && v.voiceURI === cur.voiceURI;
           return '<button type="button" class="ht-row" data-voice="' + esc(v.voiceURI) + '" aria-pressed="' + on + '">' + (on ? "✓ " : "") + esc(v.name.replace(/^Microsoft\s+/, "").replace(/\s+Online\s+\(Natural\)/, " (natural)")) + "</button>";
         }).join("") :
-        '<div class="ht-empty">This browser hasn’t listed its voices yet. Try again in a moment.</div>') +
-      "<h3>Speed</h3><div style=\"display:flex;gap:4px;padding:0 4px\">" + SPEEDS.map(function(sp) {
-        return '<button type="button" class="ht-btn" data-rate="' + sp[1] + '" aria-pressed="' + ((S.rate || 1) === sp[1]) + '">' + sp[0] + "</button>";
+        '<div class="ht-empty">' + none + "</div>") +
+      "<h3>" + T("tools.speed", "Speed") + "</h3><div style=\"display:flex;gap:4px;padding:0 4px\">" + SPEEDS.map(function(sp) {
+        return '<button type="button" class="ht-btn" data-rate="' + sp[1] + '" aria-pressed="' + ((S.rate || 1) === sp[1]) + '">' + T(sp[2], sp[0]) + "</button>";
       }).join("") + "</div>" +
-      '<div class="ht-empty ht-sm" style="white-space:normal">The voices come from this device. Microsoft Edge has the most natural ones; on a phone or tablet, more can be added in its speech settings.</div>';
+      '<div class="ht-empty ht-sm" style="white-space:normal">' + T("tools.voiceNote", "The voices come from this device. Microsoft Edge has the most natural ones; on a phone or tablet, more can be added in its speech settings.") + "</div>";
     var m = showMenu(anchor, html);
     [].forEach.call(m.querySelectorAll("[data-voice]"), function(b) {
       b.addEventListener("click", function() {
         S.voice = b.getAttribute("data-voice");
         save(KEY, S);
         try { window.speechSynthesis.cancel(); } catch (e) {}
-        say("This is how the steps will sound.");
+        say(T("tools.voiceSample", "This is how the steps will sound."));
         voiceMenu(anchor);
       });
     });
@@ -1119,30 +1278,37 @@
         S.rate = Number(b.getAttribute("data-rate"));
         save(KEY, S);
         try { window.speechSynthesis.cancel(); } catch (e) {}
-        say("This is how the steps will sound.");
+        say(T("tools.voiceSample", "This is how the steps will sound."));
         voiceMenu(anchor);
       });
     });
+  }
+
+  function headsLog(head) {
+    for (var x = head.nextElementSibling; x && !x.classList.contains("panel-head"); x = x.nextElementSibling)
+      if (x.classList.contains("log") || x.querySelector(".log")) return true;
+    return false;
   }
 
   function addReadButton() {
     if (!("speechSynthesis" in window)) return;
     var heads = document.querySelectorAll(".panel-head h2");
     [].forEach.call(heads, function(h) {
-      if (!/say it out loud/i.test(h.textContent) || h.parentNode.querySelector(".ht-read")) return;
+      // the "Say it out loud" heading, in any language: the one with the explanation list (.log) after it
+      if (!(/say it out loud/i.test(h.textContent) || headsLog(h.parentNode)) || h.parentNode.querySelector(".ht-read")) return;
       readBtn = document.createElement("button");
       readBtn.type = "button";
       readBtn.className = "ht-btn ht-read";
-      readBtn.textContent = "Read aloud";
+      readBtn.textContent = T("tools.readAloud", "Read aloud");
       readBtn.setAttribute("aria-pressed", "false");
-      readBtn.title = "Read the explanation aloud (shortcut: R)";
+      readBtn.title = T("tools.readTitle", "Read the explanation aloud (shortcut: R)");
       readBtn.addEventListener("click", readAloud);
       var vb = document.createElement("button");
       vb.type = "button";
       vb.className = "ht-btn ht-read ht-voice";
-      vb.textContent = "Voice";
+      vb.textContent = T("tools.voice", "Voice");
       vb.setAttribute("aria-haspopup", "dialog");
-      vb.title = "Choose the reading voice and speed";
+      vb.title = T("tools.voiceTitle", "Choose the reading voice and speed");
       vb.addEventListener("click", function(e) {
         e.stopPropagation();
         if (openMenu) closeMenu();
@@ -1223,10 +1389,10 @@
 
   function recentMenu(anchor) {
     var list = ((load(RECENT, {}) || {})[page] || []);
-    var html = "<h3>Recent problems here</h3>" + (list.length ?
+    var html = "<h3>" + T("tools.recentHead", "Recent problems here") + "</h3>" + (list.length ?
       list.map(function(r) { return '<a href="' + esc(U(page, r.s)) + '">' + esc(r.l || r.s) + "</a>"; }).join("") +
-      '<button type="button" class="ht-row ht-sm" data-clear="1">Clear this list</button>' :
-      '<div class="ht-empty">Nothing yet — problems you work on this page show up here.</div>');
+      '<button type="button" class="ht-row ht-sm" data-clear="1">' + T("tools.recentClear", "Clear this list") + "</button>" :
+      '<div class="ht-empty">' + T("tools.recentEmpty", "Nothing yet — problems you work on this page show up here.") + "</div>");
     var m = showMenu(anchor, html);
     var c = m.querySelector("[data-clear]");
     if (c) c.addEventListener("click", function() {
@@ -1234,29 +1400,52 @@
       delete all[page];
       save(RECENT, all);
       closeMenu();
-      announce("Recent list cleared");
+      announce(T("tools.recentCleared", "Recent list cleared"));
     });
   }
 
   /* ===================== keyboard shortcuts ===================== */
+  function keyRow(keys, key, en) { return "<tr><td>" + keys + "</td><td>" + T(key, en) + "</td></tr>"; }
+
+  // the languages, each by its own name (assets/i18n.js): a choice here opens the page again in it
+  function langRow() {
+    var I = window.HelperI18n;
+    if (!I || !I.langs || I.langs.length < 2 || !I.set) return "";
+    return '<div class="ht-lang i18n-ui"><h3 style="margin-top:12px">' + T("lang.button", "Language") + '</h3><div style="display:flex;flex-wrap:wrap;gap:4px;padding:0 4px">' +
+      I.langs.map(function(l) {
+        var on = l.code === I.lang;
+        return '<button type="button" class="ht-btn" data-lang="' + esc(l.code) + '" lang="' + esc(String(l.tag || l.code).split("-")[0]) + '" aria-pressed="' + on + '">' + (on ? "✓ " : "") + esc(l.name) + "</button>";
+      }).join("") + "</div></div>";
+  }
+
   function helpMenu(anchor) {
-    showMenu(anchor || document.body, '<div class="ht-help"><h3>Keyboard shortcuts</h3><table>' +
-      "<tr><td><kbd>/</kbd></td><td>Jump to the problem box</td></tr>" +
-      "<tr><td><kbd>N</kbd></td><td>A new problem (or the next one after a right answer)</td></tr>" +
-      "<tr><td><kbd>←</kbd> <kbd>→</kbd></td><td>Back and forward a step in One step at a time</td></tr>" +
-      "<tr><td><kbd>1</kbd>–<kbd>4</kbd></td><td>Pick a choice in Tutor me</td></tr>" +
-      "<tr><td><kbd>Space</kbd></td><td>Play or pause in Play</td></tr>" +
-      "<tr><td><kbd>R</kbd></td><td>Read the explanation aloud</td></tr>" +
-      "<tr><td><kbd>D</kbd></td><td>Switch light and dark</td></tr>" +
-      "<tr><td><kbd>+</kbd> <kbd>−</kbd></td><td>Bigger or smaller text</td></tr>" +
-      "<tr><td><kbd>B</kbd></td><td>Big screen, for a projector</td></tr>" +
-      "<tr><td><kbd>Q</kbd></td><td>A QR code for this page, to open it on a phone</td></tr>" +
-      (document.getElementById("htEmbed") ? "<tr><td><kbd>E</kbd></td><td>Put this problem on another website (embed it)</td></tr>" : "") +
-      "<tr><td><kbd>K</kbd></td><td>Show or hide the math keys (they come up by themselves on phones)</td></tr>" +
-      "<tr><td><kbd>Esc</kbd></td><td>Close this, or leave big screen</td></tr>" +
-      "<tr><td><kbd>?</kbd></td><td>Show this list</td></tr></table>" +
-      '<p class="ht-sm" style="margin:10px 8px 2px">Show The Steps ' + (SITE_VERSION === "dev" ? "(a copy that isn’t published yet)" : "version " + esc(SITE_VERSION)) + ' · <a href="' + esc(window.HelperSite ? window.HelperSite.url("help.html") : "help.html") + '" style="display:inline;padding:0">help</a> · <a href="https://github.com/chrisdfennell/showthesteps/releases" target="_blank" rel="noopener" style="display:inline;padding:0">what’s new</a>' +
-      (document.querySelector(".page") ? ' · <a href="' + esc(reportHref()) + '" target="_blank" rel="noopener" style="display:inline;padding:0">report a problem</a>' : "") + "</p></div>");
+    var m = showMenu(anchor || document.body, '<div class="ht-help"><h3>' + T("tools.keysHead", "Keyboard shortcuts") + "</h3><table>" +
+      keyRow("<kbd>/</kbd>", "tools.keySlash", "Jump to the problem box") +
+      keyRow("<kbd>N</kbd>", "tools.keyN", "A new problem (or the next one after a right answer)") +
+      keyRow("<kbd>←</kbd> <kbd>→</kbd>", "tools.keyArrows", "Back and forward a step in One step at a time") +
+      keyRow("<kbd>1</kbd>–<kbd>4</kbd>", "tools.keyChoice", "Pick a choice in Tutor me") +
+      keyRow("<kbd>" + T("tools.kbdSpace", "Space") + "</kbd>", "tools.keySpace", "Play or pause in Play") +
+      keyRow("<kbd>R</kbd>", "tools.keyR", "Read the explanation aloud") +
+      keyRow("<kbd>D</kbd>", "tools.keyD", "Switch light and dark") +
+      keyRow("<kbd>+</kbd> <kbd>−</kbd>", "tools.keyPlus", "Bigger or smaller text") +
+      keyRow("<kbd>B</kbd>", "tools.keyB", "Big screen, for a projector") +
+      keyRow("<kbd>Q</kbd>", "tools.keyQ", "A QR code for this page, to open it on a phone") +
+      (document.getElementById("htEmbed") ? keyRow("<kbd>E</kbd>", "tools.keyE", "Put this problem on another website (embed it)") : "") +
+      keyRow("<kbd>K</kbd>", "tools.keyK", "Show or hide the math keys (they come up by themselves on phones)") +
+      keyRow("<kbd>Esc</kbd>", "tools.keyEsc", "Close this, or leave big screen") +
+      keyRow("<kbd>?</kbd>", "tools.keyHelp", "Show this list") + "</table>" + langRow() +
+      '<p class="ht-sm" style="margin:10px 8px 2px">Show The Steps ' + (SITE_VERSION === "dev" ? T("tools.versionDev", "(a copy that isn’t published yet)") : T("tools.version", "version {v}", { v: esc(SITE_VERSION) })) +
+      ' · <a href="' + esc(window.HelperSite ? window.HelperSite.url("help.html") : "help.html") + '" style="display:inline;padding:0">' + T("tools.helpLink", "help") + "</a>" +
+      ' · <a href="https://github.com/chrisdfennell/showthesteps/releases" target="_blank" rel="noopener" style="display:inline;padding:0">' + T("tools.whatsNew", "what’s new") + "</a>" +
+      (document.querySelector(".page") ? ' · <a href="' + esc(reportHref()) + '" target="_blank" rel="noopener" style="display:inline;padding:0">' + T("tools.reportLink", "report a problem") + "</a>" : "") + "</p></div>");
+    [].forEach.call(m.querySelectorAll(".ht-lang [data-lang]"), function(b) {
+      b.addEventListener("click", function(e) {
+        e.stopPropagation();
+        var c = b.getAttribute("data-lang");
+        if (c === window.HelperI18n.lang) closeMenu();
+        else window.HelperI18n.set(c);
+      });
+    });
     if (!anchor && openMenu) {
       openMenu.style.position = "fixed";
       openMenu.style.top = "70px";
@@ -1273,8 +1462,22 @@
     })[0] || null;
   }
 
-  function buttonByText(re) {
-    return [].filter.call(document.querySelectorAll("button"), function(b) { return re.test(b.textContent.trim()); })[0] || null;
+  // the page's "New problem" button, in any language: the maker's (#genBtn), or one with that label
+  function newProblemBtn() {
+    var mine = T("common.newProblem", "New problem").toLowerCase();
+    return [].filter.call(document.querySelectorAll("button"), function(b) {
+      var t = b.textContent.trim();
+      return /^New problem$/i.test(t) || t.toLowerCase() === mine || b.id === "genBtn";
+    })[0] || null;
+  }
+
+  // the page has the practice buttons (One step at a time among them), in any language
+  function hasStepMode() {
+    var mine = T("common.oneStep", "One step at a time").toLowerCase();
+    return [].some.call(document.querySelectorAll('[role="group"] button'), function(b) {
+      var t = b.textContent.trim();
+      return /^one step at a time$/i.test(t) || t.toLowerCase() === mine || (b.hasAttribute("aria-pressed") && (b.id === "stepBtn" || b.id === "pStep"));
+    });
   }
 
   function onKey(e) {
@@ -1297,7 +1500,7 @@
         if (box.select) box.select();
       }
     } else if (k === "n" || k === "N") {
-      var nb = document.querySelector(".ht-next:not([hidden])") || buttonByText(/^New problem$/i);
+      var nb = document.querySelector(".ht-next:not([hidden])") || newProblemBtn();
       if (nb) {
         e.preventDefault();
         nb.click();
@@ -1344,12 +1547,12 @@
   function onChecked(e) {
     var d = e.detail || {};
     if (d.verdict !== "right" || embedded()) return;
-    var maker = buttonByText(/^New problem$/i);
+    var maker = newProblemBtn();
     if (!maker) return;
     setTimeout(safe(function() {
       // put the button under the "✓ Correct!" message
       var msg = [].filter.call(document.querySelectorAll("[aria-live]"), function(x) {
-        return x.offsetParent !== null && /✓|correct/i.test(x.textContent);
+        return x.offsetParent !== null && (/✓|correct/i.test(x.textContent) || x.textContent.indexOf(T("common.correct", "✓ Correct!")) >= 0);
       })[0];
       if (!msg) return;
       var old = document.querySelector(".ht-next");
@@ -1357,8 +1560,8 @@
       var b = document.createElement("button");
       b.type = "button";
       b.className = "ht-next";
-      b.textContent = "Next problem →";
-      b.title = "Another problem with the same settings (shortcut: N)";
+      b.textContent = T("tools.next", "Next problem →");
+      b.title = T("tools.nextTitle", "Another problem with the same settings (shortcut: N)");
       b.addEventListener("click", function() {
         b.remove();
         maker.click();
@@ -1488,7 +1691,7 @@
       padEl = document.createElement("div");
       padEl.className = "ht-pad";
       padEl.setAttribute("role", "toolbar");
-      padEl.setAttribute("aria-label", "Math keys");
+      padEl.setAttribute("aria-label", T("tools.mathKeys", "Math keys"));
       document.body.appendChild(padEl);
       // keep the box focused (and the phone keyboard open) when a key is pressed
       // (not on a touch pointerdown: Safari then drops the tap's click, so the key does nothing; the mousedown below keeps the focus there)
@@ -1501,15 +1704,16 @@
       }
     }
     var keys = (PAD[page] || "+ − × ÷ / ( ) . = ,").split(" ");
-    var label = { space: "space", "^": "xⁿ", "²": "x²" };
+    var space = T("tools.padSpace", "space"),
+      label = { space: space, "^": "xⁿ", "²": "x²" };
     padEl.innerHTML = keys.map(function(k) {
-        return '<button type="button" data-k="' + esc(k) + '"' + (k === "space" ? ' class="wide"' : "") + ' aria-label="' + esc(k) + '">' +
+        return '<button type="button" data-k="' + esc(k) + '"' + (k === "space" ? ' class="wide"' : "") + ' aria-label="' + esc(k === "space" ? space : k) + '">' +
           esc(label[k] || k) + "</button>";
       }).join("") +
-      '<button type="button" data-k="left" aria-label="Move left">←</button>' +
-      '<button type="button" data-k="right" aria-label="Move right">→</button>' +
-      '<button type="button" data-k="back" aria-label="Delete">⌫</button>' +
-      '<button type="button" data-k="done" class="done" aria-label="Done">Done</button>';
+      '<button type="button" data-k="left" aria-label="' + esc(T("tools.padLeft", "Move left")) + '">←</button>' +
+      '<button type="button" data-k="right" aria-label="' + esc(T("tools.padRight", "Move right")) + '">→</button>' +
+      '<button type="button" data-k="back" aria-label="' + esc(T("tools.padDelete", "Delete")) + '">⌫</button>' +
+      '<button type="button" data-k="done" class="done" aria-label="' + esc(T("tools.padDone", "Done")) + '">' + esc(T("tools.padDone", "Done")) + "</button>";
     padEl.hidden = false;
     root.classList.add("ht-padding");
     placePad();
@@ -1536,7 +1740,7 @@
     save(KEY, S);
     if (!S.keypad) hidePad();
     else { var a = document.activeElement; if (padTarget(a)) showPad(a); }
-    announce(S.keypad ? "Math keys on" : "Math keys off");
+    announce(S.keypad ? T("tools.mathKeysOn", "Math keys on") : T("tools.mathKeysOff", "Math keys off"));
   }
 
   /* ===================== a QR code for this page ===================== */
@@ -1563,12 +1767,12 @@
       var w = qrWait || [];
       qrWait = null;
       if (window.HelperQR) w.forEach(function(f) { safe(f)(); });
-      else announce("Couldn’t load the QR code maker");
+      else announce(T("tools.qrFail", "Couldn’t load the QR code maker"));
     };
     sc.onerror = function() {
       qrWait = null;
       sc.remove();
-      announce("Couldn’t load the QR code maker. Check the connection and try again.");
+      announce(T("tools.qrFailNet", "Couldn’t load the QR code maker. Check the connection and try again."));
     };
     document.head.appendChild(sc);
   }
@@ -1579,7 +1783,7 @@
         label = labelFor(location.search);
       window.HelperQR.show(location.href, {
         title: (h1 && h1.textContent.replace(/\s+/g, " ").trim()) || document.title,
-        sub: label ? "This problem: " + label.slice(0, 80) : "Open this page on a phone",
+        sub: label ? T("tools.qrThis", "This problem: {p}", { p: label.slice(0, 80) }) : T("tools.qrPage", "Open this page on a phone"),
         filename: (window.HelperSite ? window.HelperSite.path(page) : page).replace(/^.*\//, "").replace(/\.html$/, "") + "-qr.svg"
       });
     });
@@ -1600,13 +1804,13 @@
       var w = embedWait || [];
       embedWait = null;
       if (window.HelperEmbed) w.forEach(function(f) { safe(f)(); });
-      else announce("Couldn’t load the embed maker");
+      else announce(T("tools.embedFail", "Couldn’t load the embed maker"));
     };
     sc.onerror = function() {
       embedWait = null;
       sc.remove();
       root.classList.remove("ht-site-wait");
-      announce("Couldn’t load the embed maker. Check the connection and try again.");
+      announce(T("tools.embedFailNet", "Couldn’t load the embed maker. Check the connection and try again."));
     };
     document.head.appendChild(sc);
   }
@@ -1621,9 +1825,9 @@
     b.type = "button";
     b.id = "htEmbed";
     b.className = copy.className;
-    b.textContent = "Embed";
+    b.textContent = T("tools.embed", "Embed");
     b.setAttribute("aria-haspopup", "dialog");
-    b.title = "Put this problem on your class website, Google Sites, Canvas or a blog (E)";
+    b.title = T("tools.embedTitle", "Put this problem on your class website, Google Sites, Canvas or a blog (E)");
     b.addEventListener("click", safe(showEmbed));
     copy.parentNode.insertBefore(b, copy.nextSibling);
   }
@@ -1662,7 +1866,7 @@
       box = document.createElement("div");
       box.id = "htByHand";
       box.className = "ht-byhand";
-      box.innerHTML = '<a href="#">✍ Now try it by hand →</a><span>Work this same problem yourself on the Scratch Paper: carry, borrow and write each digit, checked square by square.</span>';
+      box.innerHTML = '<a href="#">' + T("tools.byHand", "✍ Now try it by hand →") + "</a><span>" + T("tools.byHandNote", "Work this same problem yourself on the Scratch Paper: carry, borrow and write each digit, checked square by square.") + "</span>";
       band.insertAdjacentElement("afterend", box);
     }
     box.querySelector("a").setAttribute("href", href);
@@ -1693,7 +1897,7 @@
 
   function loadTutor() {
     if (window.HelperTutor || page === "tests.html") return;
-    var modes = [].some.call(document.querySelectorAll('[role="group"] button'), function(b) { return /^one step at a time$/i.test(b.textContent.trim()); });
+    var modes = hasStepMode();
     if (!modes || !document.querySelector(".log")) return;
     if (embedded() && linkPractice() !== "tutor") return; // practice sets and worksheets: only when the link asks
     var src = SELF;
@@ -1711,7 +1915,7 @@
   // the steps one at a time by themselves, read aloud (practice=play); on the pages with step mode, never in an embed
   function loadPlay() {
     if (window.HelperPlay || page === "tests.html" || embedded()) return;
-    var modes = [].some.call(document.querySelectorAll('[role="group"] button'), function(b) { return /^one step at a time$/i.test(b.textContent.trim()); });
+    var modes = hasStepMode();
     if (!modes || !document.querySelector(".log")) return;
     var src = SELF;
     if (!src) {
@@ -1752,7 +1956,7 @@
     var f = document.createElement("form");
     f.className = "ht-search";
     f.setAttribute("role", "search");
-    f.innerHTML = '<input type="text" aria-label="Type any problem, or a math word" placeholder="Type any problem…" spellcheck="false" autocomplete="off">';
+    f.innerHTML = '<input type="text" aria-label="' + esc(T("tools.searchLabel", "Type any problem, or a math word")) + '" placeholder="' + esc(T("tools.searchHint", "Type any problem…")) + '" spellcheck="false" autocomplete="off">';
     f.addEventListener("submit", function(e) { e.preventDefault(); var v = f.firstChild.value.trim(); if (v) goSearch(v); });
     var home = nav.querySelector(".sn-home");
     if (home && home.nextSibling) nav.insertBefore(f, home.nextSibling);
@@ -1761,12 +1965,12 @@
     var bar = document.createElement("div");
     bar.className = "ht-bar";
     bar.innerHTML =
-      '<button type="button" class="ht-btn" id="htRecent" aria-haspopup="dialog" title="Problems you worked on this page">Recent</button>' +
-      '<button type="button" class="ht-btn" id="htSmaller" aria-label="Smaller text" title="Smaller text (−)">A−</button>' +
-      '<button type="button" class="ht-btn" id="htBigger" aria-label="Bigger text" title="Bigger text (+)">A+</button>' +
-      '<button type="button" class="ht-btn" id="htBig" aria-pressed="false" title="Big screen, for a projector (B)">Big screen</button>' +
-      '<button type="button" class="ht-btn" id="htQR" aria-haspopup="dialog" aria-label="QR code for this page" title="A QR code for this page, to open it on a phone (Q)">QR</button>' +
-      '<button type="button" class="ht-btn" id="htKeys" aria-haspopup="dialog" aria-label="Keyboard shortcuts" title="Keyboard shortcuts (?)">?</button>';
+      '<button type="button" class="ht-btn" id="htRecent" aria-haspopup="dialog" title="' + esc(T("tools.recentTitle", "Problems you worked on this page")) + '">' + T("tools.recent", "Recent") + "</button>" +
+      '<button type="button" class="ht-btn" id="htSmaller" aria-label="' + esc(T("tools.smaller", "Smaller text")) + '" title="' + esc(T("tools.smallerTitle", "Smaller text (−)")) + '">A−</button>' +
+      '<button type="button" class="ht-btn" id="htBigger" aria-label="' + esc(T("tools.bigger", "Bigger text")) + '" title="' + esc(T("tools.biggerTitle", "Bigger text (+)")) + '">A+</button>' +
+      '<button type="button" class="ht-btn" id="htBig" aria-pressed="false" title="' + esc(T("tools.bigTitle", "Big screen, for a projector (B)")) + '">' + T("tools.big", "Big screen") + "</button>" +
+      '<button type="button" class="ht-btn" id="htQR" aria-haspopup="dialog" aria-label="' + esc(T("tools.qrLabel", "QR code for this page")) + '" title="' + esc(T("tools.qrTitle", "A QR code for this page, to open it on a phone (Q)")) + '">QR</button>' +
+      '<button type="button" class="ht-btn" id="htKeys" aria-haspopup="dialog" aria-label="' + esc(T("tools.keysHead", "Keyboard shortcuts")) + '" title="' + esc(T("tools.keysTitle", "Keyboard shortcuts (?)")) + '">?</button>';
     nav.insertBefore(bar, f.nextSibling);
     document.getElementById("htRecent").addEventListener("click", function(e) {
       e.stopPropagation();
@@ -1826,8 +2030,8 @@
     a.target = "_blank";
     a.rel = "noopener";
     a.href = reportHref();
-    a.textContent = "Report a problem";
-    a.title = "Tell us about a wrong answer or a confusing step (opens a form on GitHub with this problem's link filled in)";
+    a.textContent = T("tools.report", "Report a problem");
+    a.title = T("tools.reportTitle", "Tell us about a wrong answer or a confusing step (opens a form on GitHub with this problem's link filled in)");
     a.addEventListener("click", function() { a.href = reportHref(); }); // the problem showing when it's pressed
     copy.parentNode.insertBefore(a, copy.nextSibling);
   }
@@ -1859,20 +2063,20 @@
     var box = document.createElement("div");
     box.className = "ht-sendbox";
     if (sentProblems[page + "|" + text]) {
-      box.textContent = "Sent. Thank you!";
+      box.textContent = T("tools.sent", "Sent. Thank you!");
       notice.appendChild(box);
       return;
     }
     var b = document.createElement("button");
     b.type = "button";
     b.className = "ht-send";
-    b.textContent = "Send this problem so we can teach the page";
+    b.textContent = T("tools.send", "Send this problem so we can teach the page");
     var note = document.createElement("small");
-    note.textContent = " Only the problem you typed is sent, nothing else. Please leave out names or anything personal.";
+    note.textContent = " " + T("tools.sendNote", "Only the problem you typed is sent, nothing else. Please leave out names or anything personal.");
     b.addEventListener("click", safe(function() {
       gc.count({ path: "sent/" + page.replace(/\.html$/, "") + "/" + text, title: "A problem a visitor sent", event: true });
       sentProblems[page + "|" + text] = true;
-      box.textContent = "Sent. Thank you! The page will learn to read problems like this one.";
+      box.textContent = T("tools.sentThanks", "Sent. Thank you! The page will learn to read problems like this one.");
     }));
     box.appendChild(b);
     box.appendChild(note);
@@ -1984,7 +2188,24 @@
     })();
   });
 
-  window.HelperTools = { settings: function() { return S; }, setBig: setBig, setScale: setScale, showQR: showQR, showEmbed: showEmbed, words: words, togglePad: togglePad, voiceScore: voiceScore, spoken: spoken, version: SITE_VERSION };
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", main);
-  else main();
+  window.HelperTools = { settings: function() { return S; }, setBig: setBig, setScale: setScale, showQR: showQR, showEmbed: showEmbed, words: words, togglePad: togglePad, voiceScore: voiceScore, spoken: spoken, speechLang: speechLang, speechWords: function() { return MATH.lex(); }, version: SITE_VERSION };
+  // the bar, the buttons and the menus are built once the strings of the visitor's language are in (on a page that
+  // doesn't load i18n.js in its <head>, nav.js fetches them just after this file runs); without i18n.js, in English
+  var started = false;
+
+  function begin() {
+    if (started) return;
+    started = true;
+    main();
+  }
+
+  function start() {
+    var I = window.HelperI18n;
+    if (I && I.ready) {
+      I.ready(begin);
+      setTimeout(begin, 4000); // the strings never came: English
+    } else begin();
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start);
+  else start();
 })();

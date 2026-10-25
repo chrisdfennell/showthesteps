@@ -28,6 +28,22 @@
   "use strict";
   if (window.HelperQR) return;
 
+  /* ---- the words, in the visitor's language (assets/i18n.js): the qr.* keys, and en.js repeats the English for
+     translators. English always shows the words written here; so does a page without i18n.js. ---- */
+  function tr(key, en, vars) {
+    var I = window.HelperI18n;
+    if (I && I.lang && I.lang !== "en" && I.t) {
+      var s = I.t(key, vars);
+      if (s !== key) return s;
+    }
+    return vars ? String(en).replace(/\{(\w+)(\|[^{}]*)?\}/g, function(m, k, forms) { // {name}, and {n|one|other}
+      if (!Object.prototype.hasOwnProperty.call(vars, k)) return m;
+      if (!forms) return String(vars[k]);
+      var f = forms.slice(1).split("|");
+      return Number(vars[k]) === 1 ? f[0] : f[f.length - 1];
+    }) : en;
+  }
+
   /* ===================== the tables ===================== */
   var LEVELS = { L: 0, M: 1, Q: 2, H: 3 };
   var FORMAT_BITS = [1, 0, 3, 2]; // L M Q H as they are written in the format information
@@ -573,7 +589,7 @@
         x += run - 1;
       }
     }
-    var label = opts.label || "QR code";
+    var label = opts.label || tr("qr.code", "QR code");
     var wh = opts.size ? ' width="' + Math.round(opts.size) + '" height="' + Math.round(opts.size) + '"' : "";
     return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + n + " " + n + '"' + wh +
       ' shape-rendering="crispEdges" role="img" aria-label="' + esc(label) + '"><title>' + esc(label) + "</title>" +
@@ -756,8 +772,8 @@
     close();
     addStyle();
     text = String(text);
-    var title = opts.title || "QR code",
-      label = "QR code for " + title,
+    var title = opts.title || tr("qr.code", "QR code"),
+      label = tr("qr.for", "QR code for {t}", { t: title }),
       ecc = level(opts.ecc),
       n = utf8(text).length;
     if (!version(text, ecc) && version(text, "L")) ecc = "L";
@@ -775,16 +791,16 @@
     ov.innerHTML = '<div class="hq-card">' +
       '<div class="hq-top"><div><h2 class="hq-title" id="hqTitle">' + esc(title) + "</h2>" +
       (opts.sub ? '<div class="hq-sub">' + esc(opts.sub) + "</div>" : "") + "</div>" +
-      '<button type="button" class="hq-x" aria-label="Close">✕</button></div>' +
+      '<button type="button" class="hq-x" aria-label="' + esc(tr("qr.close", "Close")) + '">✕</button></div>' +
       (ok ? '<div class="hq-code">' + svg(text, so) + "</div>" :
-        '<p class="hq-note"><b>This link is too long for a QR code.</b> It has ' + n.toLocaleString() + " characters, and a QR code holds at most " +
-        capacity("L").toLocaleString() + ". " + esc(opts.tooLongHint || "Copy the link and send it instead.") + "</p>") +
-      '<div class="hq-link">' + link + (n > 64 ? " · " + n.toLocaleString() + " characters" : "") + "</div>" +
-      (ok ? '<div class="hq-acts"><button type="button" class="hq-btn hq-main" data-a="full">Show full screen</button>' +
-        '<button type="button" class="hq-btn" data-a="print">Print</button>' +
-        '<button type="button" class="hq-btn" data-a="dl">Download SVG</button></div>' +
-        '<p class="hq-hint">Point a phone’s camera at the code to open the link.</p>' : "") +
-      '<button type="button" class="hq-exit">Exit full screen ✕</button></div>';
+        '<p class="hq-note">' + tr("qr.tooLong", "<b>This link is too long for a QR code.</b> It has {n} characters, and a QR code holds at most {max}.", { n: n.toLocaleString(), max: capacity("L").toLocaleString() }) +
+        " " + esc(opts.tooLongHint || tr("qr.tooLongHint", "Copy the link and send it instead.")) + "</p>") +
+      '<div class="hq-link">' + link + (n > 64 ? " · " + tr("qr.chars", "{n} characters", { n: n.toLocaleString() }) : "") + "</div>" +
+      (ok ? '<div class="hq-acts"><button type="button" class="hq-btn hq-main" data-a="full">' + tr("qr.full", "Show full screen") + "</button>" +
+        '<button type="button" class="hq-btn" data-a="print">' + tr("qr.print", "Print") + "</button>" +
+        '<button type="button" class="hq-btn" data-a="dl">' + tr("qr.download", "Download SVG") + "</button></div>" +
+        '<p class="hq-hint">' + tr("qr.hint", "Point a phone’s camera at the code to open the link.") + "</p>" : "") +
+      '<button type="button" class="hq-exit">' + tr("qr.exit", "Exit full screen ✕") + "</button></div>";
     document.body.appendChild(ov);
     cur = { ov: ov, back: document.activeElement };
     document.documentElement.classList.add("hq-open");

@@ -9,6 +9,10 @@
    - HelperVoice.toMath(text) turns spoken math into what the boxes read: number words into digits, "plus" into +,
      "x squared" into x^2, "the square root of 72" into sqrt(72), money, percents, times of day. A sentence (a story
      problem) keeps its words: only the numbers become digits, and it is split into sentences.
+   - In another language (assets/i18n.js): it listens in that language (HelperI18n.tag, "es-US", or the browser's own
+     variety of it, "es-MX"), its words are the voice.* keys, and what was said goes into the box through
+     HelperI18n.normalize ("cuarenta y siete más treinta y ocho" → 47 + 38) instead of toMath; a story box gets the
+     words as they were said. HelperVoice.boxText(said) is what goes in the box.
    tools.js loads this file (not in embeds, worksheets, practice sets or the self-test). ES5, and wrapped so a problem
    here can never break the page. */
 (function() {
@@ -28,6 +32,37 @@
   function el(tag, cls, html) { var x = document.createElement(tag); if (cls) x.className = cls; if (html) x.innerHTML = html; return x; }
 
   function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+
+  /* ---- the words, in the visitor's language (assets/i18n.js): the voice.* keys, and en.js repeats the English for
+     translators. English always shows the words written here; so does a page without i18n.js. ---- */
+  function tr(key, en, vars) {
+    var I = window.HelperI18n;
+    if (I && I.lang !== "en" && I.t) {
+      var s = I.t(key, vars);
+      if (s !== key) return s;
+    }
+    return vars ? fillIn(en, vars) : en;
+  }
+
+  function fillIn(s, vars) { return String(s).replace(/\{(\w+)\}/g, function(m, k) { return has(vars, k) ? String(vars[k]) : m; }); }
+
+  function foreign() { return !!(window.HelperI18n && window.HelperI18n.lang && window.HelperI18n.lang !== "en"); }
+
+  // fn once the language's strings are in (at once without i18n.js; never later than 4 s)
+  function whenReady(fn) {
+    var done = false,
+      go = function() {
+        if (!done) {
+          done = true;
+          fn();
+        }
+      };
+    var I = window.HelperI18n;
+    if (I && I.ready) {
+      I.ready(go);
+      setTimeout(go, 4000);
+    } else go();
+  }
 
   /* ===================== spoken math → what the boxes read ===================== */
   var ONES = { zero: 0, one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9 };
@@ -1066,8 +1101,13 @@
 
   function consent() { return memOK || load().ok || null; }
 
+  // the language to listen for: the page's (HelperI18n.tag, "es-US"), or the browser's own variety of it ("es-MX")
   function lang() {
     var n = String(navigator.language || "");
+    if (foreign()) {
+      var I = window.HelperI18n;
+      return n.toLowerCase().split("-")[0] === I.lang && /-/.test(n) ? n : (I.tag || I.lang);
+    }
     return /^en-/i.test(n) ? n : "en-US";
   }
 
@@ -1096,16 +1136,16 @@
     listening = on;
     btns.forEach(function(b) {
       b.setAttribute("aria-pressed", String(on));
-      b.title = on ? "Stop listening" : "Say the problem (speech to text)";
+      b.title = on ? tr("voice.stopTitle", "Stop listening") : tr("voice.buttonTitle", "Say the problem (speech to text)");
     });
   }
 
   function makeButton() {
     var b = el("button", "ht-mic", MIC);
     b.type = "button";
-    b.setAttribute("aria-label", "Say the problem");
+    b.setAttribute("aria-label", tr("voice.button", "Say the problem"));
     b.setAttribute("aria-pressed", "false");
-    b.title = "Say the problem (speech to text)";
+    b.title = tr("voice.buttonTitle", "Say the problem (speech to text)");
     b.addEventListener("click", onButton);
     btns.push(b);
     return b;
@@ -1150,17 +1190,17 @@
       who = maker(),
       html;
     if (local) {
-      html = "<p><b>Say the problem.</b> This browser turns what you say into text <b>on this device</b>: the recording isn’t sent anywhere, " +
-        "and Show The Steps doesn’t receive or keep it.</p>";
+      html = "<p>" + tr("voice.noteLocal", "<b>Say the problem.</b> This browser turns what you say into text <b>on this device</b>: the recording isn’t sent anywhere, " +
+        "and Show The Steps doesn’t receive or keep it.") + "</p>";
     } else {
-      html = "<p><b>Say the problem.</b> Your browser will send what you say to its speech service (Google, Microsoft or Apple) to turn it into text. " +
-        "Show The Steps doesn’t receive or keep the recording.</p>" +
-        (who ? '<p class="small">In this browser that is ' + who + "’s speech service. Only the words come back, into the box.</p>" : "");
+      html = "<p>" + tr("voice.noteCloud", "<b>Say the problem.</b> Your browser will send what you say to its speech service (Google, Microsoft or Apple) to turn it into text. " +
+          "Show The Steps doesn’t receive or keep the recording.") + "</p>" +
+        (who ? '<p class="small">' + tr("voice.noteWho", "In this browser that is {who}’s speech service. Only the words come back, into the box.", { who: who }) + "</p>" : "");
     }
-    html += '<button type="button" class="ok" data-k="ok">OK, use the microphone</button>' +
-      (localState === "downloadable" ? '<button type="button" data-k="local">Keep it on this device (one-time download)</button>' : "") +
-      '<button type="button" data-k="no">Not now</button>' +
-      '<p class="small" style="margin:8px 0 0">More on the <a href="' + esc(privacyLink()) + '">Privacy</a> page.</p>';
+    html += '<button type="button" class="ok" data-k="ok">' + tr("voice.ok", "OK, use the microphone") + "</button>" +
+      (localState === "downloadable" ? '<button type="button" data-k="local">' + tr("voice.keepLocal", "Keep it on this device (one-time download)") + "</button>" : "") +
+      '<button type="button" data-k="no">' + tr("voice.notNow", "Not now") + "</button>" +
+      '<p class="small" style="margin:8px 0 0">' + tr("voice.privacy", 'More on the <a href="{href}">Privacy</a> page.', { href: esc(privacyLink()) }) + "</p>";
     noteEl.innerHTML = html;
     noteEl.className = "ht-mic-note" + (spot && spot.bar ? " ht-mic-float" : "");
     noteEl.hidden = false;
@@ -1195,7 +1235,7 @@
     }
     if (k === "local") {
       b.disabled = true;
-      setStatus("Downloading the speech model for this device (once)…", "busy");
+      setStatus(tr("voice.downloading", "Downloading the speech model for this device (once)…"), "busy");
       installLocal().then(function(ok) {
         if (ok) {
           localState = "available";
@@ -1203,22 +1243,25 @@
           showNote(); // now it says "on this device"
         } else {
           b.disabled = false;
-          setStatus("The speech model couldn’t be downloaded. You can use the browser’s speech service instead, or type the problem.", "err");
+          setStatus(tr("voice.downloadFailed", "The speech model couldn’t be downloaded. You can use the browser’s speech service instead, or type the problem."), "err");
         }
       });
     }
   }
 
   /* ---------- listening ---------- */
-  var ERRORS = {
-    "not-allowed": "The microphone is blocked for this site. Allow it in the browser’s site settings (the icon at the left of the address bar, or Settings › Safari › Microphone on an iPhone), then press the microphone again.",
-    "service-not-allowed": "This browser won’t turn speech into text here. On an iPhone, iPad or Mac, turn on Dictation (Settings › General › Keyboard) and Siri, then try again; or type the problem.",
-    "audio-capture": "No microphone was found. Check that one is plugged in and turned on, then try again.",
-    "no-speech": "No speech was heard. Press the microphone and say the problem, a little closer to it.",
-    "language-not-supported": "This browser can’t turn English speech into text. Type the problem instead.",
-    "network": "The browser’s speech service couldn’t be reached. Check the internet connection and try again, or type the problem. (Some browsers, like Brave, don’t include a speech service.)"
+  var ERRORS = { // [key, English]
+    "not-allowed": ["voice.err.blocked", "The microphone is blocked for this site. Allow it in the browser’s site settings (the icon at the left of the address bar, or Settings › Safari › Microphone on an iPhone), then press the microphone again."],
+    "service-not-allowed": ["voice.err.service", "This browser won’t turn speech into text here. On an iPhone, iPad or Mac, turn on Dictation (Settings › General › Keyboard) and Siri, then try again; or type the problem."],
+    "audio-capture": ["voice.err.noMic", "No microphone was found. Check that one is plugged in and turned on, then try again."],
+    "no-speech": ["voice.err.noSpeech", "No speech was heard. Press the microphone and say the problem, a little closer to it."],
+    "language-not-supported": ["voice.err.language", "This browser can’t turn English speech into text. Type the problem instead."],
+    "network": ["voice.err.network", "The browser’s speech service couldn’t be reached. Check the internet connection and try again, or type the problem. (Some browsers, like Brave, don’t include a speech service.)"]
   };
-  var NEED_NET = "Turning speech into text needs an internet connection in this browser (its speech service is online). Connect and try again, or type the problem.";
+
+  function errText(code) { var e = ERRORS[code] || ERRORS["no-speech"]; return tr(e[0], e[1]); }
+
+  function needNet() { return tr("voice.needNet", "Turning speech into text needs an internet connection in this browser (its speech service is online). Connect and try again, or type the problem."); }
 
   function onButton(e) {
     if (e) e.stopPropagation();
@@ -1246,7 +1289,7 @@
     }
     closeNote(false);
     if (!local && offline()) {
-      setStatus(NEED_NET, "err", true);
+      setStatus(needNet(), "err", true);
       return;
     }
     var r;
@@ -1262,7 +1305,7 @@
       }
     } catch (err) {
       warn(err);
-      setStatus("The microphone couldn’t be started. Try again, or type the problem.", "err");
+      setStatus(tr("voice.cantStart", "The microphone couldn’t be started. Try again, or type the problem."), "err");
       return;
     }
     rec = r;
@@ -1284,7 +1327,7 @@
       }
       heard = parts.join(" ").replace(/\s+/g, " ").trim();
       if (heard && !stopping) {
-        setStatus("Listening… press the microphone again when you’re done.", "busy", true, heard);
+        setStatus(tr("voice.listeningMore", "Listening… press the microphone again when you’re done."), "busy", true, heard);
         clearTimeout(quietTimer);
         quietTimer = setTimeout(function() { if (rec === r) stop(); }, 2600); // a pause: done
       }
@@ -1298,13 +1341,13 @@
     try { r.start(); } catch (err2) {
       warn(err2);
       rec = null;
-      setStatus("The microphone couldn’t be started. Try again, or type the problem.", "err");
+      setStatus(tr("voice.cantStart", "The microphone couldn’t be started. Try again, or type the problem."), "err");
       return;
     }
     setListening(true);
     var ps = document.querySelector(".ht-cam-status");
     if (ps) ps.hidden = true;
-    setStatus("Listening… say the problem." + (local ? " (Turned into text on this device.)" : ""), "busy", true);
+    setStatus(local ? tr("voice.listeningLocal", "Listening… say the problem. (Turned into text on this device.)") : tr("voice.listening", "Listening… say the problem."), "busy", true);
     clearTimeout(quietTimer);
     quietTimer = setTimeout(function() { if (rec === r && !heard) stop(); }, 9000); // nothing said
     clearTimeout(capTimer);
@@ -1331,16 +1374,16 @@
     clearTimeout(capTimer);
     setListening(false);
     if (r) { r.onresult = r.onerror = r.onend = null; }
-    if (cancelled) { setStatus("Stopped. Nothing was put in the box.", "", false); return; }
+    if (cancelled) { setStatus(tr("voice.stopped", "Stopped. Nothing was put in the box."), "", false); return; }
     if (errored === "aborted" && !heard) { setStatus(""); return; }
     if (heard) { put(heard); return; }
-    if (errored === "network" && offline()) { setStatus(NEED_NET, "err", true); return; }
+    if (errored === "network" && offline()) { setStatus(needNet(), "err", true); return; }
     if (errored && (errored === "service-not-allowed" || errored === "language-not-supported") && localState === "unavailable" && consent() === "local") {
       memOK = null;
       showNote(); // on-device didn't work: ask about the browser's service
       return;
     }
-    setStatus(ERRORS[errored] || ERRORS["no-speech"], "err", errored === "not-allowed");
+    setStatus(errText(errored), "err", errored === "not-allowed");
   }
 
   function fire(box, type) { box.dispatchEvent(new Event(type, { bubbles: true })); }
@@ -1351,10 +1394,10 @@
     var box = spot.box();
     if (!box) return;
     var story = box.tagName === "TEXTAREA" && /story/.test(box.className + " " + box.id);
-    var text = toMath(said, story ? { story: true } : null);
+    var text = boxText(said, story);
     lastPut = { said: said, text: text };
     if (!text) {
-      setStatus(ERRORS["no-speech"], "err");
+      setStatus(errText("no-speech"), "err");
       return;
     }
     if (spot.ready) spot.ready();
@@ -1363,13 +1406,27 @@
     fire(box, "input");
     if (!spot.go) fire(box, "change"); // a whole problem in the first box: the page reads it now
     if (!coarse || spot.go) { try { box.focus(); var n = box.value.length; if (box.setSelectionRange) box.setSelectionRange(n, n); } catch (e) {} }
-    setStatus("Heard “" + esc(said) + "”. " + (spot.go ? "Working it out…" : "Check the box, and fix anything that was misheard."), "", false);
+    setStatus(spot.go ? tr("voice.heardGo", "Heard “{said}”. Working it out…", { said: esc(said) }) : tr("voice.heardCheck", "Heard “{said}”. Check the box, and fix anything that was misheard.", { said: esc(said) }), "", false);
     if (spot.go) setTimeout(safe(function() { go(box); }), 450);
+  }
+
+  /* what was said, as the box should read it. English: spoken math turned into what the boxes read (toMath). Another
+     language: the language's own reading of typed problems (HelperI18n.normalize: "tres cuartos de veinte" →
+     "3/4 of 20"), without the question mark at the end; a story box keeps the words as they were said. */
+  function boxText(said, story) {
+    if (!foreign()) return toMath(said, story ? { story: true } : null);
+    var s = String(said == null ? "" : said).replace(/\s+/g, " ").trim();
+    if (!s) return "";
+    if (story) return s.charAt(0).toUpperCase() + s.slice(1);
+    var I = window.HelperI18n,
+      n = I && I.normalize ? I.normalize(s) : s;
+    return String(n == null ? s : n).replace(/^[\s¿¡]+/, "").replace(/[\s.?!]+$/, "").trim();
   }
 
   function go(box) { // press the page's own button (Start, Show the steps), or Enter in the search box
     var scope = box.parentNode && box.parentNode.parentNode ? box.parentNode.parentNode : document;
-    var b = [].filter.call(scope.querySelectorAll("button"), function(x) { return x.textContent.replace(/\s+/g, " ").trim().indexOf(spot.go) === 0; })[0];
+    var own = spot.goBtn && spot.goBtn(); // photo.js knows the button itself, in any language
+    var b = own || [].filter.call(scope.querySelectorAll("button"), function(x) { return x.textContent.replace(/\s+/g, " ").trim().indexOf(spot.go) === 0; })[0];
     if (b) { b.click(); return; }
     var form = box.form;
     if (form) {
@@ -1420,7 +1477,7 @@
     statusEl.hidden = true;
     noteEl = el("div", "ht-mic-note");
     noteEl.setAttribute("role", "group");
-    noteEl.setAttribute("aria-label", "Before you use the microphone");
+    noteEl.setAttribute("aria-label", tr("voice.noteLabel", "Before you use the microphone"));
     noteEl.hidden = true;
     noteEl.addEventListener("click", safe(onNote));
     noteEl.addEventListener("keydown", function(e) { if (e.key === "Escape") closeNote(true); });
@@ -1440,6 +1497,7 @@
 
   window.HelperVoice = {
     toMath: toMath,
+    boxText: boxText, // what goes in the box: toMath in English, HelperI18n.normalize in another language
     supported: !!SR,
     start: safe(start),
     stop: safe(function() { stop(); }),
@@ -1448,6 +1506,7 @@
     last: function() { return lastPut; },
     local: function() { return localState; }
   };
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", safe(init));
-  else safe(init)();
+  var begin = function() { whenReady(safe(init)); }; // the button's words in the page's language
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", begin);
+  else begin();
 })();

@@ -16,6 +16,7 @@
 <link rel="canonical" href="https://showthesteps.org/helpers/multiplication">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","name":"Multiplication, step by step – The Product Ladder","description":"One rung per digit. Multiply, stack the partial products, add them up — then count the decimal places. Fractions go straight across, no common denominator needed.","url":"https://showthesteps.org/helpers/multiplication","inLanguage":"en-US","isAccessibleForFree":true,"learningResourceType":["Interactive worked examples","Practice problems"],"interactivityType":"active","educationalUse":["Practice","Self-assessment"],"teaches":"Multiplication","educationalLevel":["Elementary school (grades K–5)","Middle school (grades 6–8)"],"audience":{"@type":"EducationalAudience","educationalRole":"student"},"publisher":{"@type":"Organization","name":"Show The Steps","url":"https://showthesteps.org/"},"isPartOf":{"@type":"WebSite","name":"Show The Steps","url":"https://showthesteps.org/"}}</script>
 <script src="../assets/site.js"></script>
+<script src="../assets/i18n.js" data-strings="multiplication"></script>
 <script src="../assets/nav.js" defer></script>
 <script src="../assets/progress.js" defer></script>
 <link rel="stylesheet" href="../assets/fonts/fonts.css">
@@ -1622,101 +1623,101 @@
 <div class="page">
   <header class="masthead">
     <div>
-      <div class="eyebrow">Multiplying, worked out</div>
+      <div class="eyebrow" data-i18n="multiplication.eyebrow">Multiplying, worked out</div>
       <h1>The Product <em>Ladder</em></h1>
-      <p class="tagline">One rung per digit. Multiply, stack the partial products, add them up &mdash;
+      <p class="tagline" data-i18n="multiplication.tagline">One rung per digit. Multiply, stack the partial products, add them up &mdash;
         then count the decimal places. Fractions go straight across, no common denominator needed.</p>
     </div>
     <button class="theme-btn" id="themeBtn" type="button">Dark mode</button>
   </header>
 
   <section class="problem">
-    <div class="modes" role="group" aria-label="What kind of numbers">
-      <button type="button" data-mode="dec" aria-pressed="true">Decimals</button>
-      <button type="button" data-mode="frac" aria-pressed="false">Fractions</button>
+    <div class="modes" role="group" aria-label="What kind of numbers" data-i18n-attr="aria-label=multiplication.kindAria">
+      <button type="button" data-mode="dec" aria-pressed="true" data-i18n="common.decimals">Decimals</button>
+      <button type="button" data-mode="frac" aria-pressed="false" data-i18n="common.fractions">Fractions</button>
     </div>
 
     <div class="entry" id="decEntry">
       <div class="numfield">
-        <label for="aIn">First factor</label>
+        <label for="aIn" data-i18n="multiplication.firstFactor">First factor</label>
         <input class="dec-in" id="aIn" type="text" inputmode="decimal" value="2.4" autocomplete="off">
       </div>
       <span class="times">&times;</span>
       <div class="numfield">
-        <label for="bIn">Second factor</label>
+        <label for="bIn" data-i18n="multiplication.secondFactor">Second factor</label>
         <input class="dec-in" id="bIn" type="text" inputmode="decimal" value="1.3" autocomplete="off">
       </div>
     </div>
 
     <div class="entry hide" id="fracEntry">
       <div class="mixfield">
-        <span class="fieldcap">First</span>
-        <input class="whole" id="w1" type="text" inputmode="numeric" value="0" aria-label="First whole number">
+        <span class="fieldcap" data-i18n="multiplication.first">First</span>
+        <input class="whole" id="w1" type="text" inputmode="numeric" value="0" aria-label="First whole number" data-i18n-attr="aria-label=multiplication.firstWhole">
         <div class="stackfield">
-          <input id="n1" type="text" inputmode="numeric" value="2" aria-label="First numerator">
+          <input id="n1" type="text" inputmode="numeric" value="2" aria-label="First numerator" data-i18n-attr="aria-label=multiplication.firstNum">
           <div class="fbar"></div>
-          <input id="d1" type="text" inputmode="numeric" value="3" aria-label="First denominator">
+          <input id="d1" type="text" inputmode="numeric" value="3" aria-label="First denominator" data-i18n-attr="aria-label=multiplication.firstDen">
         </div>
       </div>
       <span class="times">&times;</span>
       <div class="mixfield">
-        <span class="fieldcap">Second</span>
-        <input class="whole" id="w2" type="text" inputmode="numeric" value="0" aria-label="Second whole number">
+        <span class="fieldcap" data-i18n="multiplication.second">Second</span>
+        <input class="whole" id="w2" type="text" inputmode="numeric" value="0" aria-label="Second whole number" data-i18n-attr="aria-label=multiplication.secondWhole">
         <div class="stackfield">
-          <input id="n2" type="text" inputmode="numeric" value="3" aria-label="Second numerator">
+          <input id="n2" type="text" inputmode="numeric" value="3" aria-label="Second numerator" data-i18n-attr="aria-label=multiplication.secondNum">
           <div class="fbar"></div>
-          <input id="d2" type="text" inputmode="numeric" value="4" aria-label="Second denominator">
+          <input id="d2" type="text" inputmode="numeric" value="4" aria-label="Second denominator" data-i18n-attr="aria-label=multiplication.secondDen">
         </div>
       </div>
     </div>
 
     <details class="maker" id="maker">
-      <summary>Make a problem for me <span>&mdash; pick what goes in it</span></summary>
+      <summary data-i18n="common.maker">Make a problem for me <span>&mdash; pick what goes in it</span></summary>
       <div class="maker-body">
         <div class="mrow" data-for="dec" data-dig>
-          <span class="lbl">Digits in the first number</span>
-          <div class="modes small" id="gA" role="group" aria-label="Digits in the first number"></div>
+          <span class="lbl" data-i18n="multiplication.digitsFirst">Digits in the first number</span>
+          <div class="modes small" id="gA" role="group" aria-label="Digits in the first number" data-i18n-attr="aria-label=multiplication.digitsFirst"></div>
         </div>
         <div class="mrow" data-for="dec" data-dig>
-          <span class="lbl">Digits in the second number</span>
-          <div class="modes small" id="gB" role="group" aria-label="Digits in the second number"></div>
+          <span class="lbl" data-i18n="multiplication.digitsSecond">Digits in the second number</span>
+          <div class="modes small" id="gB" role="group" aria-label="Digits in the second number" data-i18n-attr="aria-label=multiplication.digitsSecond"></div>
         </div>
         <div class="mrow" data-for="dec" data-dig>
-          <span class="lbl">Decimal places (both numbers together)</span>
-          <div class="modes small" id="gP" role="group" aria-label="Decimal places (both numbers together)"></div>
+          <span class="lbl" data-i18n="multiplication.placesLbl">Decimal places (both numbers together)</span>
+          <div class="modes small" id="gP" role="group" aria-label="Decimal places (both numbers together)" data-i18n-attr="aria-label=multiplication.placesLbl"></div>
         </div>
         <div class="mrow" data-for="dec">
-          <span class="lbl">Extras</span>
+          <span class="lbl" data-i18n="multiplication.extras">Extras</span>
           <div class="toggles">
-            <button type="button" class="tog" id="gTables"><b>12</b> Times tables only</button>
+            <button type="button" class="tog" id="gTables" data-i18n="multiplication.togTables"><b>12</b> Times tables only</button>
           </div>
         </div>
         <div class="mrow" data-for="frac">
-          <span class="lbl">Kind of fractions</span>
-          <div class="modes small" id="gKind" role="group" aria-label="Kind of fractions"></div>
+          <span class="lbl" data-i18n="multiplication.kindLbl">Kind of fractions</span>
+          <div class="modes small" id="gKind" role="group" aria-label="Kind of fractions" data-i18n-attr="aria-label=multiplication.kindLbl"></div>
         </div>
         <div class="mrow" data-for="frac">
-          <span class="lbl">Extras</span>
+          <span class="lbl" data-i18n="multiplication.extras">Extras</span>
           <div class="toggles">
-            <button type="button" class="tog" id="gCancel"><b>&#8600;</b> Can simplify before multiplying (cross-cancel)</button>
+            <button type="button" class="tog" id="gCancel" data-i18n="multiplication.togCancel"><b>&#8600;</b> Can simplify before multiplying (cross-cancel)</button>
           </div>
         </div>
         <p class="sample" id="sample"></p>
         <div class="maker-go">
-          <button type="button" class="go" id="genBtn">New problem</button>
+          <button type="button" class="go" id="genBtn" data-i18n="common.newProblem">New problem</button>
           <span class="msg" id="genMsg"></span>
         </div>
       </div>
     </details>
 
     <div class="examples">
-      <span class="lbl">Try</span>
+      <span class="lbl" data-i18n="common.try">Try</span>
       <span id="chips"></span>
       <span class="practice">
-        <div class="modes" role="group" aria-label="Practice mode">
-          <button type="button" id="allBtn" aria-pressed="true">Show all work</button>
-          <button type="button" id="stepBtn" aria-pressed="false">One step at a time</button>
-          <button type="button" id="checkBtn" aria-pressed="false">Check my answer</button>
+        <div class="modes" role="group" aria-label="Practice mode" data-i18n-attr="aria-label=common.practiceMode">
+          <button type="button" id="allBtn" aria-pressed="true" data-i18n="common.showAll">Show all work</button>
+          <button type="button" id="stepBtn" aria-pressed="false" data-i18n="common.oneStep">One step at a time</button>
+          <button type="button" id="checkBtn" aria-pressed="false" data-i18n="common.checkMine">Check my answer</button>
         </div>
       </span>
     </div>
@@ -1726,32 +1727,32 @@
 
   <section class="check" id="checkBox" hidden aria-labelledby="checkTitle">
     <div class="check-head">
-      <h2 id="checkTitle">Your answer</h2>
+      <h2 id="checkTitle" data-i18n="common.yourAnswer">Your answer</h2>
       <span id="checkNote"></span>
     </div>
     <form class="check-row" id="checkForm" novalidate>
       <div class="numfield">
-        <label for="ansIn">Product</label>
+        <label for="ansIn" data-i18n="multiplication.product">Product</label>
         <input class="dec-in" id="ansIn" type="text" inputmode="text" autocomplete="off" spellcheck="false">
       </div>
-      <button type="submit" class="go" id="checkGo">Check</button>
+      <button type="submit" class="go" id="checkGo" data-i18n="common.check">Check</button>
     </form>
     <p class="check-tip" id="checkTip"></p>
     <div class="check-fb" id="checkFb" aria-live="polite"></div>
     <div class="check-more" id="checkMore" hidden>
-      <button type="button" class="tbtn" id="hintBtn">Show a hint</button>
-      <button type="button" class="tbtn" id="showBtn">Show me the work</button>
+      <button type="button" class="tbtn" id="hintBtn" data-i18n="common.hint">Show a hint</button>
+      <button type="button" class="tbtn" id="showBtn" data-i18n="common.showWork">Show me the work</button>
     </div>
   </section>
 
   <div class="board" id="board">
     <section class="panel">
       <div class="panel-head">
-        <h2>The work</h2>
+        <h2 data-i18n="common.theWork">The work</h2>
         <div class="stepper" id="stepper" hidden>
-          <button type="button" id="prevBtn" aria-label="Previous step">&larr;</button>
+          <button type="button" id="prevBtn" aria-label="Previous step" data-i18n-attr="aria-label=common.prevStep">&larr;</button>
           <span class="count" id="stepCount"></span>
-          <button type="button" id="nextBtn" aria-label="Next step">&rarr;</button>
+          <button type="button" id="nextBtn" aria-label="Next step" data-i18n-attr="aria-label=common.nextStep">&rarr;</button>
         </div>
       </div>
       <div id="workHost"></div>
@@ -1759,16 +1760,16 @@
     </section>
 
     <section class="panel">
-      <div class="panel-head"><h2>Say it out loud</h2></div>
+      <div class="panel-head"><h2 data-i18n="common.sayIt">Say it out loud</h2></div>
       <ol class="log" id="log"></ol>
       <div class="closer" id="closer"></div>
     </section>
   </div>
 
   <div class="footnote">
-    <button class="print" type="button" id="printBtn">Print this work</button>
-    <button class="print" type="button" id="copyBtn">Copy link</button>
-    <span>The decimal point goes in last &mdash; and it never changes which digits you get, only where the point lands.</span>
+    <button class="print" type="button" id="printBtn" data-i18n="common.print">Print this work</button>
+    <button class="print" type="button" id="copyBtn" data-i18n="common.copyLink">Copy link</button>
+    <span data-i18n="multiplication.footnote">The decimal point goes in last &mdash; and it never changes which digits you get, only where the point lands.</span>
   </div>
 </div>
 
@@ -1787,6 +1788,8 @@
      The worksheet page also talks to this page with postMessage: see "worksheet API" near the end. */
   (function() {
     "use strict";
+    if (window.HelperI18n) HelperI18n.apply();
+    var T = function(k, v) { return window.HelperI18n ? HelperI18n.t(k, v) : k; };
     var $ = function(id) { return document.getElementById(id); };
     var lastSteps = 0;
     var S = {
@@ -1934,11 +1937,11 @@
       if (!a || !b) {
         var whole = boxProblem(S.a) || boxProblem(S.b),
           hint = whole ? "" : otherSign(S.a + " " + S.b);
-        return fail(whole ? "That box has a whole problem in it — press Enter to work out <b>" + esc(problemText(whole)) + "</b>." :
-          hint || "Type a number in both boxes — digits and at most one decimal point.");
+        return fail(whole ? T("multiplication.boxWhole", { p: esc(problemText(whole)) }) :
+          hint || T("multiplication.typeBoth"));
       }
       if ((a.i + a.f).length > 9 || (b.i + b.f).length > 6)
-        return fail("Keep the first factor under 9 digits and the second under 6, so the ladder fits.");
+        return fail(T("multiplication.tooLong"));
 
       var places = a.f.length + b.f.length;
       var A = stripZeros(a.i + a.f),
@@ -2029,10 +2032,7 @@
         };
         var fin = glyphs(rawStr) + (rawStr !== finalStr ?
           '<span class="arrow">=</span>' + glyphs(finalStr) : "");
-        ps.innerHTML = '<div class="cap"><b>' + esc(numStr(a)) + "</b> has <b>" + a.f.length +
-          "</b> decimal place" + (a.f.length === 1 ? "" : "s") + " and <b>" + esc(numStr(b)) +
-          "</b> has <b>" + b.f.length + "</b>, so the answer needs <b>" + places +
-          "</b>. Count " + places + " from the right:</div>" +
+        ps.innerHTML = '<div class="cap">' + T("multiplication.pointCap", { a: esc(numStr(a)), na: a.f.length, b: esc(numStr(b)), nb: b.f.length, p: places }) + "</div>" +
           '<div class="digits">' + d + '<span class="arrow">→</span>' + fin + "</div>";
       }
 
@@ -2041,83 +2041,68 @@
       var facts = [];
       var ra = Math.round(Number(numStr(a))),
         rb = Math.round(Number(numStr(b)));
-      facts.push("Rough size check: about <b>" + ra + " × " + rb + " = " + (ra * rb) + "</b>");
-      facts.push(multi ? "Added <b>" + P.partials.length + "</b> partial products." :
-        "One rung — the second factor is a single digit.");
+      facts.push(T("multiplication.rough", { ra: ra, rb: rb, r: ra * rb }));
+      facts.push(multi ? T("multiplication.addedPartials", { n: P.partials.length }) :
+        T("multiplication.oneRung"));
       var ff = fracFact(shown);
       if (ff) facts.push(ff);
-      band('<span class="k">Product</span><span class="v">' + esc(commas(shown)) + "</span>", facts, "answer");
+      band('<span class="k">' + T("multiplication.product") + '</span><span class="v">' + esc(commas(shown)) + "</span>", facts, "answer");
 
       /* --- words --- */
       var items = [];
       if (places > 0) {
         items.push({
-          n: "Set&nbsp;up",
+          n: T("multiplication.nSetUp"),
           lines: [
-            ["p", "Ignore points",
-              "Push the decimal points out of the way for now: <b>" + esc(numStr(a)) + " × " +
-              esc(numStr(b)) + "</b> becomes <b>" + A + " × " + B + "</b>."
+            ["p", T("multiplication.tagIgnore"),
+              T("multiplication.ignore", { a: esc(numStr(a)), b: esc(numStr(b)), A: A, B: B })
             ]
           ],
-          aside: "You’re allowed to do this because you put the point back at the very end. " +
-            "The digits of the answer are the same either way — only the point moves."
+          aside: T("multiplication.ignoreAside")
         });
       }
       P.partials.forEach(function(p, idx) {
         var lines = [];
         if (p.d === 0) {
-          lines.push(["m", "Multiply", "The digit is <b>0</b>, so this whole rung is <b>0</b>."]);
+          lines.push(["m", T("multiplication.tagMultiply"), T("multiplication.zeroRung")]);
         } else {
           var det = p.carries.filter(function(c) { return !c.lead; }).map(function(c) {
-            return "<b>" + p.d + " × " + c.digit + " = " + c.raw + "</b>" +
-              (c.carryIn ? " + " + c.carryIn + " carried = <b>" + c.total + "</b>" : "") +
-              (c.carryOut ? " → write " + c.write + ", carry " + c.carryOut : "");
+            var v = { d: p.d, x: c.digit, r: c.raw, c: c.carryIn, t: c.total, w: c.write, o: c.carryOut };
+            return T("multiplication.det" + (c.carryIn ? "Carried" : "") + (c.carryOut ? "Write" : ""), v);
           }).reverse().join("; ");
-          lines.push(["m", "Multiply", "Take the <b>" + p.d + "</b>" +
-            (p.shift ? " (it’s in the " + placeWord(p.shift) + " place)" : "") +
-            " and multiply the whole top number: " + det + ". That gives <b>" + p.body + "</b>."
+          lines.push(["m", T("multiplication.tagMultiply"), p.shift ?
+            T("multiplication.takePlace", { d: p.d, place: placeWord(p.shift), det: det, body: p.body }) :
+            T("multiplication.take", { d: p.d, det: det, body: p.body })
           ]);
         }
         var aside = null;
         if (p.shift > 0) {
-          lines.push(["p", "Shift", "Because that digit is worth <b>" + p.d + " " + tensName(p.shift) +
-            "</b>, put <b>" + p.shift + "</b> zero" + (p.shift > 1 ? "s" : "") +
-            " on the end: <b>" + p.text + "</b>."
-          ]);
-          aside = "Those zeros aren’t decoration — they’re what makes this rung line up under the right " +
-            "columns. Some people leave a blank space instead; a zero is the same thing, spelled out.";
+          lines.push(["p", T("multiplication.tagShift"), T("multiplication.shift", { worth: tensName(p.shift, p.d), s: p.shift, text: p.text })]);
+          aside = T("multiplication.shiftAside");
         }
-        items.push({ n: "Rung&nbsp;" + (idx + 1), lines: lines, aside: aside, step: idx });
+        items.push({ n: T("multiplication.nRung", { n: idx + 1 }), lines: lines, aside: aside, step: idx });
       });
       if (multi) {
         items.push({
-          n: "Add&nbsp;up",
+          n: T("multiplication.nAddUp"),
           step: P.partials.length - 1,
           lines: [
-            ["c", "Add",
-              "Add the rungs: <b>" + P.partials.map(function(p) { return p.text; }).join(" + ") +
-              " = " + P.total + "</b>."
+            ["c", T("multiplication.tagAdd"),
+              T("multiplication.addRungs", { list: P.partials.map(function(p) { return p.text; }).join(" + "), total: P.total })
             ]
           ]
         });
       }
       if (places > 0) {
         items.push({
-          n: "Last&nbsp;step",
+          n: T("multiplication.nLast"),
           step: P.partials.length - 1,
           lines: [
-            ["p", "Place the point",
-              "<b>" + esc(numStr(a)) + "</b> has <b>" + a.f.length + "</b> decimal place" +
-              (a.f.length === 1 ? "" : "s") + ", <b>" + esc(numStr(b)) + "</b> has <b>" + b.f.length +
-              "</b>. Together that’s <b>" + places + "</b>. Count <b>" + places +
-              "</b> places in from the right of <b>" + P.total + "</b> and drop the point in: <b>" +
-              shown + "</b>."
+            ["p", T("multiplication.tagPoint"),
+              T("multiplication.placePoint", { a: esc(numStr(a)), na: a.f.length, b: esc(numStr(b)), nb: b.f.length, p: places, total: P.total, shown: shown })
             ]
           ],
-          aside: "This is the step people lose marks on. Check it against your rough size: <b>" +
-            esc(numStr(a)) + " × " + esc(numStr(b)) + "</b> should be about <b>" + (ra * rb) +
-            "</b>, and <b>" + shown + "</b> is. Put the point one place off and you’d get " +
-            "something wildly too big or too small."
+          aside: T("multiplication.placeAside", { a: esc(numStr(a)), b: esc(numStr(b)), r: ra * rb, shown: shown })
         });
       }
       writeLog(items);
@@ -2125,14 +2110,17 @@
       /* --- check by dividing back --- */
       var bNum = Number(numStr(b));
       var backOK = Math.abs(Number(shown) / bNum - Number(numStr(a))) < 1e-9;
-      $("closer").innerHTML = "<b>Check by dividing back:</b> " + esc(commas(shown)) + " ÷ " +
-        esc(numStr(b)) + " = <b>" + esc(numStr(a)) + "</b>" +
-        (backOK ? ' <span class="ok">✓ back to the first factor</span>' : "") + ".";
+      $("closer").innerHTML = T("multiplication.closerDec", {
+        s: esc(commas(shown)),
+        b: esc(numStr(b)),
+        a: esc(numStr(a)),
+        ok: backOK ? ' <span class="ok">' + T("multiplication.backOk") + "</span>" : ""
+      });
 
       $("legend").innerHTML =
-        '<div><i class="sw-k"></i> One rung per digit</div>' +
-        '<div><i class="sw-a"></i> The product</div>' +
-        '<div><i class="sw-w"></i> Counting decimal places</div>';
+        '<div><i class="sw-k"></i> ' + T("multiplication.legRung") + "</div>" +
+        '<div><i class="sw-a"></i> ' + T("multiplication.legProduct") + "</div>" +
+        '<div><i class="sw-w"></i> ' + T("multiplication.legPlaces") + "</div>";
       /* equal groups end to end — a whole number counts the groups if there is one */
       var aW = !a.f,
         bW = !b.f,
@@ -2182,12 +2170,14 @@
         var split = function(n, parts) {
           return parts.length > 1 ?
             "<b>" + esc(commaNum(numStr(n))) + " = " + parts.map(function(p) { return esc(commaNum(p.s)); }).join(" + ") + "</b>" :
-            "<b>" + esc(commaNum(numStr(n))) + "</b> stays in one piece";
+            T("multiplication.onePiece", { n: esc(commaNum(numStr(n))) });
         };
-        mountArea("Split each number by place value: " + split(a, pa) + " along the top, and " +
-          split(b, pb) + " down the side. Each box is one easy multiplication — its width times its " +
-          "height. " + (terms.length > 1 ? "Add up every box: " + terms.join(" + ") + " = <b>" :
-            "That one box is <b>") + esc(commas(shown)) + "</b>.",
+        mountArea(T(terms.length > 1 ? "multiplication.areaDecMany" : "multiplication.areaDecOne", {
+            sa: split(a, pa),
+            sb: split(b, pb),
+            terms: terms.join(" + "),
+            total: esc(commas(shown))
+          }),
           '<div class="am-scroll"><div class="am" aria-hidden="true" style="grid-template-columns:auto ' +
           pa.map(function(p) { return "minmax(max-content," + Number(p.s).toFixed(4) + "fr)"; }).join(" ") +
           ";grid-template-rows:auto " + rowsH.join(" ") + '">' + amHtml + "</div></div>");
@@ -2195,12 +2185,14 @@
       return P.partials.length;
     }
 
-    function tensName(shift) {
-      return ["ones", "tens", "hundreds", "thousands", "ten-thousands"][shift] || ("×10^" + shift);
+    // "3 tens": the digit d in that place (Spanish: "3 decenas", "1 decena")
+    function tensName(shift, d) {
+      return shift >= 0 && shift <= 4 ? T("multiplication.worth" + shift, { d: d }) : T("multiplication.worthPow", { d: d, s: shift });
     }
 
+    // the place a digit is in, as the sentences put it ("tens"; Spanish: "las decenas")
     function placeWord(shift) {
-      return ["ones", "tens", "hundreds", "thousands", "ten-thousands"][shift] || "higher";
+      return shift >= 0 && shift <= 4 ? T("multiplication.place" + shift) : T("multiplication.placeHigher");
     }
 
     /* ===================== render: fractions ===================== */
@@ -2208,11 +2200,11 @@
       var m1 = S.frac[0],
         m2 = S.frac[1];
       if ([m1, m2].some(function(m) { return m.some(function(v) { return !isFinite(v); }); }))
-        return fail("Fill in every box. Use 0 for the whole number if you only want a fraction.");
+        return fail(T("multiplication.fillEvery"));
       if (m1[2] === 0 || m2[2] === 0)
-        return fail("A denominator can’t be 0 — you can’t cut something into zero pieces.");
+        return fail(T("multiplication.denZero"));
       if (m1[2] > 999 || m2[2] > 999 || m1[1] > 9999 || m2[1] > 9999)
-        return fail("Keep the numbers small enough to work by hand (denominators under 1000).");
+        return fail(T("multiplication.tooBig"));
 
       var a = toImproper(m1),
         b = toImproper(m2);
@@ -2235,61 +2227,48 @@
         items = [];
 
       function step(html, eq, lines, aside, result) {
-        items.push({ n: "Step&nbsp;" + (rows.length + 1), step: rows.length, lines: lines, aside: aside || null });
+        items.push({ n: T("multiplication.nStep", { n: rows.length + 1 }), step: rows.length, lines: lines, aside: aside || null });
         rows.push({ eq: eq, html: html, result: !!result });
       }
 
       step(termHTML(m1) + '<span class="op-s">×</span>' + termHTML(m2), "",
         [
-          ["p", "Look", "Multiplying fractions is the easy one — you do <em>not</em> need a common " +
-            "denominator. You just go straight across."
-          ]
+          ["p", T("multiplication.tagLook"), T("multiplication.look")]
         ],
-        "That’s the big difference from adding. For <b>+</b> the pieces must match; for <b>×</b> they don’t.");
+        T("multiplication.lookAside"));
 
       if (mixedIn) {
         step(fracHTML(a.n, a.d) + '<span class="op-s">×</span>' + fracHTML(b.n, b.d), "=",
           [
-            ["m", "Convert", "<b>" + m1[0] + " " + m1[1] + "/" + m1[2] + "</b> is <b>" + m1[0] + " × " +
-              m1[2] + " + " + m1[1] + " = " + a.n + "</b> pieces, so <b>" + a.n + "/" + a.d +
-              "</b>. The other is <b>" + b.n + "/" + b.d + "</b>."
-            ]
+            ["m", T("multiplication.tagConvert"), T("multiplication.convert", { w: m1[0], n: m1[1], d: m1[2], an: a.n, ad: a.d, bn: b.n, bd: b.d })]
           ],
-          "Never multiply the whole numbers and the fractions separately — that’s the classic trap. " +
-          "Convert first.");
+          T("multiplication.convertAside"));
       }
       if (canCancel) {
         step(cancelFracHTML(an, g1 > 1 ? a.n : null, ad, g2 > 1 ? a.d : null) +
           '<span class="op-s">×</span>' +
           cancelFracHTML(bn, g2 > 1 ? b.n : null, bd, g1 > 1 ? b.d : null), "=",
           [
-            ["m", "Cancel", cancelWords(a, b, g1, g2)]
+            ["m", T("multiplication.tagCancel"), cancelWords(a, b, g1, g2)]
           ],
-          "Canceling now keeps the numbers small. It’s the same as simplifying at the end — " +
-          "just far less arithmetic.");
+          T("multiplication.cancelAside"));
       }
       step(fracHTML(prod.n, prod.d), "=",
         [
-          ["m", "Multiply across", "Tops: <b>" + an + " × " + bn + " = " + prod.n +
-            "</b>. Bottoms: <b>" + ad + " × " + bd + " = " + prod.d + "</b>."
-          ]
+          ["m", T("multiplication.tagAcross"), T("multiplication.across", { an: an, bn: bn, pn: prod.n, ad: ad, bd: bd, pd: prod.d })]
         ],
         null, simp.by === 1 && !needsMixedOut);
 
       if (simp.by > 1) {
         step(fracHTML(simp.n, simp.d), "=",
           [
-            ["c", "Simplify", "<b>" + prod.n + "</b> and <b>" + prod.d + "</b> both divide by <b>" +
-              simp.by + "</b>, giving <b>" + simp.n + "/" + simp.d + "</b>."
-            ]
+            ["c", T("multiplication.tagSimplify"), T("multiplication.simplify", { n: prod.n, d: prod.d, g: simp.by, sn: simp.n, sd: simp.d })]
           ], null, !needsMixedOut);
       }
       if (needsMixedOut) {
         step(mixedHTML(w, rest, simp.d), "=",
           [
-            ["c", "Mixed", "<b>" + simp.n + " ÷ " + simp.d + " = " + w + "</b> remainder <b>" + rest +
-              "</b>, so <b>" + w + " " + rest + "/" + simp.d + "</b>."
-            ]
+            ["c", T("multiplication.tagMixed"), T("multiplication.mixed", { n: simp.n, d: simp.d, w: w, r: rest })]
           ], null, true);
       }
 
@@ -2322,17 +2301,12 @@
           }
         }
         var unitW = ux * uy > 1 ? 150 : 280;
-        var say = ux * uy === 1 ?
-          'The whole square is <b>1</b>. Shading <b>' + a.n + "/" + a.d + '</b> one way and <b>' + b.n + "/" + b.d +
-          '</b> the other, the overlap is <b>' + hit + "</b> squares out of <b>" + P + "</b> — which is exactly <b>" +
-          hit + "/" + P + "</b>." :
-          "Each square with a thick border is <b>1</b> whole, cut into <b>" + a.d + " × " + b.d + " = " + P +
-          "</b> small boxes. Shade <b>" + mText(m1) + "</b> across and <b>" + mText(m2) + "</b> down — the overlap is <b>" +
-          a.n + " × " + b.n + " = " + hit + "</b> boxes. At <b>" + P + "</b> boxes per whole, that’s <b>" + hit + "/" + P +
-          "</b>" + (fracTxt(simp.n, simp.d) !== hit + "/" + P ? ", or <b>" + fracTxt(simp.n, simp.d) + "</b>" : "") + ".";
+        var sv = { an: a.n, ad: a.d, bn: b.n, bd: b.d, hit: hit, P: P, m1: mText(m1), m2: mText(m2), s: fracTxt(simp.n, simp.d) };
+        var say = ux * uy === 1 ? T("multiplication.sayOne", sv) :
+          T(fracTxt(simp.n, simp.d) !== hit + "/" + P ? "multiplication.sayManyOr" : "multiplication.sayMany", sv);
         html += '<div class="area"><div class="grid" style="grid-template-columns:repeat(' + gc + ",1fr);width:min(" +
-          (unitW * ux) + "px,100%);aspect-ratio:" + (1.15 * ux / uy).toFixed(3) + '" role="img" aria-label="Area model showing ' +
-          hit + " boxes double-shaded, " + P + ' boxes to a whole">' + cells + "</div>" +
+          (unitW * ux) + "px,100%);aspect-ratio:" + (1.15 * ux / uy).toFixed(3) + '" role="img" aria-label="' +
+          T("multiplication.areaAria", { hit: hit, P: P }) + '">' + cells + "</div>" +
           '<div class="say">' + say + "</div></div>";
       }
       host.innerHTML = html;
@@ -2348,35 +2322,35 @@
       var final = needsMixedOut ? mixedHTML(w, rest, simp.d) :
         (simp.d === 1 ? '<span class="mx">' + simp.n + "</span>" : fracHTML(simp.n, simp.d));
       var dec = simp.n / simp.d;
-      band('<span class="k">Product</span><span class="v">' + final + "</span>", [
-        "As a decimal: <b>" + trimNum(dec) + "</b>",
-        canCancel ? "Cross-canceled before multiplying." : "Nothing to cancel — straight across."
+      band('<span class="k">' + T("multiplication.product") + '</span><span class="v">' + final + "</span>", [
+        T("multiplication.asDecimal", { x: trimNum(dec) }),
+        canCancel ? T("multiplication.crossCanceled") : T("multiplication.nothingCancel")
       ], "answer");
       writeLog(items);
 
       var d1 = a.n / a.d,
         d2 = b.n / b.d;
-      $("closer").innerHTML = "<b>Check with decimals:</b> " + trimNum(d1) + " × " + trimNum(d2) +
-        " = <b>" + trimNum(d1 * d2) + "</b>, and our answer is <b>" + trimNum(dec) + "</b>" +
-        (Math.abs(d1 * d2 - dec) < 1e-9 ? ' <span class="ok">✓</span>' : "") + ".";
+      $("closer").innerHTML = T("multiplication.closerFrac", {
+        d1: trimNum(d1),
+        d2: trimNum(d2),
+        p: trimNum(d1 * d2),
+        x: trimNum(dec),
+        ok: Math.abs(d1 * d2 - dec) < 1e-9 ? ' <span class="ok">✓</span>' : ""
+      });
 
       $("legend").innerHTML = showArea ?
-        '<div><i class="sw-l"></i> ' + a.n + "/" + a.d + ' across</div>' +
-        '<div><i class="sw-w"></i> ' + b.n + "/" + b.d + ' down</div>' +
-        '<div><i class="sw-k"></i> The overlap — that’s the answer</div>' :
-        '<div>' + (a.n === 0 || b.n === 0 ? "Times zero leaves nothing to shade." :
-          "Too many squares to draw clearly.") +
-        ' The chain above is the whole story.</div>';
+        '<div><i class="sw-l"></i> ' + T("multiplication.legAcross", { f: a.n + "/" + a.d }) + "</div>" +
+        '<div><i class="sw-w"></i> ' + T("multiplication.legDown", { f: b.n + "/" + b.d }) + "</div>" +
+        '<div><i class="sw-k"></i> ' + T("multiplication.legOverlap") + "</div>" :
+        "<div>" + T(a.n === 0 || b.n === 0 ? "multiplication.legZero" : "multiplication.legTooMany") + "</div>";
       return rows.length;
     }
 
     function cancelWords(a, b, g1, g2) {
       var parts = [];
-      if (g1 > 1) parts.push("<b>" + a.n + "</b> and <b>" + b.d + "</b> both divide by <b>" + g1 +
-        "</b> → <b>" + (a.n / g1) + "</b> and <b>" + (b.d / g1) + "</b>");
-      if (g2 > 1) parts.push("<b>" + b.n + "</b> and <b>" + a.d + "</b> both divide by <b>" + g2 +
-        "</b> → <b>" + (b.n / g2) + "</b> and <b>" + (a.d / g2) + "</b>");
-      return "Look diagonally, top of one against bottom of the other: " + parts.join(", and ") + ".";
+      if (g1 > 1) parts.push(T("multiplication.cancelPart", { x: a.n, y: b.d, g: g1, x2: a.n / g1, y2: b.d / g1 }));
+      if (g2 > 1) parts.push(T("multiplication.cancelPart", { x: b.n, y: a.d, g: g2, x2: b.n / g2, y2: a.d / g2 }));
+      return parts.length > 1 ? T("multiplication.cancelTwo", { p1: parts[0], p2: parts[1] }) : T("multiplication.cancelOne", { p: parts[0] });
     }
 
     /* one square, cut into cols × rows; cls(col, row, index) picks each piece's shading */
@@ -2392,7 +2366,7 @@
 
     function mountArea(cap, inner) {
       $("workHost").insertAdjacentHTML("beforeend",
-        '<div class="areawrap"><div class="tapecap"><b class="lead">Area model.</b> ' + cap + "</div>" +
+        '<div class="areawrap"><div class="tapecap"><b class="lead">' + T("multiplication.areaLead") + "</b> " + cap + "</div>" +
         inner + "</div>");
     }
 
@@ -2434,20 +2408,17 @@
         tsegs.push({ w: 1, html: bx });
       }
       var span = tsegs.length;
-      var groups = full ? commaNum(String(full)) + " group" + (full === 1 ? "" : "s") + " of " + bx : "";
+      var groups = full ? T("multiplication.groupsOf", { n: commaNum(String(full)), c: full, bx: bx }) : "";
       if (full) unders.push({ from: 1, to: span, label: groups });
       if (frac > 0) {
         tsegs.push({ w: frac, html: partTxt, cls: "b" });
-        unders.push({ from: span + 1, to: span + 1, label: fracLbl + " of " + (full ? "another" : "a group") });
+        unders.push({ from: span + 1, to: span + 1, label: T(full ? "multiplication.fracOfAnother" : "multiplication.fracOfGroup", { f: fracLbl }) });
         if (!full) tsegs.push({ w: 1 - frac, html: "", cls: "ghost" });
       }
-      var cap = !full ?
-        "<b>" + expr + "</b> means <b>" + fracLbl + "</b> of one group of <b>" + bx + "</b>. The dashed box is one " +
-        "whole group; the shaded part of it is <b>" + total + "</b>." :
-        "<b>" + expr + "</b> is <b>" + groups + "</b>" +
-        (frac > 0 ? " and <b>" + fracLbl + "</b> of another (that part is <b>" + partTxt + "</b>)" : "") +
-        ", laid end to end. The whole tape is <b>" + total + "</b>." +
-        (many ? " (Too many to draw them all — the dashed box stands for the ones in the middle.)" : "");
+      var tv = { expr: expr, f: fracLbl, bx: bx, total: total, groups: groups, part: partTxt, c: full };
+      var cap = !full ? T("multiplication.tapePart", tv) :
+        T(frac > 0 ? "multiplication.tapeFullFrac" : "multiplication.tapeFull", tv) +
+        (many ? " " + T("multiplication.tapeMany") : "");
       mountTape(cap, { total: total, totalCls: "ans", segs: tsegs, unders: unders, topCols: full ? "" : "1/2" });
     }
 
@@ -2480,7 +2451,7 @@
           '<div class="t-lbl under" style="grid-row:5;grid-column:' + c + '">' + u.label + "</div>";
       });
       $("workHost").insertAdjacentHTML("beforeend",
-        '<div class="tapewrap"><div class="tapecap"><b class="lead">Tape diagram.</b> ' + cap + "</div>" +
+        '<div class="tapewrap"><div class="tapecap"><b class="lead">' + T("multiplication.tapeLead") + "</b> " + cap + "</div>" +
         '<div class="tape-scroll"><div class="tape" aria-hidden="true" style="grid-template-columns:' +
         cols + '">' + html + "</div></div></div>");
     }
@@ -2507,7 +2478,7 @@
       if (a > BigInt(1)) parts.push(sg + n0 + "/" + d0);
       parts.push(sg + n + "/" + d);
       if (w > BigInt(0)) parts.push(sg + w + " " + (n % d) + "/" + d);
-      return "As a fraction: <b>" + parts.join(" = ") + "</b>";
+      return T("multiplication.asFraction", { f: parts.join(" = ") });
     }
 
     function band(inner, facts, cls) {
@@ -2564,7 +2535,7 @@
       if (S.step < 1) S.step = 1;
       $("stepper").hidden = !S.stepMode;
       if (S.stepMode) {
-        $("stepCount").textContent = S.step + " of " + total;
+        $("stepCount").textContent = T("multiplication.stepOf", { n: S.step, m: total });
         $("prevBtn").disabled = S.step <= 1;
         $("nextBtn").disabled = S.step >= total;
       }
@@ -2602,20 +2573,22 @@
     /* a whole problem typed (or pasted) into one box, like "12x3" or "twelve times three" */
     function boxProblem(v) {
       v = String(v || "");
+      if (window.HelperI18n) v = HelperI18n.normalize(v); // a problem typed in Spanish → what the reader knows
       if (parseNum(v) || !/[^\d.,\s_]/.test(v)) return null;
       var p = readQ(v);
       return qReads(p) ? p : null;
     }
     /* a box that holds another kind of problem: say which page does it */
     function otherSign(v) {
-      var T = readTyped(v),
-        t = T ? T.q : String(v);
-      if ((t.match(/[*×·⋅÷:+^]|\d\s*[xX]\s*[\d.(]|\d\s*-\s*[\d.(]/g) || []).length > 1) return "This page multiplies two numbers at a time. For a longer problem, try the Order Stack.";
-      if (/(?:^|[^\d\s.)])\s*-\s*[\d.]/.test(t)) return "This page multiplies numbers from 0 up. Negative numbers are on the Number Line.";
-      if (/\d\s*\+\s*\d/.test(t)) return "This page multiplies. To add, try the Carry Column.";
-      if (/\d\s*-\s*\d/.test(t)) return "This page multiplies. To subtract, try the Borrow Bank.";
-      if (/÷|\d\s*:\s*\d/.test(t)) return "This page multiplies. To divide, try the Division House.";
-      if (/\^/.test(t)) return "This page multiplies two numbers. Powers are on the Order Stack.";
+      if (window.HelperI18n) v = HelperI18n.normalize(v);
+      var R = readTyped(v),
+        t = R ? R.q : String(v);
+      if ((t.match(/[*×·⋅÷:+^]|\d\s*[xX]\s*[\d.(]|\d\s*-\s*[\d.(]/g) || []).length > 1) return T("multiplication.otherLonger");
+      if (/(?:^|[^\d\s.)])\s*-\s*[\d.]/.test(t)) return T("multiplication.otherNegative");
+      if (/\d\s*\+\s*\d/.test(t)) return T("multiplication.otherAdd");
+      if (/\d\s*-\s*\d/.test(t)) return T("multiplication.otherSubtract");
+      if (/÷|\d\s*:\s*\d/.test(t)) return T("multiplication.otherDivide");
+      if (/\^/.test(t)) return T("multiplication.otherPowers");
       return "";
     }
     ["w1", "n1", "d1", "w2", "n2", "d2"].forEach(function(id, idx) {
@@ -2892,9 +2865,7 @@
       return ans.form === "dec" && (rRound(C, ans.places) === ans.scaled || rTrunc(C, ans.places) === ans.scaled);
     }
 
-    function pl(n) { return n === 1 ? "" : "s"; }
-
-    function tenTimes(k) { return ["", "10", "100", "1,000", "10,000"][Math.abs(k)] || "many"; }
+    function tenTimes(k) { return ["", "10", "100", "1,000", "10,000"][Math.abs(k)] || T("multiplication.many"); }
     /* a stacked fraction with inline styles only, for the answer box and the worksheet page */
     function frIn(n, d) {
       return '<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;' +
@@ -3008,10 +2979,8 @@
         checking = S.practice === "check";
       $("checkBox").hidden = !(valid && (checking || S.keepCheck));
       document.querySelector(".page").classList.toggle("checking", valid && checking && !S.revealed);
-      $("checkNote").textContent = checking && !S.revealed ? "The work stays hidden until you check." : "";
-      $("checkTip").textContent = S.mode === "dec" ?
-        "Work it out on paper, then type the product — like 3.12." :
-        "Type a fraction like 3/8 or a mixed number like 1 1/2. A decimal works too.";
+      $("checkNote").textContent = checking && !S.revealed ? T("multiplication.staysHidden") : "";
+      $("checkTip").textContent = S.mode === "dec" ? T("multiplication.tipDec") : T("multiplication.tipFrac");
     }
 
     function say(kind, head, why, more) {
@@ -3029,7 +2998,7 @@
 
     function correct(note) {
       report("right");
-      say("ok", "✓ Correct!", note || "", false);
+      say("ok", T("common.correct"), note || "", false);
       reveal();
     }
 
@@ -3037,33 +3006,30 @@
       var sol = solveMul(curProblem());
       if (!sol) return;
       var raw = $("ansIn").value;
-      if (!raw.trim()) return say("plain", "Type your answer in the box first.", "", false);
+      if (!raw.trim()) return say("plain", T("multiplication.typeFirst"), "", false);
       var ans = readAnswer(raw);
-      if (ans && ans.bad) return say("no", "A fraction can’t have 0 on the bottom.", "", false);
-      if (!ans || ans.qr) return say("no", "I can’t read that as a number.",
-        "Try something like <b>3.12</b>, <b>3/8</b> or <b>1 1/2</b>.", false);
+      if (ans && ans.bad) return say("no", T("multiplication.zeroBottom"), "", false);
+      if (!ans || ans.qr) return say("no", T("multiplication.cantRead"), T("multiplication.trySomething"), false);
       var c = compareAns(ans, sol.v, sol.ends);
-      var shownAs = "The work writes it as <b>" + esc(sol.text) + "</b>.";
+      var shownAs = T("multiplication.shownAs", { x: esc(sol.text) });
       if (c === "exact") {
-        if (ans.simplest === false) { report("simplify"); return say("near", "Right value — now simplify it.", simplifyWhy(ans), false); }
+        if (ans.simplest === false) { report("simplify"); return say("near", T("multiplication.nowSimplify"), simplifyWhy(ans), false); }
         var same = String(raw).replace(/[,\s]+/g, "") === sol.text.replace(/[,\s]+/g, "");
         return correct(same ? "" : shownAs);
       }
-      if (c === "ok") return correct("Rounded just right. Exactly, it’s <b>" + esc(sol.text) + "</b>.");
+      if (c === "ok") return correct(T("multiplication.roundedRight", { x: esc(sol.text) }));
       if (c !== "exact" && c !== "ok") report("wrong");
-      if (c === "trunc") return say("near", "So close — round the last digit.",
-        "The next digit is 5 or more, so the last one goes up. Or show the repeating part in brackets, like <b>0.(6)</b>.", true);
-      if (c === "few") return say("near", "Right so far — give at least 2 decimal places.", "", true);
-      if (c === "ends") return say("no", "Not quite — that’s been rounded.",
-        "This answer stops after a few decimal places, so write every digit.", true);
-      say("no", "Not quite — try again.", diagnoseMul(ans, sol) || "", true);
+      if (c === "trunc") return say("near", T("multiplication.soClose"), T("multiplication.soCloseWhy"), true);
+      if (c === "few") return say("near", T("multiplication.fewPlaces"), "", true);
+      if (c === "ends") return say("no", T("multiplication.rounded"), T("multiplication.roundedWhy"), true);
+      say("no", T("common.notQuite"), diagnoseMul(ans, sol) || "", true);
     }
 
     function simplifyWhy(ans) {
-      if (ans.form === "frac" && ans.d === B1) return "A bottom number of 1 means whole ones — write it as a whole number.";
-      if (ans.form === "mixed" && ans.n >= ans.d) return "The fraction part is 1 or more — take the whole ones out of it.";
+      if (ans.form === "frac" && ans.d === B1) return T("multiplication.whyOne");
+      if (ans.form === "mixed" && ans.n >= ans.d) return T("multiplication.whyWholes");
       var g = bigGcd(ans.n, ans.d);
-      return "<b>" + ans.n + "</b> and <b>" + ans.d + "</b> can both be divided by <b>" + g + "</b>.";
+      return T("multiplication.whyDivide", { n: String(ans.n), d: String(ans.d), g: String(g) });
     }
     /* the usual slips, worked out for this problem and compared with what was typed */
     function diagnoseMul(ans, sol) {
@@ -3073,16 +3039,12 @@
         var ra = Rat(BigInt(sol.a.i + sol.a.f), pow10(sol.a.f.length)),
           rb = Rat(BigInt(sol.b.i + sol.b.f), pow10(sol.b.f.length));
         if (nearValue(ans, rAdd(ra, rb)))
-          return "It looks like you <b>added</b> the numbers. For &times;, multiply — one rung for each digit " +
-            "of the second number, then add the rungs up.";
+          return T("multiplication.addedDec");
         for (k = -8; k <= 8; k++) {
           if (!k || !rEq(ans.v, rShift(V, k))) continue;
-          return "The digits are right, but your answer is " + tenTimes(k) + " times too " + (k > 0 ? "big" : "small") +
-            " — the decimal point is in the wrong place. " + (sol.places ?
-              "<b>" + esc(numStr(sol.a)) + "</b> has <b>" + sol.a.f.length + "</b> decimal place" + pl(sol.a.f.length) +
-              " and <b>" + esc(numStr(sol.b)) + "</b> has <b>" + sol.b.f.length + "</b>, so count <b>" + sol.places +
-              "</b> place" + pl(sol.places) + " in from the right." :
-              "Neither number has a decimal point, so the answer is a whole number — check the zeros on the end.");
+          return T(k > 0 ? "multiplication.pointBig" : "multiplication.pointSmall", { k: tenTimes(k) }) + " " + (sol.places ?
+            T("multiplication.pointCount", { a: esc(numStr(sol.a)), na: sol.a.f.length, b: esc(numStr(sol.b)), nb: sol.b.f.length, p: sol.places }) :
+            T("multiplication.pointNone"));
         }
         var P = buildProduct(sol.A, sol.B),
           parts = P.partials,
@@ -3091,17 +3053,14 @@
           var cands = [],
             none = B0,
             less = B0;
-          var allMsg = "It looks like the rungs didn’t shift over. Every rung after the first needs placeholder " +
-            "zeros on the end — one for the tens digit, two for the hundreds digit — before you add.";
+          var allMsg = T("multiplication.noShift");
           parts.forEach(function(p, idx) {
             none += A * BigInt(p.d);
             less += A * BigInt(p.d) * pow10(Math.max(0, p.shift - 1));
             if (!p.shift || !p.d) return;
             cands.push({
               v: BigInt(P.total) - A * BigInt(p.d) * (pow10(p.shift) - pow10(p.shift - 1)),
-              msg: "Check rung " + (idx + 1) + ": the <b>" + p.d + "</b> is in the " + placeWord(p.shift) +
-                " place, so that rung needs <b>" + p.shift + "</b> placeholder zero" + pl(p.shift) +
-                " on the end. It looks like one went missing."
+              msg: T("multiplication.rungMissing", { i: idx + 1, d: p.d, place: placeWord(p.shift), s: p.shift })
             });
           });
           cands.push({ v: none, msg: allMsg }, { v: less, msg: allMsg });
@@ -3131,26 +3090,20 @@
         if (c.some(function(x) { return !rEq(x, V) && nearValue(ans, x); })) {
           var mx = (m1[0] && m1[1]) ? m1 : m2,
             im = toImproper(mx);
-          return "It looks like the whole numbers and the fractions were multiplied separately. That doesn’t " +
-            "work for &times; — turn each mixed number into an improper fraction first (<b>" + label(mx) + " = " +
-            im.n + "/" + im.d + "</b>), then multiply straight across.";
+          return T("multiplication.separately", { m: label(mx), n: im.n, d: im.d });
         }
       }
       if (nearValue(ans, rAdd(fa, fb)))
-        return "It looks like you <b>added</b> the fractions. For &times; there’s no adding — multiply the tops, " +
-          "then multiply the bottoms.";
+        return T("multiplication.addedFrac");
       if (a.d === b.d && !rEq(Rat(BigInt(a.n * b.n), BigInt(a.d)), V) && nearValue(ans, Rat(BigInt(a.n * b.n), BigInt(a.d))))
-        return "Multiply the bottom numbers too — <b>" + a.d + " × " + b.d + "</b> — not just the tops. " +
-          "Keeping the bottom the same is for adding.";
+        return T("multiplication.bottomsToo", { a: a.d, b: b.d });
       var L = a.d / gcd(a.d, b.d) * b.d,
         cd = Rat(BigInt(a.n * (L / a.d)) * BigInt(b.n * (L / b.d)), BigInt(L));
       if (!rEq(cd, V) && nearValue(ans, cd))
-        return "No common denominator needed for &times;. Multiply the tops together and the bottoms together — " +
-          "straight across.";
+        return T("multiplication.noCommon");
       var dv = rDiv(fa, fb);
       if (dv && !rEq(dv, V) && nearValue(ans, dv))
-        return "That’s what you get by dividing (multiplying across the diagonals). For &times;, go straight " +
-          "across: top × top over bottom × bottom.";
+        return T("multiplication.dividing");
       return null;
     }
     $("checkForm").addEventListener("submit", function(e) {
@@ -3501,8 +3454,8 @@
     function readQ(q) {
       var p = readQ1(q);
       if (qReads(p)) return p;
-      var T = readTyped(q);
-      if (T && T.q !== String(q).trim()) { var p2 = readQ1(T.q); if (qReads(p2)) return p2; }
+      var R = readTyped(q);
+      if (R && R.q !== String(q).trim()) { var p2 = readQ1(R.q); if (qReads(p2)) return p2; }
       return p;
     }
 
@@ -3537,6 +3490,7 @@
         if (hint) S.mode = hint;
         return;
       }
+      if (window.HelperI18n) q = HelperI18n.normalize(q); // a problem typed in Spanish → what the reader knows
       var p = readQ(q);
       S.mode = p.mode;
       if (p.mode === "dec") {
@@ -3550,9 +3504,9 @@
         url = location.href;
 
       function done(ok) {
-        btn.textContent = ok ? "Link copied ✓" : "Copy the address bar instead";
+        btn.textContent = ok ? T("common.linkCopied") + " ✓" : T("multiplication.copyFallback");
         clearTimeout(copyTimer);
-        copyTimer = setTimeout(function() { btn.textContent = "Copy link"; }, 2000);
+        copyTimer = setTimeout(function() { btn.textContent = T("common.copyLink"); }, 2000);
       }
 
       function fallback() {
@@ -3684,10 +3638,11 @@
         $(host).appendChild(b);
       });
     }
-    segs("gA", [1, 2, 3, 4], function(v) { return v + " digit" + pl(v); }, "a");
-    segs("gB", [1, 2, 3], function(v) { return v + " digit" + pl(v); }, "b");
-    segs("gP", [0, 1, 2, 3], function(v) { return v ? String(v) : "None"; }, "places");
-    segs("gKind", ["proper", "mixed"], function(v) { return v === "proper" ? "Less than 1 (like 3/4)" : "Mixed numbers (like 2 1/2)"; }, "kind");
+    var digitsText = function(v) { return T("multiplication.digits", { n: v }); };
+    segs("gA", [1, 2, 3, 4], digitsText, "a");
+    segs("gB", [1, 2, 3], digitsText, "b");
+    segs("gP", [0, 1, 2, 3], function(v) { return v ? String(v) : T("multiplication.none"); }, "places");
+    segs("gKind", ["proper", "mixed"], function(v) { return T(v === "proper" ? "multiplication.kindProper" : "multiplication.kindMixed"); }, "kind");
 
     function paintGen() {
       var G = S.gen;
@@ -3718,8 +3673,7 @@
       for (var k in S.gen) o[k] = S.gen[k];
       o.mode = S.mode;
       try { r = makeMul(genOpts(o), {}); } catch (e) { r = null; }
-      el.innerHTML = r ? "Makes problems like: <b>" + esc(problemText(r.p)) + "</b>" :
-        "Those choices don’t make a problem — try different ones.";
+      el.innerHTML = r ? T("multiplication.sample", { p: esc(problemText(r.p)) }) : T("multiplication.noSample");
     }
     $("gTables").addEventListener("click", function() {
       S.gen.tables = !S.gen.tables;
@@ -3738,8 +3692,8 @@
       var seen = {};
       seen[qText(curProblem())] = true;
       var r = makeMul(genOpts(o), seen);
-      if (!r) { $("genMsg").textContent = "Couldn’t make one with those settings — try different choices."; return; }
-      $("genMsg").textContent = r.exact ? "" : "Couldn’t find one that cross-cancels, so this one goes straight across.";
+      if (!r) { $("genMsg").textContent = T("multiplication.cantMake"); return; }
+      $("genMsg").textContent = r.exact ? "" : T("multiplication.noCancelFound");
       loadProblem(r.p);
     });
 
@@ -3768,40 +3722,40 @@
         label: label,
         type: "toggle",
         modes: modes,
-        values: [{ v: false, label: "Off" }, { v: true, label: "On" }],
+        values: [{ v: false, label: T("common.off") }, { v: true, label: T("common.on") }],
         "default": false
       };
     }
     var API_OPTIONS = [
-      apiChoice("mode", "Numbers", [
-          ["decimals", "Whole numbers & decimals"],
-          ["fractions", "Fractions"]
+      apiChoice("mode", T("multiplication.apiNumbers"), [
+          ["decimals", T("multiplication.apiWholeDec")],
+          ["fractions", T("common.fractions")]
         ], "decimals",
         ["decimals", "fractions"]),
-      apiChoice("a", "Digits in the first number", [
-        [1, "1 digit"],
-        [2, "2 digits"],
-        [3, "3 digits"],
-        [4, "4 digits"]
+      apiChoice("a", T("multiplication.digitsFirst"), [
+        [1, digitsText(1)],
+        [2, digitsText(2)],
+        [3, digitsText(3)],
+        [4, digitsText(4)]
       ], 2, ["decimals"]),
-      apiChoice("b", "Digits in the second number", [
-        [1, "1 digit"],
-        [2, "2 digits"],
-        [3, "3 digits"]
+      apiChoice("b", T("multiplication.digitsSecond"), [
+        [1, digitsText(1)],
+        [2, digitsText(2)],
+        [3, digitsText(3)]
       ], 2, ["decimals"]),
-      apiChoice("places", "Decimal places (both numbers together)", [
-        [0, "None"],
+      apiChoice("places", T("multiplication.placesLbl"), [
+        [0, T("multiplication.none")],
         [1, "1"],
         [2, "2"],
         [3, "3"]
       ], 0, ["decimals"]),
-      apiToggle("tables", "Times tables only", ["decimals"]),
-      apiChoice("kind", "Kind of fractions", [
-          ["proper", "Less than 1 (like 3/4)"],
-          ["mixed", "Mixed numbers (like 2 1/2)"]
+      apiToggle("tables", T("multiplication.apiTables"), ["decimals"]),
+      apiChoice("kind", T("multiplication.kindLbl"), [
+          ["proper", T("multiplication.kindProper")],
+          ["mixed", T("multiplication.kindMixed")]
         ], "proper",
         ["fractions"]),
-      apiToggle("cancel", "Can simplify before multiplying (cross-cancel)", ["fractions"])
+      apiToggle("cancel", T("multiplication.apiCancel"), ["fractions"])
     ];
 
     function apiProblem(p) {
@@ -3841,7 +3795,7 @@
       return t ? t === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
     }
 
-    function paint() { themeBtn.textContent = isDark() ? "Light mode" : "Dark mode"; }
+    function paint() { themeBtn.textContent = isDark() ? T("common.lightMode") : T("common.darkMode"); }
     themeBtn.addEventListener("click", function() {
       document.documentElement.setAttribute("data-theme", isDark() ? "light" : "dark");
       paint();

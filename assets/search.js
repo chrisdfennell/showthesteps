@@ -438,13 +438,16 @@
     LAST = { "algebra.html": 1, "glossary.html": 1, "pemdas.html": 1 };
 
   function route(raw) {
+    // a problem typed in the visitor's language: in the words the readers know ("tres cuartos de 20" → "3/4 of 20");
+    // English comes back as it was (assets/i18n.js)
+    if (window.HelperI18n && window.HelperI18n.normalize) raw = window.HelperI18n.normalize(raw);
     var r = route0(raw),
       s = String(raw).replace(/\s+/g, " ").trim(),
       r2;
     if (!r || r.none) return r;
     // a story with sentences is read as it is ("Ms." doesn't end one)
     if (r.page === "wordproblems.html" && /[.!?]\s+\S/.test(s.replace(/\b(?:mr|mrs|ms|dr|st|vs)\.\s/gi, "x "))) return r;
-    if (!WEAK[r.page]) return r;
+    if (!WEAK[r.page] || r.keep) return r;
     var t = TYPED.read(s),
       p = TYPED.plain(s);
     if (r.page === "glossary.html" && !/\d/.test(p)) return r; // "what is likely": a word to look up
@@ -467,6 +470,17 @@
       .replace(/[⁻⁰¹²³⁴⁵⁶⁷⁸⁹]+/g, function(x) { return /[⁻⁰¹⁴-⁹]/.test(x) || x.length > 1 ? "^" + x.replace(/[⁻⁰¹²³⁴⁵⁶⁷⁸⁹]/g, function(c) { return "-0123456789".charAt("⁻⁰¹²³⁴⁵⁶⁷⁸⁹".indexOf(c)); }) : x; }).trim();
     if (!s) return null;
     var low = s.toLowerCase();
+    // optimization (linear programming): maximize or minimize with limits ("maximize P = 3x + 5y; x + y ≤ 10; …", "subject to"),
+    // or a story about the most profit or the least cost with "how many" and amounts per item, goes to the Graph Paper's
+    // Optimization tab; Heron's formula goes to the Shape Shop
+    var lpGoal = /\b(?:maximi[sz]e|minimi[sz]e|optimi[sz]e|maximum|minimum|max|min)\b/.test(low);
+    if (/\b(?:linear\s+programming|feasible\s+region|objective\s+function)\b/.test(low) ||
+      lpGoal && /[<>≤≥]/.test(s) && /\d\s*[xy]\b|\b[xy]\s*[<>≤≥=+−-]/.test(low) && /\bsubject\s+to\b|\bs\.\s*t\.|\bconstraints?\b|[;,]/.test(low) ||
+      /\b(?:maximi[sz]e|minimi[sz]e)\b|\b(?:most|greatest|largest|maximum|highest)\s+(?:profit|revenue|income)\b|\b(?:least|lowest|minimum|smallest)\s+(?:cost|expense)\b/.test(low) &&
+      /\bhow\s+many\b/.test(low) && /\b(?:each|per|every)\b/.test(low) && /\$\s*\d|\d\s*(?:dollars|cents)\b/.test(low) &&
+      /\b(?:at\s+most|at\s+least|no\s+more\s+than|up\s+to|available|there\s+(?:are|is)|has|have|only|needs?)\b/.test(low) && (low.match(/\d+(?:\.\d+)?/g) || []).length >= 4)
+      return go("graphing.html", "mode=optimize&" + qp(s), "optimization (linear programming)");
+    if (/\bheron'?s?\b/.test(low) && /\d/.test(low)) return go("geometry.html", qp(s), "Heron’s formula");
 
     // a weather report, pasted: a METAR, SPECI or TAF goes to the Flight Computer's Weather tab ("KSEA 241753Z 18012KT 10SM
     // FEW040 BKN250 14/08 A3012"). It starts with METAR, SPECI or TAF, or has a station and a DDHHMMZ time, or three kinds of
@@ -514,6 +528,20 @@
         opk = opm && { "+": "add", "-": "sub", "−": "sub", "×": "mul", "x": "mul", "*": "mul", "÷": "div", "/": "div" } [opm[1]];
       return go("scratch.html", opk ? "op=" + opk + "&" + qp(sum.replace(/\s+/g, "").replace(/[x×]/g, "*").replace(/÷/g, "/").replace(/−/g, "-")) : "", "doing it by hand");
     }
+    // a formula to solve for one of its letters (a literal equation): "solve A = lw for w", "make w the subject of A = lw",
+    // "rearrange v = u + at for t", "isolate h in V = πr²h". It needs that wording, one = and two letters or more; the Balance
+    // Scale picks its Formula tab (or Solve, when there's only one letter) from the problem itself
+    if (/\b(?:solve|rearrange|re-arrange|transpose|isolate)\b[^=<>]*=[^=<>]*\bfor\s+[a-z]\b|\b(?:solve|rearrange|re-arrange|transpose)\s+(?:the\s+formula\s+)?for\s+[a-z]\b|\bmake\s+[a-z]\s+the\s+subject\b|\bisolate\s+[a-z]\b|\bexpress\s+[a-z]\s+in\s+terms\s+of\b/i.test(s) &&
+      (s.match(/=/g) || []).length === 1 && !/[<>≤≥;]/.test(s)) {
+      var litLets = {};
+      s.replace(/\b(?:solve|rearrange|re-arrange|transpose|isolate|make|the|subject|of|formula|equation|for|in|terms|and|express|to|this|pi|sqrt)\b/gi, " ")
+        .replace(/[a-z]/gi, function(c) { litLets[c] = 1; });
+      if (Object.keys(litLets).length >= 2) {
+        var litR = go("algebra.html", qp(s), "a formula to solve for one letter");
+        litR.keep = true; // the Balance Scale reads the wording itself
+        return litR;
+      }
+    }
     // the problem of the day
     if (/^\s*(?:today'?s\s+problem|problem\s+of\s+the\s+day|daily(?:\s+problem|\s+challenge)?|daily\s+math)\s*$/.test(low))
       return go("daily.html", "", "the problem of the day");
@@ -529,6 +557,23 @@
     if (/\b(?:graph|grid|dot|isometric|coordinate|squared?)\s+paper\b|\bnumber\s+lines?\s+(?:to\s+print|paper|sheet)|\bblank\s+(?:coordinate\s+(?:plane|grid)|graph|grid)\b/.test(low))
       return /\b(?:draw|plot|online|virtual|on screen)\b/.test(low) ? go("graphing.html", "mode=free", "a blank sheet of graph paper") :
         go("reference.html", "#paper", "graph paper to print", { page: "graphing.html", params: "mode=free" });
+    // calculus word problems: the Rate Machine's Optimization and Related rates tabs. Only with a clear calculus cue —
+    // "how fast / at what rate … when (after, at that moment)" about something whose size changes (a ladder, a ripple, an
+    // oil spill, a balloon, a cone, a shadow, two cars at right angles), or "maximize / minimize / largest / least /
+    // closest …" about an open box cut from corners, fencing, a can's material, revenue from a price change, a Norman
+    // window, two numbers' sum and product, or the point on a curve y = …. Plain distance-rate-time stories, areas and
+    // volumes of given shapes, and "largest number that divides …" stay where they were.
+    var calcRR = /\bhow (?:fast|quickly|rapidly)\b|\bat what (?:rate|speed)\b|\bthe rate at which\b|\bhow is the \w+ changing\b/.test(low) &&
+      (/\bshadow\b/.test(low) && /\b(?:light|lamp\w*|pole|post)\b/.test(low) || /\bwhen\b|\bafter\b|\blater\b|\bat (?:that|this|the) (?:moment|instant)\b/.test(low) &&
+        (/\bladder\b|\bshadow\b|\bripples?\b|\boil\b|\bspill\b|\bballoon\b|\bsnowball\b|\bspher(?:e|ical)\b|\bcones?\b|\bconical\b|\bfunnel\b|\bcircle\b|\bcircular\b|\bright angles?\b|\bintersection\b/.test(low) ||
+          /\b(?:north|south)\w*\b[^.]*\b(?:east|west)\w*\b|\b(?:east|west)\w*\b[^.]*\b(?:north|south)\w*\b/.test(low)));
+    var calcOpt = /\b(?:maxim\w*|minim\w*|largest|greatest|biggest|least|smallest|most light|most (?:revenue|profit|income)|closest|nearest|as (?:large|big|small|great) as possible)\b/.test(low) &&
+      (/\bbox(?:es)?\b[^.?]*\b(?:corners?|cut\w*)\b|\b(?:corners?|cut\w*)\b[^.?]*\bbox(?:es)?\b/.test(low) || /\bfenc\w*\b/.test(low) && /\b(?:area|dimensions|rectang\w*|pens?|field|garden|yard)\b/.test(low) ||
+        /\b(?:cylind\w*|cans?|tin can|drum)\b/.test(low) && /\b(?:material|metal|surface area|tin|aluminum|aluminium)\b/.test(low) || /\bperimeter\b/.test(low) && /\barea\b/.test(low) ||
+        /\b(?:revenue|profit|income)\b/.test(low) && /\b(?:increase|decrease|fewer|more|demand|p\s*=|x\s*=\s*\d+\s*[−-]\s*\d*\s*p)\b/.test(low) ||
+        /\bnorman window\b|\bwindow\b[^.?]*\bsemi-?circle\b/.test(low) || /\bpoint on\b[^.?]*\by\s*=|\by\s*=[^.?]*\b(?:closest|nearest)\b/.test(low) ||
+        /\btwo (?:positive |nonnegative |real )?numbers\b/.test(low) && /\b(?:sum|product)\b/.test(low));
+    if (calcRR || calcOpt) return go("calculus.html", qp(s), "a calculus word problem");
     // calculus: derivatives, limits, integrals, tangent lines, maximum and minimum ("d/dx x^3", "lim x->3 …", "∫ 2x dx")
     var hasX = /(?:^|[^a-z])[xt](?![a-z])/.test(low.replace(/\b(?:d\s*\/\s*d[xt]|d[xt])\b/g, " "));
     if (/\bd\s*\/\s*d[xt]\b|\bd²\s*\/\s*d[xt]²|\bderivatives?\b|\bdifferentiate\b|\b[fgy]\s*(?:'+|′+|″)\s*(?:\(|$|\s)/.test(low) ||
@@ -963,6 +1008,24 @@
       /\btable\b/.test(low) && /\by\s*=/.test(low) || /\by\s*=[^;]*\b(?:for|when)\s+x\s*=\s*[−-]?\d+\s*(?:,|\.\.|to\b)/.test(low) || /^\s*x\s*:\s*[−-]?\d[^;]*\by\s*:\s*[−-]?\d/.test(low) ||
       /^\s*table\b.*=/.test(low))
       return go("graphing.html", qp(s), "graphing");
+    // a compound inequality in one letter with work to do (−3 < 2x + 1 ≤ 7, 2x − 1 < 5 and 3x + 2 > −4) is worked step by step on
+    // the Balance Scale; one that's already solved (−2 < x ≤ 3, x < −1 or x > 3) stays a number line here
+    // "x is between −1 and 4" (inclusive): an inequality in words, on the Balance Scale's Inequality tab
+    if (/^\s*(?:solve\s*:?\s*)?[a-z]\s+(?:is\s+)?between\s+[−–-]?\s*[\d.\/]+\s+and\s+[−–-]?\s*[\d.\/]+(?:\s*,?\s*\(?(?:inclusive|inclusively|including\s+both(?:\s+ends)?)\)?)?\s*[.?]?\s*$/i.test(s)) {
+      var bR = go("algebra.html", "mode=ineq&" + qp(s), "an inequality");
+      bR.keep = true;
+      return bR;
+    }
+    var cIneq = (s.match(/[<>≤≥]/g) || []).length;
+    if (cIneq >= 2 && !/[;,]/.test(s) && !/=/.test(s.replace(/<=|>=|=<|=>/g, ""))) {
+      var cBody = s.replace(/^\s*solve\s*:?\s*/i, ""),
+        cLets = (cBody.replace(/\b(?:and|or)\b/gi, " ").match(/[a-z]/gi) || []).filter(function(c, i, a) { return a.indexOf(c) === i; });
+      if (cLets.length === 1 && cBody.split(/\s*(?:<=|>=|=<|=>|[<>≤≥]|\band\b|\bor\b)\s*/i).some(function(p) { return p.indexOf(cLets[0]) >= 0 && p.trim() !== cLets[0]; })) {
+        var cR = go("algebra.html", "mode=ineq&" + qp(cBody), "a compound inequality", { page: "graphing.html", params: qp(s) });
+        cR.keep = true;
+        return cR;
+      }
+    }
     var eqCount = (s.match(/=/g) || []).length,
       ineqCount = (s.match(/[<>≤≥]/g) || []).length;
     if ((/(?:^|[^a-z])y(?![a-z])/i.test(s) && /x/i.test(s) && ineqCount >= 1 && !/[;,]|\band\b/i.test(s)) || // y < 2x + 1: shade it

@@ -34,6 +34,22 @@
   "use strict";
   if (window.HelperEmbed) return;
 
+  /* ---- the words, in the visitor's language (assets/i18n.js): the embed.* keys, and en.js repeats the English for
+     translators. English always shows the words written here; so does a page without i18n.js. ---- */
+  function tr(key, en, vars) {
+    var I = window.HelperI18n;
+    if (I && I.lang && I.lang !== "en" && I.t) {
+      var s = I.t(key, vars);
+      if (s !== key) return s;
+    }
+    return vars ? String(en).replace(/\{(\w+)(\|[^{}]*)?\}/g, function(m, k, forms) { // {name}, and {n|one|other}
+      if (!Object.prototype.hasOwnProperty.call(vars, k)) return m;
+      if (!forms) return String(vars[k]);
+      var f = forms.slice(1).split("|");
+      return Number(vars[k]) === 1 ? f[0] : f[f.length - 1];
+    }) : en;
+  }
+
   var root = document.documentElement;
   var LIVE = "https://showthesteps.org/"; // where the code points when this copy isn't the published site
   var MAXH = 5000;
@@ -188,7 +204,7 @@
     a.target = "_blank";
     a.rel = "noopener";
     a.href = fullHref();
-    a.title = "Open this problem on Show The Steps, in a new tab";
+    a.title = tr("embed.openTitle", "Open this problem on Show The Steps, in a new tab");
     a.innerHTML = (root.classList.contains("ht-site-full") ? "" : esc(heading()) + " · ") + "<b>Show The Steps</b> ↗";
     a.addEventListener("click", function() { a.href = fullHref(); }); // the problem on screen when it's pressed
     box.appendChild(a);
@@ -302,9 +318,10 @@
   function currentPractice() {
     var on = "all";
     [].forEach.call(document.querySelectorAll('[role="group"] button[aria-pressed="true"]'), function(b) {
-      var t = b.textContent.trim();
-      if (/^one step at a time$/i.test(t)) on = "step";
-      else if (/^check my answer$/i.test(t)) on = "check";
+      var t = b.textContent.trim(),
+        lt = t.toLowerCase(); // (in the page's language too)
+      if (/^one step at a time$/i.test(t) || lt === tr("common.oneStep", "One step at a time").toLowerCase()) on = "step";
+      else if (/^check my answer$/i.test(t) || lt === tr("common.checkMine", "Check my answer").toLowerCase()) on = "check";
     });
     if (window.HelperTutor && window.HelperTutor.active && window.HelperTutor.active()) on = "step";
     return on;
@@ -358,9 +375,9 @@
       ta.select();
       try { ok = document.execCommand("copy"); } catch (e) {}
       ta.remove();
-      show(ok ? "Copied ✓" : "Couldn’t copy: select it and copy");
+      show(ok ? tr("embed.copied", "Copied ✓") : tr("embed.copyFail", "Couldn’t copy: select it and copy"));
     }
-    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(function() { show("Copied ✓"); }, fallback);
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(function() { show(tr("embed.copied", "Copied ✓")); }, fallback);
     else fallback();
   }
 
@@ -411,7 +428,7 @@
       want = o.height === "fixed" ? Math.max(150, Math.min(MAXH, Number(o.px) || 640)) : cur.fit || 320,
       cap = Math.max(240, Math.min(440, window.innerHeight - 320));
     fr.style.height = Math.min(want, cap) + "px";
-    cur.ov.querySelector(".he-ph").textContent = want > cap ? "shortened here: " + want + " px tall on your page" : want + " px tall";
+    cur.ov.querySelector(".he-ph").textContent = want > cap ? tr("embed.shortened", "shortened here: {h} px tall on your page", { h: want }) : tr("embed.tall", "{h} px tall", { h: want });
   }
 
   function paintCode() {
@@ -422,19 +439,15 @@
     if (cur.tab === "html") {
       ta.value = b.code;
       cur.ov.querySelector(".he-tnote").innerHTML = o.height === "fixed" ?
-        "Paste it where your page editor takes HTML: an <b>HTML</b>, <b>Code</b> or <b>Embed</b> block. The frame stays " + b.height + " px tall; anything longer scrolls inside it." :
-        "Paste it where your page editor takes HTML: an <b>HTML</b>, <b>Code</b> or <b>Embed</b> block. The few lines of script make the frame as tall as the steps; " +
-        "if your site removes scripts, the frame keeps the height it starts with (" + b.height + " px) and anything longer scrolls inside it.";
+        tr("embed.noteFixed", "Paste it where your page editor takes HTML: an <b>HTML</b>, <b>Code</b> or <b>Embed</b> block. The frame stays {h} px tall; anything longer scrolls inside it.", { h: b.height }) :
+        tr("embed.noteAuto", "Paste it where your page editor takes HTML: an <b>HTML</b>, <b>Code</b> or <b>Embed</b> block. The few lines of script make the frame as tall as the steps; if your site removes scripts, the frame keeps the height it starts with ({h} px) and anything longer scrolls inside it.", { h: b.height });
     } else {
       ta.value = b.src;
       cur.ov.querySelector(".he-tnote").innerHTML =
-        "<b>Google Sites:</b> Insert → Embed → <b>By URL</b>, paste this address (if it asks, choose <b>Whole page</b>), then Insert and drag the box as tall as you want it." +
-        "<br><b>Canvas:</b> in a page, assignment or quiz, open the HTML editor (<b>&lt;/&gt;</b>) and paste the HTML code (the other tab). Canvas removes scripts, " +
-        "so the frame keeps its height: choose <b>Fixed</b>, or check the height the preview shows." +
-        "<br><b>Anywhere else:</b> a link to this address opens the same thing full size.";
+        tr("embed.noteUrl", "<b>Google Sites:</b> Insert → Embed → <b>By URL</b>, paste this address (if it asks, choose <b>Whole page</b>), then Insert and drag the box as tall as you want it.<br><b>Canvas:</b> in a page, assignment or quiz, open the HTML editor (<b>&lt;/&gt;</b>) and paste the HTML code (the other tab). Canvas removes scripts, so the frame keeps its height: choose <b>Fixed</b>, or check the height the preview shows.<br><b>Anywhere else:</b> a link to this address opens the same thing full size.");
     }
     var copy = cur.ov.querySelector('[data-a="copy"]');
-    copy.textContent = copy._label = cur.tab === "html" ? "Copy code" : "Copy address";
+    copy.textContent = copy._label = cur.tab === "html" ? tr("embed.copyCode", "Copy code") : tr("embed.copyAddress", "Copy address");
   }
 
   var reloadT = null;
@@ -491,42 +504,42 @@
     ov.setAttribute("aria-modal", "true");
     ov.setAttribute("aria-labelledby", "heTitle");
     ov.innerHTML = '<div class="he-card">' +
-      '<div class="he-top"><div><h2 class="he-title" id="heTitle">Put this on your website</h2>' +
-      '<div class="he-sub">' + esc(heading()) + (label ? " · this problem: " + esc(label.slice(0, 80)) : " · the problem on screen now") + "</div></div>" +
-      '<button type="button" class="he-x" aria-label="Close">✕</button></div>' +
+      '<div class="he-top"><div><h2 class="he-title" id="heTitle">' + tr("embed.title", "Put this on your website") + "</h2>" +
+      '<div class="he-sub">' + esc(heading()) + (label ? " · " + tr("embed.thisProblem", "this problem: {p}", { p: esc(label.slice(0, 80)) }) : " · " + tr("embed.onScreen", "the problem on screen now")) + "</div></div>" +
+      '<button type="button" class="he-x" aria-label="' + esc(tr("embed.close", "Close")) + '">✕</button></div>' +
       '<div class="he-opts">' +
-      '<span class="he-k" id="he-k-practice">Visitors see</span>' +
+      '<span class="he-k" id="he-k-practice">' + tr("embed.visitors", "Visitors see") + "</span>" +
       radios("practice", [
-        ["all", "All the steps"],
-        ["step", "One step at a time"],
-        ["check", "Check my answer"]
+        ["all", tr("embed.allSteps", "All the steps")],
+        ["step", tr("common.oneStep", "One step at a time")],
+        ["check", tr("common.checkMine", "Check my answer")]
       ], o.practice) +
-      '<span class="he-k" id="he-k-layout">Layout</span>' +
+      '<span class="he-k" id="he-k-layout">' + tr("embed.layout", "Layout") + "</span>" +
       radios("layout", [
-        ["simple", "Just this problem"],
-        ["full", "The whole helper"]
+        ["simple", tr("embed.simple", "Just this problem")],
+        ["full", tr("embed.whole", "The whole helper")]
       ], o.layout) +
-      '<span class="he-k" id="he-k-height">Height</span>' +
+      '<span class="he-k" id="he-k-height">' + tr("embed.height", "Height") + "</span>" +
       '<div class="he-pills" role="radiogroup" aria-labelledby="he-k-height">' +
-      '<label class="on"><input type="radio" name="he-height" value="auto" checked>Grows to fit</label>' +
-      '<label><input type="radio" name="he-height" value="fixed">Fixed</label>' +
-      '<input type="number" min="150" max="' + MAXH + '" step="10" value="640" aria-label="Height in pixels" disabled><span class="he-px">px</span></div>' +
-      '<span class="he-k" id="he-k-theme">Colors</span>' +
+      '<label class="on"><input type="radio" name="he-height" value="auto" checked>' + tr("embed.grows", "Grows to fit") + "</label>" +
+      '<label><input type="radio" name="he-height" value="fixed">' + tr("embed.fixed", "Fixed") + "</label>" +
+      '<input type="number" min="150" max="' + MAXH + '" step="10" value="640" aria-label="' + esc(tr("embed.px", "Height in pixels")) + '" disabled><span class="he-px">px</span></div>' +
+      '<span class="he-k" id="he-k-theme">' + tr("embed.colors", "Colors") + "</span>" +
       radios("theme", [
-        ["", "Follow the visitor’s device"],
-        ["light", "Light"],
-        ["dark", "Dark"]
+        ["", tr("embed.device", "Follow the visitor’s device")],
+        ["light", tr("embed.light", "Light")],
+        ["dark", tr("embed.dark", "Dark")]
       ], o.theme) +
       "</div>" +
-      '<div><p class="he-h">Preview <span class="he-ph"></span></p><div class="he-prev"><iframe title="Preview of the embedded helper"></iframe></div></div>' +
-      '<div><div class="he-tabs" role="tablist" aria-label="Where it goes">' +
-      '<button type="button" role="tab" aria-selected="true" data-tab="html">HTML code</button>' +
+      '<div><p class="he-h">' + tr("embed.preview", "Preview") + ' <span class="he-ph"></span></p><div class="he-prev"><iframe title="' + esc(tr("embed.previewTitle", "Preview of the embedded helper")) + '"></iframe></div></div>' +
+      '<div><div class="he-tabs" role="tablist" aria-label="' + esc(tr("embed.where", "Where it goes")) + '">' +
+      '<button type="button" role="tab" aria-selected="true" data-tab="html">' + tr("embed.htmlTab", "HTML code") + "</button>" +
       '<button type="button" role="tab" aria-selected="false" data-tab="url">Google Sites / Canvas</button></div>' +
-      '<textarea class="he-code" readonly rows="5" spellcheck="false" aria-label="The code to paste"></textarea>' +
-      '<div class="he-row"><button type="button" class="he-btn" data-a="copy">Copy code</button></div>' +
+      '<textarea class="he-code" readonly rows="5" spellcheck="false" aria-label="' + esc(tr("embed.codeLabel", "The code to paste")) + '"></textarea>' +
+      '<div class="he-row"><button type="button" class="he-btn" data-a="copy">' + tr("embed.copyCode", "Copy code") + "</button></div>" +
       '<p class="he-note he-tnote"></p></div>' +
-      '<p class="he-foot">The embed shows the problem that’s on screen now, with a small link back to Show The Steps. ' +
-      '<a href="' + esc(helpPage()) + '" target="_blank" rel="noopener">How embedding works, with examples</a></p>' +
+      '<p class="he-foot">' + tr("embed.foot", "The embed shows the problem that’s on screen now, with a small link back to Show The Steps.") + " " +
+      '<a href="' + esc(helpPage()) + '" target="_blank" rel="noopener">' + tr("embed.how", "How embedding works, with examples") + "</a></p>" +
       "</div>";
     document.body.appendChild(ov);
     cur = { ov: ov, o: o, page: page, params: params, tab: "html", fit: 0, back: document.activeElement, snap: snapStorage() };

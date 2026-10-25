@@ -16,6 +16,7 @@
 <link rel="canonical" href="https://showthesteps.org/helpers/percents">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","name":"Percents, step by step – The Hundred Grid","description":"Percent means “out of 100”. Find a percent of a number, what percent one number is of another, the whole from a part, and percent change — plus money: discounts, markups, tax, tips and simple…","url":"https://showthesteps.org/helpers/percents","inLanguage":"en-US","isAccessibleForFree":true,"learningResourceType":["Interactive worked examples","Practice problems"],"interactivityType":"active","educationalUse":["Practice","Self-assessment"],"teaches":"Percents","educationalLevel":["Middle school (grades 6–8)"],"audience":{"@type":"EducationalAudience","educationalRole":"student"},"publisher":{"@type":"Organization","name":"Show The Steps","url":"https://showthesteps.org/"},"isPartOf":{"@type":"WebSite","name":"Show The Steps","url":"https://showthesteps.org/"}}</script>
 <script src="../assets/site.js"></script>
+<script src="../assets/i18n.js" data-strings="percents"></script>
 <script src="../assets/nav.js" defer></script>
 <script src="../assets/progress.js" defer></script>
 <link rel="stylesheet" href="../assets/fonts/fonts.css">
@@ -1613,9 +1614,9 @@
 <div class="page">
   <header class="masthead">
     <div>
-      <div class="eyebrow">Percents, worked out</div>
+      <div class="eyebrow" data-i18n="percents.eyebrow">Percents, worked out</div>
       <h1>The Hundred <em>Grid</em></h1>
-      <p class="tagline">Percent means &ldquo;out of 100&rdquo;. Find a percent of a number, what percent one number is of
+      <p class="tagline" data-i18n="percents.tagline">Percent means &ldquo;out of 100&rdquo;. Find a percent of a number, what percent one number is of
         another, the whole from a part, and percent change &mdash; plus money: discounts, markups, tax, tips and
         simple interest. Every step done the way you&rsquo;d do it on paper, with a picture to show why.</p>
     </div>
@@ -1623,44 +1624,44 @@
   </header>
 
   <section class="problem">
-    <div class="modes" id="modeTabs" role="group" aria-label="What kind of problem">
-      <button type="button" data-mode="of" aria-pressed="true">Percent of</button>
-      <button type="button" data-mode="what" aria-pressed="false">What percent</button>
-      <button type="button" data-mode="whole" aria-pressed="false">Find the whole</button>
-      <button type="button" data-mode="change" aria-pressed="false">Percent change</button>
-      <button type="button" data-mode="money" aria-pressed="false">Money</button>
+    <div class="modes" id="modeTabs" role="group" aria-label="What kind of problem" data-i18n-attr="aria-label=percents.modesLabel">
+      <button type="button" data-mode="of" aria-pressed="true" data-i18n="percents.tab.of">Percent of</button>
+      <button type="button" data-mode="what" aria-pressed="false" data-i18n="percents.tab.what">What percent</button>
+      <button type="button" data-mode="whole" aria-pressed="false" data-i18n="percents.tab.whole">Find the whole</button>
+      <button type="button" data-mode="change" aria-pressed="false" data-i18n="percents.tab.change">Percent change</button>
+      <button type="button" data-mode="money" aria-pressed="false" data-i18n="percents.tab.money">Money</button>
     </div>
     <div class="kindrow" id="kindRow" hidden>
-      <span class="lbl2">Kind</span>
-      <div class="modes small" id="kindTabs" role="group" aria-label="What kind of money problem">
-        <button type="button" data-kind="discount" aria-pressed="true">Discount</button>
-        <button type="button" data-kind="markup" aria-pressed="false">Markup</button>
-        <button type="button" data-kind="tax" aria-pressed="false">Sales tax</button>
-        <button type="button" data-kind="tip" aria-pressed="false">Tip</button>
-        <button type="button" data-kind="interest" aria-pressed="false">Simple interest</button>
+      <span class="lbl2" data-i18n="percents.kindLbl">Kind</span>
+      <div class="modes small" id="kindTabs" role="group" aria-label="What kind of money problem" data-i18n-attr="aria-label=percents.kindsLabel">
+        <button type="button" data-kind="discount" aria-pressed="true" data-i18n="percents.kind.discount">Discount</button>
+        <button type="button" data-kind="markup" aria-pressed="false" data-i18n="percents.kind.markup">Markup</button>
+        <button type="button" data-kind="tax" aria-pressed="false" data-i18n="percents.kind.tax">Sales tax</button>
+        <button type="button" data-kind="tip" aria-pressed="false" data-i18n="percents.kind.tip">Tip</button>
+        <button type="button" data-kind="interest" aria-pressed="false" data-i18n="percents.kind.interest">Simple interest</button>
       </div>
     </div>
     <div class="sentence" id="sentence"></div>
     <div class="qrow">
-      <label for="qIn">Or type it in words</label>
-      <input class="q-in" id="qIn" type="text" autocomplete="off" spellcheck="false" placeholder="like 20% off $45">
+      <label for="qIn" data-i18n="percents.qLabel">Or type it in words</label>
+      <input class="q-in" id="qIn" type="text" autocomplete="off" spellcheck="false" placeholder="like 20% off $45" data-i18n-attr="placeholder=percents.qPlaceholder">
       <span class="q-msg" id="qMsg" aria-live="polite"></span>
     </div>
     <p class="hint" id="hint"></p>
 
     <details class="maker" id="maker">
-      <summary>Make a problem for me <span>&mdash; pick what goes in it</span></summary>
+      <summary data-i18n="common.maker">Make a problem for me <span>&mdash; pick what goes in it</span></summary>
       <div class="maker-body" id="makerBody"></div>
     </details>
 
     <div class="examples">
-      <span class="lbl">Try</span>
+      <span class="lbl" data-i18n="common.try">Try</span>
       <span id="chips"></span>
       <span class="practice">
-        <div class="modes" role="group" aria-label="Practice mode">
-          <button type="button" id="allBtn" aria-pressed="true">Show all work</button>
-          <button type="button" id="stepBtn" aria-pressed="false">One step at a time</button>
-          <button type="button" id="checkBtn" aria-pressed="false">Check my answer</button>
+        <div class="modes" role="group" aria-label="Practice mode" data-i18n-attr="aria-label=common.practiceMode">
+          <button type="button" id="allBtn" aria-pressed="true" data-i18n="common.showAll">Show all work</button>
+          <button type="button" id="stepBtn" aria-pressed="false" data-i18n="common.oneStep">One step at a time</button>
+          <button type="button" id="checkBtn" aria-pressed="false" data-i18n="common.checkMine">Check my answer</button>
         </div>
       </span>
     </div>
@@ -1669,48 +1670,48 @@
   <div id="statusLine" role="status" aria-live="polite"></div>
 
   <section class="checkbox" id="checkBox" hidden aria-labelledby="ckTitle">
-    <div class="ck-head"><h2 id="ckTitle">Your answer</h2><span>Work it out on paper first. The work and the answer stay hidden until you check.</span></div>
+    <div class="ck-head"><h2 id="ckTitle" data-i18n="common.yourAnswer">Your answer</h2><span data-i18n="percents.ckNote">Work it out on paper first. The work and the answer stay hidden until you check.</span></div>
     <div class="ck-row">
       <div class="ck-row" id="ckFields"></div>
-      <button type="button" class="ck-btn" id="ckBtn">Check</button>
+      <button type="button" class="ck-btn" id="ckBtn" data-i18n="common.check">Check</button>
     </div>
     <div class="ck-msg" id="ckMsg" aria-live="polite"></div>
     <div class="ck-more" id="ckMore" hidden>
-      <button type="button" id="hintBtn">Show a hint</button>
-      <button type="button" id="showBtn">Show me the work</button>
+      <button type="button" id="hintBtn" data-i18n="common.hint">Show a hint</button>
+      <button type="button" id="showBtn" data-i18n="common.showWork">Show me the work</button>
     </div>
   </section>
 
   <div class="board" id="board">
     <section class="panel">
       <div class="panel-head">
-        <h2>The work</h2>
+        <h2 data-i18n="common.theWork">The work</h2>
         <div class="stepper" id="stepper" hidden>
-          <button type="button" id="prevBtn" aria-label="Previous step">&larr;</button>
+          <button type="button" id="prevBtn" aria-label="Previous step" data-i18n-attr="aria-label=common.prevStep">&larr;</button>
           <span class="count" id="stepCount"></span>
-          <button type="button" id="nextBtn" aria-label="Next step">&rarr;</button>
+          <button type="button" id="nextBtn" aria-label="Next step" data-i18n-attr="aria-label=common.nextStep">&rarr;</button>
         </div>
       </div>
       <div id="workHost"></div>
       <div class="legend" id="legend">
-        <div><span class="badge c-p">%</span> Percent &harr; fraction or decimal</div>
-        <div><span class="badge c-m">&times; &divide;</span> Multiply or divide</div>
-        <div><span class="badge c-a">+ &minus;</span> Add or subtract</div>
-        <div><span class="badge c-e">&asymp;</span> Round to the cent</div>
+        <div data-i18n="percents.legend.p"><span class="badge c-p">%</span> Percent &harr; fraction or decimal</div>
+        <div data-i18n="percents.legend.m"><span class="badge c-m">&times; &divide;</span> Multiply or divide</div>
+        <div data-i18n="percents.legend.a"><span class="badge c-a">+ &minus;</span> Add or subtract</div>
+        <div data-i18n="percents.legend.e"><span class="badge c-e">&asymp;</span> Round to the cent</div>
       </div>
     </section>
 
     <section class="panel">
-      <div class="panel-head"><h2>Say it out loud</h2></div>
+      <div class="panel-head"><h2 data-i18n="common.sayIt">Say it out loud</h2></div>
       <ol class="log" id="log"></ol>
       <div class="closer" id="closer"></div>
     </section>
   </div>
 
   <div class="footnote">
-    <button class="print" type="button" id="printBtn">Print this work</button>
-    <button class="print" type="button" id="copyBtn">Copy link</button>
-    <span>Every step comes back to one idea: percent means per hundred. Stuck on the arithmetic inside a step?
+    <button class="print" type="button" id="printBtn" data-i18n="common.print">Print this work</button>
+    <button class="print" type="button" id="copyBtn" data-i18n="common.copyLink">Copy link</button>
+    <span data-i18n="percents.footnote">Every step comes back to one idea: percent means per hundred. Stuck on the arithmetic inside a step?
       Work it on <a href="multiplication.html">&times;</a>, <a href="division.html">&divide;</a> or
       <a href="order-of-operations.html">the Order Stack</a>.</span>
   </div>
@@ -1719,6 +1720,8 @@
 <script>
   (function() {
     "use strict";
+    if (window.HelperI18n) HelperI18n.apply();
+    var tx = function(k, v) { return window.HelperI18n ? HelperI18n.t(k, v) : k; };
     /* URL parameters
        ==============
        A link can open any problem. Problem parameters win over what was saved in this browser; anything
@@ -1993,14 +1996,13 @@
 
     function num(str, what) {
       var s = String(str == null ? "" : str).trim();
-      if (!s) throw new UserErr("Fill in the <b>" + what + "</b> — every blank needs a number.");
+      if (!s) throw new UserErr(tx("percents.err.fill", { what: what }));
       var t = s.replace(/^\$\s*/, "").replace(/\s*(%|percent|per cent)$/i, "").replace(/^\$\s*/, "").replace(/^(-|−)\s*\$\s*/, "-");
       var r = parseNum(t);
-      if (!r) throw new UserErr("I can’t read <b>" + esc(s) + "</b> as a number for the " + what +
-        ". Use digits, like <b>45</b>, <b>12.5</b> or <b>33 1/3</b>.");
-      if (r.zero) throw new UserErr("The " + what + " is a fraction with <b>0</b> on the bottom — that can’t be.");
-      if (r.v.n < 0n) throw new UserErr("Use a positive number for the " + what + ". Percent problems here work with amounts that are 0 or more.");
-      if (r.len > 12) throw new UserErr("<b>" + esc(s) + "</b> has a lot of digits. Keep each number under 13 digits.");
+      if (!r) throw new UserErr(tx("percents.err.read", { s: esc(s), what: what }));
+      if (r.zero) throw new UserErr(tx("percents.err.zeroBottom", { what: what }));
+      if (r.v.n < 0n) throw new UserErr(tx("percents.err.negative", { what: what }));
+      if (r.len > 12) throw new UserErr(tx("percents.err.long", { s: esc(s) }));
       return r;
     }
 
@@ -2012,7 +2014,7 @@
     Work.prototype.step = function(cls, tag, text, aside) {
       var i = this.log.length;
       this.log.push({
-        n: "Step&nbsp;" + (i + 1),
+        n: tx("percents.stepN", { n: i + 1 }),
         step: i,
         lines: [
           [cls, tag, text]
@@ -2086,10 +2088,12 @@
     function opPlain(o) { return " " + o + " "; }
 
     /* ===================== mode: percent of a number ===================== */
+    function gridCap(v) { return toN(v) > 100 ? tx("percents.fig.grids") : tx("percents.fig.grid"); }
+
     function solveOf(f) {
-      var p = num(f.p, "percent").v,
-        n = num(f.n, "number").v;
-      if (cmpR(p, R(100000)) > 0) throw new UserErr("That’s a huge percent! Keep it to 100,000% or less.");
+      var p = num(f.p, tx("percents.f.percent")).v,
+        n = num(f.n, tx("percents.f.number")).v;
+      if (cmpR(p, R(100000)) > 0) throw new UserErr(tx("percents.err.hugePct"));
       var pd = dvd(p, H100),
         ans = mul(pd, n),
         w = new Work();
@@ -2100,29 +2104,28 @@
         pdTerm = isTermD(pd.d),
         big = cmpR(p, H100);
 
-      w.sec("Way 1", "Turn the percent into a decimal, then multiply");
+      w.sec(tx("percents.way", { n: 1 }), tx("percents.of.way1"));
       var s1;
-      if (isZ(p)) s1 = "0% means none of it at all — 0 out of every 100. As a decimal that’s " + B("0") + ".";
+      if (isZ(p)) s1 = tx("percents.of.s1zero");
       else {
-        s1 = "Percent means “out of 100”, so " + B(pH) + " is " + B(frH(nh(p), "100")) + ". ";
-        s1 += pdTerm ? "As a decimal that’s " + B(pdH) + " — dividing by 100 slides the decimal point two places to the left." :
-          "That simplifies to " + B(pdH) + ". As a decimal it never ends (" + B(decOf(pd)) + "), so keep it as a fraction.";
-        if (big > 0) s1 += " More than 100% means more than the whole thing, so this is bigger than 1.";
-        if (big === 0) s1 += " 100% is the whole thing: 1.";
+        s1 = tx("percents.of.s1", { p: B(pH), f: B(frH(nh(p), "100")) });
+        s1 += pdTerm ? tx("percents.of.s1dec", { d: B(pdH) }) : tx("percents.of.s1frac", { f: B(pdH), d: B(decOf(pd)) });
+        if (big > 0) s1 += tx("percents.of.s1over");
+        if (big === 0) s1 += tx("percents.of.s1all");
       }
-      w.step("p", "Percent", s1);
+      w.step("p", tx("percents.tag.percent"), s1);
       w.row(pH, "=", frH(nh(p), "100") + op("=") + pdH, bd("p", "÷ 100"));
 
       var mulH = pdH + op("×") + nH,
-        s2 = "In percent problems, “of” means multiply. So " + B(pH + " of " + nH) + " is " +
-        B(pdH + " × " + nH + " = " + aH) + "." + (isTermD(ans.d) ? "" : " That’s about " + B(fixed(ans, 2)) + ".");
+        s2 = tx("percents.of.s2", { e: B(tx("percents.pOf", { p: pH, n: nH })), m: B(pdH + " × " + nH + " = " + aH) }) +
+        (isTermD(ans.d) ? "" : tx("percents.about", { v: B(fixed(ans, 2)) }));
       if (isInt(p) && isInt(n) && pdTerm && !isZ(p) && !isZ(n) && !eqR(p, H100))
-        s2 += " A handy way to do it: " + B(nh(p) + " × " + nH + " = " + nh(mul(p, n))) + ", then divide by 100 for the percent: " + B(aH) + ".";
+        s2 += tx("percents.of.handy", { m: B(nh(p) + " × " + nH + " = " + nh(mul(p, n))), a: B(aH) });
       if (!isZ(n) && !isZ(p))
-        s2 += big < 0 ? " The answer is less than " + nH + ", as it should be: " + pH + " is less than all of it." :
-        big > 0 ? " The answer is more than " + nH + ", as it should be: " + pH + " is more than all of it." : "";
-      w.step("m", "Multiply", s2);
-      w.row(pH + wd("of") + nH, "=", mulH + op("=") + aH + (isTermD(ans.d) ? "" : op("≈") + fixed(ans, 2)), bd("m", "×"), "result");
+        s2 += big < 0 ? tx("percents.of.less", { n: nH, p: pH }) :
+        big > 0 ? tx("percents.of.more", { n: nH, p: pH }) : "";
+      w.step("m", tx("percents.tag.multiply"), s2);
+      w.row(pH + wd(tx("percents.w.of")) + nH, "=", mulH + op("=") + aH + (isTermD(ans.d) ? "" : op("≈") + fixed(ans, 2)), bd("m", "×"), "result");
 
       if (!isZ(p) && cmpR(p, R(10000)) <= 0) {
         var bu = buildUp(p),
@@ -2133,7 +2136,7 @@
         if (need["5"]) need["10"] = true;
         if (need.f) need["1"] = true;
         var single = T.length === 1 && T[0].c === 1n;
-        w.sec("Way 2", "In your head: find 10% and 1%, then build it up");
+        w.sec(tx("percents.way", { n: 2 }), tx("percents.of.way2"));
         var sents = [],
           rows = [],
           v10 = dvd(n, TEN),
@@ -2143,38 +2146,38 @@
           var v = baseVal(b, n, fp),
             lab = (b === "f" ? nh(fp) : b) + "%";
           if (b === "100") {
-            sents.push("100% of " + nH + " is all of it: " + B(nH) + ".");
+            sents.push(tx("percents.of.e100", { n: nH, b: B(nH) }));
             rows.push([lab, nH, null]);
           }
           if (b === "50") {
-            sents.push("50% is half: " + B(nH + " ÷ 2 = " + nh(v)) + ".");
-            rows.push([lab, nH + op("÷") + "2" + op("=") + nh(v), bd("m", "half")]);
+            sents.push(tx("percents.of.e50", { m: B(nH + " ÷ 2 = " + nh(v)) }));
+            rows.push([lab, nH + op("÷") + "2" + op("=") + nh(v), bd("m", tx("percents.bd.half"))]);
           }
           if (b === "25") {
-            sents.push("25% is a quarter — half of a half: " + B(nH + " ÷ 4 = " + nh(v)) + ".");
+            sents.push(tx("percents.of.e25", { m: B(nH + " ÷ 4 = " + nh(v)) }));
             rows.push([lab, nH + op("÷") + "4" + op("=") + nh(v), bd("m", "÷ 4")]);
           }
           if (b === "10") {
-            sents.push("10% is a tenth: " + B(nH + " ÷ 10 = " + nh(v)) + " (slide the decimal point one place left).");
+            sents.push(tx("percents.of.e10", { m: B(nH + " ÷ 10 = " + nh(v)) }));
             rows.push([lab, nH + op("÷") + "10" + op("=") + nh(v), bd("m", "÷ 10")]);
           }
           if (b === "5") {
-            sents.push("5% is half of 10%: " + B(nh(v10) + " ÷ 2 = " + nh(v)) + ".");
-            rows.push([lab, nh(v10) + op("÷") + "2" + op("=") + nh(v), bd("m", "half")]);
+            sents.push(tx("percents.of.e5", { m: B(nh(v10) + " ÷ 2 = " + nh(v)) }));
+            rows.push([lab, nh(v10) + op("÷") + "2" + op("=") + nh(v), bd("m", tx("percents.bd.half"))]);
           }
           if (b === "1") {
-            sents.push("1% is a hundredth: " + B(nH + " ÷ 100 = " + nh(v)) + " (two places left).");
+            sents.push(tx("percents.of.e1", { m: B(nH + " ÷ 100 = " + nh(v)) }));
             rows.push([lab, nH + op("÷") + "100" + op("=") + nh(v), bd("m", "÷ 100")]);
           }
           if (b === "f") {
-            sents.push(nh(fp) + "% is " + nh(fp) + " of 1%: " + B(nh(fp) + " × " + nh(v1) + " = " + nh(v)) + ".");
+            sents.push(tx("percents.of.eF", { f: nh(fp), m: B(nh(fp) + " × " + nh(v1) + " = " + nh(v)) }));
             rows.push([lab, nh(fp) + op("×") + nh(v1) + op("=") + nh(v), bd("m", "×")]);
           }
         });
-        var t3 = "<strong>Another way.</strong> Some percents are easy to find in your head. " + sents.join(" ");
-        if (single) t3 += " And " + pH + " is one of these, so " + B(pH + " of " + nH + " = " + aH) + " — the same as Way 1 ✓";
-        w.step("m", "Easy ones", t3);
-        rows.forEach(function(r, i) { w.row(r[0] + wd("of") + nH, "=", r[1], r[2], single && i === rows.length - 1 ? "result" : ""); });
+        var t3 = tx("percents.of.another") + sents.join(" ");
+        if (single) t3 += tx("percents.of.single", { p: pH, e: B(tx("percents.pOf", { p: pH, n: nH }) + " = " + aH) });
+        w.step("m", tx("percents.tag.easy"), t3);
+        rows.forEach(function(r, i) { w.row(r[0] + wd(tx("percents.w.of")) + nH, "=", r[1], r[2], single && i === rows.length - 1 ? "result" : ""); });
         if (!single) {
           var pieceP = function(t) { return (t.b === "f" ? nh(fp) : t.b) + "%"; };
           var pieceV = function(t) { return nh(baseVal(t.b, n, fp)); };
@@ -2184,9 +2187,8 @@
           if (!eqR(chk, ans)) throw new Error("build-up mismatch");
           var amtP = joinTerms(T, pieceV, opPlain),
             midP = anyC ? " = " + joinTerms(T.map(function(t) { return { c: 1n, b: t.b, s: t.s, mid: t }; }), function(t) { return prodV(t.mid); }, opPlain) : "";
-          w.step("a", "Build it", "Now build " + B(pH) + " from those pieces: " + B(pH + " = " + joinTerms(T, pieceP, opPlain)) +
-            ". Do the same with the amounts: " + B(amtP + midP + " = " + aH) + " — the same answer as Way 1 ✓");
-          w.row(pH + wd("of") + nH, "=", joinTerms(T, pieceV, op) + (anyC ? op("=") + joinTerms(T.map(function(t) { return { c: 1n, b: t.b, s: t.s, mid: t }; }), function(t) { return prodV(t.mid); }, op) : "") +
+          w.step("a", tx("percents.tag.build"), tx("percents.of.build", { p: B(pH), eq: B(pH + " = " + joinTerms(T, pieceP, opPlain)), amt: B(amtP + midP + " = " + aH) }));
+          w.row(pH + wd(tx("percents.w.of")) + nH, "=", joinTerms(T, pieceV, op) + (anyC ? op("=") + joinTerms(T.map(function(t) { return { c: 1n, b: t.b, s: t.s, mid: t }; }), function(t) { return prodV(t.mid); }, op) : "") +
             op("=") + aH, bd("a", T.some(function(t) { return t.s < 0; }) ? "+ −" : "+"), "result");
         }
       }
@@ -2194,39 +2196,38 @@
         figs = [],
         g = gridsSVG(p),
         dn = dnlSVG(p, n, ans, false);
-      if (g) figs.push({ svg: g, cap: "Hundred grid" + (toN(p) > 100 ? "s" : "") });
-      if (dn) figs.push({ svg: dn, cap: "Percent bar" });
-      var cap = '<b class="lead">The pictures.</b> ' + (isZ(n) ? "" : "In the hundred grid the whole " + nH + " is cut into 100 equal squares, so each square is 1% of it: " +
-          B(nh(dvd(n, H100))) + ". Shade " + B(nt(p)) + " squares and you have " + B(nt(p) + " × " + nh(dvd(n, H100)) + " = " + aH) + ". ") +
-        (toN(p) > 100 && g ? "Over 100% takes more than one full grid — each full grid is all of " + nH + ". " : "") +
-        (!g ? "That’s too many grids to draw, so the bar does the job. " : "") +
-        (dn ? "On the percent bar the top counts percent and the bottom counts the number: 100% lines up with " + nH + ", so " + pH + " lines up with " + aH + "." : "");
+      if (g) figs.push({ svg: g, cap: gridCap(p) });
+      if (dn) figs.push({ svg: dn, cap: tx("percents.fig.bar") });
+      var cap = tx("percents.cap.lead") + (isZ(n) ? "" : tx("percents.of.capGrid", { n: nH, one: B(nh(dvd(n, H100))), p: B(nt(p)), m: B(nt(p) + " × " + nh(dvd(n, H100)) + " = " + aH) })) +
+        (toN(p) > 100 && g ? tx("percents.of.capOver", { n: nH }) : "") +
+        (!g ? tx("percents.of.capNoGrid") : "") +
+        (dn ? tx("percents.of.capBar", { n: nH, p: pH, a: aH }) : "");
 
       var facts = [B(pctT(p) + " = " + nt(p) + "/100 = " + (pdTerm ? nt(pd) : fracT(pd)))];
-      if (!isZ(n)) facts.push("1% of " + nH + " is " + B(nh(dvd(n, H100))) + ", 10% is " + B(nh(dvd(n, TEN))));
+      if (!isZ(n)) facts.push(tx("percents.of.fact", { n: nH, one: B(nh(dvd(n, H100))), ten: B(nh(dvd(n, TEN))) }));
       numFacts(ans, facts);
-      var closer = isZ(n) ? "<b>Check:</b> any percent of 0 is 0 — there’s nothing to take a part of. <span class=\"ok\">✓</span>" :
-        isZ(p) ? "<b>Check:</b> 0% of anything is 0. <span class=\"ok\">✓</span>" :
-        "<b>Check</b> by going backwards: " + B(aH + " ÷ " + nH + " = " + pdH) + ", and " + B(pdH + " × 100 = " + pH) + ' <span class="ok">✓</span>';
+      var closer = isZ(n) ? tx("percents.of.closeZeroN") :
+        isZ(p) ? tx("percents.of.closeZeroP") :
+        tx("percents.of.close", { a: B(aH + " ÷ " + nH + " = " + pdH), b: B(pdH + " × 100 = " + pH) });
       var diag = [
-        { v: mul(p, n), msg: "It looks like you did " + nh(p) + " × " + nH + " but forgot that " + pH + " means " + nh(p) + " out of 100 — divide by 100 too." },
-        { v: mul(dvd(p, TEN), n), msg: "Check the decimal point: " + pH + " is " + pdH + ", not " + nh(dvd(p, TEN)) + "." },
-        { v: mul(dvd(p, R(1000)), n), msg: "Check the decimal point: " + pH + " is " + pdH + ", not " + nh(dvd(p, R(1000))) + "." },
-        { v: isZ(n) ? null : mul(dvd(p, n), H100), msg: "That’s what percent " + nh(p) + " is of " + nH + " — a different question. Here “of” means multiply: " + pdH + " × " + nH + "." },
-        { v: isZ(p) ? null : dvd(n, p), msg: "Dividing " + nH + " by " + nh(p) + " isn’t it — “of” means multiply: " + pdH + " × " + nH + "." },
-        { v: sub(n, ans), msg: "That’s what’s left after taking " + pH + " away. The question only asks for the " + pH + " part." },
-        { v: add(n, ans), msg: "That’s " + nH + " plus " + pH + " more. The question only asks for the " + pH + " part." }
+        { v: mul(p, n), msg: tx("percents.of.d1", { p: nh(p), n: nH, pp: pH }) },
+        { v: mul(dvd(p, TEN), n), msg: tx("percents.dPoint", { p: pH, d: pdH, x: nh(dvd(p, TEN)) }) },
+        { v: mul(dvd(p, R(1000)), n), msg: tx("percents.dPoint", { p: pH, d: pdH, x: nh(dvd(p, R(1000))) }) },
+        { v: isZ(n) ? null : mul(dvd(p, n), H100), msg: tx("percents.of.d4", { p: nh(p), n: nH, d: pdH }) },
+        { v: isZ(p) ? null : dvd(n, p), msg: tx("percents.of.d5", { n: nH, p: nh(p), d: pdH }) },
+        { v: sub(n, ans), msg: tx("percents.of.d6", { p: pH }) },
+        { v: add(n, ans), msg: tx("percents.of.d7", { n: nH, p: pH }) }
       ];
       return {
         rows: w.rows,
         log: w.log,
         fig: { cap: cap, list: figs, step: last },
-        pairs: [{ k: "Answer", v: aH + apxV(ans) }],
+        pairs: [{ k: tx("common.answer"), v: aH + apxV(ans) }],
         facts: facts,
         closer: closer,
-        answers: [{ label: pctT(p) + " of " + nt(n) + " =", type: "num", exact: ans, diag: diag }],
-        text: "What is " + pctT(p) + " of " + nt(n) + "?",
-        html: "What is <b>" + esc(pctT(p)) + "</b> of <b>" + esc(nt(n)) + "</b>?",
+        answers: [{ label: tx("percents.of.label", { p: pctT(p), n: nt(n) }), type: "num", exact: ans, diag: diag }],
+        text: tx("percents.of.text", { p: pctT(p), n: nt(n) }),
+        html: tx("percents.of.text", { p: "<b>" + esc(pctT(p)) + "</b>", n: "<b>" + esc(nt(n)) + "</b>" }),
         ansText: ntA(ans),
         ansHtml: "<b>" + esc(ntA(ans)) + "</b>"
       };
@@ -2238,10 +2239,10 @@
       if (isInt(v)) return;
       var a = absR(v);
       if (isTermD(a.d)) {
-        facts.push("As a fraction: " + B(fracT(a)) + (a.n > a.d ? " = " + B(commas((a.n / a.d).toString()) + " " + (a.n % a.d) + "/" + a.d) : ""));
+        facts.push(tx("percents.fact.frac", { v: B(fracT(a)) }) + (a.n > a.d ? " = " + B(commas((a.n / a.d).toString()) + " " + (a.n % a.d) + "/" + a.d) : ""));
       } else {
-        facts.push("As a decimal: " + B(decOf(a)) + ", about " + B(fixed(a, 2)));
-        if (a.n > a.d) facts.push("As a fraction: " + B(fracT(a)) + " = " + B(nt(a)));
+        facts.push(tx("percents.fact.decAbout", { d: B(decOf(a)), r: B(fixed(a, 2)) }));
+        if (a.n > a.d) facts.push(tx("percents.fact.frac", { v: B(fracT(a)) }) + " = " + B(nt(a)));
       }
     }
     // part ÷ whole → percent: say how, one line of the work
@@ -2249,10 +2250,9 @@
       var pct = mul(fr, H100),
         pH = pctH(pct),
         sH = frac(fr);
-      if (fr.n === 0n) return { txt: "Zero out of anything is " + B("0%") + ".", L: sH, R: "0%", badge: bd("p", "%") };
+      if (fr.n === 0n) return { txt: tx("percents.ph.zero"), L: sH, R: "0%", badge: bd("p", "%") };
       if (fr.d === 1n) return {
-        txt: "That’s " + B(commas(fr.n.toString())) + " whole" + (fr.n === 1n ? "" : "s") + " — and one whole is 100%, so it’s " +
-          B(commas(fr.n.toString()) + " × 100% = " + pH) + ".",
+        txt: tx("percents.ph.wholes", { k: B(commas(fr.n.toString())), n: fr.n === 1n ? 1 : 2, m: B(commas(fr.n.toString()) + " × 100% = " + pH) }),
         L: sH,
         R: commas(fr.n.toString()) + op("×") + "100%" + op("=") + pH,
         badge: bd("p", "× 100%")
@@ -2261,26 +2261,27 @@
         var k = 100n / fr.d,
           top = commas((fr.n * k).toString());
         return {
-          txt: k === 1n ? "The bottom is already 100, and “out of 100” is exactly what percent means: " + B(sH + " = " + pH) + "." : "Percent means “out of 100”, so make the bottom 100: multiply the top and the bottom by " + B(k.toString()) + ". " +
-            B(sH + " = " + frH(top, "100")) + ", and " + B(top + " out of 100") + " is " + B(pH) + ".",
+          txt: k === 1n ? tx("percents.ph.already", { m: B(sH + " = " + pH) }) : tx("percents.ph.make100", { k: B(k.toString()), eq: B(sH + " = " + frH(top, "100")), top: top, p: B(pH) }),
           L: sH,
           R: (k === 1n ? "" : frH(top, "100") + op("=")) + pH,
           badge: bd("p", k === 1n ? "%" : "× " + k)
         };
       }
       if (isTermD(fr.d)) return {
-        txt: "The bottom, " + commas(fr.d.toString()) + ", doesn’t go evenly into 100, so divide instead: " +
-          B(commas(fr.n.toString()) + " ÷ " + commas(fr.d.toString()) + " = " + nt(fr)) + ". Then × 100 turns the decimal into a percent (slide the point two places right): " +
-          B(pH) + ".",
+        txt: tx("percents.ph.divide", { d: commas(fr.d.toString()), m: B(commas(fr.n.toString()) + " ÷ " + commas(fr.d.toString()) + " = " + nt(fr)), p: B(pH) }),
         L: sH,
         R: nh(fr) + op("=") + pH,
         badge: bd("p", "× 100")
       };
       var big = R(fr.n * 100n, fr.d);
       return {
-        txt: B(commas(fr.n.toString()) + " ÷ " + commas(fr.d.toString()) + " = " + decOf(fr)) + " — that decimal never ends. Times 100 gives " +
-          B(decOf(pct) + "%") + ". Written exactly, it’s " + B(pH) + " (because 100 × " + sH + " = " + frac(big) + " = " + nh(pct) + "). Rounded, that’s about " +
-          B(fixed(pct, 1) + "%") + ".",
+        txt: tx("percents.ph.repeat", {
+          m: B(commas(fr.n.toString()) + " ÷ " + commas(fr.d.toString()) + " = " + decOf(fr)),
+          t: B(decOf(pct) + "%"),
+          p: B(pH),
+          e: "100 × " + sH + " = " + frac(big) + " = " + nh(pct),
+          r: B(fixed(pct, 1) + "%")
+        }),
         L: sH,
         R: frac(big) + "%" + op("=") + pH + op("≈") + fixed(pct, 2) + "%",
         badge: bd("p", "× 100")
@@ -2295,13 +2296,11 @@
         txt = "",
         chain = "";
       if (m > 1n) {
-        txt += "A decimal or fraction inside a fraction is awkward, so multiply the top and the bottom by " + B(commas(m.toString())) +
-          " to get whole numbers: " + B(frH(commas(A.toString()), commas(Bn.toString()))) + ". ";
+        txt += tx("percents.st.mult", { m: B(commas(m.toString())), f: B(frH(commas(A.toString()), commas(Bn.toString()))) });
         chain += op("=") + frH(commas(A.toString()), commas(Bn.toString()));
       }
       if (g > 1n && A !== 0n) {
-        txt += "Both " + commas(A.toString()) + " and " + commas(Bn.toString()) + " divide by " + B(commas(g.toString())) + ", so simplify: " +
-          B(frH(commas(A.toString()), commas(Bn.toString())) + " = " + frac(R(A, Bn))) + ". Same amount, easier numbers.";
+        txt += tx("percents.st.div", { a: commas(A.toString()), b: commas(Bn.toString()), g: B(commas(g.toString())), e: B(frH(commas(A.toString()), commas(Bn.toString())) + " = " + frac(R(A, Bn))) });
         chain += op("=") + frac(R(A, Bn));
       }
       return { txt: txt, chain: chain, g: g, m: m };
@@ -2309,55 +2308,53 @@
 
     /* ===================== mode: what percent ===================== */
     function solveWhat(f) {
-      var a = num(f.part, "part").v,
-        b = num(f.whole, "whole").v;
-      if (isZ(b)) throw new UserErr("The whole can’t be <b>0</b> — there’d be nothing to take a percent of. The whole is the number after “of”.");
+      var a = num(f.part, tx("percents.f.part")).v,
+        b = num(f.whole, tx("percents.f.whole")).v;
+      if (isZ(b)) throw new UserErr(tx("percents.what.errZero"));
       var fr = dvd(a, b),
         pct = mul(fr, H100),
         w = new Work(),
         aH = nh(a),
         bH = nh(b),
         pH = pctH(pct);
-      w.step("p", "Fraction", "“What percent” asks how big the part is compared with the whole, counted out of 100. Start by writing " +
-        "part over whole: " + B(frH(aH, bH)) + ". The part (" + aH + ") goes on top and the whole (" + bH + ") on the bottom — the whole is the number after “of”.");
-      w.row(aH + wd("out of") + bH, "=", frH(aH, bH), bd("p", "part ÷ whole"));
+      w.step("p", tx("percents.tag.fraction"), tx("percents.what.s1", { f: B(frH(aH, bH)), a: aH, b: bH }));
+      w.row(aH + wd(tx("percents.w.outOf")) + bH, "=", frH(aH, bH), bd("p", tx("percents.bd.partWhole")));
       var st = simplifyTalk(a, b);
       if (st.txt && !isZ(a)) {
-        w.step("m", "Simplify", st.txt);
+        w.step("m", tx("percents.tag.simplify"), st.txt);
         w.row(frH(aH, bH), "=", st.chain.replace(/^<span class="op-s">=<\/span>/, ""), bd("m", st.g > 1n ? "÷ " + commas(st.g.toString()) : "× " + commas(st.m.toString())));
       }
       var ph = perHundred(fr);
-      w.step("p", "Percent", ph.txt, cmpR(pct, H100) > 0 ? "Over 100%? That happens when the part is bigger than the whole — " + aH + " is more than all of " + bH + "." : null);
+      w.step("p", tx("percents.tag.percent"), ph.txt, cmpR(pct, H100) > 0 ? tx("percents.what.over", { a: aH, b: bH }) : null);
       w.row(ph.L, "=", ph.R, ph.badge, "result");
       var last = w.log.length - 1,
         figs = [],
         g = gridsSVG(pct),
         dn = dnlSVG(pct, b, a, false);
-      if (g) figs.push({ svg: g, cap: "Hundred grid" + (toN(pct) > 100 ? "s" : "") });
-      if (dn) figs.push({ svg: dn, cap: "Percent bar" });
-      var cap = '<b class="lead">The pictures.</b> Think of the whole ' + bH + " as 100 equal squares. " + aH + " fills " + B(nt(pct) + (isTermD(pct.d) ? "" : " (about " + fixed(pct, 1) + ")")) +
-        " of them, so it’s " + pH + ". On the percent bar, " + bH + " sits under 100% and " + aH + " sits under " + pH + "." +
-        (!g ? " (Too many grids to draw for a percent this big — the bar shows it to scale.)" : "");
-      var facts = ["As a decimal: " + B(decOf(fr)), "As a fraction: " + B(fracT(fr)) + (st.g > 1n || st.m > 1n ? " (from " + nt(a) + "/" + nt(b) + ")" : "")];
-      if (!isTermD(pct.d)) facts.push("Rounded: about " + B(fixed(pct, 1) + "%") + " or " + B(fixed(pct, 2) + "%"));
-      var closer = "<b>Check:</b> " + B(pH + " of " + bH + " = " + nh(fr) + " × " + bH + " = " + nh(mul(fr, b))) + ', which is the part ' + aH + ' <span class="ok">✓</span>';
+      if (g) figs.push({ svg: g, cap: gridCap(pct) });
+      if (dn) figs.push({ svg: dn, cap: tx("percents.fig.bar") });
+      var cap = tx("percents.cap.lead") + tx("percents.what.cap", { b: bH, a: aH, c: B(nt(pct) + (isTermD(pct.d) ? "" : tx("percents.aboutParen", { v: fixed(pct, 1) }))), p: pH }) +
+        (!g ? tx("percents.what.capNoGrid") : "");
+      var facts = [tx("percents.fact.dec", { v: B(decOf(fr)) }), tx("percents.fact.frac", { v: B(fracT(fr)) }) + (st.g > 1n || st.m > 1n ? tx("percents.fact.from", { v: nt(a) + "/" + nt(b) }) : "")];
+      if (!isTermD(pct.d)) facts.push(tx("percents.fact.roundedOr", { a: B(fixed(pct, 1) + "%"), b: B(fixed(pct, 2) + "%") }));
+      var closer = tx("percents.what.close", { e: B(tx("percents.pOf", { p: pH, n: bH }) + " = " + nh(fr) + " × " + bH + " = " + nh(mul(fr, b))), a: aH });
       var diag = [
-        { v: fr, msg: "That’s the decimal " + decOf(fr) + ". Multiply by 100 to turn it into a percent." },
-        { v: isZ(a) ? null : mul(dvd(b, a), H100), msg: "That’s upside down — it’s part ÷ whole: " + aH + " ÷ " + bH + ", not " + bH + " ÷ " + aH + "." },
-        { v: isZ(a) ? null : dvd(b, a), msg: "That’s upside down — it’s part ÷ whole: " + aH + " ÷ " + bH + ", not " + bH + " ÷ " + aH + ". Then × 100." },
-        { v: sub(H100, pct), msg: "That’s the percent that is <i>not</i> " + aH + " — the rest of the whole. The question asks what percent " + aH + " is." },
-        { v: sub(b, a), msg: "That’s the difference between them. Write part over whole, " + aH + "/" + bH + ", and turn it into a percent." }
+        { v: fr, msg: tx("percents.what.d1", { d: decOf(fr) }) },
+        { v: isZ(a) ? null : mul(dvd(b, a), H100), msg: tx("percents.what.d2", { a: aH, b: bH }) },
+        { v: isZ(a) ? null : dvd(b, a), msg: tx("percents.what.d3", { a: aH, b: bH }) },
+        { v: sub(H100, pct), msg: tx("percents.what.d4", { a: aH }) },
+        { v: sub(b, a), msg: tx("percents.what.d5", { a: aH, b: bH }) }
       ];
       return {
         rows: w.rows,
         log: w.log,
         fig: { cap: cap, list: figs, step: last },
-        pairs: [{ k: "Answer", v: pH + apxV(pct).replace("≈ ", "≈ ").replace("</span>", "%</span>") }],
+        pairs: [{ k: tx("common.answer"), v: pH + apxV(pct).replace("≈ ", "≈ ").replace("</span>", "%</span>") }],
         facts: facts,
         closer: closer,
-        answers: [{ label: "Percent", type: "pct", suf: "%", exact: pct, diag: diag }],
-        text: nt(a) + " is what percent of " + nt(b) + "?",
-        html: "<b>" + esc(nt(a)) + "</b> is what percent of <b>" + esc(nt(b)) + "</b>?",
+        answers: [{ label: tx("percents.lbl.percent"), type: "pct", suf: "%", exact: pct, diag: diag }],
+        text: tx("percents.what.text", { a: nt(a), b: nt(b) }),
+        html: tx("percents.what.text", { a: "<b>" + esc(nt(a)) + "</b>", b: "<b>" + esc(nt(b)) + "</b>" }),
         ansText: pctT(pct) + (isTermD(pct.d) ? "" : " (≈ " + fixed(pct, 2) + "%)"),
         ansHtml: "<b>" + esc(pctT(pct) + (isTermD(pct.d) ? "" : " (≈ " + fixed(pct, 2) + "%)")) + "</b>"
       };
@@ -2365,10 +2362,10 @@
 
     /* ===================== mode: find the whole ===================== */
     function solveWhole(f) {
-      var a = num(f.part, "part").v,
-        p = num(f.p, "percent").v;
-      if (isZ(p)) throw new UserErr("0% of any number is 0, so 0% can’t tell us what the whole is. Use a percent bigger than 0.");
-      if (cmpR(p, R(100000)) > 0) throw new UserErr("That’s a huge percent! Keep it to 100,000% or less.");
+      var a = num(f.part, tx("percents.f.part")).v,
+        p = num(f.p, tx("percents.f.percent")).v;
+      if (isZ(p)) throw new UserErr(tx("percents.whole.errZero"));
+      if (cmpR(p, R(100000)) > 0) throw new UserErr(tx("percents.err.hugePct"));
       var pd = dvd(p, H100),
         W = dvd(a, pd),
         w = new Work(),
@@ -2381,56 +2378,53 @@
         k2 = dvd(H100, c),
         cv = dvd(a, k1),
         cH = pctH(c);
-      w.sec("Way 1", "Find a small piece, then build up to 100%");
-      w.step("p", "Set up", "The " + aH + " is only part of the number we want — it’s " + pH + " of it. The whole number is 100%. So we know what " +
-        pH + " is, and we want 100%." + (hund ? " But 100% <i>is</i> the whole, so the whole is just " + B(aH) + "." : ""));
-      w.row(pH + wd("of") + QM, "=", aH, bd("p", "given"), hund ? "result" : "");
+      w.sec(tx("percents.way", { n: 1 }), tx("percents.whole.way1"));
+      w.step("p", tx("percents.tag.setUp"), tx("percents.whole.s1", { a: aH, p: pH }) + (hund ? tx("percents.whole.s1hund", { a: B(aH) }) : ""));
+      w.row(pH + wd(tx("percents.w.of")) + QM, "=", aH, bd("p", tx("percents.bd.given")), hund ? "result" : "");
       if (!hund) {
         if (!eqR(c, p)) {
-          w.step("m", "Divide", pH + " is " + B(nt(k1)) + " lots of " + cH + ", so split " + aH + " into " + nt(k1) + " equal parts to find " + cH + ": " + B(aH + " ÷ " + nt(k1) + " = " + nh(cv)) + ".");
-          w.row(cH + wd("of") + QM, "=", aH + op("÷") + nh(k1) + op("=") + nh(cv), bd("m", "÷ " + nt(k1)));
+          w.step("m", tx("percents.tag.divide"), tx("percents.whole.div", { p: pH, kb: B(nt(k1)), k: nt(k1), c: cH, a: aH, m: B(aH + " ÷ " + nt(k1) + " = " + nh(cv)) }));
+          w.row(cH + wd(tx("percents.w.of")) + QM, "=", aH + op("÷") + nh(k1) + op("=") + nh(cv), bd("m", "÷ " + nt(k1)));
         }
-        w.step("m", "Multiply", "The whole is 100%, which is " + B(nt(k2)) + " lots of " + cH + ": " + B(nh(cv) + " × " + nt(k2) + " = " + WH) + "." +
-          (isTermD(W.d) ? "" : " That’s about " + B(fixed(W, 2)) + "."),
-          cmpR(p, H100) < 0 ? "Bigger than " + aH + "? It should be: " + aH + " is just a " + pH + " slice, so the whole is bigger." :
-          "Smaller than " + aH + "? Yes — " + aH + " is " + pH + " of the number, more than all of it, so the number itself is smaller.");
-        w.row("100%" + wd("of") + QM, "=", nh(cv) + op("×") + nh(k2) + op("=") + WH, bd("m", "× " + nt(k2)), "result");
+        w.step("m", tx("percents.tag.multiply"), tx("percents.whole.mul", { kb: B(nt(k2)), c: cH, m: B(nh(cv) + " × " + nt(k2) + " = " + WH) }) +
+          (isTermD(W.d) ? "" : tx("percents.about", { v: B(fixed(W, 2)) })),
+          cmpR(p, H100) < 0 ? tx("percents.whole.bigger", { a: aH, p: pH }) :
+          tx("percents.whole.smaller", { a: aH, p: pH }));
+        w.row("100%" + wd(tx("percents.w.of")) + QM, "=", nh(cv) + op("×") + nh(k2) + op("=") + WH, bd("m", "× " + nt(k2)), "result");
       }
-      w.sec("Way 2", "Write it as an equation and undo the ×");
-      w.step("m", "Equation", "<strong>Another way.</strong> “" + pH + " of the number is " + aH + "” means " + B(nh(pd) + " × ? = " + aH) + ". To undo “× " +
-        nh(pd) + "”, divide by it: " + B(aH + " ÷ " + nh(pd) + " = " + WH) + " — the same answer ✓");
+      w.sec(tx("percents.way", { n: 2 }), tx("percents.whole.way2"));
+      w.step("m", tx("percents.tag.equation"), tx("percents.whole.eq", { p: pH, a: aH, e: B(nh(pd) + " × ? = " + aH), d: nh(pd), m: B(aH + " ÷ " + nh(pd) + " = " + WH) }));
       w.row(nh(pd) + op("×") + QM, "=", aH, bd("p", pH + " = " + nt(pd)));
       w.row(QM, "=", aH + op("÷") + nh(pd) + op("=") + WH, bd("m", "÷"), "result");
       var last = w.log.length - 1,
         figs = [],
         bm = barModelSVG(a, p, W, c),
         g = gridsSVG(p);
-      if (bm) figs.push({ svg: bm, cap: "Bar model" });
-      else { var dn = dnlSVG(p, W, a, false); if (dn) figs.push({ svg: dn, cap: "Percent bar" }); }
-      if (g) figs.push({ svg: g, cap: "Hundred grid" + (toN(p) > 100 ? "s" : "") });
-      var cap = '<b class="lead">The pictures.</b> ' + (bm ? "The bar is the whole number, cut into pieces of " + cH + ". " + nt(k1) + " piece" + (eqR(k1, ONE) ? "" : "s") +
-          " make " + pH + " = " + aH + ", so each piece is " + nh(cv) + ", and the " + nt(k2) + " pieces of the whole make " + WH + ". " : "") +
-        "In the hundred grid each square is 1% of the whole: " + B(aH + " ÷ " + nt(p) + " = " + nh(dvd(a, p))) + ", so all 100 squares are " + B(WH) + ".";
-      var facts = ["1% of it is " + B(nh(dvd(a, p))) + (hund ? "" : ", and " + cH + " is " + B(nh(cv)))];
+      if (bm) figs.push({ svg: bm, cap: tx("percents.fig.barModel") });
+      else { var dn = dnlSVG(p, W, a, false); if (dn) figs.push({ svg: dn, cap: tx("percents.fig.bar") }); }
+      if (g) figs.push({ svg: g, cap: gridCap(p) });
+      var cap = tx("percents.cap.lead") + (bm ? tx("percents.whole.capBar", { c: cH, k1: nt(k1), n: eqR(k1, ONE) ? 1 : 2, p: pH, a: aH, v: nh(cv), k2: nt(k2), W: WH }) : "") +
+        tx("percents.whole.capGrid", { m: B(aH + " ÷ " + nt(p) + " = " + nh(dvd(a, p))), W: B(WH) });
+      var facts = [tx("percents.whole.fact", { v: B(nh(dvd(a, p))) }) + (hund ? "" : tx("percents.whole.fact2", { c: cH, v: B(nh(cv)) }))];
       numFacts(W, facts);
-      var closer = "<b>Check:</b> " + B(pH + " of " + WH + " = " + nh(pd) + " × " + WH + " = " + nh(mul(pd, W))) + ' — that’s the ' + aH + ' we started with <span class="ok">✓</span>';
+      var closer = tx("percents.whole.close", { e: B(tx("percents.pOf", { p: pH, n: WH }) + " = " + nh(pd) + " × " + WH + " = " + nh(mul(pd, W))), a: aH });
       var diag = [
-        { v: mul(a, pd), msg: "That’s " + pH + " of " + aH + ". But " + aH + " is the part here — you want the number that " + aH + " is " + pH + " of." },
-        { v: dvd(a, p), msg: "That’s 1% of the whole (" + aH + " ÷ " + nh(p) + "). Now multiply by 100 to get all 100%." },
-        { v: mul(a, p), msg: "Too big — " + pH + " is " + nh(pd) + " as a number, not " + nh(p) + ". Divide " + aH + " by " + nh(pd) + "." },
-        { v: add(a, mul(a, pd)), msg: "That adds " + pH + " onto " + aH + ". Instead, " + aH + " <i>is</i> the " + pH + " — find what 100% would be." },
-        { v: sub(a, mul(a, pd)), msg: "That takes " + pH + " away from " + aH + ". Instead, " + aH + " <i>is</i> the " + pH + " — find what 100% would be." }
+        { v: mul(a, pd), msg: tx("percents.whole.d1", { p: pH, a: aH }) },
+        { v: dvd(a, p), msg: tx("percents.whole.d2", { a: aH, pn: nh(p) }) },
+        { v: mul(a, p), msg: tx("percents.whole.d3", { p: pH, d: nh(pd), pn: nh(p), a: aH }) },
+        { v: add(a, mul(a, pd)), msg: tx("percents.whole.d4", { p: pH, a: aH }) },
+        { v: sub(a, mul(a, pd)), msg: tx("percents.whole.d5", { p: pH, a: aH }) }
       ];
       return {
         rows: w.rows,
         log: w.log,
         fig: { cap: cap, list: figs, step: last },
-        pairs: [{ k: "The whole", v: WH + apxV(W) }],
+        pairs: [{ k: tx("percents.whole.pairK"), v: WH + apxV(W) }],
         facts: facts,
         closer: closer,
-        answers: [{ label: "The whole number", type: "num", exact: W, diag: diag }],
-        text: nt(a) + " is " + pctT(p) + " of what number?",
-        html: "<b>" + esc(nt(a)) + "</b> is <b>" + esc(pctT(p)) + "</b> of what number?",
+        answers: [{ label: tx("percents.whole.label"), type: "num", exact: W, diag: diag }],
+        text: tx("percents.whole.text", { a: nt(a), p: pctT(p) }),
+        html: tx("percents.whole.text", { a: "<b>" + esc(nt(a)) + "</b>", p: "<b>" + esc(pctT(p)) + "</b>" }),
         ansText: ntA(W),
         ansHtml: "<b>" + esc(ntA(W)) + "</b>"
       };
@@ -2438,9 +2432,9 @@
 
     /* ===================== mode: percent change ===================== */
     function solveChange(f) {
-      var o = num(f.from, "original amount").v,
-        t = num(f.to, "new amount").v;
-      if (isZ(o)) throw new UserErr("You can’t find a percent change from <b>0</b> — there’s no starting amount to compare with. Pick an original bigger than 0.");
+      var o = num(f.from, tx("percents.f.original")).v,
+        t = num(f.to, tx("percents.f.new")).v;
+      if (isZ(o)) throw new UserErr(tx("percents.chg.errZero"));
       var d = sub(t, o),
         ad = absR(d),
         dir = sgn(d),
@@ -2451,93 +2445,91 @@
         tH = nh(t),
         dH = nh(ad),
         pH = pctH(pc),
-        word = dir > 0 ? "increase" : dir < 0 ? "decrease" : "change";
-      w.sec("Way 1", "Change ÷ original, then × 100");
-      w.step("a", "Subtract", "Start with how much it changed: new minus original. " + B(tH + " − " + oH + " = " + (dir < 0 ? "−" : "") + dH) + ". " +
-        (dir > 0 ? "It went up by " + B(dH) + "." : dir < 0 ? "The minus sign means it went down, by " + B(dH) + "." : "It didn’t change at all."));
-      w.row(wd("change"), "=", tH + op("−") + oH + op("=") + (dir > 0 ? "+" : dir < 0 ? "−" : "") + dH, bd("a", "new − original"));
+        word = dir > 0 ? tx("percents.chg.wordUp") : dir < 0 ? tx("percents.chg.wordDown") : tx("percents.chg.wordNone");
+      w.sec(tx("percents.way", { n: 1 }), tx("percents.chg.way1"));
+      w.step("a", tx("percents.tag.subtract"), tx("percents.chg.s1", { e: B(tH + " − " + oH + " = " + (dir < 0 ? "−" : "") + dH) }) +
+        (dir > 0 ? tx("percents.chg.upBy", { d: B(dH) }) : dir < 0 ? tx("percents.chg.downBy", { d: B(dH) }) : tx("percents.chg.noChange")));
+      w.row(wd(tx("percents.w.change")), "=", tH + op("−") + oH + op("=") + (dir > 0 ? "+" : dir < 0 ? "−" : "") + dH, bd("a", tx("percents.bd.newOrig")));
       var st = simplifyTalk(ad, o);
-      w.step("m", "Compare", "Percent change compares the change with where you started — the original, " + oH + ". So divide by " + oH + ": " +
-        B(frH(dH, oH)) + (st.txt ? ". " + st.txt : "."),
-        dir !== 0 && !isZ(t) ? "Watch out: divide by the original (" + oH + "), not the new number (" + tH + "). " + dH + " ÷ " + tH + " ≈ " +
-        fixed(mul(dvd(ad, t), H100), 2) + "% is the most common mistake." : null);
-      w.row(dH + op("÷") + oH, "=", frH(dH, oH) + st.chain, bd("m", "÷ original"));
+      w.step("m", tx("percents.tag.compare"), tx("percents.chg.s2", { o: oH, f: B(frH(dH, oH)) }) + (st.txt ? ". " + st.txt : "."),
+        dir !== 0 && !isZ(t) ? tx("percents.chg.watch", { o: oH, t: tH, d: dH, x: fixed(mul(dvd(ad, t), H100), 2) }) : null);
+      w.row(dH + op("÷") + oH, "=", frH(dH, oH) + st.chain, bd("m", tx("percents.bd.divOrig")));
       var ph = perHundred(fr);
-      w.step("p", "Percent", ph.txt + (dir !== 0 ? " It went " + (dir > 0 ? "up" : "down") + ", so it’s a " + B(pH + " " + word) + "." : " No change: " + B("0%") + "."));
+      w.step("p", tx("percents.tag.percent"), ph.txt + (dir !== 0 ? tx(dir > 0 ? "percents.chg.upSo" : "percents.chg.downSo", { e: B(tx(dir > 0 ? "percents.chg.incr" : "percents.chg.decr", { p: pH })) }) : tx("percents.chg.none")));
       w.row(ph.L, "=", ph.R, ph.badge, "result");
       if (dir !== 0) {
         var ratio = dvd(t, o),
           rp = mul(ratio, H100);
-        w.sec("Way 2", "New ÷ original, then compare with 100%");
-        w.step("m", "Another way", "<strong>Another way.</strong> Divide new by original: " + B(tH + " ÷ " + oH + " = " + nh(ratio)) + ", so the new amount is " +
-          B(pctH(rp)) + " of the original. " + (dir > 0 ? B(pctH(rp) + " − 100% = " + pH) + " more ✓" : B("100% − " + pctH(rp) + " = " + pH) + " less ✓"));
+        w.sec(tx("percents.way", { n: 2 }), tx("percents.chg.way2"));
+        w.step("m", tx("percents.tag.another"), tx("percents.chg.w2", { e: B(tH + " ÷ " + oH + " = " + nh(ratio)), r: B(pctH(rp)) }) +
+          (dir > 0 ? tx("percents.chg.more", { e: B(pctH(rp) + " − 100% = " + pH) }) : tx("percents.chg.less", { e: B("100% − " + pctH(rp) + " = " + pH) })));
         w.row(tH + op("÷") + oH, "=", nh(ratio) + op("=") + pctH(rp), bd("m", "÷"));
-        w.row(dir > 0 ? pctH(rp) + op("−") + "100%" : "100%" + op("−") + pctH(rp), "=", pH + wd(dir > 0 ? "more" : "less"), bd("a", "−"), "result");
+        w.row(dir > 0 ? pctH(rp) + op("−") + "100%" : "100%" + op("−") + pctH(rp), "=", pH + wd(dir > 0 ? tx("percents.w.more") : tx("percents.w.less")), bd("a", "−"), "result");
       }
       var last = w.log.length - 1,
         figs = [],
         cs = changeSVG(o, t, pc),
         g = dir !== 0 ? gridsSVG(pc) : null;
-      figs.push({ svg: cs, cap: "Before and after" });
-      if (g) figs.push({ svg: g, cap: "The change, out of 100" });
-      var cap = '<b class="lead">The pictures.</b> The bars are drawn to scale. The original ' + oH + " is the full 100%. " +
-        (dir > 0 ? "The new bar is longer by " + dH + " — that extra piece, measured against the original, is " + pH + "." :
-          dir < 0 ? "The new bar is shorter by " + dH + " — the missing piece, measured against the original, is " + pH + "." : "Nothing was added or taken away.") +
-        (g ? " In the grid, the original is 100 squares and the change is " + B(nt(pc) + (isTermD(pc.d) ? "" : " (about " + fixed(pc, 1) + ")")) + " of them." : "");
-      var facts = ["Change: " + B((dir > 0 ? "+" : dir < 0 ? "−" : "") + nt(ad)) + " (from " + nt(o) + " to " + nt(t) + ")"];
-      if (dir !== 0) facts.push(B(nt(t)) + " is " + B(pctT(mul(dvd(t, o), H100))) + " of " + B(nt(o)));
-      if (!isTermD(pc.d)) facts.push("Rounded: about " + B(fixed(pc, 1) + "%") + " " + word);
-      facts.push("Always divide by the original — " + B(nt(o)) + (dir !== 0 ? " — not by " + B(nt(t)) : ""));
-      var closer = dir === 0 ? "<b>Check:</b> " + oH + " and " + tH + " are the same, so the change is 0% <span class=\"ok\">✓</span>" :
-        "<b>Check:</b> " + B(pH + " of " + oH + " = " + nh(fr) + " × " + oH + " = " + dH) + ", and " + B(oH + (dir > 0 ? " + " : " − ") + dH + " = " + tH) + ' <span class="ok">✓</span>';
+      figs.push({ svg: cs, cap: tx("percents.fig.beforeAfter") });
+      if (g) figs.push({ svg: g, cap: tx("percents.fig.changeOf100") });
+      var cap = tx("percents.cap.lead") + tx("percents.chg.cap", { o: oH }) +
+        (dir > 0 ? tx("percents.chg.capUp", { d: dH, p: pH }) : dir < 0 ? tx("percents.chg.capDown", { d: dH, p: pH }) : tx("percents.chg.capNone")) +
+        (g ? tx("percents.chg.capGrid", { c: B(nt(pc) + (isTermD(pc.d) ? "" : tx("percents.aboutParen", { v: fixed(pc, 1) }))) }) : "");
+      var facts = [tx("percents.chg.f1", { c: B((dir > 0 ? "+" : dir < 0 ? "−" : "") + nt(ad)), o: nt(o), t: nt(t) })];
+      if (dir !== 0) facts.push(tx("percents.chg.f2", { t: B(nt(t)), p: B(pctT(mul(dvd(t, o), H100))), o: B(nt(o)) }));
+      if (!isTermD(pc.d)) facts.push(tx(dir > 0 ? "percents.chg.f3up" : "percents.chg.f3down", { r: B(fixed(pc, 1) + "%") }));
+      facts.push(tx("percents.chg.f4", { o: B(nt(o)) }) + (dir !== 0 ? tx("percents.chg.f4not", { t: B(nt(t)) }) : ""));
+      var closer = dir === 0 ? tx("percents.chg.closeSame", { o: oH, t: tH }) :
+        tx("percents.closeAnd", { a: B(tx("percents.pOf", { p: pH, n: oH }) + " = " + nh(fr) + " × " + oH + " = " + dH), b: B(oH + (dir > 0 ? " + " : " − ") + dH + " = " + tH) });
       var diag = [
-        { v: isZ(t) ? null : mul(dvd(ad, t), H100), msg: "You divided by the new number (" + tH + "). Percent change always compares with the original — divide by " + oH + "." },
-        { v: isZ(t) ? null : dvd(ad, t), msg: "Two slips: divide by the original (" + oH + "), not the new number, and then × 100 to make it a percent." },
-        { v: fr, msg: "That’s the change as a decimal. Multiply by 100 to make it a percent." },
-        { v: ad, msg: "That’s how much it changed (" + dH + "), not the percent. Divide it by the original, " + oH + ", then × 100." },
-        { v: mul(dvd(t, o), H100), msg: "That’s the new amount as a percent of the original. Subtract 100% from it to get the change." }
+        { v: isZ(t) ? null : mul(dvd(ad, t), H100), msg: tx("percents.chg.d1", { t: tH, o: oH }) },
+        { v: isZ(t) ? null : dvd(ad, t), msg: tx("percents.chg.d2", { o: oH }) },
+        { v: fr, msg: tx("percents.chg.d3") },
+        { v: ad, msg: tx("percents.chg.d4", { d: dH, o: oH }) },
+        { v: mul(dvd(t, o), H100), msg: tx("percents.chg.d5") }
       ];
-      var ans = pH + (dir !== 0 ? '<span class="word">' + word + "</span>" : '<span class="word">no change</span>');
-      var at = pctT(pc) + (isTermD(pc.d) ? "" : " (≈ " + fixed(pc, 2) + "%)") + (dir !== 0 ? " " + word : " (no change)");
+      var ans = pH + '<span class="word">' + (dir !== 0 ? word : tx("percents.chg.wordNoChange")) + "</span>";
+      var at = pctT(pc) + (isTermD(pc.d) ? "" : " (≈ " + fixed(pc, 2) + "%)") + (dir !== 0 ? " " + word : tx("percents.chg.noChangeParen"));
       return {
         rows: w.rows,
         log: w.log,
         fig: { cap: cap, list: figs, step: last },
-        pairs: [{ k: "Percent change", v: ans + apxV(pc).replace("</span>", "%</span>") }],
+        pairs: [{ k: tx("percents.tab.change"), v: ans + apxV(pc).replace("</span>", "%</span>") }],
         facts: facts,
         closer: closer,
-        answers: [{ label: "Percent change", type: "chg", suf: "%", exact: pc, dir: dir, word: word, diag: diag }],
-        text: "What is the percent change from " + nt(o) + " to " + nt(t) + "?",
-        html: "What is the percent change from <b>" + esc(nt(o)) + "</b> to <b>" + esc(nt(t)) + "</b>?",
+        answers: [{ label: tx("percents.tab.change"), type: "chg", suf: "%", exact: pc, dir: dir, word: word, diag: diag }],
+        text: tx("percents.chg.text", { o: nt(o), t: nt(t) }),
+        html: tx("percents.chg.text", { o: "<b>" + esc(nt(o)) + "</b>", t: "<b>" + esc(nt(t)) + "</b>" }),
         ansText: at,
         ansHtml: "<b>" + esc(at) + "</b>"
       };
     }
 
     /* ===================== mode: money ===================== */
-    var MK = {
-      discount: { amt: "Amount off", fin: "Price you pay", base: "price", sign: -1, thing: "the discount", way1: "Find the amount off, then subtract it", ofWhat: "the price" },
-      markup: { amt: "Markup", fin: "New price", base: "cost", sign: 1, thing: "the markup", way1: "Find the markup, then add it to the cost", ofWhat: "the cost" },
-      tax: { amt: "Sales tax", fin: "Total with tax", base: "price", sign: 1, thing: "the tax", way1: "Find the tax, then add it on", ofWhat: "the price" },
-      tip: { amt: "Tip", fin: "Total with tip", base: "bill", sign: 1, thing: "the tip", way1: "Find the tip, then add it on", ofWhat: "the bill" }
-    };
+    var MK = { discount: { sign: -1 }, markup: { sign: 1 }, tax: { sign: 1 }, tip: { sign: 1 } };
+
+    // the words for one kind of money problem, in the language in use (percents.mk.<kind>.*)
+    function mkWords(kind) {
+      var o = { sign: MK[kind].sign };
+      ["amt", "amtLow", "fin", "finLow", "base", "thing", "ofWhat", "deWhat", "deThing", "way1"].forEach(function(k) { o[k] = tx("percents.mk." + kind + "." + k); });
+      return o;
+    }
 
     function roundTalk(v, label) { // say how v rounds to the nearest cent
       var r = roundK(v, 2),
         third = Number((absR(v).n * 1000n / absR(v).d) % 10n);
-      return "Money stops at cents — two decimal places. In " + B(usdX(v)) + " the digit right after the cents is " + B(String(third)) + ", " +
-        (third >= 5 ? "which is 5 or more, so the cents round <i>up</i>: " : "which is less than 5, so the cents stay as they are: ") + B(usd(r)) + (label ? " " + label : "") + ".";
+      return tx(third >= 5 ? "percents.round.up" : "percents.round.stay", { v: B(usdX(v)), d: B(String(third)), r: B(usd(r)), l: label ? " " + label : "" });
     }
 
     function solveMoney(kind, f) {
-      var M = MK[kind],
+      var M = mkWords(kind),
         P = num(f.price, M.base),
-        p = num(f.p, "percent").v,
+        p = num(f.p, tx("percents.f.percent")).v,
         pr = P.v;
-      if (!isCents(pr)) throw new UserErr("Money is dollars and cents, so use at most 2 decimal places for the " + M.base + ".");
-      if (kind === "discount" && cmpR(p, H100) > 0) throw new UserErr("A discount can’t be more than 100% — at 100% off it’s already free!");
-      if ((kind === "tax" || kind === "tip") && cmpR(p, H100) > 0) throw new UserErr("A " + (kind === "tax" ? "tax rate" : "tip") + " over 100% would cost more than the " + M.base + " itself — check the percent.");
-      if (cmpR(p, R(10000)) > 0) throw new UserErr("That markup is enormous — keep it to 10,000% or less.");
+      if (!isCents(pr)) throw new UserErr(tx("percents.money.errCents", { base: M.base, ofWhat: M.ofWhat }));
+      if (kind === "discount" && cmpR(p, H100) > 0) throw new UserErr(tx("percents.money.errDisc"));
+      if ((kind === "tax" || kind === "tip") && cmpR(p, H100) > 0) throw new UserErr(tx("percents.money.errOver." + kind));
+      if (cmpR(p, R(10000)) > 0) throw new UserErr(tx("percents.money.errHuge"));
       var pd = dvd(p, H100),
         amt = mul(pd, pr),
         amtR = roundK(amt, 2),
@@ -2552,8 +2544,8 @@
         pH = pctH(p),
         PH = usd(pr),
         keepH = pctH(keep);
-      w.sec("Way 1", M.way1);
-      w.step("p", "Percent", "Turn the percent into a decimal: " + B(pH + " = " + nh(p) + "/100 = " + nh(pd)) + ".");
+      w.sec(tx("percents.way", { n: 1 }), M.way1);
+      w.step("p", tx("percents.tag.percent"), tx("percents.money.s1", { e: B(pH + " = " + nh(p) + "/100 = " + nh(pd)) }));
       w.row(pH, "=", frH(nh(p), "100") + op("=") + nh(pd), bd("p", "÷ 100"));
       var mental = null;
       var t10 = dvd(pr, TEN),
@@ -2561,74 +2553,61 @@
       if (isInt(p) && p.n % 5n === 0n && p.n > 0n && p.n < 100n && isCents(t10) && (p.n % 10n === 0n || isCents(t5))) {
         var tens = p.n / 10n,
           five = p.n % 10n === 5n;
-        mental = "In your head: 10% of " + PH + " is " + B(usdX(t10)) + " (slide the decimal point one place left)" + (five ? ", and 5% is half of that, " + B(usdX(t5)) : "") +
-          ". So " + pH + " is " + B((tens ? (tens > 1n ? tens + " × " : "") + usdX(t10) : "") + (five ? (tens ? " + " : "") + usdX(t5) : "") + " = " + usdX(amt)) + ".";
+        mental = tx("percents.money.mental", { P: PH, t: B(usdX(t10)) }) + (five ? tx("percents.money.mental5", { f: B(usdX(t5)) }) : "") +
+          tx("percents.money.mentalSo", { p: pH, e: B((tens ? (tens > 1n ? tens + " × " : "") + usdX(t10) : "") + (five ? (tens ? " + " : "") + usdX(t5) : "") + " = " + usdX(amt)) });
       }
-      w.step("m", "Multiply", M.amt + " is " + pH + " of " + M.ofWhat + " — and “of” means multiply: " + B(nh(pd) + " × " + PH + " = " + usdX(amt)) + ".", mental);
-      w.row(pH + wd("of") + PH, "=", nh(pd) + op("×") + PH + op("=") + usdX(amt), bd("m", "×"), rounded ? "" : "result");
+      w.step("m", tx("percents.tag.multiply"), tx("percents.money.mul", { amt: M.amt, p: pH, ofWhat: M.ofWhat, deWhat: M.deWhat, thing: M.thing, m: B(nh(pd) + " × " + PH + " = " + usdX(amt)) }), mental);
+      w.row(pH + wd(tx("percents.w.of")) + PH, "=", nh(pd) + op("×") + PH + op("=") + usdX(amt), bd("m", "×"), rounded ? "" : "result");
       if (rounded) {
-        w.step("e", "Round", roundTalk(amt));
-        w.row(wd(M.amt.toLowerCase()), "≈", usd(amtR), bd("e", "≈ cent"), "result");
+        w.step("e", tx("percents.tag.round"), roundTalk(amt));
+        w.row(wd(M.amtLow), "≈", usd(amtR), bd("e", tx("percents.bd.cent")), "result");
       }
-      w.step("a", s < 0 ? "Subtract" : "Add", s < 0 ? "Take the amount off the price: " + B(PH + " − " + usd(amtR) + " = " + usd(fin)) + "." :
-        "Add " + M.thing + " on top of " + M.ofWhat + ": " + B(PH + " + " + usd(amtR) + " = " + usd(fin)) + ".");
-      w.row(wd(M.fin.toLowerCase()), "=", PH + op(s < 0 ? "−" : "+") + usd(amtR) + op("=") + usd(fin), bd("a", s < 0 ? "−" : "+"), "result");
-      w.sec("Way 2", s < 0 ? "You pay " + pctT(keep) + " of the price straight away" : (kind === "markup" ? "Sell at " : "Pay ") + pctT(keep) + " of " + M.ofWhat + " straight away");
+      w.step("a", s < 0 ? tx("percents.tag.subtract") : tx("percents.tag.add"), s < 0 ? tx("percents.money.sub", { e: B(PH + " − " + usd(amtR) + " = " + usd(fin)) }) :
+        tx("percents.money.add", { thing: M.thing, ofWhat: M.ofWhat, e: B(PH + " + " + usd(amtR) + " = " + usd(fin)) }));
+      w.row(wd(M.finLow), "=", PH + op(s < 0 ? "−" : "+") + usd(amtR) + op("=") + usd(fin), bd("a", s < 0 ? "−" : "+"), "result");
+      w.sec(tx("percents.way", { n: 2 }), s < 0 ? tx("percents.money.way2Disc", { k: pctT(keep) }) :
+        tx(kind === "markup" ? "percents.money.way2Sell" : "percents.money.way2Pay", { k: pctT(keep), ofWhat: M.ofWhat, deWhat: M.deWhat }));
       var same = eqR(prodR, fin);
-      w.step("m", "In one go", "<strong>Or in one go.</strong> " + (s < 0 ? "If " + pH + " comes off, you still pay " + B("100% − " + pH + " = " + keepH) + " of the price. " :
-          "Paying " + M.ofWhat + " plus " + pH + " more is paying " + B("100% + " + pH + " = " + keepH) + " of it. ") +
-        B(keepH + " = " + nh(kd)) + ", and " + B(nh(kd) + " × " + PH + " = " + usdX(prod)) + (isCents(prod) ? "" : ", which rounds to " + B(usd(prodR))) +
-        (same ? " — the same ✓" : "."),
-        same ? null : "This one lands exactly on half a cent, so the two ways round differently. Stores work out " + M.thing +
-        " first, round it, then " + (s < 0 ? "subtract" : "add") + " — so the answer is " + B(usd(fin)) + ".");
+      w.step("m", tx("percents.tag.inOneGo"), tx("percents.money.go") + (s < 0 ? tx("percents.money.goDisc", { p: pH, e: B("100% − " + pH + " = " + keepH) }) :
+          tx("percents.money.goAdd", { ofWhat: M.ofWhat, deWhat: M.deWhat, p: pH, e: B("100% + " + pH + " = " + keepH) })) +
+        tx("percents.money.goAnd", { a: B(keepH + " = " + nh(kd)), b: B(nh(kd) + " × " + PH + " = " + usdX(prod)) }) +
+        (isCents(prod) ? "" : tx("percents.money.roundsTo", { r: B(usd(prodR)) })) +
+        (same ? tx("percents.money.same") : "."),
+        same ? null : tx(s < 0 ? "percents.money.halfSub" : "percents.money.halfAdd", { thing: M.thing, f: B(usd(fin)) }));
       w.row(s < 0 ? "100%" + op("−") + pH : "100%" + op("+") + pH, "=", keepH, bd("a", s < 0 ? "−" : "+"));
-      w.row(keepH + wd("of") + PH, "=", nh(kd) + op("×") + PH + op("=") + usdX(prod) + (isCents(prod) ? "" : op("≈") + usd(prodR)), bd("m", "×"), "result");
+      w.row(keepH + wd(tx("percents.w.of")) + PH, "=", nh(kd) + op("×") + PH + op("=") + usdX(prod) + (isCents(prod) ? "" : op("≈") + usd(prodR)), bd("m", "×"), "result");
       var last = w.log.length - 1,
-        figs = [{ svg: priceSVG(kind, pr, p, amtR, fin), cap: s < 0 ? "The price, cut up" : "What you pay" }],
+        figs = [{ svg: priceSVG(kind, pr, p, amtR, fin), cap: s < 0 ? tx("percents.fig.priceCut") : tx("percents.fig.whatPay") }],
         g = gridsSVG(p);
-      if (g) figs.push({ svg: g, cap: pctT(p) + " of " + M.ofWhat });
-      var cap = '<b class="lead">The pictures.</b> The bar is ' + M.ofWhat + " (" + PH + ") drawn to scale. " +
-        (s < 0 ? "The " + pH + " piece comes off; the " + keepH + " that’s left is what you pay." :
-          "The " + pH + " piece is added on the end, so the whole bar is " + keepH + " of " + M.ofWhat + ".") +
-        (g ? " In the grid, " + M.ofWhat + " is 100 squares of " + B(usdX(dvd(pr, H100))) + " each; " + M.thing + " is " + nt(p) + " of them." : "");
+      if (g) figs.push({ svg: g, cap: tx("percents.money.gridCap", { p: pctT(p), ofWhat: M.ofWhat, deWhat: M.deWhat }) });
+      var cap = tx("percents.cap.lead") + tx("percents.money.cap", { ofWhat: M.ofWhat, P: PH }) +
+        (s < 0 ? tx("percents.money.capDisc", { p: pH, k: keepH }) :
+          tx("percents.money.capAdd", { p: pH, k: keepH, ofWhat: M.ofWhat, deWhat: M.deWhat })) +
+        (g ? tx("percents.money.capGrid", { ofWhat: M.ofWhat, v: B(usdX(dvd(pr, H100))), thing: M.thing, n: nt(p) }) : "");
       var facts = [];
-      if (rounded) facts.push("Exact " + M.amt.toLowerCase() + ": " + B(usdX(amt)) + ", rounded to the nearest cent");
-      facts.push((s < 0 ? "You pay " : "That’s ") + B(pctT(keep)) + " of " + M.ofWhat);
-      facts.push(M.amt + " as a fraction of " + M.ofWhat + ": " + B(nt(p) + "/100" + (fracT(pd) !== nt(p) + "/100" ? " = " + fracT(pd) : "")));
-      var closer = (s < 0 ? "<b>Check:</b> " + B(usd(fin) + " + " + usd(amtR) + " = " + PH) + ", the full price" :
-          "<b>Check:</b> " + B(usd(fin) + " − " + usd(amtR) + " = " + PH) + ", what we started with") +
-        (!rounded && !isZ(pr) ? ", and " + B(usd(amtR) + " ÷ " + PH + " = " + nh(pd) + " = " + pH) : "") + ' <span class="ok">✓</span>';
+      if (rounded) facts.push(tx("percents.money.fExact", { amtLow: M.amtLow, deThing: M.deThing, v: B(usdX(amt)) }));
+      facts.push(tx(s < 0 ? "percents.money.fPay" : "percents.money.fThats", { k: B(pctT(keep)), ofWhat: M.ofWhat, deWhat: M.deWhat }));
+      facts.push(tx("percents.money.fFrac", { amt: M.amt, ofWhat: M.ofWhat, deWhat: M.deWhat, v: B(nt(p) + "/100" + (fracT(pd) !== nt(p) + "/100" ? " = " + fracT(pd) : "")) }));
+      var closer = (s < 0 ? tx("percents.money.closeDisc", { e: B(usd(fin) + " + " + usd(amtR) + " = " + PH) }) :
+          tx("percents.money.closeAdd", { e: B(usd(fin) + " − " + usd(amtR) + " = " + PH) })) +
+        (!rounded && !isZ(pr) ? tx("percents.andE", { e: B(usd(amtR) + " ÷ " + PH + " = " + nh(pd) + " = " + pH) }) : "") + ' <span class="ok">✓</span>';
       var dA = [
-        { v: fin, msg: "That’s the " + M.fin.toLowerCase() + " — this box wants " + M.thing + " itself." },
-        { v: p, msg: pH + " isn’t $" + nt(p) + " — find " + pH + " of " + PH + " first: " + nh(pd) + " × " + PH + "." },
-        { v: mul(p, pr), msg: "Use the percent as a decimal: " + pH + " = " + nh(pd) + ", not " + nh(p) + "." },
-        { v: mul(dvd(p, TEN), pr), msg: "Check the decimal point: " + pH + " is " + nh(pd) + "." },
-        { v: R(amt.n * 100n / amt.d, 100), msg: "Almost — round to the nearest cent: the next digit is 5 or more, so the cents go up." }
+        { v: fin, msg: tx("percents.money.dA0", { finLow: M.finLow, thing: M.thing }) },
+        { v: p, msg: tx("percents.money.dA1", { p: pH, pn: nt(p), P: PH, d: nh(pd) }) },
+        { v: mul(p, pr), msg: tx("percents.money.dA2", { p: pH, d: nh(pd), pn: nh(p) }) },
+        { v: mul(dvd(p, TEN), pr), msg: tx("percents.money.dA3", { p: pH, d: nh(pd) }) },
+        { v: R(amt.n * 100n / amt.d, 100), msg: tx("percents.money.dA4") }
       ];
       var dF = [
-        { v: amtR, msg: "That’s " + M.thing + ". The " + M.fin.toLowerCase() + " is " + PH + (s < 0 ? " minus" : " plus") + " that." },
-        { v: s < 0 ? sub(pr, p) : add(pr, p), msg: pH + " isn’t $" + nt(p) + " — " + M.thing + " has to be found as " + pH + " of " + PH + " first." },
-        { v: s < 0 ? add(pr, amtR) : sub(pr, amtR), msg: s < 0 ? "A discount comes <i>off</i> the price, so subtract it." : (kind === "markup" ? "A markup is added on" : kind === "tax" ? "Tax is added on top" : "A tip is added on top") + ", so add it." },
-        { v: pr, msg: "That’s the " + M.base + " you started with — " + M.thing + " still has to " + (s < 0 ? "come off" : "go on") + "." },
-        { v: s < 0 ? sub(pr, mul(p, pr)) : add(pr, mul(p, pr)), msg: "Use " + pH + " as " + nh(pd) + " when you multiply." }
+        { v: amtR, msg: tx(s < 0 ? "percents.money.dF0minus" : "percents.money.dF0plus", { thing: M.thing, finLow: M.finLow, P: PH }) },
+        { v: s < 0 ? sub(pr, p) : add(pr, p), msg: tx("percents.money.dF1", { p: pH, pn: nt(p), thing: M.thing, P: PH }) },
+        { v: s < 0 ? add(pr, amtR) : sub(pr, amtR), msg: tx("percents.money.dF2." + kind) },
+        { v: pr, msg: tx(s < 0 ? "percents.money.dF3off" : "percents.money.dF3on", { base: M.base, ofWhat: M.ofWhat, thing: M.thing }) },
+        { v: s < 0 ? sub(pr, mul(p, pr)) : add(pr, mul(p, pr)), msg: tx("percents.money.dF4", { p: pH, d: nh(pd) }) }
       ];
-      var at = M.amt + ": " + usd(amtR) + "; " + M.fin.toLowerCase() + ": " + usd(fin),
+      var at = tx("percents.money.at", { amt: M.amt, a: usd(amtR), finLow: M.finLow, f: usd(fin) }),
         PT = usd(pr),
         pT = pctT(p);
-      var texts = {
-        discount: ["A " + PT + " item is " + pT + " off. How much is taken off, and what is the sale price?",
-          "A <b>" + esc(PT) + "</b> item is <b>" + esc(pT) + "</b> off. How much is taken off, and what is the sale price?"
-        ],
-        markup: ["A store pays " + PT + " for an item and marks it up " + pT + ". How much is the markup, and what is the new price?",
-          "A store pays <b>" + esc(PT) + "</b> for an item and marks it up <b>" + esc(pT) + "</b>. How much is the markup, and what is the new price?"
-        ],
-        tax: ["The sales tax is " + pT + ". On a " + PT + " purchase, how much is the tax, and what is the total?",
-          "The sales tax is <b>" + esc(pT) + "</b>. On a <b>" + esc(PT) + "</b> purchase, how much is the tax, and what is the total?"
-        ],
-        tip: ["You leave a " + pT + " tip on a " + PT + " bill. How much is the tip, and what is the total?",
-          "You leave a <b>" + esc(pT) + "</b> tip on a <b>" + esc(PT) + "</b> bill. How much is the tip, and what is the total?"
-        ]
-      };
       return {
         rows: w.rows,
         log: w.log,
@@ -2640,21 +2619,21 @@
         answers: [{ label: M.amt, type: "money", pre: "$", exact: amtR, alts: [amt], diag: dA },
           { label: M.fin, type: "money", pre: "$", exact: fin, alts: same ? [] : [prodR], diag: dF }
         ],
-        text: texts[kind][0],
-        html: texts[kind][1],
+        text: tx("percents.money.text." + kind, { P: PT, p: pT }),
+        html: tx("percents.money.text." + kind, { P: "<b>" + esc(PT) + "</b>", p: "<b>" + esc(pT) + "</b>" }),
         ansText: at,
-        ansHtml: esc(M.amt) + ": <b>" + esc(usd(amtR)) + "</b>; " + esc(M.fin.toLowerCase()) + ": <b>" + esc(usd(fin)) + "</b>"
+        ansHtml: tx("percents.money.at", { amt: esc(M.amt), a: "<b>" + esc(usd(amtR)) + "</b>", finLow: esc(M.finLow), f: "<b>" + esc(usd(fin)) + "</b>" })
       };
     }
 
     function solveInterest(f) {
       var months = f.unit === "months",
-        P = num(f.principal, "principal").v,
-        p = num(f.p, "interest rate").v;
-      var T = num(f.t, months ? "number of months" : "number of years").v;
-      if (!isCents(P)) throw new UserErr("Money is dollars and cents, so use at most 2 decimal places for the principal.");
-      if (cmpR(p, H100) > 0) throw new UserErr("An interest rate over 100% a year is unusual — keep it to 100% or less.");
-      if (cmpR(T, R(months ? 1200 : 100)) > 0) throw new UserErr("That’s a very long time! Keep it to " + (months ? "1,200 months" : "100 years") + " or less.");
+        P = num(f.principal, tx("percents.f.principal")).v,
+        p = num(f.p, tx("percents.f.rate")).v;
+      var T = num(f.t, months ? tx("percents.f.months") : tx("percents.f.years")).v;
+      if (!isCents(P)) throw new UserErr(tx("percents.money.errCents", { base: tx("percents.f.principal"), ofWhat: tx("percents.int.theP") }));
+      if (cmpR(p, H100) > 0) throw new UserErr(tx("percents.int.errRate"));
+      if (cmpR(T, R(months ? 1200 : 100)) > 0) throw new UserErr(tx(months ? "percents.int.errLongM" : "percents.int.errLongY"));
       var ty = months ? dvd(T, R(12)) : T,
         r = dvd(p, H100),
         I1 = mul(P, r),
@@ -2665,40 +2644,40 @@
       var PH = usd(P),
         pH = pctH(p),
         w = new Work(),
-        tW = nt(T) + " " + (months ? (eqR(T, ONE) ? "month" : "months") : (eqR(T, ONE) ? "year" : "years"));
+        tW = tx(months ? "percents.int.months" : "percents.int.years", { t: nt(T), n: eqR(T, ONE) ? 1 : 2 });
       var tyH = nh(ty),
-        tyW = nt(ty) + " year" + (eqR(ty, ONE) ? "" : "s");
-      w.step("p", "Formula", "Simple interest uses " + B("I = P × r × t") + ": " + B("P") + " is the principal (the money you start with), " + B("r") +
-        " is the rate per year as a decimal, and " + B("t") + " is the time in years. Here P = " + B(PH) + ", r = " + B(pH + " = " + nh(r)) +
-        ", and t = " + B(tyH) + "." + (months ? " The rate is per <i>year</i>, so the time has to be in years too: " + B(nt(T) + " months ÷ 12 = " + tyW) + "." : ""));
-      w.row("I", "=", "P" + op("×") + "r" + op("×") + "t", bd("p", "formula"));
+        tyW = tx("percents.int.years", { t: nt(ty), n: eqR(ty, ONE) ? 1 : 2 });
+      w.step("p", tx("percents.tag.formula"), tx("percents.int.s1", { P: B(PH), r: B(pH + " = " + nh(r)), t: B(tyH) }) +
+        (months ? tx("percents.int.s1m", { e: B(tx("percents.int.mDiv", { t: nt(T), y: tyW })) }) : ""));
+      w.row("I", "=", "P" + op("×") + "r" + op("×") + "t", bd("p", tx("percents.bd.formula")));
       w.row("r", "=", pH + op("=") + nh(r), bd("p", "÷ 100"));
-      if (months) w.row("t", "=", nh(T) + op("÷") + "12" + op("=") + tyH + wd("years"), bd("m", "÷ 12"));
-      w.step("m", "1 year", "Work out one year’s interest first: " + B(PH + " × " + nh(r) + " = " + usdX(I1)) + ".");
-      w.row(wd("1 year"), "=", PH + op("×") + nh(r) + op("=") + usdX(I1), bd("m", "×"));
-      w.step("m", eqR(ty, ONE) ? "Time" : "× time", eqR(ty, ONE) ? "The time is exactly 1 year, so the interest is that one year’s worth: " + B(usdX(I)) + "." :
-        "Now for " + tyW + ": " + B(usdX(I1) + " × " + tyH + " = " + usdX(I)) + ".",
-        "“Simple” interest is the same every year, because it’s always " + pH + " of the original " + PH + ". (Compound interest would also pay interest on the interest.)");
+      if (months) w.row("t", "=", nh(T) + op("÷") + "12" + op("=") + tyH + wd(tx("percents.w.years")), bd("m", "÷ 12"));
+      w.step("m", tx("percents.int.oneYear"), tx("percents.int.s2", { e: B(PH + " × " + nh(r) + " = " + usdX(I1)) }));
+      w.row(wd(tx("percents.int.oneYear")), "=", PH + op("×") + nh(r) + op("=") + usdX(I1), bd("m", "×"));
+      w.step("m", eqR(ty, ONE) ? tx("percents.tag.time") : tx("percents.tag.xTime"), eqR(ty, ONE) ? tx("percents.int.s3one", { v: B(usdX(I)) }) :
+        tx("percents.int.s3", { y: tyW, e: B(usdX(I1) + " × " + tyH + " = " + usdX(I)) }),
+        tx("percents.int.simpleNote", { p: pH, P: PH }));
       w.row("I", "=", usdX(I1) + op("×") + tyH + op("=") + usdX(I), bd("m", "×"), rounded ? "" : "result");
       if (rounded) {
-        w.step("e", "Round", roundTalk(I));
-        w.row("I", "≈", usd(IR), bd("e", "≈ cent"), "result");
+        w.step("e", tx("percents.tag.round"), roundTalk(I));
+        w.row("I", "≈", usd(IR), bd("e", tx("percents.bd.cent")), "result");
       }
-      w.step("a", "Add", "The total at the end is what you started with plus the interest: " + B(PH + " + " + usd(IR) + " = " + usd(tot)) + ".");
-      w.row(wd("total"), "=", PH + op("+") + usd(IR) + op("=") + usd(tot), bd("a", "+"), "result");
+      w.step("a", tx("percents.tag.add"), tx("percents.int.s4", { e: B(PH + " + " + usd(IR) + " = " + usd(tot)) }));
+      w.row(wd(tx("percents.w.total")), "=", PH + op("+") + usd(IR) + op("=") + usd(tot), bd("a", "+"), "result");
       var last = w.log.length - 1,
-        figs = [{ svg: interestSVG(P, I1, ty, IR, tot), cap: "Principal + interest" }],
+        figs = [{ svg: interestSVG(P, I1, ty, IR, tot), cap: tx("percents.fig.pPlusI") }],
         g = gridsSVG(p);
-      if (g) figs.push({ svg: g, cap: "One year: " + pctT(p) + " of " + PH });
+      if (g) figs.push({ svg: g, cap: tx("percents.int.gridCap", { p: pctT(p), P: PH }) });
       var yrs = isInt(ty) && toN(ty) >= 1 && toN(ty) <= 12;
-      var cap = '<b class="lead">The pictures.</b> The bar starts with the principal, ' + PH + (yrs ? ", then adds one equal piece of interest for each year (" + usdX(I1) + " each)." : ", then adds the interest, " + usd(IR) + ".") +
-        (g ? " The grid is one year: the principal is 100 squares, and the interest is " + nt(p) + " of them." : "");
+      var cap = tx("percents.cap.lead") + (yrs ? tx("percents.int.capYrs", { P: PH, v: usdX(I1) }) : tx("percents.int.capAll", { P: PH, v: usd(IR) })) +
+        (g ? tx("percents.int.capGrid", { n: nt(p) }) : "");
       var facts = [];
-      if (rounded) facts.push("Exact interest: " + B(usdX(I)) + ", rounded to the nearest cent");
-      facts.push("Interest each year: " + B(usdX(I1)));
-      if (months) facts.push(nt(T) + " months = " + B(tyW));
-      var closer = "<b>Check:</b> " + B(usd(tot) + " − " + PH + " = " + usd(IR)) + (eqR(ty, ONE) || rounded ? "" : ", and " + B(usd(IR) + " ÷ " + tyH + " = " + usdX(I1)) + " a year") +
-        (isZ(P) ? "" : ", which is " + B(nh(dvd(I1, P)) + " = " + pH) + " of " + PH) + ' <span class="ok">✓</span>';
+      if (rounded) facts.push(tx("percents.int.fExact", { v: B(usdX(I)) }));
+      facts.push(tx("percents.int.fYear", { v: B(usdX(I1)) }));
+      if (months) facts.push(tx("percents.int.fMonths", { t: nt(T), y: B(tyW) }));
+      var closer = tx("percents.int.close", { e: B(usd(tot) + " − " + PH + " = " + usd(IR)) }) +
+        (eqR(ty, ONE) || rounded ? "" : tx("percents.int.closeYear", { e: B(usd(IR) + " ÷ " + tyH + " = " + usdX(I1)) })) +
+        (isZ(P) ? "" : tx("percents.int.closeWhich", { e: B(nh(dvd(I1, P)) + " = " + pH), P: PH })) + ' <span class="ok">✓</span>';
       var comp = null;
       if (isInt(ty) && toN(ty) >= 2 && toN(ty) <= 30) {
         var cp = P;
@@ -2706,35 +2685,35 @@
         comp = roundK(sub(cp, P), 2);
       }
       var dI = [
-        { v: mul(mul(P, p), ty), msg: "Use the rate as a decimal: " + pH + " = " + nh(r) + ", not " + nh(p) + "." },
-        { v: eqR(ty, ONE) ? null : I1, msg: "That’s just one year’s interest. Multiply by the " + tyW + "." },
-        { v: months ? mul(I1, T) : null, msg: "The time has to be in years: " + nt(T) + " months = " + tyW + "." },
-        { v: tot, msg: "That’s the total. The interest is just the extra money earned." },
-        { v: comp, msg: "That’s compound interest (interest on the interest). Simple interest is the same " + usdX(I1) + " every year." }
+        { v: mul(mul(P, p), ty), msg: tx("percents.int.dRate", { p: pH, d: nh(r), pn: nh(p) }) },
+        { v: eqR(ty, ONE) ? null : I1, msg: tx("percents.int.dOne", { y: tyW }) },
+        { v: months ? mul(I1, T) : null, msg: tx("percents.int.dYears", { t: nt(T), y: tyW }) },
+        { v: tot, msg: tx("percents.int.dTotal") },
+        { v: comp, msg: tx("percents.int.dComp", { v: usdX(I1) }) }
       ];
       var dT = [
-        { v: IR, msg: "That’s only the interest — add the " + PH + " you started with." },
-        { v: eqR(ty, ONE) ? null : add(P, I1), msg: "That adds only one year of interest. There are " + tyW + "." },
-        { v: add(P, mul(mul(P, p), ty)), msg: "Use the rate as a decimal: " + pH + " = " + nh(r) + "." },
-        { v: months ? add(P, mul(I1, T)) : null, msg: "The time has to be in years: " + nt(T) + " months = " + tyW + "." },
-        { v: comp === null ? null : add(P, comp), msg: "That’s compound interest. Simple interest adds the same " + usdX(I1) + " each year." }
+        { v: IR, msg: tx("percents.int.tOnly", { P: PH }) },
+        { v: eqR(ty, ONE) ? null : add(P, I1), msg: tx("percents.int.tOne", { y: tyW }) },
+        { v: add(P, mul(mul(P, p), ty)), msg: tx("percents.int.tRate", { p: pH, d: nh(r) }) },
+        { v: months ? add(P, mul(I1, T)) : null, msg: tx("percents.int.dYears", { t: nt(T), y: tyW }) },
+        { v: comp === null ? null : add(P, comp), msg: tx("percents.int.tComp", { v: usdX(I1) }) }
       ];
-      var at = "Interest: " + usd(IR) + "; total: " + usd(tot);
+      var at = tx("percents.int.at", { i: usd(IR), t: usd(tot) });
       return {
         rows: w.rows,
         log: w.log,
         fig: { cap: cap, list: figs, step: last },
         rounded: rounded,
-        pairs: [{ k: "Interest", v: usd(IR) }, { k: "Total after " + tW, v: usd(tot) }],
+        pairs: [{ k: tx("percents.int.lbl"), v: usd(IR) }, { k: tx("percents.int.totalAfter", { t: tW }), v: usd(tot) }],
         facts: facts,
         closer: closer,
-        answers: [{ label: "Interest", type: "money", pre: "$", exact: IR, alts: [I], diag: dI },
-          { label: "Total (principal + interest)", type: "money", pre: "$", exact: tot, alts: [add(P, I)], diag: dT }
+        answers: [{ label: tx("percents.int.lbl"), type: "money", pre: "$", exact: IR, alts: [I], diag: dI },
+          { label: tx("percents.int.lblTotal"), type: "money", pre: "$", exact: tot, alts: [add(P, I)], diag: dT }
         ],
-        text: usd(P) + " earns " + pctT(p) + " simple interest a year for " + tW + ". How much interest does it earn, and what is the total?",
-        html: "<b>" + esc(usd(P)) + "</b> earns <b>" + esc(pctT(p)) + "</b> simple interest a year for <b>" + esc(tW) + "</b>. How much interest does it earn, and what is the total?",
+        text: tx("percents.int.text", { P: usd(P), p: pctT(p), t: tW }),
+        html: tx("percents.int.text", { P: "<b>" + esc(usd(P)) + "</b>", p: "<b>" + esc(pctT(p)) + "</b>", t: "<b>" + esc(tW) + "</b>" }),
         ansText: at,
-        ansHtml: "Interest: <b>" + esc(usd(IR)) + "</b>; total: <b>" + esc(usd(tot)) + "</b>"
+        ansHtml: tx("percents.int.at", { i: "<b>" + esc(usd(IR)) + "</b>", t: "<b>" + esc(usd(tot)) + "</b>" })
       };
     }
 
@@ -2745,7 +2724,7 @@
       if (prob.mode === "whole") return solveWhole(f);
       if (prob.mode === "change") return solveChange(f);
       if (prob.mode === "money") return prob.kind === "interest" ? solveInterest(f) : solveMoney(MK[prob.kind] ? prob.kind : "discount", f);
-      throw new UserErr("I don’t know that kind of problem.");
+      throw new UserErr(tx("percents.err.kind"));
     }
 
     /* ===================== pictures ===================== */
@@ -2811,7 +2790,7 @@
         out += '<rect class="g-frame" x="' + ox + '" y="' + top + '" width="' + G + '" height="' + G + '"/>';
         if (count > 1) out += svgT(ox + G / 2, top + G + 16, (filled >= 100 ? "100" : trimF(filled)) + "%", "g-lbl");
       }
-      return svgWrap(W, H, (count > 1 ? count + " hundred grids" : "A hundred grid") + " with " + trimF(pf) + " squares shaded", out, "grid-svg");
+      return svgWrap(W, H, count > 1 ? tx("percents.svg.grids", { c: count, s: trimF(pf) }) : tx("percents.svg.grid", { s: trimF(pf) }), out, "grid-svg");
     }
     // double number line: percent on top, the number underneath, both to scale
     function dnlSVG(p, whole, part, money) {
@@ -2853,7 +2832,7 @@
         if (showAll || q === 0 || q === 100) out += svgT(clampX(X(q), tw(vl[i], 7), 0, W), yNl, vl[i], "nl-num");
       });
       out += svgT(clampX(hx, tw(hl, 8.6), 0, W), yHi, hl, "nl-hi") + svgT(clampX(hx, tw(hv, 8.6), 0, W), yHv, hv, "nl-hi");
-      return svgWrap(W, H, "Percent bar: 0% to " + span + "% on top, 0 to " + shortV(mul(whole, R(span, 100)), money) + " underneath; " + hl + " lines up with " + hv, out, "dnl-svg");
+      return svgWrap(W, H, tx("percents.svg.dnl", { span: span, max: shortV(mul(whole, R(span, 100)), money), hl: hl, hv: hv }), out, "dnl-svg");
     }
     // whole mode: the whole cut into equal pieces
     function barModelSVG(a, p, Wv, c) {
@@ -2879,7 +2858,7 @@
       if (k1 > k2) out += line(L + k2 * pw, y0 - 4, L + k2 * pw, y1 + 4, "nl-100");
       out += bracket(L, L + k1 * pw, y0 - 7, true, pctLbl(p) + " = " + shortV(a, false), "sv-k", Wd);
       out += bracket(L, L + k2 * pw, y1 + 7, false, "100% = " + shortV(Wv, false), "sv-l", Wd);
-      return svgWrap(Wd, y1 + 30, "Bar model: the whole cut into " + count + " pieces of " + lp + ", each worth " + lv, out, "bar-svg");
+      return svgWrap(Wd, y1 + 30, tx("percents.svg.bar", { c: count, p: lp, v: lv }), out, "bar-svg");
     }
 
     function changeSVG(o, t, pc) {
@@ -2901,8 +2880,8 @@
         var wv = tw(txt, 7.8);
         return x1 - x0 >= wv + 12 ? svgT(x1 - 7, y + 19, txt, "sv-t", "end") : svgT(x1 + 6, y + 19, txt, "sv-l", "start");
       }
-      out += svgT(2, y1 + 19, "Before", "sv-l", "start") + rect(X(0), y1, X(of_) - X(0), h, "b-base");
-      out += svgT(2, y2 + 19, "After", "sv-l", "start");
+      out += svgT(2, y1 + 19, tx("percents.svg.before"), "sv-l", "start") + rect(X(0), y1, X(of_) - X(0), h, "b-base");
+      out += svgT(2, y2 + 19, tx("percents.svg.after"), "sv-l", "start");
       if (up) out += rect(X(0), y2, X(of_) - X(0), h, "b-base") + rect(X(of_), y2, X(tf) - X(of_), h, "b-on");
       else out += rect(X(0), y2, X(tf) - X(0), h, "b-base") + (tf < of_ ? rect(X(tf), y2, X(of_) - X(tf), h, "b-gone") : "");
       out += line(X(of_), y1 - 2, X(of_), y2 + h + 4, "nl-guide");
@@ -2920,7 +2899,7 @@
         farApart = Math.abs(X(tf) - X(of_)) >= (tw(newP, 7) + tw("100%", 7)) / 2 + 8;
       out += svgT(X(of_), ylo, "100%", "nl-num");
       if (tf !== of_) out += svgT(clampX(X(tf), tw(newP, 7), 0, Wd), farApart ? ylo : ylo + 14, newP, "nl-num") + line(X(tf), y2 + h, X(tf), y2 + h + 4, "nl-tick");
-      return svgWrap(Wd, ylo + 18, "Bars to scale: before " + shortV(o, false) + ", after " + shortV(t, false), out, "chg-svg");
+      return svgWrap(Wd, ylo + 18, tx("percents.svg.chg", { o: shortV(o, false), t: shortV(t, false) }), out, "chg-svg");
     }
 
     function priceSVG(kind, pr, p, amtR, fin) {
@@ -2935,11 +2914,11 @@
         out = "";
       var keep = s < 0 ? sub(H100, p) : add(H100, p),
         pieces;
-      if (s < 0) pieces = [{ a: 0, b: toN(fin), cls: "b-base", top: pctLbl(keep) + " you pay", mid: usd(fin) },
-        { a: toN(fin), b: toN(pr), cls: "b-on", top: pctLbl(p) + " off", mid: usd(amtR) }
+      if (s < 0) pieces = [{ a: 0, b: toN(fin), cls: "b-base", top: tx("percents.svg.youPay", { k: pctLbl(keep) }), mid: usd(fin) },
+        { a: toN(fin), b: toN(pr), cls: "b-on", top: tx("percents.svg.off", { p: pctLbl(p) }), mid: usd(amtR) }
       ];
-      else pieces = [{ a: 0, b: toN(pr), cls: "b-base", top: "100% " + MK[kind].base, mid: usd(pr) },
-        { a: toN(pr), b: total, cls: "b-on", top: "+" + pctLbl(p) + " " + (kind === "markup" ? "markup" : kind), mid: usd(amtR) }
+      else pieces = [{ a: 0, b: toN(pr), cls: "b-base", top: tx("percents.svg.base", { b: tx("percents.mk." + kind + ".base"), d: tx("percents.mk." + kind + ".deWhat") }), mid: usd(pr) },
+        { a: toN(pr), b: total, cls: "b-on", top: tx("percents.svg.add." + kind, { p: pctLbl(p) }), mid: usd(amtR) }
       ];
       pieces.forEach(function(pc, i) {
         var x0 = X(pc.a),
@@ -2950,9 +2929,9 @@
         var top = fits ? pc.top : pc.top + " " + pc.mid;
         out += i === 0 ? svgT(x0 + 1, y0 - 9, top, i === 1 ? "sv-k" : "sv-l", "start") : svgT(Wd - 2, y0 - 9, top, "sv-k", "end");
       });
-      var bl = s < 0 ? "100% = " + usd(pr) + " (the price)" : "Total " + usd(fin) + " = " + pctLbl(keep);
+      var bl = s < 0 ? tx("percents.svg.blDisc", { P: usd(pr) }) : tx("percents.svg.blTotal", { f: usd(fin), k: pctLbl(keep) });
       out += bracket(X(0), X(total), y1 + 7, false, bl, "sv-l", Wd);
-      return svgWrap(Wd, y1 + 30, "Bar to scale: " + bl, out, "price-svg");
+      return svgWrap(Wd, y1 + 30, tx("percents.svg.barScale", { l: bl }), out, "price-svg");
     }
 
     function interestSVG(P, I1, ty, IR, tot) {
@@ -2967,7 +2946,7 @@
         yrs = isInt(ty) && toN(ty) >= 1 && toN(ty) <= 12 && (X(toN(I1)) - X(0)) >= 3;
       out += rect(X(0), y0, X(pp) - X(0), y1 - y0, "b-base");
       if (X(pp) - X(0) >= tw(usd(P), 7.8) + 10) out += svgT((X(0) + X(pp)) / 2, y0 + 23, usd(P), "sv-t");
-      out += svgT(X(0) + 1, y0 - 9, "Principal", "sv-l", "start");
+      out += svgT(X(0) + 1, y0 - 9, tx("percents.svg.principal"), "sv-l", "start");
       if (yrs) {
         var n = Number(ty.n),
           w1 = toN(I1);
@@ -2975,12 +2954,12 @@
           var a = X(pp + i * w1),
             b = X(pp + (i + 1) * w1);
           out += rect(a, y0, b - a, y1 - y0, "b-on");
-          if (b - a >= tw("yr " + (i + 1), 6.6) + 6) out += svgT((a + b) / 2, y0 + 23, "yr " + (i + 1), "sv-s");
+          if (b - a >= tw(tx("percents.svg.yr", { n: i + 1 }), 6.6) + 6) out += svgT((a + b) / 2, y0 + 23, tx("percents.svg.yr", { n: i + 1 }), "sv-s");
         }
       } else out += rect(X(pp), y0, X(total) - X(pp), y1 - y0, "b-on");
-      out += svgT(Wd - 2, y0 - 9, "+ interest " + usd(IR), "sv-k", "end");
-      out += bracket(X(0), X(total), y1 + 7, false, "Total " + usd(tot), "sv-l", Wd);
-      return svgWrap(Wd, y1 + 30, "Bar to scale: principal " + usd(P) + " plus interest " + usd(IR), out, "int-svg");
+      out += svgT(Wd - 2, y0 - 9, tx("percents.svg.plusI", { v: usd(IR) }), "sv-k", "end");
+      out += bracket(X(0), X(total), y1 + 7, false, tx("percents.svg.total", { v: usd(tot) }), "sv-l", Wd);
+      return svgWrap(Wd, y1 + 30, tx("percents.svg.intLabel", { P: usd(P), i: usd(IR) }), out, "int-svg");
     }
 
     /* ===================== numbers typed as words =====================
@@ -3233,7 +3212,7 @@
       var N = qNums(s);
       // compound interest, loan payments, credit cards: the money page works those
       if (/compound|\bapr\b|\bapy\b|monthly payment|\bpayments?\b|\bpaying\b|\bper month\b|\ba month\b|\beach month\b|\bevery month\b|amortiz|mortgage|annuit|credit card|\bmonthly\b/.test(s))
-        return { other: "money-math.html", what: "compound interest, loan payments and credit cards" };
+        return { other: "money-math.html", what: tx("percents.q.otherWhat") };
       // I = Prt written with labels: "P = 2500, r = 4%, t = 3"
       var lp = /\bp is \$? ?(\d*\.?\d+)/.exec(s),
         lr = /\br is (\d*\.?\d+)(%)?/.exec(s),
@@ -3326,12 +3305,18 @@
       }
       return null;
     }
+    // a typed problem in the language in use, as the reader knows it (HelperI18n.normalize); if that can't be read,
+    // the words as they were typed (someone on the Spanish page may type it in English)
+    function readQ(q) {
+      var n = window.HelperI18n ? HelperI18n.normalize(q) : q,
+        r = parseQ(n);
+      return !r && n !== q ? parseQ(q) : r;
+    }
 
     function otherMsg(r, q) {
       var p = "q=" + encodeURIComponent(String(q).trim()),
         href = window.HelperSite ? window.HelperSite.url(r.other, p) : r.other + "?" + p;
-      return "That looks like " + esc(r.what) + ", which this page doesn’t do (it works percents, percent change, discounts, tax, tips and simple interest). " +
-        '<a href="' + esc(href) + '">Work <b>' + esc(String(q).trim()) + "</b> on the money math page →</a>";
+      return tx("percents.q.other", { what: esc(r.what) }) + '<a href="' + esc(href) + '">' + tx("percents.q.otherLink", { q: esc(String(q).trim()) }) + "</a>";
     }
 
     /* ===================== the problem on screen ===================== */
@@ -3374,14 +3359,13 @@
       }
       var q = u.get("q");
       if (q !== null && q.trim()) {
-        var r = parseQ(q);
+        var r = readQ(q);
         if (r && r.other) {
           S.bad = otherMsg(r, q);
           S.badQ = q;
         } else if (r) applyProb(r);
         else {
-          S.bad = "I couldn’t read <b>“" + esc(q) + "”</b> as a percent problem. Try something like <b>15% of 80</b>, <b>18 is what % of 72</b>, " +
-            "<b>15 is 20% of what</b>, <b>80 to 92</b>, <b>20% off $45</b> or <b>interest 500 at 4% for 3 years</b> — or fill in the blanks above.";
+          S.bad = tx("percents.q.bad", { q: esc(q) });
           S.badQ = q;
         }
         return;
@@ -3391,8 +3375,8 @@
       var mode = (u.get("mode") || "").toLowerCase(),
         kind = (u.get("kind") || "").toLowerCase();
       if (!mode && !kind && !any) return;
-      if (kind && KINDS.indexOf(kind) < 0) { S.bad = "The link asks for a money problem of kind <b>“" + esc(kind) + "”</b>, which isn’t one I know. Try discount, markup, tax, tip or interest."; return; }
-      if (mode && MODES.indexOf(mode) < 0) { S.bad = "The link asks for <b>“" + esc(mode) + "”</b> problems, which isn’t one of mine. Pick a tab above instead."; return; }
+      if (kind && KINDS.indexOf(kind) < 0) { S.bad = tx("percents.q.badKind", { k: esc(kind) }); return; }
+      if (mode && MODES.indexOf(mode) < 0) { S.bad = tx("percents.q.badMode", { m: esc(mode) }); return; }
       if (!mode) mode = kind || u.has("price") || u.has("principal") || u.has("years") || u.has("months") ? "money" :
         u.has("from") || u.has("to") ? "change" : u.has("whole") ? "what" : u.has("part") ? "whole" : "of";
       if (mode === "money" && !kind) kind = u.has("principal") || u.has("years") || u.has("months") ? "interest" : "discount";
@@ -3436,7 +3420,7 @@
       var stepping = S.practice === "step";
       $("stepper").hidden = !stepping;
       if (stepping) {
-        $("stepCount").textContent = S.step + " of " + total;
+        $("stepCount").textContent = tx("percents.stepOf", { n: S.step, total: total });
         $("prevBtn").disabled = S.step <= 1;
         $("nextBtn").disabled = S.step >= total;
       }
@@ -3456,7 +3440,7 @@
         if (e && e.user) {
           CUR = null;
           lastKey = null;
-          return fail(e.user === "zero" ? "Something in there divides by zero — that can’t be done. Change the 0." : e.user);
+          return fail(e.user === "zero" ? tx("percents.err.divZero") : e.user);
         }
         throw e;
       }
@@ -3579,6 +3563,11 @@
       var s = String(str == null ? "" : str).toLowerCase().trim();
       if (!s) return { empty: true };
       s = s.replace(/[−–—]/g, "-");
+      var aw = window.HelperI18n && HelperI18n.lang !== "en" ? HelperI18n.raw("percents.ansWords") : null;
+      if (aw && aw.up) { // "25% de aumento": the language's words for up, down and percent, as the reader knows them
+        if (s.normalize) s = s.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        s = s.replace(new RegExp(aw.pct, "g"), "%").replace(new RegExp(aw.up, "g"), " increase ").replace(new RegExp(aw.down, "g"), " decrease ");
+      }
       var dir = 0;
       if (/increase|\bup\b|more|rise|gain|grow|higher|\binc\b/.test(s)) dir = 1;
       if (/decrease|\bdown\b|less|drop|fall|fell|lower|loss|\bdec\b|\boff\b/.test(s)) dir = dir ? 2 : -1;
@@ -3607,23 +3596,23 @@
     function judge(A, a) {
       var v = A.type === "chg" ? a.mag : a.v,
         ok = false;
-      if (A.type !== "chg" && a.sign < 0) return { ok: false, msg: "The answer here can’t be negative." };
+      if (A.type !== "chg" && a.sign < 0) return { ok: false, msg: tx("percents.ck.neg") };
       if (A.type === "money") ok = eqR(v, roundK(A.exact, 2)) || eqR(v, A.exact) || (A.alts || []).some(function(x) { return eqR(v, x) || eqR(v, roundK(x, 2)); });
       else ok = hits(a, v, A.exact);
       if (ok && A.type === "chg" && A.dir !== 0) {
         var td = a.dir === 1 || a.dir === -1 ? a.dir : a.sign;
-        if (td && td !== A.dir) return { ok: false, msg: "Right size, wrong way: it went " + (A.dir > 0 ? "up, so it’s an <b>increase</b>." : "down, so it’s a <b>decrease</b>.") };
-        if (!td) return { ok: true, note: "And it went " + (A.dir > 0 ? "up, so it’s an increase." : "down, so it’s a decrease.") };
+        if (td && td !== A.dir) return { ok: false, msg: tx(A.dir > 0 ? "percents.ck.wayUp" : "percents.ck.wayDown") };
+        if (!td) return { ok: true, note: tx(A.dir > 0 ? "percents.ck.noteUp" : "percents.ck.noteDown") };
       }
-      if (ok) return { ok: true, note: A.type === "num" && a.pct ? "(It’s an amount, not a percent, so it doesn’t need a % sign.)" : null };
+      if (ok) return { ok: true, note: A.type === "num" && a.pct ? tx("percents.ck.noPct") : null };
       for (var i = 0; i < A.diag.length; i++) {
         var d = A.diag[i];
         if (!d.v || eqR(d.v, A.exact)) continue;
         if (eqR(v, d.v) || (!a.frac && a.k >= 1 && within(v, a.k, d.v)) || (a.k === 0 && !a.frac && !isInt(d.v) && within(v, 0, d.v))) return { ok: false, msg: d.msg };
       }
-      if (A.type === "money" && cmpR(absR(sub(v, A.exact)), R(1, 100)) <= 0) return { ok: false, msg: "So close — check the rounding to the nearest cent." };
+      if (A.type === "money" && cmpR(absR(sub(v, A.exact)), R(1, 100)) <= 0) return { ok: false, msg: tx("percents.ck.cent") };
       if (A.type !== "money" && !a.frac && a.k === 0 && !isInt(A.exact) && within(v, 0, A.exact))
-        return { ok: false, msg: "Close — that’s rounded to a whole number. Give at least one decimal place" + (isTermD(A.exact.d) ? "" : ", or write it exactly with a fraction (like 12 1/2)") + "." };
+        return { ok: false, msg: tx(isTermD(A.exact.d) ? "percents.ck.whole" : "percents.ck.wholeFrac") };
       return { ok: false, msg: null };
     }
 
@@ -3643,10 +3632,10 @@
           allOK = false;
           mark.textContent = "";
           mark.className = "ck-mark";
-          lines.push((multi ? "<b>" + esc(A.label) + ":</b> " : "") + "fill this one in too.");
+          lines.push((multi ? "<b>" + esc(A.label) + ":</b> " : "") + tx("percents.ck.fill"));
           return;
         }
-        if (a.bad) j = { ok: false, msg: "I can’t read <b>" + esc(inp.value) + "</b> as a number — type something like <b>12</b>, <b>12.5</b> or <b>33 1/3</b>." };
+        if (a.bad) j = { ok: false, msg: tx("percents.ck.cantRead", { v: esc(inp.value) }) };
         else j = judge(A, a);
         mark.textContent = j.ok ? "✓" : "✗";
         mark.className = "ck-mark " + (j.ok ? "ok" : "bad");
@@ -3654,13 +3643,13 @@
       });
       var msg = $("ckMsg");
       if (allOK) {
-        msg.innerHTML = '<span class="ok">✓ Correct!</span> ' + notes.join(" ") + " Here’s the full work, so you can compare.";
+        msg.innerHTML = '<span class="ok">' + tx("common.correct") + "</span> " + notes.join(" ") + tx("percents.ck.compare");
         $("ckMore").hidden = true;
         report("right");
         S.revealed = true;
         render();
       } else {
-        msg.innerHTML = '<span class="bad">Not quite — try again.</span>' + lines.map(function(l) { return '<div class="why">' + l + "</div>"; }).join("");
+        msg.innerHTML = '<span class="bad">' + tx("common.notQuite") + "</span>" + lines.map(function(l) { return '<div class="why">' + l + "</div>"; }).join("");
         $("ckMore").hidden = false;
         // graded only if something readable was typed
         if (res.answers.some(function(A, i) { var a = parseAns($("ck" + i).value); return !a.empty && !a.bad; })) report("wrong");
@@ -3840,27 +3829,27 @@
     /* ===================== the worksheet page asks through postMessage ===================== */
     var SCHEMA = [{
         key: "mode",
-        label: "Kind of problem",
+        label: tx("percents.sch.mode"),
         type: "choice",
-        values: [{ v: "of", label: "Percent of a number" }, { v: "what", label: "What percent" },
-          { v: "whole", label: "Find the whole" }, { v: "change", label: "Percent change" }, { v: "money", label: "Money" }, { v: "mix", label: "A mix of all five" }
+        values: [{ v: "of", label: tx("percents.sch.of") }, { v: "what", label: tx("percents.tab.what") },
+          { v: "whole", label: tx("percents.tab.whole") }, { v: "change", label: tx("percents.tab.change") }, { v: "money", label: tx("percents.tab.money") }, { v: "mix", label: tx("percents.sch.mix") }
         ],
         "default": "of"
       }, {
         key: "kind",
-        label: "Money problems",
+        label: tx("percents.sch.kind"),
         type: "choice",
-        values: [{ v: "mix", label: "A mix" }, { v: "discount", label: "Discount" }, { v: "markup", label: "Markup" },
-          { v: "tax", label: "Sales tax" }, { v: "tip", label: "Tip" }, { v: "interest", label: "Simple interest" }
+        values: [{ v: "mix", label: tx("percents.sch.aMix") }, { v: "discount", label: tx("percents.kind.discount") }, { v: "markup", label: tx("percents.kind.markup") },
+          { v: "tax", label: tx("percents.kind.tax") }, { v: "tip", label: tx("percents.kind.tip") }, { v: "interest", label: tx("percents.kind.interest") }
         ],
         "default": "mix"
       },
-      { key: "pct", label: "Percents", type: "choice", values: [{ v: "friendly", label: "Friendly (like 5%, 10%, 25%)" }, { v: "any", label: "Any" }], "default": "friendly" },
-      { key: "max", label: "Biggest number", type: "choice", values: [{ v: 100, label: "100" }, { v: 500, label: "500" }, { v: 1000, label: "1,000" }], "default": 100 },
-      { key: "whole", label: "Keep answers whole (money: to the exact cent)", type: "toggle", values: [{ v: true, label: "On" }, { v: false, label: "Off" }], "default": true },
-      { key: "over", label: "Percents over 100%", type: "toggle", values: [{ v: true, label: "On" }, { v: false, label: "Off" }], "default": false },
-      { key: "dir", label: "Percent change goes", type: "choice", values: [{ v: "both", label: "Up or down" }, { v: "up", label: "Up (increase)" }, { v: "down", label: "Down (decrease)" }], "default": "both" },
-      { key: "cents", label: "Prices with cents", type: "toggle", values: [{ v: true, label: "On" }, { v: false, label: "Off" }], "default": false }
+      { key: "pct", label: tx("percents.sch.pct"), type: "choice", values: [{ v: "friendly", label: tx("percents.sch.friendly") }, { v: "any", label: tx("percents.sch.any") }], "default": "friendly" },
+      { key: "max", label: tx("percents.sch.max"), type: "choice", values: [{ v: 100, label: "100" }, { v: 500, label: "500" }, { v: 1000, label: "1,000" }], "default": 100 },
+      { key: "whole", label: tx("percents.sch.whole"), type: "toggle", values: [{ v: true, label: tx("common.on") }, { v: false, label: tx("common.off") }], "default": true },
+      { key: "over", label: tx("percents.sch.over"), type: "toggle", values: [{ v: true, label: tx("common.on") }, { v: false, label: tx("common.off") }], "default": false },
+      { key: "dir", label: tx("percents.sch.dir"), type: "choice", values: [{ v: "both", label: tx("percents.sch.both") }, { v: "up", label: tx("percents.sch.up") }, { v: "down", label: tx("percents.sch.down") }], "default": "both" },
+      { key: "cents", label: tx("percents.sch.cents"), type: "toggle", values: [{ v: true, label: tx("common.on") }, { v: false, label: tx("common.off") }], "default": false }
     ];
 
     function bool(v, d) {
@@ -3920,70 +3909,19 @@
     });
 
     /* ===================== wiring ===================== */
+    // the problem as a sentence (percents.sent.<slot>): {name} is a blank [label key, before, after], {unit} the years/months buttons
     var SENT = {
-      of: [
-        ["w", "What is"],
-        ["f", "p", "percent", "", "%"],
-        ["w", "of"],
-        ["f", "n", "number"],
-        ["w", "?"]
-      ],
-      what: [
-        ["f", "part", "part"],
-        ["w", "is what percent of"],
-        ["f", "whole", "whole"],
-        ["w", "?"]
-      ],
-      whole: [
-        ["f", "part", "part"],
-        ["w", "is"],
-        ["f", "p", "percent", "", "%"],
-        ["w", "of what number?"]
-      ],
-      change: [
-        ["w", "From"],
-        ["f", "from", "original"],
-        ["w", "to"],
-        ["f", "to", "new"],
-        ["w", "— what’s the percent change?"]
-      ],
-      discount: [
-        ["f", "p", "percent off", "", "%"],
-        ["w", "off a price of"],
-        ["f", "price", "price", "$"]
-      ],
-      markup: [
-        ["f", "p", "markup", "", "%"],
-        ["w", "markup on a cost of"],
-        ["f", "price", "cost", "$"]
-      ],
-      tax: [
-        ["f", "p", "tax rate", "", "%"],
-        ["w", "sales tax on"],
-        ["f", "price", "price", "$"]
-      ],
-      tip: [
-        ["f", "p", "tip", "", "%"],
-        ["w", "tip on a bill of"],
-        ["f", "price", "bill", "$"]
-      ],
-      interest: [
-        ["f", "principal", "principal", "$"],
-        ["w", "at"],
-        ["f", "p", "rate a year", "", "%"],
-        ["w", "simple interest for"],
-        ["f", "t", "time"],
-        ["u"]
-      ]
+      of: { p: ["percent", "", "%"], n: ["number"] },
+      what: { part: ["part"], whole: ["whole"] },
+      whole: { part: ["part"], p: ["percent", "", "%"] },
+      change: { from: ["original"], to: ["new"] },
+      discount: { p: ["percentOff", "", "%"], price: ["price", "$"] },
+      markup: { p: ["markup", "", "%"], price: ["cost", "$"] },
+      tax: { p: ["taxRate", "", "%"], price: ["price", "$"] },
+      tip: { p: ["tip", "", "%"], price: ["bill", "$"] },
+      interest: { principal: ["principal", "$"], p: ["rateYear", "", "%"], t: ["time"], unit: null }
     };
-    var HINTS = {
-      of: "Fill in the blanks. Decimals like <code>12.5</code> and fractions like <code>33 1/3</code> work too, and so do percents over 100.",
-      what: "The <b>whole</b> is the number after “of”. The part can be bigger than the whole — then the answer is over 100%.",
-      whole: "The part is the number you know; the percent says how much of the whole it is.",
-      change: "Original amount first, new amount second. It works for increases and decreases.",
-      money: "Prices in dollars and cents, like <code>45</code> or <code>19.99</code>. Money answers are rounded to the nearest cent.",
-      interest: "Simple interest: the rate is per year. The time can be in years or months."
-    };
+    var HINTS = { of: 1, what: 1, whole: 1, change: 1, money: 1, interest: 1 }; // percents.hint.<mode>
     var EX = {
       of: ["15% of 80", "25% of 36", "8% of 250", "150% of 40", "12.5% of 64", "33% of 7", "1% of 2,500"],
       what: ["18 is what % of 72", "45 out of 60", "7 out of 8 as a percent", "1 out of 3", "90 is what % of 60", "4.5 out of 9"],
@@ -3997,25 +3935,29 @@
     function buildSentence() {
       var slot = slotOf(S.mode, S.kind),
         host = $("sentence"),
-        vals = S.inputs[slot];
+        vals = S.inputs[slot],
+        def = SENT[slot];
       host.innerHTML = "";
-      SENT[slot].forEach(function(pt) {
-        if (pt[0] === "w") {
+      tx("percents.sent." + slot).split(/(\{\w+\})/).forEach(function(seg) {
+        var m = /^\{(\w+)\}$/.exec(seg);
+        if (!m || !Object.prototype.hasOwnProperty.call(def, m[1])) {
+          seg = seg.trim();
+          if (!seg) return;
           var s = document.createElement("span");
           s.className = "w";
-          s.textContent = pt[1];
+          s.textContent = seg;
           host.appendChild(s);
           return;
         }
-        if (pt[0] === "u") {
+        if (m[1] === "unit") {
           var u = document.createElement("div");
           u.className = "modes small unit";
           u.setAttribute("role", "group");
-          u.setAttribute("aria-label", "Years or months");
+          u.setAttribute("aria-label", tx("percents.unitLabel"));
           ["years", "months"].forEach(function(v) {
             var b = document.createElement("button");
             b.type = "button";
-            b.textContent = v;
+            b.textContent = tx("percents.unit." + v);
             b.setAttribute("aria-pressed", String((vals.unit || "years") === v));
             b.addEventListener("click", function() {
               S.inputs.interest.unit = v;
@@ -4030,6 +3972,7 @@
           host.appendChild(u);
           return;
         }
+        var pt = ["f", m[1], tx("percents.bl." + def[m[1]][0]), def[m[1]][1] || "", def[m[1]][2] || ""];
         var bl = document.createElement("span");
         bl.className = "blank";
         bl.innerHTML = '<span class="bl-box">' + (pt[3] ? '<span class="pre">' + pt[3] + "</span>" : "") +
@@ -4061,11 +4004,12 @@
     function buildChips() {
       var host = $("chips");
       host.innerHTML = "";
-      EX[S.mode].forEach(function(ex) {
+      var shown = window.HelperI18n ? HelperI18n.raw("percents.ex." + S.mode) : null; // what the chips say; they work the English
+      EX[S.mode].forEach(function(ex, i) {
         var b = document.createElement("button");
         b.className = "chip";
         b.type = "button";
-        b.textContent = ex;
+        b.textContent = shown && shown[i] ? shown[i] : ex;
         b.addEventListener("click", function() {
           var r = parseQ(ex);
           if (r && !r.other) {
@@ -4088,7 +4032,7 @@
         b.setAttribute("aria-pressed", String(b.getAttribute("data-kind") === S.kind));
       });
       $("kindRow").hidden = S.mode !== "money";
-      $("hint").innerHTML = HINTS[S.mode === "money" && S.kind === "interest" ? "interest" : S.mode];
+      $("hint").innerHTML = tx("percents.hint." + (S.mode === "money" && S.kind === "interest" ? "interest" : S.mode));
       buildSentence();
       buildChips();
       buildMaker();
@@ -4120,14 +4064,14 @@
       var v = $("qIn").value,
         msg = $("qMsg");
       if (!v.trim()) { msg.innerHTML = ""; return; }
-      var r = parseQ(v);
+      var r = readQ(v);
       if (r && r.other) { msg.innerHTML = otherMsg(r, v); return; }
-      if (!r) { msg.innerHTML = "Hmm, I can’t read that yet. Try <b>15% of 80</b>, <b>18 out of 72</b>, <b>15 is 20% of what</b>, <b>80 to 92</b> or <b>20% off $45</b>."; return; }
+      if (!r) { msg.innerHTML = tx("percents.q.cant"); return; }
       applyProb(r);
       paintMode();
       var said = "";
       try { said = solve(curProb()).text; } catch (e) { said = ""; }
-      msg.innerHTML = '<span class="ok">✓</span> ' + (said ? "Reading it as: " + esc(said) : "Got it.");
+      msg.innerHTML = '<span class="ok">✓</span> ' + (said ? tx("percents.q.readingAs", { s: esc(said) }) : tx("percents.q.gotIt"));
       render();
       save();
     });
@@ -4137,14 +4081,14 @@
     var MK_TOGS = { of: ["whole", "over"], what: ["whole", "over"], whole: ["whole", "over"], change: ["whole", "over"], money: ["cents", "whole"] };
     var SEGS = {
       pct: {
-        lbl: "Percents",
+        lbl: tx("percents.sch.pct"),
         vals: [
-          ["friendly", "Friendly (like 5%, 10%, 25%)"],
-          ["any", "Any"]
+          ["friendly", tx("percents.sch.friendly")],
+          ["any", tx("percents.sch.any")]
         ]
       },
       max: {
-        lbl: "Biggest number",
+        lbl: tx("percents.sch.max"),
         vals: [
           [100, "100"],
           [500, "500"],
@@ -4152,29 +4096,29 @@
         ]
       },
       dir: {
-        lbl: "Change goes",
+        lbl: tx("percents.mkr.dir"),
         vals: [
-          ["both", "Up or down"],
-          ["up", "Up (increase)"],
-          ["down", "Down (decrease)"]
+          ["both", tx("percents.sch.both")],
+          ["up", tx("percents.sch.up")],
+          ["down", tx("percents.sch.down")]
         ]
       },
       kind: {
-        lbl: "Kind of money problem",
+        lbl: tx("percents.mkr.kind"),
         vals: [
-          ["discount", "Discount"],
-          ["markup", "Markup"],
-          ["tax", "Sales tax"],
-          ["tip", "Tip"],
-          ["interest", "Simple interest"],
-          ["mix", "A mix"]
+          ["discount", tx("percents.kind.discount")],
+          ["markup", tx("percents.kind.markup")],
+          ["tax", tx("percents.kind.tax")],
+          ["tip", tx("percents.kind.tip")],
+          ["interest", tx("percents.kind.interest")],
+          ["mix", tx("percents.sch.aMix")]
         ]
       }
     };
 
     function togLbl(k) {
-      if (k === "whole") return S.mode === "money" ? ["✓", "Exact to the cent (no rounding)"] : ["✓", "Keep answers whole"];
-      return k === "over" ? ["100+", "Over 100% (like 150%)"] : ["¢", "Prices with cents"];
+      if (k === "whole") return S.mode === "money" ? ["✓", tx("percents.mkr.exact")] : ["✓", tx("percents.mkr.keepWhole")];
+      return k === "over" ? ["100+", tx("percents.mkr.over")] : ["¢", tx("percents.sch.cents")];
     }
 
     function buildMaker() {
@@ -4185,7 +4129,7 @@
         var lbl = document.createElement("span"),
           box = document.createElement("div");
         lbl.className = "lbl";
-        lbl.textContent = sec === "togs" ? "Extras" : SEGS[sec].lbl;
+        lbl.textContent = sec === "togs" ? tx("percents.mkr.extras") : SEGS[sec].lbl;
         host.appendChild(lbl);
         if (sec === "togs") {
           box.className = "toggles";
@@ -4229,7 +4173,7 @@
       paintSample();
       var go = document.createElement("div");
       go.className = "maker-go";
-      go.innerHTML = '<button type="button" class="go" id="genBtn">New problem</button><span class="msg" id="genMsg"></span>';
+      go.innerHTML = '<button type="button" class="go" id="genBtn">' + tx("common.newProblem") + '</button><span class="msg" id="genMsg"></span>';
       host.appendChild(go);
       $("genBtn").addEventListener("click", generate);
     }
@@ -4242,16 +4186,16 @@
         var r = makeProb(S.mode, S.gen);
         t = r ? solve(r).text : null;
       } catch (e) { t = null; }
-      el.innerHTML = t ? "Makes problems like: <b>" + esc(t) + "</b>" : "Those choices don’t make a problem — try different ones.";
+      el.innerHTML = t ? tx("percents.mkr.sample", { t: esc(t) }) : tx("percents.mkr.noSample");
     }
 
     function generate() {
       var r = makeProb(S.mode, S.gen);
-      if (!r) { $("genMsg").textContent = "Couldn’t make one with those settings — try different choices."; return; }
+      if (!r) { $("genMsg").textContent = tx("percents.mkr.cant"); return; }
       applyProb(r);
       clearQ();
       paintMode();
-      $("genMsg").textContent = r.exact ? "" : "Couldn’t match every setting, so this one bends a rule. Try bigger numbers or fewer extras.";
+      $("genMsg").textContent = r.exact ? "" : tx("percents.mkr.bent");
       render();
       save();
     }
@@ -4297,9 +4241,9 @@
         url = location.href;
 
       function done() {
-        btn.textContent = "Link copied ✓";
+        btn.textContent = tx("common.linkCopied") + " ✓";
         clearTimeout(btn._t);
-        btn._t = setTimeout(function() { btn.textContent = "Copy link"; }, 2000);
+        btn._t = setTimeout(function() { btn.textContent = tx("common.copyLink"); }, 2000);
       }
 
       function fallback() {
@@ -4339,7 +4283,7 @@
       return t ? t === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
     }
 
-    function paint() { themeBtn.textContent = isDark() ? "Light mode" : "Dark mode"; }
+    function paint() { themeBtn.textContent = isDark() ? tx("common.lightMode") : tx("common.darkMode"); }
     themeBtn.addEventListener("click", function() {
       document.documentElement.setAttribute("data-theme", isDark() ? "light" : "dark");
       paint();

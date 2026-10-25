@@ -20,6 +20,32 @@
 (function() {
   "use strict";
   if (window.HelperProgress) return;
+
+  /* ---- the words, in the visitor's language (assets/i18n.js): the progress.* keys, and en.js repeats the English for
+     translators. English always shows the words written here; so does a page without i18n.js. ---- */
+  function tr(key, en, vars) {
+    var I = window.HelperI18n;
+    if (I && I.lang && I.lang !== "en" && I.t) {
+      var s = I.t(key, vars);
+      if (s !== key) return s;
+    }
+    return vars ? String(en).replace(/\{(\w+)(\|[^{}]*)?\}/g, function(m, k, forms) { // {name}, and {n|one|other}
+      if (!Object.prototype.hasOwnProperty.call(vars, k)) return m;
+      if (!forms) return String(vars[k]);
+      var f = forms.slice(1).split("|");
+      return Number(vars[k]) === 1 ? f[0] : f[f.length - 1];
+    }) : en;
+  }
+
+  // a topic's name in the visitor's language: the home page's name for it (home.topic.<page>), else the English
+  function nm(T) {
+    var I = window.HelperI18n;
+    if (I && I.lang && I.lang !== "en" && I.has && T && T.page) {
+      var k = "home.topic." + T.page.replace(/\.html$/, "");
+      if (I.has(k)) return I.t(k);
+    }
+    return T ? T.name : "";
+  }
   var KEY = "helper-progress",
     VERSION = 1,
     CAP = 3000,
@@ -371,8 +397,8 @@
         page: weak.page,
         c: weak.c,
         href: miss ? link(miss.page, miss.params) : link(weak.page, ""),
-        head: "Have another go at " + weak.name,
-        body: weak.recentRightFirst + " of your last " + weak.recentTried + " were right first time." + (miss ? " Start with " + miss.text + "." : "")
+        head: tr("progress.again", "Have another go at {t}", { t: nm(weak) }),
+        body: tr("progress.againBody", "{k} of your last {n} were right first time.", { k: weak.recentRightFirst, n: weak.recentTried }) + (miss ? " " + tr("progress.startWith", "Start with {p}.", { p: miss.text }) : "")
       });
       used[weak.page] = true;
     }
@@ -388,8 +414,8 @@
           page: next.page,
           c: next.c,
           href: link(next.page, ""),
-          head: "Ready for " + next.name + "?",
-          body: "You’re getting " + strong.name.toLowerCase() + " right first time. " + next.title + " is a good next step."
+          head: tr("progress.ready", "Ready for {t}?", { t: nm(next) }),
+          body: tr("progress.readyBody", "You’re getting {s} right first time. {next} is a good next step.", { s: nm(strong).toLowerCase(), next: next.title })
         });
         used[next.page] = true;
       }
@@ -397,7 +423,7 @@
     if (out.length < 2 && s.revisit.length && !weak) {
       var m = s.revisit[0],
         t = topic(m.page);
-      out.push({ page: m.page, c: t.c, href: link(m.page, m.params), head: "Try one again", body: m.text + " (" + t.name + ") wasn’t right first time." });
+      out.push({ page: m.page, c: t.c, href: link(m.page, m.params), head: tr("progress.retry", "Try one again"), body: tr("progress.retryBody", "{p} ({t}) wasn’t right first time.", { p: m.text, t: nm(t) }) });
     }
     if (out.length < 2) {
       var lastT = s.topics[0];
@@ -406,15 +432,15 @@
           page: lastT.page,
           c: lastT.c,
           href: U(lastT.page, "practice=check"),
-          head: "A new " + lastT.name.toLowerCase() + " problem",
-          body: "Open " + lastT.title + ", use “Make a problem for me”, and check your answer."
+          head: tr("progress.newOne", "A new {t} problem", { t: nm(lastT).toLowerCase() }),
+          body: tr("progress.newOneBody", "Open {title}, use “Make a problem for me”, and check your answer.", { title: lastT.title })
         });
       else out.push({
         page: "practice.html",
         c: "ink",
         href: U("practice.html"),
-        head: "Make a practice set",
-        body: "Pick topics and how many, and work through them one at a time."
+        head: tr("progress.makeSet", "Make a practice set"),
+        body: tr("progress.makeSetBody", "Pick topics and how many, and work through them one at a time.")
       });
     }
     return out.slice(0, 2);
@@ -489,38 +515,36 @@
   function ago(t, now) {
     if (!t) return "";
     var d = Math.round((startOfDay(now) - startOfDay(t)) / DAY);
-    return d <= 0 ? "today" : d === 1 ? "yesterday" : d < 7 ? d + " days ago" : new Date(t).toLocaleDateString(undefined, { month: "short", day: "numeric" });
+    return d <= 0 ? tr("progress.today", "today") : d === 1 ? tr("progress.yesterday", "yesterday") : d < 7 ? tr("progress.daysAgo", "{n} days ago", { n: d }) : new Date(t).toLocaleDateString(undefined, { month: "short", day: "numeric" });
   }
 
   function panelHTML(s, now) {
     if (!s.total) {
-      return '<div class="hp hp-empty"><p>Use <b>Check my answer</b> on any page and your practice shows up here: how many days in a row, ' +
-        "which topics, and how many you get right first time. It stays on this device.</p>" +
-        '<div class="hp-acts"><a href="' + esc(U("practice.html")) + '">Make a practice set</a><a href="' + esc(U("pemdas.html", "practice=check")) + '">Try a problem</a>' +
-        '<a href="' + esc(U("progress.html")) + '">Your progress page</a></div></div>';
+      return '<div class="hp hp-empty"><p>' + tr("progress.empty", "Use <b>Check my answer</b> on any page and your practice shows up here: how many days in a row, which topics, and how many you get right first time. It stays on this device.") + "</p>" +
+        '<div class="hp-acts"><a href="' + esc(U("practice.html")) + '">' + tr("progress.makeSet", "Make a practice set") + '</a><a href="' + esc(U("pemdas.html", "practice=check")) + '">' + tr("progress.tryOne", "Try a problem") + "</a>" +
+        '<a href="' + esc(U("progress.html")) + '">' + tr("progress.page", "Your progress page") + "</a></div></div>";
     }
     var html = '<div class="hp"><div class="hp-main"><div class="hp-stats">' +
-      '<div class="hp-stat"><b>' + s.streak + "<small>" + (s.streak === 1 ? "day" : "days") + "</small></b><span>" +
-      (s.streak ? (s.practicedToday ? "in a row, today too" : "in a row — practice today to keep it") : "streak — practice today to start one") + "</span></div>" +
-      '<div class="hp-stat"><b>' + s.week.problems + "</b><span>problem" + (s.week.problems === 1 ? "" : "s") + " in the last 7 days</span></div>" +
-      '<div class="hp-stat"><b>' + s.rightFirstPct + "<small>%</small></b><span>right first time (" + s.rightFirst + " of " + s.problems + ")</span></div>" +
-      '</div><div style="margin-top:16px"><p class="hp-lbl">By topic &middot; right first time</p><ul class="hp-topics">';
+      '<div class="hp-stat"><b>' + s.streak + "<small>" + tr("progress.dayWord", "{n|day|days}", { n: s.streak }) + "</small></b><span>" +
+      (s.streak ? (s.practicedToday ? tr("progress.inARow", "in a row, today too") : tr("progress.keepIt", "in a row — practice today to keep it")) : tr("progress.startOne", "streak — practice today to start one")) + "</span></div>" +
+      '<div class="hp-stat"><b>' + s.week.problems + "</b><span>" + tr("progress.week", "{n|problem|problems} in the last 7 days", { n: s.week.problems }) + "</span></div>" +
+      '<div class="hp-stat"><b>' + s.rightFirstPct + "<small>%</small></b><span>" + tr("progress.rightFirst", "right first time ({k} of {n})", { k: s.rightFirst, n: s.problems }) + "</span></div>" +
+      '</div><div style="margin-top:16px"><p class="hp-lbl">' + tr("progress.byTopic", "By topic &middot; right first time") + '</p><ul class="hp-topics">';
     s.topics.slice(0, 6).forEach(function(T) {
-      html += '<li style="--c:' + cvar(T.c) + '"><a href="' + esc(U(T.page, "practice=check")) + '" title="' + esc(T.title) + '"><i class="hp-dot"></i><span>' + esc(T.name) + "</span></a>" +
-        '<span class="hp-bar" role="img" aria-label="' + T.rightFirst + " of " + T.tried + ' right first time"><i style="width:' + T.rightFirstPct + '%"></i></span>' +
+      html += '<li style="--c:' + cvar(T.c) + '"><a href="' + esc(U(T.page, "practice=check")) + '" title="' + esc(T.title) + '"><i class="hp-dot"></i><span>' + esc(nm(T)) + "</span></a>" +
+        '<span class="hp-bar" role="img" aria-label="' + esc(tr("progress.bar", "{k} of {n} right first time", { k: T.rightFirst, n: T.tried })) + '"><i style="width:' + T.rightFirstPct + '%"></i></span>' +
         '<span class="hp-n">' + T.rightFirst + "/" + T.tried + "</span></li>";
     });
-    html += "</ul>" + (s.topics.length > 6 ? '<p class="hp-more">and ' + (s.topics.length - 6) + " more on your progress page</p>" : "") + "</div></div>";
-    html += '<div class="hp-side"><p class="hp-lbl" style="margin:0">Keep going</p>';
+    html += "</ul>" + (s.topics.length > 6 ? '<p class="hp-more">' + tr("progress.more", "and {n} more on your progress page", { n: s.topics.length - 6 }) + "</p>" : "") + "</div></div>";
+    html += '<div class="hp-side"><p class="hp-lbl" style="margin:0">' + tr("progress.keepGoing", "Keep going") + "</p>";
     (s.suggestions || []).forEach(function(g) {
       html += '<a class="hp-sug" style="--c:' + cvar(g.c) + '" href="' + esc(g.href) + '"><b>' + esc(g.head) + "</b><span>" + esc(g.body) + "</span></a>";
     });
     html += "</div>";
-    html += '<div class="hp-foot"><span>Last practiced ' + ago(s.last, now) + " &middot; " + s.days + " day" + (s.days === 1 ? "" : "s") +
-      " in all" +
-      (s.tutor && s.tutor.problems ? " &middot; Tutor me: " + s.tutor.picked + " of " + s.tutor.moves + " moves picked first time" : "") +
-      " &middot; kept on this device only</span>" +
-      '<a href="' + esc(U("progress.html")) + '">See all your progress <span aria-hidden="true">→</span></a></div></div>';
+    html += '<div class="hp-foot"><span>' + tr("progress.last", "Last practiced {when}", { when: ago(s.last, now) }) + " &middot; " + tr("progress.daysAll", "{n} {n|day|days} in all", { n: s.days }) +
+      (s.tutor && s.tutor.problems ? " &middot; " + tr("progress.tutor", "Tutor me: {k} of {n} moves picked first time", { k: s.tutor.picked, n: s.tutor.moves }) : "") +
+      " &middot; " + tr("progress.device", "kept on this device only") + "</span>" +
+      '<a href="' + esc(U("progress.html")) + '">' + tr("progress.seeAll", "See all your progress") + ' <span aria-hidden="true">→</span></a></div></div>';
     return html;
   }
   var styled = false;

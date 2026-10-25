@@ -98,6 +98,7 @@
   FILES["embed.js"] = "assets/embed.js"; // Embed on another website (tools.js loads it)
   FILES["voice.js"] = "assets/voice.js"; // Say the problem (tools.js loads it)
   FILES["a11y.js"] = "assets/a11y.js"; // math names for screen readers (tools.js loads it)
+  FILES["i18n.js"] = "assets/i18n.js"; // the site in other languages (its strings are in assets/i18n/)
   ["icon.svg", "icon-192.png", "icon-512.png", "icon-maskable-512.png", "apple-touch-icon.png", "favicon.svg", "og.png"].forEach(function(i) { FILES["icons/" + i] = "assets/icons/" + i; });
   var FOLDERS = ["helpers", "practice", "reference", "info", "learn", "tests"];
   var ALIAS = {}; // a page's own file name → its short name
