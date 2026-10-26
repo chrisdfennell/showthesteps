@@ -16,6 +16,7 @@
 <link rel="canonical" href="https://showthesteps.org/helpers/factors-and-primes">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","name":"Factors, primes, GCF and LCM, step by step – The Factor Tree","description":"Every whole number is built out of primes. Find all the factors in pairs, grow a factor tree down to its primes, test whether a number is prime, find the GCF and LCM, and use the divisibility…","url":"https://showthesteps.org/helpers/factors-and-primes","inLanguage":"en-US","isAccessibleForFree":true,"learningResourceType":["Interactive worked examples","Practice problems"],"interactivityType":"active","educationalUse":["Practice","Self-assessment"],"teaches":"Factors, primes, GCF and LCM","educationalLevel":["Elementary school (grades K–5)","Middle school (grades 6–8)"],"audience":{"@type":"EducationalAudience","educationalRole":"student"},"publisher":{"@type":"Organization","name":"Show The Steps","url":"https://showthesteps.org/"},"isPartOf":{"@type":"WebSite","name":"Show The Steps","url":"https://showthesteps.org/"}}</script>
 <script src="../assets/site.js"></script>
+<script src="../assets/i18n.js" data-strings="factors-and-primes"></script>
 <script src="../assets/nav.js" defer></script>
 <script src="../assets/progress.js" defer></script>
 <link rel="stylesheet" href="../assets/fonts/fonts.css">
@@ -1569,9 +1570,9 @@
 <div class="page">
   <header class="masthead">
     <div>
-      <div class="eyebrow">Factors and primes, worked out</div>
+      <div class="eyebrow" data-i18n="factors-and-primes.eyebrow">Factors and primes, worked out</div>
       <h1>The Factor <em>Tree</em></h1>
-      <p class="tagline">Every whole number is built out of primes. Find all the factors in pairs, grow a factor
+      <p class="tagline" data-i18n="factors-and-primes.tagline">Every whole number is built out of primes. Find all the factors in pairs, grow a factor
         tree down to its primes, test whether a number is prime, find the GCF and LCM, and use the
         divisibility rules &mdash; with the reason for every step.</p>
     </div>
@@ -1579,12 +1580,12 @@
   </header>
 
   <section class="problem">
-    <div class="modes" id="modeTabs" role="group" aria-label="What kind of problem">
-      <button type="button" data-mode="factors" aria-pressed="false">Factors</button>
-      <button type="button" data-mode="prime" aria-pressed="true">Prime factorization</button>
-      <button type="button" data-mode="test" aria-pressed="false">Prime or composite?</button>
-      <button type="button" data-mode="gcf" aria-pressed="false">GCF &amp; LCM</button>
-      <button type="button" data-mode="div" aria-pressed="false">Divisibility</button>
+    <div class="modes" id="modeTabs" role="group" aria-label="What kind of problem" data-i18n-attr="aria-label=factors-and-primes.modesLabel">
+      <button type="button" data-mode="factors" aria-pressed="false" data-i18n="factors-and-primes.tab.factors">Factors</button>
+      <button type="button" data-mode="prime" aria-pressed="true" data-i18n="factors-and-primes.tab.prime">Prime factorization</button>
+      <button type="button" data-mode="test" aria-pressed="false" data-i18n="factors-and-primes.tab.test">Prime or composite?</button>
+      <button type="button" data-mode="gcf" aria-pressed="false" data-i18n="factors-and-primes.tab.gcf">GCF &amp; LCM</button>
+      <button type="button" data-mode="div" aria-pressed="false" data-i18n="factors-and-primes.tab.div">Divisibility</button>
     </div>
     <div class="entry">
       <div class="numfield">
@@ -1594,26 +1595,26 @@
     </div>
     <p class="hint" id="hint"></p>
     <div class="methodrow" id="methodRow" hidden>
-      <span class="lbl2">Split the tree by</span>
-      <div class="modes small" role="group" aria-label="How to split the factor tree">
-        <button type="button" id="spSmall" aria-pressed="true">Smallest prime first</button>
-        <button type="button" id="spAny" aria-pressed="false">Any split (start near the middle)</button>
+      <span class="lbl2" data-i18n="factors-and-primes.splitBy">Split the tree by</span>
+      <div class="modes small" role="group" aria-label="How to split the factor tree" data-i18n-attr="aria-label=factors-and-primes.splitLabel">
+        <button type="button" id="spSmall" aria-pressed="true" data-i18n="factors-and-primes.splitSmall">Smallest prime first</button>
+        <button type="button" id="spAny" aria-pressed="false" data-i18n="factors-and-primes.splitAny">Any split (start near the middle)</button>
       </div>
     </div>
 
     <details class="maker" id="maker">
-      <summary>Make a problem for me <span>&mdash; pick what goes in it</span></summary>
+      <summary data-i18n="common.maker">Make a problem for me <span>&mdash; pick what goes in it</span></summary>
       <div class="maker-body" id="makerBody"></div>
     </details>
 
     <div class="examples">
-      <span class="lbl">Try</span>
+      <span class="lbl" data-i18n="common.try">Try</span>
       <span id="chips"></span>
       <span class="practice">
-        <div class="modes" role="group" aria-label="Practice mode">
-          <button type="button" id="allBtn" aria-pressed="true">Show all work</button>
-          <button type="button" id="stepBtn" aria-pressed="false">One step at a time</button>
-          <button type="button" id="checkBtn" aria-pressed="false">Check my answer</button>
+        <div class="modes" role="group" aria-label="Practice mode" data-i18n-attr="aria-label=common.practiceMode">
+          <button type="button" id="allBtn" aria-pressed="true" data-i18n="common.showAll">Show all work</button>
+          <button type="button" id="stepBtn" aria-pressed="false" data-i18n="common.oneStep">One step at a time</button>
+          <button type="button" id="checkBtn" aria-pressed="false" data-i18n="common.checkMine">Check my answer</button>
         </div>
       </span>
     </div>
@@ -1622,16 +1623,16 @@
   <div id="statusLine" role="status" aria-live="polite"></div>
 
   <section class="ckbox" id="ckBox" hidden aria-labelledby="ckH">
-    <h2 id="ckH">Your answer</h2>
+    <h2 id="ckH" data-i18n="common.yourAnswer">Your answer</h2>
     <div class="ckq" id="ckQ"></div>
     <div class="ckrow">
       <div class="ckfields" id="ckFields"></div>
-      <button type="button" class="go" id="ckGo">Check</button>
+      <button type="button" class="go" id="ckGo" data-i18n="common.check">Check</button>
     </div>
     <div class="ckfb" id="ckFb" aria-live="polite"></div>
     <div class="ckmore" id="ckMore" hidden>
-      <button type="button" class="print" id="hintBtn">Show a hint</button>
-      <button type="button" class="print" id="showBtn">Show me the work</button>
+      <button type="button" class="print" id="hintBtn" data-i18n="common.hint">Show a hint</button>
+      <button type="button" class="print" id="showBtn" data-i18n="common.showWork">Show me the work</button>
     </div>
     <div class="cknote" id="ckNote"></div>
   </section>
@@ -1639,11 +1640,11 @@
   <div class="board" id="board">
     <section class="panel">
       <div class="panel-head">
-        <h2>The work</h2>
+        <h2 data-i18n="common.theWork">The work</h2>
         <div class="stepper" id="stepper" hidden>
-          <button type="button" id="prevBtn" aria-label="Previous step">&larr;</button>
+          <button type="button" id="prevBtn" aria-label="Previous step" data-i18n-attr="aria-label=common.prevStep">&larr;</button>
           <span class="count" id="stepCount"></span>
-          <button type="button" id="nextBtn" aria-label="Next step">&rarr;</button>
+          <button type="button" id="nextBtn" aria-label="Next step" data-i18n-attr="aria-label=common.nextStep">&rarr;</button>
         </div>
       </div>
       <div id="workHost"></div>
@@ -1651,7 +1652,7 @@
     </section>
 
     <section class="panel">
-      <div class="panel-head"><h2>Say it out loud</h2></div>
+      <div class="panel-head"><h2 data-i18n="common.sayIt">Say it out loud</h2></div>
       <ol class="log" id="log"></ol>
       <div class="closer" id="closer"></div>
     </section>
@@ -1659,10 +1660,10 @@
 
   <div class="footnote">
     <span class="btns">
-      <button class="print" type="button" id="printBtn">Print this work</button>
-      <button class="print" type="button" id="copyBtn">Copy link</button>
+      <button class="print" type="button" id="printBtn" data-i18n="common.print">Print this work</button>
+      <button class="print" type="button" id="copyBtn" data-i18n="common.copyLink">Copy link</button>
     </span>
-    <span>Whole numbers up to 1,000,000, every step written out. Need a division done out in full? Work it on
+    <span data-i18n="factors-and-primes.footnote">Whole numbers up to 1,000,000, every step written out. Need a division done out in full? Work it on
       <a href="division.html">&divide;</a>, or check a product on <a href="multiplication.html">&times;</a>.</span>
   </div>
 </div>
@@ -1700,6 +1701,8 @@
      ============================================================================= */
   (function() {
     "use strict";
+    if (window.HelperI18n) HelperI18n.apply();
+    var tx = function(k, v) { return window.HelperI18n ? HelperI18n.t(k, v) : k; };
     var $ = function(id) { return document.getElementById(id); };
     var PAGE = "factors.html",
       STORE = "factor-tree";
@@ -1733,13 +1736,15 @@
     function UserErr(msg) { this.user = msg; }
 
     function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
-    var WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"];
+    var WORDS = (window.HelperI18n && HelperI18n.raw("factors-and-primes.words")) || ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"];
 
     function word(k) { return k < WORDS.length ? WORDS[k] : String(k); }
+    var AND = tx("factors-and-primes.and"),
+      OR = tx("factors-and-primes.or");
 
-    function listAnd(a) { return a.length < 2 ? a.join("") : a.length === 2 ? a[0] + " and " + a[1] : a.slice(0, -1).join(", ") + " and " + a[a.length - 1]; }
+    function listAnd(a) { return a.length < 2 ? a.join("") : a.length === 2 ? a[0] + AND + a[1] : a.slice(0, -1).join(", ") + AND + a[a.length - 1]; }
 
-    function listOr(a) { return a.length < 2 ? a.join("") : a.length === 2 ? a[0] + " or " + a[1] : a.slice(0, -1).join(", ") + " or " + a[a.length - 1]; }
+    function listOr(a) { return a.length < 2 ? a.join("") : a.length === 2 ? a[0] + OR + a[1] : a.slice(0, -1).join(", ") + OR + a[a.length - 1]; }
     var SUPD = ["⁰", "¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"];
 
     function supT(e) { return String(e).split("").map(function(d) { return SUPD[+d]; }).join(""); }
@@ -1876,18 +1881,21 @@
       switch (d) {
         case 2:
           ok = last % 2 === 0;
-          how = "last digit " + B(last) + (ok ? " is even" : " is odd");
-          say = "2 goes in when the last digit is even (0, 2, 4, 6 or 8). " + C(n) + " ends in " + B(last) + (ok ? ", which is even — yes." : ", which is odd — no.");
+          how = tx(ok ? "factors-and-primes.r2.howEven" : "factors-and-primes.r2.howOdd", { d: B(last) });
+          say = tx(ok ? "factors-and-primes.r2.sayEven" : "factors-and-primes.r2.sayOdd", { n: C(n), d: B(last) });
           break;
         case 3:
         case 9:
           s = dsum(n);
           ok = s % d === 0;
-          t = n < 10 ? "it’s just " + B(n) : "digits " + B(sumText(n) + " = " + s);
-          how = t + (ok ? ", a multiple of " + d : ", not a multiple of " + d);
-          say = (n < 10 ? "A one-digit number: " + B(n) + "." : "Add the digits: " + B(sumText(n) + " = " + s) + ".") + " " +
-            (ok ? s + " is a multiple of " + d + " (" + s + " = " + d + " × " + (s / d) + "), so " + d + " goes in — yes." :
-              s + " isn’t a multiple of " + d + ", so " + d + " doesn’t go in — no.");
+          t = n < 10 ? tx("factors-and-primes.r3.just", { n: B(n) }) : tx("factors-and-primes.r3.digits", { sum: B(sumText(n) + " = " + s) });
+          how = tx(ok ? "factors-and-primes.r3.howYes" : "factors-and-primes.r3.howNo", { t: t, d: d });
+          say = tx(ok ? "factors-and-primes.r3.sayYes" : "factors-and-primes.r3.sayNo", {
+            a: n < 10 ? tx("factors-and-primes.r3.oneDigit", { n: B(n) }) : tx("factors-and-primes.r3.addDigits", { sum: B(sumText(n) + " = " + s) }),
+            s: s,
+            d: d,
+            q: s / d
+          });
           break;
         case 4:
         case 8:
@@ -1896,38 +1904,41 @@
           two = String(t);
           while (n >= a && two.length < String(a).length - 1) two = "0" + two;
           ok = t % d === 0;
-          b = n >= a ? "last " + (d === 4 ? "two" : "three") + " digits " + B(two) + ": " : "";
+          b = n >= a ? tx(d === 4 ? "factors-and-primes.r4.last2" : "factors-and-primes.r4.last3", { x: B(two) }) : "";
           how = b + B(divT(t, d));
-          say = (n >= a ? "Only the last " + (d === 4 ? "two" : "three") + " digits matter: " + B(two) + ". " : "") +
-            B(divT(t, d)) + (ok ? " — no remainder, so " + d + " goes in — yes." : " — a remainder, so " + d + " doesn’t go in — no.");
+          say = (n >= a ? tx(d === 4 ? "factors-and-primes.r4.only2" : "factors-and-primes.r4.only3", { x: B(two) }) : "") +
+            tx(ok ? "factors-and-primes.r4.sayYes" : "factors-and-primes.r4.sayNo", { div: B(divT(t, d)), d: d });
           break;
         case 5:
           ok = last === 0 || last === 5;
-          how = "last digit " + B(last) + (ok ? "" : " (not 0 or 5)");
-          say = "5 goes in when the number ends in 0 or 5. " + C(n) + " ends in " + B(last) + (ok ? " — yes." : " — no.");
+          how = tx(ok ? "factors-and-primes.r5.howYes" : "factors-and-primes.r5.howNo", { d: B(last) });
+          say = tx(ok ? "factors-and-primes.r5.sayYes" : "factors-and-primes.r5.sayNo", { n: C(n), d: B(last) });
           break;
         case 6:
           a = n % 2 === 0;
           b = n % 3 === 0;
           ok = a && b;
-          how = "2 " + (a ? "✓" : "✗") + " and 3 " + (b ? "✓" : "✗");
-          say = "6 = 2 × 3, so 6 goes in exactly when 2 <i>and</i> 3 both do. Here 2 " + (a ? "does" : "doesn’t") + " and 3 " +
-            (b ? "does" : "doesn’t") + (ok ? " — yes." : " — so no.");
+          how = tx("factors-and-primes.r6.how", { a: a ? "✓" : "✗", b: b ? "✓" : "✗" });
+          say = tx("factors-and-primes.r6.say", {
+            a: tx(a ? "factors-and-primes.r6.does2" : "factors-and-primes.r6.doesnt2"),
+            b: tx(b ? "factors-and-primes.r6.does3" : "factors-and-primes.r6.doesnt3"),
+            end: tx(ok ? "factors-and-primes.r6.yes" : "factors-and-primes.r6.no")
+          });
           break;
         case 10:
           ok = last === 0;
-          how = "last digit " + B(last);
-          say = "10 goes in when the number ends in 0. " + C(n) + " ends in " + B(last) + (ok ? " — yes." : " — no.");
+          how = tx("factors-and-primes.r10.how", { d: B(last) });
+          say = tx(ok ? "factors-and-primes.r10.sayYes" : "factors-and-primes.r10.sayNo", { n: C(n), d: B(last) });
           break;
         case 11:
           s = altVal(n);
           ok = s % 11 === 0;
-          t = n < 10 ? "it’s just " + B(n) : B(altText(n) + " = " + signed(s));
+          t = n < 10 ? tx("factors-and-primes.r3.just", { n: B(n) }) : B(altText(n) + " = " + signed(s));
           how = t;
-          say = (n < 10 ? "A one-digit number can’t be a multiple of 11 — no." :
-            "Starting from the ones digit, take away and add the digits in turn: " + B(altText(n) + " = " + signed(s)) + ". " +
-            (ok ? (s === 0 ? "0" : signed(s)) + " is " + (s === 0 ? "a multiple of 11 (0 = 11 × 0)" : "a multiple of 11") + ", so 11 goes in — yes." :
-              signed(s) + " isn’t 0 or a multiple of 11, so 11 doesn’t go in — no."));
+          say = (n < 10 ? tx("factors-and-primes.r11.oneDigit") :
+            tx("factors-and-primes.r11.alt", { alt: B(altText(n) + " = " + signed(s)) }) + " " +
+            (ok ? tx(s === 0 ? "factors-and-primes.r11.yes0" : "factors-and-primes.r11.yes", { s: s === 0 ? "0" : signed(s) }) :
+              tx("factors-and-primes.r11.no", { s: signed(s) })));
           break;
       }
       return { ok: ok, how: how, say: say };
@@ -1935,11 +1946,11 @@
 
     /* ===================== reading what was typed ===================== */
     var EMPTY = {
-      factors: "Type a whole number, like <b>36</b>.",
-      prime: "Type a whole number, like <b>360</b>.",
-      test: "Type a whole number, like <b>91</b>.",
-      gcf: "Type two or three whole numbers, like <b>12, 18</b>.",
-      div: "Type a whole number, like <b>2,340</b>."
+      factors: tx("factors-and-primes.empty.factors"),
+      prime: tx("factors-and-primes.empty.prime"),
+      test: tx("factors-and-primes.empty.test"),
+      gcf: tx("factors-and-primes.empty.gcf"),
+      div: tx("factors-and-primes.empty.div")
     };
 
     function numTokens(s, list) {
@@ -1951,46 +1962,39 @@
     }
 
     function tooBig(t) {
-      return "<b>" + C(t) + "</b> is bigger than this page’s limit of <b>1,000,000</b>. Past a million the lists of factors " +
-        "run off the page, and the testing stops being something you’d do by hand — a number near a million already " +
-        "means trying every prime up to 1,000.";
+      return tx("factors-and-primes.err.tooBig", { n: C(t) });
     }
 
     function readProblem(mode, text) {
       var s = String(text == null ? "" : text).trim(),
         m;
       if (!s) throw new UserErr(EMPTY[mode]);
-      if ((m = /\d*\.\d+/.exec(s))) throw new UserErr("Factors and primes are about <b>whole numbers</b>, so <b>" + esc(m[0]) +
-        "</b> doesn’t work here. Try a whole number.");
-      if (/\d\s*\/\s*\d/.test(s)) throw new UserErr("Fractions don’t have factors the way whole numbers do — try a whole number.");
-      if (/(^|[^\w])[−–-]\s*\d/.test(s)) throw new UserErr("Use positive whole numbers here — leave off the minus sign. " +
-        "(A negative number has the same factors, just with signs attached.)");
+      if ((m = /\d*\.\d+/.exec(s))) throw new UserErr(tx("factors-and-primes.err.decimal", { x: esc(m[0]) }));
+      if (/\d\s*\/\s*\d/.test(s)) throw new UserErr(tx("factors-and-primes.err.fraction"));
+      if (/(^|[^\w])[−–-]\s*\d/.test(s)) throw new UserErr(tx("factors-and-primes.err.negative"));
       var list = mode === "gcf",
         toks = numTokens(s, list);
-      if (!toks.length) throw new UserErr("I can’t find a number in <b>" + esc(s) + "</b>. " + EMPTY[mode]);
+      if (!toks.length) throw new UserErr(tx("factors-and-primes.err.noNumber", { s: esc(s), empty: EMPTY[mode] }));
       for (var i = 0; i < toks.length; i++)
         if (toks[i].length > 7 || Number(toks[i]) > LIMIT) throw new UserErr(tooBig(toks[i]));
       var nums = toks.map(Number);
       if (list) {
-        if (nums.length < 2) throw new UserErr("The GCF and LCM need at least two numbers to compare — like <b>" +
-          C(nums[0]) + ", " + C(nums[0] === 1 ? 6 : nums[0] * 2) + "</b>.");
-        if (nums.length > 3) throw new UserErr("Up to three numbers at a time, like <b>12, 18, 30</b>. You typed " + nums.length + ".");
-        if (nums.indexOf(0) >= 0) throw new UserErr("Leave out the <b>0</b>. Every number goes into 0, so there’s no greatest " +
-          "common factor to find — and 0 isn’t counted as a multiple when you look for the least one.");
+        if (nums.length < 2) throw new UserErr(tx("factors-and-primes.err.needTwo", { a: C(nums[0]), b: C(nums[0] === 1 ? 6 : nums[0] * 2) }));
+        if (nums.length > 3) throw new UserErr(tx("factors-and-primes.err.upToThree", { n: nums.length }));
+        if (nums.indexOf(0) >= 0) throw new UserErr(tx("factors-and-primes.err.zeroList"));
         return { mode: mode, nums: nums, q: nums.join(",") };
       }
-      if (nums.length > 1) throw new UserErr("That looks like " + (nums.length === 2 ? "two numbers" : "several numbers") +
-        " (" + nums.map(C).join(", ") + "). This tab takes one" + (nums.length <= 3 ? " — for two or three, use <b>GCF &amp; LCM</b>." : "."));
+      if (nums.length > 1) throw new UserErr(tx(nums.length === 2 ? "factors-and-primes.err.two" : "factors-and-primes.err.several", { list: nums.map(C).join(", ") }) +
+        tx(nums.length <= 3 ? "factors-and-primes.err.useGcf" : "factors-and-primes.err.takesOne"));
       var n = nums[0];
       if (n === 0 && mode !== "test") {
         throw new UserErr(mode === "div" ?
-          "<b>0</b> is divisible by everything (0 ÷ 7 = 0, no remainder), so every rule would say yes. Try a number from 1 up." :
+          tx("factors-and-primes.err.zeroDiv") :
           mode === "prime" ?
-          "<b>0</b> can’t be broken into primes: 0 = 0 × 5 = 0 × 17 = …, so there’s no one way to split it. Try a number from 2 up." :
-          "<b>0</b> has endless factors — every number goes into 0 (0 = 0 × 5 = 0 × 17 …), so there’s no list to make. Try a number from 1 up.");
+          tx("factors-and-primes.err.zeroPrime") :
+          tx("factors-and-primes.err.zeroFactors"));
       }
-      if (n === 1 && mode === "prime") throw new UserErr("<b>1</b> has no prime factors at all — it isn’t prime and it isn’t " +
-        "composite, so a factor tree has nothing to split. Try a number from 2 up.");
+      if (n === 1 && mode === "prime") throw new UserErr(tx("factors-and-primes.err.onePrime"));
       return { mode: mode, n: n, nums: [n], q: String(n) };
     }
 
@@ -2017,9 +2021,9 @@
     function quick(n, a) { // the quick reason a divides n or not, when there is one
       var last = n % 10,
         s;
-      if (a === 2) return C(n) + (n % 2 ? " is odd" : " is even");
-      if (a === 3 && n >= 10) { s = dsum(n); return "the digits add to " + s + (s % 3 ? ", not a multiple of 3" : ", a multiple of 3"); }
-      if (a === 5 || a === 10) return C(n) + " ends in " + last;
+      if (a === 2) return tx(n % 2 ? "factors-and-primes.q.odd" : "factors-and-primes.q.even", { n: C(n) });
+      if (a === 3 && n >= 10) { s = dsum(n); return tx(s % 3 ? "factors-and-primes.q.sum3no" : "factors-and-primes.q.sum3yes", { s: s }); }
+      if (a === 5 || a === 10) return tx("factors-and-primes.q.endsIn", { n: C(n), d: last });
       return "";
     }
 
@@ -2029,8 +2033,7 @@
         q = r;
       while (!isPrime(q)) q--;
       var nx = nextPrime(q);
-      return " (no prime up to " + C(q) + " goes in, and the next one, " + C(nx) + ", has " + C(nx) + " × " + C(nx) + " = " +
-        C(nx * nx) + " — already past " + C(m) + ")";
+      return tx("factors-and-primes.whyPrime", { q: C(q), nx: C(nx), sq: C(nx * nx), m: C(m) });
     }
 
     /* ===================== tab 1: all the factors ===================== */
@@ -2044,27 +2047,24 @@
 
     function stopPhrase(n) {
       var r = isqrt(n);
-      if (r * r === n) return "√" + C(n) + " = " + C(r) + ", the number that times itself makes " + C(n) + " (" + C(r) + " × " + C(r) + " = " + C(n) + ")";
-      return C(r) + ": " + C(r) + " × " + C(r) + " = " + C(r * r) + " is still under " + C(n) + ", but " + C(r + 1) + " × " +
-        C(r + 1) + " = " + C((r + 1) * (r + 1)) + " is over (so √" + C(n) + " is between " + C(r) + " and " + C(r + 1) + ")";
+      if (r * r === n) return tx("factors-and-primes.stopSquare", { n: C(n), r: C(r) });
+      return tx("factors-and-primes.stopBetween", { n: C(n), r: C(r), rr: C(r * r), r1: C(r + 1), rr1: C((r + 1) * (r + 1)) });
     }
 
     function missText(n, list) {
       if (list.length === 1) {
         var a = list[0],
           q = quick(n, a);
-        return (q ? cap(q) + ", so " + a + " doesn’t go in" : C(a) + " doesn’t go in evenly") + ": " + B(divT(n, a)) + ".";
+        return tx("factors-and-primes.miss1", { why: q ? tx("factors-and-primes.miss1q", { q: cap(q), a: a }) : tx("factors-and-primes.miss1n", { a: C(a) }), div: B(divT(n, a)) });
       }
-      if (list.length === 2) return C(list[0]) + " and " + C(list[1]) + " don’t go in evenly: " + B(divT(n, list[0])) + " and " + B(divT(n, list[1])) + ".";
-      return "Nothing from " + C(list[0]) + " to " + C(list[list.length - 1]) + " goes in evenly — each one leaves a remainder.";
+      if (list.length === 2) return tx("factors-and-primes.miss2", { a: C(list[0]), b: C(list[1]), da: B(divT(n, list[0])), db: B(divT(n, list[1])) });
+      return tx("factors-and-primes.missRun", { a: C(list[0]), b: C(list[list.length - 1]) });
     }
 
     function hitText(n, a, b) {
-      if (a === b) return B(C(n) + " ÷ " + C(a) + " = " + C(a)) + " — " + C(a) + " pairs with <i>itself</i>: " + B(C(a) + " × " + C(a) + " = " + C(n)) +
-        ". Write it in the list just once.";
+      if (a === b) return tx("factors-and-primes.hitSelf", { div: B(C(n) + " ÷ " + C(a) + " = " + C(a)), a: C(a), sq: B(C(a) + " × " + C(a) + " = " + C(n)) });
       var q = quick(n, a);
-      return (q ? cap(q) + ", so " + a + " goes in: " : "") + B(divT(n, a)) + " with nothing left over, so " +
-        B(C(a) + " × " + C(b) + " = " + C(n)) + " — " + C(a) + " and " + C(b) + " are a factor pair.";
+      return (q ? tx("factors-and-primes.hitQ", { q: cap(q), a: a }) : "") + tx("factors-and-primes.hit", { div: B(divT(n, a)), eq: B(C(a) + " × " + C(b) + " = " + C(n)), a: C(a), b: C(b) });
     }
 
     function rainbowSVG(sol, stepOfPair) {
@@ -2100,8 +2100,8 @@
         out += '<text class="fl' + (k % 2 && i === (k - 1) / 2 ? " sq" : "") + '"' + ds(stepOfPair(pairOf(i))) + ' x="' + f1(xOf(i)) + '" y="' + (base + 18) +
           '" text-anchor="middle">' + C(x) + "</text>";
       });
-      return '<svg width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="Factor rainbow: ' +
-        "each arc joins two factors that multiply to " + C(sol.n) + '">' + out + "</svg>";
+      return '<svg width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="' +
+        tx("factors-and-primes.rainbowLabel", { n: C(sol.n) }) + '">' + out + "</svg>";
     }
 
     function arraysHTML(sol, stepOfPair) {
@@ -2123,7 +2123,7 @@
             i: i,
             svg: '<svg width="' + (w + 2) + '" height="' + (h + 2) + '" viewBox="0 0 ' + (w + 2) + " " + (h + 2) + '"><rect class="bg" x="1" y="1" width="' +
               w + '" height="' + h + '"/>' + g + "</svg>",
-            cap: a + " row" + (a === 1 ? "" : "s") + " of " + C(b)
+            cap: tx("factors-and-primes.rowsOf", { n: a, b: C(b) })
           });
         });
       } else {
@@ -2143,7 +2143,7 @@
             cap: C(a) + " × " + C(b)
           });
         });
-        note = keep.length < P.length ? " Drawn to scale, all with the same area; the very long, thin ones (like 1 × " + C(n) + ") are left out." : " Drawn to scale, all with the same area.";
+        note = keep.length < P.length ? tx("factors-and-primes.arrNoteThin", { n: C(n) }) : tx("factors-and-primes.arrNote");
       }
       var html = '<div class="arrs">' + figs.map(function(f) {
         return '<figure class="arr"' + ds(stepOfPair(f.i)) + '><div class="xscroll">' + f.svg + "</div><figcaption>" + f.cap + "</figcaption></figure>";
@@ -2158,17 +2158,17 @@
         html = "",
         facts = [];
       if (n === 1) {
-        $("workHost").innerHTML = sect('<b class="lead">Only one way to make 1.</b>', '<div class="bigline">1 = <span class="eqk">1 × 1</span></div>');
+        $("workHost").innerHTML = sect('<b class="lead">' + tx("factors-and-primes.f1.lead") + "</b>", '<div class="bigline">1 = <span class="eqk">1 × 1</span></div>');
         writeLog([{
-          n: "Step&nbsp;1",
+          n: tx("factors-and-primes.stepN", { n: 1 }),
           step: 0,
           lines: [
-            ["p", "Pair", "The only factor pair is " + B("1 × 1 = 1") + ", so 1 has just " + B("one") + " factor: 1 itself."]
+            ["p", tx("factors-and-primes.tag.pair"), tx("factors-and-primes.f1.pair", { eq: B("1 × 1 = 1"), one: B(tx("factors-and-primes.f1.one")) })]
           ],
-          aside: "That single factor is why 1 is neither prime nor composite: a prime has exactly two different factors (1 and itself), and a composite has more than two."
+          aside: tx("factors-and-primes.f1.aside")
         }]);
-        band('<span class="k">Factors of 1</span><span class="v">1</span>', ["<b>1</b> factor", "1 is neither prime nor composite"], "answer");
-        $("closer").innerHTML = "<b>Check:</b> 1 ÷ 1 = 1, and nothing bigger than 1 can go into 1 " + '<span class="ok">✓</span>';
+        band('<span class="k">' + tx("factors-and-primes.f1.band") + '</span><span class="v">1</span>', [tx("factors-and-primes.f1.fact1"), tx("factors-and-primes.f1.fact2")], "answer");
+        $("closer").innerHTML = tx("factors-and-primes.f1.check") + " " + '<span class="ok">✓</span>';
         return 1;
       }
       var pr = sol.pairs,
@@ -2212,23 +2212,19 @@
         while (u <= r && n % u !== 0 && stepOfTest(u) === st0) u++;
         var run = range(t, u - 1);
         if (run.length <= 2) run.forEach(function(x) {
-          rows += '<tr class="miss"' + ds(st0) + '><td class="d">÷ ' + C(x) + '</td><td class="w">' + B(divT(n, x)) + "</td><td>" + verdict(false, "", "✗ remainder") + "</td></tr>";
+          rows += '<tr class="miss"' + ds(st0) + '><td class="d">÷ ' + C(x) + '</td><td class="w">' + B(divT(n, x)) + "</td><td>" + verdict(false, "", tx("factors-and-primes.v.remainder")) + "</td></tr>";
         });
         else rows += '<tr class="miss"' + ds(st0) + '><td class="d">÷ ' + C(run[0]) + "–" + C(run[run.length - 1]) + '</td><td class="w">' +
-          run.length + " numbers, each leaves a remainder</td><td>" + verdict(false, "", "✗ none") + "</td></tr>";
+          tx("factors-and-primes.f.runNone", { k: run.length }) + "</td><td>" + verdict(false, "", tx("factors-and-primes.v.none")) + "</td></tr>";
         t = u;
       }
-      html += sect('<b class="lead">Test 1, 2, 3, … up to ' + (sol.square ? "√" + C(n) + " = " + C(r) : C(r)) + ".</b> Divide " + C(n) +
-        " by each one. Every number that goes in evenly — no remainder — is a factor, and the answer is its partner.",
+      html += sect(tx("factors-and-primes.f.testCap", { upTo: sol.square ? "√" + C(n) + " = " + C(r) : C(r), n: C(n) }),
         '<div class="xscroll"><table class="tests"><tbody>' + rows + "</tbody></table></div>");
-      html += sect('<b class="lead">The factor rainbow.</b> The factors in order, with an arc joining each pair. The smallest ' +
-        "pairs with the biggest, the next smallest with the next biggest, so the arcs nest inside each other." +
-        (sol.square ? " " + C(r) + " pairs with itself, so it gets a little loop of its own." : ""),
+      html += sect(tx("factors-and-primes.f.rainbowCap") + (sol.square ? tx("factors-and-primes.f.rainbowSq", { r: C(r) }) : ""),
         '<div class="xscroll">' + rainbowSVG(sol, function(pi) { return stepOfPair(Math.min(pi, m - 1)); }) + "</div>");
       var arr = arraysHTML(sol, stepOfPair);
-      html += sect('<b class="lead">As rectangles.</b> ' + C(n) + " squares can be laid out in a rectangle for every factor pair — " +
-        (m > 1 ? C(pr[m - 1][0]) + " rows of " + C(pr[m - 1][1]) + ", and so on." : "but a prime only makes one: a single row.") + arr.note,
-        arr.any ? arr.html : '<div class="tapecap">(Only 1 × ' + C(n) + " — one long row, too long to draw.)</div>");
+      html += sect(tx(m > 1 ? "factors-and-primes.f.rectCap" : "factors-and-primes.f.rectCapPrime", { n: C(n), a: m > 1 ? C(pr[m - 1][0]) : "", b: m > 1 ? C(pr[m - 1][1]) : "" }) + arr.note,
+        arr.any ? arr.html : '<div class="tapecap">' + tx("factors-and-primes.f.rectNone", { n: C(n) }) + "</div>");
       $("workHost").innerHTML = html;
 
       /* --- the words --- */
@@ -2238,65 +2234,62 @@
           aside = null;
         var prevA = s === 0 ? 0 : pr[groups[s - 1][groups[s - 1].length - 1]][0];
         if (s === 0) {
-          lines.push(["m", "Plan", "Test 1, 2, 3, … in order. Each number that divides " + C(n) + " evenly brings a partner with it. " +
-            (r === 1 ? "Here only 1 needs testing, since 2 × 2 = 4 is already more than " + C(n) + "." : "You only need to go up to " + stopPhrase(n) + ".")
+          lines.push(["m", tx("factors-and-primes.tag.plan"), tx("factors-and-primes.f.plan", { n: C(n) }) +
+            (r === 1 ? tx("factors-and-primes.f.planOnly1", { n: C(n) }) : tx("factors-and-primes.f.planUpTo", { stop: stopPhrase(n) }))
           ]);
-          lines.push(["p", "Pair", "Start with 1: it goes into every number. " + B("1 × " + C(n) + " = " + C(n)) + ", so 1 and " + C(n) + " are the first pair."]);
+          lines.push(["p", tx("factors-and-primes.tag.pair"), tx("factors-and-primes.f.start1", { eq: B("1 × " + C(n) + " = " + C(n)), n: C(n) })]);
         } else if (g.length === 1) {
           var a = pr[g[0]][0],
             b = pr[g[0]][1],
             misses = range(prevA + 1, a - 1);
-          if (misses.length) lines.push(["m", "Test", missText(n, misses)]);
-          lines.push(["p", "Pair", hitText(n, a, b)]);
-          if (odd2 && misses.indexOf(2) >= 0) aside = C(n) + " is odd, so no even number can go in either — 4, 6, 8, … are all multiples of 2. " +
-            "You could skip them; they’re tested here so nothing is hidden.";
+          if (misses.length) lines.push(["m", tx("factors-and-primes.tag.test"), missText(n, misses)]);
+          lines.push(["p", tx("factors-and-primes.tag.pair"), hitText(n, a, b)]);
+          if (odd2 && misses.indexOf(2) >= 0) aside = tx("factors-and-primes.f.oddAside", { n: C(n) });
         } else {
           var to = pr[g[g.length - 1]][0];
-          lines.push(["p", "Pairs", "Testing " + C(prevA + 1) + " to " + C(to) + " turns up " + listAnd(g.map(function(pi) {
-            return B(C(pr[pi][0]) + " × " + C(pr[pi][1]));
-          })) + "."]);
+          lines.push(["p", tx("factors-and-primes.tag.pairs"), tx("factors-and-primes.f.turnsUp", {
+            a: C(prevA + 1),
+            b: C(to),
+            list: listAnd(g.map(function(pi) {
+              return B(C(pr[pi][0]) + " × " + C(pr[pi][1]));
+            }))
+          })]);
         }
-        items.push({ n: "Step&nbsp;" + (s + 1), step: s, lines: lines, aside: aside });
+        items.push({ n: tx("factors-and-primes.stepN", { n: s + 1 }), step: s, lines: lines, aside: aside });
       });
       var lastA = pr[m - 1][0],
         tail = range(lastA + 1, r),
         lines2 = [];
       var bk = pr.filter(function(p) { return p[0] !== p[1]; }).pop();
-      if (tail.length) lines2.push(["m", "Test", missText(n, tail)]);
-      lines2.push(["e", "Stop", "The next number to test is " + C(r + 1) + ", but " + C(r + 1) + " × " + C(r + 1) + " = " + C((r + 1) * (r + 1)) +
-        " is more than " + C(n) + " — so stop here."
-      ]);
+      if (tail.length) lines2.push(["m", tx("factors-and-primes.tag.test"), missText(n, tail)]);
+      lines2.push(["e", tx("factors-and-primes.tag.stop"), tx("factors-and-primes.f.stop", { r1: C(r + 1), sq: C((r + 1) * (r + 1)), n: C(n) })]);
       var lowList = pr.map(function(p) { return C(p[0]); }),
         highList = pr.slice().reverse().filter(function(p) { return p[0] !== p[1]; }).map(function(p) { return C(p[1]); });
-      lines2.push(["a", "List", m === 1 ? "Only " + B("1 × " + C(n)) + " turned up, so " + C(n) + " has exactly two factors, 1 and itself. That makes it " + B("prime") + "." :
-        "Read the small partners going up, then the big partners coming back down: " + B(lowList.concat(highList).join(", ")) + ". That’s " +
-        B(sol.divs.length) + " factors."
+      lines2.push(["a", tx("factors-and-primes.tag.list"), m === 1 ? tx("factors-and-primes.f.listPrime", { eq: B("1 × " + C(n)), n: C(n), prime: B(tx("factors-and-primes.w.prime")) }) :
+        tx("factors-and-primes.f.listAll", { list: B(lowList.concat(highList).join(", ")), k: B(sol.divs.length) })
       ]);
-      if (sol.square && n > 1) lines2.push(["p", "Square", C(n) + " has an odd number of factors because " + C(r) + " had no different partner. Only perfect squares do that."]);
+      if (sol.square && n > 1) lines2.push(["p", tx("factors-and-primes.tag.square"), tx("factors-and-primes.f.square", { n: C(n), r: C(r) })]);
       items.push({
-        n: "Step&nbsp;" + (stopStep + 1),
+        n: tx("factors-and-primes.stepN", { n: stopStep + 1 }),
         step: stopStep,
         lines: lines2,
-        aside: r >= 2 ? "Why stop at " + (sol.square ? "√" + C(n) : C(r)) + "? In every pair, one number is at most √" + C(n) + " and the other at least √" + C(n) +
-          " — if both were bigger, they’d multiply to more than " + C(n) + ". So every pair has a small partner, and we’ve tested all the small ones. " +
-          "Going on would only find the same pairs backwards" + (bk ? ": " + C(bk[1]) + " × " + C(bk[0]) + ", …" : ".") : null
+        aside: r >= 2 ? tx("factors-and-primes.f.whyStop", { at: sol.square ? "√" + C(n) : C(r), n: C(n) }) +
+          (bk ? tx("factors-and-primes.f.backwards", { a: C(bk[1]), b: C(bk[0]) }) : ".") : null
       });
       writeLog(items);
 
       /* --- answer --- */
       var cnt = sol.divs.length,
         txt = sol.divs.map(C).join(", ");
-      facts.push(B(cnt) + " factors" + (m > 1 ? ": " + (sol.square ? (m - 1) + " pair" + (m - 1 === 1 ? "" : "s") + ", plus " + C(r) + " × " + C(r) :
-        m + " pair" + (m === 1 ? "" : "s")) : ""));
-      if (sol.square) facts.push(C(n) + " is a perfect square (" + C(r) + " × " + C(r) + "), which is why the count is odd");
-      facts.push("Prime factorization: " + B(fzH(sol.fs)));
-      facts.push(cnt === 2 ? C(n) + " is <strong>prime</strong> — exactly two factors" : C(n) + " is <strong>composite</strong> — more than two factors");
-      band('<span class="k">Factors of ' + C(n) + '</span><span class="v' + (txt.length > 34 ? " long" : "") + '">' + txt + "</span>", facts, "answer");
+      facts.push(tx(m > 1 ? (sol.square ? "factors-and-primes.f.factSq" : "factors-and-primes.f.factPairs") : "factors-and-primes.f.factCount", { k: B(cnt), p: sol.square ? m - 1 : m, r: C(r) }));
+      if (sol.square) facts.push(tx("factors-and-primes.f.factPerfect", { n: C(n), r: C(r) }));
+      facts.push(tx("factors-and-primes.pf", { f: B(fzH(sol.fs)) }));
+      facts.push(tx(cnt === 2 ? "factors-and-primes.f.factPrime" : "factors-and-primes.f.factComposite", { n: C(n) }));
+      band('<span class="k">' + tx("factors-and-primes.f.band", { n: C(n) }) + '</span><span class="v' + (txt.length > 34 ? " long" : "") + '">' + txt + "</span>", facts, "answer");
       var shown = pr.slice(0, 4).map(function(p) { return C(p[0]) + " × " + C(p[1]); }).join(", ") + (m > 4 ? ", …" : "");
       var ex = sol.fs.map(function(f) { return "(" + f.e + " + 1)"; }).join(" × ");
-      $("closer").innerHTML = '<div class="ck"><b>Check:</b> every pair multiplies back to ' + C(n) + " — " + shown + ' <span class="ok">✓</span></div>' +
-        '<div class="ck"><b>Count check:</b> from ' + C(n) + " = " + fzH(sol.fs) + ", add 1 to each exponent and multiply: " +
-        ex + " = " + cnt + " factors " + '<span class="ok">✓</span></div>';
+      $("closer").innerHTML = '<div class="ck">' + tx("factors-and-primes.f.check", { n: C(n), shown: shown }) + ' <span class="ok">✓</span></div>' +
+        '<div class="ck">' + tx("factors-and-primes.f.countCheck", { n: C(n), f: fzH(sol.fs), ex: ex, k: cnt }) + " " + '<span class="ok">✓</span></div>';
       return items.length;
     }
 
@@ -2398,36 +2391,36 @@
       var W = Math.ceil(root.sw + 16),
         H = TOP + maxD * LV + 22;
       return '<svg class="ft" width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + " " + H +
-        '" role="img" aria-label="Factor tree for ' + C(root.v) + ': primes are circled at the ends of the branches">' + edges + nodes + "</svg>";
+        '" role="img" aria-label="' + tx("factors-and-primes.treeLabel", { n: C(root.v) }) + '">' + edges + nodes + "</svg>";
     }
 
     function goesText(m, p, first) {
       var last = m % 10;
-      if (p === 2) return (first ? "Start with the smallest prime, 2. " : "") + C(m) + " is even, so 2 goes in:";
-      if (p === 3) return (m >= 10 ? "Try 3: the digits add to " + dsum(m) + ", a multiple of 3, so 3 goes in:" : "Try 3:");
-      if (p === 5) return "Try 5: " + C(m) + " ends in " + last + ", so 5 goes in:";
-      return "Try " + C(p) + ": " + B(C(m) + " ÷ " + C(p)) + " comes out even, so " + C(p) + " goes in:";
+      if (p === 2) return (first ? tx("factors-and-primes.p.start2") : "") + tx("factors-and-primes.p.even2", { m: C(m) });
+      if (p === 3) return (m >= 10 ? tx("factors-and-primes.p.try3sum", { s: dsum(m) }) : tx("factors-and-primes.p.try3"));
+      if (p === 5) return tx("factors-and-primes.p.try5", { m: C(m), d: last });
+      return tx("factors-and-primes.p.tryP", { p: C(p), div: B(C(m) + " ÷ " + C(p)) });
     }
 
     function againText(m, p) {
-      if (p === 2) return C(m) + " is still even — 2 again:";
-      if (p === 3) return "3 still goes in" + (m >= 10 ? " (the digits add to " + dsum(m) + ")" : "") + ":";
-      if (p === 5) return C(m) + " still ends in " + (m % 10) + " — 5 again:";
-      return C(p) + " goes in again:";
+      if (p === 2) return tx("factors-and-primes.p.again2", { m: C(m) });
+      if (p === 3) return m >= 10 ? tx("factors-and-primes.p.again3sum", { s: dsum(m) }) : tx("factors-and-primes.p.again3");
+      if (p === 5) return tx("factors-and-primes.p.again5", { m: C(m), d: m % 10 });
+      return tx("factors-and-primes.p.againP", { p: C(p) });
     }
 
     function skipText(m, sk) {
       var parts = [],
         rest = [];
       sk.forEach(function(q) {
-        if (q === 2) parts.push("not 2 (" + C(m) + " is odd)");
-        else if (q === 3 && m >= 10) parts.push("not 3 (the digits add to " + dsum(m) + ")");
-        else if (q === 5) parts.push("not 5 (it doesn’t end in 0 or 5)");
+        if (q === 2) parts.push(tx("factors-and-primes.p.not2", { m: C(m) }));
+        else if (q === 3 && m >= 10) parts.push(tx("factors-and-primes.p.not3", { s: dsum(m) }));
+        else if (q === 5) parts.push(tx("factors-and-primes.p.not5"));
         else rest.push(q);
       });
-      if (rest.length === 1) parts.push("not " + C(rest[0]) + " (" + B(divT(m, rest[0])) + ")");
-      else if (rest.length && rest.length <= 4) parts.push("not " + listOr(rest.map(C)) + " (they leave remainders)");
-      else if (rest.length) parts.push("none of the primes from " + C(rest[0]) + " to " + C(rest[rest.length - 1]) + " go in");
+      if (rest.length === 1) parts.push(tx("factors-and-primes.p.notP", { p: C(rest[0]), div: B(divT(m, rest[0])) }));
+      else if (rest.length && rest.length <= 4) parts.push(tx("factors-and-primes.p.notList", { list: listOr(rest.map(C)) }));
+      else if (rest.length) parts.push(tx("factors-and-primes.p.noneFrom", { a: C(rest[0]), b: C(rest[rest.length - 1]) }));
       return parts.length ? cap(listAnd(parts)) + "." : "";
     }
 
@@ -2444,11 +2437,9 @@
         html = "";
       var collect = nS;
       var ladderStep = function(i) { return split === "any" ? collect : Math.min(i, Math.max(nS - 1, 0)); };
-      html += sect('<b class="lead">Factor tree.</b> Split the number into two factors that multiply to it, then split those, and so on. ' +
-        "A prime can’t be split, so it gets <i>circled</i>" + (nS ? " — the circled primes at the ends of the branches are the answer." : "."),
+      html += sect(tx(nS ? "factors-and-primes.p.treeCap" : "factors-and-primes.p.treeCapPrime"),
         '<div class="xscroll">' + treeSVG(tree, tree.root) + "</div>");
-      html += sect('<b class="lead">The ladder (upside-down division).</b> The same thing in a column: divide by the smallest prime that goes in, ' +
-        "write the answer underneath, and keep going until you reach 1. The primes down the side are the prime factors.",
+      html += sect(tx("factors-and-primes.p.ladderCap"),
         '<div class="xscroll">' + ladderHTML(seq.map(function(s) { return { p: s.p, vals: [s.m] }; }), [1], ladderStep, ladderStep(seq.length - 1)) + "</div>");
       html += sect("", '<div class="bigline">' + C(n) + " = " + '<span class="pr">' + xH(list) + "</span></div>" +
         (list.length > 1 ? '<div class="bigline">' + C(n) + " = " + '<span class="eqk">' + fzH(fs) + "</span></div>" : ""), collect);
@@ -2456,13 +2447,11 @@
 
       if (!nS) {
         items.push({
-          n: "Step&nbsp;1",
+          n: tx("factors-and-primes.stepN", { n: 1 }),
           step: 0,
           lines: [
-            ["a", "Prime", C(n) + " is prime" + whyPrime(n) + ". It can’t be split into two smaller factors, so its " +
-              "factor tree is just " + C(n) + ", circled. On the ladder, " + B(C(n) + " ÷ " + C(n) + " = 1") + " and you’re done."
-            ],
-            ["a", "Answer", "A prime’s factorization is the prime itself: " + B(C(n) + " = " + C(n)) + "."]
+            ["a", tx("factors-and-primes.tag.prime"), tx("factors-and-primes.p.isPrime", { n: C(n), why: whyPrime(n), lad: B(C(n) + " ÷ " + C(n) + " = 1") })],
+            ["a", tx("factors-and-primes.tag.answer"), tx("factors-and-primes.p.itself", { eq: B(C(n) + " = " + C(n)) })]
           ]
         });
       } else if (split === "small") {
@@ -2473,17 +2462,17 @@
             prev = k ? seq[k - 1].p : 0;
           var head = (st.skipped.length ? skipText(st.m, st.skipped) + " " : "") +
             (st.p === prev && !st.skipped.length ? againText(st.m, st.p) : goesText(st.m, st.p, k === 0));
-          lines.push(["p", "Split", head + " " + B(C(st.m) + " = " + C(st.p) + " × " + C(q)) + "."]);
+          lines.push(["p", tx("factors-and-primes.tag.split"), head + " " + B(C(st.m) + " = " + C(st.p) + " × " + C(q)) + "."]);
           if (k === nS - 1) {
-            lines.push(["a", "Circle", (st.p === q ? "Both " + C(q) + "s are prime" : C(st.p) + " and " + C(q) + " are both prime") + whyPrime(q) +
-              " — circle them. Every branch now ends in a circled prime, so the tree is finished."
+            lines.push(["a", tx("factors-and-primes.tag.circle"), tx(st.p === q ? "factors-and-primes.p.bothSame" : "factors-and-primes.p.bothPrime", { a: C(st.p), b: C(q) }) + whyPrime(q) +
+              tx("factors-and-primes.p.circleThemDone")
             ]);
-          } else lines.push(["a", "Circle", "Circle the " + C(st.p) + " — it’s prime. " + C(q) + " isn’t prime yet, so it keeps splitting."]);
+          } else lines.push(["a", tx("factors-and-primes.tag.circle"), tx("factors-and-primes.p.circleOne", { p: C(st.p), q: C(q) })]);
           items.push({
-            n: "Step&nbsp;" + (k + 1),
+            n: tx("factors-and-primes.stepN", { n: k + 1 }),
             step: k,
             lines: lines,
-            aside: k === 0 ? "Each split is one row of the ladder: " + C(st.p) + " goes down the side, " + C(q) + " goes underneath." : null
+            aside: k === 0 ? tx("factors-and-primes.p.rowAside", { p: C(st.p), q: C(q) }) : null
           });
         }
       } else {
@@ -2491,56 +2480,56 @@
           var a = nd.kids[0],
             b = nd.kids[1],
             lines = [];
-          lines.push(["p", "Split", s === 0 ?
-            "Start with any two factors that multiply to " + C(nd.v) + ". " + C(a.v) + " × " + C(b.v) + " is the pair nearest the middle: " + B(C(nd.v) + " = " + C(a.v) + " × " + C(b.v)) + "." :
-            C(nd.v) + " isn’t prime, so split it: " + B(C(nd.v) + " = " + C(a.v) + " × " + C(b.v)) + "."
+          lines.push(["p", tx("factors-and-primes.tag.split"), s === 0 ?
+            tx("factors-and-primes.p.anyStart", { v: C(nd.v), a: C(a.v), b: C(b.v), eq: B(C(nd.v) + " = " + C(a.v) + " × " + C(b.v)) }) :
+            tx("factors-and-primes.p.anySplit", { v: C(nd.v), eq: B(C(nd.v) + " = " + C(a.v) + " × " + C(b.v)) })
           ]);
           var pr = [a, b].filter(function(x) { return x.prime; }),
             cp = [a, b].filter(function(x) { return !x.prime; });
           var txt = "";
-          if (pr.length) txt += (pr.length === 2 ? (a.v === b.v ? "Both " + C(a.v) + "s are prime" : C(a.v) + " and " + C(b.v) + " are both prime") + " — circle them." :
-            C(pr[0].v) + " is prime" + whyPrime(pr[0].v) + " — circle it.");
-          if (cp.length) txt += (txt ? " " : "") + listAnd(cp.map(function(x) { return C(x.v); })) + (cp.length === 2 ? " both split again." : " still splits.");
-          if (s === nS - 1) txt += " Every branch now ends in a circled prime, so the tree is finished.";
-          lines.push(["a", "Circle", txt]);
+          if (pr.length) txt += (pr.length === 2 ? tx(a.v === b.v ? "factors-and-primes.p.bothSame" : "factors-and-primes.p.bothPrime", { a: C(a.v), b: C(b.v) }) + tx("factors-and-primes.p.circleThem") :
+            tx("factors-and-primes.p.onePrime", { p: C(pr[0].v), why: whyPrime(pr[0].v) }));
+          if (cp.length) txt += (txt ? " " : "") + tx(cp.length === 2 ? "factors-and-primes.p.bothSplit" : "factors-and-primes.p.stillSplits", { list: listAnd(cp.map(function(x) { return C(x.v); })) });
+          if (s === nS - 1) txt += tx("factors-and-primes.p.finished");
+          lines.push(["a", tx("factors-and-primes.tag.circle"), txt]);
           items.push({
-            n: "Step&nbsp;" + (s + 1),
+            n: tx("factors-and-primes.stepN", { n: s + 1 }),
             step: s,
             lines: lines,
-            aside: s === 0 ? "Any factor pair works to start. A tree split another way looks different, but it always ends with the very same circled primes." : null
+            aside: s === 0 ? tx("factors-and-primes.p.anyAside") : null
           });
         });
       }
       if (nS) {
         var lines3 = [
-          ["a", "Collect", "Gather the circled primes, smallest first: " + B(xH(list) + " = " + C(n)) + "."]
+          ["a", tx("factors-and-primes.tag.collect"), tx("factors-and-primes.p.gather", { eq: B(xH(list) + " = " + C(n)) })]
         ];
         var reps = fs.filter(function(f) { return f.e > 1; });
-        if (reps.length) lines3.push(["a", "Shorten", "Repeats get an exponent: " + listAnd(reps.map(function(f) {
-          return word(f.e) + " " + C(f.p) + "s multiplied is " + B(C(f.p) + "<sup>" + f.e + "</sup>") + (f.e === 2 ? " (“" + C(f.p) + " squared”)" : f.e === 3 ? " (“" + C(f.p) + " cubed”)" : "");
-        })) + ". So " + B(C(n) + " = " + fzH(fs)) + "."]);
-        lines3.push(["m", "Ladder", split === "any" ? "The ladder gets the same primes another way — smallest prime first, down to 1: " + B(xH(seq.map(function(s) { return s.p; }))) + "." :
-          "The ladder’s side column reads the same primes from top to bottom: " + B(xH(seq.map(function(s) { return s.p; }))) + "."
-        ]);
+        if (reps.length) lines3.push(["a", tx("factors-and-primes.tag.shorten"), tx("factors-and-primes.p.repeats", {
+          list: listAnd(reps.map(function(f) {
+            return tx("factors-and-primes.p.rep", { k: word(f.e), p: C(f.p), pow: B(C(f.p) + "<sup>" + f.e + "</sup>") }) + (f.e === 2 ? tx("factors-and-primes.p.squared", { p: C(f.p) }) : f.e === 3 ? tx("factors-and-primes.p.cubed", { p: C(f.p) }) : "");
+          })),
+          eq: B(C(n) + " = " + fzH(fs))
+        })]);
+        lines3.push(["m", tx("factors-and-primes.tag.ladder"), tx(split === "any" ? "factors-and-primes.p.ladderAny" : "factors-and-primes.p.ladderSmall", { list: B(xH(seq.map(function(s) { return s.p; }))) })]);
         var alt = split === "any" ? spf(n) : lowSplit(n),
           other = null;
-        if (split === "any" && alt !== lowSplit(n)) other = "Split off the smallest prime instead (" + C(n) + " = " + C(alt) + " × " + C(n / alt) + ", then keep going) and the tree grows down one side";
-        if (split === "small" && alt !== spf(n)) other = "Start another way instead — say " + C(n) + " = " + C(alt) + " × " + C(n / alt) + " — and the tree looks different";
+        if (split === "any" && alt !== lowSplit(n)) other = tx("factors-and-primes.p.otherAny", { n: C(n), a: C(alt), b: C(n / alt) });
+        if (split === "small" && alt !== spf(n)) other = tx("factors-and-primes.p.otherSmall", { n: C(n), a: C(alt), b: C(n / alt) });
         items.push({
-          n: "Step&nbsp;" + (collect + 1),
+          n: tx("factors-and-primes.stepN", { n: collect + 1 }),
           step: collect,
           lines: lines3,
-          aside: other ? other + ", but the circled primes at the bottom are exactly the same: " + B(xH(list)) + ". Every whole number above 1 has just one set of prime factors " +
-            "— that’s why the answer never depends on how you split." : null
+          aside: other ? tx("factors-and-primes.p.sameEnd", { other: other, list: B(xH(list)) }) : null
         });
       }
       writeLog(items);
 
       var facts = [];
-      if (list.length > 1) facts.push("Written out: " + B(xH(list)));
-      facts.push(nS ? B(list.length) + " prime factors, " + B(fs.length) + " different" : C(n) + " is <strong>prime</strong>");
-      facts.push("Number of factors: " + B(fs.map(function(f) { return "(" + f.e + "+1)"; }).join("") + " = " + nDiv(n)));
-      band('<span class="k">Prime factorization</span><span class="v"><span class="vv">' + fzH(fs) + "</span></span>", facts, "answer");
+      if (list.length > 1) facts.push(tx("factors-and-primes.p.writtenOut", { x: B(xH(list)) }));
+      facts.push(nS ? tx("factors-and-primes.p.factCount", { k: B(list.length), d: B(fs.length) }) : tx("factors-and-primes.p.factPrime", { n: C(n) }));
+      facts.push(tx("factors-and-primes.p.numFactors", { x: B(fs.map(function(f) { return "(" + f.e + "+1)"; }).join("") + " = " + nDiv(n)) }));
+      band('<span class="k">' + tx("factors-and-primes.p.band") + '</span><span class="v"><span class="vv">' + fzH(fs) + "</span></span>", facts, "answer");
       var run = 1,
         parts = [];
       fs.forEach(function(f, i) {
@@ -2554,8 +2543,8 @@
           run *= pw;
         }
       });
-      $("closer").innerHTML = "<b>Check:</b> multiply the primes back together — " + (parts.length > 1 ? parts.join("; ") : C(n) + " is already prime") +
-        " " + '<span class="ok">✓</span> And every one of them is prime, so nothing splits any further.';
+      $("closer").innerHTML = tx("factors-and-primes.p.check", { x: parts.length > 1 ? parts.join("; ") : tx("factors-and-primes.p.already", { n: C(n) }) }) +
+        " " + '<span class="ok">✓</span>' + tx("factors-and-primes.p.checkEnd");
       return items.length;
     }
 
@@ -2569,26 +2558,26 @@
       return { n: n, r: r, kind: found ? "composite" : "prime", tested: tested, found: found };
     }
     var TRICKS = {
-      51: "51 fools a lot of people: it’s odd and doesn’t end in 5. But 5 + 1 = 6, a multiple of 3, so 3 goes in: 51 = 3 × 17.",
-      57: "57 is a famous trick — it looks prime, but 5 + 7 = 12, so 3 goes in: 57 = 3 × 19.",
-      87: "87 looks prime, but 8 + 7 = 15, so 3 goes in: 87 = 3 × 29.",
-      91: "91 is the classic trick: it’s odd, doesn’t end in 5, and its digits add to 10, so it looks prime. But 7 × 13 = 91."
+      51: tx("factors-and-primes.trick.51"),
+      57: tx("factors-and-primes.trick.57"),
+      87: tx("factors-and-primes.trick.87"),
+      91: tx("factors-and-primes.trick.91")
     };
 
     function testHow(n, p) {
       if (p === 2 || p === 5) return rule(n, p).how;
       if (p === 3 && n >= 10) return rule(n, 3).how;
-      if (p === 11 && n >= 100) return rule(n, 11).how + (n % 11 ? "" : ", a multiple of 11");
+      if (p === 11 && n >= 100) return rule(n, 11).how + (n % 11 ? "" : tx("factors-and-primes.t.mult11"));
       return B(divT(n, p));
     }
 
     function testSay(n, p) {
       var hit = n % p === 0;
-      if (p === 2) return hit ? C(n) + " is even, so 2 goes in." : C(n) + " is odd, so 2 doesn’t go in — and no even number will.";
-      if (p === 3 && n >= 10) return "The digits add to " + B(sumText(n) + " = " + dsum(n)) + (hit ? ", a multiple of 3 — so 3 goes in." : ", not a multiple of 3 — so 3 doesn’t go in.");
-      if (p === 5) return C(n) + " ends in " + (n % 10) + (hit ? ", so 5 goes in." : ", not 0 or 5 — so 5 doesn’t go in.");
-      if (p === 11 && n >= 100) return "Take away and add the digits from the right: " + B(altText(n) + " = " + signed(altVal(n))) + (hit ? " — a multiple of 11, so 11 goes in." : " — not a multiple of 11, so 11 doesn’t go in.");
-      return B(divT(n, p)) + (hit ? " — it comes out even, so " + C(p) + " goes in." : " — a remainder, so " + C(p) + " doesn’t go in.");
+      if (p === 2) return tx(hit ? "factors-and-primes.t.say2yes" : "factors-and-primes.t.say2no", { n: C(n) });
+      if (p === 3 && n >= 10) return tx(hit ? "factors-and-primes.t.say3yes" : "factors-and-primes.t.say3no", { sum: B(sumText(n) + " = " + dsum(n)) });
+      if (p === 5) return tx(hit ? "factors-and-primes.t.say5yes" : "factors-and-primes.t.say5no", { n: C(n), d: n % 10 });
+      if (p === 11 && n >= 100) return tx(hit ? "factors-and-primes.t.say11yes" : "factors-and-primes.t.say11no", { alt: B(altText(n) + " = " + signed(altVal(n))) });
+      return tx(hit ? "factors-and-primes.t.sayPyes" : "factors-and-primes.t.sayPno", { div: B(divT(n, p)), p: C(p) });
     }
 
     function drawTest(P) {
@@ -2597,24 +2586,24 @@
         items = [],
         html = "";
       if (n < 2) {
-        html = sect('<b class="lead">' + (n === 0 ? "The factors of 0." : "The factors of 1.") + "</b>",
-          '<div class="bigline">' + (n === 0 ? "0 = 0 × 1 = 0 × 2 = 0 × 3 = …" : "1 = 1 × 1 — just one factor") + "</div>");
+        html = sect('<b class="lead">' + tx(n === 0 ? "factors-and-primes.t.lead0" : "factors-and-primes.t.lead1") + "</b>",
+          '<div class="bigline">' + tx(n === 0 ? "factors-and-primes.t.big0" : "factors-and-primes.t.big1") + "</div>");
         $("workHost").innerHTML = html;
         items.push({
-          n: "Step&nbsp;1",
+          n: tx("factors-and-primes.stepN", { n: 1 }),
           step: 0,
           lines: n === 0 ? [
-            ["m", "Rule", "A prime has exactly two different factors: 1 and itself. A composite has more than two."],
-            ["e", "Neither", "Every number goes into 0 (0 ÷ 7 = 0, 0 ÷ 100 = 0), so 0 has endless factors. It doesn’t fit either rule, so 0 is " + B("neither") + " prime nor composite."]
+            ["m", tx("factors-and-primes.tag.rule"), tx("factors-and-primes.t.rule")],
+            ["e", tx("factors-and-primes.tag.neither"), tx("factors-and-primes.t.neither0", { neither: B(tx("factors-and-primes.w.neither")) })]
           ] : [
-            ["m", "Rule", "A prime has exactly two different factors: 1 and itself. A composite has more than two."],
-            ["e", "Neither", "1’s only factor is 1 — just " + B("one") + " factor. That’s too few to be prime and too few to be composite, so 1 is " + B("neither") + "."]
+            ["m", tx("factors-and-primes.tag.rule"), tx("factors-and-primes.t.rule")],
+            ["e", tx("factors-and-primes.tag.neither"), tx("factors-and-primes.t.neither1", { one: B(tx("factors-and-primes.f1.one")), neither: B(tx("factors-and-primes.w.neither")) })]
           ],
-          aside: n === 1 ? "Why isn’t 1 prime? If it were, numbers would have many prime factorizations (6 = 2 × 3 = 1 × 2 × 3 = 1 × 1 × 2 × 3 …). Leaving 1 out keeps every number’s primes unique." : null
+          aside: n === 1 ? tx("factors-and-primes.t.why1") : null
         });
         writeLog(items);
-        band('<span class="k">' + C(n) + ' is</span><span class="v"><span class="word">Neither</span></span>', ["Not prime and not composite", n === 0 ? "Every number is a factor of 0" : "1 has only one factor"], "answer");
-        $("closer").innerHTML = "<b>Check:</b> the only numbers that are neither prime nor composite are 0 and 1 " + '<span class="ok">✓</span>';
+        band('<span class="k">' + tx("factors-and-primes.t.is", { n: C(n) }) + '</span><span class="v"><span class="word">' + tx("factors-and-primes.t.Neither") + "</span></span>", [tx("factors-and-primes.t.notEither"), tx(n === 0 ? "factors-and-primes.t.every0" : "factors-and-primes.t.only1")], "answer");
+        $("closer").innerHTML = tx("factors-and-primes.t.check01") + " " + '<span class="ok">✓</span>';
         return 1;
       }
       var rowsArr = [],
@@ -2653,40 +2642,38 @@
           var p = row[0],
             hit = n % p === 0;
           tb += "<tr" + (hit ? "" : ' class="miss"') + ds(stepOfRow[ri]) + '><td class="d">÷ ' + C(p) + '</td><td class="w">' + testHow(n, p) + "</td><td>" +
-            verdict(hit, "✓ goes in", "✗") + "</td></tr>";
+            verdict(hit, tx("factors-and-primes.v.goesIn"), "✗") + "</td></tr>";
         } else {
           tb += '<tr class="miss"' + ds(stepOfRow[ri]) + '><td class="d">÷ ' + C(row[0]) + " … " + C(row[row.length - 1]) + '</td><td class="w">' +
-            row.length + " primes: " + row.map(C).join(", ") + "</td><td>" + verdict(false, "", "✗ none") + "</td></tr>";
+            tx("factors-and-primes.t.primesRow", { k: row.length, list: row.map(C).join(", ") }) + "</td><td>" + verdict(false, "", tx("factors-and-primes.v.none")) + "</td></tr>";
         }
       });
       var stopStep = steps.length + 1;
       var nx = T.length ? nextPrime(T[T.length - 1]) : 2;
-      if (sol.kind === "prime") tb += '<tr class="miss"' + ds(T.length ? stopStep : 0) + '><td class="d">÷ ' + C(nx) + '</td><td class="w">' + C(nx) + " × " + C(nx) + " = " +
-        B(C(nx * nx)) + " is past " + C(n) + " — stop</td><td>" + verdict(true, "prime", "", "yes") + "</td></tr>";
-      html += sect('<b class="lead">Divide by primes, up to √' + C(n) + ".</b> " + (T.length ? "A prime that goes in evenly means " + C(n) +
-          " has another factor besides 1 and itself." : "There’s nothing to test: even 2 × 2 = 4 is bigger than " + C(n) + "."),
+      if (sol.kind === "prime") tb += '<tr class="miss"' + ds(T.length ? stopStep : 0) + '><td class="d">÷ ' + C(nx) + '</td><td class="w">' + tx("factors-and-primes.t.pastStop", { nx: C(nx), sq: B(C(nx * nx)), n: C(n) }) +
+        "</td><td>" + verdict(true, tx("factors-and-primes.w.prime"), "", "yes") + "</td></tr>";
+      html += sect(tx("factors-and-primes.t.cap", { n: C(n) }) + tx(T.length ? "factors-and-primes.t.capMeans" : "factors-and-primes.t.capNothing", { n: C(n) }),
         '<div class="xscroll"><table class="tests"><tbody>' + tb + "</tbody></table></div>");
       if (sol.kind === "composite") html += sect("", '<div class="bigline">' + C(n) + " = " + '<span class="eqk">' + C(sol.found) + " × " + C(n / sol.found) + "</span></div>" +
-        '<div class="tapecap">So ' + C(n) + " has factors besides 1 and itself. All of them: " + divisors(n).map(C).join(", ") + ". Its primes: " + fzH(factorize(n)) + ".</div>", stopStep - 1);
+        '<div class="tapecap">' + tx("factors-and-primes.t.allOf", { n: C(n), all: divisors(n).map(C).join(", "), f: fzH(factorize(n)) }) + "</div>", stopStep - 1);
       $("workHost").innerHTML = html;
 
       var r = sol.r;
       items.push({
-        n: "Step&nbsp;1",
+        n: tx("factors-and-primes.stepN", { n: 1 }),
         step: 0,
         lines: [
-            ["m", "Plan", "A prime has exactly two factors: 1 and itself. To test " + C(n) + ", divide by the primes 2, 3, 5, 7, … " +
-              (T.length ? "— but only up to " + stopPhrase(n) + "." : "— but even 2 × 2 = 4 is already bigger than " + C(n) + ", so there’s nothing to try.")
+            ["m", tx("factors-and-primes.tag.plan"), tx("factors-and-primes.t.plan", { n: C(n) }) +
+              (T.length ? tx("factors-and-primes.t.planUpTo", { stop: stopPhrase(n) }) : tx("factors-and-primes.t.planNothing", { n: C(n) }))
             ]
           ]
           .concat(n === 2 ? [
-              ["a", "Prime", "2’s only factors are 1 and 2, so it’s prime — the only even prime. Every other even number has 2 as a factor."]
+              ["a", tx("factors-and-primes.tag.prime"), tx("factors-and-primes.t.two")]
             ] :
             !T.length ? [
-              ["a", "Prime", "Nothing can go in, so " + C(n) + "’s only factors are 1 and itself: it’s " + B("prime") + "."]
+              ["a", tx("factors-and-primes.tag.prime"), tx("factors-and-primes.t.nothingIn", { n: C(n), prime: B(tx("factors-and-primes.w.prime")) })]
             ] : []),
-        aside: T.length ? "Why only primes? If a bigger number like 9 went in, its prime factor 3 would have gone in first. And why stop at √" + C(n) +
-          "? If " + C(n) + " = a × b, the smaller of a and b can’t be bigger than √" + C(n) + ". So if nothing up to there goes in, nothing bigger will either." : null
+        aside: T.length ? tx("factors-and-primes.t.whyPrimes", { n: C(n) }) : null
       });
       steps.forEach(function(rowIdx, si) {
         var lines = [],
@@ -2695,42 +2682,39 @@
           var row = rowsArr[ri];
           if (row.length === 1) {
             var p = row[0];
-            lines.push([n % p === 0 ? "p" : "m", n % p === 0 ? "Found" : "÷ " + p, testSay(n, p)]);
-          } else lines.push(["m", "Test", "Divide by " + listAnd(row.map(C)) + ": none of them go in evenly."]);
+            lines.push([n % p === 0 ? "p" : "m", n % p === 0 ? tx("factors-and-primes.tag.found") : "÷ " + p, testSay(n, p)]);
+          } else lines.push(["m", tx("factors-and-primes.tag.test"), tx("factors-and-primes.t.divideBy", { list: listAnd(row.map(C)) })]);
         });
         if (sol.found && si === steps.length - 1) {
-          lines.push(["a", "Answer", B(C(n) + " = " + C(sol.found) + " × " + C(n / sol.found)) + ", so " + C(n) + " has factors besides 1 and itself — it’s " + B("composite") + "."]);
+          lines.push(["a", tx("factors-and-primes.tag.answer"), tx("factors-and-primes.t.composite", { eq: B(C(n) + " = " + C(sol.found) + " × " + C(n / sol.found)), n: C(n), composite: B(tx("factors-and-primes.w.composite")) })]);
           if (TRICKS[n]) aside = TRICKS[n];
-          else if (n % 2 && n % 3 && n % 5 && n < 1000) aside = C(n) + " can look prime — it’s odd, its digits don’t add to a multiple of 3, and it doesn’t end in 5. That’s why you keep testing past 5.";
+          else if (n % 2 && n % 3 && n % 5 && n < 1000) aside = tx("factors-and-primes.t.looksPrime", { n: C(n) });
         }
-        items.push({ n: "Step&nbsp;" + (si + 2), step: si + 1, lines: lines, aside: aside });
+        items.push({ n: tx("factors-and-primes.stepN", { n: si + 2 }), step: si + 1, lines: lines, aside: aside });
       });
       if (sol.kind === "prime" && T.length) {
         items.push({
-          n: "Step&nbsp;" + (stopStep + 1),
+          n: tx("factors-and-primes.stepN", { n: stopStep + 1 }),
           step: stopStep,
           lines: [
-            ["e", "Stop", "The next prime is " + C(nx) + ", and " + C(nx) + " × " + C(nx) + " = " + C(nx * nx) +
-              " is more than " + C(n) + " — nothing is left to try."
-            ],
-            ["a", "Answer", "No prime went in evenly, so " + C(n) + "’s only factors are 1 and " + C(n) + ". It’s " + B("prime") + "."]
+            ["e", tx("factors-and-primes.tag.stop"), tx("factors-and-primes.t.stop", { nx: C(nx), sq: C(nx * nx), n: C(n) })],
+            ["a", tx("factors-and-primes.tag.answer"), tx("factors-and-primes.t.prime", { n: C(n), prime: B(tx("factors-and-primes.w.prime")) })]
           ]
         });
       }
       writeLog(items);
       var facts = [];
       if (sol.kind === "composite") {
-        facts.push("Smallest prime factor: " + B(C(sol.found)) + " — " + C(n) + " = " + C(sol.found) + " × " + C(n / sol.found));
-        facts.push("Prime factorization: " + B(fzH(factorize(n))));
+        facts.push(tx("factors-and-primes.t.smallest", { p: B(C(sol.found)), n: C(n), a: C(sol.found), b: C(n / sol.found) }));
+        facts.push(tx("factors-and-primes.pf", { f: B(fzH(factorize(n))) }));
       } else {
-        facts.push("Its only factors: " + B("1") + " and " + B(C(n)));
-        facts.push(T.length ? "Tested " + (T.length <= 8 ? listAnd(T.map(C)) : T.length + " primes, 2 to " + C(T[T.length - 1])) + " — every prime up to √" + C(n) : "Nothing to test below √" + C(n));
+        facts.push(tx("factors-and-primes.t.onlyFactors", { one: B("1"), n: B(C(n)) }));
+        facts.push(T.length ? tx("factors-and-primes.t.tested", { what: T.length <= 8 ? listAnd(T.map(C)) : tx("factors-and-primes.t.testedK", { k: T.length, last: C(T[T.length - 1]) }), n: C(n) }) : tx("factors-and-primes.t.nothingBelow", { n: C(n) }));
       }
-      band('<span class="k">' + C(n) + ' is</span><span class="v"><span class="word">' + (sol.kind === "prime" ? "Prime" : "Composite") + "</span></span>", facts, "answer");
+      band('<span class="k">' + tx("factors-and-primes.t.is", { n: C(n) }) + '</span><span class="v"><span class="word">' + tx(sol.kind === "prime" ? "factors-and-primes.t.Prime" : "factors-and-primes.t.Composite") + "</span></span>", facts, "answer");
       $("closer").innerHTML = sol.kind === "composite" ?
-        "<b>Check:</b> " + C(sol.found) + " × " + C(n / sol.found) + " = " + C(n) + ' <span class="ok">✓</span> — a factor pair other than 1 × ' + C(n) + ", so " + C(n) + " is composite." :
-        "<b>Check:</b> any factor pair of " + C(n) + " would need one number no bigger than √" + C(n) + (T.length ? ", and every prime up to there left a remainder " : " ") +
-        '<span class="ok">✓</span> So ' + C(n) + " is prime.";
+        tx("factors-and-primes.t.checkComp", { a: C(sol.found), b: C(n / sol.found), n: C(n), ok: ' <span class="ok">✓</span>' }) :
+        tx(T.length ? "factors-and-primes.t.checkPrime" : "factors-and-primes.t.checkPrime0", { n: C(n), ok: '<span class="ok">✓</span>' });
       return items.length;
     }
 
@@ -2850,7 +2834,7 @@
         out += '<text class="vlab c0" x="' + f1(x1 - 0.35 * r) + '" y="' + (top - 10) + '" text-anchor="middle">' + C(nums[0]) + "</text>";
         out += '<text class="vlab c1" x="' + f1(x2 + 0.35 * r) + '" y="' + (top - 10) + '" text-anchor="middle">' + C(nums[1]) + "</text>";
         out += drawToks(tA, x1 - 0.4 * r, cy, "vt") + drawToks(tB, x2 + 0.4 * r, cy, "vt") + drawToks(tM, (x1 + x2) / 2, cy, "vt mid");
-        if (!(R[3] || []).length) out += '<text class="vnone" x="' + f1((x1 + x2) / 2) + '" y="' + f1(cy + 5) + '" text-anchor="middle">none</text>';
+        if (!(R[3] || []).length) out += '<text class="vnone" x="' + f1((x1 + x2) / 2) + '" y="' + f1(cy + 5) + '" text-anchor="middle">' + tx("factors-and-primes.g.none") + "</text>";
       } else {
         var keys = [1, 2, 4, 3, 5, 6, 7],
           tk = {},
@@ -2898,10 +2882,10 @@
         out += '<text class="vlab c1" x="' + f1(Bx + 0.3 * r3) + '" y="' + (tp - 10) + '" text-anchor="middle">' + C(nums[1]) + "</text>";
         out += '<text class="vlab c2" x="' + f1(Cx) + '" y="' + f1(Cy + r3 + 22) + '" text-anchor="middle">' + C(nums[2]) + "</text>";
         keys.forEach(function(k) { out += drawToks(tk[k], anc[k][0], anc[k][1], k === 7 ? "vt mid" : "vt"); });
-        if (!(R[7] || []).length) out += '<text class="vnone" x="' + f1(Gx) + '" y="' + f1(Gy + 5) + '" text-anchor="middle">none</text>';
+        if (!(R[7] || []).length) out += '<text class="vnone" x="' + f1(Gx) + '" y="' + f1(Gy + 5) + '" text-anchor="middle">' + tx("factors-and-primes.g.none") + "</text>";
       }
-      return '<svg class="venn" width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="Venn diagram of the prime factors: ' +
-        'shared primes in the middle">' + out + "</svg>";
+      return '<svg class="venn" width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="' +
+        tx("factors-and-primes.g.vennLabel") + '">' + out + "</svg>";
     }
 
     function tokList(arr, cls) { return '<span class="toks">' + arr.map(function(x) { return '<span class="tk' + (cls(x) ? " " + cls(x) : "") + '">' + C(x) + "</span>"; }).join("") + "</span>"; }
@@ -2925,7 +2909,7 @@
       if (facOK) {
         stF = st++;
         var common = dl[0].filter(function(d) { return dl.every(function(l) { return l.indexOf(d) >= 0; }); });
-        html += sect('<b class="lead">Listing the factors.</b> The ones on every list are the <i>common</i> factors; the greatest is the GCF.',
+        html += sect(tx("factors-and-primes.g.factCap"),
           '<div class="lists">' + nums.map(function(x, i) {
             return '<div class="lrow"><span class="ln">' + C(x) + "</span>" + tokList(dl[i], function(d) {
               return d === g ? "best" : common.indexOf(d) >= 0 ? "cm" : "";
@@ -2935,10 +2919,11 @@
         items.push({
           step: stF,
           lines: [
-            ["m", "List", "List the factors of each number" + (longL ? " (see the lists)" : ": " + nums.map(function(x, i) { return C(x) + ": " + dl[i].map(C).join(", "); }).join("; ")) +
-              ". The ones on every list are " + listAnd(common.map(function(x) { return B(C(x)); })) + " — the common factors."
-            ],
-            ["p", "GCF", "The greatest of them is " + B(C(g)) + ", so the GCF is " + C(g) + "."]
+            ["m", tx("factors-and-primes.tag.list"), tx("factors-and-primes.g.listFactors", {
+              lists: longL ? tx("factors-and-primes.g.seeLists") : ": " + nums.map(function(x, i) { return C(x) + ": " + dl[i].map(C).join(", "); }).join("; "),
+              common: listAnd(common.map(function(x) { return B(C(x)); }))
+            })],
+            ["p", tx("factors-and-primes.tag.gcf"), tx("factors-and-primes.g.greatest", { g: B(C(g)), gp: C(g) })]
           ]
         });
       }
@@ -2950,7 +2935,7 @@
         return o;
       });
       var inAll = function(v) { return mlists.every(function(l) { return l.some(function(y) { return y === v; }); }); };
-      html += sect('<b class="lead">Listing the multiples.</b> Count up by each number. ' + (multOK ? "The first number on every list is the LCM." : "These lists get long before they meet, so they’re cut short here."),
+      html += sect(tx("factors-and-primes.g.multCap") + tx(multOK ? "factors-and-primes.g.multFirst" : "factors-and-primes.g.multLong"),
         '<div class="lists">' + nums.map(function(x, i) {
           return '<div class="lrow"><span class="ln">' + C(x) + "</span>" + '<span class="toks">' + mlists[i].map(function(v) {
             var c = v === L ? "best" : inAll(v) ? "cm" : "";
@@ -2960,115 +2945,111 @@
       items.push({
         step: stM,
         lines: multOK ? [
-          ["m", "List", "Count up by " + listAnd(nums.map(function(x) { return C(x) + "s"; })) + ": " + nums.map(function(x, i) { return mlists[i].slice(0, 6).map(function(v) { return C(v.toString()); }).join(", ") + (mlists[i].length > 6 ? ", …" : ""); }).join("; ") + "."],
-          ["e", "LCM", "The first number that shows up on every list is " + B(Lt) + " — the least common multiple."]
+          ["m", tx("factors-and-primes.tag.list"), tx("factors-and-primes.g.countUp", { by: listAnd(nums.map(function(x) { return tx("factors-and-primes.g.byN", { n: C(x) }); })), lists: nums.map(function(x, i) { return mlists[i].slice(0, 6).map(function(v) { return C(v.toString()); }).join(", ") + (mlists[i].length > 6 ? ", …" : ""); }).join("; ") })],
+          ["e", tx("factors-and-primes.tag.lcm"), tx("factors-and-primes.g.firstShows", { l: B(Lt) })]
         ] : [
-          ["m", "List", "Counting up by " + andN + " would take a long time before the lists meet — the first match is " + (L > 100000n ? "far" : "a long way") + " down. The prime method below gets there faster."]
+          ["m", tx("factors-and-primes.tag.list"), tx(L > 100000n ? "factors-and-primes.g.tooLongFar" : "factors-and-primes.g.tooLong", { nums: andN })]
         ]
       });
       stP = st++;
-      html += sect('<b class="lead">Break each number into primes.</b>', nums.map(function(x, i) {
-        return '<div class="bigline">' + C(x) + " = " + '<span class="pr">' + (x === 1 ? "1 (no primes)" : xH(expand(sol.fsx[i]))) + "</span></div>";
+      html += sect(tx("factors-and-primes.g.primesCap"), nums.map(function(x, i) {
+        return '<div class="bigline">' + C(x) + " = " + '<span class="pr">' + (x === 1 ? tx("factors-and-primes.g.noPrimes") : xH(expand(sol.fsx[i]))) + "</span></div>";
       }).join(""), stP);
       items.push({
         step: stP,
         lines: [
-          ["m", "Primes", "Break each number into primes (a quick factor tree for each): " + nums.map(function(x, i) {
-            return B(C(x) + " = " + (x === 1 ? "1" : fzH(sol.fsx[i])));
-          }).join(", ") + "." + (nums.indexOf(1) >= 0 ? " 1 has no prime factors at all." : "")]
+          ["m", tx("factors-and-primes.tag.primes"), tx("factors-and-primes.g.breakEach", {
+            list: nums.map(function(x, i) {
+              return B(C(x) + " = " + (x === 1 ? "1" : fzH(sol.fsx[i])));
+            }).join(", ")
+          }) + (nums.indexOf(1) >= 0 ? tx("factors-and-primes.g.oneNone") : "")]
         ]
       });
       stV = st++;
-      html += sect('<b class="lead">The Venn diagram.</b> Each circle holds one number’s primes. Primes they share go where the circles overlap, matched up one copy at a time' +
-        (k === 3 ? "; the very middle holds the primes all three share." : ".") + " GCF = the middle. LCM = everything.",
+      html += sect(tx(k === 3 ? "factors-and-primes.g.vennCap3" : "factors-and-primes.g.vennCap2"),
         '<div class="xscroll">' + vennSVG(sol) + "</div>", stV);
-      var side = function(i) { var l = sol.R[1 << i] || []; return C(nums[i]) + (l.length ? " keeps " + xH(l) : " has nothing left over"); };
+      var side = function(i) { var l = sol.R[1 << i] || []; return l.length ? tx("factors-and-primes.g.keeps", { n: C(nums[i]), x: xH(l) }) : tx("factors-and-primes.g.nothingLeft", { n: C(nums[i]) }); };
       var vline;
-      if (k === 2) vline = "Put each number’s primes in its circle. Match them up one at a time: each prime they " + B("share") + " goes in the overlap, once. " +
-        (sol.mid.length ? "The middle gets " + listAnd(sol.mid.map(function(p) { return B(C(p)); })) + "." : "Here they share no primes, so the middle stays empty.") +
-        " What’s left stays on its own side: " + side(0) + "; " + side(1) + ".";
+      if (k === 2) vline = tx("factors-and-primes.g.venn2", { share: B(tx("factors-and-primes.g.share")) }) +
+        (sol.mid.length ? tx("factors-and-primes.g.middleGets", { list: listAnd(sol.mid.map(function(p) { return B(C(p)); })) }) : tx("factors-and-primes.g.middleEmpty")) +
+        tx("factors-and-primes.g.ownSide", { a: side(0), b: side(1) });
       else {
         var pairTxt = [
           [3, 0, 1],
           [5, 0, 2],
           [6, 1, 2]
         ].filter(function(t) { return (sol.R[t[0]] || []).length; }).map(function(t) {
-          return xH(sol.R[t[0]]) + " (just " + C(nums[t[1]]) + " and " + C(nums[t[2]]) + ")";
+          return tx("factors-and-primes.g.justTwo", { x: xH(sol.R[t[0]]), a: C(nums[t[1]]), b: C(nums[t[2]]) });
         });
-        vline = "Put each number’s primes in its circle, matching shared ones up one copy at a time. The very middle — primes all three share — gets " +
-          (sol.mid.length ? listAnd(sol.mid.map(function(p) { return B(C(p)); })) : "nothing") + "." +
-          (pairTxt.length ? " Where only two circles overlap: " + listAnd(pairTxt) + "." : "") +
-          " The rest stays in one circle: " + [0, 1, 2].map(side).join("; ") + ".";
+        vline = tx("factors-and-primes.g.venn3", { mid: sol.mid.length ? listAnd(sol.mid.map(function(p) { return B(C(p)); })) : tx("factors-and-primes.g.nothing") }) +
+          (pairTxt.length ? tx("factors-and-primes.g.onlyTwo", { list: listAnd(pairTxt) }) : "") +
+          tx("factors-and-primes.g.rest", { list: [0, 1, 2].map(side).join("; ") });
       }
       items.push({
         step: stV,
         lines: [
-          ["m", "Venn", vline]
+          ["m", tx("factors-and-primes.tag.venn"), vline]
         ]
       });
       stG = st++;
-      html += sect("", '<div class="bigline"><span class="eqk">GCF</span> = ' + (sol.mid.length ? xH(sol.mid) + " = " : "") + B(C(g)) + "</div>" +
-        (sol.mid.length ? "" : '<div class="tapecap">Nothing in the middle, so the GCF is 1.</div>'), stG);
+      html += sect("", '<div class="bigline"><span class="eqk">' + tx("factors-and-primes.tag.gcf") + "</span> = " + (sol.mid.length ? xH(sol.mid) + " = " : "") + B(C(g)) + "</div>" +
+        (sol.mid.length ? "" : '<div class="tapecap">' + tx("factors-and-primes.g.gcf1cap") + "</div>"), stG);
       items.push({
         step: stG,
         lines: [
-          ["p", "GCF", sol.mid.length ?
-            "The GCF is the product of the middle: " + B(xH(sol.mid) + " = " + C(g)) + ". Those primes are in " + (k === 2 ? "both numbers" : "all three numbers") + ", so " + C(g) +
-            " goes into each one — and nothing bigger can, because no other prime is shared by " + (k === 2 ? "both" : "all three") + "." :
-            "Nothing is in the middle — no prime goes into " + (k === 2 ? "both" : "all three") + " — so the GCF is " + B("1") + ". Numbers like this are called <strong>relatively prime</strong>."
+          ["p", tx("factors-and-primes.tag.gcf"), sol.mid.length ?
+            tx(k === 2 ? "factors-and-primes.g.gcfMid2" : "factors-and-primes.g.gcfMid3", { eq: B(xH(sol.mid) + " = " + C(g)), g: C(g) }) :
+            tx(k === 2 ? "factors-and-primes.g.gcfNone2" : "factors-and-primes.g.gcfNone3", { one: B("1") })
           ]
         ],
-        aside: k === 3 && [3, 5, 6].some(function(t) { return (sol.R[t] || []).length; }) ? "With three numbers, the GCF only uses the very middle. A prime shared by just two of them isn’t in the third, so it can’t be part of a factor of all three." : null
+        aside: k === 3 && [3, 5, 6].some(function(t) { return (sol.R[t] || []).length; }) ? tx("factors-and-primes.g.three") : null
       });
       stL = st++;
-      html += sect("", '<div class="bigline"><span class="eqk">LCM</span> = ' + (sol.everything.length > 1 ? xH(sol.everything) + " = " : "") + B(Lt) + "</div>", stL);
+      html += sect("", '<div class="bigline"><span class="eqk">' + tx("factors-and-primes.tag.lcm") + "</span> = " + (sol.everything.length > 1 ? xH(sol.everything) + " = " : "") + B(Lt) + "</div>", stL);
       items.push({
         step: stL,
         lines: [
-          ["e", "LCM", "The LCM is the product of <strong>everything</strong>" + " in the diagram: " + B((sol.everything.length ? xH(sol.everything) : "1") + " = " + Lt) +
-            ". Every circle’s primes are all there, so each number goes into it — and nothing is doubled up, so it’s the least."
-          ]
+          ["e", tx("factors-and-primes.tag.lcm"), tx("factors-and-primes.g.lcmAll", { eq: B((sol.everything.length ? xH(sol.everything) : "1") + " = " + Lt) })]
         ],
-        aside: "Word problems: splitting things into equal groups with nothing left over (the most bags, the biggest group size) → <strong>GCF</strong>. " +
-          "Something that repeats, and you want when it happens together again (two buses, two blinking lights, hot dogs and buns in different-sized packs) → <strong>LCM</strong>."
+        aside: tx("factors-and-primes.g.wordProblems")
       });
       stK = st++;
       var ck = sol.cake,
         side1 = ck.rows.filter(function(r) { return r.all; }).map(function(r) { return r.p; }),
         side2 = ck.rows.filter(function(r) { return !r.all; }).map(function(r) { return r.p; });
-      html += sect('<b class="lead">The ladder (cake) method.</b> Divide every number by a prime that goes into all of them, and repeat. ' +
-        "GCF = the primes down the side. LCM = the side times the bottom row." +
-        (side2.length ? " Orange rows divide just two of the three (the third comes down unchanged) — they count for the LCM, not the GCF." : ""),
+      html += sect(tx("factors-and-primes.g.cakeCap") + (side2.length ? tx("factors-and-primes.g.cakeOrange") : ""),
         '<div class="xscroll">' + ladderHTML(ck.rows, ck.bottom, function() { return stK; }, stK) + "</div>", stK);
       var ktxt;
-      if (!ck.rows.length) ktxt = "The ladder: no prime goes into " + (k === 2 ? "both " : "all of ") + andN + ", so it can’t even start. GCF = " + B("1") + ", and LCM = " +
-        B(xH(nums) + " = " + Lt) + ".";
-      else ktxt = "The ladder: " + ck.rows.map(function(rw) { return "÷ " + rw.p + " → " + rw.vals.map(function(v, j) { return C(rw.hit && !rw.hit[j] ? v : v / rw.p); }).join(", "); }).join("; ") +
-        ". " + (side2.length ? "No prime goes into two of them now, so stop." : "Nothing goes into " + (k === 2 ? "both" : "all") + " of " + listAnd(ck.bottom.map(C)) + ", so stop.") +
-        (side1.length ? " GCF = the " + (side2.length ? "rows that divide all three: " : "side: ") + B(xH(side1) + " = " + C(g)) : " No row divides all three, so GCF = " + B("1")) + ". LCM = side × bottom: " +
-        B(xH(side1.concat(side2).concat(ck.bottom.filter(function(v) { return v > 1; }))) + " = " + Lt) + ".";
+      if (!ck.rows.length) ktxt = tx(k === 2 ? "factors-and-primes.g.cakeNone2" : "factors-and-primes.g.cakeNone3", { nums: andN, one: B("1"), l: B(xH(nums) + " = " + Lt) });
+      else ktxt = tx("factors-and-primes.g.cake", {
+          rows: ck.rows.map(function(rw) { return "÷ " + rw.p + " → " + rw.vals.map(function(v, j) { return C(rw.hit && !rw.hit[j] ? v : v / rw.p); }).join(", "); }).join("; ")
+        }) +
+        (side2.length ? tx("factors-and-primes.g.cakeStop3") : tx(k === 2 ? "factors-and-primes.g.cakeStopBoth" : "factors-and-primes.g.cakeStopAll", { list: listAnd(ck.bottom.map(C)) })) +
+        (side1.length ? tx(side2.length ? "factors-and-primes.g.cakeGcfRows" : "factors-and-primes.g.cakeGcfSide", { x: B(xH(side1) + " = " + C(g)) }) : tx("factors-and-primes.g.cakeGcfNone", { one: B("1") })) +
+        tx("factors-and-primes.g.cakeLcm", { x: B(xH(side1.concat(side2).concat(ck.bottom.filter(function(v) { return v > 1; }))) + " = " + Lt) });
       items.push({
         step: stK,
         lines: [
-          ["m", "Ladder", ktxt]
+          ["m", tx("factors-and-primes.tag.ladder"), ktxt]
         ],
-        aside: k === 2 ? "For two numbers, GCF × LCM = the two numbers multiplied: " + B(C(g) + " × " + Lt + " = " + C((BigInt(g) * L).toString())) + " and " +
-          B(C(nums[0]) + " × " + C(nums[1]) + " = " + C(prodB(nums).toString())) + ". Handy for checking — or for finding the LCM fast: " + B(C(nums[0]) + " × " + C(nums[1]) + " ÷ " + C(g)) + "." : null
+        aside: k === 2 ? tx("factors-and-primes.g.gxl", {
+          a: B(C(g) + " × " + Lt + " = " + C((BigInt(g) * L).toString())),
+          b: B(C(nums[0]) + " × " + C(nums[1]) + " = " + C(prodB(nums).toString())),
+          c: B(C(nums[0]) + " × " + C(nums[1]) + " ÷ " + C(g))
+        }) : null
       });
-      items.forEach(function(it, i) { it.n = "Step&nbsp;" + (i + 1); });
+      items.forEach(function(it, i) { it.n = tx("factors-and-primes.stepN", { n: i + 1 }); });
       $("workHost").innerHTML = html;
       writeLog(items);
 
       var facts = nums.map(function(x, i) { return C(x) + " = " + B(x === 1 ? "1" : fzH(sol.fsx[i])); });
-      if (g === 1) facts.push(andN + " are <strong>relatively prime</strong> — no common factor but 1");
-      if (k === 2) facts.push("GCF × LCM = " + B(C(nums[0]) + " × " + C(nums[1])) + " = " + B(C(prodB(nums).toString())));
-      band('<span class="k">Answer</span><span class="v"><span class="wk">GCF</span>' + C(g) + '<span class="sep">·</span><span class="wk">LCM</span>' + Lt + "</span>", facts, "answer");
+      if (g === 1) facts.push(tx("factors-and-primes.g.relPrime", { nums: andN }));
+      if (k === 2) facts.push(tx("factors-and-primes.g.factGxl", { a: B(C(nums[0]) + " × " + C(nums[1])), b: B(C(prodB(nums).toString())) }));
+      band('<span class="k">' + tx("factors-and-primes.tag.answer") + '</span><span class="v"><span class="wk">' + tx("factors-and-primes.tag.gcf") + "</span>" + C(g) + '<span class="sep">·</span><span class="wk">' + tx("factors-and-primes.tag.lcm") + "</span>" + Lt + "</span>", facts, "answer");
       var qg = nums.map(function(x) { return x / g; }),
         ql = nums.map(function(x) { return L / BigInt(x); });
-      $("closer").innerHTML = '<div class="ck"><b>Check the GCF:</b> ' + nums.map(function(x, i) { return C(x) + " ÷ " + C(g) + " = " + C(qg[i]); }).join(", ") +
-        " — all whole, and " + listAnd(qg.map(C)) + " share no factor but 1, so nothing bigger than " + C(g) + ' works <span class="ok">✓</span></div>' +
-        '<div class="ck"><b>Check the LCM:</b> ' + nums.map(function(x, i) { return Lt + " ÷ " + C(x) + " = " + C(ql[i].toString()); }).join(", ") +
-        " — all whole, and " + listAnd(ql.map(function(v) { return C(v.toString()); })) + " share no factor but 1, so no smaller common multiple exists " + '<span class="ok">✓</span></div>';
+      $("closer").innerHTML = '<div class="ck">' + tx("factors-and-primes.g.checkGcf", { divs: nums.map(function(x, i) { return C(x) + " ÷ " + C(g) + " = " + C(qg[i]); }).join(", "), qs: listAnd(qg.map(C)), g: C(g) }) + ' <span class="ok">✓</span></div>' +
+        '<div class="ck">' + tx("factors-and-primes.g.checkLcm", { divs: nums.map(function(x, i) { return Lt + " ÷ " + C(x) + " = " + C(ql[i].toString()); }).join(", "), qs: listAnd(ql.map(function(v) { return C(v.toString()); })) }) + " " + '<span class="ok">✓</span></div>';
       return items.length;
     }
 
@@ -3084,22 +3065,22 @@
         tb = "";
       res.forEach(function(r, i) {
         tb += "<tr" + (r.ok ? "" : ' class="miss"') + ds(i) + '><td class="d">÷ ' + r.d + '</td><td class="w">' + r.how + "</td><td>" +
-          verdict(r.ok, "✓ yes", "✗ no", "yes", "no") + "</td></tr>";
+          verdict(r.ok, tx("factors-and-primes.v.yes"), tx("factors-and-primes.v.no"), "yes", "no") + "</td></tr>";
       });
-      var html = sect('<b class="lead">Rule by rule.</b> Each rule looks at the digits instead of doing the whole division.',
+      var html = sect(tx("factors-and-primes.d.ruleCap"),
         '<div class="xscroll"><table class="tests"><tbody>' + tb + "</tbody></table></div>");
-      html += sect('<b class="lead">The scorecard.</b>', '<div class="xscroll"><table class="dgrid"><thead><tr><th>÷</th>' + DIVS.map(function(d) { return "<th>" + d + "</th>"; }).join("") +
+      html += sect(tx("factors-and-primes.d.scoreCap"), '<div class="xscroll"><table class="dgrid"><thead><tr><th>÷</th>' + DIVS.map(function(d) { return "<th>" + d + "</th>"; }).join("") +
         "</tr></thead><tbody><tr><th>" + C(n) + "</th>" + res.map(function(r) { return '<td class="' + (r.ok ? "y" : "n") + '">' + (r.ok ? "✓" : "✗") + "</td>"; }).join("") +
         "</tr></tbody></table></div>", DIVS.length);
       $("workHost").innerHTML = html;
       var ASIDE = {
-        3: "Why does adding the digits work? 10, 100 and 1,000 are each 1 more than a multiple of 9 (9, 99, 999 — and those are multiples of 3 too). So every digit leaves just itself behind as a remainder; add them up and you have what’s left over.",
-        4: "Why only the last two digits? 100 = 4 × 25, so the hundreds, thousands and up always split evenly by 4. Only the last two digits can leave a remainder. (For 8 it’s the last three, since 1,000 = 8 × 125.)",
-        11: "Why does it work? 10 is one less than 11, so each step to the left flips between “one more” and “one less” than a multiple of 11 — that’s the take-away-then-add pattern."
+        3: tx("factors-and-primes.d.why3"),
+        4: tx("factors-and-primes.d.why4"),
+        11: tx("factors-and-primes.d.why11")
       };
       res.forEach(function(r, i) {
         items.push({
-          n: "Step&nbsp;" + (i + 1),
+          n: tx("factors-and-primes.stepN", { n: i + 1 }),
           step: i,
           lines: [
             [r.ok ? "a" : "e", "÷ " + r.d, r.say]
@@ -3110,33 +3091,32 @@
       var yes = res.filter(function(r) { return r.ok; }).map(function(r) { return r.d; }),
         no = res.filter(function(r) { return !r.ok; }).map(function(r) { return r.d; });
       items.push({
-        n: "Step&nbsp;" + (DIVS.length + 1),
+        n: tx("factors-and-primes.stepN", { n: DIVS.length + 1 }),
         step: DIVS.length,
         lines: [
-          ["a", "Sum up", yes.length ?
-            C(n) + " is divisible by " + B(listAnd(yes.map(String))) + (no.length ? ", but not by " + listOr(no.map(String)) + "." : " — every one of them!") :
-            "None of the rules say yes — " + C(n) + " isn’t divisible by any of " + listOr(DIVS.map(String)) + "."
+          ["a", tx("factors-and-primes.tag.sumUp"), yes.length ?
+            tx(no.length ? "factors-and-primes.d.sumSome" : "factors-and-primes.d.sumAll", { n: C(n), yes: B(listAnd(yes.map(String))), no: listOr(no.map(String)) }) :
+            tx("factors-and-primes.d.sumNone", { n: C(n), all: listOr(DIVS.map(String)) })
           ]
         ],
-        aside: "There’s a rule for 7 too, but it’s clumsy — for 7 it’s easier to just divide."
+        aside: tx("factors-and-primes.d.seven")
       });
       writeLog(items);
       var facts = [];
-      if (no.length && yes.length) facts.push("Not by " + B(listOr(no.map(String))));
-      facts.push("Prime factorization: " + B(n === 1 ? "1" : fzH(factorize(n))));
-      band('<span class="k">' + C(n) + ' is divisible by</span><span class="v">' + (yes.length ? yes.join(", ") : '<span class="word">none of them</span>') + "</span>", facts, "answer");
-      $("closer").innerHTML = "<b>Check by really dividing:</b> " + res.map(function(r) { return B(divT(n, r.d)); }).join(" · ") +
-        " — the ✓s divide with no remainder " + '<span class="ok">✓</span>';
+      if (no.length && yes.length) facts.push(tx("factors-and-primes.d.notBy", { no: B(listOr(no.map(String))) }));
+      facts.push(tx("factors-and-primes.pf", { f: B(n === 1 ? "1" : fzH(factorize(n))) }));
+      band('<span class="k">' + tx("factors-and-primes.d.band", { n: C(n) }) + '</span><span class="v">' + (yes.length ? yes.join(", ") : '<span class="word">' + tx("factors-and-primes.d.noneOfThem") + "</span>") + "</span>", facts, "answer");
+      $("closer").innerHTML = tx("factors-and-primes.d.check", { divs: res.map(function(r) { return B(divT(n, r.d)); }).join(" · ") }) + " " + '<span class="ok">✓</span>';
       return items.length;
     }
 
     var DRAW = { factors: drawFactors, prime: drawPrime, test: drawTest, gcf: drawGcf, div: drawDiv };
     var LEGEND = {
-      factors: '<div><span class="badge c-m">Test</span> try a number</div><div><span class="badge c-p">Pair</span> a factor pair</div><div><span class="badge c-e">Stop</span> past √n</div><div><span class="badge c-a">List</span> the answer</div>',
-      prime: '<div><span class="badge c-p">' + "&nbsp;12&nbsp;" + '</span> still splits</div><div><span class="badge c-a">&nbsp;3&nbsp;</span> prime — circled</div><div><span class="badge c-m">Ladder</span> same divisions in a column</div>',
-      test: '<div><span class="badge c-m">÷ p</span> try a prime</div><div><span class="badge c-p">Found</span> a factor</div><div><span class="badge c-e">Stop</span> past √n</div><div><span class="badge c-a">Answer</span></div>',
-      gcf: '<div><span class="badge c-a">&nbsp;6&nbsp;</span> common</div><div><span class="badge c-p">GCF</span> greatest common factor</div><div><span class="badge c-e">LCM</span> least common multiple</div>',
-      div: '<div><span class="badge c-a">✓ yes</span> divides evenly</div><div><span class="badge c-e">✗ no</span> leaves a remainder</div>'
+      factors: tx("factors-and-primes.legend.factors"),
+      prime: tx("factors-and-primes.legend.prime"),
+      test: tx("factors-and-primes.legend.test"),
+      gcf: tx("factors-and-primes.legend.gcf"),
+      div: tx("factors-and-primes.legend.div")
     };
 
     /* ===================== problems as words: check box, worksheets ===================== */
@@ -3146,36 +3126,36 @@
         n = P.n;
       if (mode === "factors") {
         var d = divisors(n).map(C);
-        o.text = "List all the factors of " + C(n) + ".";
-        o.html = "List all the factors of <b>" + C(n) + "</b>.";
+        o.text = tx("factors-and-primes.rec.factors", { n: C(n) });
+        o.html = tx("factors-and-primes.rec.factors", { n: "<b>" + C(n) + "</b>" });
         o.answer = d.join(", ");
         o.answerHtml = o.answer;
       } else if (mode === "prime") {
         var fs = factorize(n),
           ex = expand(fs).map(C).join(" × ");
-        o.text = "Write " + C(n) + " as a product of primes.";
-        o.html = "Write <b>" + C(n) + "</b> as a product of primes.";
-        o.answer = fs.length === 1 && fs[0].e === 1 ? C(n) + " (it’s prime)" : fzT(fs) + (expand(fs).length > 1 && fs.some(function(f) { return f.e > 1; }) ? " = " + ex : "");
-        o.answerHtml = fs.length === 1 && fs[0].e === 1 ? C(n) + " (it’s prime)" : fzH(fs) + (expand(fs).length > 1 && fs.some(function(f) { return f.e > 1; }) ? " = " + ex : "");
+        o.text = tx("factors-and-primes.rec.prime", { n: C(n) });
+        o.html = tx("factors-and-primes.rec.prime", { n: "<b>" + C(n) + "</b>" });
+        o.answer = fs.length === 1 && fs[0].e === 1 ? tx("factors-and-primes.rec.itsPrime", { n: C(n) }) : fzT(fs) + (expand(fs).length > 1 && fs.some(function(f) { return f.e > 1; }) ? " = " + ex : "");
+        o.answerHtml = fs.length === 1 && fs[0].e === 1 ? tx("factors-and-primes.rec.itsPrime", { n: C(n) }) : fzH(fs) + (expand(fs).length > 1 && fs.some(function(f) { return f.e > 1; }) ? " = " + ex : "");
       } else if (mode === "test") {
         var s = solveTest(n);
-        o.text = "Is " + C(n) + " prime or composite?";
-        o.html = "Is <b>" + C(n) + "</b> prime or composite?";
-        o.answer = s.kind === "neither" ? "Neither" : s.kind === "prime" ? "Prime" : "Composite (" + C(n) + " = " + C(s.found) + " × " + C(n / s.found) + ")";
-        o.answerHtml = s.kind === "composite" ? "Composite (" + C(n) + " = " + C(s.found) + " × " + C(n / s.found) + ")" : o.answer;
+        o.text = tx("factors-and-primes.rec.test", { n: C(n) });
+        o.html = tx("factors-and-primes.rec.test", { n: "<b>" + C(n) + "</b>" });
+        o.answer = s.kind === "neither" ? tx("factors-and-primes.t.Neither") : s.kind === "prime" ? tx("factors-and-primes.t.Prime") : tx("factors-and-primes.rec.composite", { n: C(n), a: C(s.found), b: C(n / s.found) });
+        o.answerHtml = s.kind === "composite" ? tx("factors-and-primes.rec.composite", { n: C(n), a: C(s.found), b: C(n / s.found) }) : o.answer;
       } else if (mode === "gcf") {
         var g = gcfOf(P.nums),
           L = lcmOf(P.nums).toString(),
           nn = listAnd(P.nums.map(C));
-        o.text = "Find the GCF and LCM of " + nn + ".";
-        o.html = "Find the GCF and LCM of " + listAnd(P.nums.map(function(x) { return "<b>" + C(x) + "</b>"; })) + ".";
-        o.answer = "GCF " + C(g) + ", LCM " + C(L);
-        o.answerHtml = "GCF <b>" + C(g) + "</b>, LCM <b>" + C(L) + "</b>";
+        o.text = tx("factors-and-primes.rec.gcf", { nums: nn });
+        o.html = tx("factors-and-primes.rec.gcf", { nums: listAnd(P.nums.map(function(x) { return "<b>" + C(x) + "</b>"; })) });
+        o.answer = tx("factors-and-primes.rec.gcfAns", { g: C(g), l: C(L) });
+        o.answerHtml = tx("factors-and-primes.rec.gcfAns", { g: "<b>" + C(g) + "</b>", l: "<b>" + C(L) + "</b>" });
       } else {
         var yes = DIVS.filter(function(dv) { return n % dv === 0; });
-        o.text = "Which of 2, 3, 4, 5, 6, 8, 9, 10 and 11 divide " + C(n) + " evenly?";
-        o.html = "Which of 2, 3, 4, 5, 6, 8, 9, 10 and 11 divide <b>" + C(n) + "</b> evenly?";
-        o.answer = yes.length ? yes.join(", ") : "None of them";
+        o.text = tx("factors-and-primes.rec.div", { n: C(n) });
+        o.html = tx("factors-and-primes.rec.div", { n: "<b>" + C(n) + "</b>" });
+        o.answer = yes.length ? yes.join(", ") : tx("factors-and-primes.rec.noneOfThem");
         o.answerHtml = o.answer;
       }
       return o;
@@ -3183,11 +3163,11 @@
 
     /* ===================== check my answer ===================== */
     var FIELDS = {
-      factors: [{ k: "a", label: "All the factors, any order", ph: "1, 2, 3, …" }],
-      prime: [{ k: "a", label: "Prime factorization", ph: "like 2^3 × 3 or 2 × 2 × 2 × 3" }],
-      test: [{ k: "a", label: "Prime, composite or neither?", ph: "prime / composite / neither" }],
-      gcf: [{ k: "g", label: "GCF", ph: "" }, { k: "l", label: "LCM", ph: "" }],
-      div: [{ k: "a", label: "Divisible by", ph: "e.g. 2, 5, 10 — or none" }]
+      factors: [{ k: "a", label: tx("factors-and-primes.ck.factorsLabel"), ph: tx("factors-and-primes.ck.factorsPh") }],
+      prime: [{ k: "a", label: tx("factors-and-primes.ck.primeLabel"), ph: tx("factors-and-primes.ck.primePh") }],
+      test: [{ k: "a", label: tx("factors-and-primes.ck.testLabel"), ph: tx("factors-and-primes.ck.testPh") }],
+      gcf: [{ k: "g", label: tx("factors-and-primes.tag.gcf"), ph: "" }, { k: "l", label: tx("factors-and-primes.tag.lcm"), ph: "" }],
+      div: [{ k: "a", label: tx("factors-and-primes.ck.divLabel"), ph: tx("factors-and-primes.ck.divPh") }]
     };
 
     function parseNumList(s) {
@@ -3230,7 +3210,18 @@
       return t.length ? fzProd(t) : NaN;
     }
 
+    // an answer typed in the language in use: its words for prime, composite, neither, none … as the grader knows them
+    function ansWords(s) {
+      var aw = window.HelperI18n && HelperI18n.lang !== "en" ? HelperI18n.raw("factors-and-primes.ansWords") : null;
+      if (!aw || !aw.length) return s;
+      s = String(s || "").toLowerCase();
+      if (s.normalize) s = s.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      aw.forEach(function(r) { s = s.replace(new RegExp(r[0], "g"), r[1]); });
+      return s.trim();
+    }
+
     function wordAns(s) {
+      s = ansWords(s);
       var t = " " + String(s || "").toLowerCase().replace(/[’']/g, "").replace(/[^a-z0-9]+/g, " ") + " ";
       if (/ neither | none /.test(t)) return "neither";
       if (/ (not|isnt|non|aint) (a )?prime /.test(t) || / nonprime /.test(t)) return "notprime";
@@ -3251,7 +3242,7 @@
           want = divisors(n),
           seen = {};
         got.forEach(function(x) { seen[x] = true; });
-        if (!got.length) return { ok: false, why: "Type the factors as numbers, like <b>1, 2, 3</b>." };
+        if (!got.length) return { ok: false, why: tx("factors-and-primes.ck.typeFactors") };
         var extra = Object.keys(seen).map(Number).filter(function(x) { return want.indexOf(x) < 0; });
         var miss = want.filter(function(x) { return !seen[x]; });
         if (!extra.length && !miss.length) return { ok: true };
@@ -3259,50 +3250,49 @@
           var x = extra[0];
           return {
             ok: false,
-            why: x === 0 ? "0 isn’t a factor of " + C(n) + " — you can’t divide by 0." : x > n ? B(C(x)) + " is bigger than " + C(n) + ", so it can’t be a factor." : B(C(x)) + " isn’t a factor of " + C(n) + ": " + B(divT(n, x)) + " leaves a remainder." + (miss.length ? " (Something’s missing too.)" : "")
+            why: x === 0 ? tx("factors-and-primes.ck.zero", { n: C(n) }) : x > n ? tx("factors-and-primes.ck.bigger", { x: B(C(x)), n: C(n) }) : tx("factors-and-primes.ck.notFactor", { x: B(C(x)), n: C(n), div: B(divT(n, x)) }) + (miss.length ? tx("factors-and-primes.ck.missingToo") : "")
           };
         }
-        if (miss.indexOf(1) >= 0 && miss.indexOf(n) >= 0) return { ok: false, why: "Don’t forget " + B("1") + " and " + B(C(n)) + " themselves — every number has those two." };
+        if (miss.indexOf(1) >= 0 && miss.indexOf(n) >= 0) return { ok: false, why: tx("factors-and-primes.ck.forget1", { one: B("1"), n: B(C(n)) }) };
         for (i = 0; i < miss.length; i++) {
           var a = miss[i],
             b = n / a;
-          if (a <= b && miss.indexOf(b) >= 0) return { ok: false, why: "You’re missing a factor pair: " + B(C(a) + " × " + C(b) + " = " + C(n)) + "." + (miss.length > 2 ? " (And more.)" : "") };
+          if (a <= b && miss.indexOf(b) >= 0) return { ok: false, why: tx("factors-and-primes.ck.missPair", { eq: B(C(a) + " × " + C(b) + " = " + C(n)) }) + (miss.length > 2 ? tx("factors-and-primes.ck.andMore") : "") };
         }
         var m0 = miss[0],
           p0 = n / m0;
-        return { ok: false, why: "You have " + B(C(p0)) + " but not its partner " + B(C(m0)) + " (" + C(Math.min(m0, p0)) + " × " + C(Math.max(m0, p0)) + " = " + C(n) + ")." };
+        return { ok: false, why: tx("factors-and-primes.ck.partner", { have: B(C(p0)), miss: B(C(m0)), eq: C(Math.min(m0, p0)) + " × " + C(Math.max(m0, p0)) + " = " + C(n) }) };
       }
       if (mode === "prime") {
         if (!raw) return { empty: true };
-        if (/^\s*(it\s*is\s*|its\s*)?prime\s*$/i.test(raw)) return isPrime(n) ? { ok: true } : { ok: false, why: C(n) + " isn’t prime — it can be split, so write it as primes multiplied together." };
+        if (/^\s*(it\s*is\s*|its\s*)?prime\s*$/i.test(ansWords(raw))) return isPrime(n) ? { ok: true } : { ok: false, why: tx("factors-and-primes.ck.notPrime", { n: C(n) }) };
         var t = parseFz(raw);
-        if (!t.length) return { ok: false, why: "Write it as primes multiplied together, like <b>2 × 2 × 3</b> or <b>2^2 × 3</b>." };
+        if (!t.length) return { ok: false, why: tx("factors-and-primes.ck.writePrimes") };
         var prod = fzProd(t),
           nB = BigInt(n);
         var ones = t.filter(function(x) { return x.b === 1; }),
           zeros = t.filter(function(x) { return x.b === 0; });
         var bad = t.filter(function(x) { return x.b > 1 && !isPrime(x.b); });
-        if (zeros.length) return { ok: false, why: "There’s a 0 in there — anything times 0 is 0, so take it out." };
+        if (zeros.length) return { ok: false, why: tx("factors-and-primes.ck.zeroIn") };
         if (bad.length) {
           var bb = bad[0].b;
           return {
             ok: false,
-            why: (prod === nB ? "Those multiply to " + C(n) + " ✓, but " : "") + B(C(bb)) + " isn’t prime — " + B(C(bb) + " = " + fzH(factorize(bb))) +
-              ". Keep splitting until every factor is prime."
+            why: tx(prod === nB ? "factors-and-primes.ck.notPrimeKeepOk" : "factors-and-primes.ck.notPrimeKeep", { n: C(n), b: B(C(bb)), eq: B(C(bb) + " = " + fzH(factorize(bb))) })
           };
         }
-        if (ones.length && prod === nB) return { ok: false, why: "Almost — leave out the " + B("1") + ". 1 isn’t prime (and multiplying by 1 changes nothing)." };
+        if (ones.length && prod === nB) return { ok: false, why: tx("factors-and-primes.ck.leaveOut1", { one: B("1") }) };
         if (prod === nB) return { ok: true };
         var ps = C(prod.toString());
         if (prod < nB && nB % prod === 0n) {
           var mf = Number(nB / prod);
-          return { ok: false, why: "Those multiply to " + B(ps) + ", not " + C(n) + " — you’re short a factor of " + B(isPrime(mf) ? C(mf) : C(mf) + " (= " + fzH(factorize(mf)) + ")") + "." };
+          return { ok: false, why: tx("factors-and-primes.ck.short", { p: B(ps), n: C(n), f: B(isPrime(mf) ? C(mf) : C(mf) + " (= " + fzH(factorize(mf)) + ")") }) };
         }
         if (prod > nB && prod % nB === 0n) {
           var xf = prod / nB;
-          return { ok: false, why: "Those multiply to " + B(ps) + " — that’s " + B(C(xf.toString())) + " times too big. Is there an extra factor in there?" };
+          return { ok: false, why: tx("factors-and-primes.ck.tooBig", { p: B(ps), x: B(C(xf.toString())) }) };
         }
-        return { ok: false, why: "Those multiply to " + B(ps) + ", not " + C(n) + ". Multiply your primes back together to check." };
+        return { ok: false, why: tx("factors-and-primes.ck.notN", { p: B(ps), n: C(n) }) };
       }
       if (mode === "test") {
         if (!raw) return { empty: true };
@@ -3312,24 +3302,24 @@
           var tt = parseFz(raw);
           if (tt.length >= 2 && fzProd(tt) === BigInt(n) && tt.every(function(x) { return x.b > 1 && x.b < n; })) ans = "composite";
         }
-        if (!ans) return { ok: false, why: "Answer with a word: <b>prime</b>, <b>composite</b> or <b>neither</b>." };
+        if (!ans) return { ok: false, why: tx("factors-and-primes.ck.word") };
         if (sol.kind === "neither") {
           if (ans === "neither" || ans === "notprime") return { ok: true };
           if (ans === "prime") return {
             ok: false,
             why: n === 1 ?
-              B("1") + " isn’t prime: a prime has exactly two different factors (1 and itself), but 1 only has one factor. 1 is neither prime nor composite." : B("0") + " isn’t prime: every number goes into 0, so it has far more than two factors."
+              tx("factors-and-primes.ck.oneNotPrime", { one: B("1") }) : tx("factors-and-primes.ck.zeroNotPrime", { zero: B("0") })
           };
-          return { ok: false, why: "Composite means <i>more than two</i> factors made from smaller pieces. " + (n === 1 ? "1 has only one factor" : "0 doesn’t work like other numbers — every number divides it") + ", so it’s neither." };
+          return { ok: false, why: tx(n === 1 ? "factors-and-primes.ck.compMeans1" : "factors-and-primes.ck.compMeans0") };
         }
         if (sol.kind === "prime") {
           if (ans === "prime") return { ok: true };
-          if (ans === "neither") return { ok: false, why: "Only 0 and 1 are neither. Every whole number from 2 up is prime or composite." };
-          return { ok: false, why: "Which number did you find that goes into " + C(n) + "? Try dividing — remember you only need to test primes up to √" + C(n) + "." };
+          if (ans === "neither") return { ok: false, why: tx("factors-and-primes.ck.only01") };
+          return { ok: false, why: tx("factors-and-primes.ck.whichNumber", { n: C(n) }) };
         }
         if (ans === "composite" || ans === "notprime") return { ok: true };
-        if (ans === "neither") return { ok: false, why: "Only 0 and 1 are neither. Every whole number from 2 up is prime or composite." };
-        return { ok: false, why: TRICKS[n] ? TRICKS[n] : C(n) + " has a factor besides 1 and itself. Hint: try dividing by " + B(C(sol.found)) + "." };
+        if (ans === "neither") return { ok: false, why: tx("factors-and-primes.ck.only01") };
+        return { ok: false, why: TRICKS[n] ? TRICKS[n] : tx("factors-and-primes.ck.hasFactor", { n: C(n), p: B(C(sol.found)) }) };
       }
       if (mode === "gcf") {
         var G = BigInt(gcfOf(P.nums)),
@@ -3338,46 +3328,46 @@
         var gv = parseAnsNum(vals.g),
           lv = parseAnsNum(vals.l);
         if (gv === null && lv === null) return { empty: true };
-        if ((gv !== null && gv !== gv) || (lv !== null && lv !== lv)) return { ok: false, why: "Type each answer as a number." };
+        if ((gv !== null && gv !== gv) || (lv !== null && lv !== lv)) return { ok: false, why: tx("factors-and-primes.ck.eachNumber") };
         var gOK = gv === G,
           lOK = lv === L;
         if (gOK && lOK) return { ok: true };
-        if (gv !== null && lv !== null && gv === L && lv === G && G !== L) return { ok: false, why: "Those are swapped. The GCF is the small one — it has to fit <i>into</i> every number. The LCM is the big one — every number fits into it." };
+        if (gv !== null && lv !== null && gv === L && lv === G && G !== L) return { ok: false, why: tx("factors-and-primes.ck.swapped") };
         var why = [];
-        if (gOK) why.push("Your GCF is right ✓.");
-        else if (gv === null) why.push("Fill in the GCF too.");
-        else if (gv === L && G !== L) why.push(B(C(gv.toString())) + " is the LCM, not the GCF. The GCF is the small one: it has to go <i>into</i> every number.");
-        else if (gv === 0n) why.push("The GCF can’t be 0.");
+        if (gOK) why.push(tx("factors-and-primes.ck.gcfRight"));
+        else if (gv === null) why.push(tx("factors-and-primes.ck.fillGcf"));
+        else if (gv === L && G !== L) why.push(tx("factors-and-primes.ck.gcfIsLcm", { x: B(C(gv.toString())) }));
+        else if (gv === 0n) why.push(tx("factors-and-primes.ck.gcf0"));
         else {
           var notIn = P.nums.filter(function(x) { return BigInt(x) % gv !== 0n; });
-          if (!notIn.length) why.push(B(C(gv.toString())) + " goes into every number, but it isn’t the <i>greatest</i> — there’s a bigger common factor.");
-          else why.push("For the GCF: " + B(C(gv.toString())) + " doesn’t go into " + C(notIn[0]) + (gv < BigInt(notIn[0]) ? " (" + B(divT(notIn[0], Number(gv))) + ")" : "") + ".");
+          if (!notIn.length) why.push(tx("factors-and-primes.ck.notGreatest", { x: B(C(gv.toString())) }));
+          else why.push(tx("factors-and-primes.ck.gcfNotIn", { x: B(C(gv.toString())), n: C(notIn[0]), div: gv < BigInt(notIn[0]) ? " (" + B(divT(notIn[0], Number(gv))) + ")" : "" }));
         }
-        if (lOK) why.push("Your LCM is right ✓.");
-        else if (lv === null) why.push("Fill in the LCM too.");
-        else if (lv === G && G !== L) why.push(B(C(lv.toString())) + " is the GCF, not the LCM. The LCM is the big one: every number has to go into it.");
-        else if (lv === prodN && prodN !== L) why.push(B(C(lv.toString())) + " is " + xH(P.nums) + " — that’s always <i>a</i> common multiple, but here there’s a smaller one.");
-        else if (lv === 0n) why.push("The LCM can’t be 0 — look for the smallest multiple above 0.");
+        if (lOK) why.push(tx("factors-and-primes.ck.lcmRight"));
+        else if (lv === null) why.push(tx("factors-and-primes.ck.fillLcm"));
+        else if (lv === G && G !== L) why.push(tx("factors-and-primes.ck.lcmIsGcf", { x: B(C(lv.toString())) }));
+        else if (lv === prodN && prodN !== L) why.push(tx("factors-and-primes.ck.lcmProduct", { x: B(C(lv.toString())), prod: xH(P.nums) }));
+        else if (lv === 0n) why.push(tx("factors-and-primes.ck.lcm0"));
         else {
           var notM = P.nums.filter(function(x) { return lv % BigInt(x) !== 0n; });
-          if (!notM.length) why.push(B(C(lv.toString())) + " is a common multiple, but not the <i>least</i> — there’s a smaller one.");
-          else why.push("For the LCM: " + B(C(lv.toString())) + " isn’t a multiple of " + C(notM[0]) + ".");
+          if (!notM.length) why.push(tx("factors-and-primes.ck.notLeast", { x: B(C(lv.toString())) }));
+          else why.push(tx("factors-and-primes.ck.lcmNotMult", { x: B(C(lv.toString())), n: C(notM[0]) }));
         }
         return { ok: false, why: why.join(" ") };
       }
       // divisibility
       if (!raw) return { empty: true };
-      var none = /^(none|nothing|no|none of them|0)$/i.test(raw);
+      var none = /^(none|nothing|no|none of them|0)$/i.test(ansWords(raw));
       var list = none ? [] : parseNumList(raw);
-      if (!none && !list.length) return { ok: false, why: "List the divisors that work, like <b>2, 5, 10</b> — or type <b>none</b>." };
+      if (!none && !list.length) return { ok: false, why: tx("factors-and-primes.ck.listDivs") };
       var off = list.filter(function(x) { return DIVS.indexOf(x) < 0; });
-      if (off.length) return { ok: false, why: "Only choose from 2, 3, 4, 5, 6, 8, 9, 10 and 11 — " + B(off[0]) + " isn’t one of them." };
+      if (off.length) return { ok: false, why: tx("factors-and-primes.ck.onlyChoose", { x: B(off[0]) }) };
       var wantD = DIVS.filter(function(dv) { return n % dv === 0; });
       var ex2 = wantD.length ? list.filter(function(x) { return wantD.indexOf(x) < 0; }) : list;
       var mi2 = wantD.filter(function(x) { return list.indexOf(x) < 0; });
       if (!ex2.length && !mi2.length) return { ok: true };
-      if (ex2.length) return { ok: false, why: C(n) + " isn’t divisible by " + B(ex2[0]) + " — " + rule(n, ex2[0]).how + "." };
-      return { ok: false, why: "You missed " + B(mi2[0]) + " — " + rule(n, mi2[0]).how + "." };
+      if (ex2.length) return { ok: false, why: tx("factors-and-primes.ck.notDivisible", { n: C(n), d: B(ex2[0]), how: rule(n, ex2[0]).how }) };
+      return { ok: false, why: tx("factors-and-primes.ck.missed", { d: B(mi2[0]), how: rule(n, mi2[0]).how }) };
     }
 
     function buildCheck(P) {
@@ -3399,7 +3389,7 @@
       $("ckFb").className = "ckfb" + (CK.ok ? " ok" : "");
       $("ckFb").innerHTML = CK.fb;
       $("ckMore").hidden = !(CK.tried && !CK.ok && !CK.revealed);
-      $("ckNote").textContent = CK.revealed ? "" : "The work and the answer stay hidden until you check.";
+      $("ckNote").textContent = CK.revealed ? "" : tx("factors-and-primes.ck.note");
     }
 
     function doCheck() {
@@ -3407,17 +3397,17 @@
       Array.prototype.forEach.call(document.querySelectorAll("#ckFields input"), function(inp) { CK.vals[inp.getAttribute("data-k")] = inp.value; });
       var r = grade(CUR, CK.vals);
       if (r.empty) {
-        CK.fb = '<span class="lead">Type your answer first.</span>';
+        CK.fb = '<span class="lead">' + tx("factors-and-primes.ck.first") + "</span>";
         CK.ok = false;
       } else if (r.ok) {
         CK.ok = true;
         CK.revealed = true;
-        CK.fb = '<span class="lead">✓ Correct!</span><span class="why">Here’s the full work.</span>';
+        CK.fb = '<span class="lead">' + tx("common.correct") + '</span><span class="why">' + tx("factors-and-primes.ck.fullWork") + "</span>";
         report("right");
       } else {
         CK.ok = false;
         CK.tried = true;
-        CK.fb = '<span class="lead">Not quite — try again.</span>' + (r.why ? '<span class="why">' + r.why + "</span>" : "");
+        CK.fb = '<span class="lead">' + tx("common.notQuite") + "</span>" + (r.why ? '<span class="why">' + r.why + "</span>" : "");
         report("wrong");
       }
       var had = document.activeElement && document.activeElement.id;
@@ -3471,7 +3461,7 @@
         hide = S.practice === "check" && total > 0 && !CK.revealed;
       $("stepper").hidden = !stepMode;
       if (stepMode) {
-        $("stepCount").textContent = S.step + " of " + total;
+        $("stepCount").textContent = tx("factors-and-primes.stepOf", { n: S.step, total: total });
         $("prevBtn").disabled = S.step <= 1;
         $("nextBtn").disabled = S.step >= total;
       }
@@ -3760,22 +3750,48 @@
     function otherQ(page, q, what) {
       var p = "q=" + encodeURIComponent(q),
         href = window.HelperSite ? window.HelperSite.url(page, p) : page + "?" + p;
-      return "That looks like " + what + " — this page lists factors, breaks numbers into primes, tests for prime, finds the GCF &amp; LCM " +
-        'and checks divisibility. <a href="' + esc(href) + '">Work <b>' + esc(q) + "</b> on " + esc({
-          "addition.html": "the addition page",
-          "subtraction.html": "the subtraction page",
-          "multiplication.html": "the multiplication page",
-          "division.html": "the division page",
-          "exponents.html": "the exponents page",
-          "fractions.html": "the fractions page",
-          "percents.html": "the percents page",
-          "integers.html": "the negative numbers page"
-        } [page] || "another page") + " →</a>";
+      return tx("factors-and-primes.other.looks", { what: what }) + '<a href="' + esc(href) + '">' + tx("factors-and-primes.other.work", {
+        q: "<b>" + esc(q) + "</b>",
+        page: esc({
+          "addition.html": tx("factors-and-primes.other.addition"),
+          "subtraction.html": tx("factors-and-primes.other.subtraction"),
+          "multiplication.html": tx("factors-and-primes.other.multiplication"),
+          "division.html": tx("factors-and-primes.other.division"),
+          "exponents.html": tx("factors-and-primes.other.exponents"),
+          "fractions.html": tx("factors-and-primes.other.fractions"),
+          "percents.html": tx("factors-and-primes.other.percents"),
+          "integers.html": tx("factors-and-primes.other.integers")
+        } [page] || tx("factors-and-primes.other.another"))
+      }) + "</a>";
     }
 
+    // a problem typed in the language in use, in the words the reader knows: the shared words (HelperI18n.normalize), then
+    // this page's own (factors-and-primes.typedWords in the language's file); English comes back as it was
+    function typedQ(q) {
+      var n = window.HelperI18n ? HelperI18n.normalize(String(q)) : String(q),
+        ph = window.HelperI18n && HelperI18n.lang !== "en" ? HelperI18n.raw("factors-and-primes.typedWords") : null;
+      if (!ph || !ph.length) return n;
+      n = n.toLowerCase();
+      if (n.normalize) n = n.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      ph.forEach(function(r) { n = n.replace(new RegExp(r[0], "g"), r[1]); });
+      return n.replace(/\s+/g, " ").trim();
+    }
+
+    // read the typed words; someone on a translated page may type the problem in English, so that is tried too
     function parseQ(q, modeParam) {
+      var t = typedQ(q);
+      if (t === q) return parseQ1(q, q, modeParam);
+      var r = parseQ1(q, t, modeParam);
+      if (r.bad) {
+        var r2 = parseQ1(q, q, modeParam);
+        if (!r2.bad) return r2;
+      }
+      return r;
+    }
+
+    function parseQ1(q, typed, modeParam) {
       var s = String(q).trim(),
-        low = s.toLowerCase().replace(/[’‘`]/g, "'").replace(/[−–—]/g, "-").replace(/[×✕·]/g, " x ").replace(/\s+/g, " "),
+        low = String(typed).trim().toLowerCase().replace(/[’‘`]/g, "'").replace(/[−–—]/g, "-").replace(/[×✕·]/g, " x ").replace(/\s+/g, " "),
         kw = null,
         m;
       if (/[a-z]/.test(low)) low = WORDNUM.digits(low);
@@ -3786,8 +3802,7 @@
       if ((/\bprimes?\b|\bprime numbers?\b|\bmultiples?\b/.test(low) && !common && /\b(between|less than|fewer than|under|below|up to|upto|smaller than|greater than|more than|bigger than|first \d+|from \d+ to \d+|\d+ (?:to|through) \d+)\b/.test(low)) ||
         (/\b(list|first|name|write|what are)\b.*\bmultiples\b|\bmultiples of \d+(?! and)/.test(low) && !common && !/\bis \d[\d,]* a multiple of\b/.test(low)))
         return {
-          bad: "This page works with one number at a time (its factors, its primes, is it prime?) or finds the GCF &amp; LCM of two or three. " +
-            "It doesn’t list primes in a range or the multiples of a number. Try <b>is 91 prime</b>, <b>factors of 36</b> or <b>LCM of 4 and 6</b>.",
+          bad: tx("factors-and-primes.q.range"),
           text: s
         };
       // "is 7 a factor of 42", "does 7 divide 42", "is 42 a multiple of 7", "is 2340 divisible by 9"
@@ -3813,28 +3828,27 @@
       if (!kw && !modeParam) {
         // another page's problem: an operation between two numbers, a percent, a root or a power
         var op = /\d\s*(\+|\bplus\b|\bx\b|\*|\btimes\b|\bmultiplied by\b|÷|\bdivided by\b|\/|\^|\bto the\b|\bsquared\b|\bcubed\b|-|\bminus\b)\s*\d?/.exec(low);
-        if (/%|\bpercent\b/.test(low)) return { bad: otherQ("percents.html", s, "a percent problem"), text: s };
-        if (/\bsquare roots?\b|\bsqrt\b|√|\bcube roots?\b/.test(low)) return { bad: otherQ("exponents.html", s, "a root"), text: s };
-        if (/(^|[^\w])-\s*\d/.test(low.replace(/(\d)\s*-\s*(?=\d)/g, "$1 minus "))) return { bad: otherQ("integers.html", s, "negative numbers"), text: s };
+        if (/%|\bpercent\b/.test(low)) return { bad: otherQ("percents.html", s, tx("factors-and-primes.other.whatPercent")), text: s };
+        if (/\bsquare roots?\b|\bsqrt\b|√|\bcube roots?\b/.test(low)) return { bad: otherQ("exponents.html", s, tx("factors-and-primes.other.whatRoot")), text: s };
+        if (/(^|[^\w])-\s*\d/.test(low.replace(/(\d)\s*-\s*(?=\d)/g, "$1 minus "))) return { bad: otherQ("integers.html", s, tx("factors-and-primes.other.whatNegative")), text: s };
         if (op) {
           var o = op[1].trim(),
             page = /\+|plus/.test(o) ? "addition.html" : /^x$|\*|times|multiplied/.test(o) ? "multiplication.html" :
             /÷|divided/.test(o) ? "division.html" : /\//.test(o) ? "fractions.html" : /\^|to the|squared|cubed/.test(o) ? "exponents.html" : "subtraction.html";
           var what = {
-            "addition.html": "adding",
-            "multiplication.html": "multiplying",
-            "division.html": "dividing",
-            "fractions.html": "a fraction",
-            "exponents.html": "a power",
-            "subtraction.html": "subtracting"
+            "addition.html": tx("factors-and-primes.other.whatAdding"),
+            "multiplication.html": tx("factors-and-primes.other.whatMultiplying"),
+            "division.html": tx("factors-and-primes.other.whatDividing"),
+            "fractions.html": tx("factors-and-primes.other.whatFraction"),
+            "exponents.html": tx("factors-and-primes.other.whatPower"),
+            "subtraction.html": tx("factors-and-primes.other.whatSubtracting")
           } [page];
           return { bad: otherQ(page, s, what), text: s };
         }
         // words, but none that say what to do with the numbers
         var left = low.replace(/\d[\d,.]*/g, " ").replace(/[^a-z' ]+/g, " ").split(" ").filter(function(w) { return w && FILLER.indexOf(w.replace(/'s$/, "")) < 0; });
         if (left.length) return {
-          bad: "I can’t tell what to do with <b>" + esc(s) + "</b>. Try <b>factors of 36</b>, <b>prime factorization of 360</b>, " +
-            "<b>is 91 prime</b>, <b>GCF of 12 and 18</b> or <b>is 2340 divisible by 9</b>.",
+          bad: tx("factors-and-primes.q.cantTell", { s: esc(s) }),
           text: s
         };
       }
@@ -3969,37 +3983,37 @@
     /* ===================== the maker's controls ===================== */
     var SIZES = [50, 100, 500, 1000];
     var MAKER = {
-      factors: [{ lbl: "Biggest number", seg: "max", vals: SIZES }, {
-        lbl: "Extras",
+      factors: [{ lbl: tx("factors-and-primes.mk.biggest"), seg: "max", vals: SIZES }, {
+        lbl: tx("factors-and-primes.mk.extras"),
         togs: [
-          ["nice", "∗", "Lots of factors"],
-          ["primes", "p", "Include some prime numbers"]
+          ["nice", "∗", tx("factors-and-primes.mk.lotsFactors")],
+          ["primes", "p", tx("factors-and-primes.mk.somePrimes")]
         ]
       }],
-      prime: [{ lbl: "Biggest number", seg: "max", vals: SIZES }, {
-        lbl: "Extras",
+      prime: [{ lbl: tx("factors-and-primes.mk.biggest"), seg: "max", vals: SIZES }, {
+        lbl: tx("factors-and-primes.mk.extras"),
         togs: [
-          ["nice", "∗", "Lots of primes in the tree"],
-          ["primes", "p", "Include some prime numbers"]
+          ["nice", "∗", tx("factors-and-primes.mk.lotsPrimes")],
+          ["primes", "p", tx("factors-and-primes.mk.somePrimes")]
         ]
       }],
-      test: [{ lbl: "Biggest number", seg: "max", vals: SIZES }, {
-        lbl: "Extras",
+      test: [{ lbl: tx("factors-and-primes.mk.biggest"), seg: "max", vals: SIZES }, {
+        lbl: tx("factors-and-primes.mk.extras"),
         togs: [
-          ["tricky", "?", "Tricky ones that look prime"]
+          ["tricky", "?", tx("factors-and-primes.mk.tricky")]
         ]
       }],
-      gcf: [{ lbl: "How many numbers", seg: "count", vals: [2, 3], fmt: function(v) { return String(v); } }, { lbl: "Biggest number", seg: "max", vals: SIZES }, {
-        lbl: "Extras",
+      gcf: [{ lbl: tx("factors-and-primes.mk.howMany"), seg: "count", vals: [2, 3], fmt: function(v) { return String(v); } }, { lbl: tx("factors-and-primes.mk.biggest"), seg: "max", vals: SIZES }, {
+        lbl: tx("factors-and-primes.mk.extras"),
         togs: [
-          ["gcf1", "&gt;1", "They share a factor (GCF bigger than 1)"],
-          ["nice", "∗", "Lots of factors"]
+          ["gcf1", "&gt;1", tx("factors-and-primes.mk.share")],
+          ["nice", "∗", tx("factors-and-primes.mk.lotsFactors")]
         ]
       }],
-      div: [{ lbl: "Biggest number", seg: "max", vals: [100, 1000, 10000, 100000, 1000000] }, {
-        lbl: "Extras",
+      div: [{ lbl: tx("factors-and-primes.mk.biggest"), seg: "max", vals: [100, 1000, 10000, 100000, 1000000] }, {
+        lbl: tx("factors-and-primes.mk.extras"),
         togs: [
-          ["nice", "✓", "Lots of them divide evenly (lots of ✓s)"]
+          ["nice", "✓", tx("factors-and-primes.mk.lotsDivide")]
         ]
       }]
     };
@@ -4055,13 +4069,13 @@
       paintSample();
       var go = document.createElement("div");
       go.className = "maker-go";
-      go.innerHTML = '<button type="button" class="go" id="genBtn">New problem</button><span class="msg" id="genMsg"></span>';
+      go.innerHTML = '<button type="button" class="go" id="genBtn">' + tx("common.newProblem") + '</button><span class="msg" id="genMsg"></span>';
       host.appendChild(go);
       $("genBtn").addEventListener("click", function() {
         var avoid = {};
         if (CUR) avoid[CUR.q] = true;
         var P = makeOne(S.mode, S.gen[S.mode], avoid);
-        if (!P) { $("genMsg").textContent = "Couldn’t make one with those settings — try different choices."; return; }
+        if (!P) { $("genMsg").textContent = tx("factors-and-primes.mk.cant"); return; }
         setProblem(S.mode === "gcf" ? P.nums.map(C).join(", ") : C(P.n));
       });
     }
@@ -4075,7 +4089,7 @@
         var P = makeOne(S.mode, S.gen[S.mode]);
         t = P ? record(P).text : null;
       } catch (e) { t = null; }
-      el.innerHTML = t ? "Makes problems like: <b>" + esc(t) + "</b>" : "Those choices don’t make a problem — try different ones.";
+      el.innerHTML = t ? tx("factors-and-primes.mk.like", { p: esc(t) }) : tx("factors-and-primes.mk.none");
     }
 
     /* ===================== worksheet API ===================== */
@@ -4087,23 +4101,23 @@
     }
 
     function schema() {
-      var onOff = [{ v: false, label: "Off" }, { v: true, label: "On" }];
+      var onOff = [{ v: false, label: tx("common.off") }, { v: true, label: tx("common.on") }];
       return [{
           key: "mode",
-          label: "Kind of problem",
+          label: tx("factors-and-primes.sc.mode"),
           type: "choice",
           default: "prime",
           values: [
-            { v: "factors", label: "List the factors" }, { v: "prime", label: "Prime factorization" }, { v: "test", label: "Prime or composite?" },
-            { v: "gcf", label: "GCF & LCM" }, { v: "div", label: "Divisibility rules" }
+            { v: "factors", label: tx("factors-and-primes.sc.factors") }, { v: "prime", label: tx("factors-and-primes.sc.prime") }, { v: "test", label: tx("factors-and-primes.sc.test") },
+            { v: "gcf", label: tx("factors-and-primes.sc.gcf") }, { v: "div", label: tx("factors-and-primes.sc.div") }
           ]
         },
-        { key: "size", label: "Biggest number", type: "choice", default: "100", values: [50, 100, 500, 1000, 10000, 100000].map(function(v) { return { v: String(v), label: C(v) }; }) },
-        { key: "count", label: "How many numbers", type: "choice", default: "2", values: [{ v: "2", label: "2" }, { v: "3", label: "3" }], appliesTo: ["gcf"] },
-        { key: "nice", label: "Numbers with lots of factors", type: "toggle", default: false, values: onOff, appliesTo: ["factors", "prime", "gcf", "div"] },
-        { key: "primes", label: "Include some prime numbers", type: "toggle", default: true, values: onOff, appliesTo: ["factors", "prime"] },
-        { key: "gcf1", label: "They share a factor (GCF bigger than 1)", type: "toggle", default: true, values: onOff, appliesTo: ["gcf"] },
-        { key: "tricky", label: "Tricky ones that look prime", type: "toggle", default: true, values: onOff, appliesTo: ["test"] }
+        { key: "size", label: tx("factors-and-primes.mk.biggest"), type: "choice", default: "100", values: [50, 100, 500, 1000, 10000, 100000].map(function(v) { return { v: String(v), label: C(v) }; }) },
+        { key: "count", label: tx("factors-and-primes.mk.howMany"), type: "choice", default: "2", values: [{ v: "2", label: "2" }, { v: "3", label: "3" }], appliesTo: ["gcf"] },
+        { key: "nice", label: tx("factors-and-primes.sc.nice"), type: "toggle", default: false, values: onOff, appliesTo: ["factors", "prime", "gcf", "div"] },
+        { key: "primes", label: tx("factors-and-primes.mk.somePrimes"), type: "toggle", default: true, values: onOff, appliesTo: ["factors", "prime"] },
+        { key: "gcf1", label: tx("factors-and-primes.mk.share"), type: "toggle", default: true, values: onOff, appliesTo: ["gcf"] },
+        { key: "tricky", label: tx("factors-and-primes.mk.tricky"), type: "toggle", default: true, values: onOff, appliesTo: ["test"] }
       ];
     }
 
@@ -4167,13 +4181,13 @@
     /* ===================== wiring ===================== */
     var inp = $("numIn");
     var HINTS = {
-      factors: "A whole number from 1 to 1,000,000. Commas are fine: <code>10,000</code>.",
-      prime: "A whole number from 2 to 1,000,000.",
-      test: "Any whole number from 0 to 1,000,000.",
-      gcf: "Two or three whole numbers up to 1,000,000, split by commas, spaces or “and”: <code>12, 18</code> or <code>4 and 6 and 8</code>.",
-      div: "A whole number from 1 to 1,000,000."
+      factors: tx("factors-and-primes.hint.factors"),
+      prime: tx("factors-and-primes.hint.prime"),
+      test: tx("factors-and-primes.hint.test"),
+      gcf: tx("factors-and-primes.hint.gcf"),
+      div: tx("factors-and-primes.hint.div")
     };
-    var LABELS = { factors: "Your number", prime: "Your number", test: "Your number", gcf: "Your numbers", div: "Your number" };
+    var LABELS = { factors: tx("factors-and-primes.yourNumber"), prime: tx("factors-and-primes.yourNumber"), test: tx("factors-and-primes.yourNumber"), gcf: tx("factors-and-primes.yourNumbers"), div: tx("factors-and-primes.yourNumber") };
     var EX = {
       factors: ["12", "24", "36", "48", "60", "100", "17", "144", "360", "1,000"],
       prime: ["360", "84", "100", "128", "210", "1,001", "97", "9,240", "65,536"],
@@ -4291,9 +4305,9 @@
       url = location.href;
 
       function done() {
-        btn.textContent = "Link copied ✓";
+        btn.textContent = tx("common.linkCopied") + " ✓";
         clearTimeout(btn._t);
-        btn._t = setTimeout(function() { btn.textContent = "Copy link"; }, 2000);
+        btn._t = setTimeout(function() { btn.textContent = tx("common.copyLink"); }, 2000);
       }
 
       function fallback() {
@@ -4333,7 +4347,7 @@
       return t ? t === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
     }
 
-    function paint() { themeBtn.textContent = isDark() ? "Light mode" : "Dark mode"; }
+    function paint() { themeBtn.textContent = isDark() ? tx("common.lightMode") : tx("common.darkMode"); }
     themeBtn.addEventListener("click", function() {
       document.documentElement.setAttribute("data-theme", isDark() ? "light" : "dark");
       paint();
@@ -4411,7 +4425,7 @@
           verdict: verdict,
           firstTry: verdict !== "shown" && r.graded === 0,
           hinted: r.hinted,
-          text: ((({ factors: "Factors of ", prime: "Prime factorization of ", test: "Prime or composite: ", gcf: "GCF and LCM of ", div: "Divisibility of " })[S.mode] || "") + qString()).slice(0, 120)
+          text: ((({ factors: tx("factors-and-primes.report.factors"), prime: tx("factors-and-primes.report.prime"), test: tx("factors-and-primes.report.test"), gcf: tx("factors-and-primes.report.gcf"), div: tx("factors-and-primes.report.div") })[S.mode] || "") + qString()).slice(0, 120)
         };
       if (verdict !== "shown") r.graded++;
       try { document.dispatchEvent(new CustomEvent("helper:checked", { detail: d })); } catch (e) {}

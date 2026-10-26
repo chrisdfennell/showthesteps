@@ -381,6 +381,7 @@ Every helper page has:
 
 And across the whole site:
 
+- **Spanish**: every helper, with its steps, hints, problem maker and Check my answer, plus the bar, the tools and the home page, in Latin American / US school Spanish. Pick it with the **文A** button or a `?lang=es` link, and problems can be typed or said in Spanish ("tres cuartos de veinte"). Adding another language is copying the English strings: see [docs/TRANSLATING.md](docs/TRANSLATING.md)
 - light/dark and text size are remembered on every page, not one page at a time
 - a **Type any problem** search box in the bar at the top of every page; on the home page it suggests as you type: which helper a problem belongs to, the topics that match a word ("frac", "slope", "time"), and the Word List for "what is a denominator"; arrow keys and Enter pick one
 - **Big screen** mode for a projector or smartboard, and **Read aloud** for the step-by-step explanation, in the most natural voice the device has (**Voice** picks another voice or speed)
@@ -521,16 +522,16 @@ How big the site is, counted from the files themselves (the code is kept formatt
 | --- | ---: |
 | Helpers | 44 |
 | Lessons | 66 |
-| Pages and scripts | 129 pages, 31 scripts |
-| Lines of code | 377,232 |
-| &nbsp;&nbsp;JavaScript | 248,047 |
+| Pages and scripts | 129 pages, 107 scripts |
+| Lines of code | 462,630 |
+| &nbsp;&nbsp;JavaScript | 333,407 |
 | &nbsp;&nbsp;CSS | 115,076 |
-| &nbsp;&nbsp;HTML | 14,109 |
-| Characters | 18,014,879 |
-| Size | 17.3 MB |
-| Self-test checks | 32,222 (the last thorough run) |
+| &nbsp;&nbsp;HTML | 14,147 |
+| Characters | 24,747,490 |
+| Size | 23.7 MB |
+| Self-test checks | 35,287 (the last thorough run) |
 
-<sub>Counted by `scripts/stats.py` on 2026-10-25; blank lines left out.</sub>
+<sub>Counted by `scripts/stats.py` on 2026-10-26; blank lines left out.</sub>
 
 <!-- stats:end -->
 

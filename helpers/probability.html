@@ -16,6 +16,7 @@
 <link rel="canonical" href="https://showthesteps.org/helpers/probability">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","name":"Probability, step by step – The Chance Spinner","description":"How likely is it? Count the ways it can happen and everything that can happen: dice, coins, spinners, bags of marbles, cards and numbers, the chance it doesn’t happen, two events, the whole sample space, and what to expect…","url":"https://showthesteps.org/helpers/probability","inLanguage":"en-US","isAccessibleForFree":true,"learningResourceType":["Interactive worked examples","Practice problems"],"interactivityType":"active","educationalUse":["Practice","Self-assessment"],"teaches":"Probability","educationalLevel":["Middle school (grades 6–8)","High school (grades 9–12)"],"audience":{"@type":"EducationalAudience","educationalRole":"student"},"publisher":{"@type":"Organization","name":"Show The Steps","url":"https://showthesteps.org/"},"isPartOf":{"@type":"WebSite","name":"Show The Steps","url":"https://showthesteps.org/"}}</script>
 <script src="../assets/site.js"></script>
+<script src="../assets/i18n.js" data-strings="probability"></script>
 <script src="../assets/nav.js" defer></script>
 <script src="../assets/progress.js" defer></script>
 <link rel="stylesheet" href="../assets/fonts/fonts.css">
@@ -1793,9 +1794,9 @@
 <div class="page" id="page">
   <header class="masthead">
     <div>
-      <div class="eyebrow">Probability, worked out</div>
+      <div class="eyebrow" data-i18n="probability.eyebrow">Probability, worked out</div>
       <h1>The Chance <em>Spinner</em></h1>
-      <p class="tagline">How likely is it? Count the ways it can happen, count everything that can happen, and divide &mdash;
+      <p class="tagline" data-i18n="probability.tagline">How likely is it? Count the ways it can happen, count everything that can happen, and divide &mdash;
         for dice, coins, spinners, bags of marbles, cards and numbers. Then the chance it <em>doesn&rsquo;t</em> happen,
         two events at once, the whole sample space as a list, a tree or a table, and what to expect when you try it
         again and again &mdash; with the reason for every step.</p>
@@ -1804,16 +1805,16 @@
   </header>
 
   <section class="problem">
-    <div class="modes" id="modeTabs" role="group" aria-label="What kind of problem">
-      <button type="button" data-mode="simple" aria-pressed="true">One event</button>
-      <button type="button" data-mode="complement" aria-pressed="false">Not happening</button>
-      <button type="button" data-mode="compound" aria-pressed="false">Two events</button>
-      <button type="button" data-mode="space" aria-pressed="false">All the outcomes</button>
-      <button type="button" data-mode="expected" aria-pressed="false">Expected &amp; experiments</button>
+    <div class="modes" id="modeTabs" role="group" aria-label="What kind of problem" data-i18n-attr="aria-label=probability.modesLabel">
+      <button type="button" data-mode="simple" aria-pressed="true" data-i18n="probability.tab.simple">One event</button>
+      <button type="button" data-mode="complement" aria-pressed="false" data-i18n="probability.tab.complement">Not happening</button>
+      <button type="button" data-mode="compound" aria-pressed="false" data-i18n="probability.tab.compound">Two events</button>
+      <button type="button" data-mode="space" aria-pressed="false" data-i18n="probability.tab.space">All the outcomes</button>
+      <button type="button" data-mode="expected" aria-pressed="false" data-i18n="probability.tab.expected">Expected &amp; experiments</button>
     </div>
     <div class="entry">
       <div class="numfield">
-        <label for="numIn" id="numLab">Your problem</label>
+        <label for="numIn" id="numLab" data-i18n="probability.numLab">Your problem</label>
         <input class="expr-in" id="numIn" type="text" inputmode="text" autocomplete="off" spellcheck="false" value="">
       </div>
     </div>
@@ -1822,18 +1823,18 @@
     <div class="optrow" id="optRow"></div>
 
     <details class="maker" id="maker">
-      <summary>Make a problem for me <span>&mdash; pick what goes in it</span></summary>
+      <summary data-i18n="common.maker">Make a problem for me <span>&mdash; pick what goes in it</span></summary>
       <div class="maker-body" id="makerBody"></div>
     </details>
 
     <div class="examples">
-      <span class="lbl">Try</span>
+      <span class="lbl" data-i18n="common.try">Try</span>
       <span id="chips"></span>
       <span class="practice">
-        <div class="modes" role="group" aria-label="Practice mode">
-          <button type="button" id="allBtn" aria-pressed="true">Show all work</button>
-          <button type="button" id="stepBtn" aria-pressed="false">One step at a time</button>
-          <button type="button" id="checkBtn" aria-pressed="false">Check my answer</button>
+        <div class="modes" role="group" aria-label="Practice mode" data-i18n-attr="aria-label=common.practiceMode">
+          <button type="button" id="allBtn" aria-pressed="true" data-i18n="common.showAll">Show all work</button>
+          <button type="button" id="stepBtn" aria-pressed="false" data-i18n="common.oneStep">One step at a time</button>
+          <button type="button" id="checkBtn" aria-pressed="false" data-i18n="common.checkMine">Check my answer</button>
         </div>
       </span>
     </div>
@@ -1842,17 +1843,17 @@
   <div id="statusLine" role="status"></div>
 
   <section class="ckbox" id="ckBox" hidden aria-labelledby="ckH">
-    <h2 id="ckH">Your answer</h2>
+    <h2 id="ckH" data-i18n="common.yourAnswer">Your answer</h2>
     <div class="ckq" id="ckQ"></div>
     <div class="ckrow">
       <div class="ckfields" id="ckFields"></div>
-      <button type="button" class="go" id="ckGo">Check</button>
+      <button type="button" class="go" id="ckGo" data-i18n="common.check">Check</button>
     </div>
     <div class="ckfb" id="ckFb" aria-live="polite"></div>
     <div class="ckhint" id="ckHint" hidden></div>
     <div class="ckmore" id="ckMore" hidden>
-      <button type="button" class="print" id="hintBtn">Show a hint</button>
-      <button type="button" class="print" id="showBtn">Show me the work</button>
+      <button type="button" class="print" id="hintBtn" data-i18n="common.hint">Show a hint</button>
+      <button type="button" class="print" id="showBtn" data-i18n="common.showWork">Show me the work</button>
     </div>
     <div class="cknote" id="ckNote"></div>
   </section>
@@ -1860,11 +1861,11 @@
   <div class="board" id="board">
     <section class="panel">
       <div class="panel-head">
-        <h2>The work</h2>
+        <h2 data-i18n="common.theWork">The work</h2>
         <div class="stepper" id="stepper" hidden>
-          <button type="button" id="prevBtn" aria-label="Previous step">&larr;</button>
+          <button type="button" id="prevBtn" aria-label="Previous step" data-i18n-attr="aria-label=common.prevStep">&larr;</button>
           <span class="count" id="stepCount"></span>
-          <button type="button" id="nextBtn" aria-label="Next step">&rarr;</button>
+          <button type="button" id="nextBtn" aria-label="Next step" data-i18n-attr="aria-label=common.nextStep">&rarr;</button>
         </div>
       </div>
       <div id="workHost"></div>
@@ -1872,7 +1873,7 @@
     </section>
 
     <section class="panel">
-      <div class="panel-head"><h2>Say it out loud</h2></div>
+      <div class="panel-head"><h2 data-i18n="common.sayIt">Say it out loud</h2></div>
       <ol class="log" id="log"></ol>
       <div class="closer" id="closer"></div>
     </section>
@@ -1880,10 +1881,10 @@
 
   <div class="footnote">
     <span class="btns">
-      <button class="print" type="button" id="printBtn">Print this work</button>
-      <button class="print" type="button" id="copyBtn">Copy link</button>
+      <button class="print" type="button" id="printBtn" data-i18n="common.print">Print this work</button>
+      <button class="print" type="button" id="copyBtn" data-i18n="common.copyLink">Copy link</button>
     </span>
-    <span>Every chance is worked out exactly and shown three ways: a fraction, a decimal and a percent. Need help
+    <span data-i18n="probability.footnote">Every chance is worked out exactly and shown three ways: a fraction, a decimal and a percent. Need help
       simplifying the fraction? Use <a href="fractions.html">the Fraction Bar</a>; turning it into a percent is on
       <a href="percents.html">the Hundred Grid</a>.</span>
   </div>
@@ -1964,20 +1965,56 @@
   (function() {
     "use strict";
     var $ = function(id) { return document.getElementById(id); };
+    /* ---- the language (assets/i18n.js): tx() is a string in the visitor's language. GW is a translation's grammar,
+       from its own locale file (probability.gramWords: the genders of the things, articles, ordinals, color words
+       that agree, the card words); in English it is null and the English templates need none of it. ---- */
+    if (window.HelperI18n) HelperI18n.apply();
+    var tx = function(k, v) { return window.HelperI18n ? HelperI18n.t(k, v) : k; };
+    var GW = window.HelperI18n && HelperI18n.lang !== "en" ? HelperI18n.raw("probability.gramWords") || null : null;
+
+    function gw(k, d) { return GW && GW[k] !== undefined ? GW[k] : d; }
+
+    function rawW(k) { return window.HelperI18n ? HelperI18n.raw(k) : undefined; }
+    // a label in words: a color the language has (agreeing: f feminine, pl plural), the coin's H and T, or as it is
+    function labW(lab, f, pl) {
+      var c = GW && GW.labels ? GW.labels[lab] : null;
+      if (!c) return lab;
+      return typeof c === "string" ? c : c[(f ? 1 : 0) + (pl ? 2 : 0)];
+    }
+    // an article for a gender ("m", "f"): the language's own, else "a" / "the" (def)
+    function artW(g, def) { var a = gw("art", null); return a ? a[g || "m"][def ? 1 : 0] : def ? "the" : "a"; }
+    // a typed problem in the language in use, as the reader knows it: this page's own phrases (probability.re.typed in
+    // the language's file, matched without accents in lower case), the shared HelperI18n.normalize, then
+    // probability.re.after (words that must wait until the number words are read). English comes back as it was.
+    function readTyped(q) {
+      if (!window.HelperI18n || HelperI18n.lang === "en" || q === null || q === undefined) return q;
+      var s = String(q),
+        f = s.replace(/[¿¡]/g, " ").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase(),
+        g = f;
+
+      function run(list) {
+        (list || []).forEach(function(r) { g = g.replace(new RegExp(r[0], "g"), r[1]); });
+      }
+      run(HelperI18n.raw("probability.re.typed"));
+      g = HelperI18n.normalize(g === f ? s : g);
+      var before = g;
+      run(HelperI18n.raw("probability.re.after"));
+      return g === before ? g : g.replace(/\s+/g, " ").trim();
+    }
     var PAGE = "probability.html",
       STORE = "chance-spinner",
       TITLE = "The Chance Spinner";
     var MODES = ["simple", "complement", "compound", "space", "expected"];
-    var TABN = { simple: "One event", complement: "Not happening", compound: "Two events", space: "All the outcomes", expected: "Expected & experiments" };
+    var TABN = { simple: tx("probability.tab.simple"), complement: tx("probability.tab.complement"), compound: tx("probability.tab.compound"), space: tx("probability.tab.space"), expected: tx("probability.tab.expected") };
     var EMBED = /(?:^|[?&])embed=1(?:&|$)/.test(location.search);
 
     function defInputs() {
       return {
-        simple: "P(rolling a 4)",
-        complement: "P(not 6)",
-        compound: "flip a coin and roll a die, P(heads and even)",
-        space: "two dice, sum of 7",
-        expected: "roll a die 60 times, how many 3s"
+        simple: tx("probability.def.simple"),
+        complement: tx("probability.def.complement"),
+        compound: tx("probability.def.compound"),
+        space: tx("probability.def.space"),
+        expected: tx("probability.def.expected")
       };
     }
     var S = {
@@ -2009,13 +2046,15 @@
     }
 
     function cap(s) { s = String(s); return s.charAt(0).toUpperCase() + s.slice(1); }
-    var WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"];
+    var WORDS = rawW("probability.numWords") || [];
 
     function word(k) { return k < WORDS.length ? WORDS[k] : String(k); }
 
-    function listAnd(a) { return a.length < 2 ? a.join("") : a.length === 2 ? a[0] + " and " + a[1] : a.slice(0, -1).join(", ") + " and " + a[a.length - 1]; }
+    function listAnd(a) { return a.length < 2 ? a.join("") : tx("probability.list.and", { a: a.slice(0, -1).join(", "), b: a[a.length - 1] }); }
 
-    function listOr(a) { return a.length < 2 ? a.join("") : a.length === 2 ? a[0] + " or " + a[1] : a.slice(0, -1).join(", ") + " or " + a[a.length - 1]; }
+    function listOr(a) { return a.length < 2 ? a.join("") : tx("probability.list.or", { a: a.slice(0, -1).join(", "), b: a[a.length - 1] }); }
+
+    function lcFirst(t) { return t.charAt(0).toLowerCase() + t.slice(1); }
 
     function ds(step) { return (step === undefined || step === null || step < 0) ? "" : ' data-step="' + step + '"'; }
 
@@ -2189,27 +2228,21 @@
 
     function pctH(r) { var p = pctInfo(r); return p.exact ? p.t : '<span class="ap">≈</span> ' + p.t; }
 
-    function likely(r) {
+    function likelyK(r) { // impossible, unlikely, even, likely, certain
       if (r.n === 0n) return "impossible";
       if (cmpR(r, ONE) === 0) return "certain";
       var c = cmpR(r, HALF);
-      return c < 0 ? "unlikely" : c === 0 ? "even chance" : "likely";
+      return c < 0 ? "unlikely" : c === 0 ? "even" : "likely";
     }
 
-    function likelyWhy(r) {
-      var w = likely(r);
-      if (w === "impossible") return "a probability of 0 means it can’t happen at all";
-      if (w === "certain") return "a probability of 1 means it is sure to happen";
-      if (w === "even chance") return "exactly 1/2 — it’s as likely to happen as not";
-      return w === "unlikely" ? "it’s between 0 and 1/2, so it happens less often than not" : "it’s between 1/2 and 1, so it happens more often than not";
-    }
+    function likely(r) { return tx("probability.likely." + likelyK(r)); }
+
+    function likelyWhy(r) { return tx("probability.likelyWhy." + likelyK(r)); }
 
     /* ===================== things you can pick from: experiments ===================== */
     var SUITS = ["hearts", "diamonds", "clubs", "spades"],
       SUITSYM = { hearts: "♥", diamonds: "♦", clubs: "♣", spades: "♠" };
-    var SUIT1 = { hearts: "heart", diamonds: "diamond", clubs: "club", spades: "spade" };
     var RANKS = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
-    var RANKW = { A: "ace", J: "jack", Q: "queen", K: "king" };
     var COL = {
       red: ["#D64545", "#fff"],
       blue: ["#3B6FD6", "#fff"],
@@ -2232,7 +2265,7 @@
     var LABRE = /^(?:[a-z][a-z0-9]{0,11}|\d{1,3})$/;
 
     function mkDie(n) {
-      if (!(n >= 2 && n <= 20)) throw new UserErr("Dice here have 2 to 20 sides — <b>" + esc(String(n)) + "</b> won’t work. Try <b>6</b> or <b>8</b>.");
+      if (!(n >= 2 && n <= 20)) throw new UserErr(tx("probability.err.dieSides", { n: esc(String(n)) }));
       var outs = [];
       for (var i = 1; i <= n; i++) outs.push({ lab: String(i), num: i, w: 1 });
       return { kind: "die", N: n, code: "die" + n, outs: outs, tot: n, numeric: true, equal: true };
@@ -2247,7 +2280,7 @@
     }
 
     function mkNums(n) {
-      if (!(n >= 2 && n <= 100)) throw new UserErr("Pick from 1 to a number between <b>2</b> and <b>100</b> — like <b>numbers 1 to 20</b>.");
+      if (!(n >= 2 && n <= 100)) throw new UserErr(tx("probability.err.nums"));
       var outs = [];
       for (var i = 1; i <= n; i++) outs.push({ lab: String(i), num: i, w: 1 });
       return { kind: "nums", N: n, code: "nums" + n, outs: outs, tot: n, numeric: true, equal: true };
@@ -2257,14 +2290,14 @@
       var tot = 0,
         seen = {};
       cats = cats.filter(function(c) { return c.c > 0; });
-      if (!cats.length) throw new UserErr("The bag is empty — say what’s in it, like <b>3 red, 5 blue, 2 green</b>.");
-      if (cats.length > 6) throw new UserErr("Up to 6 colors in a bag, please.");
+      if (!cats.length) throw new UserErr(tx("probability.err.bagEmpty"));
+      if (cats.length > 6) throw new UserErr(tx("probability.err.bagColors"));
       cats.forEach(function(c) {
-        if (seen[c.lab]) throw new UserErr("<b>" + esc(c.lab) + "</b> is listed twice — give each color once.");
+        if (seen[c.lab]) throw new UserErr(tx("probability.err.bagTwice", { c: esc(labW(c.lab)) }));
         seen[c.lab] = 1;
         tot += c.c;
       });
-      if (tot > 100) throw new UserErr("Up to 100 marbles in a bag, please — that one has " + tot + ".");
+      if (tot > 100) throw new UserErr(tx("probability.err.bagMax", { n: tot }));
       return {
         kind: "bag",
         code: "bag(" + cats.map(function(c) { return c.lab + ":" + c.c; }).join(",") + ")",
@@ -2277,16 +2310,16 @@
     }
 
     function mkSpin(secs, unequal) {
-      if (secs.length < 1) throw new UserErr("A spinner needs some parts, like <b>red, blue, green</b>.");
-      if (secs.length > 24) throw new UserErr("Up to 24 parts on a spinner, please.");
+      if (secs.length < 1) throw new UserErr(tx("probability.err.spinNone"));
+      if (secs.length > 24) throw new UserErr(tx("probability.err.spinMax"));
       var tot = 0,
         numeric = secs.every(function(s) { return /^\d+$/.test(s.lab); });
       if (unequal) {
         secs.forEach(function(s) {
-          if (!(s.deg > 0)) throw new UserErr("Every part of the spinner needs a size in degrees, like <b>red 90°</b>.");
+          if (!(s.deg > 0)) throw new UserErr(tx("probability.err.spinDeg"));
           tot += s.deg;
         });
-        if (tot !== 360) throw new UserErr("The parts of a spinner make a whole circle, so their degrees add up to <b>360</b> — these add up to <b>" + tot + "</b>.");
+        if (tot !== 360) throw new UserErr(tx("probability.err.spin360", { n: tot }));
       } else tot = secs.length;
       var outs = secs.map(function(s) { return { lab: s.lab, num: numeric ? parseInt(s.lab, 10) : null, w: unequal ? s.deg : 1, deg: unequal ? s.deg : 360 / secs.length }; });
       var labs = [];
@@ -2331,7 +2364,7 @@
       if ((m = /^bag\((.*)\)$/.exec(s))) {
         var cats = m[1].split(",").filter(Boolean).map(function(p) {
           var q = /^([a-z][a-z0-9]{0,11}):(\d{1,3})$/.exec(p);
-          if (!q) throw new UserErr("I can’t read <b>" + esc(p) + "</b> in the bag — write each color with its count, like <b>red:3</b>.");
+          if (!q) throw new UserErr(tx("probability.err.bagRead", { p: esc(p) }));
           return { lab: q[1], c: parseInt(q[2], 10) };
         });
         return mkBag(cats);
@@ -2341,73 +2374,75 @@
           withDeg = parts.some(function(p) { return p.indexOf(":") >= 0; });
         var secs = parts.map(function(p) {
           var q = /^([a-z0-9]{1,12})(?::(\d{1,3}))?$/.exec(p);
-          if (!q || !LABRE.test(q[1])) throw new UserErr("I can’t read the spinner part <b>" + esc(p) + "</b>.");
-          if (withDeg && !q[2]) throw new UserErr("Give every part a size in degrees (like <b>red:90</b>), or none of them for equal parts.");
+          if (!q || !LABRE.test(q[1])) throw new UserErr(tx("probability.err.spinRead", { p: esc(p) }));
+          if (withDeg && !q[2]) throw new UserErr(tx("probability.err.spinDegAll"));
           return { lab: q[1], deg: q[2] ? parseInt(q[2], 10) : 0 };
         });
         return mkSpin(secs, withDeg);
       }
-      throw new UserErr("I don’t know <b>" + esc(str) + "</b> — use die6, coin, deck, nums20, bag(red:3,blue:5) or spin(red,blue,green).");
+      throw new UserErr(tx("probability.err.exp", { x: esc(str) }));
     }
     /* words for an experiment */
     function expShort(E) {
-      if (E.kind === "die") return E.N === 6 ? "die" : E.N + "-sided die";
-      if (E.kind === "coin") return "coin";
-      if (E.kind === "deck") return "deck of cards";
-      if (E.kind === "nums") return "number from 1 to " + E.N;
-      if (E.kind === "bag") return "bag";
-      return "spinner";
+      if (E.kind === "die") return E.N === 6 ? tx("probability.exp.die") : tx("probability.exp.dieN", { n: E.N });
+      if (E.kind === "coin") return tx("probability.exp.coin");
+      if (E.kind === "deck") return tx("probability.exp.deck");
+      if (E.kind === "nums") return tx("probability.exp.nums", { n: E.N });
+      if (E.kind === "bag") return tx("probability.exp.bag");
+      return tx("probability.exp.spin");
     }
 
+    // a thing's gender in the language (gramWords.gender: die, coin, deck, nums, bag, spin, and pick / spinAct for
+    // "pick" and "spin" as nouns), and the thing with an article: "un dado", "la moneda" (English never asks)
+    function gOf(kind) { return gw("gender", {})[kind] || "m"; }
+
+    function expA(E) { return artW(gOf(E.kind)) + " " + expShort(E); }
+
+    function expThe(E) { return artW(gOf(E.kind), true) + " " + expShort(E); }
+
     function unitOf(E) { // what gets counted
-      if (E.kind === "die") return ["face", "faces"];
-      if (E.kind === "coin") return ["side", "sides"];
-      if (E.kind === "deck") return ["card", "cards"];
-      if (E.kind === "nums") return ["number", "numbers"];
-      if (E.kind === "bag") return ["marble", "marbles"];
-      return E.unequal ? ["degree", "degrees"] : ["part", "parts"];
+      var k = E.kind === "spin" ? (E.unequal ? "deg" : "part") : E.kind;
+      return [tx("probability.unit1." + k), tx("probability.unitN." + k)];
     }
 
     function countWords(E, k) { var u = unitOf(E); return k + (E.kind === "spin" && E.unequal ? "°" : " " + (k === 1 ? u[0] : u[1])); }
 
     function catList(E) { // "3 red, 5 blue and 2 green"
-      if (E.kind === "bag") return listAnd(E.cats.map(function(c) { return c.c + " " + c.lab; }));
+      if (E.kind === "bag") return listAnd(E.cats.map(function(c) { return c.c + " " + labW(c.lab, true, c.c !== 1); }));
       var cnt = {};
       E.outs.forEach(function(o) { cnt[o.lab] = (cnt[o.lab] || 0) + 1; });
-      return listAnd(E.labs.map(function(l) { return cnt[l] + " " + l; }));
+      return listAnd(E.labs.map(function(l) { return cnt[l] + " " + labW(l, true, cnt[l] !== 1); }));
     }
 
     function spinNumbered(E) { return E.numeric && E.equal && E.outs.every(function(o, i) { return o.num === i + 1; }); }
 
-    function setupT(E) {
-      if (E.kind === "die") return E.N === 6 ? "Roll a fair die (numbered 1 to 6)." : "Roll a fair " + E.N + "-sided die (numbered 1 to " + E.N + ").";
-      if (E.kind === "coin") return "Flip a fair coin.";
-      if (E.kind === "deck") return "Pick a card at random from a shuffled deck of 52.";
-      if (E.kind === "nums") return "Pick a whole number from 1 to " + E.N + " at random.";
-      if (E.kind === "bag") return "A bag has " + catList(E) + " marbles. Pick one without looking.";
-      if (E.unequal) return "A spinner has " + E.n + " parts: " + listAnd(E.outs.map(function(o) { return o.lab + " (" + o.deg + "°)"; })) + ". Spin it once.";
-      if (spinNumbered(E)) return "A spinner has " + E.n + " equal parts, numbered 1 to " + E.n + ". Spin it once.";
-      if (E.labs.length === E.n) return "A spinner has " + E.n + " equal parts: " + listAnd(E.labs) + ". Spin it once.";
-      return "A spinner has " + E.n + " equal parts: " + catList(E) + ". Spin it once.";
+    // the set-up in two parts: d describes what's there (a bag, a spinner; "" for the others), a says what to do
+    function setupD(E) {
+      if (E.kind === "die") return { d: "", a: E.N === 6 ? tx("probability.setup.die") : tx("probability.setup.dieN", { n: E.N }) };
+      if (E.kind === "coin") return { d: "", a: tx("probability.setup.coin") };
+      if (E.kind === "deck") return { d: "", a: tx("probability.setup.deck") };
+      if (E.kind === "nums") return { d: "", a: tx("probability.setup.nums", { n: E.N }) };
+      if (E.kind === "bag") return { d: tx("probability.setup.bag", { list: catList(E) }), a: tx("probability.act.bag") };
+      var sa = tx("probability.act.spin");
+      if (E.unequal) return { d: tx("probability.setup.spinUneq", { n: E.n, list: listAnd(E.outs.map(function(o) { return tx("probability.setup.degPart", { lab: labW(o.lab), d: o.deg }); })) }), a: sa };
+      if (spinNumbered(E)) return { d: tx("probability.setup.spinNum", { n: E.n }), a: sa };
+      if (E.labs.length === E.n) return { d: tx("probability.setup.spinEq", { n: E.n, list: listAnd(E.labs.map(function(l) { return labW(l); })) }), a: sa };
+      return { d: tx("probability.setup.spinEq", { n: E.n, list: catList(E) }), a: sa };
     }
 
-    function verbOf(E) { return E.kind === "die" ? "rolling" : E.kind === "coin" ? "getting" : E.kind === "spin" ? "landing on" : "picking"; }
+    function setupT(E) { var u = setupD(E); return u.d ? u.d + " " + u.a : u.a; }
+
+    function verbOf(E) { return E.kind === "die" ? "roll" : E.kind === "coin" ? "get" : E.kind === "spin" ? "land" : "pick"; } // the key of its verb
 
     function outT(E, o) { // one outcome, short
-      if (E.kind === "coin") return o.lab;
-      if (E.kind === "spin" && E.unequal) return o.lab + " " + o.deg + "°";
-      return o.lab;
+      if (E.kind === "coin") return labW(o.lab);
+      if (E.kind === "spin" && E.unequal) return labW(o.lab) + " " + o.deg + "°";
+      return labW(o.lab, E.kind === "bag");
     }
 
     function outH(E, o) {
       if (E.kind === "deck") return o.rank + '<span class="' + (o.color === "red" ? "rs" : "") + '">' + SUITSYM[o.suit] + "</span>";
       return esc(outT(E, o));
-    }
-
-    function outW(E, o) { // one outcome in words
-      if (E.kind === "coin") return o.lab === "H" ? "heads" : "tails";
-      if (E.kind === "deck") return (RANKW[o.rank] || o.rank) + " of " + o.suit;
-      return o.lab;
     }
 
     /* ===================== events over one outcome: atoms ===================== */
@@ -2466,10 +2501,10 @@
           var lab = m[1];
           if (E.kind === "coin") { lab = lab === "h" || lab === "heads" || lab === "head" ? "H" : lab === "t" || lab === "tails" || lab === "tail" ? "T" : null; }
           if (lab && E.outs.some(function(o) { return o.lab === lab; })) a = { t: "is", v: lab };
-          else if (!quiet) throw new UserErr("There’s no <b>" + esc(m[1]) + "</b> on the " + expShort(E) + (E.kind === "coin" ? " — a coin has heads (H) and tails (T)." : " — it has " + listAnd(labsOf(E)) + "."));
+          else if (!quiet) throw new UserErr(tx("probability.err.noLab", { x: esc(m[1]), e: expShort(E), eThe: expThe(E), more: E.kind === "coin" ? tx("probability.err.noLabCoin") : tx("probability.err.noLabHas", { list: listAnd(labsOf(E).map(function(l) { return labW(l); })) }) }));
         }
       }
-      if (!a) { if (quiet) return null; throw new UserErr("I can’t use the event <b>" + esc(str) + "</b> with a " + expShort(E) + "."); }
+      if (!a) { if (quiet) return null; throw new UserErr(tx("probability.err.event", { ev: esc(str), e: expShort(E), eA: expA(E) })); }
       a.neg = neg;
       a.code = atomCode(a);
       return a;
@@ -2567,119 +2602,92 @@
 
     function an(v) { var s = String(v); return /^8|^11$|^18$/.test(s) ? "an" : "a"; }
 
+    // a rank in words ("king", "face card", "7"), its gender in the language, and the suit's plural ("hearts")
+    function rankW(r) { return /^\d+$/.test(r) || r === "*" ? r : tx("probability.rankW." + r); }
+
+    function rankG(r) { return gw("rankG", {})[/^\d+$/.test(r) ? "n" : r] || "m"; }
+
+    function suitPl(s) { return gw("suits", {})[s] || s; }
+
     function cardNoun(a) {
       var r = a.r,
         s = a.s,
-        rk = r === "face" ? "face card" : r === "num" ? "number card" : RANKW[r] || r;
-      if (r === "*" && s === "*") return "any card";
-      if (r === "*") return SUITS.indexOf(s) >= 0 ? "a " + SUIT1[s] : "a " + s + " card";
-      if (s === "*") return (r === "A" || r === "8" ? "an " : "a ") + rk + (r === "num" ? " (2 to 10)" : r === "face" ? " (jack, queen or king)" : "");
+        rk = rankW(r);
+      if (r === "*" && s === "*") return tx("probability.card.any");
+      if (r === "*") return SUITS.indexOf(s) >= 0 ? tx("probability.card.suit." + s) : tx("probability.card.color." + s);
+      if (s === "*") return /^\d+$/.test(r) ? tx("probability.card.rank.n", { an: r === "8" ? "an" : "a", r: r }) : tx("probability.card.rank." + r);
       if (SUITS.indexOf(s) >= 0) {
-        if (r === "face" || r === "num") return "a " + rk + " that’s a " + SUIT1[s];
-        return "the " + rk + " of " + s;
+        if (r === "face" || r === "num") return tx("probability.card.fnSuit." + r, { sa: tx("probability.card.suit." + s), sp: suitPl(s) });
+        return tx("probability.card.rankOf", { rk: rk, s: s, rkThe: artW(rankG(r), true) + " " + rk, sp: suitPl(s) });
       }
-      return "a " + s + " " + rk;
+      return tx("probability.card.colorRank", { s: s, rk: rk, art: artW(rankG(r)), adj: labW(s, rankG(r) === "f") });
     }
 
     function cardShort(a) {
       var r = a.r,
         s = a.s,
-        rk = r === "face" ? "face card" : r === "num" ? "number card" : RANKW[r] || r;
-      if (r === "*" && s === "*") return "any card";
-      if (r === "*") return SUITS.indexOf(s) >= 0 ? SUIT1[s] : s + " card";
+        rk = rankW(r);
+      if (r === "*" && s === "*") return tx("probability.cardS.any");
+      if (r === "*") return SUITS.indexOf(s) >= 0 ? tx("probability.cardS.suit." + s) : tx("probability.cardS.color", { s: s, adj: labW(s, true) });
       if (s === "*") return rk;
-      if (SUITS.indexOf(s) >= 0) return (r === "face" || r === "num") ? SUIT1[s] + " " + rk : rk + " of " + s;
-      return s + " " + rk;
+      if (SUITS.indexOf(s) >= 0) return (r === "face" || r === "num") ? tx("probability.cardS.fnSuit", { s1: tx("probability.cardS.suit." + s), rk: rk, sp: suitPl(s) }) : tx("probability.cardS.rankOf", { rk: rk, s: s, sp: suitPl(s) });
+      return tx("probability.cardS.colorRank", { s: s, rk: rk, adj: labW(s, rankG(r) === "f") });
     }
 
     function atomNoun(a, E) { // "a 4", "an even number", "red", "heads", "a heart"
-      var c;
       switch (a.t) {
         case "any":
-          c = "anything";
-          break;
-        case "eq":
-          c = E.kind === "nums" ? "the number " + a.v : an(a.v) + " " + a.v;
-          break;
         case "even":
-          c = "an even number";
-          break;
         case "odd":
-          c = "an odd number";
-          break;
         case "prime":
-          c = "a prime number";
-          break;
         case "square":
-          c = "a square number";
-          break;
+          return tx("probability.noun." + a.t);
+        case "eq":
+          return E.kind === "nums" ? tx("probability.noun.eqNums", { v: a.v }) : tx("probability.noun.eq", { an: an(a.v), v: a.v });
         case "mult":
-          c = "a multiple of " + a.v;
-          break;
         case "factor":
-          c = "a factor of " + a.v;
-          break;
         case "gt":
-          c = "a number greater than " + a.v;
-          break;
         case "lt":
-          c = "a number less than " + a.v;
-          break;
         case "ge":
-          c = a.v + " or more";
-          break;
         case "le":
-          c = a.v + " or less";
-          break;
+          return tx("probability.noun." + a.t, { v: a.v });
         case "is":
-          c = E.kind === "coin" ? (a.v === "H" ? "heads" : "tails") : E.kind === "bag" ? an(a.v) + " " + a.v + " marble" : a.v;
-          break;
+          if (E.kind === "coin") return tx(a.v === "H" ? "probability.noun.heads" : "probability.noun.tails");
+          if (E.kind === "bag") return tx("probability.noun.marble", { an: /^[aeiou]/.test(a.v) ? "an" : an(a.v), v: a.v, vf: labW(a.v, true) });
+          return labW(a.v);
         case "card":
-          c = cardNoun(a);
-          break;
+          return cardNoun(a);
       }
-      if (E.kind === "bag" && a.t === "is" && /^[aeiou]/.test(a.v)) c = "an " + a.v + " marble";
-      return c;
     }
 
-    function atomPhrase(a, E) { return (a.neg ? "not " : "") + verbOf(E) + " " + atomNoun(a, E); } // "not rolling a 6"
+    function atomPhrase(a, E) { return tx("probability.phrase" + (a.neg ? "Not." : ".") + verbOf(E), { x: atomNoun(a, E) }); } // "not rolling a 6"
     function atomShort(a, E) { // for P( ): "4", "even", "red", "heart", "not 6"
       var c;
       switch (a.t) {
         case "any":
-          c = "anything";
+          c = tx("probability.short.any");
           break;
         case "eq":
           c = String(a.v);
           break;
         case "mult":
-          c = "multiple of " + a.v;
-          break;
         case "factor":
-          c = "factor of " + a.v;
-          break;
         case "gt":
-          c = "more than " + a.v;
-          break;
         case "lt":
-          c = "less than " + a.v;
-          break;
         case "ge":
-          c = a.v + " or more";
-          break;
         case "le":
-          c = a.v + " or less";
+          c = tx("probability.short." + a.t, { v: a.v });
           break;
         case "is":
-          c = E.kind === "coin" ? (a.v === "H" ? "heads" : "tails") : a.v;
+          c = E.kind === "coin" ? tx(a.v === "H" ? "probability.short.heads" : "probability.short.tails") : labW(a.v, E.kind === "bag");
           break;
         case "card":
           c = cardShort(a);
           break;
         default:
-          c = a.t;
+          c = tx("probability.short." + a.t);
       }
-      return (a.neg ? "not " : "") + c;
+      return a.neg ? tx("probability.short.not", { x: c }) : c;
     }
 
     /* ===================== events over a whole outcome (sample space) ===================== */
@@ -2689,27 +2697,27 @@
 
       function atomFor(code) { // an atom read against every stage it fits
         var per = Es.map(function(E) { try { return parseAtom(code, E, true); } catch (e) { return null; } });
-        if (!per.some(Boolean)) throw new UserErr("The event <b>" + esc(code) + "</b> doesn’t fit any of the " + Es.map(expShort).join(" or ") + ".");
+        if (!per.some(Boolean)) throw new UserErr(tx("probability.err.sevFit", { c: esc(code), list: Es.map(expShort).join(tx("probability.joinOr")) }));
         return per;
       }
       if ((m = /^sum(gt|lt)?:(\d{1,3})$/.exec(s))) {
-        if (!Es.every(function(E) { return E.numeric; })) throw new UserErr("A sum needs numbers on every stage — " + listAnd(Es.map(expShort)) + " don’t all have numbers.");
+        if (!Es.every(function(E) { return E.numeric; })) throw new UserErr(tx("probability.err.sumNums", { list: listAnd(Es.map(expShort)) }));
         ev = { t: "sum", op: m[1] || "eq", v: parseInt(m[2], 10) };
       } else if (s === "double" || s === "doubles" || s === "same") {
         ev = { t: "double" };
         var kinds = Es.map(function(E) { return E.code; });
-        if (kinds.some(function(k) { return k !== kinds[0]; })) throw new UserErr("“All the same” needs the same kind of thing on every stage.");
+        if (kinds.some(function(k) { return k !== kinds[0]; })) throw new UserErr(tx("probability.err.sameKind"));
       } else if ((m = /^(exactly|atleast|atmost):(\d{1,2}):(.+)$/.exec(s))) {
         ev = { t: m[1], k: parseInt(m[2], 10), per: atomFor(m[3]) };
-        if (ev.k > Es.length) throw new UserErr("There are only " + Es.length + " stages, so “" + m[1].replace("at", "at ") + " " + ev.k + "” can’t work.");
+        if (ev.k > Es.length) throw new UserErr(tx("probability.err.stagesK", { n: Es.length, q: tx("probability.q." + m[1]), k: ev.k }));
       } else if ((m = /^(all|none):(.+)$/.exec(s))) ev = { t: m[1], per: atomFor(m[2]) };
       else if ((m = /^each:(.+)$/.exec(s))) {
         var parts = m[1].split("/");
-        if (parts.length !== Es.length) throw new UserErr("Give one event for each of the " + Es.length + " stages, split by <b>/</b> — like <b>each:is:H/even</b>.");
+        if (parts.length !== Es.length) throw new UserErr(tx("probability.err.eachN", { n: Es.length }));
         ev = { t: "each", per: parts.map(function(p, i) { return parseAtom(p, Es[i]); }) };
-        if (ev.per.every(function(a) { return a.t === "any" && !a.neg; })) throw new UserErr("That event is everything — pick something to look for.");
+        if (ev.per.every(function(a) { return a.t === "any" && !a.neg; })) throw new UserErr(tx("probability.err.everything"));
       }
-      if (!ev) throw new UserErr("I can’t read the event <b>" + esc(str) + "</b> — try <b>sum:7</b>, <b>double</b>, <b>exactly:2:is:H</b> or <b>each:is:H/even</b>.");
+      if (!ev) throw new UserErr(tx("probability.err.sevRead", { ev: esc(str) }));
       ev.code = sevCode(ev);
       return ev;
     }
@@ -2756,64 +2764,75 @@
     }
 
     function atomPl(a, E) { // plural noun for counting events: "heads", "6s", "even numbers"
-      if (a.t === "is") return E.kind === "coin" ? (a.v === "H" ? "heads" : "tails") : a.v;
-      if (a.t === "eq") return a.v + "s";
-      if (a.t === "even" || a.t === "odd" || a.t === "prime" || a.t === "square") return a.t + " numbers";
-      return atomShort(a, E) + "s";
+      if (a.t === "is") return E.kind === "coin" ? tx(a.v === "H" ? "probability.pl.heads" : "probability.pl.tails") : labW(a.v, E.kind === "bag", true);
+      if (a.t === "eq") return tx("probability.pl.eq", { v: a.v });
+      if (a.t === "even" || a.t === "odd" || a.t === "prime" || a.t === "square") return tx("probability.pl." + a.t);
+      return tx("probability.pl.other", { x: atomShort(a, E) });
     }
 
-    function atomSg(a, E) { return a.t === "is" && E.kind === "coin" && !a.neg ? (a.v === "H" ? "head" : "tail") : atomShort(a, E); }
+    function atomSg(a, E) { return a.t === "is" && E.kind === "coin" && !a.neg ? tx(a.v === "H" ? "probability.pl.head" : "probability.pl.tail") : atomShort(a, E); }
+
+    // an event's gender in the language, for "one" and "a" before it: coins' sides and marbles (by gramWords.gender)
+    function atomG(a, E) { return a && a.t === "is" && (E.kind === "coin" || E.kind === "bag") ? gOf(E.kind === "coin" ? "side" : "marble") : "m"; }
+
+    function stageKind(Es, i) { return Es.filter(function(E) { return E.code === Es[i].code; }).length > 1 && Es[i].kind === "spin" ? "spinAct" : Es[i].kind; }
 
     function stageName(Es, i) {
       var same = Es.filter(function(E) { return E.code === Es[i].code; }).length > 1,
-        nm = same && Es[i].kind === "spin" ? "spin" : expShort(Es[i]);
+        nm = same && Es[i].kind === "spin" ? tx("probability.exp.spinAct") : expShort(Es[i]);
       if (!same) return nm;
       var k = 0;
       for (var j = 0; j <= i; j++)
         if (Es[j].code === Es[i].code) k++;
-      return ["first", "second", "third"][k - 1] + " " + nm;
+      var ords = rawW("probability.ordWords") || {};
+      return (ords[gOf(stageKind(Es, i))] || ords.m || [])[k - 1] + " " + nm;
     }
+
+    function stageThe(Es, i) { return artW(gOf(stageKind(Es, i)), true) + " " + stageName(Es, i); } // the language's "el primer dado"
 
     function dupStage(Es, i) { return Es.filter(function(E) { return E.code === Es[i].code; }).length > 1; }
 
-    function sevWords(ev, Es) {
+    function sevWords(ev, Es, q) { // q: "q" the words go inside a question ("What is the probability that …"), "s" short, for P( )
       var n = Es.length,
-        all = Es.every(function(E) { return E.code === Es[0].code; }),
-        thing = all ? expShort(Es[0]) + (Es[0].kind === "die" ? "" : "s") : "stages";
-      if (Es[0].kind === "die" && all) thing = "dice";
+        Q = q ? "." + q : "",
+        Qq = q === "q" ? ".q" : "";
       var a = ev.per ? firstAtom(ev.per) : null,
         E0 = a ? Es[ev.per.indexOf(a)] : null;
+      // what a translation may need besides English's {x}: the bare noun, the noun with its article, the plural, "one" and "none"
+      var V = a ? { xs: gw("bare", {})[a.t] || atomSg(a, E0), xn: atomNoun(a, E0), xp: atomPl(a, E0), un: artW(atomG(a, E0)), nin: gw("none", {})[atomG(a, E0)] || "", w: word(n), k: ev.k } : {};
       switch (ev.t) {
         case "sum":
-          return "the sum is " + (ev.op === "gt" ? "more than " : ev.op === "lt" ? "less than " : "") + ev.v;
+          return tx("probability.sev." + (ev.op === "gt" ? "sumgt" : ev.op === "lt" ? "sumlt" : "sum") + Qq, { v: ev.v });
         case "double":
-          return n === 2 ? "both show the same" + (Es[0].numeric ? " number (doubles)" : "") : "all " + word(n) + " are the same";
+          return tx("probability.sev." + (n === 2 ? (Es[0].numeric ? "double2n" : "double2") : "doubleN") + Qq, { w: word(n) });
         case "exactly":
-          return "exactly " + (ev.k === 1 ? "one " + atomSg(a, E0) : ev.k + " " + atomPl(a, E0));
         case "atleast":
-          return "at least " + (ev.k === 1 ? "one " + atomSg(a, E0) : ev.k + " " + atomPl(a, E0));
         case "atmost":
-          return "at most " + (ev.k === 1 ? "one " + atomSg(a, E0) : ev.k + " " + atomPl(a, E0));
+          V.x = ev.k === 1 ? atomSg(a, E0) : atomPl(a, E0);
+          return tx("probability.sev." + ev.t + (ev.k === 1 ? "1" : "N") + Q, V);
         case "all":
-          return (n === 2 ? "both are " : "all " + word(n) + " are ") + atomShort(a, E0).replace(/^(\d+)$/, "$1s");
+          V.x = atomShort(a, E0).replace(/^(\d+)$/, "$1s");
+          return tx("probability.sev." + (n === 2 ? "all2" : "allN") + Q, V);
         case "none":
-          return "no " + atomPl(a, E0) + " at all";
+          V.x = atomPl(a, E0);
+          return tx("probability.sev.none" + Q, V);
         case "each":
           var bits = [];
           ev.per.forEach(function(p, i) {
             if (p.t === "any" && !p.neg) return;
-            bits.push((p.neg ? "not " : "") + atomNoun(p, Es[i]) + (dupStage(Es, i) ? " on the " + stageName(Es, i) : ""));
+            var nn = p.neg ? tx("probability.sev.eachNot", { x: atomNoun(unNeg(p), Es[i]) }) : atomNoun(p, Es[i]);
+            bits.push(dupStage(Es, i) ? tx("probability.sev.eachBit", { x: nn, st: stageName(Es, i), stThe: stageThe(Es, i) }) : nn);
           });
-          return listAnd(bits);
+          return tx("probability.sev.each" + Qq, { list: listAnd(bits) });
       }
       return ev.code;
     }
 
     function sevShort(ev, Es) {
-      if (ev.t === "sum") return "sum " + (ev.op === "gt" ? "more than " : ev.op === "lt" ? "less than " : "of ") + ev.v;
-      if (ev.t === "double") return Es[0].numeric && Es.length === 2 ? "doubles" : "all the same";
-      if (ev.t === "each") return ev.per.map(function(p, i) { return p.t === "any" && !p.neg ? null : atomShort(p, Es[i]) + (dupStage(Es, i) ? " on " + stageName(Es, i) : ""); }).filter(Boolean).join(" and ");
-      return sevWords(ev, Es);
+      if (ev.t === "sum") return tx("probability.sevS." + (ev.op === "gt" ? "sumgt" : ev.op === "lt" ? "sumlt" : "sum"), { v: ev.v });
+      if (ev.t === "double") return tx(Es[0].numeric && Es.length === 2 ? "probability.sevS.doubles" : "probability.sevS.same");
+      if (ev.t === "each") return ev.per.map(function(p, i) { return p.t === "any" && !p.neg ? null : dupStage(Es, i) ? tx("probability.sevS.eachBit", { x: atomShort(p, Es[i]), st: stageName(Es, i), stThe: stageThe(Es, i) }) : atomShort(p, Es[i]); }).filter(Boolean).join(tx("probability.sevS.and"));
+      return sevWords(ev, Es, "s");
     }
 
     function tuples(Es) {
@@ -2880,26 +2899,26 @@
         ev = sp.get("ev"),
         ev2 = sp.get("ev2");
       var P = { mode: mode, xs: xs, src: "spec" };
-      if (!xs.length) throw new UserErr("Say what is being used: <b>x=die6</b>, <b>x=coin</b>, <b>x=bag(red:3,blue:5)</b>…");
-      if (ev === null || ev === "") throw new UserErr("Say what to look for: <b>ev=eq:4</b>, <b>ev=is:red</b>…");
+      if (!xs.length) throw new UserErr(tx("probability.err.noX"));
+      if (ev === null || ev === "") throw new UserErr(tx("probability.err.noEv"));
       if (mode === "simple" || mode === "complement") {
-        if (xs.length !== 1) throw new UserErr("This tab is for one thing at a time — use the <b>" + TABN.compound + "</b> tab for two.");
+        if (xs.length !== 1) throw new UserErr(tx("probability.err.oneThing", { tab: TABN.compound }));
         P.A = parseAtom(ev, xs[0]);
       } else if (mode === "compound") {
         if (KINDS.compound.indexOf(kind) < 0) kind = xs.length === 2 ? "and" : ev2 ? "or" : "and";
         P.kind = kind;
         if (kind === "and") {
           if (xs.length === 1) xs.push(parseExp(xs[0].code));
-          if (xs.length !== 2) throw new UserErr("“And” here is for two things, like <b>x=coin,die6</b>.");
+          if (xs.length !== 2) throw new UserErr(tx("probability.err.andTwo"));
           P.A = parseAtom(ev, xs[0]);
           P.B = parseAtom(ev2 || ev, xs[1]);
         } else {
-          if (xs.length !== 1) throw new UserErr("Give just one thing to pick from twice (like a bag or a deck).");
+          if (xs.length !== 1) throw new UserErr(tx("probability.err.oneSet"));
           if ((kind === "with" || kind === "without") && ["bag", "deck", "nums"].indexOf(xs[0].kind) < 0)
-            throw new UserErr("Picking twice " + kind + " putting back works with a bag, a deck of cards or numbers 1 to N — for dice or coins, use kind=and.");
+            throw new UserErr(tx("probability.err.withKind." + kind));
           P.A = parseAtom(ev, xs[0]);
           P.B = parseAtom(ev2 || ev, xs[0]);
-          if (kind === "or" && P.A.code === P.B.code) throw new UserErr("“Or” needs two different events.");
+          if (kind === "or" && P.A.code === P.B.code) throw new UserErr(tx("probability.err.orSame"));
           if (kind === "without") checkWithout(P);
         }
       } else if (mode === "space") {
@@ -2910,29 +2929,29 @@
       } else if (mode === "expected") {
         if (KINDS.expected.indexOf(kind) < 0) kind = sp.get("k") !== null ? "exper" : "predict";
         P.kind = kind;
-        if (xs.length !== 1) throw new UserErr("Give one thing to use again and again.");
+        if (xs.length !== 1) throw new UserErr(tx("probability.err.oneAgain"));
         P.A = parseAtom(ev, xs[0]);
         P.n = parseInt(sp.get("n"), 10);
-        if (!(P.n >= 1 && P.n <= 10000)) throw new UserErr("Say how many tries, from 1 to 10,000: <b>n=60</b>.");
+        if (!(P.n >= 1 && P.n <= 10000)) throw new UserErr(tx("probability.err.tries"));
         if (kind === "exper") {
           P.k = parseInt(sp.get("k"), 10);
-          if (!(P.k >= 0 && P.k <= P.n)) throw new UserErr("It can happen from 0 to " + P.n + " times in " + P.n + " tries — <b>k</b> must be in that range.");
+          if (!(P.k >= 0 && P.k <= P.n)) throw new UserErr(tx("probability.err.kRange", { n: P.n }));
         }
-      } else throw new UserErr("I don’t know that kind of problem.");
+      } else throw new UserErr(tx("probability.err.kind"));
       return P;
     }
 
     function checkStages(xs) {
-      if (xs.length < 2 || xs.length > 3) throw new UserErr("A sample space here has 2 or 3 stages, like <b>two dice</b> or <b>three coins</b>.");
+      if (xs.length < 2 || xs.length > 3) throw new UserErr(tx("probability.err.stages23"));
       xs.forEach(function(E) {
-        if (!E.equal) throw new UserErr("Every outcome in a list or a table has to be equally likely, so this tab uses fair dice, coins, equal spinners and numbers — not a " + expShort(E) + (E.kind === "bag" ? " (try the " + TABN.compound + " tab)." : " with parts of different sizes."));
-        if (E.kind === "deck") throw new UserErr("52 cards make too many outcomes to list — use the " + TABN.compound + " tab for two cards.");
-        if (E.kind === "spin" && E.labs.length !== E.n) throw new UserErr("For a list of outcomes, give each part of the spinner its own name (like <b>red, blue, green</b>).");
-        if (E.outs.length > 12) throw new UserErr("Up to 12 outcomes at each stage, please.");
+        if (!E.equal) throw new UserErr(tx("probability.err.equal", { e: expShort(E), eA: expA(E), more: E.kind === "bag" ? tx("probability.err.equalBag", { tab: TABN.compound }) : tx("probability.err.equalSpin") }));
+        if (E.kind === "deck") throw new UserErr(tx("probability.err.deck52", { tab: TABN.compound }));
+        if (E.kind === "spin" && E.labs.length !== E.n) throw new UserErr(tx("probability.err.spinNames"));
+        if (E.outs.length > 12) throw new UserErr(tx("probability.err.stage12"));
       });
       var T = 1;
       xs.forEach(function(E) { T *= E.outs.length; });
-      if (T > 72) throw new UserErr("That makes " + T + " outcomes — up to 72 fit in a list or table here. Try fewer stages or smaller dice.");
+      if (T > 72) throw new UserErr(tx("probability.err.stagesMax", { n: T }));
     }
 
     function checkWithout(P) {
@@ -2940,8 +2959,8 @@
         a = countA(E, P.A),
         b = countA(E, P.B),
         ab = countAB(E, P.A, P.B);
-      if (E.tot < 2) throw new UserErr("You need at least 2 to pick twice without putting one back.");
-      if (!(ab === 0 || (ab === a && ab === b))) throw new UserErr("Those two events overlap (some " + unitOf(E)[1] + " are both), so the second pick depends on <i>which</i> one came first. Pick the same event twice, or two that can’t both happen.");
+      if (E.tot < 2) throw new UserErr(tx("probability.err.two"));
+      if (!(ab === 0 || (ab === a && ab === b))) throw new UserErr(tx("probability.err.overlap", { u: unitOf(E)[1] }));
     }
 
     function encQ(v) { return encodeURIComponent(v).replace(/%2C/gi, ",").replace(/%3A/gi, ":").replace(/%2F/gi, "/").replace(/%20/g, "+"); }
@@ -3144,7 +3163,7 @@
           if (have && (BACKW.test(art) || (plural && !/^\d+$/.test(art) && art !== "another"))) continue;
           var count = plural ? (/^\d+$/.test(art) ? +art : 2) : 1,
             sides = x[2] || x[4] || null;
-          if (count > 3) throw new UserErr("Up to 3 " + (kind === "die" ? "dice" : kind === "coin" ? "coins" : "spinners") + " at once here — " + count + " makes " + (kind === "coin" ? Math.pow(2, count) : "too many") + " outcomes to list. Try it with 2 or 3.");
+          if (count > 3) throw new UserErr(tx("probability.err.upTo3." + kind, { n: count, m: kind === "coin" ? Math.pow(2, count) : tx("probability.err.tooMany") }));
           ments.push({ kind: kind, i: x.index, count: count, sides: sides ? +sides : null });
         }
       }
@@ -3238,7 +3257,7 @@
       }
 
       function bagSpec() {
-        if (!pairs.length) throw new UserErr("Say what’s in the bag, like <b>3 red, 5 blue and 2 green</b>.");
+        if (!pairs.length) throw new UserErr(tx("probability.err.bagWhat"));
         var cats = [],
           idx = {};
         pairs.forEach(function(p) {
@@ -3289,7 +3308,7 @@
         if (cnt.length) {
           var sum = 0;
           cnt.forEach(function(c) { sum += c.c; });
-          if (parts !== null && sum > parts) throw new UserErr("That’s " + sum + " parts colored in, but the spinner only has " + parts + ".");
+          if (parts !== null && sum > parts) throw new UserErr(tx("probability.err.spinColored", { n: sum, m: parts }));
           cnt.forEach(function(c) { for (var i = 0; i < c.c; i++) secs.push(c.lab); });
           if (parts !== null && parts > sum) { var fill = ix.white === undefined ? "white" : "other"; for (var j = sum; j < parts; j++) secs.push(fill); }
           return "spin(" + secs.join(",") + ")";
@@ -3310,7 +3329,7 @@
         var lets = /\b(?:parts|sections|letters)?\s*([a-h](?:\s*,\s*[a-h]){2,})\b/.exec(s);
         if (lets && parts === null) { eat(lets.index, lets.index + lets[0].length); return "spin(" + lets[1].replace(/\s+/g, "").split(",").join(",") + ")"; }
         if (parts !== null) { for (var q = 1; q <= parts; q++) secs.push(q); return "spin(" + secs.join(",") + ")"; }
-        throw new UserErr("Describe the spinner: <b>8 equal parts, 3 are red</b>, <b>red, blue, green</b>, or sizes like <b>red 90°, blue 270°</b>.");
+        throw new UserErr(tx("probability.err.spinDescribe"));
       }
       T.r = T.rest();
       return T;
@@ -3411,11 +3430,11 @@
       var m = /^(?:sum|total|adds? (?:up )?to|added (?:up )?to|adding up to)\s*(?:of\s+)?(?:the\s+(?:\d+\s+)?\w+\s+)?(?:is\s+|=\s*|equals?\s+|equal to\s+|of\s+|will be\s+)?(?:an?\s+)?(?:(more|greater|bigger|higher|larger|over|above|less|smaller|fewer|lower|under|below)\s*(?:than\s*)?)?(?:(at least|at most)\s*)?(\d+)(?:\s*or\s*(more|higher|greater|above|bigger|less|lower|fewer|below|smaller))?/.exec(r.slice(i));
       if (!m) {
         if (/^(?:sum|total)\s+(?:of\s+(?:the\s+)?\w+\s+)?(?:is\s+|will be\s+)?(?:an?\s+)?(?:even|odd|prime|a multiple|a square)/.test(r.slice(i)))
-          throw new UserErr("This page finds a sum equal to, more than or less than a number — like <b>sum of 7</b> or <b>sum more than 9</b>. An even, odd or prime sum is a list of sums: work each one out and add the chances.");
+          throw new UserErr(tx("probability.err.sumKinds"));
         return null;
       }
       if (/^\s*(?:,\s*)?(?:or|and)\s+(?:an?\s+)?\d/.test(r.slice(i + m[0].length)) && !m[4])
-        throw new UserErr("One sum at a time here — like <b>sum of 7</b>. For two sums (“7 or 11”), find each one and add them: they can’t both happen.");
+        throw new UserErr(tx("probability.err.sumTwo"));
       var v = +m[3];
       if (m[1]) return (/more|greater|bigger|higher|larger|over|above/.test(m[1]) ? "sumgt:" : "sumlt:") + v;
       if (m[2]) return m[2] === "at least" ? "sumgt:" + (v - 1) : "sumlt:" + (v + 1);
@@ -3447,7 +3466,7 @@
 
     /* text -> a problem on a given tab (or, with no tab, the tab the words point to) */
     function fromText(raw, tab) {
-      var text = String(raw == null ? "" : raw).trim();
+      var text = String(readTyped(raw == null ? "" : raw)).trim();
       if (!text) throw new UserErr(EMPTY[tab || "simple"]);
       var T = readWords(text),
         r = T.r,
@@ -3459,7 +3478,7 @@
         // ("sin 30", "area of a circle with radius 5", "P(A) = 0.3" are not about a die)
         var left = r.replace(/\b(?:probability|probabilities|chance|chances|odds|likelihood|of|the|a|an|what|whats|is|are|find|p|getting|get|rolling|roll|rolled|number|numbers|it|that|will|be|in|on|for|to|landing|land|lands|showing|show|shows|up|comes|come|an|and|or|not|even|odd|prime|primes|square|squares|perfect|greater|more|less|than|fewer|smaller|bigger|higher|lower|larger|at|least|most|multiple|multiples|factor|factors|over|under|above|below|calculate|compute|please|determine|answer|as|fraction|decimal|percent|simplest|form|write|give|your|its|with|s|can|you|solve|step|by|show|work|me|help|thanks|how|likely|so|do|i|we|whats|exactly|no)\b|[\d\s.,:=%\/-]+/g, "");
         if (findAtoms(r, mkDie(6)).length && !left.trim()) Es = T.stages = [mkDie(6)];
-        else throw new UserErr("What’s being used? Say <b>a die</b>, <b>a coin</b>, <b>a spinner</b>, <b>a bag of 3 red and 5 blue</b>, <b>a deck of cards</b> or <b>numbers 1 to 20</b>. " + EMPTY[tab || "simple"]);
+        else throw new UserErr(tx("probability.err.what", { empty: EMPTY[tab || "simple"] }));
       }
       // "heads 3 times in a row", "a 6 both times": the same thing again and again, one event named for every stage
       function sameAgain(per) {
@@ -3467,7 +3486,7 @@
           /\bin a row\b|\bboth times\b|\beach time\b|\bevery time\b|\b(?:2|3) times\b|\bconsecutive\b|\bstraight\b/.test(T.s);
       }
       if (Es.length >= 2 && Es.every(function(E) { return E.numeric; }) && /\b(?:product|difference|multipl(?:y|ied)|subtract(?:ed)?|times each other)\b/.test(r))
-        throw new UserErr("This page works with the <b>sum</b> of the numbers (like <b>sum of 7</b>), doubles, or what each one shows. For a product or a difference, list the outcomes with <b>two dice, table</b> and count them.");
+        throw new UserErr(tx("probability.err.product"));
       var sev = Es.length >= 2 ? (findSum(r, Es) || (/\bdoubles?\b|\bsame number\b|\b(?:both|all)\s+(?:\d+\s+)?(?:\w+\s+)?(?:the\s+)?same\b|\bthe same\b|\bmatch(?:ing|es)?\b/.test(r) ? "double" : null) || findCount(r, Es)) : null;
       if (T.k !== null) guess = "expected";
       else if (T.n !== null) guess = "expected";
@@ -3482,28 +3501,28 @@
       }
       var mode = tab || guess;
       fromText.lastMode = mode; // a link with no mode opens on this tab, even when the words don't make a problem yet
-      function goTo(m, why) { throw new UserErr(why + " Try the <b>" + TABN[m] + "</b> tab.", m); }
+      function goTo(m, why) { throw new UserErr(tx("probability.err.goTo", { why: why, tab: TABN[m] }), m); }
 
       function oneAtom(E) {
         var at = findAtoms(r, E);
         if (!at.length) {
           if (E.kind === "spin" && !E.numeric) { var nonW = E.labs.filter(function(l) { return l !== "white" && l !== "other"; }); if (nonW.length === 1) return parseAtom("is:" + nonW[0], E); }
           if (E.kind === "bag" && E.cats.length === 1) return parseAtom("is:" + E.cats[0].lab, E);
-          throw new UserErr("What are you looking for? Say it like " + exampleFor(E) + ".");
+          throw new UserErr(tx("probability.err.lookFor", { ex: exampleFor(E) }));
         }
-        if (at.length > 1 && at[1].join === "or" && mode !== "compound") goTo("compound", "That’s two events joined by “or”.");
+        if (at.length > 1 && at[1].join === "or" && mode !== "compound") goTo("compound", tx("probability.why.or"));
         return at[0].a;
       }
       if (mode === "simple" || mode === "complement") {
-        if (T.k !== null || T.n !== null) goTo("expected", "That’s about trying it again and again.");
-        if (Es.length > 1) goTo(sev && !/^all:/.test(sev) ? "space" : "compound", "That uses " + Es.length + " things at once.");
-        if (T.repl || T.draws) goTo("compound", "That picks twice.");
+        if (T.k !== null || T.n !== null) goTo("expected", tx("probability.why.again"));
+        if (Es.length > 1) goTo(sev && !/^all:/.test(sev) ? "space" : "compound", tx("probability.why.things", { n: Es.length }));
+        if (T.repl || T.draws) goTo("compound", tx("probability.why.twice"));
         var A = oneAtom(Es[0]);
         if (mode === "complement" && A.neg) A = unNeg(A);
         P = { mode: mode, xs: Es, A: A };
       } else if (mode === "compound") {
-        if (T.k !== null || T.n !== null) goTo("expected", "That’s about trying it again and again.");
-        if (Es.length === 3) goTo("space", "That has three stages.");
+        if (T.k !== null || T.n !== null) goTo("expected", tx("probability.why.again"));
+        if (Es.length === 3) goTo("space", tx("probability.why.three"));
         if (Es.length === 2) {
           var per = stageAtoms(r, Es),
             bothA = sev && /^all:/.test(sev) ? sev.slice(4) : null;
@@ -3511,8 +3530,8 @@
             var one1 = per[0] || per[1];
             per = [one1, one1];
           }
-          if (sev && !bothA && !(per[0] && per[1])) goTo("space", "That event is about the whole outcome, not each part on its own.");
-          if (!per[0] || !per[1]) throw new UserErr("Say what you want from each one, like " + exampleFor(Es[0]) + " and " + exampleFor(Es[1]) + ".");
+          if (sev && !bothA && !(per[0] && per[1])) goTo("space", tx("probability.why.whole"));
+          if (!per[0] || !per[1]) throw new UserErr(tx("probability.err.each", { a: exampleFor(Es[0]), b: exampleFor(Es[1]) }));
           P = { mode: "compound", kind: "and", xs: Es, A: per[0], B: per[1] };
         } else {
           var E = Es[0],
@@ -3523,28 +3542,28 @@
           else if (["bag", "deck", "nums"].indexOf(E.kind) >= 0 && (T.draws || /\bboth\b/.test(r) || (at.length >= 2 && at[1].join === "then"))) kind = "without";
           else if (at.length >= 2 && at[1].join === "and" && ["bag", "deck", "nums"].indexOf(E.kind) >= 0) kind = "without";
           else if (at.length >= 2) kind = "or";
-          else throw new UserErr("Two events, please — like <b>" + (E.kind === "bag" ? "red or blue" : E.kind === "deck" ? "a heart or a face card" : "even or more than 4") + "</b>" + (["bag", "deck", "nums"].indexOf(E.kind) >= 0 ? ", or pick twice: <b>both " + (E.kind === "deck" ? "aces" : E.kind === "bag" ? labsOf(E)[0] : "even") + ", without replacement</b>" : "") + ".");
+          else throw new UserErr(tx("probability.err.twoEv", { ex: tx("probability.err.twoEv." + (E.kind === "bag" ? "bag" : E.kind === "deck" ? "deck" : "num")), more: ["bag", "deck", "nums"].indexOf(E.kind) >= 0 ? tx("probability.err.twoEvTwice", { x: E.kind === "deck" ? tx("probability.err.twoEv.aces") : E.kind === "bag" ? labW(labsOf(E)[0], true, true) : tx("probability.err.twoEv.even") }) : "" }));
           if ((kind === "with" || kind === "without") && /\b1 [a-z]+ and 1 [a-z]+\b|\bone of each\b|\bin (?:any|either) order\b|\bdifferent colou?rs?\b/.test(T.s))
-            throw new UserErr("In either order? This page works out one order at a time — like <b>" + (E.kind === "bag" && E.cats.length >= 2 ? E.cats[0].lab + " then " + E.cats[1].lab : "a heart then a spade") + "</b>. Do both orders and add them.");
-          if ((kind === "with" || kind === "without") && ["bag", "deck", "nums"].indexOf(E.kind) < 0) throw new UserErr("Putting it back only matters when you pick from a bag, a deck or a set of numbers. For a " + expShort(E) + ", say <b>two " + expShort(E) + "s</b>.");
+            throw new UserErr(tx("probability.err.order", { ex: E.kind === "bag" && E.cats.length >= 2 ? tx("probability.err.order.then", { a: labW(E.cats[0].lab, true), b: labW(E.cats[1].lab, true) }) : tx("probability.err.order.cards") }));
+          if ((kind === "with" || kind === "without") && ["bag", "deck", "nums"].indexOf(E.kind) < 0) throw new UserErr(tx("probability.err.putBack", { e: expShort(E), eA: expA(E), ePl: (gw("expPl", {})[E.kind === "die" && E.N !== 6 ? "dieN" : E.kind] || "").replace("{n}", E.N) }));
           var A1, B1;
           if (!at.length && E.kind === "bag" && E.cats.length === 1) at = [{ a: parseAtom("is:" + E.cats[0].lab, E) }];
-          if (!at.length) throw new UserErr("What are you looking for? Say it like " + exampleFor(E) + ".");
+          if (!at.length) throw new UserErr(tx("probability.err.lookFor", { ex: exampleFor(E) }));
           A1 = at[0].a;
           B1 = at.length >= 2 ? at[1].a : (kind === "or" ? null : at[0].a);
-          if (!B1) throw new UserErr("“Or” needs two events, like <b>red or blue</b>.");
+          if (!B1) throw new UserErr(tx("probability.err.orTwo"));
           P = { mode: "compound", kind: kind, xs: Es, A: A1, B: B1 };
-          if (kind === "or" && A1.code === B1.code) throw new UserErr("Those are the same event twice — “or” needs two different ones.");
+          if (kind === "or" && A1.code === B1.code) throw new UserErr(tx("probability.err.orSameTwice"));
           if (kind === "without") checkWithout(P);
         }
       } else if (mode === "space") {
-        if (T.k !== null || T.n !== null) goTo("expected", "That’s about trying it again and again.");
-        if (Es.length === 1) throw new UserErr("A sample space here has 2 or 3 stages — like <b>two dice</b>, <b>three coins</b> or <b>a coin and a die</b>.");
+        if (T.k !== null || T.n !== null) goTo("expected", tx("probability.why.again"));
+        if (Es.length === 1) throw new UserErr(tx("probability.err.space1"));
         checkStages(Es);
         var code = sev;
         if (!code) {
           var pp = stageAtoms(r, Es);
-          if (!pp.some(Boolean)) throw new UserErr("What are you looking for? Try <b>sum of 7</b>, <b>doubles</b>, <b>at least one 6</b>, <b>exactly 2 heads</b> or <b>heads and an even number</b>.");
+          if (!pp.some(Boolean)) throw new UserErr(tx("probability.err.spaceWhat"));
           if (sameAgain(pp)) {
             var one2 = pp.filter(Boolean)[0];
             code = "all:" + one2.code;
@@ -3552,28 +3571,28 @@
         }
         P = { mode: "space", xs: Es, sev: parseSev(code, Es), viewReq: T.view || "auto" };
       } else if (mode === "expected") {
-        if (Es.length !== 1) throw new UserErr("Use one thing again and again here — like <b>roll a die 60 times</b>.");
-        if (T.n === null) throw new UserErr("How many tries? Say it like <b>roll a die 60 times, how many 3s?</b> or <b>heads came up 27 times in 50 flips</b>.");
+        if (Es.length !== 1) throw new UserErr(tx("probability.err.oneAgainLike"));
+        if (T.n === null) throw new UserErr(tx("probability.err.howMany"));
         P = { mode: "expected", kind: T.k !== null ? "exper" : "predict", xs: Es, A: oneAtom(Es[0]), n: T.n };
-        if (!(T.n >= 1 && T.n <= 10000)) throw new UserErr("From 1 to 10,000 tries, please.");
-        if (T.k !== null) { P.k = T.k; if (T.k > T.n) throw new UserErr("It can’t happen " + T.k + " times in only " + T.n + " tries."); }
+        if (!(T.n >= 1 && T.n <= 10000)) throw new UserErr(tx("probability.err.triesMax"));
+        if (T.k !== null) { P.k = T.k; if (T.k > T.n) throw new UserErr(tx("probability.err.kMax", { k: T.k, n: T.n })); }
       }
       P.src = "text";
       return P;
     }
 
     function exampleFor(E) {
-      if (E.kind === "coin") return "<b>heads</b>";
-      if (E.kind === "deck") return "<b>a heart</b> or <b>a face card</b>";
-      if (E.kind === "bag" || (E.kind === "spin" && !E.numeric)) return "<b>" + labsOf(E)[0] + "</b>";
-      return "<b>a 4</b> or <b>an even number</b>";
+      if (E.kind === "coin") return tx("probability.ex.heads");
+      if (E.kind === "deck") return tx("probability.ex.deck");
+      if (E.kind === "bag" || (E.kind === "spin" && !E.numeric)) return tx("probability.ex.lab", { x: labW(labsOf(E)[0], E.kind === "bag") });
+      return tx("probability.ex.num");
     }
     var EMPTY = {
-      simple: "Type a problem like <b>P(rolling a 4)</b> or <b>probability of red from 3 red 5 blue 2 green</b>.",
-      complement: "Type a problem like <b>P(not 6)</b> or <b>not a face card</b>.",
-      compound: "Type a problem like <b>two coins both heads</b> or <b>draw 2 without replacement from 4 red 6 blue, both red</b>.",
-      space: "Type a problem like <b>two dice, sum of 7</b> or <b>three coins, exactly 2 heads</b>.",
-      expected: "Type a problem like <b>roll a die 60 times, how many 3s</b> or <b>heads came up 27 times in 50 flips</b>."
+      simple: tx("probability.empty.simple"),
+      complement: tx("probability.empty.complement"),
+      compound: tx("probability.empty.compound"),
+      space: tx("probability.empty.space"),
+      expected: tx("probability.empty.expected")
     };
 
     /* ===================== the answer ===================== */
@@ -3739,8 +3758,8 @@
           y = 4 + r,
           c = cls(o),
           h = c ? " h " + c : "";
-        base += circ(x, y, r, "face") + circ(x, y, r - 5, "face") + T(x, y + 6.5, o.lab, "ftx", "middle") + T(x, y + r + 16, o.lab === "H" ? "heads" : "tails", "capt", "middle");
-        if (c) top += circ(x, y, r, "face" + h) + circ(x, y, r - 5, "face" + h) + T(x, y + 6.5, o.lab, "ftx" + h, "middle");
+        base += circ(x, y, r, "face") + circ(x, y, r - 5, "face") + T(x, y + 6.5, labW(o.lab), "ftx", "middle") + T(x, y + r + 16, tx(o.lab === "H" ? "probability.short.heads" : "probability.short.tails"), "capt", "middle");
+        if (c) top += circ(x, y, r, "face" + h) + circ(x, y, r - 5, "face" + h) + T(x, y + 6.5, labW(o.lab), "ftx" + h, "middle");
       });
       return svgWrap(4 * r + 34 + 8, 2 * r + 26, aria, base + "<g" + ds(step) + ">" + top + "</g>");
     }
@@ -3800,7 +3819,7 @@
           if (c) hi += circ(x, y, r + 3.4, "mring h " + c);
         }
       });
-      var leg = E.cats.map(function(c) { return c.c + " " + c.lab; }).join(" · ");
+      var leg = E.cats.map(function(c) { return c.c + " " + labW(c.lab, true, c.c !== 1); }).join(" · ");
       base += T(x0 + bw / 2, y0 + bh + 17, leg, "capt", "middle");
       return svgWrap(Math.max(bw + 8, tw(leg, 11) + 10), y0 + bh + 24, aria, base + "<g" + ds(step) + ">" + hi + "</g>");
     }
@@ -3836,7 +3855,8 @@
         }
         var mid = (a0 + a1) / 2,
           lp = pt(mid, Rr * (E.n > 10 ? 0.74 : 0.64)),
-          lab = o.lab.length > 6 && span < 50 ? o.lab.slice(0, 3) : o.lab;
+          lw = labW(o.lab),
+          lab = lw.length > 6 && span < 50 ? lw.slice(0, 3) : lw;
         var room = 2 * Math.PI * Rr * 0.64 * span / 360;
         if (room > Math.min(tw(lab, 12), 26) + 4) {
           var st = fo.ink ? ' style="fill:' + fo.ink + '"' : "";
@@ -3878,11 +3898,11 @@
         x = function(v) { return L + v * (Rx - L); },
         g = "",
         pv = toF(p),
-        w = likely(p);
+        w = likelyK(p);
       var words = [
         [0, "impossible"],
         [0.25, "unlikely"],
-        [0.5, "even chance"],
+        [0.5, "even"],
         [0.75, "likely"],
         [1, "certain"]
       ];
@@ -3895,7 +3915,7 @@
       words.forEach(function(t, i) {
         var on = t[1] === w,
           anchor = t[0] === 0 ? "start" : t[0] === 1 ? "end" : "middle";
-        g += T(t[0] === 0 ? L - 12 : t[0] === 1 ? Rx + 12 : x(t[0]), i % 2 ? 26 : 13, t[1], "sc-w" + (on ? " on" : ""), anchor);
+        g += T(t[0] === 0 ? L - 12 : t[0] === 1 ? Rx + 12 : x(t[0]), i % 2 ? 26 : 13, tx("probability.likely." + t[1]), "sc-w" + (on ? " on" : ""), anchor);
       });
       var lab = fracT(p),
         lw = tw(lab, 12.5) + 4,
@@ -3906,7 +3926,7 @@
         mk = '<path class="sc-m" d="M' + f1(mx) + " " + (y0 - 2) + " l-8 -13 h16 z\"/>" + (cmpR(p, HALF) && p.n && cmpR(p, ONE) ? T(lx, y0 - 19, lab, "sc-l", "middle") : "");
       else mk = '<path class="sc-m" d="M' + f1(mx) + " " + (y0 + 2) + " l-8 13 h16 z\"/>" + T(lx, y0 + 30, lab, "sc-l", "middle");
       g += "<g" + ds(step) + ">" + mk + "</g>";
-      return svgWrap(W, y0 + 40, "Probability scale from 0 (impossible) to 1 (certain), with " + lab + " marked: " + w, g);
+      return svgWrap(W, y0 + 40, tx("probability.svg.scale", { lab: lab, w: likely(p) }), g);
     }
 
     /* a tree diagram: probabilities on the branches, outcomes (and their chances) at the leaves */
@@ -3991,8 +4011,8 @@
         x0 = side + hw;
       var g = "",
         hi = "";
-      g += T(x0 + cl.length * cw / 2, 11, (caps ? caps[1] : "second").toUpperCase(), "tcap", "middle");
-      g += T(10, top + ch + rl.length * ch / 2, (caps ? caps[0] : "first").toUpperCase(), "tcap", "middle", ' transform="rotate(-90 10 ' + f1(top + ch + rl.length * ch / 2) + ')"');
+      g += T(x0 + cl.length * cw / 2, 11, (caps ? caps[1] : tx("probability.svg.second")).toUpperCase(), "tcap", "middle");
+      g += T(10, top + ch + rl.length * ch / 2, (caps ? caps[0] : tx("probability.svg.first")).toUpperCase(), "tcap", "middle", ' transform="rotate(-90 10 ' + f1(top + ch + rl.length * ch / 2) + ')"');
       cl.forEach(function(s, j) { g += rect(x0 + j * cw, top - 14, cw, ch - 4, "gh") + T(x0 + j * cw + cw / 2, top + 2, s, "ght", "middle"); });
       E1.outs.forEach(function(o1, i) {
         var y = top + 12 + i * ch;
@@ -4016,17 +4036,17 @@
         y = 22,
         h = 30,
         g = "";
-      g += T(L, 12, (n + " TRIES").toUpperCase(), "tcap");
+      g += T(L, 12, tx("probability.svg.tries", { n: n }).toUpperCase(), "tcap");
       g += rect(L, y, bw, h, "bar0", 4);
       var hiW = bw * frac,
         lab = (isInt(e) ? "" : "≈ ") + (isInt(e) ? String(e.n) : roundDec(e, 1)),
         rest = sub(R(n), e);
       var hi = rect(L, y, Math.max(1, hiW), h, "bar1", 4);
       if (hiW > tw(lab, 12.5) + 8) hi += T(L + hiW / 2, y + h / 2 + 4.5, lab, "bl k", "middle");
-      else hi += T(L + hiW + 4, y + h + 15, lab + " expected", "bl k");
-      if (bw - hiW > tw("others", 12) + 8) hi += T(L + hiW + (bw - hiW) / 2, y + h / 2 + 4.5, (isInt(rest) ? "" : "≈ ") + (isInt(rest) ? String(rest.n) : roundDec(rest, 1)) + " others", "bln", "middle");
+      else hi += T(L + hiW + 4, y + h + 15, tx("probability.svg.expected", { x: lab }), "bl k");
+      if (bw - hiW > tw(tx("probability.svg.othersWord"), 12) + 8) hi += T(L + hiW + (bw - hiW) / 2, y + h / 2 + 4.5, tx("probability.svg.others", { x: (isInt(rest) ? "" : "≈ ") + (isInt(rest) ? String(rest.n) : roundDec(rest, 1)) }), "bln", "middle");
       g += "<g" + ds(step) + ">" + hi + "</g>";
-      return svgWrap(W, y + h + 22, "A bar for " + n + " tries, with about " + lab + " of them expected", g);
+      return svgWrap(W, y + h + 22, tx("probability.svg.predict", { n: n, x: lab }), g);
     }
     /* experimental and theoretical, side by side on a 0–100% scale */
     function experSVG(x, p, W, step) {
@@ -4039,8 +4059,8 @@
         bars = "";
       [0, 0.25, 0.5, 0.75, 1].forEach(function(t) { g += line(X(t), 10, X(t), 86, "grid") + T(X(t), 102, (t * 100) + "%", "sc-n", "middle"); });
       [
-        [x, "Experimental", "bar1", "k", 18],
-        [p, "Theoretical", "bar2", "m", 54]
+        [x, tx("probability.svg.experimental"), "bar1", "k", 18],
+        [p, tx("probability.svg.theoretical"), "bar2", "m", 54]
       ].forEach(function(b) {
         var v = toF(b[0]),
           pi = pctInfo(b[0]);
@@ -4048,7 +4068,7 @@
         bars += rect(L, b[4], Math.max(1, X(v) - L), 26, b[2], 3) + T(Math.min(X(v) + 5, Rx - 2), b[4] + 18, (pi.exact ? "" : "≈") + pi.t, "bl " + b[3], X(v) + 5 > Rx - 30 ? "end" : "start");
       });
       g += "<g" + ds(step) + ">" + bars + "</g>";
-      return svgWrap(W, 110, "Experimental " + pctInfo(x).t + " and theoretical " + pctInfo(p).t + " on a scale from 0% to 100%", g);
+      return svgWrap(W, 110, tx("probability.svg.exper", { x: pctInfo(x).t, p: pctInfo(p).t }), g);
     }
 
     /* ===================== shared bits of the work ===================== */
@@ -4061,7 +4081,7 @@
     function toksH(items, max) {
       max = max || 80;
       var h = items.slice(0, max).map(function(it) { return '<span class="tk' + (it.c ? " " + it.c : "") + '">' + it.h + "</span>"; }).join("");
-      if (items.length > max) h += '<span class="tk more">… ' + (items.length - max) + " more</span>";
+      if (items.length > max) h += '<span class="tk more">' + tx("probability.more", { n: items.length - max }) + "</span>";
       return '<div class="toks">' + h + "</div>";
     }
 
@@ -4081,31 +4101,31 @@
       return Math.max(250, Math.min(640, Math.floor(w - 36)));
     }
 
-    function picAria(E) { return "Picture: " + setupT(E).replace(/ (?:Pick|Spin|Roll|Flip).*$/, ""); }
+    function picAria(E) { var u = setupD(E); return tx("probability.pic", { s: u.d || u.a }); }
     /* every outcome as tokens, with a class from cls */
     function outToks(E, cls) {
-      if (E.kind === "bag") return toksH(E.cats.map(function(c) { return { h: esc(c.lab) + '<span class="ct">×' + c.c + "</span>", c: cls({ lab: c.lab }) }; }));
+      if (E.kind === "bag") return toksH(E.cats.map(function(c) { return { h: esc(labW(c.lab, true)) + '<span class="ct">×' + c.c + "</span>", c: cls({ lab: c.lab }) }; }));
       return toksH(E.outs.map(function(o) { return { h: outH(E, o), c: cls(o) }; }), 60);
     }
 
     function tkCls(c) { return c === "fa" ? "on" : c === "fb" ? "onb" : c === "fab" ? "onab" : c === "fx" ? "no" : ""; }
 
     function allWhy(E) {
-      if (E.kind === "die") return "A fair die is just as likely to land on any of its " + E.N + " faces, so each face counts once.";
-      if (E.kind === "coin") return "A fair coin is just as likely to land on heads as on tails.";
-      if (E.kind === "deck") return "After shuffling, each of the 52 cards is just as likely to be picked.";
-      if (E.kind === "nums") return "Each of the " + E.N + " numbers is just as likely to be picked.";
-      if (E.kind === "bag") return "Every marble is just as likely to be picked, so count marbles, not colors.";
-      if (E.unequal) return "The parts aren’t the same size, so counting parts won’t work — a bigger part is more likely. Count degrees instead: the whole circle is 360°.";
-      return "The " + E.n + " parts are all the same size, so the spinner is just as likely to stop on each one.";
+      if (E.kind === "die") return tx("probability.allWhy.die", { n: E.N });
+      if (E.kind === "coin") return tx("probability.allWhy.coin");
+      if (E.kind === "deck") return tx("probability.allWhy.deck");
+      if (E.kind === "nums") return tx("probability.allWhy.nums", { n: E.N });
+      if (E.kind === "bag") return tx("probability.allWhy.bag");
+      if (E.unequal) return tx("probability.allWhy.uneq");
+      return tx("probability.allWhy.spin", { n: E.n });
     }
 
     function allLine(E) {
-      if (E.kind === "bag") return big(E.cats.map(function(c) { return c.c; }).join(" + ") + " = " + '<span class="eqm">' + E.tot + " marbles</span>");
-      if (E.kind === "spin" && E.unequal) return big(E.outs.map(function(o) { return o.deg + "°"; }).join(" + ") + ' = <span class="eqm">360°</span> <span class="nm">(the whole circle)</span>');
-      if (E.kind === "deck") return big('<span class="eqm">52 cards</span> <span class="nm">(13 ranks — A, 2 to 10, J, Q, K — in each of 4 suits: 13 × 4 = 52)</span>');
+      if (E.kind === "bag") return big(E.cats.map(function(c) { return c.c; }).join(" + ") + " = " + '<span class="eqm">' + tx("probability.all.marbles", { n: E.tot }) + "</span>");
+      if (E.kind === "spin" && E.unequal) return big(E.outs.map(function(o) { return o.deg + "°"; }).join(" + ") + ' = <span class="eqm">360°</span> <span class="nm">' + tx("probability.all.circle") + "</span>");
+      if (E.kind === "deck") return big('<span class="eqm">' + tx("probability.all.cards") + '</span> <span class="nm">' + tx("probability.all.cardsNote") + "</span>");
       var u = unitOf(E);
-      return big('<span class="eqm">' + E.tot + " " + u[1] + "</span>" + (E.kind === "coin" ? ' <span class="nm">(heads and tails)</span>' : E.kind === "spin" ? "" : ' <span class="nm">(1 to ' + E.tot + ")</span>"));
+      return big('<span class="eqm">' + E.tot + " " + u[1] + "</span>" + (E.kind === "coin" ? ' <span class="nm">' + tx("probability.all.coinNote") + "</span>" : E.kind === "spin" ? "" : ' <span class="nm">' + tx("probability.all.range", { n: E.tot }) + "</span>"));
     }
 
     function favWords(E, a, f) { // "3 marbles are red", "2 faces", "135°"
@@ -4116,11 +4136,11 @@
     function favLine(E, a, f) {
       if (E.kind === "spin" && E.unequal) {
         var fo = E.outs.filter(function(o) { return testAtom(a, o); });
-        return big((fo.length > 1 ? fo.map(function(o) { return o.deg + "°"; }).join(" + ") + " = " : "") + '<span class="eqk">' + f + "°</span>" + ' <span class="nm">of 360°</span>');
+        return big((fo.length > 1 ? fo.map(function(o) { return o.deg + "°"; }).join(" + ") + " = " : "") + '<span class="eqk">' + f + "°</span>" + ' <span class="nm">' + tx("probability.of360") + "</span>");
       }
-      return toksH(E.kind === "bag" ? E.cats.filter(function(c) { return testAtom(a, { lab: c.lab }); }).map(function(c) { return { h: esc(c.lab) + '<span class="ct">×' + c.c + "</span>", c: "on" }; }) :
+      return toksH(E.kind === "bag" ? E.cats.filter(function(c) { return testAtom(a, { lab: c.lab }); }).map(function(c) { return { h: esc(labW(c.lab, true)) + '<span class="ct">×' + c.c + "</span>", c: "on" }; }) :
           E.outs.filter(function(o) { return testAtom(a, o); }).map(function(o) { return { h: outH(E, o), c: "on" }; }), 60) +
-        big('<span class="eqk">' + favWords(E, a, f) + "</span>" + (f === 0 ? ' <span class="nm">— none at all</span>' : ""));
+        big('<span class="eqk">' + favWords(E, a, f) + "</span>" + (f === 0 ? ' <span class="nm">' + tx("probability.noneAtAll") + "</span>" : ""));
     }
 
     function simpH(f, t) { // " = 1/3 (÷ 2)" after f/t
@@ -4129,14 +4149,14 @@
       if (t === 0) return "";
       if (r.n === 0n) return " = 0";
       if (isInt(r)) return " = " + r.n;
-      if (g > 1n) return ' = <span class="eqk">' + fH(r.n, r.d) + '</span> <span class="nm">(both ÷ ' + g + ")</span>";
+      if (g > 1n) return ' = <span class="eqk">' + fH(r.n, r.d) + '</span> <span class="nm">' + tx("probability.bothDiv", { g: g }) + "</span>";
       return "";
     }
 
     function simpT(f, t) {
       var r = R(f, t),
         g = bgcd(BigInt(f), BigInt(t));
-      return g > 1n || isInt(r) ? ", which simplifies to " + B(fracT(r)) + (g > 1n && !isInt(r) ? " (divide both by " + g + ")" : "") : "";
+      return g > 1n || isInt(r) ? tx("probability.simp", { f: B(fracT(r)), div: g > 1n && !isInt(r) ? tx("probability.simpDiv", { g: g }) : "" }) : "";
     }
 
     function decLong(r) { // 0.16666… (6 places, then …) or exact
@@ -4158,19 +4178,19 @@
     function decPctT(p, f, t) {
       var d = decInfo(p),
         pc = pctInfo(p);
-      return B(f + " ÷ " + t + " " + (d.exact ? "= " + d.t : "= " + decLong(p) + " ≈ " + d.t)) + " as a decimal, and × 100 that’s " + B((pc.exact ? "" : "≈ ") + pc.t) + "." +
-        (d.exact ? "" : " (Rounded — exactly, it’s the fraction " + fracT(p) + ".)");
+      return tx("probability.decPct", { d: B(f + " ÷ " + t + " " + (d.exact ? "= " + d.t : "= " + decLong(p) + " ≈ " + d.t)), p: B((pc.exact ? "" : "≈ ") + pc.t) }) +
+        (d.exact ? "" : tx("probability.decPctRound", { f: fracT(p) }));
     }
 
     function pCells(lab, p) {
-      return [{ k: lab, v: fracH(p) }, { k: "Decimal", v: decH(p) }, { k: "Percent", v: pctH(p) }, { k: "How likely", v: '<span class="word">' + likely(p) + "</span>" }];
+      return [{ k: lab, v: fracH(p) }, { k: tx("probability.cell.decimal"), v: decH(p) }, { k: tx("probability.cell.percent"), v: pctH(p) }, { k: tx("probability.cell.likely"), v: '<span class="word">' + likely(p) + "</span>" }];
     }
 
     function likelyItem(p, step) {
       return {
         step: step,
         lines: [
-          ["a", "How likely", cap(likely(p)) + " — " + likelyWhy(p) + "."]
+          ["a", tx("probability.cell.likely"), tx("probability.likelyLine", { w: cap(likely(p)), why: likelyWhy(p) })]
         ]
       };
     }
@@ -4178,7 +4198,7 @@
     function Pl(s) { return "P(" + esc(s) + ")"; }
 
     function checkLine(p) {
-      return '<div class="ck"><b>Check:</b> 0 ≤ ' + fracT(p) + ' ≤ 1 — every probability is between impossible and certain <span class="ok">✓</span></div>';
+      return '<div class="ck">' + tx("probability.check.range", { f: fracT(p) }) + "</div>";
     }
 
     /* ===================== tab 1: one event ===================== */
@@ -4195,43 +4215,43 @@
         sh = atomShort(A, E),
         u = unitOf(E);
       var odds = f > 0 && f < t;
-      html += sect(lead("Count everything that can happen.") + " " + allWhy(E), xs(expSVG(E, hlA(A), W, 1, picAria(E))) + allLine(E), 0);
-      html += sect(lead("Count the ways it can happen.") + " The " + (E.kind === "spin" && E.unequal ? "parts" : u[1]) + " that are " + B(esc(sh)) + " are marked.", favLine(E, A, f), 1);
-      html += sect(lead("Divide: the ways it can happen ÷ everything that can happen."), big(Pl(sh) + " = " + fH(f, t) + simpH(f, t)), 2);
-      html += sect(lead("As a decimal and a percent."), decPctH(p, f, t), 3);
-      html += sect(lead("How likely is that?") + " Every probability sits somewhere from 0 (impossible) to 1 (certain).", xs(scaleSVG(p, W, 4)), 4);
+      html += sect(lead(tx("probability.lead.everything")) + " " + allWhy(E), xs(expSVG(E, hlA(A), W, 1, picAria(E))) + allLine(E), 0);
+      html += sect(lead(tx("probability.lead.ways")) + " " + tx("probability.simple.marked", { u: E.kind === "spin" && E.unequal ? tx("probability.unitN.part") : u[1], sh: B(esc(sh)) }), favLine(E, A, f), 1);
+      html += sect(lead(tx("probability.lead.divide")), big(Pl(sh) + " = " + fH(f, t) + simpH(f, t)), 2);
+      html += sect(lead(tx("probability.lead.decPct")), decPctH(p, f, t), 3);
+      html += sect(lead(tx("probability.lead.howLikely")) + " " + tx("probability.simple.scale"), xs(scaleSVG(p, W, 4)), 4);
       $("workHost").innerHTML = html;
       items.push({
         step: 0,
         lines: [
-          ["m", "Everything", "Count everything that can happen: " + B(E.kind === "spin" && E.unequal ? "360°" : countWords(E, t)) + "."]
+          ["m", tx("probability.tag.everything"), tx("probability.line.everything", { x: B(E.kind === "spin" && E.unequal ? "360°" : countWords(E, t)) })]
         ],
         aside: E.kind === "bag" || E.unequal ? allWhy(E) : null
       });
       items.push({
         step: 1,
         lines: [
-          ["p", "Ways", "Count the ways it can happen — " + esc(sh) + ": " + B(favWords(E, A, f)) + "."]
+          ["p", tx("probability.tag.ways"), tx("probability.line.ways", { sh: esc(sh), f: B(favWords(E, A, f)) })]
         ],
-        aside: A.neg ? "“Not " + esc(atomShort(unNeg(A), E)) + "” is everything except " + esc(atomShort(unNeg(A), E)) + ", so count those." : null
+        aside: A.neg ? tx("probability.aside.not", { x: esc(atomShort(unNeg(A), E)) }) : null
       });
       items.push({
         step: 2,
         lines: [
-          ["p", "Divide", "Ways ÷ everything: " + B(Pl(sh) + " = " + ffT(f, t)) + simpT(f, t) + "."]
+          ["p", tx("probability.tag.divide"), tx("probability.line.divide", { eq: B(Pl(sh) + " = " + ffT(f, t)), simp: simpT(f, t) })]
         ],
-        aside: odds ? "Careful: “" + f + " to " + (t - f) + "” would be the <strong>odds</strong> — the ways it happens against the ways it doesn’t. A probability always divides by everything that can happen (" + t + ")." : null
+        aside: odds ? tx("probability.aside.odds", { f: f, g: t - f, t: t }) : null
       });
       items.push({
         step: 3,
         lines: [
-          ["a", "Decimal", decPctT(p, f, t)]
+          ["a", tx("probability.tag.decimal"), decPctT(p, f, t)]
         ]
       });
       items.push(likelyItem(p, 4));
       writeLog(items);
-      bandCells(pCells(Pl(sh), p), [B(favWords(E, A, f)) + " out of " + B(E.kind === "spin" && E.unequal ? "360°" : countWords(E, t)), threeT(p)]);
-      $("closer").innerHTML = checkLine(p) + '<div class="ck"><b>Check:</b> it happens or it doesn’t — ' + ffT(f, t) + " + " + ffT(t - f, t) + " = " + ffT(t, t) + ' = 1 <span class="ok">✓</span></div>';
+      bandCells(pCells(Pl(sh), p), [tx("probability.outOf", { a: B(favWords(E, A, f)), b: B(E.kind === "spin" && E.unequal ? "360°" : countWords(E, t)) }), threeT(p)]);
+      $("closer").innerHTML = checkLine(p) + '<div class="ck">' + tx("probability.check.simple", { a: ffT(f, t), b: ffT(t - f, t), c: ffT(t, t) }) + "</div>";
       return items.length;
     }
 
@@ -4250,57 +4270,57 @@
       var sh = atomShort(A, E),
         nsh = atomShort(negOf(A), E);
       var cls = function(o) { return testAtom(A, o) ? "fx" : "fa"; };
-      html += sect(lead("Count everything that can happen.") + " " + allWhy(E), xs(expSVG(E, cls, W, 1, picAria(E))) + allLine(E), 0);
-      html += sect(lead("Count the ways it " + "<i>can</i> happen.") + " The " + B(esc(sh)) + " ones are marked in red.", favLine(E, A, fA).replace(/class="tk on"/g, 'class="tk no"').replace(/eqk/g, "eqr") +
+      html += sect(lead(tx("probability.lead.everything")) + " " + allWhy(E), xs(expSVG(E, cls, W, 1, picAria(E))) + allLine(E), 0);
+      html += sect(lead(tx("probability.lead.waysCan")) + " " + tx("probability.comp.marked", { sh: B(esc(sh)) }), favLine(E, A, fA).replace(/class="tk on"/g, 'class="tk no"').replace(/eqk/g, "eqr") +
         big(Pl(sh) + " = " + fH(fA, t) + simpH(fA, t)), 1);
-      html += sect(lead("Not happening is everything else.") + " Every outcome is either " + esc(sh) + " or not, never both — so the two chances add up to 1.",
+      html += sect(lead(tx("probability.lead.notElse")) + " " + tx("probability.comp.else", { sh: esc(sh) }),
         big(Pl(nsh) + " = 1 − " + Pl(sh)) + big("= " + fH(t, t) + " − " + fH(fA, t) + " = " + fH(f, t) + simpH(f, t)), 2);
-      html += sect(lead("Check by counting.") + " The ones that are " + B(esc(nsh)) + " — marked in color in the picture:",
+      html += sect(lead(tx("probability.lead.checkCount")) + " " + tx("probability.comp.color", { x: B(esc(nsh)) }),
         (E.kind === "spin" && E.unequal ? big(t + "° − " + fA + '° = <span class="eqk">' + f + "°</span>") : outToks(E, function(o) { return testAtom(A, o) ? "dim" : "on"; }) + big('<span class="eqk">' + favWords(E, negOf(A), f) + "</span>")), 3);
-      html += sect(lead("As a decimal and a percent."), decPctH(p, f, t), 4);
-      html += sect(lead("How likely is that?"), xs(scaleSVG(p, W, 5)), 5);
+      html += sect(lead(tx("probability.lead.decPct")), decPctH(p, f, t), 4);
+      html += sect(lead(tx("probability.lead.howLikely")), xs(scaleSVG(p, W, 5)), 5);
       $("workHost").innerHTML = html;
       items.push({
         step: 0,
         lines: [
-          ["m", "Everything", "Count everything that can happen: " + B(E.kind === "spin" && E.unequal ? "360°" : countWords(E, t)) + "."]
+          ["m", tx("probability.tag.everything"), tx("probability.line.everything", { x: B(E.kind === "spin" && E.unequal ? "360°" : countWords(E, t)) })]
         ]
       });
       items.push({
         step: 1,
         lines: [
-          ["r", "It happens", "First the chance it <i>does</i> happen: " + B(Pl(sh) + " = " + ffT(fA, t)) + simpT(fA, t) + "."]
+          ["r", tx("probability.tag.happens"), tx("probability.line.happens", { eq: B(Pl(sh) + " = " + ffT(fA, t)), simp: simpT(fA, t) })]
         ]
       });
       items.push({
         step: 2,
         lines: [
-          ["p", "Not", "Take that away from 1: " + B(Pl(nsh) + " = 1 − " + fracT(sol.pA) + " = " + fracT(p)) + "."]
+          ["p", tx("probability.tag.not"), tx("probability.line.not", { eq: B(Pl(nsh) + " = 1 − " + fracT(sol.pA) + " = " + fracT(p)) })]
         ],
-        aside: "Why 1? Something is certain to happen, and a certain thing has probability 1. Every outcome is either “" + esc(sh) + "” or “" + esc(nsh) + "”, so their chances share that 1 between them."
+        aside: tx("probability.aside.why1", { a: esc(sh), b: esc(nsh) })
       });
       items.push({
         step: 3,
         lines: [
-          ["m", "Count", "Counting straight away gives the same: " + B(favWords(E, negOf(A), f)) + " out of " + B(E.kind === "spin" && E.unequal ? "360°" : countWords(E, t)) + " — " + ffT(f, t) + "."]
+          ["m", tx("probability.tag.count"), tx("probability.line.countSame", { a: B(favWords(E, negOf(A), f)), b: B(E.kind === "spin" && E.unequal ? "360°" : countWords(E, t)), f: ffT(f, t) })]
         ],
-        aside: "When “not” is easier to count than the thing itself (like “at least one”), work out the opposite and take it from 1."
+        aside: tx("probability.aside.opposite")
       });
       items.push({
         step: 4,
         lines: [
-          ["a", "Decimal", decPctT(p, f, t)]
+          ["a", tx("probability.tag.decimal"), decPctT(p, f, t)]
         ]
       });
       items.push(likelyItem(p, 5));
       writeLog(items);
-      bandCells(pCells(Pl(nsh), p), [Pl(sh) + " = " + B(fracT(sol.pA)) + ", so " + Pl(nsh) + " = 1 − " + fracT(sol.pA), threeT(p)]);
-      $("closer").innerHTML = checkLine(p) + '<div class="ck"><b>Check:</b> ' + Pl(sh) + " + " + Pl(nsh) + " = " + fracT(sol.pA) + " + " + fracT(p) + ' = 1 <span class="ok">✓</span></div>';
+      bandCells(pCells(Pl(nsh), p), [tx("probability.band.so", { a: Pl(sh), b: B(fracT(sol.pA)), c: Pl(nsh), d: fracT(sol.pA) }), threeT(p)]);
+      $("closer").innerHTML = checkLine(p) + '<div class="ck">' + tx("probability.check.comp", { a: Pl(sh), b: Pl(nsh), c: fracT(sol.pA), d: fracT(p) }) + "</div>";
       return items.length;
     }
 
     /* ===================== tab 3: two events ===================== */
-    function pickWord(E) { return E.kind === "deck" ? "card" : E.kind === "nums" ? "number" : "marble"; }
+    function pickWord(E, pl) { var k = E.kind === "deck" ? "deck" : E.kind === "nums" ? "nums" : "bag"; return tx("probability.pickW." + k + (pl ? "Pl" : "")); }
 
     function andTree(P, s) {
       var E1 = P.xs[0],
@@ -4337,14 +4357,14 @@
         n = E.tot,
         without = P.kind === "without";
       if (E.kind === "bag" && !A.neg && !B2.neg && A.t === "is" && B2.t === "is" && E.cats.length <= 4)
-        cls = E.cats.map(function(c) { return { lab: c.lab, c: c.c, isA: c.lab === A.v, isB: c.lab === B2.v }; });
+        cls = E.cats.map(function(c) { return { lab: labW(c.lab, true), c: c.c, isA: c.lab === A.v, isB: c.lab === B2.v }; });
       else {
         var same = s.same !== undefined ? s.same : countAB(E, A, B2) === countA(E, A) && countA(E, A) === countA(E, B2);
         if (same) cls = [{ lab: atomShort(A, E), c: s.a, isA: true, isB: true }, { lab: atomShort(negOf(A), E), c: n - s.a, isA: false, isB: false }];
         else {
           var ab = countAB(E, A, B2);
           if (ab) return null;
-          cls = [{ lab: atomShort(A, E), c: s.a, isA: true, isB: false }, { lab: atomShort(B2, E), c: s.b, isA: false, isB: true }, { lab: "other", c: n - s.a - s.b, isA: false, isB: false }];
+          cls = [{ lab: atomShort(A, E), c: s.a, isA: true, isB: false }, { lab: atomShort(B2, E), c: s.b, isA: false, isB: true }, { lab: tx("probability.other"), c: n - s.a - s.b, isA: false, isB: false }];
         }
       }
       cls = cls.filter(function(c) { return c.c > 0; });
@@ -4380,12 +4400,16 @@
         without = P.kind === "without",
         tw2 = W;
       var c1 = stageName(P.kind === "and" ? P.xs : [E1, E1], 0),
-        c2 = stageName(P.kind === "and" ? P.xs : [E1, E1], 1);
+        c2 = stageName(P.kind === "and" ? P.xs : [E1, E1], 1),
+        c1t = stageThe(P.kind === "and" ? P.xs : [E1, E1], 0),
+        c2t = stageThe(P.kind === "and" ? P.xs : [E1, E1], 1);
       if (P.kind !== "and") {
-        c1 = "first pick";
-        c2 = "second pick";
+        c1 = tx("probability.pick1");
+        c2 = tx("probability.pick2");
+        c1t = artW(gOf("pick"), true) + " " + c1;
+        c2t = artW(gOf("pick"), true) + " " + c2;
       }
-      html += sect(lead(P.kind === "and" ? "The first: " + esc(c1) + "." : "The first pick.") + " " + allWhy(E1), xs(expSVG(E1, hlA(P.A), tw2, -1, picAria(E1))) +
+      html += sect(lead(P.kind === "and" ? tx("probability.lead.first", { c: esc(c1), cThe: esc(c1t) }) : tx("probability.lead.firstPick")) + " " + allWhy(E1), xs(expSVG(E1, hlA(P.A), tw2, -1, picAria(E1))) +
         big("P(" + esc(shA) + ") = " + fH(s.a, s.n1 || s.n) + simpH(s.a, s.n1 || s.n)), 0);
       var second;
       if (without) {
@@ -4393,16 +4417,16 @@
           pic = "";
         if (E1.kind === "bag" && P.A.t === "is" && !P.A.neg) {
           var left = mkBag(E1.cats.map(function(c) { return { lab: c.lab, c: c.c - (c.lab === P.A.v ? 1 : 0) }; }).filter(function(c) { return c.c > 0; }).concat([]));
-          pic = xs(expSVG(left, hlA(P.B), tw2, -1, "The bag after one " + P.A.v + " marble is taken out"));
+          pic = xs(expSVG(left, hlA(P.B), tw2, -1, tx("probability.bagAfter", { x: P.A.v, xf: labW(P.A.v, true) })));
         }
-        second = sect(lead("The second pick: one fewer in the bag.") + " " + (s.same ? "Without replacement: one fewer " + pickWord(E1) + " is left, and one fewer that’s " + esc(shA) + "." :
-            "Without replacement: one fewer " + pickWord(E1) + " is left — but the first one wasn’t " + esc(shB) + ", so all " + s.b + " of those are still there."),
-          pic + big("P(" + esc(shB) + " next) = " + fH(s.b2, n1) + simpH(s.b2, n1) + ' <span class="nm">(' + (s.same ? s.b + " − 1 = " + s.b2 + ", " : "") + s.n + " − 1 = " + n1 + ")</span>"), 1);
+        second = sect(lead(tx("probability.lead.secondFewer")) + " " + (s.same ? tx("probability.two.fewerSame", { w: pickWord(E1), sh: esc(shA) }) :
+            tx("probability.two.fewerOther", { w: pickWord(E1), sh: esc(shB), n: s.b })),
+          pic + big(tx("probability.two.next", { x: esc(shB) }) + " = " + fH(s.b2, n1) + simpH(s.b2, n1) + ' <span class="nm">(' + (s.same ? s.b + " − 1 = " + s.b2 + ", " : "") + s.n + " − 1 = " + n1 + ")</span>"), 1);
       } else if (P.kind === "with") {
-        second = sect(lead("The second pick: it was put back.") + " With replacement, everything is just as it was at the start.", xs(expSVG(E1, hlA(P.B), tw2, -1, picAria(E1))) +
+        second = sect(lead(tx("probability.lead.secondBack")) + " " + tx("probability.two.back"), xs(expSVG(E1, hlA(P.B), tw2, -1, picAria(E1))) +
           big("P(" + esc(shB) + ") = " + fH(s.b, s.n2) + simpH(s.b, s.n2)), 1);
       } else {
-        second = sect(lead("The second: " + esc(c2) + ".") + " " + allWhy(E2), xs(expSVG(E2, hlA(P.B), tw2, -1, picAria(E2))) +
+        second = sect(lead(tx("probability.lead.second", { c: esc(c2), cThe: esc(c2t) })) + " " + allWhy(E2), xs(expSVG(E2, hlA(P.B), tw2, -1, picAria(E2))) +
           big("P(" + esc(shB) + ") = " + fH(s.b, s.n2) + simpH(s.b, s.n2)), 1);
       }
       html += second;
@@ -4410,68 +4434,68 @@
         dB = without ? s.n - 1 : s.n2,
         nB = without ? s.b2 : s.b,
         nA = s.n1 || s.n;
-      html += sect(lead("“And” means multiply") + (without ? " — using the chance for the second pick after the first." : ", when one doesn’t change the other."),
+      html += sect(lead(tx("probability.lead.andMult")) + (without ? tx("probability.two.andWithout") : tx("probability.two.andIndep")),
         big(lab + " = " + fracH(s.pA) + " × " + fracH(pB) + " = " + fH(s.a * nB, nA * dB) + simpH(s.a * nB, nA * dB)), 2);
       var tree = P.kind === "and" ? andTree(P, s) : classTree(P, s);
-      if (tree) html += sect(lead("The tree diagram.") + " Each branch has its chance on it; multiply along a path to get the chance at the end. The path that works is marked.",
-        xs(treeSVG(tree, W, [c1, c2], 3, "Tree diagram")), 3);
+      if (tree) html += sect(lead(tx("probability.lead.tree")) + " " + tx("probability.two.tree"),
+        xs(treeSVG(tree, W, [c1, c2], 3, tx("probability.two.treeAria"))), 3);
       var T1 = nA,
         T2 = dB,
         cnt = without ? s.n + " × " + (s.n - 1) : nA + " × " + s.n2;
-      html += sect(lead("Check by counting.") + " " + (without ? "Count every ordered pair of different " + pickWord(E1) + "s: " : "Every result of the first can go with every result of the second (the counting principle): "),
-        big(cnt + ' = <span class="eqm">' + (T1 * T2) + "</span> equally likely pairs") + big(s.a + " × " + nB + ' = <span class="eqk">' + (s.a * nB) + "</span> of them work → " + fH(s.a * nB, T1 * T2) + simpH(s.a * nB, T1 * T2)), tree ? 4 : 3);
+      html += sect(lead(tx("probability.lead.checkCount")) + " " + (without ? tx("probability.two.pairsWithout", { w: pickWord(E1) + "s", wPl: pickWord(E1, true) }) : tx("probability.two.pairsIndep")),
+        big(cnt + ' = <span class="eqm">' + (T1 * T2) + "</span> " + tx("probability.two.equallyPairs")) + big(s.a + " × " + nB + ' = <span class="eqk">' + (s.a * nB) + "</span> " + tx("probability.two.ofWork") + " → " + fH(s.a * nB, T1 * T2) + simpH(s.a * nB, T1 * T2)), tree ? 4 : 3);
       var st = tree ? 5 : 4;
-      html += sect(lead("As a decimal and a percent."), decPctH(p, s.a * nB, T1 * T2), st);
-      html += sect(lead("How likely is that?"), xs(scaleSVG(p, W, st + 1)), st + 1);
+      html += sect(lead(tx("probability.lead.decPct")), decPctH(p, s.a * nB, T1 * T2), st);
+      html += sect(lead(tx("probability.lead.howLikely")), xs(scaleSVG(p, W, st + 1)), st + 1);
       $("workHost").innerHTML = html;
       items.push({
         step: 0,
         lines: [
-          ["p", "First", "The chance of " + esc(shA) + (P.kind === "and" ? " on the " + esc(c1) : " on the first pick") + ": " + B("P(" + esc(shA) + ") = " + ffT(s.a, nA)) + simpT(s.a, nA) + "."]
+          ["p", tx("probability.tag.first"), tx("probability.line.first", { sh: esc(shA), on: P.kind === "and" ? tx("probability.on.stage", { c: esc(c1), cThe: esc(c1t) }) : tx("probability.on.first"), eq: B("P(" + esc(shA) + ") = " + ffT(s.a, nA)), simp: simpT(s.a, nA) })]
         ]
       });
       if (without) items.push({
         step: 1,
         lines: [
-          ["m", "Second", "Without replacement: one fewer " + pickWord(E1) + " is in the " + (E1.kind === "bag" ? "bag" : "set") + (s.same ? ", and one fewer " + esc(shA) : "") + ". Now it’s " + B(ffT(s.b2, s.n - 1)) + "."]
+          ["m", tx("probability.tag.second"), tx("probability.line.secondWithout", { w: pickWord(E1), where: tx("probability.where." + (E1.kind === "bag" ? "bag" : "set")), same: s.same ? tx("probability.line.fewerOf", { sh: esc(shA) }) : "", f: B(ffT(s.b2, s.n - 1)) })]
         ],
-        aside: s.same ? "The first pick changes the second: it took one " + esc(shA) + " " + pickWord(E1) + " out, so there are " + s.b2 + " of them left among " + (s.n - 1) + "." : "The first pick wasn’t " + esc(shB) + ", so those are all still there — but the total dropped to " + (s.n - 1) + "."
+        aside: s.same ? tx("probability.aside.sameOut", { sh: esc(shA), w: pickWord(E1), n: s.b2, m: s.n - 1 }) : tx("probability.aside.otherStill", { sh: esc(shB), m: s.n - 1 })
       });
       else items.push({
         step: 1,
         lines: [
-          ["m", "Second", (P.kind === "with" ? "It went back, so the second pick is just like the first: " : "The chance of " + esc(shB) + " on the " + esc(c2) + ": ") + B("P(" + esc(shB) + ") = " + ffT(s.b, s.n2)) + simpT(s.b, s.n2) + "."]
+          ["m", tx("probability.tag.second"), P.kind === "with" ? tx("probability.line.secondBack", { eq: B("P(" + esc(shB) + ") = " + ffT(s.b, s.n2)), simp: simpT(s.b, s.n2) }) : tx("probability.line.secondOf", { sh: esc(shB), c: esc(c2), cThe: esc(c2t), eq: B("P(" + esc(shB) + ") = " + ffT(s.b, s.n2)), simp: simpT(s.b, s.n2) })]
         ]
       });
       items.push({
         step: 2,
         lines: [
-          ["p", "Multiply", "“And” means multiply when one doesn’t change the other: " + B(fracT(s.pA) + " × " + fracT(pB) + " = " + fracT(p)) + "."]
+          ["p", tx("probability.tag.multiply"), tx("probability.line.multiply", { eq: B(fracT(s.pA) + " × " + fracT(pB) + " = " + fracT(p)) })]
         ],
-        aside: without ? "Here the first pick <i>does</i> change the second, which is why the second fraction is out of " + (s.n - 1) + ", not " + s.n + "." : "Adding would be wrong: “and” makes it <i>less</i> likely than either one alone, and multiplying two chances smaller than 1 gives a smaller one."
+        aside: without ? tx("probability.aside.without", { m: s.n - 1, n: s.n }) : tx("probability.aside.notAdd")
       });
       if (tree) items.push({
         step: 3,
         lines: [
-          ["n", "Tree", "The tree shows every way it can go. Multiply along each path; the marked path, " + esc(shA) + " then " + esc(shB) + ", gives " + B(fracT(p)) + "."]
+          ["n", tx("probability.tag.tree"), tx("probability.line.tree", { a: esc(shA), b: esc(shB), p: B(fracT(p)) })]
         ]
       });
       items.push({
         step: tree ? 4 : 3,
         lines: [
-          ["m", "Count", "Counting pairs agrees: " + B((s.a * nB) + " out of " + (T1 * T2)) + " = " + fracT(p) + "."]
+          ["m", tx("probability.tag.count"), tx("probability.line.pairs", { x: B(tx("probability.outOf", { a: s.a * nB, b: T1 * T2 })), p: fracT(p) })]
         ]
       });
       items.push({
         step: st,
         lines: [
-          ["a", "Decimal", decPctT(p, s.a * nB, T1 * T2)]
+          ["a", tx("probability.tag.decimal"), decPctT(p, s.a * nB, T1 * T2)]
         ]
       });
       items.push(likelyItem(p, st + 1));
       writeLog(items);
       bandCells(pCells(lab, p), [fracT(s.pA) + " × " + fracT(pB) + " = " + B(fracT(p)), threeT(p)]);
-      $("closer").innerHTML = checkLine(p) + '<div class="ck"><b>Check:</b> both together is no more likely than either alone — ' + fracT(p) + " ≤ " + fracT(cmpR(s.pA, pB) < 0 ? s.pA : pB) + ' <span class="ok">✓</span></div>';
+      $("closer").innerHTML = checkLine(p) + '<div class="ck">' + tx("probability.check.and", { p: fracT(p), q: fracT(cmpR(s.pA, pB) < 0 ? s.pA : pB) }) + "</div>";
       return items.length;
     }
 
@@ -4480,10 +4504,10 @@
         E2 = P.kind === "and" ? P.xs[1] : E1,
         a = atomShort(P.A, E1),
         b = atomShort(P.B, E2);
-      if (P.kind !== "and" && P.A.code === P.B.code) return Pl("both " + a);
-      if (P.kind !== "and") return Pl(a + ", then " + b);
-      if (E1.code === E2.code) return Pl(a + " on " + stageName([E1, E2], 0) + " and " + b + " on " + stageName([E1, E2], 1));
-      return Pl(a + " and " + b);
+      if (P.kind !== "and" && P.A.code === P.B.code) return Pl(tx("probability.and.both", { a: a }));
+      if (P.kind !== "and") return Pl(tx("probability.and.then", { a: a, b: b }));
+      if (E1.code === E2.code) return Pl(tx("probability.and.on", { a: a, s1: stageName([E1, E2], 0), b: b, s2: stageName([E1, E2], 1), t1: stageThe([E1, E2], 0), t2: stageThe([E1, E2], 1) }));
+      return Pl(tx("probability.and.and", { a: a, b: b }));
     }
 
     function drawOr(P) {
@@ -4498,7 +4522,7 @@
         items = [];
       var a = atomShort(A, E),
         b = atomShort(B2, E),
-        lab = Pl(a + " or " + b),
+        lab = Pl(tx("probability.or.or", { a: a, b: b })),
         uneq = E.kind === "spin" && E.unequal;
       var cls = function(o) {
         var x = testAtom(A, o),
@@ -4506,70 +4530,70 @@
         return x && y ? "fab" : x ? "fa" : y ? "fb" : "";
       };
       var tcls = function(o) { return tkCls(cls(o)); };
-      html += sect(lead("Count everything that can happen.") + " " + allWhy(E) + " In the picture: " + B(esc(a)) + " in pink, " + B(esc(b)) + " in blue, both in orange.",
+      html += sect(lead(tx("probability.lead.everything")) + " " + allWhy(E) + " " + tx("probability.or.colors", { a: B(esc(a)), b: B(esc(b)) }),
         xs(expSVG(E, cls, W, 1, picAria(E))) + allLine(E), 0);
       var list = function(test) {
-        return uneq ? "" : toksH(E.kind === "bag" ? E.cats.filter(function(c) { return test({ lab: c.lab }); }).map(function(c) { return { h: esc(c.lab) + '<span class="ct">×' + c.c + "</span>", c: tcls({ lab: c.lab }) }; }) :
+        return uneq ? "" : toksH(E.kind === "bag" ? E.cats.filter(function(c) { return test({ lab: c.lab }); }).map(function(c) { return { h: esc(labW(c.lab, true)) + '<span class="ct">×' + c.c + "</span>", c: tcls({ lab: c.lab }) }; }) :
           E.outs.filter(test).map(function(o) { return { h: outH(E, o), c: tcls(o) }; }), 60);
       };
-      html += sect(lead("The ways for " + esc(a) + "."), list(function(o) { return testAtom(A, o); }) + big("P(" + esc(a) + ") = " + fH(s.a, t)), 1);
-      html += sect(lead("The ways for " + esc(b) + "."), list(function(o) { return testAtom(B2, o); }) + big("P(" + esc(b) + ") = " + fH(s.b, t)), 2);
-      html += sect(lead("The overlap: both at once.") + (s.ab ? " These are counted in both lists." : " There are none — the two can’t happen together (they are <strong>mutually exclusive</strong>)."),
-        (s.ab ? list(function(o) { return testAtom(A, o) && testAtom(B2, o); }) : "") + big("P(both) = " + fH(s.ab, t)), 3);
-      html += sect(lead("“Or”: add, then take away the overlap") + (s.ab ? " so it isn’t counted twice." : " — here there is nothing to take away."),
+      html += sect(lead(tx("probability.lead.waysFor", { x: esc(a) })), list(function(o) { return testAtom(A, o); }) + big("P(" + esc(a) + ") = " + fH(s.a, t)), 1);
+      html += sect(lead(tx("probability.lead.waysFor", { x: esc(b) })), list(function(o) { return testAtom(B2, o); }) + big("P(" + esc(b) + ") = " + fH(s.b, t)), 2);
+      html += sect(lead(tx("probability.lead.overlap")) + " " + (s.ab ? tx("probability.or.inBoth") : tx("probability.or.none")),
+        (s.ab ? list(function(o) { return testAtom(A, o) && testAtom(B2, o); }) : "") + big(tx("probability.or.pBoth") + " = " + fH(s.ab, t)), 3);
+      html += sect(lead(tx("probability.lead.orAdd")) + (s.ab ? tx("probability.or.twice") : tx("probability.or.nothing")),
         big(lab + " = " + fH(s.a, t) + " + " + fH(s.b, t) + " − " + fH(s.ab, t) + " = " + fH(s.f, t) + simpH(s.f, t)), 4);
-      html += sect(lead("Check by counting.") + " Everything that is " + esc(a) + " or " + esc(b) + " (or both):",
-        list(function(o) { return testAtom(A, o) || testAtom(B2, o); }) + big('<span class="eqk">' + favWords(E, A, s.f) + "</span> out of " + (uneq ? "360°" : countWords(E, t))), 5);
-      html += sect(lead("As a decimal and a percent."), decPctH(p, s.f, t), 6);
-      html += sect(lead("How likely is that?"), xs(scaleSVG(p, W, 7)), 7);
+      html += sect(lead(tx("probability.lead.checkCount")) + " " + tx("probability.or.either", { a: esc(a), b: esc(b) }),
+        list(function(o) { return testAtom(A, o) || testAtom(B2, o); }) + big(tx("probability.outOf", { a: '<span class="eqk">' + favWords(E, A, s.f) + "</span>", b: uneq ? "360°" : countWords(E, t) })), 5);
+      html += sect(lead(tx("probability.lead.decPct")), decPctH(p, s.f, t), 6);
+      html += sect(lead(tx("probability.lead.howLikely")), xs(scaleSVG(p, W, 7)), 7);
       $("workHost").innerHTML = html;
       items.push({
         step: 0,
         lines: [
-          ["m", "Everything", "Count everything that can happen: " + B(uneq ? "360°" : countWords(E, t)) + "."]
+          ["m", tx("probability.tag.everything"), tx("probability.line.everything", { x: B(uneq ? "360°" : countWords(E, t)) })]
         ]
       });
       items.push({
         step: 1,
         lines: [
-          ["p", "A", "The ways for " + esc(a) + ": " + B(favWords(E, A, s.a)) + "."]
+          ["p", tx("probability.tag.A"), tx("probability.line.waysFor", { x: esc(a), f: B(favWords(E, A, s.a)) })]
         ]
       });
       items.push({
         step: 2,
         lines: [
-          ["m", "B", "The ways for " + esc(b) + ": " + B(favWords(E, B2, s.b)) + "."]
+          ["m", tx("probability.tag.B"), tx("probability.line.waysFor", { x: esc(b), f: B(favWords(E, B2, s.b)) })]
         ]
       });
       items.push({
         step: 3,
         lines: [
-          ["e", "Both", s.ab ? B(favWords(E, A, s.ab)) + " " + (s.ab === 1 ? "is" : "are") + " both " + esc(a) + " and " + esc(b) + " — in both lists." : "Nothing is both, so nothing is counted twice."]
+          ["e", tx("probability.tag.both"), s.ab ? tx(s.ab === 1 ? "probability.line.both1" : "probability.line.bothN", { f: B(favWords(E, A, s.ab)), a: esc(a), b: esc(b) }) : tx("probability.line.bothNone")]
         ]
       });
       items.push({
         step: 4,
         lines: [
-          ["p", "Add", "“Or” in one go means add, then take away the overlap: " + B(ffT(s.a, t) + " + " + ffT(s.b, t) + " − " + ffT(s.ab, t) + " = " + ffT(s.f, t)) + simpT(s.f, t) + "."]
+          ["p", tx("probability.tag.add"), tx("probability.line.orAdd", { eq: B(ffT(s.a, t) + " + " + ffT(s.b, t) + " − " + ffT(s.ab, t) + " = " + ffT(s.f, t)), simp: simpT(s.f, t) })]
         ],
-        aside: s.ab ? "Without taking away the overlap you’d count the " + favWords(E, A, s.ab) + " that " + (s.ab === 1 ? "is" : "are") + " both twice, and get " + ffT(s.a + s.b, t) + " — too much." : "When two events can’t happen together, “or” is just adding."
+        aside: s.ab ? tx(s.ab === 1 ? "probability.aside.twice1" : "probability.aside.twiceN", { f: favWords(E, A, s.ab), g: ffT(s.a + s.b, t) }) : tx("probability.aside.exclusive")
       });
       items.push({
         step: 5,
         lines: [
-          ["m", "Count", "Counting them straight away agrees: " + B(favWords(E, A, s.f)) + " — " + ffT(s.f, t) + "."]
+          ["m", tx("probability.tag.count"), tx("probability.line.countAgrees", { f: B(favWords(E, A, s.f)), g: ffT(s.f, t) })]
         ]
       });
       items.push({
         step: 6,
         lines: [
-          ["a", "Decimal", decPctT(p, s.f, t)]
+          ["a", tx("probability.tag.decimal"), decPctT(p, s.f, t)]
         ]
       });
       items.push(likelyItem(p, 7));
       writeLog(items);
       bandCells(pCells(lab, p), [fracT(s.pA) + " + " + fracT(s.pB) + " − " + fracT(s.pAB) + " = " + B(fracT(p)), threeT(p)]);
-      $("closer").innerHTML = checkLine(p) + '<div class="ck"><b>Check:</b> “or” is at least as likely as either one alone — ' + fracT(p) + " ≥ " + fracT(cmpR(s.pA, s.pB) > 0 ? s.pA : s.pB) + ' <span class="ok">✓</span></div>';
+      $("closer").innerHTML = checkLine(p) + '<div class="ck">' + tx("probability.check.or", { p: fracT(p), q: fracT(cmpR(s.pA, s.pB) > 0 ? s.pA : s.pB) }) + "</div>";
       return items.length;
     }
 
@@ -4631,72 +4655,73 @@
         view = resolveView(P),
         ev = P.sev;
       var caps = Es.map(function(E, i) { return stageName(Es, i); }),
+        capsT = Es.map(function(E, i) { return stageThe(Es, i); }),
         sizes = Es.map(function(E) { return E.outs.length; });
       var lab = Pl(sevShort(ev, Es)),
         fav = function(tp) { return sevTest(ev, tp); };
-      html += sect(lead("Count everything that can happen: multiply.") + " Each result of the " + esc(caps[0]) + " can go with each result of the " + esc(caps[1]) + (Es.length === 3 ? ", and each of those with each result of the " + esc(caps[2]) : "") + " — that’s the counting principle.",
-        big(sizes.join(" × ") + ' = <span class="eqm">' + T + "</span> outcomes, all equally likely"), 0);
+      html += sect(lead(tx("probability.lead.multiply")) + " " + tx("probability.space.each", { a: esc(caps[0]), b: esc(caps[1]), aThe: esc(capsT[0]), bThe: esc(capsT[1]), c: Es.length === 3 ? tx("probability.space.each3", { c: esc(caps[2]), cThe: esc(capsT[2]) }) : "" }),
+        big(sizes.join(" × ") + ' = <span class="eqm">' + T + "</span> " + tx("probability.space.outcomes")), 0);
       var pic, why;
       if (view === "grid") {
         var numeric = Es[0].numeric && Es[1].numeric,
           isSum = ev.t === "sum";
         pic = gridSVG(Es[0], Es[1], function(a, b) { return isSum ? String(a.num + b.num) : numeric ? a.lab + "," + b.lab : outT(Es[0], a) + outT(Es[1], b); },
-          function(a, b) { return fav([a, b]); }, W, caps, 2, "Table of all " + T + " outcomes" + (isSum ? ", showing each sum" : ""));
-        why = "A row for each result of the " + esc(caps[0]) + ", a column for each result of the " + esc(caps[1]) + (isSum ? "; each box shows the sum" : "") + ".";
+          function(a, b) { return fav([a, b]); }, W, caps, 2, tx(isSum ? "probability.space.tableAriaSum" : "probability.space.tableAria", { n: T }));
+        why = tx("probability.space.rows", { a: esc(caps[0]), b: esc(caps[1]), aThe: esc(capsT[0]), bThe: esc(capsT[1]), sum: isSum ? tx("probability.space.rowsSum") : "" });
       } else if (view === "tree") {
-        pic = treeSVG(spaceTree(Es, fav), W, caps, 2, "Tree diagram of all " + T + " outcomes");
-        why = "Each stage branches into its outcomes, every branch with its chance. The " + T + " ends of the tree are the outcomes.";
+        pic = treeSVG(spaceTree(Es, fav), W, caps, 2, tx("probability.space.treeAria", { n: T }));
+        why = tx("probability.space.treeWhy", { n: T });
       } else {
         pic = null;
-        why = "Go through them in order so none is missed: everything with the first result of the " + esc(caps[0]) + ", then the next, and so on.";
+        why = tx("probability.space.listWhy", { a: esc(caps[0]), aThe: esc(capsT[0]) });
       }
-      html += sect(lead(view === "grid" ? "The table of outcomes." : view === "tree" ? "The tree diagram." : "The list of outcomes.") + " " + why,
+      html += sect(lead(tx(view === "grid" ? "probability.lead.table" : view === "tree" ? "probability.lead.tree" : "probability.lead.list")) + " " + why,
         pic ? xs(pic) : toksH(s.tups.map(function(tp, i) { return { h: esc(tupT(Es, tp)), c: "" }; }), 80), 1);
       var favList = s.tups.filter(function(tp, i) { return s.fav[i]; });
-      html += sect(lead("Count the ways it can happen") + " — " + esc(sevWords(ev, Es)) + (pic ? ". They’re marked above." : ":"),
-        toksH(favList.map(function(tp) { return { h: esc(tupT(Es, tp)), c: "on" }; }), 72) + big('<span class="eqk">' + f + "</span> of the " + T + " outcomes"), 2);
-      html += sect(lead("Divide: the ways it can happen ÷ everything that can happen."), big(lab + " = " + fH(f, T) + simpH(f, T)), 3);
-      html += sect(lead("As a decimal and a percent."), decPctH(p, f, T), 4);
-      html += sect(lead("How likely is that?"), xs(scaleSVG(p, W, 5)), 5);
+      html += sect(lead(tx("probability.lead.waysDash")) + " — " + esc(sevWords(ev, Es)) + (pic ? tx("probability.space.marked") : ":"),
+        toksH(favList.map(function(tp) { return { h: esc(tupT(Es, tp)), c: "on" }; }), 72) + big('<span class="eqk">' + f + "</span> " + tx("probability.space.ofT", { n: T })), 2);
+      html += sect(lead(tx("probability.lead.divide")), big(lab + " = " + fH(f, T) + simpH(f, T)), 3);
+      html += sect(lead(tx("probability.lead.decPct")), decPctH(p, f, T), 4);
+      html += sect(lead(tx("probability.lead.howLikely")), xs(scaleSVG(p, W, 5)), 5);
       $("workHost").innerHTML = html;
       var unordered = ev.t === "sum" || ev.t === "double";
       items.push({
         step: 0,
         lines: [
-          ["m", "Multiply", "The counting principle: " + B(sizes.join(" × ") + " = " + T) + " outcomes."]
+          ["m", tx("probability.tag.multiply"), tx("probability.line.principle", { eq: B(sizes.join(" × ") + " = " + T) })]
         ],
-        aside: "Multiply, don’t add: with " + sizes.join(" and ") + " choices there are " + T + " different results, not " + sizes.reduce(function(x, y) { return x + y; }, 0) + "."
+        aside: tx("probability.aside.notAddSizes", { sizes: sizes.join(tx("probability.sevS.and")), t: T, s: sizes.reduce(function(x, y) { return x + y; }, 0) })
       });
       items.push({
         step: 1,
         lines: [
-          ["n", view === "grid" ? "Table" : view === "tree" ? "Tree" : "List", view === "grid" ? "Make a table with a row for each result of the " + esc(caps[0]) + " and a column for each of the " + esc(caps[1]) + "." : view === "tree" ? "Draw a tree: one set of branches for each stage. Every path from the start to an end is one outcome." : "List them in order — the first " + esc(caps[0]) + " result with every result after it, then the next."]
+          ["n", tx(view === "grid" ? "probability.tag.table" : view === "tree" ? "probability.tag.tree" : "probability.tag.list"), view === "grid" ? tx("probability.line.table", { a: esc(caps[0]), b: esc(caps[1]), aThe: esc(capsT[0]), bThe: esc(capsT[1]) }) : view === "tree" ? tx("probability.line.treeDraw") : tx("probability.line.listOrder", { a: esc(caps[0]), aThe: esc(capsT[0]) })]
         ],
-        aside: Es.every(function(E) { return E.code === Es[0].code; }) && Es[0].kind === "die" ? "Order matters: (1, 2) and (2, 1) are different outcomes — the first die and the second die are different dice." : null
+        aside: Es.every(function(E) { return E.code === Es[0].code; }) && Es[0].kind === "die" ? tx("probability.aside.order") : null
       });
       items.push({
         step: 2,
         lines: [
-          ["p", "Ways", "Mark the ones where " + esc(sevWords(ev, Es)) + ": " + B(String(f)) + (f && f <= 12 ? " — " + favList.map(function(tp) { return tupT(Es, tp); }).join(", ") : "") + "."]
+          ["p", tx("probability.tag.ways"), tx("probability.line.mark", { w: esc(sevWords(ev, Es)), f: B(String(f)), list: f && f <= 12 ? " — " + favList.map(function(tp) { return tupT(Es, tp); }).join(", ") : "" })]
         ],
-        aside: ev.t === "sum" ? "Sums in the middle are more likely than sums at the ends, because more outcomes add up to them — so the " + nSums(s.tups) + " possible sums are <i>not</i> equally likely. Count outcomes, not sums." : null
+        aside: ev.t === "sum" ? tx("probability.aside.sums", { n: nSums(s.tups) }) : null
       });
       items.push({
         step: 3,
         lines: [
-          ["p", "Divide", "Ways ÷ everything: " + B(lab + " = " + ffT(f, T)) + simpT(f, T) + "."]
+          ["p", tx("probability.tag.divide"), tx("probability.line.divide", { eq: B(lab + " = " + ffT(f, T)), simp: simpT(f, T) })]
         ]
       });
       items.push({
         step: 4,
         lines: [
-          ["a", "Decimal", decPctT(p, f, T)]
+          ["a", tx("probability.tag.decimal"), decPctT(p, f, T)]
         ]
       });
       items.push(likelyItem(p, 5));
       writeLog(items);
-      bandCells(pCells(lab, p), [B(String(f)) + " of the " + B(String(T)) + " outcomes", threeT(p)]);
-      $("closer").innerHTML = checkLine(p) + '<div class="ck"><b>Check:</b> the ' + T + " outcomes are " + f + " that work and " + (T - f) + " that don’t — " + f + " + " + (T - f) + " = " + T + ' <span class="ok">✓</span></div>';
+      bandCells(pCells(lab, p), [tx("probability.band.ofT", { f: B(String(f)), t: B(String(T)) }), threeT(p)]);
+      $("closer").innerHTML = checkLine(p) + '<div class="ck">' + tx("probability.check.space", { t: T, f: f, g: T - f }) + "</div>";
       return items.length;
     }
 
@@ -4715,37 +4740,37 @@
       if (P.kind === "predict") {
         var e = s.e,
           whole = isInt(e);
-        html += sect(lead("The chance on one try.") + " Count the ways it can happen, and everything that can happen.", xs(expSVG(E, hlA(A), W, 0, picAria(E))) +
+        html += sect(lead(tx("probability.lead.oneTry")) + " " + tx("probability.exp.oneTry"), xs(expSVG(E, hlA(A), W, 0, picAria(E))) +
           big(Pl(sh) + " = " + fH(f, t) + simpH(f, t)), 0);
-        html += sect(lead("Expect about " + P.n + " × " + Pl(sh) + ".") + " Out of " + P.n + " tries, about that fraction of them should be " + esc(sh) + ".",
+        html += sect(lead(tx("probability.lead.expect", { n: P.n, p: Pl(sh) })) + " " + tx("probability.exp.outOf", { n: P.n, sh: esc(sh) }),
           big(P.n + " × " + fracH(p) + " = " + fH(R(P.n).n * p.n, p.d) + (whole ? ' = <span class="eqk">' + e.n + "</span>" : " = " + mixH(e) + ' <span class="eqk">≈ ' + s.round + "</span>")), 1);
-        html += sect(lead("About " + (whole ? e.n : s.round) + " times.") + " It’s a prediction, not a promise.", xs(predictSVG(P.n, e, W, 2)), 2);
+        html += sect(lead(tx("probability.lead.about", { n: whole ? e.n : s.round })) + " " + tx("probability.exp.promise"), xs(predictSVG(P.n, e, W, 2)), 2);
         $("workHost").innerHTML = html;
         items.push({
           step: 0,
           lines: [
-            ["p", "One try", "The probability for one try: " + B(Pl(sh) + " = " + ffT(f, t)) + simpT(f, t) + "."]
+            ["p", tx("probability.tag.oneTry"), tx("probability.line.oneTry", { eq: B(Pl(sh) + " = " + ffT(f, t)), simp: simpT(f, t) })]
           ]
         });
         items.push({
           step: 1,
           lines: [
-            ["p", "Multiply", "Multiply by the number of tries: " + B(P.n + " × " + fracT(p) + " = " + (whole ? e.n : mixT(e))) + "."]
+            ["p", tx("probability.tag.multiply"), tx("probability.line.byTries", { eq: B(P.n + " × " + fracT(p) + " = " + (whole ? e.n : mixT(e))) })]
           ],
-          aside: "Expected count = number of tries × probability. A probability of " + fracT(p) + " means about " + (p.n === 1n ? "1 in every " + p.d : p.n + " in every " + p.d) + " tries."
+          aside: tx(p.n === 1n ? "probability.aside.expected1" : "probability.aside.expectedN", { p: fracT(p), n: p.n, d: p.d })
         });
         items.push({
           step: 2,
           lines: [
-            ["a", "About", whole ? "You’d expect it about " + B(e.n + " times") + "." : B(mixT(e)) + " isn’t a whole number of times, so round: about " + B(s.round + " times") + "."]
+            ["a", tx("probability.tag.about"), whole ? tx("probability.line.expectWhole", { x: B(tx("probability.times", { n: e.n })) }) : tx("probability.line.expectRound", { x: B(mixT(e)), r: B(tx("probability.times", { n: s.round })) })]
           ],
-          aside: "In a real experiment the count will usually be a little more or a little less — the expected number is what it averages out to over many experiments."
+          aside: tx("probability.aside.wobble")
         });
         writeLog(items);
-        var cells = whole ? [{ k: "Expected", v: String(e.n) + ' <span class="word">times</span>' }] : [{ k: "Exactly", v: mixH(e) }, { k: "About", v: String(s.round) + ' <span class="word">times</span>' }];
+        var cells = whole ? [{ k: tx("probability.cell.expected"), v: String(e.n) + ' <span class="word">' + tx("probability.cell.times") + "</span>" }] : [{ k: tx("probability.cell.exactly"), v: mixH(e) }, { k: tx("probability.cell.about"), v: String(s.round) + ' <span class="word">' + tx("probability.cell.times") + "</span>" }];
         cells.push({ k: Pl(sh), v: fracH(p) });
-        bandCells(cells, [P.n + " × " + fracT(p) + " = " + B(whole ? String(e.n) : mixT(e)), "Each try: " + threeT(p)]);
-        $("closer").innerHTML = '<div class="ck"><b>Check:</b> ' + (whole ? e.n : mixT(e)) + " ÷ " + P.n + " = " + fracT(p) + ', the chance for one try <span class="ok">✓</span></div>';
+        bandCells(cells, [P.n + " × " + fracT(p) + " = " + B(whole ? String(e.n) : mixT(e)), tx("probability.band.each", { x: threeT(p) })]);
+        $("closer").innerHTML = '<div class="ck">' + tx("probability.check.expected", { a: whole ? e.n : mixT(e), n: P.n, p: fracT(p) }) + "</div>";
         return items.length;
       }
       var x = s.x,
@@ -4753,83 +4778,82 @@
         n = P.n,
         dPts = sub(mul(x, H100), mul(p, H100)),
         ex = s.e;
-      html += sect(lead("Experimental: what really happened.") + " Times it happened ÷ number of tries.", big("experimental = " + fH(k, n) + simpH(k, n)) + decPctH(x, k, n), 0);
-      html += sect(lead("Theoretical: what should happen.") + " The ways it can happen ÷ everything that can happen.", xs(expSVG(E, hlA(A), W, 1, picAria(E))) + big("theoretical = " + fH(f, t) + simpH(f, t)) + decPctH(p, f, t), 1);
+      html += sect(lead(tx("probability.lead.experimental")) + " " + tx("probability.exp.timesTries"), big(tx("probability.exp.experimentalEq") + " = " + fH(k, n) + simpH(k, n)) + decPctH(x, k, n), 0);
+      html += sect(lead(tx("probability.lead.theoretical")) + " " + tx("probability.exp.waysAll"), xs(expSVG(E, hlA(A), W, 1, picAria(E))) + big(tx("probability.exp.theoreticalEq") + " = " + fH(f, t) + simpH(f, t)) + decPctH(p, f, t), 1);
       var cmp = cmpR(x, p);
-      html += sect(lead("Compare them.") + " " + (cmp === 0 ? "They match exactly." : "The experiment came out " + (cmp > 0 ? "a bit more" : "a bit less") + " often than the theory says."),
-        xs(experSVG(x, p, W, 2)) + big("expected in " + n + " tries: " + n + " × " + fracH(p) + " = " + (isInt(ex) ? ex.n : mixH(ex)) + ' <span class="nm">(it really happened ' + k + " times)</span>"), 2);
+      html += sect(lead(tx("probability.lead.compare")) + " " + tx(cmp === 0 ? "probability.exp.match" : cmp > 0 ? "probability.exp.more" : "probability.exp.less"),
+        xs(experSVG(x, p, W, 2)) + big(tx("probability.exp.expectedIn", { n: n }) + ": " + n + " × " + fracH(p) + " = " + (isInt(ex) ? ex.n : mixH(ex)) + ' <span class="nm">' + tx("probability.exp.really", { k: k }) + "</span>"), 2);
       $("workHost").innerHTML = html;
       items.push({
         step: 0,
         lines: [
-          ["p", "Experimental", "From the results: " + B(ffT(k, n)) + simpT(k, n) + " — that’s " + B(tailT(x)) + "."]
+          ["p", tx("probability.tag.experimental"), tx("probability.line.fromResults", { f: B(ffT(k, n)), simp: simpT(k, n), t: B(tailT(x)) })]
         ]
       });
       items.push({
         step: 1,
         lines: [
-          ["m", "Theoretical", "From counting: " + B(Pl(sh) + " = " + ffT(f, t)) + simpT(f, t) + " — that’s " + B(tailT(p)) + "."]
+          ["m", tx("probability.tag.theoretical"), tx("probability.line.fromCounting", { eq: B(Pl(sh) + " = " + ffT(f, t)), simp: simpT(f, t), t: B(tailT(p)) })]
         ]
       });
       items.push({
         step: 2,
         lines: [
-          ["e", "Compare", cmp === 0 ? "They are the same — the experiment came out exactly as expected." : "They differ by about " + B(roundDec(absR(dPts), 1) + " percentage points") + ". In " + n + " tries you’d expect about " + (isInt(ex) ? ex.n : roundDec(ex, 1)) + "; it happened " + k + " times."]
+          ["e", tx("probability.tag.compare"), cmp === 0 ? tx("probability.line.same") : tx("probability.line.differ", { d: B(tx("probability.points", { x: roundDec(absR(dPts), 1) })), n: n, e: isInt(ex) ? ex.n : roundDec(ex, 1), k: k })]
         ],
-        aside: "Experiments wobble. The more times you try, the closer the experimental probability usually gets to the theoretical one — that’s why a few tries can be far off."
+        aside: tx("probability.aside.experiments")
       });
       writeLog(items);
-      bandCells([{ k: "Experimental", v: fracH(x) }, { k: "Exp. percent", v: pctH(x) }, { k: "Theoretical", v: fracH(p) }, { k: "Theo. percent", v: pctH(p) }],
-        ["Experimental: " + threeT(x), "Theoretical: " + threeT(p)]);
-      $("closer").innerHTML = '<div class="ck"><b>Check:</b> both are between 0 and 1 — ' + fracT(x) + " and " + fracT(p) + ' <span class="ok">✓</span></div>';
+      bandCells([{ k: tx("probability.svg.experimental"), v: fracH(x) }, { k: tx("probability.cell.expPct"), v: pctH(x) }, { k: tx("probability.svg.theoretical"), v: fracH(p) }, { k: tx("probability.cell.theoPct"), v: pctH(p) }],
+        [tx("probability.band.experimental", { x: threeT(x) }), tx("probability.band.theoretical", { x: threeT(p) })]);
+      $("closer").innerHTML = '<div class="ck">' + tx("probability.check.exper", { a: fracT(x), b: fracT(p) }) + "</div>";
       return items.length;
     }
 
     var DRAW = { simple: drawSimple, complement: drawComplement, compound: drawCompound, space: drawSpace, expected: drawExpected };
 
     function legendFor(P) {
-      if (P && P.mode === "complement") return '<div><span class="badge c-r">It happens</span> what we don’t want</div><div><span class="badge c-p">Not</span> everything else</div><div><span class="badge c-m">Everything</span> all that can happen</div>';
-      if (P && P.mode === "compound" && P.kind === "or") return '<div><span class="badge c-p">A</span> first event</div><div><span class="badge c-m">B</span> second event</div><div><span class="badge c-e">Both</span> the overlap</div>';
-      if (P && P.mode === "expected") return '<div><span class="badge c-p">P</span> chance for one try</div><div><span class="badge c-m">Theory</span> from counting</div><div><span class="badge c-e">Compare</span> what happened</div>';
-      return '<div><span class="badge c-m">Everything</span> all that can happen</div><div><span class="badge c-p">Ways</span> what we want</div><div><span class="badge c-a">Answer</span> fraction, decimal, %</div>';
+      if (P && P.mode === "complement") return tx("probability.legend.complement");
+      if (P && P.mode === "compound" && P.kind === "or") return tx("probability.legend.or");
+      if (P && P.mode === "expected") return tx("probability.legend.expected");
+      return tx("probability.legend.simple");
     }
 
     /* ===================== problems as words: check box, worksheets ===================== */
-    function infOf(E) { return E.kind === "die" ? "roll" : E.kind === "coin" ? "get" : E.kind === "spin" ? "land on" : "pick"; }
-
     function twiceSetup(E, keep) {
-      var base = setupT(E);
-      if (E.kind === "bag") return base.replace("Pick one without looking.", keep ? "Pick one without looking and keep it out, then pick another." : "Pick one without looking, put it back, then pick again.");
-      if (E.kind === "deck") return base.replace(/\.$/, keep ? ", keep it out, then pick another card." : ", put it back, shuffle, then pick again.");
-      return base.replace(/\.$/, keep ? ", keep it out, then pick another number." : ", put it back, then pick again.");
+      var u = setupD(E),
+        base = setupT(E).replace(/\.$/, "");
+      if (E.kind === "bag") return u.d + " " + tx(keep ? "probability.twice.bagKeep" : "probability.twice.bagBack");
+      if (E.kind === "deck") return tx(keep ? "probability.twice.deckKeep" : "probability.twice.deckBack", { s: base });
+      return tx(keep ? "probability.twice.keep" : "probability.twice.back", { s: base });
     }
 
     function andSetup(E1, E2) {
       if (E1.code === E2.code) {
-        if (E1.kind === "die") return E1.N === 6 ? "Roll two fair dice (each numbered 1 to 6)." : "Roll two fair " + E1.N + "-sided dice (each numbered 1 to " + E1.N + ").";
-        if (E1.kind === "coin") return "Flip two fair coins.";
-        if (E1.kind === "spin") return setupT(E1).replace("Spin it once.", "Spin it twice.");
-        return setupT(E1) + " Then do it again.";
+        if (E1.kind === "die") return E1.N === 6 ? tx("probability.and2.die") : tx("probability.and2.dieN", { n: E1.N });
+        if (E1.kind === "coin") return tx("probability.and2.coin");
+        if (E1.kind === "spin") return setupD(E1).d + " " + tx("probability.and2.spinTwice");
+        return tx("probability.and2.again", { s: setupT(E1) });
       }
-      return setupT(E1) + " Then: " + setupT(E2).charAt(0).toLowerCase() + setupT(E2).slice(1);
+      return tx("probability.and2.then", { a: setupT(E1), b: lcFirst(setupT(E2)) });
     }
 
     function stagesSetup(Es) {
       if (Es.every(function(E) { return E.code === Es[0].code; })) {
         var nw = word(Es.length),
           E = Es[0];
-        if (E.kind === "die") return "Roll " + nw + " fair " + (E.N === 6 ? "dice (each numbered 1 to 6)." : E.N + "-sided dice (each numbered 1 to " + E.N + ").");
-        if (E.kind === "coin") return "Flip " + nw + " fair coins.";
-        if (E.kind === "spin") return setupT(E).replace("Spin it once.", "Spin it " + (Es.length === 2 ? "twice." : nw + " times."));
-        return setupT(E) + " Do it " + nw + " times.";
+        if (E.kind === "die") return E.N === 6 ? tx("probability.stages.die", { w: nw }) : tx("probability.stages.dieN", { w: nw, n: E.N });
+        if (E.kind === "coin") return tx("probability.stages.coin", { w: nw });
+        if (E.kind === "spin") return setupD(E).d + " " + (Es.length === 2 ? tx("probability.and2.spinTwice") : tx("probability.stages.spinTimes", { w: nw }));
+        return tx("probability.stages.again", { s: setupT(E), w: nw });
       }
-      return Es.map(function(E, i) { var t = setupT(E); return i ? "Then " + t.charAt(0).toLowerCase() + t.slice(1) : t; }).join(" ");
+      return Es.map(function(E, i) { var t = setupT(E); return i ? tx("probability.stages.then", { s: lcFirst(t) }) : t; }).join(" ");
     }
 
     function sevQ(ev, Es) {
-      var w = sevWords(ev, Es);
+      var w = sevWords(ev, Es, "q");
       if (ev.t === "sum" || ev.t === "double" || ev.t === "all") return w;
-      return "you get " + w;
+      return tx(ev.t === "none" ? "probability.sevQ.none" : "probability.sevQ.get", { w: w });
     }
 
     function boldNums(t) { return esc(t).replace(/(\d+(?:\.\d+)?°?)/g, "<b>$1</b>"); }
@@ -4839,47 +4863,54 @@
         s = solve(P),
         E = P.xs[0],
         t;
+      var notN = function(a, E1) { return a.neg ? tx("probability.q2.not", { x: atomNoun(a, E1) }) : atomNoun(a, E1); };
       if (P.mode === "simple") {
-        t = setupT(E) + " What is the probability of " + atomPhrase(P.A, E) + "?";
-        o.short = Pl(atomShort(P.A, E)) + " — " + expShort(E);
+        t = tx("probability.q2.simple", { setup: setupT(E), x: atomPhrase(P.A, E) });
+        o.short = tx("probability.short2.one", { p: Pl(atomShort(P.A, E)), e: expShort(E) });
       } else if (P.mode === "complement") {
-        t = setupT(E) + " What is the probability of " + atomPhrase(negOf(P.A), E) + "?";
-        o.short = Pl(atomShort(negOf(P.A), E)) + " — " + expShort(E);
+        t = tx("probability.q2.simple", { setup: setupT(E), x: atomPhrase(negOf(P.A), E) });
+        o.short = tx("probability.short2.one", { p: Pl(atomShort(negOf(P.A), E)), e: expShort(E) });
       } else if (P.mode === "compound") {
         if (P.kind === "and") {
           var E2 = P.xs[1],
             same = E.code === E2.code;
-          t = andSetup(E, E2) + " What is the probability of " + atomPhrase(P.A, E) + (same ? " on the " + stageName([E, E2], 0) : "") + " and " + atomPhrase(P.B, E2) + (same ? " on the " + stageName([E, E2], 1) : "") + "?";
-        } else if (P.kind === "or") t = setupT(E) + " What is the probability of " + verbOf(E) + " " + (P.A.neg ? "not " : "") + atomNoun(P.A, E) + " or " + (P.B.neg ? "not " : "") + atomNoun(P.B, E) + "?";
+          t = tx("probability.q2.and", { setup: andSetup(E, E2), a: atomPhrase(P.A, E) + (same ? tx("probability.q2.onStage", { st: stageName([E, E2], 0), stThe: stageThe([E, E2], 0) }) : ""), b: atomPhrase(P.B, E2) + (same ? tx("probability.q2.onStage", { st: stageName([E, E2], 1), stThe: stageThe([E, E2], 1) }) : "") });
+        } else if (P.kind === "or") t = tx("probability.q2.or", { setup: setupT(E), x: tx("probability.q2.orVerb." + verbOf(E), { a: notN(P.A, E), b: notN(P.B, E) }) });
         else {
-          t = twiceSetup(E, P.kind === "without") + " What is the probability of " + (P.A.code === P.B.code ? atomPhrase(P.A, E) + " both times" : atomPhrase(P.A, E) + " first, then " + (P.B.neg ? "not " : "") + atomNoun(P.B, E)) + "?";
+          t = P.A.code === P.B.code ? tx("probability.q2.both", { setup: twiceSetup(E, P.kind === "without"), a: atomPhrase(P.A, E) }) : tx("probability.q2.then", { setup: twiceSetup(E, P.kind === "without"), a: atomPhrase(P.A, E), b: notN(P.B, E) });
         }
-        o.short = (P.kind === "or" ? Pl(atomShort(P.A, E) + " or " + atomShort(P.B, E)) : andLabel(P)) + " — " + (P.kind === "and" ? expShort(E) + " and " + expShort(P.xs[1]) : expShort(E) + (P.kind === "or" ? "" : ", " + (P.kind === "without" ? "without" : "with") + " replacement"));
+        o.short = P.kind === "and" ? tx("probability.short2.and", { p: andLabel(P), e1: expShort(E), e2: expShort(P.xs[1]) }) : P.kind === "or" ? tx("probability.short2.one", { p: Pl(tx("probability.or.or", { a: atomShort(P.A, E), b: atomShort(P.B, E) })), e: expShort(E) }) :
+          tx(P.kind === "without" ? "probability.short2.without" : "probability.short2.with", { p: andLabel(P), e: expShort(E) });
       } else if (P.mode === "space") {
         var v = resolveView(P),
-          how = P.viewReq === "auto" ? "Find all the outcomes." : v === "grid" ? "Make a table of all the outcomes." : v === "tree" ? "Draw a tree diagram of all the outcomes." : "List all the outcomes.";
-        t = stagesSetup(P.xs) + " " + how + " What is the probability that " + sevQ(P.sev, P.xs) + "?";
-        o.short = Pl(sevShort(P.sev, P.xs)) + " — " + P.xs.map(expShort).join(", ");
+          how = tx("probability.how." + (P.viewReq === "auto" ? "auto" : v));
+        t = tx("probability.q2.space", { setup: stagesSetup(P.xs), how: how, w: sevQ(P.sev, P.xs) });
+        o.short = tx("probability.short2.space", { p: Pl(sevShort(P.sev, P.xs)), list: P.xs.map(expShort).join(", ") });
       } else if (P.kind === "predict") {
-        var lead0 = E.kind === "die" || E.kind === "coin" || E.kind === "nums" ? "You " + setupT(E).charAt(0).toLowerCase() + setupT(E).slice(1).replace(/\.$/, "") + " " + P.n + " times." :
-          E.kind === "spin" ? setupT(E).replace("Spin it once.", "You spin it " + P.n + " times.") : setupT(E).replace(/Pick (one|a card)( at random)?(.*?)\.$/, "You pick $1$2$3 and put it back, " + P.n + " times.");
-        t = lead0.replace(/^You pick a whole number from/, "You pick a whole number from") + " About how many times would you expect to " + infOf(E) + " " + (P.A.neg ? "something that’s not " : "") + atomNoun(P.A, E) + "?";
-        o.short = "About how many " + atomShort(P.A, E) + " in " + P.n + " tries — " + expShort(E);
+        var u = setupD(E),
+          k0 = E.kind === "die" ? (E.N === 6 ? "die" : "dieN") : E.kind;
+        var lead0 = E.kind === "die" || E.kind === "coin" || E.kind === "nums" ? tx("probability.pred." + k0, { n: P.n, s: E.N }) :
+          u.d + " " + tx("probability.pred." + (E.kind === "spin" ? "spin" : E.kind), { n: P.n });
+        if (E.kind === "deck") lead0 = tx("probability.pred.deck", { n: P.n });
+        t = tx("probability.pred.q." + verbOf(E), { lead: lead0, x: P.A.neg ? tx("probability.notThing", { x: atomNoun(P.A, E) }) : atomNoun(P.A, E) });
+        o.short = tx("probability.short2.predict", { x: atomShort(P.A, E), n: P.n, e: expShort(E) });
       } else {
-        var lead1 = E.kind === "spin" ? setupT(E).replace("Spin it once.", "You spin it " + P.n + " times and it lands on " + (P.A.neg ? "something that’s not " : "") + atomNoun(P.A, E) + " " + P.k + " times.") :
-          E.kind === "bag" || E.kind === "deck" ? setupT(E).replace(/Pick (one|a card)( at random)?(.*?)\.$/, "You pick $1$2$3 and put it back, " + P.n + " times. You get " + (P.A.neg ? "something that’s not " : "") + atomNoun(P.A, E) + " " + P.k + " times.") :
-          "You " + setupT(E).charAt(0).toLowerCase() + setupT(E).slice(1).replace(/\.$/, "") + " " + P.n + " times and " + infOf(E).replace("get", "get") + " " + (P.A.neg ? "something that’s not " : "") + atomNoun(P.A, E) + " " + P.k + " times.";
-        t = lead1 + " What is the experimental probability of " + atomPhrase(P.A, E) + "? What is the theoretical probability?";
-        o.short = "Experimental vs theoretical " + Pl(atomShort(P.A, E)) + ", " + P.k + " of " + P.n;
+        var u1 = setupD(E),
+          k1 = E.kind === "die" ? (E.N === 6 ? "die" : "dieN") : E.kind,
+          xw = P.A.neg ? tx("probability.notThing", { x: atomNoun(P.A, E) }) : atomNoun(P.A, E);
+        var lead1 = tx("probability.exper." + k1, { n: P.n, s: E.N, x: xw, k: P.k });
+        if (u1.d) lead1 = u1.d + " " + lead1;
+        t = tx("probability.exper.q", { lead: lead1, x: atomPhrase(P.A, E) });
+        o.short = tx("probability.short2.exper", { p: Pl(atomShort(P.A, E)), k: P.k, n: P.n });
       }
       o.text = t;
       o.html = boldNums(t);
       if (P.mode === "expected" && P.kind === "predict") {
-        o.answer = isInt(s.e) ? "about " + s.e.n : mixT(s.e) + ", so about " + s.round;
-        o.answerHtml = isInt(s.e) ? "about <b>" + s.e.n + "</b>" : "<b>" + mixT(s.e) + "</b>, so about <b>" + s.round + "</b>";
+        o.answer = isInt(s.e) ? tx("probability.ans.about", { n: s.e.n }) : tx("probability.ans.so", { x: mixT(s.e), n: s.round });
+        o.answerHtml = isInt(s.e) ? tx("probability.ans.aboutH", { n: s.e.n }) : tx("probability.ans.soH", { x: mixT(s.e), n: s.round });
       } else if (P.mode === "expected") {
-        o.answer = "Experimental " + threeT(s.x) + "; theoretical " + threeT(s.p);
-        o.answerHtml = "Experimental <b>" + threeT(s.x) + "</b>; theoretical <b>" + threeT(s.p) + "</b>";
+        o.answer = tx("probability.ans.exper", { x: threeT(s.x), p: threeT(s.p) });
+        o.answerHtml = tx("probability.ans.experH", { x: threeT(s.x), p: threeT(s.p) });
       } else {
         o.answer = threeT(s.p);
         o.answerHtml = "<b>" + threeT(s.p) + "</b>";
@@ -4894,6 +4925,8 @@
       var s = String(raw || "").toLowerCase().replace(/[−–—]/g, "-").replace(/÷/g, "/").replace(/,(?=\d{3}\b)/g, "").trim(),
         m;
       s = s.replace(/^p\s*\([^)]*\)\s*/, "").replace(/^(?:=|≈|~|is|about|around|it is|its|it’s|approx(?:imately)?|exactly)\s*/g, "").replace(/^(?:=|≈|~)\s*/, "").trim();
+      // the language's own words for the same: "es", "aproximadamente", "por ciento", "de" (3 de 8) …
+      (rawW("probability.ck.ansWords") || []).forEach(function(r) { s = s.replace(new RegExp(r[0], "g"), r[1]).trim(); });
       s = s.replace(/\s*(?:percent|per cent|pct)\.?$/, "%").replace(/\s+%$/, "%").replace(/\s*(?:times|of them)\.?$/, "").replace(/\.$/, "").trim();
       if ((m = /^(\d+)\s*(?::|to)\s*(\d+)$/.exec(s))) return { form: "ratio", a: +m[1], b: +m[2] };
       if ((m = /^(-?\d+)\s*(?:\/|in|out of)\s*(\d+)$/.exec(s))) {
@@ -4938,33 +4971,33 @@
     function gradeP(f, raw) {
       var U = readUser(raw),
         want = f.want;
-      if (!U) return { st: "bad", msg: "Type a probability as a fraction, a decimal or a percent — like <b>1/4</b>, <b>0.25</b> or <b>25%</b>." };
+      if (!U) return { st: "bad", msg: tx("probability.ck.type") };
       if (U.form === "ratio") {
-        if (U.a + U.b > 0 && eqR(R(U.a, U.a + U.b), want)) return { st: "bad", msg: "That’s written like <b>odds</b>: " + U.a + " to " + U.b + " compares the ways it happens with the ways it doesn’t. A probability compares the ways it happens with <i>everything</i> that can happen: <b>" + U.a + "/" + (U.a + U.b) + "</b>." };
-        if (U.b > 0 && eqR(R(U.a, U.b), want)) return { st: "bad", msg: "Write a probability as a fraction, a decimal or a percent — <b>" + U.a + "/" + U.b + "</b>, not " + U.a + ":" + U.b + " (that reads as odds)." };
-        return { st: "bad", msg: "A colon reads as <b>odds</b> (for : against). Give the probability as a fraction of everything that can happen, like <b>1/4</b>." };
+        if (U.a + U.b > 0 && eqR(R(U.a, U.a + U.b), want)) return { st: "bad", msg: tx("probability.ck.oddsLike", { a: U.a, b: U.b, c: U.a + U.b }) };
+        if (U.b > 0 && eqR(R(U.a, U.b), want)) return { st: "bad", msg: tx("probability.ck.colon", { a: U.a, b: U.b }) };
+        return { st: "bad", msg: tx("probability.ck.colonOdds") };
       }
-      if (U.v.n < 0n) return { st: "bad", msg: "A probability can’t be negative — it goes from 0 (impossible) to 1 (certain)." };
+      if (U.v.n < 0n) return { st: "bad", msg: tx("probability.ck.negative") };
       if (eqR(U.v, want)) {
-        if ((U.form === "frac" || U.form === "mixed") && !U.lowest) return { st: "part", msg: "Right value — now simplify it: <b>" + esc(U.raw || raw) + " = " + fracT(want) + "</b>." };
+        if ((U.form === "frac" || U.form === "mixed") && !U.lowest) return { st: "part", msg: tx("probability.ck.simplify", { a: esc(U.raw || raw), b: fracT(want) }) };
         return { st: "ok" };
       }
       var pl = places(want),
         pctPl = places(mul(want, H100));
-      if (roundedTo(U, want) && (U.v.n !== 0n || want.n === 0n) && (U.form === "dec" ? (pl < 0 || pl > 4) : (pctPl < 0 || pctPl > 2))) return { st: "ok", note: "(Rounded is fine — exactly, it’s " + fracT(want) + ".)" };
+      if (roundedTo(U, want) && (U.v.n !== 0n || want.n === 0n) && (U.form === "dec" ? (pl < 0 || pl > 4) : (pctPl < 0 || pctPl > 2))) return { st: "ok", note: tx("probability.ck.roundedOk", { f: fracT(want) }) };
       for (var i = 0; i < f.mist.length; i++) {
         var mm = f.mist[i];
         if (eqR(U.v, mm.v) || roundedTo(U, mm.v)) return { st: "bad", msg: mm.msg };
       }
       if (cmpR(U.v, ONE) > 0) {
         if ((U.form === "int" || U.form === "dec") && (eqR(dvd(U.v, H100), want) || roundedPct(U, want)))
-          return { st: "bad", msg: "A probability is never more than 1. If you mean <b>" + esc(String(raw).trim()) + "%</b>, type the % sign." };
-        return { st: "bad", msg: "A probability can’t be more than 1 — that would be more than certain. Put the ways it can happen on top, and everything that can happen on the bottom." };
+          return { st: "bad", msg: tx("probability.ck.pctSign", { x: esc(String(raw).trim()) }) };
+        return { st: "bad", msg: tx("probability.ck.over1") };
       }
       var exactShown = pl >= 0 && pl <= 4;
-      if (U.form === "dec" && U.dp < 2 && !exactShown && Math.abs(toF(U.v) - toF(want)) < 0.05) return { st: "bad", msg: "Close — give at least two decimal places (or use the fraction)." };
-      if (choppedTo(U, want) && !roundedTo(U, want) && !exactShown) return { st: "bad", msg: "Close — but round, don’t chop: the next digit is 5 or more, so round up." };
-      if ((U.form === "dec" || U.form === "pct") && Math.abs(toF(U.v) - toF(want)) < 0.006 && exactShown) return { st: "bad", msg: "Close — this one comes out exactly, with no rounding: " + fracT(want) + " = " + decInfo(want).t + " = " + pctInfo(want).t + "." };
+      if (U.form === "dec" && U.dp < 2 && !exactShown && Math.abs(toF(U.v) - toF(want)) < 0.05) return { st: "bad", msg: tx("probability.ck.twoPlaces") };
+      if (choppedTo(U, want) && !roundedTo(U, want) && !exactShown) return { st: "bad", msg: tx("probability.ck.chop") };
+      if ((U.form === "dec" || U.form === "pct") && Math.abs(toF(U.v) - toF(want)) < 0.006 && exactShown) return { st: "bad", msg: tx("probability.ck.exactly", { f: fracT(want), d: decInfo(want).t, p: pctInfo(want).t }) };
       return { st: "bad", msg: f.generic || "" };
     }
 
@@ -4973,20 +5006,20 @@
     function gradeCount(f, raw) {
       var U = readUser(raw),
         want = f.want;
-      if (!U || U.form === "ratio" || U.form === "pct") return { st: "bad", msg: "Type a number of times, like <b>10</b>." };
+      if (!U || U.form === "ratio" || U.form === "pct") return { st: "bad", msg: tx("probability.ck.typeCount") };
       if (eqR(U.v, want)) {
-        if ((U.form === "frac" || U.form === "mixed") && !U.lowest) return { st: "part", msg: "Right value — now simplify it: <b>" + mixT(want) + "</b>." };
-        return { st: "ok", note: isInt(want) ? null : "(That’s about " + f.round + " times.)" };
+        if ((U.form === "frac" || U.form === "mixed") && !U.lowest) return { st: "part", msg: tx("probability.ck.simplifyCount", { x: mixT(want) }) };
+        return { st: "ok", note: isInt(want) ? null : tx("probability.ck.roundTimes", { n: f.round }) };
       }
       if (!isInt(want)) {
-        if (U.form === "int" && Number(U.v.n) === f.round) return { st: "ok", note: "(Exactly it’s " + mixT(want) + ", so about " + f.round + ".)" };
-        if (U.form === "int" && want.d === 2n && Math.abs(toF(U.v) - toF(want)) === 0.5) return { st: "ok", note: "(Exactly it’s " + mixT(want) + " — halfway, so " + (f.round - 1) + " or " + f.round + ".)" };
+        if (U.form === "int" && Number(U.v.n) === f.round) return { st: "ok", note: tx("probability.ck.exactlySo", { x: mixT(want), n: f.round }) };
+        if (U.form === "int" && want.d === 2n && Math.abs(toF(U.v) - toF(want)) === 0.5) return { st: "ok", note: tx("probability.ck.halfway", { x: mixT(want), a: f.round - 1, b: f.round }) };
         if (U.form === "dec" && U.dp >= 1 && Math.abs(toF(sub(U.v, want))) <= 0.5 * Math.pow(10, -U.dp) + 1e-12) return { st: "ok" };
       }
       var i, mm;
       for (i = 0; i < f.mist.length; i++)
         if (eqR(U.v, f.mist[i].v)) return { st: "bad", msg: f.mist[i].msg };
-      if (!isInt(want) && U.form === "int" && Math.abs(toF(U.v) - toF(want)) < 1) return { st: "bad", msg: "Close — round to the nearest whole number: " + mixT(want) + " is nearer to " + f.round + "." };
+      if (!isInt(want) && U.form === "int" && Math.abs(toF(U.v) - toF(want)) < 1) return { st: "bad", msg: tx("probability.ck.nearest", { x: mixT(want), n: f.round }) };
       for (i = 0; i < f.mist.length; i++) {
         mm = f.mist[i];
         if ((U.form === "dec" && Math.abs(toF(sub(U.v, mm.v))) <= 0.5 * Math.pow(10, -U.dp) + 1e-12) || (U.form === "int" && !isInt(mm.v) && Number(U.v.n) === Math.floor(toF(mm.v) + 0.5) && mm.round)) return { st: "bad", msg: mm.msg };
@@ -5010,30 +5043,30 @@
         sh = esc(atomShort(a, E));
       if (E.kind === "spin" && E.unequal) {
         var k0 = E.outs.filter(function(o) { return testAtom(a, o); }).length;
-        L.push({ v: R(k0, E.n), msg: "That counts parts, but the parts aren’t the same size. Use degrees: " + f + "° out of 360°." });
+        L.push({ v: R(k0, E.n), msg: tx("probability.mist.parts", { f: f }) });
       }
-      if (f > 0 && f < t) L.push({ v: R(f, t - f), msg: "That’s the <b>odds</b> (" + f + " for, " + (t - f) + " against). A probability divides by everything that can happen: " + t + "." });
-      if (f > 0) L.push({ v: R(t, f), msg: "That’s upside down — and a probability is never more than 1. Put the ways it can happen (" + f + ") on top and everything (" + t + ") on the bottom." });
-      if (f < t) L.push({ v: R(t - f, t), msg: "That’s the chance it does <i>not</i> happen. Count the ways it <i>does</i>: " + f + "." });
+      if (f > 0 && f < t) L.push({ v: R(f, t - f), msg: tx("probability.mist.odds", { f: f, g: t - f, t: t }), keep: true });
+      if (f > 0) L.push({ v: R(t, f), msg: tx("probability.mist.upside", { f: f, t: t }), keep: true });
+      if (f < t) L.push({ v: R(t - f, t), msg: tx("probability.mist.not", { f: f }), notDoes: true });
       var b = unNeg(a),
         alt = null,
         why = "";
       if (E.kind === "deck" && b.t === "card" && b.r === "face") {
         alt = { t: "card", r: "*", s: b.s, x: "faceA" };
-        why = "Aces aren’t face cards — the face cards are jacks, queens and kings.";
+        why = tx("probability.why.faceA");
       }
       if (E.kind === "deck" && b.t === "card" && b.r === "num") {
         alt = { x: "numA", s: b.s };
-        why = "This page counts the number cards as 2 to 10 — the ace isn’t one of them.";
+        why = tx("probability.why.numA");
       }
       if (E.numeric && (b.t === "gt" || b.t === "lt" || b.t === "ge" || b.t === "le")) {
         var sw = { gt: "ge", lt: "le", ge: "gt", le: "lt" } [b.t];
         alt = { t: sw, v: b.v };
-        why = b.t === "gt" || b.t === "lt" ? "“" + (b.t === "gt" ? "Greater" : "Less") + " than " + b.v + "” doesn’t count " + b.v + " itself." : "“" + b.v + " or " + (b.t === "ge" ? "more" : "less") + "” counts " + b.v + " too.";
+        why = tx("probability.why." + b.t, { v: b.v });
       }
       if (E.numeric && b.t === "prime") {
         alt = { x: "prime1" };
-        why = "1 isn’t a prime number — a prime has exactly two factors, 1 and itself.";
+        why = tx("probability.why.prime1");
       }
       if (alt) {
         var cnt = 0;
@@ -5048,7 +5081,7 @@
         });
         if (cnt !== f) L.push({ v: R(cnt, t), msg: why });
       }
-      if (a.neg) L.push({ v: R(t - f, t), msg: "That’s the chance of " + esc(atomShort(b, E)) + " — the question says <i>not</i>." });
+      if (a.neg) L.push({ v: R(t - f, t), msg: tx("probability.mist.notOf", { x: esc(atomShort(b, E)) }) });
       return L;
     }
 
@@ -5057,47 +5090,47 @@
         E = P.xs[0],
         L = [],
         lab, want = s.p;
-      var PH = "e.g. 1/4, 0.25 or 25%";
+      var PH = tx("probability.fm.ph");
       if (P.mode === "simple") {
         lab = Pl(atomShort(P.A, E));
         L = oneMists(E, P.A, s.f, s.t);
       } else if (P.mode === "complement") {
         lab = Pl(atomShort(negOf(P.A), E));
-        L.push({ v: s.pA, msg: "That’s " + Pl(atomShort(P.A, E)) + " — the chance it <i>does</i> happen. Take it away from 1." });
-        oneMists(E, P.A, s.fA, s.t).forEach(function(m) { if (!/does <i>not<\/i> happen/.test(m.msg)) L.push({ v: /odds|upside/.test(m.msg) ? m.v : sub(ONE, m.v), msg: m.msg }); });
-        if (s.f > 0 && s.fA > 0) L.push({ v: R(s.f, s.fA), msg: "That’s the <b>odds</b> against it (" + s.f + " to " + s.fA + "). A probability divides by everything that can happen: " + s.t + "." });
+        L.push({ v: s.pA, msg: tx("probability.fm.does", { p: Pl(atomShort(P.A, E)) }) });
+        oneMists(E, P.A, s.fA, s.t).forEach(function(m) { if (!m.notDoes) L.push({ v: m.keep ? m.v : sub(ONE, m.v), msg: m.msg }); });
+        if (s.f > 0 && s.fA > 0) L.push({ v: R(s.f, s.fA), msg: tx("probability.fm.oddsAgainst", { f: s.f, g: s.fA, t: s.t }) });
       } else if (P.mode === "compound" && P.kind === "or") {
-        lab = Pl(atomShort(P.A, E) + " or " + atomShort(P.B, E));
-        if (s.ab) L.push({ v: add(s.pA, s.pB), msg: "You counted the overlap twice: " + favWords(E, P.A, s.ab) + " " + (s.ab === 1 ? "is" : "are") + " both. Add, then take away P(both) once." });
-        L.push({ v: mul(s.pA, s.pB), msg: "“Or” in one go means add (and take away the overlap). Multiplying is for two things that both happen." });
-        if (s.ab) L.push({ v: s.pAB, msg: "That’s the chance of both at once. “Or” means either one (or both)." });
-        L.push({ v: s.pA, msg: "That’s just " + Pl(atomShort(P.A, E)) + " — add the chance of " + esc(atomShort(P.B, E)) + " too." });
-        L.push({ v: s.pB, msg: "That’s just " + Pl(atomShort(P.B, E)) + " — add the chance of " + esc(atomShort(P.A, E)) + " too." });
-        if (s.f > 0 && s.f < s.t) L.push({ v: R(s.f, s.t - s.f), msg: "That’s the <b>odds</b> (" + s.f + " for, " + (s.t - s.f) + " against). A probability divides by everything: " + s.t + "." });
+        lab = Pl(tx("probability.or.or", { a: atomShort(P.A, E), b: atomShort(P.B, E) }));
+        if (s.ab) L.push({ v: add(s.pA, s.pB), msg: tx(s.ab === 1 ? "probability.fm.twice1" : "probability.fm.twiceN", { f: favWords(E, P.A, s.ab) }) });
+        L.push({ v: mul(s.pA, s.pB), msg: tx("probability.fm.orMult") });
+        if (s.ab) L.push({ v: s.pAB, msg: tx("probability.fm.orBoth") });
+        L.push({ v: s.pA, msg: tx("probability.fm.justA", { p: Pl(atomShort(P.A, E)), x: esc(atomShort(P.B, E)) }) });
+        L.push({ v: s.pB, msg: tx("probability.fm.justA", { p: Pl(atomShort(P.B, E)), x: esc(atomShort(P.A, E)) }) });
+        if (s.f > 0 && s.f < s.t) L.push({ v: R(s.f, s.t - s.f), msg: tx("probability.fm.oddsAll", { f: s.f, g: s.t - s.f, t: s.t }) });
       } else if (P.mode === "compound") {
         lab = andLabel(P);
         var pB = P.kind === "without" ? s.pB2 : s.pB,
           n1 = s.n1 || s.n;
-        L.push({ v: add(s.pA, pB), msg: "“And” means multiply, not add — adding is for “or”. Multiply the two chances." });
-        L.push({ v: s.pA, msg: "That’s only the first part. Multiply by the chance of the second." });
-        L.push({ v: pB, msg: "That’s only the second part. Multiply by the chance of the first." });
+        L.push({ v: add(s.pA, pB), msg: tx("probability.fm.andAdd") });
+        L.push({ v: s.pA, msg: tx("probability.fm.onlyFirst") });
+        L.push({ v: pB, msg: tx("probability.fm.onlySecond") });
         if (P.kind === "without") {
-          L.push({ v: mul(s.pA, s.pB), msg: "Without replacement: the first one stays out, so the second pick is out of " + (s.n - 1) + ", not " + s.n + (s.same ? " — and there’s one fewer " + esc(atomShort(P.A, E)) : "") + "." });
+          L.push({ v: mul(s.pA, s.pB), msg: tx("probability.fm.stayOut", { m: s.n - 1, n: s.n, more: s.same ? tx("probability.fm.oneFewer", { x: esc(atomShort(P.A, E)) }) : "" }) });
           if (s.same) {
-            L.push({ v: mul(s.pA, R(s.b - 1, s.n)), msg: "One fewer " + esc(atomShort(P.A, E)) + ", yes — but also one fewer " + pickWord(E) + " in all: the second pick is out of " + (s.n - 1) + "." });
-            L.push({ v: mul(s.pA, R(s.b, s.n - 1)), msg: "One fewer " + pickWord(E) + " in the bag, yes — but the first one was " + esc(atomShort(P.A, E)) + ", so there’s one fewer of those too: " + (s.b - 1) + "." });
+            L.push({ v: mul(s.pA, R(s.b - 1, s.n)), msg: tx("probability.fm.fewerAll", { x: esc(atomShort(P.A, E)), w: pickWord(E), m: s.n - 1 }) });
+            L.push({ v: mul(s.pA, R(s.b, s.n - 1)), msg: tx("probability.fm.fewerThose", { w: pickWord(E), x: esc(atomShort(P.A, E)), n: s.b - 1 }) });
           }
         } else {
           var tot = (P.kind === "and" ? s.n1 + s.n2 : 2 * s.n1);
-          L.push({ v: R(s.a * s.b, tot), msg: "Count all the pairs by multiplying, not adding: " + s.n1 + " × " + s.n2 + " = " + (s.n1 * s.n2) + "." });
-          if (P.kind === "with" && s.n1 > 1) { var bb = s.b - (P.A.code === P.B.code ? 1 : 0); if (bb >= 0) L.push({ v: mul(s.pA, R(bb, s.n1 - 1)), msg: "It was put back, so nothing changed — the second pick is out of " + s.n1 + " again." }); }
+          L.push({ v: R(s.a * s.b, tot), msg: tx("probability.fm.pairsMult", { a: s.n1, b: s.n2, c: s.n1 * s.n2 }) });
+          if (P.kind === "with" && s.n1 > 1) { var bb = s.b - (P.A.code === P.B.code ? 1 : 0); if (bb >= 0) L.push({ v: mul(s.pA, R(bb, s.n1 - 1)), msg: tx("probability.fm.putBack", { n: s.n1 }) }); }
         }
-        if (s.f > 0 && s.f < s.t) L.push({ v: R(s.f, s.t - s.f), msg: "That’s the <b>odds</b> (" + s.f + " for, " + (s.t - s.f) + " against). A probability divides by everything that can happen." });
+        if (s.f > 0 && s.f < s.t) L.push({ v: R(s.f, s.t - s.f), msg: tx("probability.fm.oddsCan", { f: s.f, g: s.t - s.f }) });
       } else if (P.mode === "space") {
         lab = Pl(sevShort(P.sev, P.xs));
         var sizes = P.xs.map(function(x) { return x.outs.length; }),
           addT = sizes.reduce(function(x, y) { return x + y; }, 0);
-        if (s.f) L.push({ v: R(s.f, addT), msg: "Count all the outcomes by multiplying, not adding: " + sizes.join(" × ") + " = " + s.t + "." });
+        if (s.f) L.push({ v: R(s.f, addT), msg: tx("probability.fm.outMult", { sizes: sizes.join(" × "), t: s.t }) });
         if (P.sev.t === "sum") {
           var sums = {};
           s.tups.forEach(function(tp) {
@@ -5107,7 +5140,7 @@
           });
           var D = Object.keys(sums).length,
             hits = Object.keys(sums).filter(function(k) { return sevTest(P.sev, P.xs.length === 2 ? [{ num: +k }, { num: 0 }] : [{ num: +k }, { num: 0 }, { num: 0 }]); }).length;
-          if (hits) L.push({ v: R(hits, D), msg: "There are " + D + " different sums, but they aren’t equally likely — count all " + s.t + " outcomes in the table." });
+          if (hits) L.push({ v: R(hits, D), msg: tx("probability.fm.sums", { d: D, t: s.t }) });
         }
         var seen = {},
           fu = 0,
@@ -5121,52 +5154,51 @@
           }
         });
         if (fu !== s.f && P.xs.every(function(x) { return x.code === P.xs[0].code; })) {
-          L.push({ v: R(fu, s.t), msg: "Order matters: (1, 6) and (6, 1) are different outcomes. Count both." });
-          L.push({ v: R(fu, tu), msg: "Order matters: the first and the second are different, so (1, 2) and (2, 1) are two outcomes. There are " + s.t + " in all." });
+          L.push({ v: R(fu, s.t), msg: tx("probability.fm.order16") });
+          L.push({ v: R(fu, tu), msg: tx("probability.fm.order12", { t: s.t }) });
         }
-        if (/^(?:exactly|atleast|atmost)$/.test(P.sev.t) && P.xs.every(function(x) { return x.kind === "coin"; })) L.push({ v: R(1, P.xs.length + 1), msg: "The " + (P.xs.length + 1) + " possible counts aren’t equally likely — list all " + s.t + " outcomes and count." });
-        if (s.f > 0 && s.f < s.t) L.push({ v: R(s.f, s.t - s.f), msg: "That’s the <b>odds</b> (" + s.f + " for, " + (s.t - s.f) + " against). A probability divides by everything: " + s.t + "." });
+        if (/^(?:exactly|atleast|atmost)$/.test(P.sev.t) && P.xs.every(function(x) { return x.kind === "coin"; })) L.push({ v: R(1, P.xs.length + 1), msg: tx("probability.fm.counts", { n: P.xs.length + 1, t: s.t }) });
+        if (s.f > 0 && s.f < s.t) L.push({ v: R(s.f, s.t - s.f), msg: tx("probability.fm.oddsAll", { f: s.f, g: s.t - s.f, t: s.t }) });
       } else if (P.kind === "predict") {
         var ms = mists(s.e, [
-          { v: s.p, msg: "That’s the probability for one try. Multiply it by the number of tries, " + P.n + "." },
-          s.f > 1 ? { v: R(P.n * s.f), msg: "Multiply " + P.n + " by the probability, " + fracT(s.p) + " — not by the number of ways." } : null,
-          s.f > 1 ? { v: R(P.n, s.t), msg: "That uses 1/" + s.t + ", but there " + (s.f === 1 ? "is " : "are ") + s.f + " ways — multiply by " + fracT(s.p) + ".", round: true } : null,
-          s.f < s.t ? { v: mul(R(P.n), sub(ONE, s.p)), msg: "That’s how many times it would <i>not</i> happen.", round: true } : null,
-          s.f > 0 && s.f < s.t ? { v: mul(R(P.n), R(s.f, s.t - s.f)), msg: "That uses the odds (" + s.f + " to " + (s.t - s.f) + "), not the probability " + fracT(s.p) + ".", round: true } : null,
-          { v: dvd(R(P.n), s.p.n ? s.p : ONE), msg: "Multiply by the probability — don’t divide.", round: true }
+          { v: s.p, msg: tx("probability.fm.perTry", { n: P.n }) },
+          s.f > 1 ? { v: R(P.n * s.f), msg: tx("probability.fm.byWays", { n: P.n, p: fracT(s.p) }) } : null,
+          s.f > 1 ? { v: R(P.n, s.t), msg: tx(s.f === 1 ? "probability.fm.oneOver1" : "probability.fm.oneOverN", { t: s.t, f: s.f, p: fracT(s.p) }), round: true } : null,
+          s.f < s.t ? { v: mul(R(P.n), sub(ONE, s.p)), msg: tx("probability.fm.notTimes"), round: true } : null,
+          s.f > 0 && s.f < s.t ? { v: mul(R(P.n), R(s.f, s.t - s.f)), msg: tx("probability.fm.usesOdds", { f: s.f, g: s.t - s.f, p: fracT(s.p) }), round: true } : null,
+          { v: dvd(R(P.n), s.p.n ? s.p : ONE), msg: tx("probability.fm.dontDivide"), round: true }
         ]);
         return [{
           k: "n",
-          label: "About how many times",
+          label: tx("probability.fm.howMany"),
           type: "count",
           want: s.e,
           round: s.round,
           mist: ms,
-          ph: "e.g. 10",
-          generic: "Expected count = number of tries × the probability for one try: " + P.n + " × " + fracT(s.p) + "."
+          ph: tx("probability.fm.ph10"),
+          generic: tx("probability.fm.generic", { n: P.n, p: fracT(s.p) })
         }];
       } else {
-        var mx = mists(s.x, [{ v: s.p, msg: "That’s the theoretical probability (from counting). The experimental one comes from the results: " + P.k + " out of " + P.n + "." },
-          P.k > 0 && P.k < P.n ? { v: R(P.k, P.n - P.k), msg: "Divide by all " + P.n + " tries, not by the times it didn’t happen." } : null,
-          { v: R(P.n - P.k, P.n), msg: "That’s how often it did <i>not</i> happen." },
-          P.k > 0 ? { v: R(P.n, P.k), msg: "Upside down: times it happened on top, tries on the bottom." } : null
+        var mx = mists(s.x, [{ v: s.p, msg: tx("probability.fm.theoNotExp", { k: P.k, n: P.n }) },
+          P.k > 0 && P.k < P.n ? { v: R(P.k, P.n - P.k), msg: tx("probability.fm.allTries", { n: P.n }) } : null,
+          { v: R(P.n - P.k, P.n), msg: tx("probability.fm.didNot") },
+          P.k > 0 ? { v: R(P.n, P.k), msg: tx("probability.fm.upside") } : null
         ]);
-        var mp = mists(s.p, [{ v: s.x, msg: "That’s the experimental probability (from the results). The theoretical one comes from counting the outcomes: " + s.f + " out of " + s.t + "." }].concat(oneMists(E, P.A, s.f, s.t)));
-        return [{ k: "x", label: "Experimental", type: "p", want: s.x, mist: mx, ph: PH }, { k: "p", label: "Theoretical", type: "p", want: s.p, mist: mp, ph: PH }];
+        var mp = mists(s.p, [{ v: s.x, msg: tx("probability.fm.expNotTheo", { f: s.f, t: s.t }) }].concat(oneMists(E, P.A, s.f, s.t)));
+        return [{ k: "x", label: tx("probability.svg.experimental"), type: "p", want: s.x, mist: mx, ph: PH }, { k: "p", label: tx("probability.svg.theoretical"), type: "p", want: s.p, mist: mp, ph: PH }];
       }
       return [{ k: "p", label: lab.replace(/&amp;/g, "&"), type: "p", want: want, mist: mists(want, L), ph: PH }];
     }
 
     function hintFor(P) {
-      if (P.mode === "simple") return P.xs[0].unequal ? "The parts are different sizes, so use degrees: add up the degrees of the parts you want, and divide by 360." :
-        "Count the ways it can happen. Count everything that can happen. The probability is <b>ways ÷ everything</b> — then simplify.";
-      if (P.mode === "complement") return "First find the chance it <i>does</i> happen. The chance it doesn’t is <b>1 − that</b>.";
-      if (P.kind === "or") return "Find P(" + esc(atomShort(P.A, P.xs[0])) + ") and P(" + esc(atomShort(P.B, P.xs[0])) + "), add them, then take away the chance of both, so nothing is counted twice.";
-      if (P.kind === "without") return "First pick: ways ÷ everything. For the second pick, there is one fewer in all" + (P.A.code === P.B.code ? " and one fewer of the kind you took" : "") + ". Then multiply the two.";
-      if (P.mode === "compound") return "Find each chance on its own, then <b>multiply</b> — “and” means multiply when one doesn’t change the other.";
-      if (P.mode === "space") return "Multiply to see how many outcomes there are (" + P.xs.map(function(E) { return E.outs.length; }).join(" × ") + "). List them, count the ones that work, and divide.";
-      if (P.kind === "predict") return "Find the probability for one try, then multiply by the number of tries, " + P.n + ".";
-      return "Experimental = times it happened ÷ number of tries. Theoretical = ways it can happen ÷ everything that can happen.";
+      if (P.mode === "simple") return P.xs[0].unequal ? tx("probability.hint.uneq") : tx("probability.hint.simple");
+      if (P.mode === "complement") return tx("probability.hint.complement");
+      if (P.kind === "or") return tx("probability.hint.or", { a: esc(atomShort(P.A, P.xs[0])), b: esc(atomShort(P.B, P.xs[0])) });
+      if (P.kind === "without") return tx("probability.hint.without", { same: P.A.code === P.B.code ? tx("probability.hint.withoutSame") : "" });
+      if (P.mode === "compound") return tx("probability.hint.compound");
+      if (P.mode === "space") return tx("probability.hint.space", { sizes: P.xs.map(function(E) { return E.outs.length; }).join(" × ") });
+      if (P.kind === "predict") return tx("probability.hint.predict", { n: P.n });
+      return tx("probability.hint.exper");
     }
 
     function buildCheck(P) {
@@ -5193,7 +5225,7 @@
       $("ckHint").innerHTML = CK.hint;
       $("ckMore").hidden = CK.ok || CK.revealed;
       $("hintBtn").hidden = !!CK.hint;
-      $("ckNote").textContent = CK.revealed ? "" : "Work it out on paper first. The work and the answer stay hidden until you check.";
+      $("ckNote").textContent = CK.revealed ? "" : tx("probability.ck.note");
     }
 
     function report(verdict) {
@@ -5224,7 +5256,7 @@
       });
       var verdict = null;
       if (empty === res.length) {
-        CK.fb = '<span class="lead">Type your answer first' + (fields.length > 1 ? " — fill in the boxes." : ".") + "</span>";
+        CK.fb = '<span class="lead">' + tx(fields.length > 1 ? "probability.ck.firstBoxes" : "probability.ck.first") + "</span>";
         CK.fbCls = "";
       } else if (bad.length) {
         verdict = "wrong";
@@ -5232,22 +5264,22 @@
         CK.tried = true;
         CK.fbCls = "";
         var why = bad.slice(0, 2).map(function(i) { return res[i].msg ? lab(i) + res[i].msg : ""; }).filter(Boolean);
-        CK.fb = '<span class="lead">Not quite — try again.</span>' + (fields.length > 1 ? '<span class="why">' + (fields.length - bad.length - empty) + " of " + fields.length + " right so far" + (empty ? ", " + empty + " still empty" : "") + ".</span>" : "") +
+        CK.fb = '<span class="lead">' + tx("common.notQuite") + "</span>" + (fields.length > 1 ? '<span class="why">' + tx("probability.ck.soFarEnd", { x: tx("probability.ck.soFar", { n: fields.length - bad.length - empty, m: fields.length }) + (empty ? tx("probability.ck.stillEmpty", { n: empty }) : "") }) + "</span>" : "") +
           why.map(function(w) { return '<span class="why">' + w + "</span>"; }).join("");
       } else if (empty) {
-        CK.fb = '<span class="lead">So far so good — fill in the rest.</span><span class="why">' + empty + " box" + (empty === 1 ? " is" : "es are") + " still empty.</span>";
+        CK.fb = '<span class="lead">' + tx("probability.ck.good") + '</span><span class="why">' + tx(empty === 1 ? "probability.ck.boxes1" : "probability.ck.boxesN", { n: empty }) + "</span>";
         CK.fbCls = "part";
       } else if (part.length) {
         verdict = "simplify";
         CK.fbCls = "part";
         CK.tried = true;
-        CK.fb = '<span class="lead">Almost!</span><span class="why">' + lab(part[0]) + res[part[0]].msg + "</span>";
+        CK.fb = '<span class="lead">' + tx("probability.ck.almost") + '</span><span class="why">' + lab(part[0]) + res[part[0]].msg + "</span>";
       } else {
         verdict = "right";
         CK.ok = true;
         CK.revealed = true;
         CK.fbCls = "ok";
-        CK.fb = '<span class="lead">✓ Correct!</span>' + (notes.length ? '<span class="why">' + notes.join(" ") + "</span>" : "") + '<span class="why">Here’s the full work.</span>';
+        CK.fb = '<span class="lead">' + tx("common.correct") + "</span>" + (notes.length ? '<span class="why">' + notes.join(" ") + "</span>" : "") + '<span class="why">' + tx("probability.ck.full") + "</span>";
       }
       if (verdict) report(verdict);
       var had = document.activeElement && document.activeElement.id;
@@ -5263,7 +5295,7 @@
       var spec = S.specs[mode];
       if (spec) {
         var P = fromParams(spec, mode);
-        if (P.mode !== mode) throw new UserErr("That problem belongs on another tab.");
+        if (P.mode !== mode) throw new UserErr(tx("probability.err.otherTab"));
         return P;
       }
       var Q = fromText(S.inputs[mode], mode);
@@ -5280,7 +5312,7 @@
         if (e && e.user) {
           err = e.user;
           go = e.go;
-        } else { err = "Something went wrong reading that one — try different words."; if (window.console && console.error) console.error(e); }
+        } else { err = tx("probability.err.wrong"); if (window.console && console.error) console.error(e); }
       }
       var sig = P ? paramsOf(P) : null;
       if (sig !== CK.sig) CK = freshCK(sig);
@@ -5297,7 +5329,7 @@
       } else total = fail(err, go);
       LASTW = plotW();
       $("legend").innerHTML = legendFor(CUR);
-      $("ptext").innerHTML = CUR ? '<span class="ra">Reads as: </span>' + record(CUR).html : "";
+      $("ptext").innerHTML = CUR ? tx("probability.readsAs") + record(CUR).html : "";
       $("ptext").classList.toggle("scr-hide", !(CUR && CUR.src === "text"));
       lastTotal = total;
       if (total) {
@@ -5316,7 +5348,7 @@
         hide = check && !CK.revealed;
       $("stepper").hidden = !stepMode;
       if (stepMode) {
-        $("stepCount").textContent = S.step + " of " + total;
+        $("stepCount").textContent = tx("probability.stepOf", { n: S.step, total: total });
         $("prevBtn").disabled = S.step <= 1;
         $("nextBtn").disabled = S.step >= total;
       }
@@ -5352,7 +5384,7 @@
     function writeLog(items) {
       var html = "";
       items.forEach(function(it, i) {
-        html += "<li" + ds(it.step) + '><span class="n">Step&nbsp;' + (i + 1) + "</span>";
+        html += "<li" + ds(it.step) + '><span class="n">' + tx("probability.stepN", { n: i + 1 }) + "</span>";
         it.lines.forEach(function(l) {
           html += '<div class="line"><span class="tag c-' + l[0] + '">' + l[1] + '</span><span class="txt">' + l[2] + "</span></div>";
         });
@@ -5376,7 +5408,7 @@
         var b = document.createElement("button");
         b.type = "button";
         b.className = "print";
-        b.textContent = "Work it on the " + TABN[go] + " tab";
+        b.textContent = tx("probability.workOn", { tab: TABN[go] });
         b.addEventListener("click", function() {
           S.inputs[go] = S.inputs[S.mode];
           S.specs[go] = null;
@@ -5715,30 +5747,35 @@
     }
 
     /* ===================== the maker's controls ===================== */
+    function mkVals(g, list) {
+      var o = {};
+      list.forEach(function(v) { o[v] = tx("probability.mk." + g + "." + v); });
+      return o;
+    }
     var W = {
-      item: "What it’s about",
-      kind: "Kind of problem",
-      stages: "How many stages",
-      view: "Show the outcomes as",
-      itemV: { any: "A mix", die: "Dice", coin: "Coins", spinner: "Spinners", bag: "Bags of marbles", deck: "Playing cards", nums: "Numbers 1 to N" },
-      unequal: "Spinners with parts of different sizes",
-      compoundV: { mix: "A mix", and: "Two things at once (and)", "with": "Pick twice, put it back", without: "Pick twice, keep it out", or: "One thing, either event (or)" },
-      stagesV: { "2": "Two (like two dice)", "3": "Three (like three coins)", mix: "A mix" },
-      viewV: { any: "Any", list: "A list", tree: "A tree diagram", grid: "A table" },
-      expectV: { mix: "A mix", predict: "About how many? (expected)", exper: "Experimental vs theoretical" }
+      item: tx("probability.mk.item"),
+      kind: tx("probability.mk.kind"),
+      stages: tx("probability.mk.stages"),
+      view: tx("probability.mk.view"),
+      itemV: mkVals("itemV", ["any", "die", "coin", "spinner", "bag", "deck", "nums"]),
+      unequal: tx("probability.mk.unequal"),
+      compoundV: mkVals("compoundV", ["mix", "and", "with", "without", "or"]),
+      stagesV: mkVals("stagesV", ["2", "3", "mix"]),
+      viewV: mkVals("viewV", ["any", "list", "tree", "grid"]),
+      expectV: mkVals("expectV", ["mix", "predict", "exper"])
     };
     var ITEMS = ["any", "die", "coin", "spinner", "bag", "deck", "nums"];
 
     function segSec(lbl, key, vals, map) { return { lbl: lbl, seg: key, vals: vals, fmt: function(v) { return map[v]; } }; }
     var MAKER = {
       simple: [segSec(W.item, "item", ITEMS, W.itemV), {
-        lbl: "Also include",
+        lbl: tx("probability.mk.also"),
         togs: [
           ["unequal", "◔", W.unequal]
         ]
       }],
       complement: [segSec(W.item, "item", ITEMS, W.itemV), {
-        lbl: "Also include",
+        lbl: tx("probability.mk.also"),
         togs: [
           ["unequal", "◔", W.unequal]
         ]
@@ -5753,7 +5790,7 @@
         m = null;
       if (!el) return;
       try { m = makeOne(S.mode, S.gen[S.mode], null); } catch (e) { m = null; }
-      el.innerHTML = m ? "Makes problems like: <b>" + esc(record(m.P).text) + "</b>" : "Those choices don’t make a problem — try different ones.";
+      el.innerHTML = m ? tx("probability.mk.sample", { x: esc(record(m.P).text) }) : tx("probability.mk.none");
     }
 
     function useSpec(spec) {
@@ -5817,14 +5854,14 @@
       host.appendChild(smp);
       var go = document.createElement("div");
       go.className = "maker-go";
-      go.innerHTML = '<button type="button" class="go" id="genBtn">New problem</button><span class="msg" id="genMsg"></span>';
+      go.innerHTML = '<button type="button" class="go" id="genBtn">' + tx("common.newProblem") + '</button><span class="msg" id="genMsg"></span>';
       host.appendChild(go);
       paintSample();
       $("genBtn").addEventListener("click", function() {
         var avoid = {};
         if (CUR) avoid[paramsOf(CUR)] = true;
         var m = makeOne(S.mode, S.gen[S.mode], avoid);
-        if (!m) { $("genMsg").textContent = "Couldn’t make one with those settings — try different choices."; return; }
+        if (!m) { $("genMsg").textContent = tx("probability.mk.couldnt"); return; }
         $("genMsg").textContent = "";
         useSpec(m.spec);
       });
@@ -5841,7 +5878,7 @@
       var h = "";
       if (S.mode === "space") {
         var cur = CUR && CUR.mode === "space" ? (CUR.viewReq || "auto") : S.view;
-        h = '<div class="methodrow"><span class="lbl2">Show the outcomes as</span><div class="modes small" role="group" aria-label="Show the outcomes as">' + ["auto", "list", "tree", "grid"].map(function(v) { return '<button type="button" data-v="' + v + '" aria-pressed="' + String(cur === v) + '">' + { auto: "Best fit", list: "A list", tree: "A tree diagram", grid: "A table" } [v] + "</button>"; }).join("") +
+        h = '<div class="methodrow"><span class="lbl2">' + tx("probability.mk.view") + '</span><div class="modes small" role="group" aria-label="' + esc(tx("probability.mk.view")) + '">' + ["auto", "list", "tree", "grid"].map(function(v) { return '<button type="button" data-v="' + v + '" aria-pressed="' + String(cur === v) + '">' + tx("probability.view." + v) + "</button>"; }).join("") +
           "</div></div>";
       }
       host.innerHTML = h;
@@ -5874,7 +5911,7 @@
     }
 
     function schema() {
-      var onOff = [{ v: false, label: "Off" }, { v: true, label: "On" }];
+      var onOff = [{ v: false, label: tx("common.off") }, { v: true, label: tx("common.on") }];
 
       function vals(list, map) { return list.map(function(v) { return { v: v, label: map[v] }; }); }
       return [{
@@ -5883,17 +5920,17 @@
           type: "choice",
           "default": "simple",
           values: [
-            { v: "simple", label: "The chance of one event (ways ÷ everything)" }, { v: "complement", label: "The chance something doesn’t happen (1 − P)" },
-            { v: "compound", label: "Two events: and, or, with and without replacement" }, { v: "space", label: "All the outcomes: a list, a tree diagram or a table" },
-            { v: "expected", label: "Expected counts, and experimental vs theoretical" }
+            { v: "simple", label: tx("probability.sch.simple") }, { v: "complement", label: tx("probability.sch.complement") },
+            { v: "compound", label: tx("probability.sch.compound") }, { v: "space", label: tx("probability.sch.space") },
+            { v: "expected", label: tx("probability.sch.expected") }
           ]
         },
         { key: "item", label: W.item, type: "choice", "default": "any", modes: ["simple", "complement", "expected"], values: vals(ITEMS, W.itemV) },
         { key: "unequal", label: W.unequal, type: "toggle", "default": false, values: onOff, modes: ["simple", "complement"] },
-        { key: "compound", label: "Kind of two-event problem", type: "choice", "default": "mix", modes: ["compound"], values: vals(["mix", "and", "with", "without", "or"], W.compoundV) },
+        { key: "compound", label: tx("probability.sch.compoundKind"), type: "choice", "default": "mix", modes: ["compound"], values: vals(["mix", "and", "with", "without", "or"], W.compoundV) },
         { key: "stages", label: W.stages, type: "choice", "default": "2", modes: ["space"], values: vals(["2", "3", "mix"], W.stagesV) },
         { key: "view", label: W.view, type: "choice", "default": "any", modes: ["space"], values: vals(["any", "list", "tree", "grid"], W.viewV) },
-        { key: "expect", label: "Kind of expected-value problem", type: "choice", "default": "mix", modes: ["expected"], values: vals(["mix", "predict", "exper"], W.expectV) }
+        { key: "expect", label: tx("probability.sch.expectKind"), type: "choice", "default": "mix", modes: ["expected"], values: vals(["mix", "predict", "exper"], W.expectV) }
       ];
     }
 
@@ -5957,18 +5994,18 @@
     /* ===================== wiring ===================== */
     var inp = $("numIn");
     var HINTS = {
-      simple: "Say what’s used and what you want: <code>P(rolling a 4)</code>, <code>probability of red from 3 red 5 blue 2 green</code>, <code>a spinner with 8 equal parts, 3 are red</code>, <code>pick a heart from a deck of cards</code>, <code>numbers 1 to 20, P(prime)</code>. Unequal spinner parts in degrees: <code>red 90°, blue 270°</code>.",
-      complement: "The chance it does <i>not</i> happen: <code>P(not 6)</code>, <code>not a face card</code>, <code>P(not red) from 3 red 5 blue 2 green</code>.",
-      compound: "Two things: <code>flip a coin and roll a die, P(heads and even)</code>, <code>two coins both heads</code>. Picking twice: <code>draw 2 without replacement from 4 red 6 blue, both red</code> (or <code>put it back</code>). Or: <code>roll a die, P(even or greater than 4)</code>.",
-      space: "Two or three stages and an event: <code>two dice, sum of 7</code>, <code>three coins, exactly 2 heads</code>, <code>a coin and a die, heads and an even number</code>, <code>two dice, doubles</code>. Add <code>tree</code>, <code>table</code> or <code>list</code>.",
-      expected: "Many tries: <code>roll a die 60 times, how many 3s</code>, <code>flip a coin 100 times, how many heads</code>. Results: <code>heads came up 27 times in 50 flips</code>."
+      simple: tx("probability.hints.simple"),
+      complement: tx("probability.hints.complement"),
+      compound: tx("probability.hints.compound"),
+      space: tx("probability.hints.space"),
+      expected: tx("probability.hints.expected")
     };
     var EX = {
-      simple: ["P(rolling a 4)", "probability of red from 3 red 5 blue 2 green", "a spinner with 8 equal parts, 3 are red", "pick a heart from a deck of cards", "numbers 1 to 20, P(prime)", "8-sided die, P(more than 5)", "spinner red 90°, blue 120°, green 150°, P(blue)"],
-      complement: ["P(not 6)", "P(not red) from 3 red 5 blue 2 green", "not a face card", "numbers 1 to 30, P(not a multiple of 3)"],
-      compound: ["two coins both heads", "flip a coin and roll a die, P(heads and even)", "draw 2 without replacement from 4 red 6 blue, both red", "4 red 6 blue, put it back, red then blue", "two aces from a deck, without replacement", "roll a die, P(even or greater than 4)", "a heart or a face card"],
-      space: ["two dice, sum of 7", "three coins, exactly 2 heads", "a coin and a die, heads and an even number", "two dice, doubles", "two dice, at least one 6", "three coins, at least 1 head, tree"],
-      expected: ["roll a die 60 times, how many 3s", "flip a coin 100 times, how many heads", "heads came up 27 times in 50 flips", "rolled a 6 14 times out of 60 rolls", "a spinner with 4 equal parts, 1 blue, spin 80 times, how many blue"]
+      simple: rawW("probability.chips.simple") || [],
+      complement: rawW("probability.chips.complement") || [],
+      compound: rawW("probability.chips.compound") || [],
+      space: rawW("probability.chips.space") || [],
+      expected: rawW("probability.chips.expected") || []
     };
 
     function buildChips() {
@@ -6065,9 +6102,9 @@
       function done() {
         if (settled) return;
         settled = true;
-        btn.textContent = "Link copied ✓";
+        btn.textContent = tx("common.linkCopied") + " ✓";
         clearTimeout(btn._t);
-        btn._t = setTimeout(function() { btn.textContent = "Copy link"; }, 2000);
+        btn._t = setTimeout(function() { btn.textContent = tx("common.copyLink"); }, 2000);
       }
 
       function fallback() {
@@ -6118,7 +6155,7 @@
       return t ? t === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
     }
 
-    function paint() { themeBtn.textContent = isDark() ? "Light mode" : "Dark mode"; }
+    function paint() { themeBtn.textContent = isDark() ? tx("common.lightMode") : tx("common.darkMode"); }
     themeBtn.addEventListener("click", function() {
       document.documentElement.setAttribute("data-theme", isDark() ? "light" : "dark");
       paint();

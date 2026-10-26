@@ -16,6 +16,7 @@
 <link rel="canonical" href="https://showthesteps.org/helpers/statistics">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","name":"Mean, median, mode and box plots, step by step – The Dot Plot","description":"What’s typical, and how spread out? Find the mean, median, mode and range, draw a dot plot, a box plot or a histogram to scale, read a frequency table, measure the spread, and work back to a…","url":"https://showthesteps.org/helpers/statistics","inLanguage":"en-US","isAccessibleForFree":true,"learningResourceType":["Interactive worked examples","Practice problems"],"interactivityType":"active","educationalUse":["Practice","Self-assessment"],"teaches":"Mean, median, mode and box plots","educationalLevel":["Middle school (grades 6–8)","High school (grades 9–12)"],"audience":{"@type":"EducationalAudience","educationalRole":"student"},"publisher":{"@type":"Organization","name":"Show The Steps","url":"https://showthesteps.org/"},"isPartOf":{"@type":"WebSite","name":"Show The Steps","url":"https://showthesteps.org/"}}</script>
 <script src="../assets/site.js"></script>
+<script src="../assets/i18n.js" data-strings="statistics"></script>
 <script src="../assets/nav.js" defer></script>
 <script src="../assets/progress.js" defer></script>
 <link rel="stylesheet" href="../assets/fonts/fonts.css">
@@ -1758,9 +1759,9 @@
 <div class="page" id="page">
   <header class="masthead">
     <div>
-      <div class="eyebrow">Statistics, worked out</div>
+      <div class="eyebrow" data-i18n="statistics.eyebrow">Statistics, worked out</div>
       <h1>The Dot <em>Plot</em></h1>
-      <p class="tagline">What&rsquo;s typical, and how spread out? Find the mean, median, mode and range, draw a dot plot,
+      <p class="tagline" data-i18n="statistics.tagline">What&rsquo;s typical, and how spread out? Find the mean, median, mode and range, draw a dot plot,
         a box plot or a histogram to scale, read a frequency table, measure the spread, and work back to a missing
         number &mdash; with the reason for every step.</p>
     </div>
@@ -1768,12 +1769,12 @@
   </header>
 
   <section class="problem">
-    <div class="modes" id="modeTabs" role="group" aria-label="What kind of problem">
-      <button type="button" data-mode="center" aria-pressed="true">Mean, median, mode</button>
-      <button type="button" data-mode="box" aria-pressed="false">Box plot</button>
-      <button type="button" data-mode="freq" aria-pressed="false">Frequency</button>
-      <button type="button" data-mode="spread" aria-pressed="false">Spread</button>
-      <button type="button" data-mode="missing" aria-pressed="false">Missing value</button>
+    <div class="modes" id="modeTabs" role="group" aria-label="What kind of problem" data-i18n-attr="aria-label=statistics.modesLabel">
+      <button type="button" data-mode="center" aria-pressed="true" data-i18n="statistics.tab.center">Mean, median, mode</button>
+      <button type="button" data-mode="box" aria-pressed="false" data-i18n="statistics.tab.box">Box plot</button>
+      <button type="button" data-mode="freq" aria-pressed="false" data-i18n="statistics.tab.freq">Frequency</button>
+      <button type="button" data-mode="spread" aria-pressed="false" data-i18n="statistics.tab.spread">Spread</button>
+      <button type="button" data-mode="missing" aria-pressed="false" data-i18n="statistics.tab.missing">Missing value</button>
     </div>
     <div class="entry">
       <div class="numfield">
@@ -1785,18 +1786,18 @@
     <div class="optrow" id="optRow"></div>
 
     <details class="maker" id="maker">
-      <summary>Make a problem for me <span>&mdash; pick what goes in it</span></summary>
+      <summary data-i18n="common.maker">Make a problem for me <span>&mdash; pick what goes in it</span></summary>
       <div class="maker-body" id="makerBody"></div>
     </details>
 
     <div class="examples">
-      <span class="lbl">Try</span>
+      <span class="lbl" data-i18n="common.try">Try</span>
       <span id="chips"></span>
       <span class="practice">
-        <div class="modes" role="group" aria-label="Practice mode">
-          <button type="button" id="allBtn" aria-pressed="true">Show all work</button>
-          <button type="button" id="stepBtn" aria-pressed="false">One step at a time</button>
-          <button type="button" id="checkBtn" aria-pressed="false">Check my answer</button>
+        <div class="modes" role="group" aria-label="Practice mode" data-i18n-attr="aria-label=common.practiceMode">
+          <button type="button" id="allBtn" aria-pressed="true" data-i18n="common.showAll">Show all work</button>
+          <button type="button" id="stepBtn" aria-pressed="false" data-i18n="common.oneStep">One step at a time</button>
+          <button type="button" id="checkBtn" aria-pressed="false" data-i18n="common.checkMine">Check my answer</button>
         </div>
       </span>
     </div>
@@ -1805,17 +1806,17 @@
   <div id="statusLine" role="status" aria-live="polite"></div>
 
   <section class="ckbox" id="ckBox" hidden aria-labelledby="ckH">
-    <h2 id="ckH">Your answer</h2>
+    <h2 id="ckH" data-i18n="common.yourAnswer">Your answer</h2>
     <div class="ckq" id="ckQ"></div>
     <div class="ckrow">
       <div class="ckfields" id="ckFields"></div>
-      <button type="button" class="go" id="ckGo">Check</button>
+      <button type="button" class="go" id="ckGo" data-i18n="common.check">Check</button>
     </div>
     <div class="ckfb" id="ckFb" aria-live="polite"></div>
     <div class="ckhint" id="ckHint" hidden></div>
     <div class="ckmore" id="ckMore" hidden>
-      <button type="button" class="print" id="hintBtn">Show a hint</button>
-      <button type="button" class="print" id="showBtn">Show me the work</button>
+      <button type="button" class="print" id="hintBtn" data-i18n="common.hint">Show a hint</button>
+      <button type="button" class="print" id="showBtn" data-i18n="common.showWork">Show me the work</button>
     </div>
     <div class="cknote" id="ckNote"></div>
   </section>
@@ -1823,11 +1824,11 @@
   <div class="board" id="board">
     <section class="panel">
       <div class="panel-head">
-        <h2>The work</h2>
+        <h2 data-i18n="common.theWork">The work</h2>
         <div class="stepper" id="stepper" hidden>
-          <button type="button" id="prevBtn" aria-label="Previous step">&larr;</button>
+          <button type="button" id="prevBtn" aria-label="Previous step" data-i18n-attr="aria-label=common.prevStep">&larr;</button>
           <span class="count" id="stepCount"></span>
-          <button type="button" id="nextBtn" aria-label="Next step">&rarr;</button>
+          <button type="button" id="nextBtn" aria-label="Next step" data-i18n-attr="aria-label=common.nextStep">&rarr;</button>
         </div>
       </div>
       <div id="workHost"></div>
@@ -1835,7 +1836,7 @@
     </section>
 
     <section class="panel">
-      <div class="panel-head"><h2>Say it out loud</h2></div>
+      <div class="panel-head"><h2 data-i18n="common.sayIt">Say it out loud</h2></div>
       <ol class="log" id="log"></ol>
       <div class="closer" id="closer"></div>
     </section>
@@ -1843,10 +1844,10 @@
 
   <div class="footnote">
     <span class="btns">
-      <button class="print" type="button" id="printBtn">Print this work</button>
-      <button class="print" type="button" id="copyBtn">Copy link</button>
+      <button class="print" type="button" id="printBtn" data-i18n="common.print">Print this work</button>
+      <button class="print" type="button" id="copyBtn" data-i18n="common.copyLink">Copy link</button>
     </span>
-    <span>Up to 60 numbers, worked out exactly &mdash; a mean that doesn&rsquo;t come out even is shown as a fraction and
+    <span data-i18n="statistics.footnote">Up to 60 numbers, worked out exactly &mdash; a mean that doesn&rsquo;t come out even is shown as a fraction and
       a decimal. Need a long division done out? Work it on <a href="division.html">&divide;</a>, or turn a fraction into
       a decimal on <a href="fractions.html">&frac12;</a>.</span>
   </div>
@@ -1907,6 +1908,27 @@
      ============================================================================= */
   (function() {
     "use strict";
+    if (window.HelperI18n) HelperI18n.apply();
+    var tx = function(k, v) { return window.HelperI18n ? HelperI18n.t(k, v) : k; };
+    var EN = !window.HelperI18n || HelperI18n.lang === "en";
+    // a language's own data from its locale file (word lists, patterns), or null in English
+    function own(k) { return EN ? null : HelperI18n.raw(k) || null; }
+
+    function fold(s) { return String(s).normalize ? String(s).normalize("NFD").replace(/[\u0300-\u036f]/g, "") : String(s); }
+    // a typed problem in the language in use, as the reader knows it: this page's own phrases (statistics.re.typed in the
+    // language's file, matched without accents in lower case), then the shared HelperI18n.normalize. English: unchanged.
+    function readTyped(q) {
+      if (EN || q === null || q === undefined) return q;
+      var P = own("statistics.re.typed"),
+        s = String(q);
+      if (P && P.length) {
+        var f = fold(s.replace(/[¿¡]/g, " ")).toLowerCase(),
+          g = f;
+        P.forEach(function(r) { g = g.replace(new RegExp(r[0], "g"), r[1]); });
+        if (g !== f) s = g;
+      }
+      return HelperI18n.normalize(s);
+    }
     var $ = function(id) { return document.getElementById(id); };
     var PAGE = "stats.html",
       STORE = "dot-plot",
@@ -1929,7 +1951,7 @@
         box: "3, 7, 8, 5, 12, 14, 21, 13, 18",
         freq: "1: 3, 2: 5, 3: 2, 4: 4, 5: 1",
         spread: "2, 4, 6, 8, 10",
-        missing: "mean of 5 numbers is 8: 6, 9, 7, 10"
+        missing: tx("statistics.def.missing")
       },
       gen: {
         center: { size: "small", max: 20, dec: false, nice: true },
@@ -1952,16 +1974,20 @@
     function cap(s) { s = String(s); return s.charAt(0).toUpperCase() + s.slice(1); }
     var WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"];
 
-    function word(k) { return k < WORDS.length ? WORDS[k] : String(k); }
+    function word(k) { var L = own("statistics.numList") || WORDS; return k < L.length ? L[k] : String(k); }
     var ORDS = ["zeroth", "first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth", "eleventh", "twelfth"];
 
-    function ordW(k) { return k < ORDS.length ? ORDS[k] : k + (k % 10 === 1 && k % 100 !== 11 ? "st" : k % 10 === 2 && k % 100 !== 12 ? "nd" : k % 10 === 3 && k % 100 !== 13 ? "rd" : "th"); }
+    function ordW(k) {
+      var L = own("statistics.ordList");
+      if (L) return k < L.length ? L[k] : tx("statistics.ordN", { n: k });
+      return k < ORDS.length ? ORDS[k] : k + (k % 10 === 1 && k % 100 !== 11 ? "st" : k % 10 === 2 && k % 100 !== 12 ? "nd" : k % 10 === 3 && k % 100 !== 13 ? "rd" : "th");
+    }
 
-    function ordN(k) { return k + (k % 100 >= 11 && k % 100 <= 13 ? "th" : k % 10 === 1 ? "st" : k % 10 === 2 ? "nd" : k % 10 === 3 ? "rd" : "th"); }
+    function ordN(k) { return EN ? k + (k % 100 >= 11 && k % 100 <= 13 ? "th" : k % 10 === 1 ? "st" : k % 10 === 2 ? "nd" : k % 10 === 3 ? "rd" : "th") : tx("statistics.ordN", { n: k }); }
 
-    function times(c) { return c === 1 ? "once" : c === 2 ? "twice" : c + " times"; }
+    function times(c) { return tx("statistics.times", { n: c }); }
 
-    function listAnd(a) { return a.length < 2 ? a.join("") : a.length === 2 ? a[0] + " and " + a[1] : a.slice(0, -1).join(", ") + " and " + a[a.length - 1]; }
+    function listAnd(a) { return a.length < 2 ? a.join("") : a.length === 2 ? a[0] + tx("statistics.and") + a[1] : a.slice(0, -1).join(", ") + tx("statistics.and") + a[a.length - 1]; }
 
     function ds(step) { return (step === undefined || step === null || step < 0) ? "" : ' data-step="' + step + '"'; }
 
@@ -2252,16 +2278,16 @@
 
     /* ===================== reading what was typed ===================== */
     var EMPTY = {
-      center: "Type 2 or more numbers, like <b>4, 8, 6, 5, 7</b>.",
-      box: "Type at least 4 numbers, like <b>3, 7, 8, 5, 12, 14, 21, 13, 18</b>.",
-      freq: "Type each value with its count, like <b>1: 3, 2: 5, 3: 2</b>.",
-      spread: "Type 2 or more numbers, like <b>2, 4, 6, 8</b>.",
-      missing: "Type a problem like <b>mean of 5 numbers is 8: 6, 9, 7, 10</b> or <b>need average 85 scores 78, 92, 81</b>."
+      center: tx("statistics.empty.center"),
+      box: tx("statistics.empty.box"),
+      freq: tx("statistics.empty.freq"),
+      spread: tx("statistics.empty.spread"),
+      missing: tx("statistics.empty.missing")
     };
 
     function numTokens(s) {
       var t = String(s == null ? "" : s).replace(/[−–—]/g, "-");
-      if (/\d\s*\/\s*\d/.test(t)) throw new UserErr("Type fractions as decimals here — <b>1/2</b> is <b>0.5</b> and <b>3/4</b> is <b>0.75</b>.");
+      if (/\d\s*\/\s*\d/.test(t)) throw new UserErr(tx("statistics.err.frac"));
       if (/,\s|;|\d\s+-?\d/.test(t)) t = t.replace(/(\d),(?=\d{3}(?!\d))/g, "$1"); // 12,500 is one number when the list is split some other way
       var re = /(^|[^\d.])(-?)(\d+(?:\.\d+)?|\.\d+)/g,
         m, out = [];
@@ -2274,8 +2300,8 @@
 
     function checkSizes(toks) {
       toks.forEach(function(t) {
-        if (t.dp > 4) throw new UserErr("Up to 4 decimal places, please — <b>" + esc(t.s) + "</b> has " + t.dp + ".");
-        if (Math.abs(toF(t.r)) > 1e7) throw new UserErr("<b>" + esc(t.s) + "</b> is past this page’s limit of 10,000,000. Try smaller numbers (or change the units).");
+        if (t.dp > 4) throw new UserErr(tx("statistics.err.dp", { s: esc(t.s), dp: t.dp }));
+        if (Math.abs(toF(t.r)) > 1e7) throw new UserErr(tx("statistics.err.big", { s: esc(t.s) }));
       });
     }
 
@@ -2283,11 +2309,11 @@
       var s = String(text == null ? "" : text).trim();
       if (!s) throw new UserErr(EMPTY[mode]);
       var toks = numTokens(s);
-      if (!toks.length) throw new UserErr("I can’t find any numbers in <b>" + esc(s) + "</b>. " + EMPTY[mode]);
+      if (!toks.length) throw new UserErr(tx("statistics.err.noNums", { s: esc(s), empty: EMPTY[mode] }));
       checkSizes(toks);
-      if (toks.length < min) throw new UserErr(min === 2 ? "One number on its own is already its own mean, median and mode — type at least <b>two</b>, like <b>" + esc(toks[0].s) + ", " + esc(String(Number(toks[0].s) + 4)) + "</b>." :
-        "A box plot splits the numbers into four quarters, so it needs at least <b>4</b> numbers. You typed " + toks.length + ".");
-      if (toks.length > MAXN) throw new UserErr("Up to <b>60</b> numbers at a time — you typed " + toks.length + ". For a long list, a frequency table (value: count) on the <b>Frequency</b> tab is quicker.");
+      if (toks.length < min) throw new UserErr(min === 2 ? tx("statistics.err.one", { a: esc(toks[0].s), b: esc(String(Number(toks[0].s) + 4)) }) :
+        tx("statistics.err.box4", { n: toks.length }));
+      if (toks.length > MAXN) throw new UserErr(tx("statistics.err.max60", { n: toks.length }));
       return toks.map(function(t) { return t.r; });
     }
 
@@ -2328,7 +2354,7 @@
       if (two) {
         var tv = two[1].split(/\s*[,\s]\s*/),
           tc = two[2].split(/\s*[,\s]\s*/);
-        if (tv.length !== tc.length) throw new UserErr("There are " + tv.length + " values but " + tc.length + " counts — each value needs its count.");
+        if (tv.length !== tc.length) throw new UserErr(tx("statistics.err.rows2", { v: tv.length, c: tc.length }));
         s = tv.map(function(v, i) { return v + ": " + tc[i]; }).join(", ");
       }
       s = s.replace(/^[a-z\s]+(?=[\d.\-])/i, "").replace(/([\d|])[\s.?!]*(?:[a-z][a-z\s]*)?[\s.?!]*$/i, "$1").trim();
@@ -2345,44 +2371,44 @@
         var parts = s.split(/\s*[,;\n]+\s*/).filter(function(x) { return x.trim() !== ""; });
         parts.forEach(function(p) {
           var m = /^(.*?)\s*[:=→]\s*(.*)$/.exec(p);
-          if (!m) throw new UserErr("I can’t read <b>" + esc(p) + "</b> — write each value with its count, like <b>3: 5</b>.");
+          if (!m) throw new UserErr(tx("statistics.err.pair", { p: esc(p) }));
           var lhs = m[1].trim(),
             rhs = m[2].trim(),
             c, rg, vv;
           if (/^\d+$/.test(rhs)) c = Number(rhs);
           else if (/^[\s|Il¦\/\\卌]+$/.test(rhs) && tallyCount(rhs) > 0) c = tallyCount(rhs);
-          else throw new UserErr("The count for <b>" + esc(lhs) + "</b> should be a whole number or tally marks (like <b>||||</b>), not <b>" + esc(rhs) + "</b>.");
-          if (c > 100000) throw new UserErr("Counts up to 100,000, please.");
+          else throw new UserErr(tx("statistics.err.count", { v: esc(lhs), c: esc(rhs) }));
+          if (c > 100000) throw new UserErr(tx("statistics.err.countMax"));
           rg = /^(-?\d*\.?\d+)\s*(?:-|to)\s*(-?\d*\.?\d+)$/.exec(lhs);
           if (rg) {
-            if (grouped === false) throw new UserErr("Mix of single values and classes — use one or the other: <b>1: 3, 2: 5</b> or <b>10-19: 4, 20-29: 7</b>.");
+            if (grouped === false) throw new UserErr(tx("statistics.err.mix"));
             grouped = true;
             var a = parseDecStr(rg[1].replace(/^(-?)\./, "$10.")),
               b = parseDecStr(rg[2].replace(/^(-?)\./, "$10."));
-            if (cmpR(a, b) >= 0) throw new UserErr("A class goes from the smaller number to the bigger one — <b>" + esc(lhs) + "</b> is backwards.");
+            if (cmpR(a, b) >= 0) throw new UserErr(tx("statistics.err.backwards", { c: esc(lhs) }));
             rows.push({ a: a, b: b, c: c });
           } else if (/^-?\d*\.?\d+$/.test(lhs)) {
-            if (grouped === true) throw new UserErr("Mix of single values and classes — use one or the other: <b>1: 3, 2: 5</b> or <b>10-19: 4, 20-29: 7</b>.");
+            if (grouped === true) throw new UserErr(tx("statistics.err.mix"));
             grouped = false;
             checkSizes(numTokens(lhs));
             vv = parseDecStr(lhs.replace(/^(-?)\./, "$10."));
             var same = rows.filter(function(r) { return eqR(r.v, vv); })[0];
             if (same) same.c += c;
             else rows.push({ v: vv, c: c });
-          } else throw new UserErr("I can’t read the value <b>" + esc(lhs || p) + "</b> — use a number like <b>3</b>, or a class like <b>10-19</b>.");
+          } else throw new UserErr(tx("statistics.err.value", { v: esc(lhs || p) }));
         });
       }
       if (!rows.length) throw new UserErr(EMPTY.freq);
-      if (rows.length > 30) throw new UserErr("Up to 30 rows, please — you have " + rows.length + ". Group the values into classes, like <b>10-19: 4</b>.");
+      if (rows.length > 30) throw new UserErr(tx("statistics.err.rows30", { n: rows.length }));
       if (grouped) {
         rows.sort(function(x, y) { return cmpR(x.a, y.a); });
         for (var i = 1; i < rows.length; i++)
           if (cmpR(rows[i].a, rows[i - 1].b) < 0)
-            throw new UserErr("The classes <b>" + clsT(rows[i - 1]) + "</b> and <b>" + clsT(rows[i]) + "</b> overlap — each value should fit in just one class.");
+            throw new UserErr(tx("statistics.err.overlap", { a: clsT(rows[i - 1]), b: clsT(rows[i]) }));
         rows.forEach(function(r) { r.mid = avg2(r.a, r.b); });
       } else rows.sort(function(x, y) { return cmpR(x.v, y.v); });
       var n = rows.reduce(function(t, r) { return t + r.c; }, 0);
-      if (!n) throw new UserErr("Every count is 0 — there’s no data to work with.");
+      if (!n) throw new UserErr(tx("statistics.err.allZero"));
       var q = rows.map(function(r) { return grouped ? (r.a.n < 0n || r.b.n < 0n ? plainT(r.a) + " to " + plainT(r.b) : plainT(r.a) + "-" + plainT(r.b)) + ":" + r.c : plainT(r.v) + ":" + r.c; }).join(",");
       var P = { mode: "freq", rows: rows, grouped: !!grouped, fromList: fromList, n: n, q: q, bin: 0 };
       if (!grouped && o.bin) { var bw = Number(o.bin); if (binsFor(P, bw)) P.bin = bw; }
@@ -2391,7 +2417,7 @@
 
     function clsT(r) { return vT(r.a) + "–" + vT(r.b); }
 
-    function clsWords(r) { return vT(r.a) + " to " + vT(r.b); }
+    function clsWords(r) { return tx("statistics.clsTo", { a: vT(r.a), b: vT(r.b) }); }
 
     function freqIntData(P) { return P.rows.every(function(r) { return isInt(r.v); }); }
 
@@ -2456,7 +2482,7 @@
       // "3 of them are 63, 68, 89" · "two of the scores were …": that count is how many are listed, not a value
       s = s.replace(new RegExp("\\b(?:\\d+|" + Object.keys(NW).join("|") + ")\\s+of\\s+(?:them|these|those|the\\s+(?:" + NOUNS + "))\\b", "g"), " ");
       s = s.replace(new RegExp("\\b(" + Object.keys(NW).join("|") + ")\\b(?=\\s+(?:more\\s+|other\\s+|last\\s+|remaining\\s+|missing\\s+)?(?:" + NOUNS + ")\\b)", "g"), function(m) { return String(NW[m]); });
-      if (/\d\s*\/\s*\d/.test(s)) throw new UserErr("Type fractions as decimals here — <b>1/2</b> is <b>0.5</b>.");
+      if (/\d\s*\/\s*\d/.test(s)) throw new UserErr(tx("statistics.err.frac2"));
       var toks = [],
         re = /\d*\.\d+|\d+/g,
         m;
@@ -2474,7 +2500,7 @@
         kw = [],
         k;
       while ((k = kwRe.exec(s))) kw.push(k.index);
-      if (!kw.length) throw new UserErr("Say what the mean is — like <b>mean of 5 numbers is 8: 6, 9, 7, 10</b>, or <b>need average 85 scores 78, 92, 81</b>.");
+      if (!kw.length) throw new UserErr(tx("statistics.err.sayMean"));
       var need = /\b(need|needs|needed|what (?:score|grade|mark|number|value|do|does|must|should|would|will|is needed)|to (?:get|reach|have|keep|raise|bring|make|end up with)|goal|target|wants?|hopes?|aims?)\b/.test(s);
 
       function tokAfter(pos) { return toks.filter(function(t) { return t.i > pos && !t.used && !t.count; })[0]; }
@@ -2483,7 +2509,7 @@
       var T = null;
       kw.forEach(function(p) { if (!T) { var t = tokAfter(p); if (t && t.i - p < 40) T = t; } });
       if (!T) kw.forEach(function(p) { if (!T) T = tokBefore(p); });
-      if (!T) throw new UserErr("I can’t find the mean in that. Put the number right after the word <b>mean</b> or <b>average</b>, like <b>mean of 5 numbers is 8</b>.");
+      if (!T) throw new UserErr(tx("statistics.err.findMean"));
       T.used = true;
       var cnt = toks.filter(function(t) { return t.count && !t.used; }),
         N = null,
@@ -2501,18 +2527,18 @@
       });
       var known = toks.filter(function(t) { return !t.used; }).map(function(t) { return t.r; });
       var kk = known.length;
-      if (!kk) throw new UserErr("Which numbers do you know? List them after a colon, like <b>mean of 5 numbers is 8: 6, 9, 7, 10</b>.");
-      if (kk > MAXN) throw new UserErr("Up to 60 numbers at a time — you listed " + kk + ".");
+      if (!kk) throw new UserErr(tx("statistics.err.known"));
+      if (kk > MAXN) throw new UserErr(tx("statistics.err.listed60", { n: kk }));
       var r;
       if (more !== null) r = more;
       else if (N !== null) {
         if (need && N <= kk) r = 1;
-        else if (N <= kk) throw new UserErr("You said there are <b>" + N + "</b> numbers, but listed <b>" + kk + "</b> of them — so none are missing. Check the count.");
+        else if (N <= kk) throw new UserErr(tx("statistics.err.noneMissing", { n: N, k: kk }));
         else r = N - kk;
       } else if (qm) r = qm;
       else if (need) r = 1;
-      else throw new UserErr("How many numbers are there in all? Say it like <b>mean of " + (kk + 1) + " numbers is " + esc(T.s) + ": …</b>, or put a <b>?</b> for the missing one.");
-      if (r < 1 || r > 20) throw new UserErr("Up to 20 missing numbers, please.");
+      else throw new UserErr(tx("statistics.err.howMany", { n: kk + 1, m: esc(T.s) }));
+      if (r < 1 || r > 20) throw new UserErr(tx("statistics.err.max20"));
       N = kk + r;
       var P = { mode: "missing", kind: need ? "need" : "meanof", M: T.r, known: known, k: kk, r: r, N: N };
       P.q = need ? "need average " + plainT(T.r) + " scores " + known.map(plainT).join(", ") + (r > 1 ? " over " + N + " tests" : "") :
@@ -2530,7 +2556,7 @@
 
     function readProblem(mode, text, o) {
       o = o || {};
-      text = tidyQ(text);
+      text = tidyQ(readTyped(text));
       if (UNSUP.test(text)) throw new UserErr(unsupMsg(text));
       if (mode === "box") return readBox(text, o);
       if (mode === "freq") return readFreq(text, o);
@@ -2713,7 +2739,7 @@
         g += "<g" + ds(o.range.step) + '><path class="rng-m" d="M' + f1(x1) + " " + (yR - 7) + " V" + yR + " H" + f1(x2) + " V" + (yR - 7) + '"/>' +
           '<text class="rng-l" x="' + f1(clampX((x1 + x2) / 2, lw, W)) + '" y="' + (yR + 18) + '" text-anchor="middle">' + esc(o.range.label) + "</text></g>";
       }
-      return svgWrap(W, H, o.aria || "Dot plot", g);
+      return svgWrap(W, H, o.aria || tx("statistics.svg.dotPlot"), g);
     }
 
     /* blocks: the numbers as towers, then the same blocks shared out evenly */
@@ -2736,7 +2762,7 @@
 
       function panel(x0, y0, after) {
         var base = y0 + 22 + mx * u,
-          out = '<text class="ptitle" x="' + x0 + '" y="' + (y0 + 11) + '">' + (after ? "SHARED OUT EVENLY" : "AS THEY ARE") + "</text>";
+          out = '<text class="ptitle" x="' + x0 + '" y="' + (y0 + 11) + '">' + (after ? tx("statistics.svg.shared") : tx("statistics.svg.asTheyAre")) + "</text>";
         vals.forEach(function(v, i) {
           var x = x0 + i * cw,
             k;
@@ -2758,7 +2784,7 @@
       }
       g += panel(4, 0, false);
       g += side ? panel(pw + 40, 0, true) : panel(4, ph + 8, true);
-      return svgWrap(side ? 2 * pw + 80 : pw + 60, H, "Blocks: each number as a tower, then the same blocks shared out evenly", g);
+      return svgWrap(side ? 2 * pw + 80 : pw + 60, H, tx("statistics.svg.towers"), g);
     }
 
     /* a box-and-whisker plot under a strip of the data, on a number line to scale */
@@ -2793,8 +2819,8 @@
         var out = st.outs.some(function(u) { return eqR(u, v); });
         g += '<circle class="dt' + (out ? " out" : "") + '"' + ds(o.steps.dots) + ' cx="' + f1(sx(F(v))) + '" cy="' + f1(yS - r - j * dy) + '" r="' + f1(r) + '"/>';
       });
-      var labs = [{ v: st.min, t: "min " + vT(st.min), c: "" }, { v: st.q1, t: "Q₁ " + vT(st.q1), c: "q" }, { v: st.med, t: "med " + vT(st.med), c: "m" },
-          { v: st.q3, t: "Q₃ " + vT(st.q3), c: "q" }, { v: st.max, t: "max " + vT(st.max), c: "" }
+      var labs = [{ v: st.min, t: tx("statistics.svg.min", { v: vT(st.min) }), c: "" }, { v: st.q1, t: "Q₁ " + vT(st.q1), c: "q" }, { v: st.med, t: tx("statistics.svg.med", { v: vT(st.med) }), c: "m" },
+          { v: st.q3, t: "Q₃ " + vT(st.q3), c: "q" }, { v: st.max, t: tx("statistics.svg.max", { v: vT(st.max) }), c: "" }
         ],
         ends = [];
       labs.forEach(function(L) {
@@ -2837,7 +2863,7 @@
       st.outs.forEach(function(v) { bx += '<circle class="dt out" cx="' + f1(sx(F(v))) + '" cy="' + ym + '" r="5"/>'; });
       g += "<g" + ds(o.steps.box) + ">" + bx + "</g>";
       g += axisSVG(ax, y0, yT);
-      return svgWrap(W, H, "Box plot: min " + vT(st.min) + ", Q1 " + vT(st.q1) + ", median " + vT(st.med) + ", Q3 " + vT(st.q3) + ", max " + vT(st.max), g);
+      return svgWrap(W, H, tx("statistics.svg.box", { min: vT(st.min), q1: vT(st.q1), med: vT(st.med), q3: vT(st.q3), max: vT(st.max) }), g);
     }
 
     /* a histogram: bars that touch, one for each class */
@@ -2868,8 +2894,8 @@
       });
       g += "<g" + ds(o.step) + ">" + bars + "</g>";
       g += '<line class="ax" x1="' + pL + '" y1="' + (top + ph) + '" x2="' + (W - pR) + '" y2="' + (top + ph) + '"/>';
-      g += '<text class="ptitle" x="' + pL + '" y="11">COUNT</text>';
-      return svgWrap(W, top + ph + (two ? 38 : 24), "Histogram: " + o.bins.map(function(b) { return b.label + " has " + b.c; }).join(", "), g);
+      g += '<text class="ptitle" x="' + pL + '" y="11">' + tx("statistics.svg.count") + "</text>";
+      return svgWrap(W, top + ph + (two ? 38 : 24), tx("statistics.svg.hist", { list: o.bins.map(function(b) { return tx("statistics.svg.histBin", { b: b.label, c: b.c }); }).join(", ") }), g);
     }
 
     /* how far each number is from the mean, to scale */
@@ -2886,7 +2912,7 @@
         xm = sx(F(mean)),
         g = "",
         y0 = top + n * rowH + 8,
-        lab = "mean " + eqT(mean);
+        lab = tx("statistics.mean", { v: eqT(mean) });
       g += '<line class="mline" x1="' + f1(xm) + '" y1="20" x2="' + f1(xm) + '" y2="' + y0 + '"/><text class="mean-l" x="' + f1(clampX(xm, tw(lab, 13), W)) + '" y="14" text-anchor="middle">' + esc(lab) + "</text>";
       var rows = "";
       vals.forEach(function(v, i) {
@@ -2897,11 +2923,11 @@
           w = tw(t, 12);
         if (Math.abs(x - xm) > 0.5) rows += '<line class="dl" x1="' + f1(xm) + '" y1="' + f1(y) + '" x2="' + f1(x) + '" y2="' + f1(y) + '"/>';
         rows += '<circle class="dt" cx="' + f1(x) + '" cy="' + f1(y) + '" r="4.5"/>';
-        var tx = Math.abs(x - xm) > w + 14 ? (x + xm) / 2 : (x >= xm ? x + 8 + w / 2 : x - 8 - w / 2);
-        rows += '<text class="dlab" x="' + f1(clampX(tx, w, W)) + '" y="' + f1(y - 5) + '" text-anchor="middle">' + esc(t) + "</text>";
+        var lx = Math.abs(x - xm) > w + 14 ? (x + xm) / 2 : (x >= xm ? x + 8 + w / 2 : x - 8 - w / 2);
+        rows += '<text class="dlab" x="' + f1(clampX(lx, w, W)) + '" y="' + f1(y - 5) + '" text-anchor="middle">' + esc(t) + "</text>";
       });
       g += "<g" + ds(step) + ">" + rows + "</g>" + axisSVG(ax, y0, y0 + 20);
-      return svgWrap(W, y0 + 28, "Each number's distance from the mean", g);
+      return svgWrap(W, y0 + 28, tx("statistics.svg.dist"), g);
     }
 
     /* the total as a bar: mean × count on top, the known numbers and the missing one underneath */
@@ -2922,12 +2948,12 @@
       }
       var top = "",
         each = toF(P.M) * sc;
-      g += '<text class="ptitle" x="' + pL + '" y="11">' + esc(P.N + " × " + vT(P.M) + " = " + vT(sol.total)).toUpperCase() + " IN ALL</text>";
+      g += '<text class="ptitle" x="' + pL + '" y="11">' + tx("statistics.svg.inAll", { e: esc(P.N + " × " + vT(P.M) + " = " + vT(sol.total)).toUpperCase() }) + "</text>";
       for (i = 0, x = pL; i < P.N; i++, x += each) top += piece(x, each, 18, "ev", P.N <= 24 ? vT(P.M) : "", null);
       g += "<g" + ds(steps.total) + ">" + top + "</g>";
       var bot = "",
         y2 = 18 + h + 30;
-      g += '<text class="ptitle"' + ds(steps.known) + ' x="' + pL + '" y="' + (y2 - 7) + '">' + (P.kind === "need" ? "SCORES SO FAR, THEN WHAT’S NEEDED" : "THE NUMBERS WE KNOW, THEN THE MISSING ONE" + (P.r > 1 ? "S" : "")) + "</text>";
+      g += '<text class="ptitle"' + ds(steps.known) + ' x="' + pL + '" y="' + (y2 - 7) + '">' + (P.kind === "need" ? tx("statistics.svg.soFar") : P.r > 1 ? tx("statistics.svg.knownMany") : tx("statistics.svg.knownOne")) + "</text>";
       for (i = 0, x = pL; i < P.known.length; i++) {
         var w = toF(P.known[i]) * sc;
         bot += piece(x, w, y2, "kp", vT(P.known[i]));
@@ -2940,7 +2966,7 @@
       else
         for (i = 0; i < P.r; i++) ms += piece(x + i * mw / P.r, mw / P.r, y2, "mp", "?");
       g += "<g" + ds(steps.miss) + ">" + ms + "</g>";
-      return svgWrap(W, y2 + h + 6, "Bar model: the total split into the known numbers and the missing one", g);
+      return svgWrap(W, y2 + h + 6, tx("statistics.svg.tape"), g);
     }
 
     function tallySVG(c) {
@@ -2959,7 +2985,7 @@
         out += '<line x1="' + x + '" y1="3" x2="' + x + '" y2="17"/>';
         x += 5;
       }
-      return '<svg class="tally" width="' + (x + 2) + '" height="20" viewBox="0 0 ' + (x + 2) + ' 20" role="img" aria-label="tally ' + c + '">' + out + "</svg>";
+      return '<svg class="tally" width="' + (x + 2) + '" height="20" viewBox="0 0 ' + (x + 2) + ' 20" role="img" aria-label="' + tx("statistics.svg.tally", { c: c }) + '">' + out + "</svg>";
     }
 
     /* ===================== shared bits of the work ===================== */
@@ -3000,29 +3026,29 @@
     function medianText(s, med) { // the median found, in words
       var n = s.length,
         k;
-      if (n === 2) return ["m", "Middle", "With only two numbers, both are in the middle: " + B(vT(s[0])) + " and " + B(vT(s[1])) + "."];
+      if (n === 2) return ["m", tx("statistics.tag.middle"), tx("statistics.med.two", { a: B(vT(s[0])), b: B(vT(s[1])) })];
       if (n % 2) {
         k = (n - 1) / 2;
-        return ["m", "Cross off", "Cross off the smallest and the largest, then the next pair in — " + word(k) + " pair" + (k === 1 ? "" : "s") + " in all. One number is left in the middle: " + B(vT(med)) + "."];
+        return ["m", tx("statistics.tag.crossOff"), tx(k === 1 ? "statistics.med.oddOne" : "statistics.med.odd", { k: word(k), m: B(vT(med)) })];
       }
       k = n / 2 - 1;
-      return ["m", "Cross off", "Cross off the smallest and the largest, then the next pair in — " + word(k) + " pair" + (k === 1 ? "" : "s") + " in all. Two numbers are left in the middle: " + B(vT(s[n / 2 - 1])) + " and " + B(vT(s[n / 2])) + "."];
+      return ["m", tx("statistics.tag.crossOff"), tx(k === 1 ? "statistics.med.evenOne" : "statistics.med.even", { k: word(k), a: B(vT(s[n / 2 - 1])), b: B(vT(s[n / 2])) })];
     }
 
     function medianHalf(s, med) {
       var n = s.length,
         a = s[n / 2 - 1],
         b = s[n / 2];
-      if (eqR(a, b)) return ["m", "Median", "They’re both " + vT(a) + ", so the median is " + B(vT(med)) + "."];
-      return ["m", "Halfway", "The median is halfway between them: " + B("(" + vT(a) + " + " + pT(b, 1) + ") ÷ 2 = " + vT(add(a, b)) + " ÷ 2 = " + fullT(med)) + "."];
+      if (eqR(a, b)) return ["m", tx("statistics.tag.median"), tx("statistics.med.both", { a: vT(a), m: B(vT(med)) })];
+      return ["m", tx("statistics.tag.halfway"), tx("statistics.med.halfway", { e: B("(" + vT(a) + " + " + pT(b, 1) + ") ÷ 2 = " + vT(add(a, b)) + " ÷ 2 = " + fullT(med)) })];
     }
 
     function medLineH(s, med) {
       var n = s.length;
-      if (n % 2) return 'median = <span class="eqm">' + vH(med) + "</span>";
+      if (n % 2) return tx("statistics.eq.median") + '<span class="eqm">' + vH(med) + "</span>";
       var a = s[n / 2 - 1],
         b = s[n / 2];
-      return "median = (" + vH(a) + " + " + pH(b, 1) + ") ÷ 2 = " + vH(add(a, b)) + ' ÷ 2 = <span class="eqm">' + fullH(med) + "</span>";
+      return tx("statistics.eq.median") + "(" + vH(a) + " + " + pH(b, 1) + ") ÷ 2 = " + vH(add(a, b)) + ' ÷ 2 = <span class="eqm">' + fullH(med) + "</span>";
     }
 
     function divH(sum, n) { // "30 ÷ 4 = 7 2/4 = 7 1/2 = 7.5"
@@ -3049,23 +3075,23 @@
       return t + fullT(q);
     }
 
-    function modeH(mo) { return mo.modes.length ? mo.modes.map(vH).join(", ") : '<span class="word">none</span>'; }
+    function modeH(mo) { return mo.modes.length ? mo.modes.map(vH).join(", ") : '<span class="word">' + tx("statistics.none") + "</span>"; }
 
-    function modeT(mo) { return mo.modes.length ? listAnd(mo.modes.map(vT)) : "none"; }
+    function modeT(mo) { return mo.modes.length ? listAnd(mo.modes.map(vT)) : tx("statistics.none"); }
 
     function modeSay(st) {
       var mo = st.mo,
         cs = st.cs,
         reps = cs.filter(function(c) { return c.c > 1; }),
         lines = [];
-      var cntT = reps.length && reps.length <= 6 ? listAnd(reps.map(function(c) { return vT(c.v) + " shows up " + times(c.c); })) + (reps.length < cs.length ? "; every other number just once" : "") + "." : "";
-      if (mo.kind === "same") lines.push(["e", "Mode", "Every number is " + vT(mo.modes[0]) + ", so the mode is " + B(vT(mo.modes[0])) + "."]);
-      else if (mo.kind === "once") lines.push(["e", "Mode", "Every number shows up just once, so none is more common than the others: there is " + B("no mode") + "."]);
-      else if (mo.kind === "tie") lines.push(["e", "Count", "Every number shows up " + times(mo.max) + " — a tie between all of them, so none stands out: there is " + B("no mode") + "."]);
+      var cntT = reps.length && reps.length <= 6 ? listAnd(reps.map(function(c) { return tx("statistics.mo.showsUp", { v: vT(c.v), t: times(c.c) }); })) + (reps.length < cs.length ? tx("statistics.mo.restOnce") : "") + "." : "";
+      if (mo.kind === "same") lines.push(["e", tx("statistics.tag.mode"), tx("statistics.mo.same", { v: vT(mo.modes[0]), m: B(vT(mo.modes[0])) })]);
+      else if (mo.kind === "once") lines.push(["e", tx("statistics.tag.mode"), tx("statistics.mo.once", { no: B(tx("statistics.mo.noMode")) })]);
+      else if (mo.kind === "tie") lines.push(["e", tx("statistics.tag.count"), tx("statistics.mo.tie", { t: times(mo.max), no: B(tx("statistics.mo.noMode")) })]);
       else {
-        if (cntT) lines.push(["e", "Count", cap(cntT)]);
-        if (mo.kind === "one") lines.push(["e", "Mode", vT(mo.modes[0]) + " shows up " + times(mo.max) + ", more than any other number, so the mode is " + B(vT(mo.modes[0])) + "."]);
-        else lines.push(["e", "Modes", listAnd(mo.modes.map(vT)) + " all show up " + times(mo.max) + ". When there’s a tie for most often, each of them is a mode: " + B(listAnd(mo.modes.map(vT))) + "."]);
+        if (cntT) lines.push(["e", tx("statistics.tag.count"), cap(cntT)]);
+        if (mo.kind === "one") lines.push(["e", tx("statistics.tag.mode"), tx("statistics.mo.one", { v: vT(mo.modes[0]), t: times(mo.max), m: B(vT(mo.modes[0])) })]);
+        else lines.push(["e", tx("statistics.tag.modes"), tx("statistics.mo.several", { list: listAnd(mo.modes.map(vT)), t: times(mo.max), m: B(listAnd(mo.modes.map(vT))) })]);
       }
       return lines;
     }
@@ -3078,8 +3104,8 @@
     }
 
     function modeLineH(mo) {
-      if (!mo.modes.length) return 'mode: <span class="eqe">none</span>';
-      return (mo.modes.length > 1 ? "modes = " : "mode = ") + '<span class="eqe">' + mo.modes.map(vH).join(", ") + "</span>";
+      if (!mo.modes.length) return tx("statistics.eq.modeNone") + '<span class="eqe">' + tx("statistics.none") + "</span>";
+      return (mo.modes.length > 1 ? tx("statistics.eq.modes") : tx("statistics.eq.mode")) + '<span class="eqe">' + mo.modes.map(vH).join(", ") + "</span>";
     }
 
     function outlierFor(st) {
@@ -3094,13 +3120,12 @@
     function balanceAside(st) {
       var below = st.s.filter(function(v) { return cmpR(v, st.mean) < 0; }),
         above = st.s.filter(function(v) { return cmpR(v, st.mean) > 0; });
-      if (!below.length) return "Every number equals the mean — the dots all sit right on the balance point.";
+      if (!below.length) return tx("statistics.bal.equal");
       var dB = below.map(function(v) { return sub(st.mean, v); }),
         dA = above.map(function(v) { return sub(v, st.mean); }),
         m = vT(st.mean);
-      if (st.n <= 10 && !isRep(st.mean)) return "The mean is the <strong>balance point</strong>. Below " + m + ": " + listAnd(below.map(vT)) + ", which " + (below.length === 1 ? "is " : "are ") + listAnd(dB.map(vT)) + " under — " +
-        B(vT(sumR(dB))) + " in all. Above: " + listAnd(above.map(vT)) + ", " + listAnd(dA.map(vT)) + " over — " + B(vT(sumR(dA))) + " in all. The two totals match, so the number line would balance on the triangle.";
-      return "The mean is the <strong>balance point</strong>: the distances of the numbers below " + m + " add up to " + B(vT(sumR(dB))) + ", exactly the same as the distances above it. That’s why a number line with these dots would balance on the triangle.";
+      if (st.n <= 10 && !isRep(st.mean)) return tx(below.length === 1 ? "statistics.bal.listOne" : "statistics.bal.list", { m: m, below: listAnd(below.map(vT)), dB: listAnd(dB.map(vT)), sB: B(vT(sumR(dB))), above: listAnd(above.map(vT)), dA: listAnd(dA.map(vT)), sA: B(vT(sumR(dA))) });
+      return tx("statistics.bal.sum", { m: m, s: B(vT(sumR(dB))) });
     }
 
     /* ===================== tab 1: mean, median, mode & range ===================== */
@@ -3115,47 +3140,47 @@
         mean = st.mean,
         med = st.med,
         mo = st.mo;
-      html += sect(lead("Put them in order.") + " " + cap(word(n)) + " numbers, from least to greatest. Count them again afterwards, so none went missing.",
-        '<div class="lists">' + lrow("As given", strip(P.vals)) + lrow("In order", strip(s)) + "</div>", 0);
+      html += sect(lead(tx("statistics.c.order")) + " " + tx("statistics.c.orderNote", { N: cap(word(n)) }),
+        '<div class="lists">' + lrow(tx("statistics.asGiven"), strip(P.vals)) + lrow(tx("statistics.inOrder"), strip(s)) + "</div>", 0);
       var pts = st.cs.map(function(c) { return { x: toF(c.v), c: c.c }; });
-      html += sect(lead("The dot plot.") + " A number line drawn to scale, with a dot above each number for every time it shows up. The mean (▲), median (dashed), mode and range appear as you find them.",
+      html += sect(lead(tx("statistics.c.dot")) + " " + tx("statistics.c.dotNote"),
         '<div class="xscroll">' + dotPlot({
           W: W,
           pts: pts,
           integer: allInt,
-          mean: { x: toF(mean), label: "mean " + eqT(mean), step: 2 },
-          median: { x: toF(med), label: "median " + eqT(med), step: 3 },
+          mean: { x: toF(mean), label: tx("statistics.mean", { v: eqT(mean) }), step: 2 },
+          median: { x: toF(med), label: tx("statistics.median", { v: eqT(med) }), step: 3 },
           modes: mo.modes.map(toF),
           modeStep: 4,
-          range: { lo: toF(st.min), hi: toF(st.max), label: "range = " + vT(st.range), step: 5 },
-          aria: "Dot plot of " + listT(s)
+          range: { lo: toF(st.min), hi: toF(st.max), label: tx("statistics.rangeEq", { v: vT(st.range) }), step: 5 },
+          aria: tx("statistics.svg.dotOf", { list: listT(s) })
         }) + "</div>", 1);
       var mInner = '<div class="bigline">' + sumH(s) + " = " + vH(st.sum) + '</div><div class="bigline">' + divH(st.sum, n) + "</div>";
       if (allInt && toF(st.min) >= 0 && toF(st.max) <= 20 && toF(st.max) >= 1 && n <= 16) mInner += '<div class="xscroll">' + towersSVG(s.map(toF), mean, W) + "</div>";
-      html += sect(lead("Mean: share it out evenly.") + " Add them all up, then split the total equally among the " + n + " numbers" + (allInt && toF(st.max) <= 20 && toF(st.min) >= 0 && n <= 16 ?
-        " — like moving blocks from the tall towers to the short ones until every tower is the same height." : "."), mInner, 2);
-      html += sect(lead("Median: the middle one.") + " In order, cross off one from each end, again and again, until you reach the middle.",
+      html += sect(lead(tx("statistics.c.mean")) + " " + tx("statistics.c.meanNote", { n: n }) + (allInt && toF(st.max) <= 20 && toF(st.min) >= 0 && n <= 16 ?
+        tx("statistics.c.meanBlocks") : "."), mInner, 2);
+      html += sect(lead(tx("statistics.c.median")) + " " + tx("statistics.c.medianNote"),
         crossStrip(s) + '<div class="bigline">' + medLineH(s, med) + "</div>", 3);
-      html += sect(lead("Mode: the most common.") + " How many times each number shows up.", modeStrip(st) + '<div class="bigline">' + modeLineH(mo) + "</div>", 4);
-      html += sect(lead("Range: how far it stretches.") + " Biggest minus smallest.", '<div class="bigline">range = ' + minusH(st.max, st.min) + ' = <span class="eqr">' + vH(st.range) + "</span></div>", 5);
+      html += sect(lead(tx("statistics.c.mode")) + " " + tx("statistics.c.modeNote"), modeStrip(st) + '<div class="bigline">' + modeLineH(mo) + "</div>", 4);
+      html += sect(lead(tx("statistics.c.range")) + " " + tx("statistics.c.rangeNote"), '<div class="bigline">' + tx("statistics.eq.range") + minusH(st.max, st.min) + ' = <span class="eqr">' + vH(st.range) + "</span></div>", 5);
       var st2 = null,
         X = null;
       if (P.outlier) {
         X = outlierFor(st);
         st2 = solveCenter(P.vals.concat([X]));
         var pts2 = st2.cs.map(function(c) { return { x: toF(c.v), c: c.c, cls: eqR(c.v, X) ? "new" : "" }; });
-        var cmp = '<table class="tbl"><thead><tr><th class="l"></th><th>Before</th><th>With ' + vH(X) + '</th><th>Moved</th></tr></thead><tbody>' +
-          '<tr><td class="l k">Mean</td><td>' + fullH(mean) + "</td><td>" + fullH(st2.mean) + '</td><td class="k">' + fullH(absR(sub(st2.mean, mean))) + "</td></tr>" +
-          '<tr><td class="l mm">Median</td><td>' + vH(med) + "</td><td>" + vH(st2.med) + '</td><td class="mm">' + vH(absR(sub(st2.med, med))) + "</td></tr></tbody></table>";
-        html += sect(lead("What if I add an outlier?") + " Put in one number far from the rest, " + B(vT(X)) + ", and see how far each center moves. The dotted marks show where the mean and median were.",
+        var cmp = '<table class="tbl"><thead><tr><th class="l"></th><th>' + tx("statistics.th.before") + "</th><th>" + tx("statistics.th.with", { x: vH(X) }) + "</th><th>" + tx("statistics.th.moved") + "</th></tr></thead><tbody>" +
+          '<tr><td class="l k">' + tx("statistics.cell.mean") + "</td><td>" + fullH(mean) + "</td><td>" + fullH(st2.mean) + '</td><td class="k">' + fullH(absR(sub(st2.mean, mean))) + "</td></tr>" +
+          '<tr><td class="l mm">' + tx("statistics.cell.median") + "</td><td>" + vH(med) + "</td><td>" + vH(st2.med) + '</td><td class="mm">' + vH(absR(sub(st2.med, med))) + "</td></tr></tbody></table>";
+        html += sect(lead(tx("statistics.c.outlier")) + " " + tx("statistics.c.outlierNote", { x: B(vT(X)) }),
           '<div class="xscroll">' + dotPlot({
             W: W,
             pts: pts2,
             integer: allInt && isInt(X),
-            mean: { x: toF(st2.mean), label: "mean " + eqT(st2.mean) },
-            median: { x: toF(st2.med), label: "median " + eqT(st2.med) },
+            mean: { x: toF(st2.mean), label: tx("statistics.mean", { v: eqT(st2.mean) }) },
+            median: { x: toF(st2.med), label: tx("statistics.median", { v: eqT(st2.med) }) },
             ghost: { mean: toF(mean), median: toF(med) },
-            aria: "Dot plot with the outlier " + vT(X)
+            aria: tx("statistics.svg.dotOut", { x: vT(X) })
           }) + '</div><div class="xscroll">' + cmp + "</div>", 6);
       }
       $("workHost").innerHTML = html;
@@ -3165,44 +3190,43 @@
       items.push({
         step: 0,
         lines: [
-          ["n", "Order", "Put the " + n + " numbers in order: " + B(listT(s)) + "."]
+          ["n", tx("statistics.tag.order"), tx("statistics.c.s0", { n: n, list: B(listT(s)) })]
         ],
-        aside: n >= 8 ? "Tip: tick each number off the original list as you copy it, so none gets missed or written twice." : null
+        aside: n >= 8 ? tx("statistics.c.s0tip") : null
       });
       items.push({
         step: 1,
         lines: [
-          ["n", "Plot", "Draw a number line from " + B(vT(lo)) + " to " + B(vT(hi)) + " with even spacing, and put a dot above each number — a second dot on top when a number repeats."]
+          ["n", tx("statistics.tag.plot"), tx("statistics.c.s1", { lo: B(vT(lo)), hi: B(vT(hi)) })]
         ]
       });
       items.push({
         step: 2,
         lines: [
-          ["p", "Add", "Add them all up: " + B(sumT(s) + " = " + vT(st.sum)) + "."],
-          ["p", "Share", "Share " + vT(st.sum) + " out evenly among the " + n + " numbers: " + B(divT(st.sum, n)) + ". The mean is " + B(fullT(mean)) + "."]
+          ["p", tx("statistics.tag.add"), tx("statistics.c.s2add", { e: B(sumT(s) + " = " + vT(st.sum)) })],
+          ["p", tx("statistics.tag.share"), tx("statistics.c.s2share", { s: vT(st.sum), n: n, e: B(divT(st.sum, n)), m: B(fullT(mean)) })]
         ],
         aside: balanceAside(st)
       });
       var mlines = [medianText(s, med)];
       if (n % 2 === 0) mlines.push(medianHalf(s, med));
-      else mlines.push(["m", "Median", "The median is " + B(vT(med)) + "."]);
+      else mlines.push(["m", tx("statistics.tag.median"), tx("statistics.c.s3", { m: B(vT(med)) })]);
       items.push({
         step: 3,
         lines: mlines,
-        aside: "Half the numbers are at or below the median and half are at or above it. With " + n + " numbers, the middle is number (" + n + " + 1) ÷ 2 = " +
-          (n % 2 ? ordN((n + 1) / 2) : (n + 1) / 2 + " — halfway between the " + ordN(n / 2) + " and the " + ordN(n / 2 + 1)) + " in order."
+        aside: n % 2 ? tx("statistics.c.s3asideOdd", { n: n, p: ordN((n + 1) / 2) }) : tx("statistics.c.s3asideEven", { n: n, h: (n + 1) / 2, a: ordN(n / 2), b: ordN(n / 2 + 1) })
       });
       items.push({
         step: 4,
         lines: modeSay(st),
-        aside: mo.kind === "tie" ? "Some books say every number is a mode when they all tie. Either way, the mode tells you nothing here — no number is more typical than another." : mo.modes.length ? "The mode is always one of the numbers in the list — the mean and the median don’t have to be." : null
+        aside: mo.kind === "tie" ? tx("statistics.c.s4tie") : mo.modes.length ? tx("statistics.c.s4mode") : null
       });
       items.push({
         step: 5,
         lines: [
-          ["r", "Range", "Biggest take away smallest: " + B(minusT(st.max, st.min) + " = " + vT(st.range)) + ". The numbers stretch across " + vT(st.range) + "."]
+          ["r", tx("statistics.tag.range"), tx("statistics.c.s5", { e: B(minusT(st.max, st.min) + " = " + vT(st.range)), r: vT(st.range) })]
         ],
-        aside: "The range measures spread, not the middle: it says how far apart the two extremes are. One unusual number can make it much bigger."
+        aside: tx("statistics.c.s5aside")
       });
       if (st2) {
         var dM = sub(st2.mean, mean),
@@ -3210,24 +3234,23 @@
         items.push({
           step: 6,
           lines: [
-            ["r", "Outlier", "Now add one number far away from the rest: " + B(vT(X)) + ". There are " + (n + 1) + " numbers, adding up to " + vT(st2.sum) + "."],
-            ["p", "Mean", B(divT(st2.sum, n + 1)) + " — the mean jumped " + (dM.n >= 0n ? "up" : "down") + " by " + B(fullT(absR(dM))) + "."],
-            ["m", "Median", "The middle is now " + B(vT(st2.med)) + (dMd.n === 0n ? " — it didn’t move at all." : " — it moved just " + B(vT(absR(dMd))) + ".")]
+            ["r", tx("statistics.tag.outlier"), tx("statistics.c.s6a", { x: B(vT(X)), n: n + 1, s: vT(st2.sum) })],
+            ["p", tx("statistics.tag.mean"), tx(dM.n >= 0n ? "statistics.c.s6up" : "statistics.c.s6down", { e: B(divT(st2.sum, n + 1)), d: B(fullT(absR(dM))) })],
+            ["m", tx("statistics.tag.median"), dMd.n === 0n ? tx("statistics.c.s6still", { m: B(vT(st2.med)) }) : tx("statistics.c.s6moved", { m: B(vT(st2.med)), d: B(vT(absR(dMd))) })]
           ],
-          aside: "One extreme number pulls the mean toward it, because the mean uses the size of every number. The median only cares which number is in the middle, so it barely moves. " +
-            "That’s why the median is often the better “typical” value when there’s an outlier — like one very expensive house on a street."
+          aside: tx("statistics.c.s6aside")
         });
       }
       writeLog(items);
 
-      var facts = [B(n) + " numbers, adding up to " + B(vT(st.sum)), "From " + B(vT(st.min)) + " to " + B(vT(st.max))];
+      var facts = [tx("statistics.c.f.n", { n: B(n), s: B(vT(st.sum)) }), tx("statistics.c.f.from", { a: B(vT(st.min)), b: B(vT(st.max)) })];
       var c = cmpR(mean, med);
-      facts.push(c === 0 ? "Mean and median are equal — the numbers balance evenly around the middle" : c > 0 ? "The mean is above the median: the bigger numbers pull it up" : "The mean is below the median: the smaller numbers pull it down");
-      if (st2) facts.push("With the outlier " + B(vT(X)) + ": mean " + B(fullT(st2.mean)) + ", median " + B(vT(st2.med)));
-      var cells = [{ k: "Mean", v: fullH(mean) }, { k: "Median", v: fullH(med) }, { k: "Mode", v: modeH(mo), long: mo.modes.length > 3 }, { k: "Range", v: vH(st.range) }];
+      facts.push(c === 0 ? tx("statistics.c.f.eq") : c > 0 ? tx("statistics.c.f.above") : tx("statistics.c.f.below"));
+      if (st2) facts.push(tx("statistics.c.f.out", { x: B(vT(X)), m: B(fullT(st2.mean)), d: B(vT(st2.med)) }));
+      var cells = [{ k: tx("statistics.cell.mean"), v: fullH(mean) }, { k: tx("statistics.cell.median"), v: fullH(med) }, { k: tx("statistics.cell.mode"), v: modeH(mo), long: mo.modes.length > 3 }, { k: tx("statistics.cell.range"), v: vH(st.range) }];
       bandCells(cells, facts);
-      $("closer").innerHTML = '<div class="ck"><b>Check:</b> mean × count gives the total back — ' + (isRep(mean) ? fracT(mean) : vT(mean)) + " × " + n + " = " + vT(st.sum) + ' <span class="ok">✓</span></div>' +
-        '<div class="ck"><b>Check:</b> smallest + range = largest — ' + vT(st.min) + " + " + pT(st.range, 1) + " = " + vT(st.max) + ' <span class="ok">✓</span></div>';
+      $("closer").innerHTML = '<div class="ck">' + tx("statistics.ck.c1", { e: (isRep(mean) ? fracT(mean) : vT(mean)) + " × " + n + " = " + vT(st.sum) }) + "</div>" +
+        '<div class="ck">' + tx("statistics.ck.c2", { e: vT(st.min) + " + " + pT(st.range, 1) + " = " + vT(st.max) }) + "</div>";
       return items.length;
     }
 
@@ -3250,11 +3273,10 @@
 
     function qSay(h, q, name, which) {
       var n = h.length;
-      if (n % 2) return "The " + which + " half is " + B(listT(h)) + " (" + n + " numbers); its middle is " + B(vT(q)) + ". That’s " + B(name) + ".";
+      if (n % 2) return tx("statistics.b.oddHalf", { which: which, list: B(listT(h)), n: n, q: B(vT(q)), name: B(name) });
       var a = h[n / 2 - 1],
         b = h[n / 2];
-      return "The " + which + " half is " + B(listT(h)) + " (" + n + " numbers); its middle is halfway between " + vT(a) + " and " + vT(b) + ": " +
-        B(eqR(a, b) ? vT(q) : "(" + vT(a) + " + " + pT(b, 1) + ") ÷ 2 = " + fullT(q)) + ". That’s " + B(name) + ".";
+      return tx("statistics.b.evenHalf", { which: which, list: B(listT(h)), n: n, a: vT(a), b: vT(b), e: B(eqR(a, b) ? vT(q) : "(" + vT(a) + " + " + pT(b, 1) + ") ÷ 2 = " + fullT(q)), name: B(name) });
     }
 
     function drawBox(P) {
@@ -3267,81 +3289,78 @@
         incl = P.method === "inclusive",
         odd = n % 2 === 1;
       var allInt = s.every(isInt);
-      html += sect(lead("Put them in order.") + " " + cap(word(n)) + " numbers, least to greatest.", '<div class="lists">' + lrow("As given", strip(P.vals)) + lrow("In order", strip(s)) + "</div>", 0);
-      html += sect(lead("The median splits the data in half.") + " Cross off pairs from both ends until you reach the middle.", crossStrip(s) + '<div class="bigline">' + medLineH(s, st.med) + "</div>", 1);
-      var halves = '<div class="halves"><div class="half"><span class="hl">Lower half</span>' + halfStrip(st.lower) + "</div>";
-      if (odd && !incl) halves += '<div class="half"><span class="hl">Median</span><div class="toks"><span class="tk mid">' + vH(st.med) + "</span></div></div>";
-      halves += '<div class="half"><span class="hl">Upper half</span>' + halfStrip(st.upper) + "</div></div>";
-      html += sect(lead("The quartiles: the middle of each half.") + (odd ? (incl ? " With an odd count, this time the median goes into both halves." : " With an odd count, the median itself is left out of both halves.") : " With an even count the halves split cleanly."),
+      html += sect(lead(tx("statistics.c.order")) + " " + tx("statistics.b.orderNote", { N: cap(word(n)) }), '<div class="lists">' + lrow(tx("statistics.asGiven"), strip(P.vals)) + lrow(tx("statistics.inOrder"), strip(s)) + "</div>", 0);
+      html += sect(lead(tx("statistics.b.split")) + " " + tx("statistics.b.splitNote"), crossStrip(s) + '<div class="bigline">' + medLineH(s, st.med) + "</div>", 1);
+      var halves = '<div class="halves"><div class="half"><span class="hl">' + tx("statistics.b.lower") + "</span>" + halfStrip(st.lower) + "</div>";
+      if (odd && !incl) halves += '<div class="half"><span class="hl">' + tx("statistics.b.median") + '</span><div class="toks"><span class="tk mid">' + vH(st.med) + "</span></div></div>";
+      halves += '<div class="half"><span class="hl">' + tx("statistics.b.upper") + "</span>" + halfStrip(st.upper) + "</div></div>";
+      html += sect(lead(tx("statistics.b.quart")) + (odd ? (incl ? tx("statistics.b.quartIncl") : tx("statistics.b.quartExcl")) : tx("statistics.b.quartEven")),
         halves + '<div class="bigline">' + qLine(st.lower, st.q1, "Q₁") + '</div><div class="bigline">' + qLine(st.upper, st.q3, "Q₃") + "</div>", 2);
-      var five = '<table class="tbl"><thead><tr><th>Min</th><th>Q₁</th><th>Median</th><th>Q₃</th><th>Max</th></tr></thead><tbody><tr><td>' + vH(st.min) + '</td><td class="k">' + vH(st.q1) +
+      var five = "<table class=\"tbl\"><thead><tr><th>" + tx("statistics.th.min") + "</th><th>Q₁</th><th>" + tx("statistics.th.median") + "</th><th>Q₃</th><th>" + tx("statistics.th.max") + '</th></tr></thead><tbody><tr><td>' + vH(st.min) + '</td><td class="k">' + vH(st.q1) +
         '</td><td class="mm">' + vH(st.med) + '</td><td class="k">' + vH(st.q3) + "</td><td>" + vH(st.max) + "</td></tr></tbody></table>";
-      html += sect(lead("The five-number summary, and the IQR.") + " The interquartile range is the width of the middle half: Q₃ − Q₁.",
-        '<div class="xscroll">' + five + '</div><div class="bigline">IQR = ' + minusH(st.q3, st.q1) + ' = <span class="eqk">' + vH(st.iqr) + "</span></div>", 3);
+      html += sect(lead(tx("statistics.b.five")) + " " + tx("statistics.b.fiveNote"),
+        '<div class="xscroll">' + five + '</div><div class="bigline">' + tx("statistics.eq.iqr") + minusH(st.q3, st.q1) + ' = <span class="eqk">' + vH(st.iqr) + "</span></div>", 3);
       var outStrip = strip(s, function(v) { return st.outs.some(function(u) { return eqR(u, v); }) ? "out" : ""; });
-      html += sect(lead("Any outliers?") + " The 1.5 × IQR rule: anything more than 1.5 × IQR below Q₁ or above Q₃ counts as an outlier.",
-        '<div class="bigline">1.5 × ' + pH(st.iqr, 1) + " = " + vH(st.k) + '</div><div class="bigline">low fence: ' + minusH(st.q1, st.k) + ' = <span class="eqr">' + vH(st.lf) +
-        '</span></div><div class="bigline">high fence: ' + vH(st.q3) + " + " + pH(st.k, 1) + ' = <span class="eqr">' + vH(st.uf) + "</span></div>" + outStrip, 4);
-      html += sect(lead("The box plot.") + " A box from Q₁ to Q₃ with a line at the median, and whiskers out to the smallest and largest numbers" +
-        (st.outs.length ? " that aren’t outliers. The outliers get dots of their own, and the dashed red lines are the fences." : ". Each of the four parts holds about a quarter of the numbers."),
+      html += sect(lead(tx("statistics.b.any")) + " " + tx("statistics.b.anyNote"),
+        '<div class="bigline">1.5 × ' + pH(st.iqr, 1) + " = " + vH(st.k) + '</div><div class="bigline">' + tx("statistics.eq.lowFence") + minusH(st.q1, st.k) + ' = <span class="eqr">' + vH(st.lf) +
+        '</span></div><div class="bigline">' + tx("statistics.eq.highFence") + vH(st.q3) + " + " + pH(st.k, 1) + ' = <span class="eqr">' + vH(st.uf) + "</span></div>" + outStrip, 4);
+      html += sect(lead(tx("statistics.b.plot")) + " " + tx("statistics.b.plotNote") +
+        (st.outs.length ? tx("statistics.b.plotOut") : tx("statistics.b.plotNoOut")),
         '<div class="xscroll">' + boxSVG({ W: W, st: st, integer: allInt, steps: { dots: 5, five: 5, box: 5, out: 5 } }) + "</div>", 5);
       $("workHost").innerHTML = html;
 
       items.push({
         step: 0,
         lines: [
-          ["n", "Order", "Put the " + n + " numbers in order: " + B(listT(s)) + "."]
+          ["n", tx("statistics.tag.order"), tx("statistics.c.s0", { n: n, list: B(listT(s)) })]
         ]
       });
       var ml = [medianText(s, st.med)];
       if (!odd) ml.push(medianHalf(s, st.med));
-      else ml.push(["m", "Median", "The median is " + B(vT(st.med)) + " — it splits the numbers into a lower half and an upper half."]);
+      else ml.push(["m", tx("statistics.tag.median"), tx("statistics.b.s1", { m: B(vT(st.med)) })]);
       items.push({ step: 1, lines: ml });
-      var methodAside = odd ? (incl ? "This page is including the median in both halves. Many US middle-school books leave it out instead (the switch above) — that way gives Q₁ = " + vT(st.alt.q1) + " and Q₃ = " + vT(st.alt.q3) + "." :
-          "How to split is a choice: this page leaves the median out of both halves (the usual way in US middle school). Some books include it in both, which here gives Q₁ = " + vT(st.alt.q1) + " and Q₃ = " + vT(st.alt.q3) +
-          ", and calculators and spreadsheets use yet other rules — so quartiles can differ a little from book to book. Use your class’s way.") :
-        "With an even count, every method that takes the median of each half agrees here. (Calculators and spreadsheets sometimes use a formula instead, so their quartiles can differ a little.)";
+      var methodAside = odd ? (incl ? tx("statistics.b.asideIncl", { q1: vT(st.alt.q1), q3: vT(st.alt.q3) }) :
+          tx("statistics.b.asideExcl", { q1: vT(st.alt.q1), q3: vT(st.alt.q3) })) :
+        tx("statistics.b.asideEven");
       items.push({
         step: 2,
         lines: [
-          ["p", "Q₁", qSay(st.lower, st.q1, "Q₁, the lower quartile", "lower")],
-          ["p", "Q₃", qSay(st.upper, st.q3, "Q₃, the upper quartile", "upper")]
+          ["p", "Q₁", qSay(st.lower, st.q1, tx("statistics.b.q1name"), tx("statistics.b.lowerW"))],
+          ["p", "Q₃", qSay(st.upper, st.q3, tx("statistics.b.q3name"), tx("statistics.b.upperW"))]
         ],
         aside: methodAside
       });
       items.push({
         step: 3,
         lines: [
-          ["a", "Summary", "The five-number summary: min " + B(vT(st.min)) + ", Q₁ " + B(vT(st.q1)) + ", median " + B(vT(st.med)) + ", Q₃ " + B(vT(st.q3)) + ", max " + B(vT(st.max)) + "."],
-          ["e", "IQR", "IQR = Q₃ − Q₁ = " + B(minusT(st.q3, st.q1) + " = " + vT(st.iqr)) + ". The middle half of the numbers spans " + vT(st.iqr) + "."]
+          ["a", tx("statistics.tag.summary"), tx("statistics.b.s3a", { min: B(vT(st.min)), q1: B(vT(st.q1)), med: B(vT(st.med)), q3: B(vT(st.q3)), max: B(vT(st.max)) })],
+          ["e", tx("statistics.tag.iqr"), tx("statistics.b.s3b", { e: B(minusT(st.q3, st.q1) + " = " + vT(st.iqr)), i: vT(st.iqr) })]
         ],
-        aside: "The IQR is like the range, but only of the middle half — so one extreme number can’t stretch it the way it stretches the range (" + vT(sub(st.max, st.min)) + " here)."
+        aside: tx("statistics.b.s3aside", { r: vT(sub(st.max, st.min)) })
       });
       var ol = [
-        ["r", "1.5 × IQR", "1.5 × " + pT(st.iqr, 1) + " = " + B(vT(st.k)) + "."],
-        ["r", "Fences", "Low fence: " + B(minusT(st.q1, st.k) + " = " + vT(st.lf)) + ". High fence: " + B(vT(st.q3) + " + " + pT(st.k, 1) + " = " + vT(st.uf)) + "."]
+        ["r", tx("statistics.tag.fenceK"), "1.5 × " + pT(st.iqr, 1) + " = " + B(vT(st.k)) + "."],
+        ["r", tx("statistics.tag.fences"), tx("statistics.b.fences", { lo: B(minusT(st.q1, st.k) + " = " + vT(st.lf)), hi: B(vT(st.q3) + " + " + pT(st.k, 1) + " = " + vT(st.uf)) })]
       ];
-      ol.push(["r", "Outliers", st.outs.length ? listAnd(st.outs.map(function(v) { return B(vT(v)); })) + (st.outs.length === 1 ? " is" : " are") + " outside the fences, so " +
-        (st.outs.length === 1 ? "it’s an outlier." : "they’re outliers.") : "Nothing is below " + vT(st.lf) + " or above " + vT(st.uf) + ", so there are " + B("no outliers") + "."
+      ol.push(["r", tx("statistics.tag.outliers"), st.outs.length ? tx(st.outs.length === 1 ? "statistics.b.outOne" : "statistics.b.outMany", { list: listAnd(st.outs.map(function(v) { return B(vT(v)); })) }) :
+        tx("statistics.b.outNone", { lo: vT(st.lf), hi: vT(st.uf), no: B(tx("statistics.b.noOutliers")) })
       ]);
       items.push({ step: 4, lines: ol });
       items.push({
         step: 5,
         lines: [
-          ["p", "Draw", "Under a number line, draw a box from " + vT(st.q1) + " to " + vT(st.q3) + " with a line at the median, " + vT(st.med) + ". Whiskers go out to " +
-            vT(st.wl) + " and " + vT(st.wh) + (st.outs.length ? " — the farthest numbers that aren’t outliers — and each outlier gets its own dot." : ", the smallest and largest numbers.")
-          ]
+          ["p", tx("statistics.tag.draw"), tx(st.outs.length ? "statistics.b.drawOut" : "statistics.b.drawNoOut", { q1: vT(st.q1), q3: vT(st.q3), m: vT(st.med), wl: vT(st.wl), wh: vT(st.wh) })]
         ],
-        aside: "About a quarter of the numbers fall in each part: left whisker, left part of the box, right part of the box, right whisker. A long part means those numbers are spread out, not that there are more of them."
+        aside: tx("statistics.b.drawAside")
       });
       writeLog(items);
 
-      var facts = [st.outs.length ? "Outlier" + (st.outs.length > 1 ? "s" : "") + ": " + B(listT(st.outs)) + " (outside " + vT(st.lf) + " to " + vT(st.uf) + ")" : "No outliers (nothing outside " + vT(st.lf) + " to " + vT(st.uf) + ")",
-        "Quartiles found with the median " + (odd ? (incl ? "included in" : "left out of") : "split between") + " the halves", B(n) + " numbers"
+      var facts = [st.outs.length ? tx(st.outs.length > 1 ? "statistics.b.f.outMany" : "statistics.b.f.outOne", { list: B(listT(st.outs)), lo: vT(st.lf), hi: vT(st.uf) }) : tx("statistics.b.f.noOut", { lo: vT(st.lf), hi: vT(st.uf) }),
+        tx(odd ? (incl ? "statistics.b.f.incl" : "statistics.b.f.excl") : "statistics.b.f.even"), tx("statistics.f.n", { n: B(n) })
       ];
-      bandCells([{ k: "Min", v: vH(st.min) }, { k: "Q₁", v: fullH(st.q1) }, { k: "Median", v: fullH(st.med) }, { k: "Q₃", v: fullH(st.q3) }, { k: "Max", v: vH(st.max) }, { k: "IQR", v: fullH(st.iqr) }], facts);
-      $("closer").innerHTML = '<div class="ck"><b>Check:</b> min ≤ Q₁ ≤ median ≤ Q₃ ≤ max — ' + [st.min, st.q1, st.med, st.q3, st.max].map(vT).join(" ≤ ") + ' <span class="ok">✓</span></div>' +
-        '<div class="ck"><b>Check:</b> Q₁ + IQR = Q₃ — ' + vT(st.q1) + " + " + pT(st.iqr, 1) + " = " + vT(st.q3) + ' <span class="ok">✓</span></div>';
+      bandCells([{ k: tx("statistics.th.min"), v: vH(st.min) }, { k: "Q₁", v: fullH(st.q1) }, { k: tx("statistics.cell.median"), v: fullH(st.med) }, { k: "Q₃", v: fullH(st.q3) }, { k: tx("statistics.th.max"), v: vH(st.max) }, { k: tx("statistics.cell.iqr"), v: fullH(st.iqr) }], facts);
+      $("closer").innerHTML = '<div class="ck">' + tx("statistics.ck.b1", { e: [st.min, st.q1, st.med, st.q3, st.max].map(vT).join(" ≤ ") }) + "</div>" +
+        '<div class="ck">' + tx("statistics.ck.b2", { e: vT(st.q1) + " + " + pT(st.iqr, 1) + " = " + vT(st.q3) }) + "</div>";
       return items.length;
     }
 
@@ -3399,7 +3418,7 @@
       };
     }
 
-    function posT(n) { return n % 2 ? "number (" + n + " + 1) ÷ 2 = " + ordN((n + 1) / 2) : "halfway between the " + ordN(n / 2) + " and the " + ordN(n / 2 + 1); }
+    function posT(n) { return n % 2 ? tx("statistics.f.posOdd", { n: n, p: ordN((n + 1) / 2) }) : tx("statistics.f.posEven", { a: ordN(n / 2), b: ordN(n / 2 + 1) }); }
 
     function drawFreq(P) { return P.grouped ? drawGrouped(P) : drawUngrouped(P); }
 
@@ -3411,34 +3430,34 @@
         html = "",
         items = [],
         step = 0;
-      var head = '<thead><tr><th class="l">Value</th><th class="l">Tally</th><th>Count</th><th' + ds(1) + '>Value × count</th><th' + ds(2) + ">Running total</th></tr></thead>";
+      var head = '<thead><tr><th class="l">' + tx("statistics.th.value") + '</th><th class="l">' + tx("statistics.th.tally") + "</th><th>" + tx("statistics.th.count") + "</th><th" + ds(1) + ">" + tx("statistics.th.vxc") + "</th><th" + ds(2) + ">" + tx("statistics.th.running") + "</th></tr></thead>";
       var body = rows.map(function(r, i) {
         var hit = i >= st.i1 && i <= st.i2,
           isTop = r.c === st.maxC && st.mo.modes.length;
         return "<tr" + (isTop ? ' class="top"' : "") + '><td class="l">' + vH(r.v) + '</td><td class="tl2">' + tallySVG(r.c) + '</td><td class="cnt">' + r.c + "</td>" +
           "<td" + ds(1) + ">" + vH(r.v) + " × " + r.c + " = " + vH(st.prods[i]) + '</td><td class="' + (hit ? "mm" : "dim") + '"' + ds(2) + ">" + (r.c ? (r.lo === r.hi ? ordN(r.lo) : ordN(r.lo) + "–" + ordN(r.hi)) : "—") + "</td></tr>";
       }).join("");
-      var foot = '<tfoot><tr><td class="l">Total</td><td></td><td>' + n + "</td><td" + ds(1) + ">" + vH(st.sum) + "</td><td" + ds(2) + "></td></tr></tfoot>";
-      html += sect(lead(P.fromList ? "Count them up into a table." : "The frequency table.") + " Each row is a value and how many times it shows up (its count, or frequency).",
+      var foot = '<tfoot><tr><td class="l">' + tx("statistics.th.total") + "</td><td></td><td>" + n + "</td><td" + ds(1) + ">" + vH(st.sum) + "</td><td" + ds(2) + "></td></tr></tfoot>";
+      html += sect(lead(P.fromList ? tx("statistics.f.countUp") : tx("statistics.f.table")) + " " + tx("statistics.f.tableNote"),
         '<div class="xscroll"><table class="tbl">' + head + "<tbody>" + body + "</tbody>" + foot + "</table></div>", 0);
-      html += sect(lead("Mean.") + " Each value counts as many times as it shows up, so multiply by the counts before you add.",
-        '<div class="bigline">total = ' + sumParts(st.prods, pH) + " = " + vH(st.sum) + '</div><div class="bigline">how many = ' + rows.map(function(r) { return r.c; }).join(" + ") + " = " + n + '</div><div class="bigline">mean = ' + divH(st.sum, n) + "</div>", 1);
+      html += sect(lead(tx("statistics.f.mean")) + " " + tx("statistics.f.meanNote"),
+        '<div class="bigline">' + tx("statistics.eq.total") + sumParts(st.prods, pH) + " = " + vH(st.sum) + '</div><div class="bigline">' + tx("statistics.eq.howMany") + rows.map(function(r) { return r.c; }).join(" + ") + " = " + n + '</div><div class="bigline">' + tx("statistics.eq.mean") + divH(st.sum, n) + "</div>", 1);
       var mid = rows[st.i1],
         mid2 = rows[st.i2];
-      html += sect(lead("Median.") + " The middle is " + posT(n) + " number. The running totals show which value is there.",
-        '<div class="bigline">median = ' + (st.i1 === st.i2 ? '<span class="eqm">' + vH(st.med) + "</span>" : "(" + vH(mid.v) + " + " + pH(mid2.v, 1) + ') ÷ 2 = <span class="eqm">' + fullH(st.med) + "</span>") + "</div>", 2);
-      html += sect(lead("Mode.") + " The value with the biggest count.", '<div class="bigline">' + modeLineH(st.mo) + (st.mo.modes.length ? ' <span class="nm">(count ' + st.maxC + ")</span>" : "") + "</div>", 3);
-      html += sect(lead("Range.") + " Biggest value minus smallest (only values that show up count).", '<div class="bigline">range = ' + minusH(st.max, st.min) + ' = <span class="eqr">' + vH(st.range) + "</span></div>", 4);
+      html += sect(lead(tx("statistics.f.median")) + " " + tx("statistics.f.medianNote", { pos: posT(n) }),
+        '<div class="bigline">' + tx("statistics.eq.median") + (st.i1 === st.i2 ? '<span class="eqm">' + vH(st.med) + "</span>" : "(" + vH(mid.v) + " + " + pH(mid2.v, 1) + ') ÷ 2 = <span class="eqm">' + fullH(st.med) + "</span>") + "</div>", 2);
+      html += sect(lead(tx("statistics.f.mode")) + " " + tx("statistics.f.modeNote"), '<div class="bigline">' + modeLineH(st.mo) + (st.mo.modes.length ? ' <span class="nm">' + tx("statistics.f.countN", { c: st.maxC }) + "</span>" : "") + "</div>", 3);
+      html += sect(lead(tx("statistics.f.range")) + " " + tx("statistics.f.rangeNote"), '<div class="bigline">' + tx("statistics.eq.range") + minusH(st.max, st.min) + ' = <span class="eqr">' + vH(st.range) + "</span></div>", 4);
       var allInt = freqIntData(P);
-      html += sect(lead(st.maxC > 30 ? "The picture." : "As a dot plot.") + (st.maxC > 30 ? " Counts this big make dots too small, so each value gets a bar as tall as its count." : " One dot for every number in the data, stacked above its value."),
+      html += sect(lead(st.maxC > 30 ? tx("statistics.f.picture") : tx("statistics.f.asDot")) + " " + (st.maxC > 30 ? tx("statistics.f.bigNote") : tx("statistics.f.dotNote")),
         '<div class="xscroll">' + dotPlot({
           W: W,
           pts: st.live.map(function(r) { return { x: toF(r.v), c: r.c }; }),
           integer: allInt,
-          mean: { x: toF(st.mean), label: "mean " + eqT(st.mean) },
-          median: { x: toF(st.med), label: "median " + eqT(st.med) },
+          mean: { x: toF(st.mean), label: tx("statistics.mean", { v: eqT(st.mean) }) },
+          median: { x: toF(st.med), label: tx("statistics.median", { v: eqT(st.med) }) },
           modes: st.mo.modes.map(toF),
-          aria: "Dot plot of the frequency table"
+          aria: tx("statistics.svg.dotFreq")
         }) + "</div>", 5);
       var bn = P.bin ? binsFor(P, P.bin) : null,
         est = null;
@@ -3446,9 +3465,9 @@
         bn.bins.forEach(function(b) { b.label = bn.intD ? (eqR(b.a, b.b) ? vT(b.a) : vT(b.a) + "–" + vT(b.b)) : vT(b.a) + "–" + vT(b.top); });
         var bsum = sumR(bn.bins.map(function(b) { return mul(b.mid, R(b.c)); }));
         est = dvd(bsum, R(n));
-        html += sect(lead("Grouped into a histogram.") + " Bins " + vT(bn.w) + " wide" + (bn.intD ? "" : " (each bin includes its left end, not its right end)") + ". Bars touch, because the bins cover the number line with no gaps.",
-          '<div class="xscroll">' + histSVG({ W: W, bins: bn.bins }) + '</div><div class="bigline">estimated mean = (' + sumParts(bn.bins.map(function(b) { return { m: b.mid, c: b.c }; }), function(o, i) { return vH(o.m) + " × " + o.c; }) +
-          ") ÷ " + n + " = " + vH(bsum) + " ÷ " + n + ' <span class="eqk">' + eqT(est) + '</span> <span class="nm">(the real mean is ' + fullH(st.mean) + ")</span></div>", 6);
+        html += sect(lead(tx("statistics.f.hist")) + " " + tx("statistics.f.histNote", { w: vT(bn.w) }) + (bn.intD ? "" : tx("statistics.f.histLeft")) + tx("statistics.f.histTouch"),
+          '<div class="xscroll">' + histSVG({ W: W, bins: bn.bins }) + '</div><div class="bigline">' + tx("statistics.eq.estMean") + "(" + sumParts(bn.bins.map(function(b) { return { m: b.mid, c: b.c }; }), function(o, i) { return vH(o.m) + " × " + o.c; }) +
+          ") ÷ " + n + " = " + vH(bsum) + " ÷ " + n + ' <span class="eqk">' + eqT(est) + '</span> <span class="nm">' + tx("statistics.f.realMean", { m: fullH(st.mean) }) + "</span></div>", 6);
       }
       $("workHost").innerHTML = html;
 
@@ -3456,64 +3475,62 @@
       items.push({
         step: 0,
         lines: [
-          ["e", "Table", P.fromList ? "Count how many times each number shows up and write it next to the number: " + B(rows.map(function(r) { return vT(r.v) + ": " + r.c; }).join(", ")) + "." :
-            "Read each row as a number and how many times it shows up. " + vT(rows[0].v) + " with a count of " + rows[0].c + " means " + (rows[0].c && rows[0].c <= 6 ? B(new Array(rows[0].c + 1).join(vT(rows[0].v) + ", ").replace(/, $/, "")) : rows[0].c + " of them") + "."
+          ["e", tx("statistics.tag.table"), P.fromList ? tx("statistics.f.s0list", { e: B(rows.map(function(r) { return vT(r.v) + ": " + r.c; }).join(", ")) }) :
+            tx("statistics.f.s0", { v: vT(rows[0].v), c: rows[0].c, e: rows[0].c && rows[0].c <= 6 ? B(new Array(rows[0].c + 1).join(vT(rows[0].v) + ", ").replace(/, $/, "")) : tx("statistics.f.s0many", { c: rows[0].c }) })
           ]
         ]
       });
       items.push({
         step: 1,
         lines: [
-          ["e", "How many", "Add the counts to see how many numbers there are: " + B(rows.map(function(r) { return r.c; }).join(" + ") + " = " + n) + "."],
-          ["p", "Total", "Multiply each value by its count — " + (rows[0].c ? word(rows[0].c) + " " + vT(rows[0].v) + (rows[0].c === 1 ? " is " : "s add up to ") + vT(rows[0].v) + " × " + rows[0].c + " = " + vT(st.prods[0]) : "a count of 0 adds nothing") +
-            " — and add those up: " + B(vT(st.sum)) + "."
-          ],
-          ["p", "Mean", B(divT(st.sum, n)) + ". The mean is " + B(fullT(st.mean)) + "."]
+          ["e", tx("statistics.tag.howMany"), tx("statistics.f.s1a", { e: B(rows.map(function(r) { return r.c; }).join(" + ") + " = " + n) })],
+          ["p", tx("statistics.tag.total"), rows[0].c ? tx(rows[0].c === 1 ? "statistics.f.s1one" : "statistics.f.s1many", { w: word(rows[0].c), v: vT(rows[0].v), c: rows[0].c, p: vT(st.prods[0]), s: B(vT(st.sum)) }) : tx("statistics.f.s1zero", { s: B(vT(st.sum)) })],
+          ["p", tx("statistics.tag.mean"), tx("statistics.f.s1mean", { e: B(divT(st.sum, n)), m: B(fullT(st.mean)) })]
         ],
-        aside: "Divide by the number of numbers (" + n + "), not the number of rows (" + nrows + ") — the table is just a short way to write " + n + " numbers."
+        aside: tx("statistics.f.s1aside", { n: n, r: nrows })
       });
       var ml = [
-        ["m", "Position", "There are " + n + " numbers, so the middle is " + posT(n) + " one."]
+        ["m", tx("statistics.tag.position"), tx("statistics.f.s2pos", { n: n, pos: posT(n) })]
       ];
-      if (st.i1 === st.i2) ml.push(["m", "Median", "The running totals show the " + vT(rows[st.i1].v) + "s fill places " + ordN(rows[st.i1].lo) + " to " + ordN(rows[st.i1].hi) + ", so " + (n % 2 ? "the middle one is" : "both middle ones are") + " " + vT(rows[st.i1].v) + ". The median is " + B(vT(st.med)) + "."]);
-      else ml.push(["m", "Median", "The " + ordN(st.p1) + " number is " + vT(mid.v) + " and the " + ordN(st.p2) + " is " + vT(mid2.v) + ", so the median is halfway between: " + B("(" + vT(mid.v) + " + " + pT(mid2.v, 1) + ") ÷ 2 = " + fullT(st.med)) + "."]);
+      if (st.i1 === st.i2) ml.push(["m", tx("statistics.tag.median"), tx(n % 2 ? "statistics.f.s2oneOdd" : "statistics.f.s2oneEven", { v: vT(rows[st.i1].v), a: ordN(rows[st.i1].lo), b: ordN(rows[st.i1].hi), m: B(vT(st.med)) })]);
+      else ml.push(["m", tx("statistics.tag.median"), tx("statistics.f.s2two", { p1: ordN(st.p1), a: vT(mid.v), p2: ordN(st.p2), b: vT(mid2.v), e: B("(" + vT(mid.v) + " + " + pT(mid2.v, 1) + ") ÷ 2 = " + fullT(st.med)) })]);
       items.push({ step: 2, lines: ml });
       var mol;
       if (st.mo.modes.length === 1) mol = [
-        ["e", "Mode", "The biggest count is " + st.maxC + ", for " + vT(st.mo.modes[0]) + ". The mode is " + B(vT(st.mo.modes[0])) + "."]
+        ["e", tx("statistics.tag.mode"), tx("statistics.f.s3one", { c: st.maxC, v: vT(st.mo.modes[0]), m: B(vT(st.mo.modes[0])) })]
       ];
       else if (st.mo.modes.length) mol = [
-        ["e", "Modes", listAnd(st.mo.modes.map(vT)) + " share the biggest count, " + st.maxC + ", so they’re all modes: " + B(listAnd(st.mo.modes.map(vT))) + "."]
+        ["e", tx("statistics.tag.modes"), tx("statistics.f.s3many", { list: listAnd(st.mo.modes.map(vT)), c: st.maxC, m: B(listAnd(st.mo.modes.map(vT))) })]
       ];
       else mol = [
-        ["e", "Mode", "Every value has the same count, " + st.maxC + " — no value is more common than another, so there’s " + B("no mode") + "."]
+        ["e", tx("statistics.tag.mode"), tx("statistics.f.s3none", { c: st.maxC, no: B(tx("statistics.mo.noMode")) })]
       ];
-      items.push({ step: 3, lines: mol, aside: st.mo.modes.length ? "The mode is the <strong>value</strong> (" + vT(st.mo.modes[0]) + "), not its count (" + st.maxC + ")." : null });
+      items.push({ step: 3, lines: mol, aside: st.mo.modes.length ? tx("statistics.f.s3aside", { v: vT(st.mo.modes[0]), c: st.maxC }) : null });
       items.push({
         step: 4,
         lines: [
-          ["r", "Range", "Biggest minus smallest: " + B(minusT(st.max, st.min) + " = " + vT(st.range)) + "."]
+          ["r", tx("statistics.tag.range"), tx("statistics.f.s4", { e: B(minusT(st.max, st.min) + " = " + vT(st.range)) })]
         ]
       });
       items.push({
         step: 5,
         lines: [
-          ["n", "Picture", st.maxC > 30 ? "A bar above each value, as tall as its count — the same shape a dot plot would make." : "Put " + n + " dots on a number line: a column of " + rows[0].c + " above " + vT(rows[0].v) + ", and so on. The tallest column is the mode."]
+          ["n", tx("statistics.tag.picture"), st.maxC > 30 ? tx("statistics.f.s5big") : tx("statistics.f.s5", { n: n, c: rows[0].c, v: vT(rows[0].v) })]
         ]
       });
       if (bn) items.push({
         step: 6,
         lines: [
-          ["n", "Bins", "Group the values into bins " + vT(bn.w) + " wide and count each bin: " + B(bn.bins.map(function(b) { return b.label + ": " + b.c; }).join(", ")) + "."],
-          ["p", "Estimate", "Pretend every number sits at the middle of its bin: " + B(vT(sumR(bn.bins.map(function(b) { return mul(b.mid, R(b.c)); }))) + " ÷ " + n + " " + eqT(est)) + " — close to the real mean, " + fullT(st.mean) + "."]
+          ["n", tx("statistics.tag.bins"), tx("statistics.f.s6a", { w: vT(bn.w), e: B(bn.bins.map(function(b) { return b.label + ": " + b.c; }).join(", ")) })],
+          ["p", tx("statistics.tag.estimate"), tx("statistics.f.s6b", { e: B(vT(sumR(bn.bins.map(function(b) { return mul(b.mid, R(b.c)); }))) + " ÷ " + n + " " + eqT(est)), m: fullT(st.mean) })]
         ],
-        aside: "Grouping hides the exact values, so a mean worked out from the bins is only an <strong>estimate</strong>. Wider bins make a simpler picture but a rougher estimate."
+        aside: tx("statistics.f.s6aside")
       });
       writeLog(items);
 
-      bandCells([{ k: "Mean", v: fullH(st.mean) }, { k: "Median", v: fullH(st.med) }, { k: "Mode", v: modeH(st.mo), long: st.mo.modes.length > 3 }],
-        [B(n) + " numbers in all", "Total of all of them: " + B(vT(st.sum)), "Range: " + B(vT(st.range))].concat(est ? ["Estimate from the bins: " + B(roundDec(est, 2))] : []));
-      $("closer").innerHTML = '<div class="ck"><b>Check:</b> the counts add up to ' + n + ", and " + (isRep(st.mean) ? fracT(st.mean) : vT(st.mean)) + " × " + n + " = " + vT(st.sum) + ', the total <span class="ok">✓</span></div>';
+      bandCells([{ k: tx("statistics.cell.mean"), v: fullH(st.mean) }, { k: tx("statistics.cell.median"), v: fullH(st.med) }, { k: tx("statistics.cell.mode"), v: modeH(st.mo), long: st.mo.modes.length > 3 }],
+        [tx("statistics.f.f.inAll", { n: B(n) }), tx("statistics.f.f.total", { s: B(vT(st.sum)) }), tx("statistics.f.f.range", { r: B(vT(st.range)) })].concat(est ? [tx("statistics.f.f.est", { e: B(roundDec(est, 2)) })] : []));
+      $("closer").innerHTML = '<div class="ck">' + tx("statistics.ck.f1", { n: n, e: (isRep(st.mean) ? fracT(st.mean) : vT(st.mean)) + " × " + n + " = " + vT(st.sum) }) + "</div>";
       return items.length;
     }
 
@@ -3524,66 +3541,66 @@
         W = plotW(),
         html = "",
         items = [];
-      var head = '<thead><tr><th class="l">Class</th><th>Count</th><th>Midpoint</th><th' + ds(1) + ">Midpoint × count</th><th" + ds(2) + ">Running total</th></tr></thead>";
+      var head = '<thead><tr><th class="l">' + tx("statistics.th.class") + "</th><th>" + tx("statistics.th.count") + "</th><th>" + tx("statistics.th.midpoint") + "</th><th" + ds(1) + ">" + tx("statistics.th.mxc") + "</th><th" + ds(2) + ">" + tx("statistics.th.running") + "</th></tr></thead>";
       var body = rows.map(function(r, i) {
         var hit = i >= st.i1 && i <= st.i2;
         return "<tr" + (r.c === st.maxC ? ' class="top"' : "") + '><td class="l">' + clsT(r) + '</td><td class="cnt">' + r.c + "</td><td>" + vH(r.mid) + "</td><td" + ds(1) + ">" + vH(r.mid) + " × " + r.c + " = " + vH(st.prods[i]) +
           '</td><td class="' + (hit ? "mm" : "dim") + '"' + ds(2) + ">" + (r.c ? (r.lo === r.hi ? ordN(r.lo) : ordN(r.lo) + "–" + ordN(r.hi)) : "—") + "</td></tr>";
       }).join("");
-      var foot = '<tfoot><tr><td class="l">Total</td><td>' + n + "</td><td></td><td" + ds(1) + ">" + vH(st.sum) + "</td><td" + ds(2) + "></td></tr></tfoot>";
-      html += sect(lead("The grouped frequency table.") + " We only know how many numbers fall in each class, not what they are — so each class’s midpoint stands in for its numbers.",
+      var foot = '<tfoot><tr><td class="l">' + tx("statistics.th.total") + "</td><td>" + n + "</td><td></td><td" + ds(1) + ">" + vH(st.sum) + "</td><td" + ds(2) + "></td></tr></tfoot>";
+      html += sect(lead(tx("statistics.g.table")) + " " + tx("statistics.g.tableNote"),
         '<div class="xscroll"><table class="tbl">' + head + "<tbody>" + body + "</tbody>" + foot + "</table></div>" +
-        '<div class="bigline">midpoint of ' + clsT(rows[0]) + " = (" + vH(rows[0].a) + " + " + pH(rows[0].b, 1) + ") ÷ 2 = " + vH(rows[0].mid) + "</div>", 0);
-      html += sect(lead("Estimated mean.") + " Multiply each midpoint by its count, add, and divide by how many numbers there are.",
+        '<div class="bigline">' + tx("statistics.g.midOf", { c: clsT(rows[0]) }) + "(" + vH(rows[0].a) + " + " + pH(rows[0].b, 1) + ") ÷ 2 = " + vH(rows[0].mid) + "</div>", 0);
+      html += sect(lead(tx("statistics.g.est")) + " " + tx("statistics.g.estNote"),
         '<div class="bigline">' + vH(st.sum) + " ÷ " + n + ' <span class="eqk">' + eqT(st.mean) + "</span></div>", 1);
       var mc = st.i1 === st.i2 ? rows[st.i1] : null;
-      html += sect(lead("Median class.") + " The middle is " + posT(n) + " number; the running totals show which class holds it.",
-        '<div class="bigline">median class: <span class="eqm">' + (mc ? clsT(mc) : clsT(rows[st.i1]) + " / " + clsT(rows[st.i2])) + "</span></div>", 2);
+      html += sect(lead(tx("statistics.g.medc")) + " " + tx("statistics.g.medcNote", { pos: posT(n) }),
+        '<div class="bigline">' + tx("statistics.eq.medc") + '<span class="eqm">' + (mc ? clsT(mc) : clsT(rows[st.i1]) + " / " + clsT(rows[st.i2])) + "</span></div>", 2);
       var tops = rows.filter(function(r) { return r.c === st.maxC; });
-      html += sect(lead("Modal class.") + " The class with the biggest count.", '<div class="bigline">modal class: <span class="eqe">' + tops.map(clsT).join(", ") + '</span> <span class="nm">(count ' + st.maxC + ")</span></div>", 3);
-      html += sect(lead("The histogram.") + " One bar per class, as tall as its count. The bars touch because the classes follow on from each other.",
+      html += sect(lead(tx("statistics.g.modc")) + " " + tx("statistics.g.modcNote"), '<div class="bigline">' + tx("statistics.eq.modc") + '<span class="eqe">' + tops.map(clsT).join(", ") + '</span> <span class="nm">' + tx("statistics.f.countN", { c: st.maxC }) + "</span></div>", 3);
+      html += sect(lead(tx("statistics.g.hist")) + " " + tx("statistics.g.histNote"),
         '<div class="xscroll">' + histSVG({ W: W, bins: rows.map(function(r) { return { label: clsT(r), c: r.c }; }) }) + "</div>", 4);
       $("workHost").innerHTML = html;
 
       items.push({
         step: 0,
         lines: [
-          ["e", "Midpoints", "Inside a class we don’t know the exact numbers, so use the middle of each class: the midpoint of " + clsT(rows[0]) + " is " + B("(" + vT(rows[0].a) + " + " + pT(rows[0].b, 1) + ") ÷ 2 = " + vT(rows[0].mid)) + "."]
+          ["e", tx("statistics.tag.midpoints"), tx("statistics.g.s0", { c: clsT(rows[0]), e: B("(" + vT(rows[0].a) + " + " + pT(rows[0].b, 1) + ") ÷ 2 = " + vT(rows[0].mid)) })]
         ]
       });
       items.push({
         step: 1,
         lines: [
-          ["e", "How many", "Add the counts: " + B(rows.map(function(r) { return r.c; }).join(" + ") + " = " + n) + "."],
-          ["p", "Total", "Multiply each midpoint by its count and add: " + B(vT(st.sum)) + "."],
-          ["p", "Mean", B(vT(st.sum) + " ÷ " + n + " " + eqT(st.mean)) + "."]
+          ["e", tx("statistics.tag.howMany"), tx("statistics.g.s1a", { e: B(rows.map(function(r) { return r.c; }).join(" + ") + " = " + n) })],
+          ["p", tx("statistics.tag.total"), tx("statistics.g.s1b", { s: B(vT(st.sum)) })],
+          ["p", tx("statistics.tag.mean"), tx("statistics.g.s1c", { e: B(vT(st.sum) + " ÷ " + n + " " + eqT(st.mean)) })]
         ],
-        aside: "It’s an <strong>estimate</strong>: pretending every number sits at the middle of its class is close, but not exact. The real mean could be a little higher or lower."
+        aside: tx("statistics.g.s1aside")
       });
       items.push({
         step: 2,
         lines: [
-          ["m", "Median", "There are " + n + " numbers, so the middle is " + posT(n) + " one. " + (mc ? "The running totals put it in " + B(clsT(mc)) + " — that’s the median class." :
-            "The " + ordN(st.p1) + " is in " + clsT(rows[st.i1]) + " and the " + ordN(st.p2) + " in " + clsT(rows[st.i2]) + ", so the median is right where they meet.")]
+          ["m", tx("statistics.tag.median"), tx("statistics.g.s2", { n: n, pos: posT(n) }) + (mc ? tx("statistics.g.s2one", { c: B(clsT(mc)) }) :
+            tx("statistics.g.s2two", { p1: ordN(st.p1), a: clsT(rows[st.i1]), p2: ordN(st.p2), b: clsT(rows[st.i2]) }))]
         ]
       });
       items.push({
         step: 3,
         lines: [
-          ["e", "Mode", (tops.length === 1 ? B(clsT(tops[0])) + " has the biggest count, " + st.maxC + ", so it’s the modal class." : listAnd(tops.map(function(r) { return B(clsT(r)); })) + " tie for the biggest count, " + st.maxC + ".")]
+          ["e", tx("statistics.tag.mode"), (tops.length === 1 ? tx("statistics.g.s3one", { c: B(clsT(tops[0])), n: st.maxC }) : tx("statistics.g.s3tie", { list: listAnd(tops.map(function(r) { return B(clsT(r)); })), n: st.maxC }))]
         ]
       });
       items.push({
         step: 4,
         lines: [
-          ["n", "Draw", "Draw a bar for each class, as tall as its count, with no gaps between them."]
+          ["n", tx("statistics.tag.draw"), tx("statistics.g.s4")]
         ]
       });
       writeLog(items);
-      bandCells([{ k: "Estimated mean", v: fullH(st.mean) }, { k: "Median class", v: mc ? clsWords(mc) : clsWords(rows[st.i1]) + " / " + clsWords(rows[st.i2]), long: true },
-        { k: "Modal class", v: tops.map(clsWords).join(", "), long: true }
-      ], [B(n) + " numbers in " + rows.length + " classes", "The mean is an estimate, from the midpoints"]);
-      $("closer").innerHTML = '<div class="ck"><b>Check:</b> the estimated mean, ' + roundDec(st.mean, 2) + ", is inside the data: from " + vT(rows[0].a) + " to " + vT(rows[rows.length - 1].b) + ' <span class="ok">✓</span></div>';
+      bandCells([{ k: tx("statistics.cell.estMean"), v: fullH(st.mean) }, { k: tx("statistics.cell.medc"), v: mc ? clsWords(mc) : clsWords(rows[st.i1]) + " / " + clsWords(rows[st.i2]), long: true },
+        { k: tx("statistics.cell.modc"), v: tops.map(clsWords).join(", "), long: true }
+      ], [tx("statistics.g.f.n", { n: B(n), c: rows.length }), tx("statistics.g.f.est")]);
+      $("closer").innerHTML = '<div class="ck">' + tx("statistics.ck.g1", { m: roundDec(st.mean, 2), a: vT(rows[0].a), b: vT(rows[rows.length - 1].b) }) + "</div>";
       return items.length;
     }
 
@@ -3597,21 +3614,21 @@
         items = [],
         step = 0,
         sdOn = P.sd !== "off" && !(P.sd === "sample" && n < 2);
-      html += sect(lead("First, the mean.") + " Add them up and divide by how many.", '<div class="bigline">' + sumH(vals) + " = " + vH(st.sum) + '</div><div class="bigline">' + divH(st.sum, n) + "</div>", step++);
+      html += sect(lead(tx("statistics.s.first")) + " " + tx("statistics.s.firstNote"), '<div class="bigline">' + sumH(vals) + " = " + vH(st.sum) + '</div><div class="bigline">' + divH(st.sum, n) + "</div>", step++);
       var stD = step++;
       var rowsH = vals.map(function(v, i) {
         return "<tr><td>" + vH(v) + "</td><td>" + minusH(v, st.mean) + " = " + vH(st.devs[i]) + '</td><td class="k">' + vH(st.dists[i]) + "</td>" + (sdOn ? "<td" + ds(4) + ">" + vH(st.sq[i]) + "</td>" : "") + "</tr>";
       }).join("");
-      var tbl = '<table class="tbl"><thead><tr><th>Number</th><th>Minus the mean</th><th>Distance</th>' + (sdOn ? "<th" + ds(4) + ">Squared</th>" : "") + "</tr></thead><tbody>" + rowsH +
+      var tbl = '<table class="tbl"><thead><tr><th>' + tx("statistics.th.number") + "</th><th>" + tx("statistics.th.minusMean") + "</th><th>" + tx("statistics.th.distance") + "</th>" + (sdOn ? "<th" + ds(4) + ">" + tx("statistics.th.squared") + "</th>" : "") + "</tr></thead><tbody>" + rowsH +
         '</tbody><tfoot><tr><td>' + vH(st.sum) + "</td><td>" + vH(sumR(st.devs)) + "</td><td>" + vH(st.sumD) + "</td>" + (sdOn ? "<td" + ds(4) + ">" + vH(st.sumSq) + "</td>" : "") + "</tr></tfoot></table>";
-      html += sect(lead("How far is each number from the mean?") + " Take the mean away, then drop the sign: a distance is never negative.", '<div class="xscroll">' + tbl + "</div>", stD);
+      html += sect(lead(tx("statistics.s.how")) + " " + tx("statistics.s.howNote"), '<div class="xscroll">' + tbl + "</div>", stD);
       var stP = -1;
       if (n <= 20) {
         stP = step++;
-        html += sect(lead("The distances, to scale.") + " Each red line runs from a number to the mean.", '<div class="xscroll">' + distSVG(vals, st.mean, W) + "</div>", stP);
+        html += sect(lead(tx("statistics.s.scale")) + " " + tx("statistics.s.scaleNote"), '<div class="xscroll">' + distSVG(vals, st.mean, W) + "</div>", stP);
       }
       var stM = step++;
-      html += sect(lead("The mean absolute deviation.") + " The mean of the distances.", '<div class="bigline">MAD = (' + sumH(st.dists) + ") ÷ " + n + " = " + vH(st.sumD) + " ÷ " + n + ' <span class="eqk">' + eqT(st.mad) + "</span></div>", stM);
+      html += sect(lead(tx("statistics.s.mad")) + " " + tx("statistics.s.madNote"), '<div class="bigline">' + tx("statistics.eq.mad") + "(" + sumH(st.dists) + ") ÷ " + n + " = " + vH(st.sumD) + " ÷ " + n + ' <span class="eqk">' + eqT(st.mad) + "</span></div>", stM);
       var stS = -1,
         sdT = "",
         den = P.sd === "sample" ? n - 1 : n;
@@ -3619,56 +3636,56 @@
         stS = step++;
         sdT = st.sdExact ? vT(st.sdExact) : "√" + (isInt(st.v) ? vT(st.v) : fracT(st.v)) + " ≈ " + st.sdF.toFixed(2);
         html = html.replace(/ data-step="4"/g, ds(stS));
-        html += sect(lead("Standard deviation" + (P.sd === "sample" ? " (sample)." : " (population).")) + " Square each difference instead (the Squared column), average them, then take the square root to get back to the original units.",
-          '<div class="bigline">variance = ' + vH(st.sumSq) + " ÷ " + den + ' = ' + fullH(st.v) + '</div><div class="bigline">standard deviation = √(' + (isInt(st.v) || !isRep(st.v) ? vH(st.v) : fracT(st.v)) + ') <span class="eqk">' + (st.sdExact ? "= " + vH(st.sdExact) : "≈ " + st.sdF.toFixed(2)) + "</span></div>", stS);
+        html += sect(lead(P.sd === "sample" ? tx("statistics.s.sdSample") : tx("statistics.s.sdPop")) + " " + tx("statistics.s.sdNote"),
+          '<div class="bigline">' + tx("statistics.eq.variance") + vH(st.sumSq) + " ÷ " + den + ' = ' + fullH(st.v) + '</div><div class="bigline">' + tx("statistics.eq.sd") + "√(" + (isInt(st.v) || !isRep(st.v) ? vH(st.v) : fracT(st.v)) + ') <span class="eqk">' + (st.sdExact ? "= " + vH(st.sdExact) : "≈ " + st.sdF.toFixed(2)) + "</span></div>", stS);
       }
       $("workHost").innerHTML = html;
 
       items.push({
         step: 0,
         lines: [
-          ["p", "Mean", "Add the " + n + " numbers: " + B(sumT(vals) + " = " + vT(st.sum)) + ", and share it out: " + B(divT(st.sum, n)) + ". The mean is " + B(fullT(st.mean)) + "."]
+          ["p", tx("statistics.tag.mean"), tx("statistics.s.s0", { n: n, e: B(sumT(vals) + " = " + vT(st.sum)), d: B(divT(st.sum, n)), m: B(fullT(st.mean)) })]
         ]
       });
-      var ex = vals.slice(0, 3).map(function(v, i) { return vT(v) + " is " + vT(st.dists[i]) + (st.devs[i].n < 0n ? " below" : st.devs[i].n > 0n ? " above" : " away — it’s right on the mean"); });
+      var ex = vals.slice(0, 3).map(function(v, i) { return tx(st.devs[i].n < 0n ? "statistics.s.below" : st.devs[i].n > 0n ? "statistics.s.above" : "statistics.s.on", { v: vT(v), d: vT(st.dists[i]) }); });
       items.push({
         step: stD,
         lines: [
-          ["m", "Distance", "Find how far each number is from " + vT(st.mean) + ": " + ex.join(", ") + (n > 3 ? ", and so on." : ".") + " Write each as a positive distance."]
+          ["m", tx("statistics.tag.distance"), tx(n > 3 ? "statistics.s.s1more" : "statistics.s.s1", { m: vT(st.mean), list: ex.join(", ") })]
         ],
-        aside: "Why not just add the differences? The ones below the mean and the ones above cancel out exactly — they always add up to " + B("0") + " (see the total of the middle column). That’s what makes the mean the balance point, but it says nothing about spread. Distances can’t cancel."
+        aside: tx("statistics.s.s1aside", { z: B("0") })
       });
       if (stP >= 0) items.push({
         step: stP,
         lines: [
-          ["m", "Picture", "The longer the red lines, the more spread out the numbers. Short lines mean the numbers huddle close to the mean."]
+          ["m", tx("statistics.tag.picture"), tx("statistics.s.s2")]
         ]
       });
       items.push({
         step: stM,
         lines: [
-          ["p", "Add", "Add the distances: " + B(sumT(st.dists) + " = " + vT(st.sumD)) + "."],
-          ["a", "MAD", "Divide by how many numbers there are: " + B(vT(st.sumD) + " ÷ " + n + " " + eqT(st.mad)) + ". The MAD is " + B(fullT(st.mad)) + "."]
+          ["p", tx("statistics.tag.add"), tx("statistics.s.s3a", { e: B(sumT(st.dists) + " = " + vT(st.sumD)) })],
+          ["a", tx("statistics.tag.mad"), tx("statistics.s.s3b", { e: B(vT(st.sumD) + " ÷ " + n + " " + eqT(st.mad)), m: B(fullT(st.mad)) })]
         ],
-        aside: "So on average, a number is about " + roundDec(st.mad, 2) + " away from the mean. A bigger MAD means the numbers are more spread out; a MAD of 0 means they’re all the same."
+        aside: tx("statistics.s.s3aside", { d: roundDec(st.mad, 2) })
       });
       if (sdOn) items.push({
         step: stS,
         lines: [
-          ["r", "Square", "Square each difference (a negative times itself is positive) and add: " + B(vT(st.sumSq)) + "."],
-          ["r", "Variance", "Divide by " + (P.sd === "sample" ? B("n − 1 = " + den) + ", because this is a sample from a bigger group" : B("n = " + n) + ", because this is the whole group (population)") + ": " + B(vT(st.sumSq) + " ÷ " + den + " " + eqT(st.v)) + "."],
-          ["a", "Root", "Take the square root to undo the squaring: the standard deviation is " + B(sdT) + "."]
+          ["r", tx("statistics.tag.square"), tx("statistics.s.s4a", { s: B(vT(st.sumSq)) })],
+          ["r", tx("statistics.tag.variance"), tx(P.sd === "sample" ? "statistics.s.s4bSample" : "statistics.s.s4bPop", { d: P.sd === "sample" ? B("n − 1 = " + den) : B("n = " + n), e: B(vT(st.sumSq) + " ÷ " + den + " " + eqT(st.v)) })],
+          ["a", tx("statistics.tag.root"), tx("statistics.s.s4c", { sd: B(sdT) })]
         ],
-        aside: "The standard deviation is the high-school cousin of the MAD: squaring instead of dropping the sign. It is usually a little bigger than the MAD (" + roundDec(st.mad, 2) + " here). " +
-          (P.sd === "sample" ? "Dividing by n − 1 instead of n corrects for a small sample; the population version (÷ " + n + ") would be " + (st.other ? "≈ " + Math.sqrt(toF(st.other)).toFixed(2) : "—") + "." :
-            "The sample version divides by n − 1 instead" + (st.other ? " and would give ≈ " + Math.sqrt(toF(st.other)).toFixed(2) : "") + ".")
+        aside: tx("statistics.s.s4aside", { m: roundDec(st.mad, 2) }) +
+          (P.sd === "sample" ? tx("statistics.s.s4asideSample", { n: n, v: st.other ? "≈ " + Math.sqrt(toF(st.other)).toFixed(2) : "—" }) :
+            st.other ? tx("statistics.s.s4asidePopV", { v: Math.sqrt(toF(st.other)).toFixed(2) }) : tx("statistics.s.s4asidePop"))
       });
       writeLog(items);
-      var cells = [{ k: "Mean", v: fullH(st.mean) }, { k: "MAD", v: fullH(st.mad) }];
-      if (sdOn) cells.push({ k: "Std. deviation", v: st.sdExact ? vH(st.sdExact) : '<span class="ap">≈</span> ' + st.sdF.toFixed(2) });
-      bandCells(cells, [B(n) + " numbers", "Distances add up to " + B(vT(st.sumD)), "Range: " + B(vT(st.range))].concat(sdOn ? [(P.sd === "sample" ? "Sample" : "Population") + " standard deviation (÷ " + den + ")", "Variance " + B(eqT(st.v).replace(/^= /, ""))] : []));
-      $("closer").innerHTML = '<div class="ck"><b>Check:</b> the differences from the mean add up to ' + vH(sumR(st.devs)) + ' — they always cancel <span class="ok">✓</span></div>' +
-        '<div class="ck"><b>Check:</b> the MAD, ' + roundDec(st.mad, 2) + ", is between 0 and half the range (" + vT(dvd(st.range, TWO)) + ') <span class="ok">✓</span></div>';
+      var cells = [{ k: tx("statistics.cell.mean"), v: fullH(st.mean) }, { k: tx("statistics.cell.mad"), v: fullH(st.mad) }];
+      if (sdOn) cells.push({ k: tx("statistics.cell.sd"), v: st.sdExact ? vH(st.sdExact) : '<span class="ap">≈</span> ' + st.sdF.toFixed(2) });
+      bandCells(cells, [tx("statistics.f.n", { n: B(n) }), tx("statistics.s.f.dist", { s: B(vT(st.sumD)) }), tx("statistics.f.f.range", { r: B(vT(st.range)) })].concat(sdOn ? [tx(P.sd === "sample" ? "statistics.s.f.sample" : "statistics.s.f.pop", { d: den }), tx("statistics.s.f.var", { v: B(eqT(st.v).replace(/^= /, "")) })] : []));
+      $("closer").innerHTML = '<div class="ck">' + tx("statistics.ck.s1", { s: vH(sumR(st.devs)) }) + "</div>" +
+        '<div class="ck">' + tx("statistics.ck.s2", { m: roundDec(st.mad, 2), h: vT(dvd(st.range, TWO)) }) + "</div>";
       return items.length;
     }
 
@@ -3682,69 +3699,67 @@
         k = P.k,
         N = P.N;
       var tape = tapeSVG(P, sol, W, { total: 0, known: 1, miss: 2 });
-      html += sect(lead(need ? "The total you need." : "The total.") + " A mean of " + vT(P.M) + " for " + N + " " + (need ? "tests" : "numbers") + " means they add up to the same as " + N + " × " + vT(P.M) + ".",
-        '<div class="bigline">total = ' + vH(P.M) + " × " + N + ' = <span class="eqk">' + vH(sol.total) + "</span></div>", 0);
-      html += sect(lead(need ? "What you have so far." : "The numbers we know.") + " Add them up.", '<div class="bigline">' + sumH(P.known) + " = " + vH(sol.have) + "</div>", 1);
-      html += sect(lead(need ? "What’s left to score." : "The missing " + (P.r > 1 ? "ones." : "one.")) + " Whatever the known numbers don’t cover, the missing " + (P.r > 1 ? "ones have" : "one has") + " to make up.",
+      html += sect(lead(need ? tx("statistics.m.totalNeed") : tx("statistics.m.total")) + " " + tx(need ? "statistics.m.totalNoteNeed" : "statistics.m.totalNote", { m: vT(P.M), n: N }),
+        '<div class="bigline">' + tx("statistics.eq.total") + vH(P.M) + " × " + N + ' = <span class="eqk">' + vH(sol.total) + "</span></div>", 0);
+      html += sect(lead(need ? tx("statistics.m.haveNeed") : tx("statistics.m.have")) + " " + tx("statistics.m.haveNote"), '<div class="bigline">' + sumH(P.known) + " = " + vH(sol.have) + "</div>", 1);
+      html += sect(lead(need ? tx("statistics.m.leftNeed") : P.r > 1 ? tx("statistics.m.leftMany") : tx("statistics.m.leftOne")) + " " + tx(P.r > 1 ? "statistics.m.leftNoteMany" : "statistics.m.leftNoteOne"),
         '<div class="bigline">' + minusH(sol.total, sol.have) + ' = <span class="eqk">' + vH(sol.miss) + "</span></div>" +
-        (P.r > 1 && need ? '<div class="bigline">each of the ' + P.r + " = " + vH(sol.miss) + " ÷ " + P.r + ' <span class="eqk">' + eqT(sol.each) + "</span></div>" : "") +
+        (P.r > 1 && need ? '<div class="bigline">' + tx("statistics.m.eachOf", { r: P.r }) + vH(sol.miss) + " ÷ " + P.r + ' <span class="eqk">' + eqT(sol.each) + "</span></div>" : "") +
         (tape ? '<div class="xscroll">' + tape + "</div>" : ""), 2);
       $("workHost").innerHTML = html;
 
       items.push({
         step: 0,
         lines: [
-          ["p", "Total", need ? "To average " + vT(P.M) + " over " + N + " tests, the scores must add up to " + B(vT(P.M) + " × " + N + " = " + vT(sol.total)) + "." :
-            "A mean of " + vT(P.M) + " means the " + N + " numbers add up to the same as " + N + " numbers that are all " + vT(P.M) + ": " + B(vT(P.M) + " × " + N + " = " + vT(sol.total)) + "."
-          ]
+          ["p", tx("statistics.tag.total"), tx(need ? "statistics.m.s0need" : "statistics.m.s0", { m: vT(P.M), n: N, e: B(vT(P.M) + " × " + N + " = " + vT(sol.total)) })]
         ],
-        aside: "This is the mean worked backwards: mean = total ÷ count, so total = mean × count."
+        aside: tx("statistics.m.s0aside")
       });
       items.push({
         step: 1,
         lines: [
-          ["m", "Known", (need ? "The " + k + " score" + (k === 1 ? "" : "s") + " so far add" + (k === 1 ? "s" : "") + " up to " : "The " + k + " we know add up to ") + B(sumT(P.known) + " = " + vT(sol.have)) + "."]
+          ["m", tx("statistics.tag.known"), tx(need ? (k === 1 ? "statistics.m.s1needOne" : "statistics.m.s1need") : "statistics.m.s1", { k: k, e: B(sumT(P.known) + " = " + vT(sol.have)) })]
         ]
       });
       var ml = [
-        ["a", P.r > 1 ? "Missing" : "Answer", (need ? "That leaves " : "The missing " + (P.r > 1 ? word(P.r) + " make" : "one makes") + " up the rest: ") + B(minusT(sol.total, sol.have) + " = " + vT(sol.miss)) + (need ? (P.r > 1 ? " points for the last " + P.r + " tests." : " — that’s the score you need.") : ".")]
+        ["a", P.r > 1 ? tx("statistics.tag.missing") : tx("statistics.tag.answer"), tx(need ? (P.r > 1 ? "statistics.m.s2needMany" : "statistics.m.s2needOne") : (P.r > 1 ? "statistics.m.s2many" : "statistics.m.s2one"), { w: word(P.r), r: P.r, e: B(minusT(sol.total, sol.have) + " = " + vT(sol.miss)) })]
       ];
-      if (P.r > 1 && need) ml.push(["a", "Each", "Shared equally over " + P.r + " tests: " + B(vT(sol.miss) + " ÷ " + P.r + " " + eqT(sol.each)) + " on each."]);
+      if (P.r > 1 && need) ml.push(["a", tx("statistics.tag.each"), tx("statistics.m.s2each", { r: P.r, e: B(vT(sol.miss) + " ÷ " + P.r + " " + eqT(sol.each)) })]);
       var aside = null;
-      if (need && toF(sol.each) > 100) aside = "That’s more than 100 — if the tests are out of 100, an average of " + vT(P.M) + " can’t be reached any more.";
-      else if (sol.miss.n < 0n) aside = "A negative answer means the known numbers already add up to more than the total — check the problem.";
-      else if (P.r > 1 && !need) aside = "With " + P.r + " numbers missing, we can only find what they add up to — not each one, unless we know more.";
+      if (need && toF(sol.each) > 100) aside = tx("statistics.m.a100", { m: vT(P.M) });
+      else if (sol.miss.n < 0n) aside = tx("statistics.m.aNeg");
+      else if (P.r > 1 && !need) aside = tx("statistics.m.aMany", { r: P.r });
       items.push({ step: 2, lines: ml, aside: aside });
       writeLog(items);
-      var ansV = P.r > 1 && need ? fullH(sol.each) + ' <span class="word">each</span>' : fullH(sol.miss);
-      bandCells([{ k: need ? (P.r > 1 ? "Score needed on each" : "Score needed") : (P.r > 1 ? "The missing ones add up to" : "The missing number"), v: ansV }],
-        ["Total: " + B(vT(P.M) + " × " + N + " = " + vT(sol.total)), "Known so far: " + B(vT(sol.have))]);
+      var ansV = P.r > 1 && need ? fullH(sol.each) + ' <span class="word">' + tx("statistics.m.eachW") + "</span>" : fullH(sol.miss);
+      bandCells([{ k: need ? (P.r > 1 ? tx("statistics.cell.needEach") : tx("statistics.cell.need")) : (P.r > 1 ? tx("statistics.cell.addUp") : tx("statistics.cell.missing")), v: ansV }],
+        [tx("statistics.m.f.total", { e: B(vT(P.M) + " × " + N + " = " + vT(sol.total)) }), tx("statistics.m.f.known", { s: B(vT(sol.have)) })]);
       var all = P.known.concat(P.r > 1 ? [] : [sol.miss]);
-      $("closer").innerHTML = P.r === 1 ? '<div class="ck"><b>Check:</b> (' + sumT(all) + ") ÷ " + N + " = " + vT(sol.total) + " ÷ " + N + " = " + vT(P.M) + ' <span class="ok">✓</span></div>' :
-        '<div class="ck"><b>Check:</b> ' + vT(sol.have) + " + " + pT(sol.miss, 1) + " = " + vT(sol.total) + ", and " + vT(sol.total) + " ÷ " + N + " = " + vT(P.M) + ' <span class="ok">✓</span></div>';
+      $("closer").innerHTML = P.r === 1 ? '<div class="ck">' + tx("statistics.ck.m1", { e: "(" + sumT(all) + ") ÷ " + N + " = " + vT(sol.total) + " ÷ " + N + " = " + vT(P.M) }) + "</div>" :
+        '<div class="ck">' + tx("statistics.ck.m2", { a: vT(sol.have) + " + " + pT(sol.miss, 1) + " = " + vT(sol.total), b: vT(sol.total) + " ÷ " + N + " = " + vT(P.M) }) + "</div>";
       return items.length;
     }
 
     var DRAW = { center: drawCenter, box: drawBox, freq: drawFreq, spread: drawSpread, missing: drawMissing };
     var LEGEND = {
-      center: '<div><span class="badge c-p">▲ Mean</span> share evenly</div><div><span class="badge c-m">Median</span> the middle</div><div><span class="badge c-e">Mode</span> most common</div><div><span class="badge c-r">Range</span> spread</div>',
-      box: '<div><span class="badge c-m">Median</span> splits in half</div><div><span class="badge c-p">Q₁ Q₃</span> quartiles</div><div><span class="badge c-e">IQR</span> middle half</div><div><span class="badge c-r">Outlier</span> past a fence</div>',
-      freq: '<div><span class="badge c-e">Count</span> how often</div><div><span class="badge c-p">Mean</span> value × count</div><div><span class="badge c-m">Median</span> running totals</div>',
-      spread: '<div><span class="badge c-p">Mean</span> the balance point</div><div><span class="badge c-m">Distance</span> from the mean</div><div><span class="badge c-a">MAD</span> mean distance</div>',
-      missing: '<div><span class="badge c-p">Total</span> mean × count</div><div><span class="badge c-m">Known</span> what we have</div><div><span class="badge c-a">Missing</span> what’s left</div>'
+      center: tx("statistics.legend.center"),
+      box: tx("statistics.legend.box"),
+      freq: tx("statistics.legend.freq"),
+      spread: tx("statistics.legend.spread"),
+      missing: tx("statistics.legend.missing")
     };
 
     /* ===================== problems as words: check box, worksheets ===================== */
     function shortList(vals) { return vals.length > 14 ? vals.slice(0, 12).map(vT).join(", ") + ", …" : listT(vals); }
-    var ASKW = { all: "the mean, median, mode and range", mean: "the mean", median: "the median", mode: "the mode", range: "the range" };
+    var ASKW = { all: tx("statistics.ask.all"), mean: tx("statistics.ask.mean"), median: tx("statistics.ask.median"), mode: tx("statistics.ask.mode"), range: tx("statistics.ask.range") };
     var IS = 'style="border-collapse:collapse;margin:4px 0;font-variant-numeric:tabular-nums"',
       TH = 'style="border:1px solid #999;padding:2px 9px;font-weight:600"',
       TD = 'style="border:1px solid #999;padding:2px 9px;text-align:center"';
 
     function freqTableHtml(P) {
-      var lab = P.grouped ? "Class" : "Value";
+      var lab = P.grouped ? tx("statistics.th.class") : tx("statistics.th.value");
       return "<table " + IS + "><tr><th " + TH + ">" + lab + "</th>" + P.rows.map(function(r) { return "<td " + TD + ">" + (P.grouped ? clsT(r) : vT(r.v)) + "</td>"; }).join("") +
-        "</tr><tr><th " + TH + ">Count</th>" + P.rows.map(function(r) { return "<td " + TD + ">" + r.c + "</td>"; }).join("") + "</tr></table>";
+        "</tr><tr><th " + TH + ">" + tx("statistics.th.count") + "</th>" + P.rows.map(function(r) { return "<td " + TD + ">" + r.c + "</td>"; }).join("") + "</tr></table>";
     }
 
     function record(P) {
@@ -3753,60 +3768,64 @@
       if (P.mode === "center") {
         st = solveCenter(P.vals);
         a = P.ask;
-        o.text = "Find " + ASKW[a] + " of " + listT(P.vals) + ".";
-        o.html = "Find " + ASKW[a] + " of <b>" + listT(P.vals) + "</b>.";
-        o.short = cap(a === "all" ? "Mean, median, mode and range" : a) + " of " + shortList(P.vals);
+        o.text = tx("statistics.r.c.text", { ask: ASKW[a], list: listT(P.vals) });
+        o.html = tx("statistics.r.c.text", { ask: ASKW[a], list: "<b>" + listT(P.vals) + "</b>" });
+        o.short = tx("statistics.r.c.short", { what: a === "all" ? tx("statistics.r.c.shortAll") : cap(tx("statistics.word." + a)), list: shortList(P.vals) });
         var parts = { mean: fullT(st.mean), median: fullT(st.med), mode: modeT(st.mo), range: vT(st.range) };
-        o.answer = a === "all" ? "Mean " + parts.mean + ", median " + parts.median + ", mode " + parts.mode + ", range " + parts.range : parts[a];
-        o.answerHtml = a === "all" ? "Mean <b>" + parts.mean + "</b>, median <b>" + parts.median + "</b>, mode <b>" + parts.mode + "</b>, range <b>" + parts.range + "</b>" : "<b>" + parts[a] + "</b>";
+        o.answer = a === "all" ? tx("statistics.r.c.all", parts) : parts[a];
+        o.answerHtml = a === "all" ? tx("statistics.r.c.all", { mean: "<b>" + parts.mean + "</b>", median: "<b>" + parts.median + "</b>", mode: "<b>" + parts.mode + "</b>", range: "<b>" + parts.range + "</b>" }) : "<b>" + parts[a] + "</b>";
       } else if (P.mode === "box") {
         st = solveBox(P.vals, P.method);
-        var how = P.method === "inclusive" ? " (Put the median in both halves.)" : "";
-        o.text = "Find the five-number summary (smallest, lower quartile, median, upper quartile, largest) and the interquartile range (IQR) of " + listT(P.vals) + "." + how;
-        o.html = "Find the five-number summary (smallest, lower quartile, median, upper quartile, largest) and the interquartile range (IQR) of <b>" + listT(P.vals) + "</b>." + how;
-        o.short = "Box plot of " + shortList(P.vals);
-        var five = "Min " + vT(st.min) + ", Q₁ " + fullT(st.q1) + ", median " + fullT(st.med) + ", Q₃ " + fullT(st.q3) + ", max " + vT(st.max) + ", IQR " + fullT(st.iqr);
-        var outs = st.outs.length ? "; outlier" + (st.outs.length > 1 ? "s " : " ") + listT(st.outs) : "; no outliers";
+        var how = P.method === "inclusive" ? tx("statistics.r.b.incl") : "";
+        o.text = tx("statistics.r.b.text", { list: listT(P.vals), how: how });
+        o.html = tx("statistics.r.b.text", { list: "<b>" + listT(P.vals) + "</b>", how: how });
+        o.short = tx("statistics.r.b.short", { list: shortList(P.vals) });
+        var fv = { min: vT(st.min), q1: fullT(st.q1), med: fullT(st.med), q3: fullT(st.q3), max: vT(st.max), iqr: fullT(st.iqr) },
+          fb = {};
+        Object.keys(fv).forEach(function(k) { fb[k] = "<b>" + fv[k] + "</b>"; });
+        var five = tx("statistics.r.b.five", fv);
+        var outs = st.outs.length ? tx(st.outs.length > 1 ? "statistics.r.b.outMany" : "statistics.r.b.outOne", { list: listT(st.outs) }) : tx("statistics.r.b.noOut");
         o.answer = five + outs;
-        o.answerHtml = five.replace(/(Min|Q₁|median|Q₃|max|IQR) ([^,]+)/g, "$1 <b>$2</b>") + outs;
+        o.answerHtml = (EN ? five.replace(/(Min|Q₁|median|Q₃|max|IQR) ([^,]+)/g, "$1 <b>$2</b>") : tx("statistics.r.b.five", fb)) + outs;
       } else if (P.mode === "freq") {
         st = solveFreq(P);
         var tbl = P.rows.map(function(r) { return (P.grouped ? clsT(r) : vT(r.v)) + ": " + r.c; }).join(", ");
         if (P.grouped) {
           var mc = st.i1 === st.i2 ? clsWords(P.rows[st.i1]) : clsWords(P.rows[st.i1]) + " / " + clsWords(P.rows[st.i2]),
             tops = P.rows.filter(function(r) { return r.c === st.maxC; }).map(clsWords).join(", ");
-          o.text = "Estimate the mean, and find the median class and the modal class. (Class: count) " + tbl + ".";
-          o.html = "Estimate the mean, and find the median class and the modal class." + freqTableHtml(P);
-          o.short = "Grouped table " + tbl.slice(0, 80);
-          o.answer = "Estimated mean " + fullT(st.mean) + ", median class " + mc + ", modal class " + tops;
-          o.answerHtml = "Estimated mean <b>" + fullT(st.mean) + "</b>, median class <b>" + mc + "</b>, modal class <b>" + tops + "</b>";
+          o.text = tx("statistics.r.g.text", { t: tbl });
+          o.html = tx("statistics.r.g.html") + freqTableHtml(P);
+          o.short = tx("statistics.r.g.short", { t: tbl.slice(0, 80) });
+          o.answer = tx("statistics.r.g.ans", { m: fullT(st.mean), mc: mc, tops: tops });
+          o.answerHtml = tx("statistics.r.g.ans", { m: "<b>" + fullT(st.mean) + "</b>", mc: "<b>" + mc + "</b>", tops: "<b>" + tops + "</b>" });
         } else {
-          o.text = "Find the mean, median and mode. (Value: count) " + tbl + ".";
-          o.html = "Find the mean, median and mode." + freqTableHtml(P);
-          o.short = "Mean, median and mode of " + tbl.slice(0, 80);
-          o.answer = "Mean " + fullT(st.mean) + ", median " + fullT(st.med) + ", mode " + modeT(st.mo);
-          o.answerHtml = "Mean <b>" + fullT(st.mean) + "</b>, median <b>" + fullT(st.med) + "</b>, mode <b>" + modeT(st.mo) + "</b>";
+          o.text = tx("statistics.r.f.text", { t: tbl });
+          o.html = tx("statistics.r.f.html") + freqTableHtml(P);
+          o.short = tx("statistics.r.f.short", { t: tbl.slice(0, 80) });
+          o.answer = tx("statistics.r.f.ans", { m: fullT(st.mean), d: fullT(st.med), o: modeT(st.mo) });
+          o.answerHtml = tx("statistics.r.f.ans", { m: "<b>" + fullT(st.mean) + "</b>", d: "<b>" + fullT(st.med) + "</b>", o: "<b>" + modeT(st.mo) + "</b>" });
         }
       } else if (P.mode === "spread") {
         st = solveSpread(P.vals, P.sd);
-        var sdW = P.sd === "pop" ? " Then find the standard deviation for the whole group (population: divide by n)." : P.sd === "sample" ? " Then find the standard deviation for a sample (divide by n − 1)." : "";
-        o.text = "Find the mean and the mean absolute deviation (MAD) of " + listT(P.vals) + "." + sdW;
-        o.html = "Find the mean and the mean absolute deviation (MAD) of <b>" + listT(P.vals) + "</b>." + sdW;
-        o.short = "MAD of " + shortList(P.vals);
-        var sdA = P.sd !== "off" ? ", standard deviation " + (st.sdExact ? vT(st.sdExact) : "≈ " + st.sdF.toFixed(2)) : "";
-        o.answer = "Mean " + fullT(st.mean) + ", MAD " + fullT(st.mad) + sdA;
-        o.answerHtml = "Mean <b>" + fullT(st.mean) + "</b>, MAD <b>" + fullT(st.mad) + "</b>" + (sdA ? ", standard deviation <b>" + sdA.replace(", standard deviation ", "") + "</b>" : "");
+        var sdW = P.sd === "pop" ? tx("statistics.r.s.pop") : P.sd === "sample" ? tx("statistics.r.s.sample") : "";
+        o.text = tx("statistics.r.s.text", { list: listT(P.vals), sd: sdW });
+        o.html = tx("statistics.r.s.text", { list: "<b>" + listT(P.vals) + "</b>", sd: sdW });
+        o.short = tx("statistics.r.s.short", { list: shortList(P.vals) });
+        var sdV = st.sdExact ? vT(st.sdExact) : "≈ " + st.sdF.toFixed(2),
+          sdA = P.sd !== "off" ? tx("statistics.r.s.sdA", { v: sdV }) : "";
+        o.answer = tx("statistics.r.s.ans", { m: fullT(st.mean), d: fullT(st.mad), sd: sdA });
+        o.answerHtml = tx("statistics.r.s.ans", { m: "<b>" + fullT(st.mean) + "</b>", d: "<b>" + fullT(st.mad) + "</b>", sd: sdA ? tx("statistics.r.s.sdA", { v: "<b>" + sdV + "</b>" }) : "" });
       } else {
         var sol = solveMissing(P),
           kn = listAnd(P.known.map(vT));
         if (P.kind === "need") {
-          o.text = "Your " + (P.k === 1 ? "score so far is " : "scores so far are ") + kn + ". " + (P.r > 1 ? "What do you need on each of the last " + P.r + " tests for an average of " + vT(P.M) + " over all " + P.N + "?" :
-            "What do you need on the next test for an average of " + vT(P.M) + "?");
-          o.short = "Score needed for an average of " + vT(P.M) + " after " + shortList(P.known);
-          o.answer = P.r > 1 ? fullT(sol.each) + " on each" : fullT(sol.miss);
+          o.text = tx(P.k === 1 ? "statistics.r.n.one" : "statistics.r.n.many", { list: kn }) + (P.r > 1 ? tx("statistics.r.n.lastMany", { r: P.r, m: vT(P.M), n: P.N }) :
+            tx("statistics.r.n.next", { m: vT(P.M) }));
+          o.short = tx("statistics.r.n.short", { m: vT(P.M), list: shortList(P.known) });
+          o.answer = P.r > 1 ? tx("statistics.r.n.each", { v: fullT(sol.each) }) : fullT(sol.miss);
         } else {
-          o.text = "The mean of " + P.N + " numbers is " + vT(P.M) + ". " + cap(word(P.k)) + " of them " + (P.k === 1 ? "is " : "are ") + kn + ". " + (P.r > 1 ? "What do the other " + word(P.r) + " add up to?" : "What is the " + ordW(P.N) + " number?");
-          o.short = "Mean of " + P.N + " numbers is " + vT(P.M) + ": " + shortList(P.known) + ", find the missing " + (P.r > 1 ? "ones" : "one");
+          o.text = tx("statistics.r.m.lead", { n: P.N, m: vT(P.M) }) + tx(P.k === 1 ? "statistics.r.m.knownOne" : "statistics.r.m.known", { K: cap(word(P.k)), list: kn }) + (P.r > 1 ? tx("statistics.r.m.others", { w: word(P.r) }) : tx("statistics.r.m.which", { o: ordW(P.N) }));
+          o.short = tx(P.r > 1 ? "statistics.r.m.shortMany" : "statistics.r.m.shortOne", { n: P.N, m: vT(P.M), list: shortList(P.known) });
           o.answer = fullT(sol.miss);
         }
         o.html = esc(o.text).replace(/(\d+(?:\.\d+)?)/g, "<b>$1</b>");
@@ -3829,6 +3848,7 @@
     function freshCK(sig) { return { sig: sig, vals: {}, marks: {}, revealed: false, tried: false, fb: "", fbCls: "", ok: false, graded: 0, hinted: false, hint: "" }; }
 
     function readUser(s) {
+      s = ownAnswer(s);
       s = String(s || "").replace(/[−–—]/g, "-").replace(/÷/g, "/").replace(/^\s*(?:(?:the|mean|median|mode|range|mad|iqr|q1|q3|min|max|it|is|about|approx(?:imately)?|x)\b\s*|(?:q₁|q₃|[=≈~:])\s*)+/i, "").replace(/\s*(?:points?|pts|each|on each)\.?\s*$/i, "").trim();
       s = s.replace(/(\d),(?=\d{3}(?!\d))/g, "$1");
       var m, approx = false;
@@ -3857,6 +3877,18 @@
       return null;
     }
 
+    // an answer typed in the language in use: its own words before and after the number (statistics.ck.leadWords,
+    // …tailWords in its locale file) dropped. English: unchanged.
+    function ownAnswer(s) {
+      var lw = own("statistics.ck.leadWords"),
+        tw2 = own("statistics.ck.tailWords");
+      if (!lw && !tw2) return s;
+      s = fold(String(s || "")).toLowerCase();
+      if (lw) s = s.replace(new RegExp("^\\s*(?:(?:" + lw + ")(?![a-z])\\s*)+", "i"), "");
+      if (tw2) s = s.replace(new RegExp("\\s*(?:" + tw2 + ")\\.?\\s*$", "i"), "");
+      return s.trim();
+    }
+
     function nearRounded(U, want) { // a decimal correctly rounded at its own number of places?
       if (U.form !== "dec" || U.dp < 1) return false;
       return Math.abs(toF(sub(U.v, want))) <= 0.5 * Math.pow(10, -U.dp) + 1e-12;
@@ -3871,39 +3903,43 @@
     function gradeNum(f, raw) {
       var U = readUser(raw),
         want = f.want;
-      if (!U) return { st: "bad", msg: "Type a number, like <b>6</b>, <b>7.5</b> or <b>4 1/3</b>." };
+      if (!U) return { st: "bad", msg: tx("statistics.ck.typeNum") };
       if (eqR(U.v, want)) {
-        if ((U.form === "frac" || U.form === "mixed") && !U.lowest) return { st: "part", msg: "Right value — now simplify it: " + B(isInt(want) ? vT(want) : mixT(want)) + "." };
+        if ((U.form === "frac" || U.form === "mixed") && !U.lowest) return { st: "part", msg: tx("statistics.ck.simplify", { v: B(isInt(want) ? vT(want) : mixT(want)) }) };
         return { st: "ok" };
       }
       var rep = isRep(want);
-      if (rep && nearRounded(U, want)) return { st: "ok", note: "(Exactly, it’s " + mixT(want) + ".)" };
+      if (rep && nearRounded(U, want)) return { st: "ok", note: tx("statistics.ck.exactly", { v: mixT(want) }) };
       for (var i = 0; i < f.mist.length; i++) {
         var mm = f.mist[i];
         if (eqR(U.v, mm.v) || (isRep(mm.v) && nearRounded(U, mm.v))) return { st: "bad", msg: mm.msg };
       }
-      if (rep && chopped(U, want)) return { st: "bad", msg: "Close — but round, don’t chop: the next digit is 5 or more, so round up." };
-      if (rep && U.form === "int" && Math.abs(toF(U.v) - toF(want)) < 0.5 + 1e-9) return { st: "bad", msg: "Close — but it isn’t a whole number. Give it as a fraction or a decimal (rounded to tenths or hundredths)." };
-      if (!rep && U.form === "dec" && Math.abs(toF(U.v) - toF(want)) <= Math.max(0.05, Math.abs(toF(want)) * 0.01)) return { st: "bad", msg: "Close — but this one comes out exactly, with no rounding. Check the last digit." };
-      if (U.v.n < 0n && want.n >= 0n && f.pos) return { st: "bad", msg: "It can’t be negative." };
+      if (rep && chopped(U, want)) return { st: "bad", msg: tx("statistics.ck.chop") };
+      if (rep && U.form === "int" && Math.abs(toF(U.v) - toF(want)) < 0.5 + 1e-9) return { st: "bad", msg: tx("statistics.ck.notWhole") };
+      if (!rep && U.form === "dec" && Math.abs(toF(U.v) - toF(want)) <= Math.max(0.05, Math.abs(toF(want)) * 0.01)) return { st: "bad", msg: tx("statistics.ck.exact") };
+      if (U.v.n < 0n && want.n >= 0n && f.pos) return { st: "bad", msg: tx("statistics.ck.neg") };
       return { st: "bad", msg: f.generic || "" };
     }
 
     function gradeApprox(f, raw) { // a standard deviation: any decimal rounded correctly
       var U = readUser(raw);
-      if (!U) return { st: "bad", msg: "Type a number, like <b>2.45</b>." };
+      if (!U) return { st: "bad", msg: tx("statistics.ck.typeSd") };
       if (f.exact && eqR(U.v, f.exact)) return { st: "ok" };
       if (U.form === "dec" && U.dp >= 1 && Math.abs(toF(U.v) - f.wantF) <= 0.5 * Math.pow(10, -U.dp) + 1e-9) return { st: "ok" };
       for (var i = 0; i < f.mist.length; i++) {
         if (Math.abs(toF(U.v) - f.mist[i].f) <= (U.dp ? 0.5 * Math.pow(10, -U.dp) : 1e-9) + 1e-9) return { st: "bad", msg: f.mist[i].msg };
       }
-      if (U.form === "int" && Math.abs(toF(U.v) - f.wantF) < 0.5) return { st: "bad", msg: "Close — give it to at least one decimal place." };
+      if (U.form === "int" && Math.abs(toF(U.v) - f.wantF) < 0.5) return { st: "bad", msg: tx("statistics.ck.oneDp") };
       return { st: "bad", msg: "" };
     }
 
     function readModes(raw) {
-      var s = String(raw || "").trim().toLowerCase();
+      var s = String(raw || "").trim().toLowerCase(),
+        nw = own("statistics.ck.noneWords"),
+        aw = own("statistics.ck.andWords");
       if (/^(none|no mode|no|n\/?a|nothing|-|—|there is no mode|no modes?)\.?$/.test(s)) return [];
+      if (nw && new RegExp("^(?:" + nw + ")\\.?$").test(fold(s))) return [];
+      if (aw) s = fold(s).replace(new RegExp("(?:^|\\s)(?:" + aw + ")(?=\\s|$)", "g"), ",");
       var toks;
       try { toks = numTokens(s.replace(/\band\b|\bor\b|&/g, ",")); } catch (e) { return null; }
       return toks.length ? toks.map(function(t) { return t.r; }) : null;
@@ -3912,38 +3948,39 @@
     function gradeModes(f, raw) {
       var got = readModes(raw),
         want = f.want;
-      if (got === null) return { st: "bad", msg: "Type the mode as a number — or several, like <b>4, 7</b> — or type <b>none</b>." };
+      if (got === null) return { st: "bad", msg: tx("statistics.ck.typeMode") };
       var uniq = [];
       got.forEach(function(v) { if (!uniq.some(function(u) { return eqR(u, v); })) uniq.push(v); });
       var same = uniq.length === want.length && uniq.every(function(v) { return want.some(function(w) { return eqR(w, v); }); });
       if (same) return { st: "ok" };
       if (!want.length && f.allVals && uniq.length === f.allVals.length && uniq.every(function(v) { return f.allVals.some(function(w) { return eqR(w, v); }); }))
-        return { st: "ok", note: "(Some books call every value a mode when they all tie; this page says there’s no mode.)" };
+        return { st: "ok", note: tx("statistics.ck.tieNote") };
       if (uniq.length === 1 && eqR(uniq[0], R(f.maxC)) && !want.some(function(w) { return eqR(w, uniq[0]); }) && want.length)
-        return { st: "bad", msg: "That’s how many times it shows up. The mode is the <i>number</i> that shows up most." };
-      if (!uniq.length) return { st: "bad", msg: "One " + (f.freq ? "value has a bigger count than the rest" : "number shows up more often than the others") + " — look for repeats." };
-      if (!want.length) return { st: "bad", msg: f.maxC === 1 ? "Every number shows up just once, so none is more common. Type <b>none</b>." : "Every value shows up the same number of times — a tie between all of them. Type <b>none</b>." };
+        return { st: "bad", msg: tx("statistics.ck.countNotMode") };
+      if (!uniq.length) return { st: "bad", msg: tx(f.freq ? "statistics.ck.repeatsFreq" : "statistics.ck.repeats") };
+      if (!want.length) return { st: "bad", msg: f.maxC === 1 ? tx("statistics.ck.noneOnce") : tx("statistics.ck.noneTie") };
       var some = uniq.filter(function(v) { return want.some(function(w) { return eqR(w, v); }); });
-      if (some.length === uniq.length && uniq.length < want.length) return { st: "bad", msg: "There’s a tie — give every value that shows up " + times(f.maxC) + "." };
+      if (some.length === uniq.length && uniq.length < want.length) return { st: "bad", msg: tx("statistics.ck.tie", { t: times(f.maxC) }) };
       if (f.mist)
         for (var i = 0; i < f.mist.length; i++)
           if (uniq.length === 1 && eqR(uniq[0], f.mist[i].v)) return { st: "bad", msg: f.mist[i].msg };
-      return { st: "bad", msg: "Count how many times each " + (f.freq ? "value" : "number") + " shows up — the mode is the one with the most." };
+      return { st: "bad", msg: tx(f.freq ? "statistics.ck.countEachFreq" : "statistics.ck.countEach") };
     }
 
     function readClass(raw) {
-      var s = String(raw || "").replace(/[−–—]/g, "-").replace(/\bto\b/gi, " to ").trim(),
-        m;
-      m = /^(-?\d*\.?\d+)\s*(?:-|to)\s*(-?\d*\.?\d+)$/.exec(s);
+      var tw3 = own("statistics.ck.toWords"),
+        s = String(raw || "").replace(/[−–—]/g, "-").replace(/\bto\b/gi, " to ").trim();
+      if (tw3) s = fold(s).replace(new RegExp("(?:^|\\s)(?:" + tw3 + ")(?=\\s)", "gi"), " to ");
+      var m = /^(-?\d*\.?\d+)\s*(?:-|to)\s*(-?\d*\.?\d+)$/.exec(s);
       if (!m) return null;
       return { a: parseDecStr(m[1].replace(/^(-?)\./, "$10.")), b: parseDecStr(m[2].replace(/^(-?)\./, "$10.")) };
     }
 
     function gradeClass(f, raw) {
       var c = readClass(raw);
-      if (!c) return { st: "bad", msg: "Type the class the way the table writes it, like <b>" + clsT(f.rows[0]).replace("–", "-") + "</b>." };
+      if (!c) return { st: "bad", msg: tx("statistics.ck.typeClass", { c: clsT(f.rows[0]).replace("–", "-") }) };
       var hit = f.rows.filter(function(r) { return eqR(r.a, c.a) && eqR(r.b, c.b); })[0];
-      if (!hit) return { st: "bad", msg: "That isn’t one of the classes in the table." };
+      if (!hit) return { st: "bad", msg: tx("statistics.ck.notClass") };
       if (f.want.indexOf(hit) >= 0) return { st: "ok" };
       if (f.other && f.other.indexOf(hit) >= 0) return { st: "bad", msg: f.otherMsg };
       return { st: "bad", msg: f.generic };
@@ -3973,50 +4010,50 @@
           um = n % 2 ? raw[(n - 1) / 2] : avg2(raw[n / 2 - 1], raw[n / 2]);
         var fm = {
           k: "mean",
-          label: "Mean",
+          label: tx("statistics.cell.mean"),
           type: "num",
           want: st.mean,
           mist: mists(st.mean, [
-            { v: st.sum, msg: "That’s the total. Now share it out — divide by " + n + "." },
-            n > 2 ? { v: dvd(st.sum, R(n - 1)), msg: "Check how many numbers there are — divide the total by " + n + "." } : null,
-            { v: dvd(st.sum, R(n + 1)), msg: "Check how many numbers there are — divide the total by " + n + "." },
-            { v: st.med, msg: "That’s the median (the middle). The mean adds them all up and divides." }
+            { v: st.sum, msg: tx("statistics.ck.total", { n: n }) },
+            n > 2 ? { v: dvd(st.sum, R(n - 1)), msg: tx("statistics.ck.howMany", { n: n }) } : null,
+            { v: dvd(st.sum, R(n + 1)), msg: tx("statistics.ck.howMany", { n: n }) },
+            { v: st.med, msg: tx("statistics.ck.medianNotMean") }
           ])
         };
         var fmd = {
           k: "median",
-          label: "Median",
+          label: tx("statistics.cell.median"),
           type: "num",
           want: st.med,
           mist: mists(st.med, [
-            { v: um, msg: "Put the numbers in order first — the middle of the list as it was typed isn’t the median." },
-            n % 2 === 0 ? { v: st.s[n / 2 - 1], msg: "There are two middle numbers, " + vT(st.s[n / 2 - 1]) + " and " + vT(st.s[n / 2]) + " — the median is halfway between them." } : null,
-            n % 2 === 0 ? { v: st.s[n / 2], msg: "There are two middle numbers, " + vT(st.s[n / 2 - 1]) + " and " + vT(st.s[n / 2]) + " — the median is halfway between them." } : null,
-            n % 2 === 0 ? { v: add(st.s[n / 2 - 1], st.s[n / 2]), msg: "You added the two middle numbers — now divide by 2 to get halfway between them." } : null,
-            { v: R(n + 1, 2), msg: "That’s <i>where</i> the median is (its place in the list). What number is in that place?" },
-            { v: st.mean, msg: "That’s the mean. The median is the middle number once they’re in order." }
+            { v: um, msg: tx("statistics.ck.orderFirst") },
+            n % 2 === 0 ? { v: st.s[n / 2 - 1], msg: tx("statistics.ck.twoMiddle", { a: vT(st.s[n / 2 - 1]), b: vT(st.s[n / 2]) }) } : null,
+            n % 2 === 0 ? { v: st.s[n / 2], msg: tx("statistics.ck.twoMiddle", { a: vT(st.s[n / 2 - 1]), b: vT(st.s[n / 2]) }) } : null,
+            n % 2 === 0 ? { v: add(st.s[n / 2 - 1], st.s[n / 2]), msg: tx("statistics.ck.addedTwo") } : null,
+            { v: R(n + 1, 2), msg: tx("statistics.ck.where") },
+            { v: st.mean, msg: tx("statistics.ck.meanNotMedian") }
           ])
         };
         var fmo = {
           k: "mode",
-          label: "Mode",
+          label: tx("statistics.cell.mode"),
           type: "modes",
           want: st.mo.modes,
           maxC: st.mo.max,
           allVals: st.mo.kind === "tie" ? st.cs.map(function(c) { return c.v; }) : null,
-          mist: mists(R(-999999999), [{ v: st.mean, msg: "That’s the mean. The mode is the number that shows up most often." }, { v: st.med, msg: "That’s the median. The mode is the number that shows up most often." }])
+          mist: mists(R(-999999999), [{ v: st.mean, msg: tx("statistics.ck.meanNotMode") }, { v: st.med, msg: tx("statistics.ck.medianNotMode") }])
         };
         var fr = {
           k: "range",
-          label: "Range",
+          label: tx("statistics.cell.range"),
           type: "num",
           want: st.range,
           pos: true,
           mist: mists(st.range, [
-            { v: st.max, msg: "That’s the biggest number — now take away the smallest." },
-            { v: sub(st.min, st.max), msg: "Biggest minus smallest, so the range comes out positive." },
-            { v: add(st.max, st.min), msg: "Subtract, don’t add: biggest <i>minus</i> smallest." },
-            { v: absR(sub(raw[n - 1], raw[0])), msg: "Use the biggest and smallest numbers, not the first and last in the list." }
+            { v: st.max, msg: tx("statistics.ck.biggest") },
+            { v: sub(st.min, st.max), msg: tx("statistics.ck.positive") },
+            { v: add(st.max, st.min), msg: tx("statistics.ck.subtract") },
+            { v: absR(sub(raw[n - 1], raw[0])), msg: tx("statistics.ck.firstLast") }
           ])
         };
         var all = { mean: fm, median: fmd, mode: fmo, range: fr };
@@ -4024,38 +4061,38 @@
         else F = [all[P.ask]];
       } else if (P.mode === "box") {
         st = solveBox(P.vals, P.method);
-        var altW = P.method === "inclusive" ? "with the median left out of the halves" : "with the median included in both halves";
+        var altW = P.method === "inclusive" ? tx("statistics.ck.altExcl") : tx("statistics.ck.altIncl");
         var rawL = P.vals.slice(0, Math.floor(P.vals.length / 2)),
           rawU = P.vals.slice(Math.ceil(P.vals.length / 2));
         var uq1 = medianOf(rawL),
           uq3 = medianOf(rawU);
-        var swap = "Q₁ is the middle of the <i>lower</i> half and Q₃ the middle of the <i>upper</i> half.";
-        F = [{ k: "min", label: "Min", type: "num", want: st.min, mist: [] }, {
+        var swap = tx("statistics.ck.swap");
+        F = [{ k: "min", label: tx("statistics.th.min"), type: "num", want: st.min, mist: [] }, {
             k: "q1",
             label: "Q₁",
             type: "num",
             want: st.q1,
-            mist: mists(st.q1, [{ v: st.alt.q1, msg: "That’s Q₁ " + altW + ". This problem " + (P.method === "inclusive" ? "includes the median in both halves" : "leaves the median out of the halves") + "." },
-              { v: uq1, msg: "Put the numbers in order first, then split them." }, { v: st.q3, msg: swap }, { v: st.med, msg: "That’s the median of all the numbers. Q₁ is the middle of the lower half." }
+            mist: mists(st.q1, [{ v: st.alt.q1, msg: tx("statistics.ck.altQ1", { alt: altW, how: P.method === "inclusive" ? tx("statistics.ck.howIncl") : tx("statistics.ck.howExcl") }) },
+              { v: uq1, msg: tx("statistics.ck.orderSplit") }, { v: st.q3, msg: swap }, { v: st.med, msg: tx("statistics.ck.medNotQ1") }
             ])
           },
-          { k: "med", label: "Median", type: "num", want: st.med, mist: mists(st.med, [{ v: medianOf(P.vals), msg: "Put the numbers in order first." }]) }, {
+          { k: "med", label: tx("statistics.cell.median"), type: "num", want: st.med, mist: mists(st.med, [{ v: medianOf(P.vals), msg: tx("statistics.ck.orderOnly") }]) }, {
             k: "q3",
             label: "Q₃",
             type: "num",
             want: st.q3,
-            mist: mists(st.q3, [{ v: st.alt.q3, msg: "That’s Q₃ " + altW + ". This problem " + (P.method === "inclusive" ? "includes the median in both halves" : "leaves the median out of the halves") + "." },
-              { v: uq3, msg: "Put the numbers in order first, then split them." }, { v: st.q1, msg: swap }
+            mist: mists(st.q3, [{ v: st.alt.q3, msg: tx("statistics.ck.altQ3", { alt: altW, how: P.method === "inclusive" ? tx("statistics.ck.howIncl") : tx("statistics.ck.howExcl") }) },
+              { v: uq3, msg: tx("statistics.ck.orderSplit") }, { v: st.q1, msg: swap }
             ])
           },
-          { k: "max", label: "Max", type: "num", want: st.max, mist: [] }, {
+          { k: "max", label: tx("statistics.th.max"), type: "num", want: st.max, mist: [] }, {
             k: "iqr",
-            label: "IQR",
+            label: tx("statistics.cell.iqr"),
             type: "num",
             want: st.iqr,
             pos: true,
-            mist: mists(st.iqr, [{ v: sub(st.max, st.min), msg: "That’s the range (max − min). The IQR is Q₃ − Q₁." },
-              { v: sub(st.alt.q3, st.alt.q1), msg: "That IQR comes from quartiles found " + altW + "." }, { v: sub(st.q1, st.q3), msg: "Q₃ minus Q₁, so the IQR comes out positive." }
+            mist: mists(st.iqr, [{ v: sub(st.max, st.min), msg: tx("statistics.ck.rangeNotIqr") },
+              { v: sub(st.alt.q3, st.alt.q1), msg: tx("statistics.ck.altIqr", { alt: altW }) }, { v: sub(st.q1, st.q3), msg: tx("statistics.ck.iqrPos") }
             ])
           }
         ];
@@ -4067,84 +4104,84 @@
           var lows = sumR(P.rows.map(function(r) { return mul(r.a, R(r.c)); }));
           F = [{
             k: "mean",
-            label: "Estimated mean",
+            label: tx("statistics.cell.estMean"),
             type: "num",
             want: st.mean,
             mist: mists(st.mean, [
-              { v: dvd(st.sum, R(nr)), msg: "Divide by how many numbers there are (" + n + "), not the number of classes (" + nr + ")." },
-              { v: st.sum, msg: "That’s the total — now divide by " + n + "." },
-              { v: dvd(lows, R(n)), msg: "Use the <i>midpoint</i> of each class, not its lowest value." },
-              { v: dvd(sumR(P.rows.map(function(r) { return r.mid; })), R(nr)), msg: "Each midpoint counts as many times as its class’s count — multiply by the counts first." }
+              { v: dvd(st.sum, R(nr)), msg: tx("statistics.ck.notClasses", { n: n, r: nr }) },
+              { v: st.sum, msg: tx("statistics.ck.total2", { n: n }) },
+              { v: dvd(lows, R(n)), msg: tx("statistics.ck.midpointLow") },
+              { v: dvd(sumR(P.rows.map(function(r) { return r.mid; })), R(nr)), msg: tx("statistics.ck.midCounts") }
             ])
           }, {
             k: "medc",
-            label: "Median class",
+            label: tx("statistics.cell.medc"),
             type: "class",
             rows: P.rows,
             want: [P.rows[st.i1], P.rows[st.i2]],
             other: P.rows.filter(function(r) { return r.c === st.maxC; }),
-            otherMsg: "That’s the modal class (the biggest count). The median class holds the middle number — use the running totals.",
-            generic: "Find the " + ordN(st.p1) + " number with running totals of the counts."
+            otherMsg: tx("statistics.ck.modalNotMedian"),
+            generic: tx("statistics.ck.findRunning", { p: ordN(st.p1) })
           }, {
             k: "modec",
-            label: "Modal class",
+            label: tx("statistics.cell.modc"),
             type: "class",
             rows: P.rows,
             want: P.rows.filter(function(r) { return r.c === st.maxC; }),
             other: [P.rows[st.i1], P.rows[st.i2]],
-            otherMsg: "That’s the median class. The modal class is the one with the biggest count.",
-            generic: "Look for the biggest count."
+            otherMsg: tx("statistics.ck.medianNotModal"),
+            generic: tx("statistics.ck.biggestCount")
           }];
         } else {
           var sv = sumR(P.rows.map(function(r) { return r.v; }));
           F = [{
               k: "mean",
-              label: "Mean",
+              label: tx("statistics.cell.mean"),
               type: "num",
               want: st.mean,
               mist: mists(st.mean, [
-                { v: dvd(st.sum, R(nr)), msg: "Divide by how many numbers there are (" + n + "), not the number of rows (" + nr + ")." },
-                { v: st.sum, msg: "That’s the total — now divide by " + n + "." },
-                { v: dvd(sv, R(nr)), msg: "Each value counts as many times as it shows up — multiply each value by its count first." },
-                { v: R(n, nr), msg: "That’s the average of the counts. The question is about the values." }
+                { v: dvd(st.sum, R(nr)), msg: tx("statistics.ck.notRows", { n: n, r: nr }) },
+                { v: st.sum, msg: tx("statistics.ck.total2", { n: n }) },
+                { v: dvd(sv, R(nr)), msg: tx("statistics.ck.valueCounts") },
+                { v: R(n, nr), msg: tx("statistics.ck.avgCounts") }
               ])
             }, {
               k: "median",
-              label: "Median",
+              label: tx("statistics.cell.median"),
               type: "num",
               want: st.med,
               mist: mists(st.med, [
-                { v: medianOf(P.rows.map(function(r) { return r.v; })), msg: "That’s the middle row of the table. Use the counts: the middle is the " + (n % 2 ? ordN((n + 1) / 2) : ordN(n / 2) + " and " + ordN(n / 2 + 1)) + " number." },
-                { v: medianOf(sortR(P.rows.map(function(r) { return R(r.c); }))), msg: "That’s the middle count. The median is a value — find the " + ordN(st.p1) + " number with running totals." },
-                { v: R(n + 1, 2), msg: "That’s <i>where</i> the median is. Which value is in that place?" }
+                { v: medianOf(P.rows.map(function(r) { return r.v; })), msg: n % 2 ? tx("statistics.ck.middleRowOdd", { p: ordN((n + 1) / 2) }) : tx("statistics.ck.middleRowEven", { a: ordN(n / 2), b: ordN(n / 2 + 1) }) },
+                { v: medianOf(sortR(P.rows.map(function(r) { return R(r.c); }))), msg: tx("statistics.ck.middleCount", { p: ordN(st.p1) }) },
+                { v: R(n + 1, 2), msg: tx("statistics.ck.whereValue") }
               ])
             },
-            { k: "mode", label: "Mode", type: "modes", want: st.mo.modes, maxC: st.maxC, freq: true, allVals: null, mist: [] }
+            { k: "mode", label: tx("statistics.cell.mode"), type: "modes", want: st.mo.modes, maxC: st.maxC, freq: true, allVals: null, mist: [] }
           ];
         }
       } else if (P.mode === "spread") {
         st = solveSpread(P.vals, P.sd);
         n = st.n;
-        F = [{ k: "mean", label: "Mean", type: "num", want: st.mean, mist: mists(st.mean, [{ v: st.sum, msg: "That’s the total — now divide by " + n + "." }, { v: st.med, msg: "That’s the median. The mean adds them up and divides." }]) }, {
+        F = [{ k: "mean", label: tx("statistics.cell.mean"), type: "num", want: st.mean, mist: mists(st.mean, [{ v: st.sum, msg: tx("statistics.ck.total2", { n: n }) }, { v: st.med, msg: tx("statistics.ck.medianNotMean2") }]) }, {
           k: "mad",
-          label: "MAD",
+          label: tx("statistics.cell.mad"),
           type: "num",
           want: st.mad,
           pos: true,
           mist: mists(st.mad, [
-            { v: ZERO, msg: "The differences cancel to 0 — use distances, which are never negative (drop the minus signs)." },
-            { v: st.sumD, msg: "That’s the total distance — now divide by " + n + "." },
-            n > 1 ? { v: dvd(st.sumD, R(n - 1)), msg: "Divide the total distance by how many numbers there are, " + n + "." } : null,
-            { v: st.madMed, msg: "Measure the distances from the mean (" + vT(st.mean) + "), not the median." },
-            { v: st.range, msg: "That’s the range. The MAD is the mean of the distances from the mean." }
+            { v: ZERO, msg: tx("statistics.ck.cancel") },
+            { v: st.sumD, msg: tx("statistics.ck.totalDist", { n: n }) },
+            n > 1 ? { v: dvd(st.sumD, R(n - 1)), msg: tx("statistics.ck.divDist", { n: n }) } : null,
+            { v: st.madMed, msg: tx("statistics.ck.fromMedian", { m: vT(st.mean) }) },
+            { v: st.range, msg: tx("statistics.ck.rangeNotMad") }
           ])
         }];
         if (P.sd !== "off" && st.v) {
           var om = [];
-          if (st.other) om.push({ f: Math.sqrt(toF(st.other)), msg: P.sd === "sample" ? "That’s the population standard deviation (÷ " + n + "). This one is a sample: divide by n − 1 = " + (n - 1) + "." : "That’s the sample standard deviation (÷ n − 1). This one divides by n = " + n + "." });
-          om.push({ f: toF(st.v), msg: "That’s the variance — take its square root." });
-          om.push({ f: toF(st.mad), msg: "That’s the MAD. The standard deviation squares the differences first." });
-          F.push({ k: "sd", label: "Std. deviation", type: "approx", wantF: st.sdF, exact: st.sdExact, mist: om });
+          if (st.other) om.push({ f: Math.sqrt(toF(st.other)), msg: P.sd === "sample" ? tx("statistics.ck.popNotSample", { n: n, m: n - 1 }) : tx("statistics.ck.sampleNotPop", { n: n }) });
+          om.push({ f: toF(st.v), msg: tx("statistics.ck.variance") });
+          om.push({ f: toF(st.mad), msg: tx("statistics.ck.madNotSd") });
+          F.push({ k: "sd", label: tx("statistics.cell.sd"), type: "approx", wantF: st.sdF, exact: st.sdExact, mist: om });
         }
       } else {
         var sol = solveMissing(P),
@@ -4153,16 +4190,16 @@
         var w = P.r > 1 && need ? sol.each : sol.miss;
         F = [{
           k: "x",
-          label: need ? (P.r > 1 ? "Score on each" : "Score needed") : (P.r > 1 ? "They add up to" : "Missing number"),
+          label: need ? (P.r > 1 ? tx("statistics.cell.scoreEach") : tx("statistics.cell.need")) : (P.r > 1 ? tx("statistics.cell.theyAdd") : tx("statistics.cell.missingNum")),
           type: "num",
           want: w,
           mist: mists(w, [
-            { v: sol.total, msg: "That’s what all " + P.N + " have to add up to — now take away the ones you know." },
-            { v: sol.have, msg: "That’s the total of the ones you know. The missing " + (P.r > 1 ? "ones make" : "one makes") + " up the rest of " + vT(sol.total) + "." },
-            { v: P.M, msg: "If it were " + vT(P.M) + ", the others would have to average " + vT(P.M) + " too — but they average " + fullT(avgK) + ". Use the total." },
-            { v: sub(mul(P.M, R(P.k)), sol.have), msg: "Count the missing one" + (P.r > 1 ? "s" : "") + " too: there are " + P.N + " in all, so the total is " + vT(P.M) + " × " + P.N + "." },
-            { v: avgK, msg: "That’s the mean of the ones you know. Work out the total first: mean × count." },
-            P.r > 1 && need ? { v: sol.miss, msg: "That’s the total for " + (P.r === 2 ? "both" : "all " + P.r) + " tests — share it out: ÷ " + P.r + "." } : null
+            { v: sol.total, msg: tx("statistics.ck.mTotal", { n: P.N }) },
+            { v: sol.have, msg: tx(P.r > 1 ? "statistics.ck.mHaveMany" : "statistics.ck.mHaveOne", { t: vT(sol.total) }) },
+            { v: P.M, msg: tx("statistics.ck.mMean", { m: vT(P.M), a: fullT(avgK) }) },
+            { v: sub(mul(P.M, R(P.k)), sol.have), msg: tx(P.r > 1 ? "statistics.ck.mCountMany" : "statistics.ck.mCountOne", { n: P.N, m: vT(P.M) }) },
+            { v: avgK, msg: tx("statistics.ck.mAvgKnown") },
+            P.r > 1 && need ? { v: sol.miss, msg: tx(P.r === 2 ? "statistics.ck.mBoth" : "statistics.ck.mAll", { r: P.r }) } : null
           ])
         }];
       }
@@ -4172,20 +4209,19 @@
     function hintFor(P) {
       if (P.mode === "center") {
         var H = {
-          mean: "<b>Mean:</b> add up all " + P.vals.length + " numbers, then divide by " + P.vals.length + ".",
-          median: "<b>Median:</b> put the numbers in order, then cross off one from each end until you reach the middle.",
-          mode: "<b>Mode:</b> the number that shows up most often — there can be none, or more than one.",
-          range: "<b>Range:</b> the biggest number minus the smallest."
+          mean: tx("statistics.h.mean", { n: P.vals.length }),
+          median: tx("statistics.h.median"),
+          mode: tx("statistics.h.mode"),
+          range: tx("statistics.h.range")
         };
         return P.ask === "all" ? [H.mean, H.median, H.mode, H.range].join(" ") : H[P.ask];
       }
-      if (P.mode === "box") return "Put the numbers in order and find the median first. Q₁ is the middle of the lower half and Q₃ the middle of the upper half" +
-        (P.vals.length % 2 ? (P.method === "inclusive" ? " (include the median in both halves)" : " (leave the median itself out of both halves)") : "") + ". IQR = Q₃ − Q₁.";
-      if (P.mode === "freq") return P.grouped ? "Use each class’s midpoint: (low + high) ÷ 2. Multiply each midpoint by its count, add, and divide by the total count, " + P.n + ". Running totals of the counts show where the middle number is." :
-        "There are " + P.n + " numbers, not " + P.rows.length + ". For the mean, multiply each value by its count, add those, and divide by " + P.n + ". For the median, keep a running total of the counts to find the middle place.";
-      if (P.mode === "spread") return "Find the mean first. Then find how far each number is from it (always positive), add up those distances and divide by " + P.vals.length + "." +
-        (P.sd !== "off" ? " For the standard deviation, square the differences instead, average them (÷ " + (P.sd === "sample" ? "n − 1" : "n") + ") and take the square root." : "");
-      return "Mean × how many numbers = the total they must add up to. Take away the ones you know" + (P.r > 1 && P.kind === "need" ? ", then share what’s left over the " + P.r + " tests." : ".");
+      if (P.mode === "box") return tx("statistics.h.box", { how: P.vals.length % 2 ? (P.method === "inclusive" ? tx("statistics.h.boxIncl") : tx("statistics.h.boxExcl")) : "" });
+      if (P.mode === "freq") return P.grouped ? tx("statistics.h.grouped", { n: P.n }) :
+        tx("statistics.h.freq", { n: P.n, r: P.rows.length });
+      if (P.mode === "spread") return tx("statistics.h.spread", { n: P.vals.length }) +
+        (P.sd !== "off" ? tx("statistics.h.sd", { d: P.sd === "sample" ? "n − 1" : "n" }) : "");
+      return P.r > 1 && P.kind === "need" ? tx("statistics.h.missingNeed", { r: P.r }) : tx("statistics.h.missing");
     }
 
     function buildCheck(P) {
@@ -4212,7 +4248,7 @@
       $("ckHint").innerHTML = CK.hint;
       $("ckMore").hidden = CK.ok || CK.revealed;
       $("hintBtn").hidden = !!CK.hint;
-      $("ckNote").textContent = CK.revealed ? "" : "The work and the answer stay hidden until you check.";
+      $("ckNote").textContent = CK.revealed ? "" : tx("statistics.ckNote");
     }
 
     function report(verdict) {
@@ -4243,7 +4279,7 @@
       });
       var verdict = null;
       if (empty === res.length) {
-        CK.fb = '<span class="lead">Type your answer first' + (fields.length > 1 ? " — fill in the boxes." : ".") + "</span>";
+        CK.fb = '<span class="lead">' + (fields.length > 1 ? tx("statistics.fb.firstMany") : tx("statistics.fb.first")) + "</span>";
         CK.fbCls = "";
       } else if (bad.length) {
         verdict = "wrong";
@@ -4251,21 +4287,21 @@
         CK.tried = true;
         CK.fbCls = "";
         var why = bad.slice(0, 2).map(function(i) { return res[i].msg ? lab(i) + res[i].msg : ""; }).filter(Boolean);
-        CK.fb = '<span class="lead">Not quite — try again.</span>' + (fields.length > 1 ? '<span class="why">' + (fields.length - bad.length - empty) + " of " + fields.length + " right so far" + (empty ? ", " + empty + " still empty" : "") + ".</span>" : "") +
+        CK.fb = '<span class="lead">' + tx("common.notQuite") + "</span>" + (fields.length > 1 ? '<span class="why">' + tx(empty ? "statistics.fb.soFarEmpty" : "statistics.fb.soFar", { r: fields.length - bad.length - empty, n: fields.length, e: empty }) + "</span>" : "") +
           why.map(function(w) { return '<span class="why">' + w + "</span>"; }).join("");
       } else if (empty) {
-        CK.fb = '<span class="lead">So far so good — fill in the rest.</span><span class="why">' + empty + " box" + (empty === 1 ? " is" : "es are") + " still empty.</span>";
+        CK.fb = '<span class="lead">' + tx("statistics.fb.good") + '</span><span class="why">' + tx("statistics.fb.emptyBoxes", { n: empty }) + "</span>";
         CK.fbCls = "part";
       } else if (part.length) {
         verdict = "simplify";
         CK.fbCls = "part";
-        CK.fb = '<span class="lead">Almost!</span><span class="why">' + lab(part[0]) + res[part[0]].msg + "</span>";
+        CK.fb = '<span class="lead">' + tx("statistics.fb.almost") + '</span><span class="why">' + lab(part[0]) + res[part[0]].msg + "</span>";
       } else {
         verdict = "right";
         CK.ok = true;
         CK.revealed = true;
         CK.fbCls = "ok";
-        CK.fb = '<span class="lead">✓ Correct!</span>' + (notes.length ? '<span class="why">' + notes.join(" ") + "</span>" : "") + '<span class="why">Here’s the full work.</span>';
+        CK.fb = '<span class="lead">' + tx("common.correct") + "</span>" + (notes.length ? '<span class="why">' + notes.join(" ") + "</span>" : "") + '<span class="why">' + tx("statistics.fb.full") + "</span>";
       }
       if (verdict) report(verdict);
       var had = document.activeElement && document.activeElement.id;
@@ -4317,7 +4353,7 @@
         hide = check && !CK.revealed;
       $("stepper").hidden = !stepMode;
       if (stepMode) {
-        $("stepCount").textContent = S.step + " of " + total;
+        $("stepCount").textContent = tx("statistics.stepOf", { n: S.step, total: total });
         $("prevBtn").disabled = S.step <= 1;
         $("nextBtn").disabled = S.step >= total;
       }
@@ -4353,7 +4389,7 @@
     function writeLog(items) {
       var html = "";
       items.forEach(function(it, i) {
-        html += "<li" + ds(it.step) + '><span class="n">Step&nbsp;' + (i + 1) + "</span>";
+        html += "<li" + ds(it.step) + '><span class="n">' + tx("statistics.stepN", { n: i + 1 }) + "</span>";
         it.lines.forEach(function(l) {
           html += '<div class="line"><span class="tag c-' + l[0] + '">' + l[1] + '</span><span class="txt">' + l[2] + "</span></div>";
         });
@@ -4459,8 +4495,8 @@
     var UNSUP = /\bweighted\b|\bz[- ]?scores?\b|\bz[- ]?test\b|\bt[- ]?test\b|percentile|probability|\bchance\b|correlation|regression|line of best fit|best[- ]fit|confidence interval|margin of error|standard error|\bbinomial\b|normal distribution|\bmu\b|μ|σ|\bsigma\b|\bmean (?:of )?\d+(?:\.\d+)?\s*(?:,|and)?\s*(?:a |the )?(?:standard deviation|sd|s\.d\.)\s*(?:of )?\d/i;
 
     function unsupMsg(s) {
-      if (/\bweighted\b/i.test(s)) return "A weighted average isn’t on this page — it finds the mean, median, mode and spread of a plain list of numbers. Type the numbers, like <b>4, 8, 6, 5, 7</b>, or write each value as often as its weight.";
-      return "That looks like a job for <a href=\"college-statistics.html\">The Bell Curve</a> (z-scores, the normal curve, probability, confidence intervals, tests and regression). This page finds the mean, median, mode and spread of a list of numbers, like <b>4, 8, 6, 5, 7</b>.";
+      if (/\bweighted\b/i.test(s)) return tx("statistics.unsup.weighted");
+      return tx("statistics.unsup.bell");
     }
 
     function kindOf(low) {
@@ -4491,11 +4527,12 @@
     }
 
     function parseQ(q, modeParam) {
-      var s = tidyQ(String(q).trim()),
+      var s0 = tidyQ(String(q).trim()),
+        s = tidyQ(readTyped(String(q).trim())),
         low = s.toLowerCase().replace(/[−–—]/g, "-"),
         kw = kindOf(low),
         mode = modeParam || kw || "center",
-        out = { mode: mode, text: s };
+        out = { mode: mode, text: s0 };
       if (mode === "center") {
         var w = ["mean", "median", "mode", "range"].filter(function(x) { return new RegExp("\\b" + x + "s?\\b").test(low) || (x === "mean" && /\baverage\b/.test(low)); });
         if (w.length === 1) out.ask = w[0];
@@ -4681,7 +4718,7 @@
           for (i = 0; i < N - 1; i++) kn.push(Math.max(0, M + rint(-Math.ceil(M / 2), Math.ceil(M / 2))));
           var x = N * M - kn.reduce(function(a, b) { return a + b; }, 0);
           if (x < 0 || x > Math.round(max * 1.5)) continue;
-          return "mean of " + N + " numbers is " + M + ": " + kn.join(", ");
+          return tx("statistics.gen.meanof", { n: N, m: M, list: kn.join(", ") });
         }
         var k = rint(2, 5),
           T = rint(70, 95),
@@ -4690,9 +4727,9 @@
         var r = Math.random() < .25 ? 2 : 1,
           need = T * (k + r) - sc.reduce(function(a, b) { return a + b; }, 0);
         if (need < 50 || need > 100 * r || need % r) continue;
-        return "need average " + T + " scores " + sc.join(", ") + (r > 1 ? " over " + (k + r) + " tests" : "");
+        return tx("statistics.gen.need", { t: T, list: sc.join(", ") }) + (r > 1 ? tx("statistics.gen.over", { n: k + r }) : "");
       }
-      return "mean of 5 numbers is 8: 6, 9, 7, 10";
+      return tx("statistics.def.missing");
     }
 
     function genText(mode, G) {
@@ -4716,17 +4753,17 @@
     /* ===================== the maker's controls ===================== */
     /* plain words for the maker (and the same words in the worksheet API's labels) */
     var W = {
-      size: "How many numbers",
-      max: "Biggest number",
-      also: "Also include",
-      kind: "Kind of problem",
-      sizeV: { small: "6 to 8 numbers", medium: "9 to 12 numbers", large: "13 to 20 numbers" },
-      maxV: function(v) { return "up to " + v; },
-      nice: "The average (mean) comes out exact — no rounding",
-      dec: "Decimals (like 2.5)",
-      out: "Sometimes one number far from the rest (an outlier)",
-      grouped: "Numbers in groups (like 10–19)",
-      kindV: { either: "Either one", meanof: "Find the missing number (like: 5 numbers average 8)", need: "What score do I need? (like: for an average of 85)" }
+      size: tx("statistics.w.size"),
+      max: tx("statistics.w.max"),
+      also: tx("statistics.w.also"),
+      kind: tx("statistics.w.kind"),
+      sizeV: { small: tx("statistics.w.small"), medium: tx("statistics.w.medium"), large: tx("statistics.w.large") },
+      maxV: function(v) { return tx("statistics.w.upTo", { v: v }); },
+      nice: tx("statistics.w.nice"),
+      dec: tx("statistics.w.dec"),
+      out: tx("statistics.w.out"),
+      grouped: tx("statistics.w.grouped"),
+      kindV: { either: tx("statistics.w.either"), meanof: tx("statistics.w.meanof"), need: tx("statistics.w.need") }
     };
     var SIZES = ["small", "medium", "large"],
       MAXES = [10, 20, 50, 100];
@@ -4776,7 +4813,7 @@
         m = null;
       if (!el) return;
       try { m = makeOne(S.mode, makerG(), curOpts(), null); } catch (e) { m = null; }
-      el.innerHTML = m ? "Makes problems like: <b>" + esc(record(m.P).text) + "</b>" : "Those choices don’t make a problem — try different ones.";
+      el.innerHTML = m ? tx("statistics.makes", { p: esc(record(m.P).text) }) : tx("statistics.noMake");
     }
 
     function buildMaker() {
@@ -4829,14 +4866,14 @@
       host.appendChild(smp);
       var go = document.createElement("div");
       go.className = "maker-go";
-      go.innerHTML = '<button type="button" class="go" id="genBtn">New problem</button><span class="msg" id="genMsg"></span>';
+      go.innerHTML = '<button type="button" class="go" id="genBtn">' + tx("common.newProblem") + '</button><span class="msg" id="genMsg"></span>';
       host.appendChild(go);
       paintSample();
       $("genBtn").addEventListener("click", function() {
         var avoid = {};
         if (CUR) avoid[paramsOf(CUR)] = true;
         var m = makeOne(S.mode, makerG(), curOpts(), avoid);
-        if (!m) { $("genMsg").textContent = "Couldn’t make one with those settings — try different choices."; return; }
+        if (!m) { $("genMsg").textContent = tx("statistics.cantMake"); return; }
         $("genMsg").textContent = "";
         setProblem(m.text);
       });
@@ -4848,9 +4885,9 @@
       vals.forEach(function(v) { h += '<button type="button" data-v="' + esc(String(v)) + '" aria-pressed="' + String(String(v) === String(cur)) + '">' + fmt(v) + "</button>"; });
       return h + "</div>" + (on || "") + "</div>";
     }
-    var ASKL = { mean: "The average (mean)", median: "The middle (median)", mode: "The most common (mode)", range: "How spread out (range)" };
-    var QL = { label: "How to find the quartiles", exclusive: "Leave the middle number out of each half", inclusive: "Put the middle number in both halves" };
-    var SDL = { label: "Also the standard deviation (for older students)", off: "No", pop: "Whole group (population: divide by n)", sample: "A sample (divide by n − 1)" };
+    var ASKL = { mean: tx("statistics.o.mean"), median: tx("statistics.o.median"), mode: tx("statistics.o.mode"), range: tx("statistics.o.range") };
+    var QL = { label: tx("statistics.o.qLabel"), exclusive: tx("statistics.o.excl"), inclusive: tx("statistics.o.incl") };
+    var SDL = { label: tx("statistics.o.sdLabel"), off: tx("statistics.o.sdOff"), pop: tx("statistics.o.sdPop"), sample: tx("statistics.o.sdSample") };
     var OPTKEY = "";
 
     function paintOpts() {
@@ -4863,12 +4900,12 @@
       if (key === OPTKEY) return;
       OPTKEY = key;
       if (m === "center") {
-        h += seg("Check my answer asks for", "What to find", ASKS, S.ask, function(v) { return v === "all" ? "All four" : ASKL[v]; },
-          ' <button type="button" class="tog" id="outTog" aria-pressed="' + S.outlier + '"><b>⇢</b> What if I add a number far from the rest (an outlier)?</button>');
+        h += seg(tx("statistics.o.askLabel"), tx("statistics.o.askAria"), ASKS, S.ask, function(v) { return v === "all" ? tx("statistics.o.all4") : ASKL[v]; },
+          ' <button type="button" class="tog" id="outTog" aria-pressed="' + S.outlier + '"><b>⇢</b> ' + tx("statistics.o.outTog") + "</button>");
       } else if (m === "box") {
         h += seg(QL.label, QL.label, ["exclusive", "inclusive"], S.method, function(v) { return QL[v]; });
       } else if (m === "freq") {
-        if (choices.length) h += seg("Group into a bar chart (histogram)", "Group into a histogram", [0].concat(choices), choices.indexOf(S.bin) >= 0 ? S.bin : 0, function(v) { return v ? "groups " + v + " wide" : "Off"; });
+        if (choices.length) h += seg(tx("statistics.o.binLabel"), tx("statistics.o.binAria"), [0].concat(choices), choices.indexOf(S.bin) >= 0 ? S.bin : 0, function(v) { return v ? tx("statistics.o.binW", { v: v }) : tx("common.off"); });
       } else if (m === "spread") {
         h += seg(SDL.label, SDL.label, ["off", "pop", "sample"], S.sd, function(v) { return SDL[v]; });
       }
@@ -4904,24 +4941,24 @@
     }
 
     function schema() {
-      var onOff = [{ v: false, label: "Off" }, { v: true, label: "On" }];
+      var onOff = [{ v: false, label: tx("common.off") }, { v: true, label: tx("common.on") }];
       return [{
           key: "mode",
           label: W.kind,
           type: "choice",
           default: "center",
           values: [
-            { v: "center", label: "Average, middle, most common and how spread out (mean, median, mode, range)" }, { v: "box", label: "Box plot (split into quarters)" },
-            { v: "freq", label: "Frequency tables (how many of each)" }, { v: "spread", label: "How spread out (mean absolute deviation)" },
-            { v: "missing", label: "Missing number (work back from the average)" }
+            { v: "center", label: tx("statistics.sch.center") }, { v: "box", label: tx("statistics.sch.box") },
+            { v: "freq", label: tx("statistics.sch.freq") }, { v: "spread", label: tx("statistics.sch.spread") },
+            { v: "missing", label: tx("statistics.sch.missing") }
           ]
         }, {
           key: "ask",
-          label: "What to find",
+          label: tx("statistics.o.askAria"),
           type: "choice",
           default: "all",
           modes: ["center"],
-          values: [{ v: "all", label: "All four" }, { v: "mean", label: ASKL.mean },
+          values: [{ v: "all", label: tx("statistics.o.all4") }, { v: "mean", label: ASKL.mean },
             { v: "median", label: ASKL.median }, { v: "mode", label: ASKL.mode }, { v: "range", label: ASKL.range }
           ]
         },
@@ -4933,7 +4970,7 @@
         { key: "method", label: QL.label, type: "choice", default: "exclusive", modes: ["box"], values: [{ v: "exclusive", label: QL.exclusive }, { v: "inclusive", label: QL.inclusive }] },
         { key: "grouped", label: W.grouped, type: "toggle", default: false, values: onOff, modes: ["freq"] },
         { key: "sd", label: SDL.label, type: "choice", default: "off", modes: ["spread"], values: [{ v: "off", label: SDL.off }, { v: "pop", label: SDL.pop }, { v: "sample", label: SDL.sample }] },
-        { key: "kind", label: "Kind of missing-number problem", type: "choice", default: "either", modes: ["missing"], values: [{ v: "either", label: W.kindV.either }, { v: "meanof", label: W.kindV.meanof }, { v: "need", label: W.kindV.need }] }
+        { key: "kind", label: tx("statistics.sch.kind"), type: "choice", default: "either", modes: ["missing"], values: [{ v: "either", label: W.kindV.either }, { v: "meanof", label: W.kindV.meanof }, { v: "need", label: W.kindV.need }] }
       ];
     }
 
@@ -4998,13 +5035,13 @@
     /* ===================== wiring ===================== */
     var inp = $("numIn");
     var HINTS = {
-      center: "2 to 60 numbers, split by commas or spaces: <code>4, 8, 6, 5, 7</code>. Decimals and negatives are fine: <code>2.5, −1, 4</code>.",
-      box: "At least 4 numbers, in any order: <code>3, 7, 8, 5, 12, 14, 21, 13, 18</code>.",
-      freq: "Each value with its count: <code>1: 3, 2: 5, 3: 2</code> — tally marks work too: <code>5: ||||</code>. Classes make it grouped: <code>10-19: 4, 20-29: 7</code>. A plain list gets counted up for you.",
-      spread: "2 to 60 numbers: <code>2, 4, 6, 8, 10</code>.",
-      missing: "<code>mean of 5 numbers is 8: 6, 9, 7, 10</code>, or <code>need average 85 scores 78, 92, 81</code> (add <code>over 5 tests</code> when more than one is left). A <code>?</code> marks the missing one: <code>mean 7: 4, 9, ?, 6</code>."
+      center: tx("statistics.hint.center"),
+      box: tx("statistics.hint.box"),
+      freq: tx("statistics.hint.freq"),
+      spread: tx("statistics.hint.spread"),
+      missing: tx("statistics.hint.missing")
     };
-    var LABELS = { center: "Your numbers", box: "Your numbers", freq: "Your table", spread: "Your numbers", missing: "Your problem" };
+    var LABELS = { center: tx("statistics.lab.numbers"), box: tx("statistics.lab.numbers"), freq: tx("statistics.lab.table"), spread: tx("statistics.lab.numbers"), missing: tx("statistics.lab.problem") };
     var EX = {
       center: ["4, 8, 6, 5, 7", "3, 9, 4, 7", "2, 5, 5, 8, 10, 5, 3", "12, 15, 11, 15, 19, 11", "7, 3, 9, 1", "1.5, 2.25, 3, 2.25", "−3, 4, −1, 0, 5", "88, 92, 75, 92, 100, 81"],
       box: ["3, 7, 8, 5, 12, 14, 21, 13, 18", "2, 4, 4, 5, 6, 7, 8, 9", "10, 12, 13, 15, 15, 16, 18, 40", "45, 52, 38, 61, 49, 55, 47, 50, 58, 44"],
@@ -5012,6 +5049,7 @@
       spread: ["2, 4, 6, 8", "2, 4, 6, 8, 10", "3, 5, 6, 9, 12", "10, 10, 10, 10", "1, 3, 7, 9, 15", "68, 75, 80, 82, 95"],
       missing: ["mean of 5 numbers is 8: 6, 9, 7, 10", "mean of 4 numbers is 15: 12, 20, 9", "need average 85 scores 78, 92, 81", "need average 90 scores 88, 85 over 4 tests", "mean 7: 4, 9, ?, 6"]
     };
+    if (own("statistics.exMissingList")) EX.missing = own("statistics.exMissingList");
 
     function buildChips() {
       var host = $("chips");
@@ -5105,9 +5143,9 @@
       function done() {
         if (settled) return;
         settled = true;
-        btn.textContent = "Link copied ✓";
+        btn.textContent = tx("common.linkCopied") + " ✓";
         clearTimeout(btn._t);
-        btn._t = setTimeout(function() { btn.textContent = "Copy link"; }, 2000);
+        btn._t = setTimeout(function() { btn.textContent = tx("common.copyLink"); }, 2000);
       }
 
       function fallback() {
@@ -5158,7 +5196,7 @@
       return t ? t === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
     }
 
-    function paint() { themeBtn.textContent = isDark() ? "Light mode" : "Dark mode"; }
+    function paint() { themeBtn.textContent = isDark() ? tx("common.lightMode") : tx("common.darkMode"); }
     themeBtn.addEventListener("click", function() {
       document.documentElement.setAttribute("data-theme", isDark() ? "light" : "dark");
       paint();

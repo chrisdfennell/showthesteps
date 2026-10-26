@@ -444,7 +444,26 @@
   var waiting = [],
     isReady = false;
 
+  // a locale file that didn't arrive (a dropped request on a poor connection): fetched once more, at once, so the
+  // page never shows its keys. Each file is known by its keys: the shared one has common.*, a page's has <page>.*
+  function repair() {
+    files().forEach(function(f) {
+      var m = /assets\/i18n\/([a-z]+)(?:\/([\w-]+))?\.js$/.exec(f);
+      if (!m || !has(STR, m[1])) return;
+      var pre = (m[2] || "common") + ".";
+      for (var k in STR[m[1]])
+        if (k.indexOf(pre) === 0) return;
+      try {
+        var x = new XMLHttpRequest();
+        x.open("GET", ROOT + f, false);
+        x.send(null);
+        if (x.status === 200 || (x.status === 0 && x.responseText))(0, eval)(x.responseText);
+      } catch (e) { if (window.console) console.warn("i18n: couldn't load " + f, e); }
+    });
+  }
+
   function done() {
+    try { repair(); } catch (e) {}
     isReady = true;
     var w = waiting;
     waiting = [];

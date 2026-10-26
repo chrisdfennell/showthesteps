@@ -693,6 +693,7 @@ HelperI18n.add("es", {
       }
     },
     powers: { "2": "al cuadrado", "3": "al cubo", n: "a la {n}", negative: "a la menos {n}" },
+    marks: { bar: "barra", hat: "gorro", star: "estrella", vector: "el vector", to: "a" },
     roots: { "2": "la raíz cuadrada de", "3": "la raíz cúbica de", "4": "la raíz cuarta de", n: "la raíz de índice {n} de", times: "{c} por {r}" },
     money: { dollar: ["un dólar", "{n} dólares"], cent: ["un centavo", "{n} centavos"], both: "{d} con {c}", euro: "{n} euros", pound: "{n} libras" },
     steps: { div: "divide el numerador y el denominador entre {n}, y queda", mul: "multiplica el numerador y el denominador por {n}, y queda" }

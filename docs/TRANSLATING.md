@@ -2,8 +2,8 @@
 
 The site can show itself in more than one language. English is the source of truth; every other language is a
 copy of the English strings with the values translated. Spanish (`es`) is the first one: the bar, the tools on every
-page, the home page, Play, Tutor me, voice and photo input, and six helpers (addition, subtraction, multiplication,
-division, fractions, percents) so far.
+page, the home page, Play, Tutor me, voice and photo input, and all 44 helpers, from Addition to the Math at work
+fields. Their worked steps, notices, the problem maker and Check my answer are included.
 
 ## How it works
 
@@ -25,6 +25,8 @@ division, fractions, percents) so far.
 - **Loading:** a helper with its own strings loads `i18n.js` in its `<head>` (`<script src="../assets/i18n.js"
   data-strings="addition">`), which writes in the locale files at once, so the page's script can call `t()`
   anywhere. Every other page gets `i18n.js` and the shared files from `nav.js`, before `search.js` and `tools.js`.
+  A helper's English lives only in `en/<page>.js`, so a locale file that doesn't arrive (a dropped request) is fetched
+  once more before the page runs. Offline, `sw.js` has every locale file saved.
 
 ## Adding a language
 
@@ -103,6 +105,16 @@ Matching is done without accents and in lower case. Patterns are regular-express
 order matters (a specific phrase before a general one). Add a phrase to the test list in your test run, not just to
 the data.
 
+A helper's own words go in its own file, not the shared table: `<page>.typedWords` (its topic's phrases, e.g.
+`{ before: [[pattern, replacement], …], after: […] }` around `normalize`) and `<page>.ck.answerWords` (answers typed
+in Check my answer: "ninguno", "sí", "o"). They exist only in the translation (English needs none); the checker
+accepts keys ending in `Words` as data that English doesn't have. Each helper's code says how it uses them.
+
+Some readers aren't translated: a word problem typed in full sentences on Trigonometry, Calculus (optimization,
+related rates), Graphing (optimization), Counting, College statistics and Matrices is still read in English, and the page says so ("por ahora, en
+inglés"). The Story Problem page reads simple Spanish stories by turning them into English first; when a word is
+new to it, it says so instead of guessing.
+
 ## Glossary (Spanish)
 
 Latin American / US school Spanish, informal *tú*. Keep these the same everywhere:
@@ -142,10 +154,10 @@ Latin American / US school Spanish, informal *tú*. Keep these the same everywhe
 
 ## Not translated yet
 
-The other helpers' own text (they show the bar and tools in the chosen language, and their work in English), the
-lessons, reference sheets, practice pages, the standards' own wording (the Common Core line's tooltips) and the
+The lessons, reference sheets, practice pages, the standards' own wording (the Common Core line's tooltips) and the
 definitions in the pop-ups (their "More →" link is translated). The QR and Embed dialogs, Add to assignment, the Common
 Core line, Your practice (`assign.*`, `qr.*`, `embed.*`, `standards.*`, `glossary.*`, `progress.*`) and the
-screen-reader names of the math (from the speech table) follow the language. Porting a
-helper: add `data-strings="<page>"` to its `i18n.js` tag, move its strings into `en/<page>.js` with keys
-`<page>.*`, write `xx/<page>.js`, and call `HelperI18n.normalize()` where it reads a typed problem.
+screen-reader names of the math (from the speech table) follow the language. Page titles (`<title>`) and the helpers'
+names stay English. A new helper: add `data-strings="<page>"` to its `i18n.js` tag, put its strings in
+`en/<page>.js` with keys `<page>.*`, write `xx/<page>.js`, call `HelperI18n.normalize()` where it reads a typed
+problem, and add both files to `sw.js`.

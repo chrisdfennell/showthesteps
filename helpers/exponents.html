@@ -16,6 +16,7 @@
 <link rel="canonical" href="https://showthesteps.org/helpers/exponents">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","name":"Exponents, roots and scientific notation, step by step – The Power Tower","description":"Powers, step by step. Work out a power as repeated multiplication, see why a⁰ = 1 and a⁻ⁿ = 1/aⁿ, use the exponent laws, write numbers in scientific notation and work with them, and find…","url":"https://showthesteps.org/helpers/exponents","inLanguage":"en-US","isAccessibleForFree":true,"learningResourceType":["Interactive worked examples","Practice problems"],"interactivityType":"active","educationalUse":["Practice","Self-assessment"],"teaches":"Exponents, roots and scientific notation","educationalLevel":["Middle school (grades 6–8)","High school (grades 9–12)"],"audience":{"@type":"EducationalAudience","educationalRole":"student"},"publisher":{"@type":"Organization","name":"Show The Steps","url":"https://showthesteps.org/"},"isPartOf":{"@type":"WebSite","name":"Show The Steps","url":"https://showthesteps.org/"}}</script>
 <script src="../assets/site.js"></script>
+<script src="../assets/i18n.js" data-strings="exponents"></script>
 <script src="../assets/nav.js" defer></script>
 <script src="../assets/progress.js" defer></script>
 <link rel="stylesheet" href="../assets/fonts/fonts.css">
@@ -1778,22 +1779,22 @@
 <div class="page" id="page">
   <header class="masthead">
     <div>
-      <div class="eyebrow">Exponents &amp; scientific notation</div>
+      <div class="eyebrow" data-i18n="exponents.eyebrow">Exponents &amp; scientific notation</div>
       <h1>The Power <em>Tower</em><sup>n</sup></h1>
-      <p class="tagline">A power is repeated multiplication. Work one out and see why a<sup>0</sup> = 1 and
+      <p class="tagline" data-i18n="exponents.tagline">A power is repeated multiplication. Work one out and see why a<sup>0</sup> = 1 and
         a<sup>&minus;n</sup> = 1/a<sup>n</sup>, simplify with the exponent laws, write very big and very small numbers in
         scientific notation and work with them, and find square and cube roots &mdash; with the reason for every step.</p>
     </div>
-    <button class="theme-btn" id="themeBtn" type="button">Dark mode</button>
+    <button class="theme-btn" id="themeBtn" type="button" data-i18n="common.darkMode">Dark mode</button>
   </header>
 
   <section class="problem">
-    <div class="modes" id="modeTabs" role="group" aria-label="What kind of problem">
-      <button type="button" data-mode="eval" aria-pressed="true">Powers</button>
-      <button type="button" data-mode="laws" aria-pressed="false">Exponent laws</button>
-      <button type="button" data-mode="sci" aria-pressed="false">Scientific notation</button>
-      <button type="button" data-mode="scicalc" aria-pressed="false">Sci. notation math</button>
-      <button type="button" data-mode="roots" aria-pressed="false">Roots</button>
+    <div class="modes" id="modeTabs" role="group" aria-label="What kind of problem" data-i18n-attr="aria-label=exponents.modesAria">
+      <button type="button" data-mode="eval" aria-pressed="true" data-i18n="exponents.tab.eval">Powers</button>
+      <button type="button" data-mode="laws" aria-pressed="false" data-i18n="exponents.tab.laws">Exponent laws</button>
+      <button type="button" data-mode="sci" aria-pressed="false" data-i18n="exponents.tab.sci">Scientific notation</button>
+      <button type="button" data-mode="scicalc" aria-pressed="false" data-i18n="exponents.tab.scicalc">Sci. notation math</button>
+      <button type="button" data-mode="roots" aria-pressed="false" data-i18n="exponents.tab.roots">Roots</button>
     </div>
     <div class="entry">
       <div class="numfield">
@@ -1805,35 +1806,35 @@
     <p class="hint" id="hint"></p>
 
     <details class="maker" id="maker">
-      <summary>Make a problem for me <span>&mdash; pick what goes in it</span></summary>
+      <summary data-i18n="common.maker">Make a problem for me <span>&mdash; pick what goes in it</span></summary>
       <div class="maker-body" id="makerBody"></div>
     </details>
 
     <div class="examples">
-      <span class="lbl">Try</span>
+      <span class="lbl" data-i18n="common.try">Try</span>
       <span id="chips"></span>
       <span class="practice">
-        <div class="modes" role="group" aria-label="Practice mode">
-          <button type="button" id="allBtn" aria-pressed="true">Show all work</button>
-          <button type="button" id="stepBtn" aria-pressed="false">One step at a time</button>
-          <button type="button" id="checkBtn" aria-pressed="false">Check my answer</button>
+        <div class="modes" role="group" aria-label="Practice mode" data-i18n-attr="aria-label=common.practiceMode">
+          <button type="button" id="allBtn" aria-pressed="true" data-i18n="common.showAll">Show all work</button>
+          <button type="button" id="stepBtn" aria-pressed="false" data-i18n="common.oneStep">One step at a time</button>
+          <button type="button" id="checkBtn" aria-pressed="false" data-i18n="common.checkMine">Check my answer</button>
         </div>
       </span>
     </div>
   </section>
 
   <section class="ckbox" id="ckBox" hidden aria-labelledby="ckH">
-    <h2 id="ckH">Your answer</h2>
+    <h2 id="ckH" data-i18n="common.yourAnswer">Your answer</h2>
     <div class="ckq" id="ckQ"></div>
     <div class="ckrow">
       <div class="ckfields" id="ckFields"></div>
-      <button type="button" class="go" id="ckGo">Check</button>
+      <button type="button" class="go" id="ckGo" data-i18n="common.check">Check</button>
     </div>
     <div class="ckfb" id="ckFb" aria-live="polite"></div>
     <div class="ckhint" id="ckHint" hidden></div>
     <div class="ckmore" id="ckMore" hidden>
-      <button type="button" class="print" id="hintBtn">Show a hint</button>
-      <button type="button" class="print" id="showBtn">Show me the work</button>
+      <button type="button" class="print" id="hintBtn" data-i18n="common.hint">Show a hint</button>
+      <button type="button" class="print" id="showBtn" data-i18n="common.showWork">Show me the work</button>
     </div>
     <div class="cknote" id="ckNote"></div>
   </section>
@@ -1843,11 +1844,11 @@
   <div class="board" id="board">
     <section class="panel">
       <div class="panel-head">
-        <h2>The work</h2>
+        <h2 data-i18n="common.theWork">The work</h2>
         <div class="stepper" id="stepper" hidden>
-          <button type="button" id="prevBtn" aria-label="Previous step">&larr;</button>
+          <button type="button" id="prevBtn" aria-label="Previous step" data-i18n-attr="aria-label=common.prevStep">&larr;</button>
           <span class="count" id="stepCount"></span>
-          <button type="button" id="nextBtn" aria-label="Next step">&rarr;</button>
+          <button type="button" id="nextBtn" aria-label="Next step" data-i18n-attr="aria-label=common.nextStep">&rarr;</button>
         </div>
       </div>
       <div id="workHost"></div>
@@ -1855,7 +1856,7 @@
     </section>
 
     <section class="panel">
-      <div class="panel-head"><h2>Say it out loud</h2></div>
+      <div class="panel-head"><h2 data-i18n="common.sayIt">Say it out loud</h2></div>
       <ol class="log" id="log"></ol>
       <div class="closer" id="closer"></div>
     </section>
@@ -1863,10 +1864,10 @@
 
   <div class="footnote">
     <span class="btns">
-      <button class="print" type="button" id="printBtn">Print this work</button>
-      <button class="print" type="button" id="copyBtn">Copy link</button>
+      <button class="print" type="button" id="printBtn" data-i18n="common.print">Print this work</button>
+      <button class="print" type="button" id="copyBtn" data-i18n="common.copyLink">Copy link</button>
     </span>
-    <span>Every number is worked out exactly, so 2<sup>60</sup> and 10<sup>&minus;12</sup> come out to the last digit.
+    <span data-i18n="exponents.footnote">Every number is worked out exactly, so 2<sup>60</sup> and 10<sup>&minus;12</sup> come out to the last digit.
       Powers inside a longer problem? Work it on <a href="order-of-operations.html">( )</a>. Breaking a number into primes? See
       <a href="factors-and-primes.html">the factor tree</a>.</span>
   </div>
@@ -1941,6 +1942,9 @@
      ============================================================================= */
   (function() {
     "use strict";
+    if (window.HelperI18n) HelperI18n.apply();
+    var tx = function(k, v) { return window.HelperI18n ? HelperI18n.t(k, v) : k; };
+    var traw = function(k) { return window.HelperI18n ? HelperI18n.raw(k) : undefined; };
     var $ = function(id) { return document.getElementById(id); };
     var PAGE = "exponents.html",
       STORE = "power-tower",
@@ -1972,10 +1976,10 @@
     function UserErr(msg) { this.user = msg; }
 
     function cap(s) { s = String(s); return s.charAt(0).toUpperCase() + s.slice(1); }
-    var WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"];
+    var WORDS = traw("exponents.words");
 
     function word(k) { return k >= 0 && k < WORDS.length ? WORDS[k] : String(k); }
-    var ORDS = ["zeroth", "first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth", "eleventh", "twelfth"];
+    var ORDS = traw("exponents.ords");
 
     function ordW(k) { return k >= 0 && k < ORDS.length ? ORDS[k] : k + (k % 10 === 1 && k % 100 !== 11 ? "st" : k % 10 === 2 && k % 100 !== 12 ? "nd" : k % 10 === 3 && k % 100 !== 13 ? "rd" : "th"); }
 
@@ -2012,7 +2016,7 @@
     function R(n, d) {
       n = BigInt(n);
       d = d === undefined ? 1n : BigInt(d);
-      if (d === 0n) throw new UserErr("You can’t divide by <b>0</b>.");
+      if (d === 0n) throw new UserErr(tx("exponents.err.div0"));
       if (d < 0n) {
         n = -n;
         d = -d;
@@ -2036,7 +2040,7 @@
 
     function mul(a, b) { return R(a.n * b.n, a.d * b.d); }
 
-    function dvd(a, b) { if (b.n === 0n) throw new UserErr("You can’t divide by <b>0</b>."); return R(a.n * b.d, a.d * b.n); }
+    function dvd(a, b) { if (b.n === 0n) throw new UserErr(tx("exponents.err.div0")); return R(a.n * b.d, a.d * b.n); }
 
     function cmpR(a, b) { var x = a.n * b.d - b.n * a.d; return x < 0n ? -1 : x > 0n ? 1 : 0; }
 
@@ -2061,7 +2065,7 @@
     function powR(r, e) {
       if (e === 0) return ONE;
       if (e > 0) return R(r.n ** BigInt(e), r.d ** BigInt(e));
-      if (r.n === 0n) throw new UserErr("You can’t divide by <b>0</b>.");
+      if (r.n === 0n) throw new UserErr(tx("exponents.err.div0"));
       return R(r.d ** BigInt(-e), r.n ** BigInt(-e));
     }
 
@@ -2224,20 +2228,20 @@
         if (/[\d.]/.test(c)) {
           var afterOp = !prev || (prev.k === "op" && prev.s !== ")" && prev.s !== "^");
           if (afterOp && (m = /^(\d+)\s+(\d+)\s*\/\s*(\d+)(?=\s*(?:$|[)+\-*,;=]))/.exec(rest))) { // a mixed number: 2 1/4
-            if (/^0+$/.test(m[3])) throw new UserErr("A fraction can’t have <b>0</b> on the bottom.");
+            if (/^0+$/.test(m[3])) throw new UserErr(tx("exponents.err.fracZero"));
             out.push({ k: "num", v: add(R(BigInt(m[1])), R(BigInt(m[2]), BigInt(m[3]))), s: m[1] + " " + m[2] + "/" + m[3], mixed: true });
             i += m[0].length;
             continue;
           }
           m = /^(\d+(?:\.\d*)?|\.\d+)(?:[eE]([+-]?\d+)(?![\w.^]))?/.exec(rest);
-          if (!m) throw new UserErr("I can’t read the number at <b>" + esc(rest.slice(0, 8)) + "</b>.");
+          if (!m) throw new UserErr(tx("exponents.err.readNum", { s: esc(rest.slice(0, 8)) }));
           var str = m[1].replace(/\.$/, "");
           if (str.charAt(0) === ".") str = "0" + str;
-          if (str.replace(".", "").length > 40) throw new UserErr("That number is too long for this page — up to 40 digits, please.");
+          if (str.replace(".", "").length > 40) throw new UserErr(tx("exponents.err.digits40"));
           var tok = { k: "num", v: parseDecStr(str), s: str, dec: str.indexOf(".") >= 0 };
           if (m[2] !== undefined) {
             var k = parseInt(m[2], 10);
-            if (Math.abs(k) > 300) throw new UserErr("That power of 10 is too big for this page.");
+            if (Math.abs(k) > 300) throw new UserErr(tx("exponents.err.pow10Big"));
             tok.sci = { m: tok.v, k: k, ms: str };
             tok.v = mul(tok.v, pow10R(k));
             tok.s = str + "e" + k;
@@ -2266,7 +2270,7 @@
           i++;
           continue;
         }
-        throw new UserErr("I can’t read <b>" + esc(c) + "</b> in that.");
+        throw new UserErr(tx("exponents.err.readChar", { c: esc(c) }));
       }
       return out;
     }
@@ -2275,13 +2279,12 @@
       var ns = norm(src);
       // x^1/2 could be x^(1/2) or (x^1)/2: ask rather than guess (x^6/x^2 and 2^3/2^2 are fine)
       if (/\^\s*[-+]?\d+\s*\/\s*\d+(?![\d.]|\s*[\^(a-zA-Z])/.test(ns))
-        throw new UserErr("Is that a fraction for the exponent, like <b>x^(1/2)</b>, or the power divided, like <b>(x^1)/2</b>? Add brackets to show which. " +
-          "(Fraction exponents are roots: try <a href=\"radicals.html\">The Root Cellar</a>.)");
+        throw new UserErr(tx("exponents.err.fracExp"));
       var T = lex(ns),
         p = 0,
         depth = 0;
-      if (!T.length) throw new UserErr("There’s nothing to work with yet.");
-      if (T.length > 160) throw new UserErr("That’s too long for this page — try a shorter problem.");
+      if (!T.length) throw new UserErr(tx("exponents.err.nothing"));
+      if (T.length > 160) throw new UserErr(tx("exponents.err.tooLong"));
 
       function pk() { return T[p]; }
 
@@ -2310,7 +2313,7 @@
       function imp() {
         var a = unary();
         while (starts(pk())) {
-          if (pk().k === "num" && T[p - 1] && T[p - 1].k === "num") throw new UserErr("Two numbers in a row — put a sign (×, ÷, + or −) between them.");
+          if (pk().k === "num" && T[p - 1] && T[p - 1].k === "num") throw new UserErr(tx("exponents.err.twoNums"));
           a = { t: "mul", a: a, b: power(), imp: true };
         }
         return a;
@@ -2336,24 +2339,24 @@
 
       function primary() {
         var t = T[p];
-        if (!t) throw new UserErr("Something is missing at the end.");
-        if (++depth > 80) throw new UserErr("That’s too tangled for this page.");
+        if (!t) throw new UserErr(tx("exponents.err.missingEnd"));
+        if (++depth > 80) throw new UserErr(tx("exponents.err.tangled"));
         if (t.k === "num") { p++; var o = { t: "num", v: t.v, s: t.s }; if (t.sci) o.sci = t.sci; if (t.dec) o.dec = true; if (t.mixed) o.mixed = true; return o; }
         if (t.k === "var") { p++; return { t: "var", s: t.s }; }
         if (t.k === "fn") { p++; return { t: "fn", f: t.s, a: isOp(pk(), "(") ? primary() : power() }; }
         if (isOp(t, "(")) {
           p++;
-          if (isOp(pk(), ")")) throw new UserErr("There’s an empty pair of brackets.");
+          if (isOp(pk(), ")")) throw new UserErr(tx("exponents.err.emptyBr"));
           var e = expr();
-          if (!isOp(pk(), ")")) throw new UserErr("A bracket isn’t closed — check the <b>( )</b>.");
+          if (!isOp(pk(), ")")) throw new UserErr(tx("exponents.err.notClosed"));
           p++;
           return { t: "grp", a: e };
         }
-        if (isOp(t, "^")) throw new UserErr("A <b>^</b> needs a number or letter in front of it.");
-        throw new UserErr(isOp(t, ")") ? "There’s an extra <b>)</b>." : "Something is missing before <b>" + esc(t.s) + "</b>.");
+        if (isOp(t, "^")) throw new UserErr(tx("exponents.err.caretFront"));
+        throw new UserErr(isOp(t, ")") ? tx("exponents.err.extraClose") : tx("exponents.err.missingBefore", { s: esc(t.s) }));
       }
       var tree = expr();
-      if (p < T.length) throw new UserErr(isOp(T[p], ")") ? "There’s an extra <b>)</b>." : "I can’t read the part starting at <b>" + esc(T[p].s || "") + "</b>.");
+      if (p < T.length) throw new UserErr(isOp(T[p], ")") ? tx("exponents.err.extraClose") : tx("exponents.err.readFrom", { s: esc(T[p].s || "") }));
       return tree;
     }
 
@@ -2373,10 +2376,10 @@
     var MAXD = 3000;
 
     function expInt(n) {
-      if (hasVar(n)) throw new UserErr("Exponents are numbers here (like 3 or −2), not letters.");
+      if (hasVar(n)) throw new UserErr(tx("exponents.err.expLetters"));
       var v = evalN(n);
-      if (!isInt(v)) throw new UserErr("Exponents here are whole numbers (like 3 or −2), not fractions or decimals.");
-      if (babs(v.n) > 400n) throw new UserErr("That exponent is too big for this page — up to 400.");
+      if (!isInt(v)) throw new UserErr(tx("exponents.err.expWhole"));
+      if (babs(v.n) > 400n) throw new UserErr(tx("exponents.err.exp400"));
       return Number(v.n);
     }
 
@@ -2399,22 +2402,22 @@
         case "pow":
           var b = evalN(n.a),
             e = expInt(n.b);
-          if (b.n === 0n && e === 0) throw new UserErr("<b>0<sup>0</sup></b> has no agreed value in school math (the pattern for 0<sup>n</sup> says 0, the pattern for a<sup>0</sup> says 1). Try another base.");
-          if (b.n === 0n && e < 0) throw new UserErr("<b>0</b> to a negative power would mean dividing by 0, which can’t be done.");
-          if (digs(b) * Math.abs(e) > MAXD) throw new UserErr("That number gets too big to write out here — try a smaller exponent.");
+          if (b.n === 0n && e === 0) throw new UserErr(tx("exponents.err.zeroZero"));
+          if (b.n === 0n && e < 0) throw new UserErr(tx("exponents.err.zeroNeg"));
+          if (digs(b) * Math.abs(e) > MAXD) throw new UserErr(tx("exponents.err.tooBigExp"));
           return powR(b, e);
         case "fn":
           var x = evalN(n.a),
             r = n.f === "cbrt" ? 3 : 2;
-          if (!isInt(x)) throw new UserErr("Roots of whole numbers only, please.");
-          if (r === 2 && x.n < 0n) throw new UserErr("A negative number has no square root among the ordinary numbers.");
+          if (!isInt(x)) throw new UserErr(tx("exponents.err.rootsWhole"));
+          if (r === 2 && x.n < 0n) throw new UserErr(tx("exponents.err.negSqrt"));
           var q = irootB(x.n, r);
-          if (r === 2 ? q * q !== x.n : q * q * q !== x.n) throw new UserErr("That root doesn’t come out to a whole number.");
+          if (r === 2 ? q * q !== x.n : q * q * q !== x.n) throw new UserErr(tx("exponents.err.rootNotWhole"));
           return R(q);
         case "var":
-          throw new UserErr("Letters can’t go there — use numbers.");
+          throw new UserErr(tx("exponents.err.lettersNo"));
       }
-      throw new UserErr("I can’t work that out.");
+      throw new UserErr(tx("exponents.err.cantWork"));
     }
 
     /* ===================== showing an expression ===================== */
@@ -2627,9 +2630,9 @@
               (side > 0 ? st.ct : st.cb).push(evalN(n));
               return;
             }
-            throw new UserErr("I can’t simplify that one — try writing it another way.");
+            throw new UserErr(tx("exponents.err.cantSimplify"));
         }
-        throw new UserErr("Only ×, ÷ and powers here — no + or −.");
+        throw new UserErr(tx("exponents.err.onlyMulDiv"));
       })(node, 1);
       return st;
     }
@@ -2684,7 +2687,7 @@
         guard = 0,
         ev;
       for (;;) {
-        if (++guard > 40) throw new UserErr("That one is too tangled for this page.");
+        if (++guard > 40) throw new UserErr(tx("exponents.err.tangled2"));
         ev = [];
         var nx = passDist(cur, ev);
         if (ev.length) {
@@ -2779,7 +2782,7 @@
       var fin = { c: c, items: items };
       var val = c;
       items.forEach(function(it) { if (!it.isVar) val = mul(val, powR(it.base, it.side * it.exp)); });
-      if (digs(val) > 400 && nm) throw new UserErr("That number gets too big to write out here.");
+      if (digs(val) > 400 && nm) throw new UserErr(tx("exponents.err.tooBig"));
       return { stages: stages, last: cur, flat: fl, fsteps: fsteps, fin: fin, nm: nm, value: nm ? val : null, mono: monoFromState(fin, nm) };
     }
 
@@ -2841,13 +2844,13 @@
           if (mk === "noCoef" && grp && hasVar(inner)) out.c = A.c;
           else if (mk === "coefTimes" && e > 1 && !(A.c.d === 1n && (A.c.n === 1n || A.c.n === -1n))) out.c = mul(A.c, R(e));
           else {
-            if (digs(A.c) * Math.abs(e) > MAXD) throw new UserErr("That number gets too big to write out here.");
+            if (digs(A.c) * Math.abs(e) > MAXD) throw new UserErr(tx("exponents.err.tooBig"));
             out.c = powR(A.c, e);
           }
           for (k in A.v) out.v[k] = mk === "addExp" && A.v[k] !== 1 ? A.v[k] + e : A.v[k] * e;
           return out;
       }
-      throw new UserErr("Only ×, ÷ and powers here — no + or −.");
+      throw new UserErr(tx("exponents.err.onlyMulDiv"));
     }
     // number bases folded back into the number in front (3⁸ → 6561)
     function collapse(m) {
@@ -2857,7 +2860,7 @@
         if (k.charAt(0) === "#") {
           var pr = k.slice(1).split("/"),
             b = R(BigInt(pr[0]), BigInt(pr[1]));
-          if (digs(b) * Math.abs(m.v[k]) > MAXD) throw new UserErr("That number gets too big to write out here.");
+          if (digs(b) * Math.abs(m.v[k]) > MAXD) throw new UserErr(tx("exponents.err.tooBig"));
           o.c = mul(o.c, powR(b, m.v[k]));
         } else o.v[k] = m.v[k];
       }
@@ -2883,11 +2886,11 @@
 
     /* ===================== reading each kind of problem ===================== */
     var EMPTY = {
-      eval: "Type a power, like <b>2^5</b>, <b>(−3)^2</b> or <b>5^−2</b>.",
-      laws: "Type something to simplify, like <b>x^3 · x^4</b> or <b>(2x^2)^3</b>.",
-      sci: "Type a number, like <b>45,000,000</b> or <b>0.00032</b> — or one in scientific notation, like <b>3.2 × 10^−4</b>.",
-      scicalc: "Type two numbers in scientific notation with ×, ÷, + or − between them, like <b>(3 × 10^4)(2 × 10^5)</b>.",
-      roots: "Type a root, like <b>√64</b>, <b>sqrt 50</b> or <b>cube root of 27</b>."
+      eval: tx("exponents.empty.eval"),
+      laws: tx("exponents.empty.laws"),
+      sci: tx("exponents.empty.sci"),
+      scicalc: tx("exponents.empty.scicalc"),
+      roots: tx("exponents.empty.roots")
     };
     /* ===================== typed words =====================
        "5 to the power of 3", "2 cubed", "x to the 4th times x squared", "four point five times ten to the seventh",
@@ -2990,9 +2993,9 @@
       if (!w) return;
       var lw = w[0].toLowerCase(),
         more = "";
-      if (/=/.test(s) && /\^\s*\(?[a-z]/i.test(s)) more = ' To solve for an exponent, like <b>2^x = 16</b>, try <a href="logarithms.html?q=' + esc(encodeURIComponent(s)) + '">The Log Ladder</a>.';
-      else if (/=/.test(s)) more = ' To solve an equation, try <a href="algebra.html?q=' + esc(encodeURIComponent(s)) + '">The Balance Scale</a>.';
-      throw new UserErr("I don’t know the word <b>“" + esc(w[0]) + "”</b> in a problem here. Type it with numbers, letters and signs, like <b>2^5</b> or <b>x^3 · x^4</b>." + more);
+      if (/=/.test(s) && /\^\s*\(?[a-z]/i.test(s)) more = tx("exponents.err.moreLog", { q: esc(encodeURIComponent(s)) });
+      else if (/=/.test(s)) more = tx("exponents.err.moreAlg", { q: esc(encodeURIComponent(s)) });
+      throw new UserErr(tx("exponents.err.word", { w: esc(w[0]) }) + more);
     }
 
     function cleanQ(s) {
@@ -3059,11 +3062,11 @@
     function evalQT(P) { return (P.neg ? "−" : "") + evalBaseT(P) + "^" + sgnT(P.e); }
 
     function mkEval(b, bk, e, neg) {
-      if (b.n === 0n && e === 0) throw new UserErr("<b>0<sup>0</sup></b> has no agreed value in school math (the pattern for 0<sup>n</sup> says 0, the pattern for a<sup>0</sup> says 1). Try another base.");
-      if (b.n === 0n && e < 0) throw new UserErr("<b>0</b> to a negative power would mean dividing by 0, which can’t be done.");
-      if (Math.abs(e) > 64) throw new UserErr("Exponents up to 64 on this tab, please.");
-      if (digs(b) > 18) throw new UserErr("That base is too long — up to about 8 digits, please.");
-      if (digs(b) * Math.abs(e) > 1300) throw new UserErr("That number gets too big to write out here — try a smaller exponent.");
+      if (b.n === 0n && e === 0) throw new UserErr(tx("exponents.err.zeroZero"));
+      if (b.n === 0n && e < 0) throw new UserErr(tx("exponents.err.zeroNeg"));
+      if (Math.abs(e) > 64) throw new UserErr(tx("exponents.err.exp64"));
+      if (digs(b) > 18) throw new UserErr(tx("exponents.err.base8"));
+      if (digs(b) * Math.abs(e) > 1300) throw new UserErr(tx("exponents.err.tooBigExp"));
       if (bk === "dec" && termK(b.d) < 0) bk = "frac";
       if (!isInt(b) && bk === "int") bk = "frac";
       if (isInt(b)) bk = "int";
@@ -3080,32 +3083,32 @@
       var t = parse(s),
         n = stripG(t),
         neg = false;
-      if (hasVar(t)) throw new UserErr("This tab works out powers of numbers. For letters like <b>x</b>, use the <b>Exponent laws</b> tab.");
-      if (hasT(t, ["add", "sub", "fn"])) throw new UserErr("One power at a time here, like <b>2^5</b>. For a longer problem, use the <a href=\"order-of-operations.html\">order of operations</a> page.");
+      if (hasVar(t)) throw new UserErr(tx("exponents.err.evalVar"));
+      if (hasT(t, ["add", "sub", "fn"])) throw new UserErr(tx("exponents.err.evalLong"));
       if (n.t === "neg") {
         neg = true;
         n = stripG(n.a);
-        if (n.t === "neg") throw new UserErr("Two minus signs in a row — write it with brackets, like <b>(−3)^2</b>.");
+        if (n.t === "neg") throw new UserErr(tx("exponents.err.twoMinus"));
       }
       if (n.t !== "pow") {
-        if (n.t === "num") throw new UserErr("Add an exponent: <b>" + esc(s) + "^2</b> means " + esc(s) + " × " + esc(s) + ".");
-        throw new UserErr("One power at a time here, like <b>2^5</b> or <b>(2/3)^3</b>. To combine powers (like <b>2^3 · 2^4</b>), use the <b>Exponent laws</b> tab.");
+        if (n.t === "num") throw new UserErr(tx("exponents.err.addExp", { s: esc(s) }));
+        throw new UserErr(tx("exponents.err.onePow"));
       }
-      if (hasT(n.a, ["pow"]) || hasT(n.b, ["pow"])) throw new UserErr("That’s a power of a power — the <b>Exponent laws</b> tab works those out.");
-      if (hasT(n.a, ["mul"])) throw new UserErr("That’s a power of a product — the <b>Exponent laws</b> tab works those out.");
+      if (hasT(n.a, ["pow"]) || hasT(n.b, ["pow"])) throw new UserErr(tx("exponents.err.powPow"));
+      if (hasT(n.a, ["mul"])) throw new UserErr(tx("exponents.err.powProd"));
       var bs = stripG(n.a),
         b = evalN(n.a),
         e = expInt(n.b);
-      if (bs.t === "num" && bs.sci) throw new UserErr("Write the base as an ordinary number here, like <b>(0.003)^2</b>.");
+      if (bs.t === "num" && bs.sci) throw new UserErr(tx("exponents.err.baseSci"));
       return mkEval(b, isInt(b) ? "int" : anyDec(bs) && termK(b.d) >= 0 ? "dec" : "frac", e, neg);
     }
 
     function readBaseStr(s) {
       s = String(s || "").replace(/[−–—]/g, "-").replace(/\s+/g, "");
       var m;
-      if ((m = /^(-?)(\d+)\/(\d+)$/.exec(s))) { if (/^0+$/.test(m[3])) throw new UserErr("A fraction can’t have <b>0</b> on the bottom."); return { v: R(BigInt(m[1] + m[2]), BigInt(m[3])), bk: "frac" }; }
+      if ((m = /^(-?)(\d+)\/(\d+)$/.exec(s))) { if (/^0+$/.test(m[3])) throw new UserErr(tx("exponents.err.fracZero")); return { v: R(BigInt(m[1] + m[2]), BigInt(m[3])), bk: "frac" }; }
       if (/^-?(\d+\.?\d*|\.\d+)$/.test(s)) { var v = parseDecStr(s.replace(/^(-?)\./, "$10.").replace(/\.$/, "")); return { v: v, bk: s.indexOf(".") >= 0 ? "dec" : "int" }; }
-      throw new UserErr("The base in the link should be a number, like <b>b=3</b>, <b>b=-3</b>, <b>b=0.5</b> or <b>b=2/3</b>.");
+      throw new UserErr(tx("exponents.err.linkBase"));
     }
 
     function walk(n, f) {
@@ -3122,21 +3125,21 @@
       var t = parse(s),
         vars = {},
         nodes = 0;
-      if (hasT(t, ["add", "sub"])) throw new UserErr("Only ×, ÷ and powers here. The exponent laws don’t join <b>+</b> or <b>−</b>: x² + x³ can’t be made into one power.");
-      if (hasT(t, ["fn"])) throw new UserErr("Roots go on the <b>Roots</b> tab.");
+      if (hasT(t, ["add", "sub"])) throw new UserErr(tx("exponents.err.lawsPlus"));
+      if (hasT(t, ["fn"])) throw new UserErr(tx("exponents.err.lawsRoot"));
       walk(t, function(n) {
         nodes++;
         if (n.t === "var") vars[n.s] = true;
-        if (n.t === "num" && n.sci) throw new UserErr("Numbers in scientific notation go on the <b>Sci. notation math</b> tab.");
-        if (n.t === "pow") { var e = expInt(n.b); if (Math.abs(e) > 60) throw new UserErr("Exponents up to 60 on this tab, please."); }
+        if (n.t === "num" && n.sci) throw new UserErr(tx("exponents.err.lawsSci"));
+        if (n.t === "pow") { var e = expInt(n.b); if (Math.abs(e) > 60) throw new UserErr(tx("exponents.err.exp60")); }
       });
-      if (Object.keys(vars).length > 4) throw new UserErr("Up to four different letters, please.");
-      if (nodes > 90) throw new UserErr("That’s too long for this page — try a shorter one.");
+      if (Object.keys(vars).length > 4) throw new UserErr(tx("exponents.err.fourLetters"));
+      if (nodes > 90) throw new UserErr(tx("exponents.err.tooLongOne"));
       var nm = !hasVar(t);
-      if (nm && !hasT(t, ["pow"])) throw new UserErr("Put in at least one power, like <b>2^3 · 2^4</b>. Just multiplying numbers? That’s the <a href=\"multiplication.html\">multiplication</a> page.");
+      if (nm && !hasT(t, ["pow"])) throw new UserErr(tx("exponents.err.lawsNoPow"));
       var sol = solveLaws(t, nm);
-      if (digs(sol.fin.c) > 60) throw new UserErr("The number in front gets too big for this page — try smaller numbers.");
-      sol.fin.items.forEach(function(it) { if (it.exp > 999) throw new UserErr("Those exponents get too big for this page."); });
+      if (digs(sol.fin.c) > 60) throw new UserErr(tx("exponents.err.coefBig"));
+      sol.fin.items.forEach(function(it) { if (it.exp > 999) throw new UserErr(tx("exponents.err.expsBig")); });
       return { mode: "laws", ast: t, nm: nm, ex: rn(t, "ascii"), sol: sol };
     }
 
@@ -3149,10 +3152,10 @@
       if (!s) throw new UserErr(EMPTY.sci);
       var t = parse(s),
         P;
-      if (hasVar(t)) throw new UserErr("Numbers only here. For letters like <b>x</b>, use the <b>Exponent laws</b> tab.");
+      if (hasVar(t)) throw new UserErr(tx("exponents.err.sciVar"));
       var f = sciForm(t);
       if (f) {
-        if (f.m.n === 0n) throw new UserErr("<b>0</b> is just 0 — scientific notation is for numbers that aren’t zero.");
+        if (f.m.n === 0n) throw new UserErr(tx("exponents.err.sciZero"));
         P = { mode: "sci", src: { plain: false, m: f.m, k: f.k }, to: isNormM(f.m) ? "std" : "sci" };
       } else {
         var n = stripG(t),
@@ -3161,9 +3164,9 @@
           sg = true;
           n = stripG(n.a);
         }
-        if (n.t !== "num" || n.sci || n.mixed) throw new UserErr("Type one number, like <b>45,000,000</b> or <b>0.00032</b>, or one in scientific notation, like <b>4.5 × 10^7</b>.");
+        if (n.t !== "num" || n.sci || n.mixed) throw new UserErr(tx("exponents.err.sciOne"));
         var v = sg ? negR(n.v) : n.v;
-        if (v.n === 0n) throw new UserErr("<b>0</b> is just 0 — scientific notation is for numbers that aren’t zero.");
+        if (v.n === 0n) throw new UserErr(tx("exponents.err.sciZero"));
         P = { mode: "sci", src: { plain: true, v: v }, to: "sci" };
       }
       return finishSci(P);
@@ -3174,8 +3177,8 @@
       var so = sciOf(P.v);
       P.m = so.m;
       P.k = so.k;
-      if (Math.abs(P.k) > 30 || (!P.src.plain && Math.abs(P.src.k) > 30)) throw new UserErr("Powers of 10 from −30 to 30 on this tab, please.");
-      if (decT(P.m, true).replace(/\D/g, "").length > 16) throw new UserErr("Up to 16 digits that matter (significant figures), please.");
+      if (Math.abs(P.k) > 30 || (!P.src.plain && Math.abs(P.src.k) > 30)) throw new UserErr(tx("exponents.err.pow30"));
+      if (decT(P.m, true).replace(/\D/g, "").length > 16) throw new UserErr(tx("exponents.err.sig16"));
       P.std = decT(P.v);
       return P;
     }
@@ -3216,14 +3219,14 @@
         i += mo[0].length;
       }
       var b = scanNum(s, i);
-      if (!b) throw new UserErr("I need two numbers, like <b>(3 × 10^4)(2 × 10^5)</b> or <b>6.4 × 10^8 ÷ 1.6 × 10^3</b>.");
-      if (s.slice(b.end).trim()) throw new UserErr("I can’t read the part <b>" + esc(s.slice(b.end).trim()) + "</b>. One sum or comparison at a time, please.");
+      if (!b) throw new UserErr(tx("exponents.err.twoNumbers"));
+      if (s.slice(b.end).trim()) throw new UserErr(tx("exponents.err.readPart", { s: esc(s.slice(b.end).trim()) }));
       var opC = opc === "*" ? "mul" : opc === "/" ? "div" : opc === "+" ? "add" : opc === "-" ? "sub" : null;
       if (op !== "cmp" && op !== "times") {
         if (opC) op = opC;
         if (!op) {
           if (a.close || b.open) op = "mul";
-          else throw new UserErr("Put ×, ÷, + or − between the two numbers.");
+          else throw new UserErr(tx("exponents.err.putOp"));
         }
       }
       if (swap) {
@@ -3238,19 +3241,19 @@
 
     function readE(s) {
       var a = scanNum(norm(String(s || "")).replace(/(\d|\))\s*[xX]\s*(?=[\d.(])/g, "$1*"), 0);
-      if (!a || norm(String(s || "")).replace(/(\d|\))\s*[xX]\s*(?=[\d.(])/g, "$1*").slice(a.end).trim()) throw new UserErr("A number in the link should look like <b>3e4</b> or <b>6.4e8</b>.");
+      if (!a || norm(String(s || "")).replace(/(\d|\))\s*[xX]\s*(?=[\d.(])/g, "$1*").slice(a.end).trim()) throw new UserErr(tx("exponents.err.linkE"));
       return { m: a.m, k: a.k };
     }
 
     function mkSciCalc(op, a, b) {
       [a, b].forEach(function(x) {
-        if (x.m.n === 0n) throw new UserErr("Use numbers that aren’t zero.");
-        if (Math.abs(x.k) > 30) throw new UserErr("Powers of 10 from −30 to 30 on this tab, please.");
-        if (decT(x.m, true).replace(/\D/g, "").length > 12) throw new UserErr("Up to 12 digits in each number, please.");
+        if (x.m.n === 0n) throw new UserErr(tx("exponents.err.nonZero"));
+        if (Math.abs(x.k) > 30) throw new UserErr(tx("exponents.err.pow30"));
+        if (decT(x.m, true).replace(/\D/g, "").length > 12) throw new UserErr(tx("exponents.err.dig12"));
       });
       var A = mul(a.m, pow10R(a.k)),
         Bv = mul(b.m, pow10R(b.k));
-      if ((op === "cmp" || op === "times") && (A.n < 0n || Bv.n < 0n)) throw new UserErr("Comparing works with positive numbers here.");
+      if ((op === "cmp" || op === "times") && (A.n < 0n || Bv.n < 0n)) throw new UserErr(tx("exponents.err.cmpPos"));
       if (op === "times" && cmpR(A, Bv) < 0) {
         var t = a;
         a = b;
@@ -3280,21 +3283,20 @@
       if (!s0) throw new UserErr(EMPTY.roots);
       var r = /cube|cubic|cbrt|∛|third/.test(low) ? 3 : 2;
       if (/simplif|simplest|radical\s+form|rationali[sz]e/.test(low))
-        throw new UserErr("This tab finds whole-number roots and estimates the rest. To simplify a root, like <b>√72 = 6√2</b>, try <a href=\"radicals.html?q=" +
-          esc(encodeURIComponent(s0)) + "\">The Root Cellar</a>.");
+        throw new UserErr(tx("exponents.err.rootSimplify", { q: esc(encodeURIComponent(s0)) }));
       var s = norm(s0).replace(/\b(?:sqrt|cbrt|square|cube|cubic|root|roots|of|the|find|what(?:'s|s)?|is|estimate|calculate|evaluate|between|which|two|whole|numbers?|third|principal|positive|please)\b/gi, " ")
         .replace(/[()?=:]/g, " ").replace(/\.\s*$/, "").replace(/\s+/g, "");
       var m = /^([+-]?)(\d+(?:\.\d+)?)$/.exec(s);
-      if (!m) throw new UserErr("Type one whole number under the root, like <b>√50</b> or <b>cube root of 64</b>.");
-      if (m[2].indexOf(".") >= 0) throw new UserErr("Whole numbers only under the root here (like <b>√50</b>).");
+      if (!m) throw new UserErr(tx("exponents.err.rootOne"));
+      if (m[2].indexOf(".") >= 0) throw new UserErr(tx("exponents.err.rootDec"));
       var n = BigInt(m[2]);
       if (m[1] === "-") n = -n;
       return mkRoot(r, n);
     }
 
     function mkRoot(r, n) {
-      if (r === 2 && n < 0n) throw new UserErr("A negative number has no square root among the ordinary numbers. A cube root works, though: <b>∛" + intT(n) + "</b>.");
-      if (babs(n) > 1000000000n) throw new UserErr("Up to 1,000,000,000 under the root, please.");
+      if (r === 2 && n < 0n) throw new UserErr(tx("exponents.err.negSqrtCube", { n: intT(n) }));
+      if (babs(n) > 1000000000n) throw new UserErr(tx("exponents.err.rootMax"));
       var q = irootB(n, r),
         perfect = (r === 2 ? q * q : q * q * q) === n;
       var P = { mode: "roots", r: r, n: n, q: q, perfect: perfect };
@@ -3316,6 +3318,35 @@
         P.approx = R(n < 0n ? -hund : hund, 100n);
       }
       return P;
+    }
+
+    // a problem typed in the language in use, as the readers know it: HelperI18n.normalize, then this page's own
+    // words for the language (exponents.typedWords: { before, after } lists of [pattern, replacement], matched without
+    // accents and in lower case). English, and text with nothing to change, come back as they were.
+    function fold(s) { return s.normalize ? s.normalize("NFD").replace(/[\u0300-\u036f]/g, "") : s; }
+
+    function i18nQ(q) {
+      if (!window.HelperI18n || HelperI18n.lang === "en" || q === null || q === undefined) return q;
+      var W = traw("exponents.typedWords") || {},
+        s = String(q);
+      var run = function(list, t) {
+        if (!list || !list.length) return t;
+        var f = fold(t).toLowerCase(),
+          g = f;
+        list.forEach(function(r) { g = g.replace(new RegExp(r[0], "g"), r[1]); });
+        return g === f ? t : g;
+      };
+      s = run(W.after, HelperI18n.normalize(run(W.before, s)));
+      return s;
+    }
+    // the problem the visitor typed: read in their language, else as it was typed (English on a Spanish page)
+    function readTyped(mode, text) {
+      var n = i18nQ(text);
+      if (n === text) return readProblem(mode, text);
+      try { return readProblem(mode, n); } catch (e) {
+        if (!(e && e.user)) throw e;
+        try { return readProblem(mode, text); } catch (e2) { throw e; }
+      }
     }
 
     function readProblem(mode, text) {
@@ -3353,8 +3384,8 @@
         if (P.op === "div") return "(" + a + ") ÷ (" + b + ")";
         if (P.op === "add") return a + " + " + bn;
         if (P.op === "sub") return a + " − " + bn;
-        if (P.op === "cmp") return "compare " + a + " and " + b;
-        return "how many times bigger is " + a + " than " + b;
+        if (P.op === "cmp") return tx("exponents.q.cmp", { a: a, b: b });
+        return tx("exponents.q.times", { a: a, b: b });
       }
       return (P.r === 3 ? "∛" : "√") + intT(P.n, true).replace("-", "−");
     }
@@ -3418,7 +3449,7 @@
       if (mode === "eval" && sp.get("b") !== null && sp.get("e") !== null) {
         var bb = readBaseStr(sp.get("b")),
           es = String(sp.get("e")).replace(/[−–]/g, "-").trim();
-        if (!/^[+-]?\d+$/.test(es)) throw new UserErr("The exponent in the link should be a whole number, like <b>e=3</b> or <b>e=-2</b>.");
+        if (!/^[+-]?\d+$/.test(es)) throw new UserErr(tx("exponents.err.linkExp"));
         return mkEval(bb.v, bb.bk, parseInt(es, 10), /^(1|true|yes|on)$/i.test(String(sp.get("neg") || "")));
       }
       if (mode === "laws" && sp.get("ex") !== null) return readLaws(sp.get("ex"));
@@ -3429,7 +3460,7 @@
       }
       if (mode === "roots" && sp.get("n") !== null) {
         var ns = String(sp.get("n")).replace(/[−–]/g, "-").replace(/,/g, "").trim();
-        if (!/^-?\d+$/.test(ns)) throw new UserErr("The number in the link should be a whole number, like <b>n=50</b>.");
+        if (!/^-?\d+$/.test(ns)) throw new UserErr(tx("exponents.err.linkN"));
         return mkRoot(String(sp.get("r")) === "3" ? 3 : 2, BigInt(ns));
       }
       return null;
@@ -3464,12 +3495,12 @@
     var OK = ' <span class="ok">✓</span>';
 
     function powName(e) {
-      if (e === 2) return "squared";
-      if (e === 3) return "cubed";
-      if (e === 1) return "to the first power";
-      if (e === 0) return "to the zero power";
-      if (e > 0) return "to the " + ordW(e) + " power";
-      return "to the power " + sgnT(e);
+      if (e === 2) return tx("exponents.pow.sq");
+      if (e === 3) return tx("exponents.pow.cube");
+      if (e === 1) return tx("exponents.pow.first");
+      if (e === 0) return tx("exponents.pow.zero");
+      if (e > 0) return e < ORDS.length ? tx("exponents.pow.nth", { o: ordW(e) }) : tx("exponents.pow.nthBig", { o: ordW(e), n: e });
+      return tx("exponents.pow.neg", { n: sgnT(e) });
     }
 
     /* ===================== tab 1: powers ===================== */
@@ -3492,7 +3523,7 @@
         if (n > 12 && i === n) out.push({ h: "…", c: "op" });
         if (out.length && !(n > 12 && i === n)) out.push({ h: "→", c: "op" });
         if (n > 12 && i === n) out.push({ h: "→", c: "op" });
-        out.push({ h: valH(v, dec) + (n > 12 && i === n ? '<span class="ct">' + plural(n, "factor") + "</span>" : ""), c: i === n ? "res" : i === 1 ? "b" : "" });
+        out.push({ h: valH(v, dec) + (n > 12 && i === n ? '<span class="ct">' + tx("exponents.nFactors", { n: n }) + "</span>" : ""), c: i === n ? "res" : i === 1 ? "b" : "" });
       }
       return out;
     }
@@ -3508,7 +3539,7 @@
         var v = powR(P.b, k),
           hit = k === e;
         h += '<span class="pw">' + '<span class="eqk">' + bh + "</span>" + supH(k) + '</span><span class="eq">=</span><span class="val' + (hit ? " hit" : k === 0 ? " z" : "") + '">' +
-          valH(v, dec) + "</span>" + '<span class="hint2">' + (k === 1 ? "the base itself" : k === 0 ? "one more ÷ " + esc(bT) + " — so it’s 1" : k < 0 ? "= 1 / " + bh + supH(-k) : "") + "</span>";
+          valH(v, dec) + "</span>" + '<span class="hint2">' + (k === 1 ? tx("exponents.lad.itself") : k === 0 ? tx("exponents.lad.oneMore", { b: esc(bT) }) : k < 0 ? "= 1 / " + bh + supH(-k) : "") + "</span>";
         if (k > bot) h += '<span></span><span></span><span class="arr">÷ ' + bh + "</span><span></span>";
       }
       return '<div class="ladder">' + h + "</div>";
@@ -3528,17 +3559,17 @@
         V = P.V,
         pv = P.pv,
         sgn = P.neg ? "−" : "";
-      var mean = e > 0 ? (e === 1 ? "just one " + esc(bT) + " — nothing to multiply" : "multiply " + word(e) + " " + esc(bT) + "s together") :
-        e === 0 ? "no " + esc(bT) + "s at all — the pattern below shows that leaves 1" : "one over " + esc(bT) + supH(ae) + " — a negative exponent flips the power under a 1";
-      var rd = lrow("Base", toks([{ h: bH, c: "b" }])) + lrow("Exponent", toks([{ h: sgnT(e), c: "" }])) + lrow("Means", '<span class="tapecap">' + mean + "</span>");
-      if (P.neg) rd += lrow("Minus", '<span class="tapecap">outside the power: <b>' + sgn + bT.replace(/^\(|\)$/g, "") + "<sup>" + sgnT(e) + "</sup></b> means <b>−(" + bT + "<sup>" + sgnT(e) + "</sup>)</b> — work out the power, then put the minus on</span>");
-      html += sect(lead("Read it.") + " In " + B(qH) + ", the base is the number being multiplied and the exponent says how many of them.", '<div class="lists">' + rd + "</div>", st);
+      var mean = e > 0 ? (e === 1 ? tx("exponents.ev.mean1", { b: esc(bT) }) : tx("exponents.ev.meanMul", { w: word(e), b: esc(bT) })) :
+        e === 0 ? tx("exponents.ev.mean0", { b: esc(bT) }) : tx("exponents.ev.meanNeg", { b: esc(bT), p: supH(ae) });
+      var rd = lrow(tx("exponents.lr.base"), toks([{ h: bH, c: "b" }])) + lrow(tx("exponents.lr.exponent"), toks([{ h: sgnT(e), c: "" }])) + lrow(tx("exponents.lr.means"), '<span class="tapecap">' + mean + "</span>");
+      if (P.neg) rd += lrow(tx("exponents.lr.minus"), '<span class="tapecap">' + tx("exponents.ev.minusOut", { a: sgn + bT.replace(/^\(|\)$/g, "") + "<sup>" + sgnT(e) + "</sup>", b: "−(" + bT + "<sup>" + sgnT(e) + "</sup>)" }) + "</span>");
+      html += sect(lead(tx("exponents.ev.leadRead")) + tx("exponents.ev.readSect", { q: B(qH) }), '<div class="lists">' + rd + "</div>", st);
       items.push({
         step: st++,
         lines: [
-          ["p", "Read", "In " + B(qH) + ", the base is " + B(bT) + " and the exponent is " + B(sgnT(e)) + ": " + mean + "."]
+          ["p", tx("exponents.tag.read"), tx("exponents.ev.readLine", { q: B(qH), b: B(bT), e: B(sgnT(e)), m: mean })]
         ],
-        aside: P.neg ? "The exponent sits on the " + esc(baseStr(P, "text")) + " only. Brackets would make the minus part of the base: (" + "−" + esc(baseStr(P, "text")) + ")" + supH(e) + " is a different problem." : null
+        aside: P.neg ? tx("exponents.ev.asideNeg", { b: esc(baseStr(P, "text")), p: supH(e) }) : null
       });
 
       // multiply it out
@@ -3546,44 +3577,44 @@
         say = "";
       if (e > 0) {
         var parts = copiesOf(P, e);
-        mul1 = '<div class="bigline">' + qH + " = " + sgn + (P.neg ? "(" + parts + ")" : parts) + (e > 12 ? ' <span class="nm">(' + e + " of them)</span>" : "") + "</div>";
-        if (P.bk === "frac") mul1 += '<div class="bigline">= ' + sgn + fH(copiesN(babs(b.n), e), copiesN(b.d, e)) + " = " + sgn + fracH(absR(pv)) + (b.n < 0n && e % 2 ? ' <span class="nm">(and an odd number of negatives makes it negative)</span>' : "") + "</div>";
-        if (P.bk !== "frac" && e > 1) mul1 += '<div class="lists">' + lrow("Running", toks(runList(P, e, dec))) + "</div>";
+        mul1 = '<div class="bigline">' + qH + " = " + sgn + (P.neg ? "(" + parts + ")" : parts) + (e > 12 ? ' <span class="nm">(' + tx("exponents.ev.ofThem", { n: e }) + ")</span>" : "") + "</div>";
+        if (P.bk === "frac") mul1 += '<div class="bigline">= ' + sgn + fH(copiesN(babs(b.n), e), copiesN(b.d, e)) + " = " + sgn + fracH(absR(pv)) + (b.n < 0n && e % 2 ? ' <span class="nm">(' + tx("exponents.ev.oddNeg") + ")</span>" : "") + "</div>";
+        if (P.bk !== "frac" && e > 1) mul1 += '<div class="lists">' + lrow(tx("exponents.lr.running"), toks(runList(P, e, dec))) + "</div>";
         if (P.neg) mul1 += '<div class="bigline">= −' + valH(pv, dec) + ' = <span class="eqa">' + valH(V, dec) + "</span></div>";
         else mul1 += '<div class="bigline">= <span class="eqa">' + valH(V, dec) + "</span></div>";
-        say = e === 1 ? "A power of 1 is just the base: " + B(qH + " = " + valT(V, dec)) + "." :
-          "Multiply " + word(e) + " " + esc(bT) + "s: " + B(copiesOf(P, Math.min(e, 12), true) + (e > 12 ? " …" : "")) + " = " + B(valT(pv, dec)) + (P.neg ? ", then the minus: " + B(valT(V, dec)) : "") + ".";
+        say = e === 1 ? tx("exponents.ev.say1", { e: B(qH + " = " + valT(V, dec)) }) :
+          tx("exponents.ev.sayMul", { w: word(e), b: esc(bT), c: B(copiesOf(P, Math.min(e, 12), true) + (e > 12 ? " …" : "")), v: B(valT(pv, dec)) }) + (P.neg ? tx("exponents.ev.sayThenMinus", { v: B(valT(V, dec)) }) : "") + ".";
       } else if (e < 0) {
         var flip = P.bk === "frac" || !isInt(b),
           pos = powR(b, ae),
           inv = flip ? dvd(ONE, b) : null;
         mul1 = '<div class="bigline">' + qH + " = " + sgn + fH("1", bH + supH(ae)) + " = " + sgn + fH("1", copiesOf(P, ae)) + " = " + sgn + fH("1", valH(pos, dec)) + "</div>";
-        if (flip) mul1 += '<div class="bigline"><span class="nm">or flip the fraction:</span> ' + qH + " = " + sgn + "(" + valH(inv, false) + ")" + supH(ae) + " = " + sgn + valH(absR(pv), false) + "</div>";
+        if (flip) mul1 += '<div class="bigline"><span class="nm">' + tx("exponents.ev.orFlip") + "</span> " + qH + " = " + sgn + "(" + valH(inv, false) + ")" + supH(ae) + " = " + sgn + valH(absR(pv), false) + "</div>";
         mul1 += '<div class="bigline">= <span class="eqa">' + valH(V, false) + "</span>" + (!isInt(V) && shortDec(V, 14) ? ' <span class="ap">= ' + decT(V) + "</span>" : "") + "</div>";
-        say = "A negative exponent means one over the power: " + B(qH + " = " + sgn + "1/" + bT + "^" + ae) + " = " + B(sgn + "1/" + valT(pos, dec)) + (P.neg ? "" : "") + " = " + B(valT(V, false)) + ".";
+        say = tx("exponents.ev.sayNeg", { a: B(qH + " = " + sgn + "1/" + bT + "^" + ae), b: B(sgn + "1/" + valT(pos, dec)), c: B(valT(V, false)) });
       } else {
-        mul1 = '<div class="bigline">' + qH + ' = <span class="eqa">' + valH(V, dec) + '</span> <span class="nm">— follow the pattern below: one step past ' + bT + "¹ is 1</span></div>";
-        say = "Anything (except 0) to the power 0 is 1: " + B(qH + " = " + valT(V)) + ".";
+        mul1 = '<div class="bigline">' + qH + ' = <span class="eqa">' + valH(V, dec) + '</span> <span class="nm">' + tx("exponents.ev.zeroFollow", { b: bT }) + "</span></div>";
+        say = tx("exponents.ev.say0", { e: B(qH + " = " + valT(V)) });
       }
-      html += sect(lead(e > 0 ? "Multiply it out." : e < 0 ? "Flip it under a 1." : "The zero power.") + (e > 0 ? " Write the base down " + (e === 1 ? "once" : word(e) + " times") + " and multiply, keeping a running total." : e < 0 ? " " + bT + supH(e) + " is 1 divided by " + bT + supH(ae) + "." : ""), mul1, st);
+      html += sect(lead(e > 0 ? tx("exponents.ev.leadMul") : e < 0 ? tx("exponents.ev.leadFlip") : tx("exponents.ev.leadZero")) + (e > 0 ? (e === 1 ? tx("exponents.ev.writeOnce") : tx("exponents.ev.writeN", { w: word(e) })) : e < 0 ? tx("exponents.ev.flipIs", { a: bT + supH(e), b: bT + supH(ae) }) : ""), mul1, st);
       items.push({
         step: st++,
         lines: [
-          ["m", e > 0 ? "Multiply" : e < 0 ? "Flip" : "Zero", say]
+          ["m", e > 0 ? tx("exponents.tag.multiply") : e < 0 ? tx("exponents.tag.flip") : tx("exponents.tag.zero"), say]
         ],
-        aside: e > 1 && !P.neg && b.n > 0n && isInt(b) && ae <= 12 && !eqR(mul(b, R(e)), pv) ? "Careful: " + bT + supH(e) + " isn’t " + esc(bT) + " × " + e + " = " + valT(mul(b, R(e))) + ". The exponent counts how many " + esc(bT) + "s are multiplied." : null
+        aside: e > 1 && !P.neg && b.n > 0n && isInt(b) && ae <= 12 && !eqR(mul(b, R(e)), pv) ? tx("exponents.ev.careful", { p: bT + supH(e), b: esc(bT), e: e, v: valT(mul(b, R(e))) }) : null
       });
 
       // the pattern
       if (b.n !== 0n && ae <= 9 && digs(b) <= 8) {
-        html += sect(lead("The pattern.") + " A times table of powers: each step down divides by " + B(bT) + ". Keep going past " + bT + "¹ and you reach " + bT + "⁰ = 1, then the negative powers — fractions.",
+        html += sect(lead(tx("exponents.ev.leadPattern")) + tx("exponents.ev.patternSect", { bb: B(bT), b: bT }),
           '<div class="xscroll">' + ladderH(P, dec) + "</div>", st);
         items.push({
           step: st++,
           lines: [
-            ["v", "Pattern", "Going down the table, each power is the one above it ÷ " + B(bT) + ". So " + B(bT + "¹ ÷ " + bT + " = 1") + " is " + B(bT + "⁰") + ", and one more ÷ " + B(bT) + " gives " + B(bT + "⁻¹ = 1/" + bT) + "."]
+            ["v", tx("exponents.tag.pattern"), tx("exponents.ev.patternLine", { bb: B(bT), a: B(bT + "¹ ÷ " + bT + " = 1"), z: B(bT + "⁰"), m: B(bT + "⁻¹ = 1/" + bT) })]
           ],
-          aside: e === 0 ? "That’s why a⁰ = 1 for any base except 0." : e < 0 ? "That’s why a⁻ⁿ = 1/aⁿ: each negative step is another ÷ " + esc(bT) + "." : null
+          aside: e === 0 ? tx("exponents.ev.why0") : e < 0 ? tx("exponents.ev.whyNeg", { b: esc(bT) }) : null
         });
       }
 
@@ -3597,16 +3628,16 @@
         var A1 = negR(pos2),
           A2 = powR(negR(ab), e);
         var nb = "(−" + aT.replace(/^\(|\)$/g, "") + ")";
-        var cmpH = '<table class="tbl"><thead><tr><th class="l">Written</th><th class="l">Means</th><th>Value</th></tr></thead><tbody>' +
+        var cmpH = '<table class="tbl"><thead><tr><th class="l">' + tx("exponents.th.written") + '</th><th class="l">' + tx("exponents.th.means") + "</th><th>" + tx("exponents.th.value") + "</th></tr></thead><tbody>" +
           "<tr" + (P.neg ? ' class="hit"' : "") + '><td class="l">−' + aT + supH(e) + '</td><td class="l">−(' + aT + supH(e) + ')</td><td>' + valH(A1, dec) + "</td></tr>" +
-          "<tr" + (!P.neg ? ' class="hit"' : "") + '><td class="l">' + nb + supH(e) + '</td><td class="l">' + (ae >= 1 && ae <= 4 ? rep(nb + " × ", ae).slice(0, -3) : nb + " × … × " + nb) + (e < 0 ? " under a 1" : "") + "</td><td>" + valH(A2, dec) + "</td></tr></tbody></table>";
-        html += sect(lead("Watch the sign.") + " Brackets decide what the exponent works on. " + (e === 0 ? "" : even ? "With an even exponent the negatives pair up and cancel, so the two give different answers." : "With an odd exponent one negative is left over, so here both come out negative."),
+          "<tr" + (!P.neg ? ' class="hit"' : "") + '><td class="l">' + nb + supH(e) + '</td><td class="l">' + (ae >= 1 && ae <= 4 ? rep(nb + " × ", ae).slice(0, -3) : nb + " × … × " + nb) + (e < 0 ? tx("exponents.ev.underOne") : "") + "</td><td>" + valH(A2, dec) + "</td></tr></tbody></table>";
+        html += sect(lead(tx("exponents.ev.leadSign")) + tx("exponents.ev.signSect") + (e === 0 ? "" : even ? tx("exponents.ev.signEven") : tx("exponents.ev.signOdd")),
           '<div class="xscroll">' + cmpH + "</div>", st);
         items.push({
           step: st++,
           lines: [
-            ["r", "Sign", P.neg ? B("−" + aT + "^" + e) + " is the opposite of " + B(aT + "^" + e) + ": " + B(valT(V, dec)) + ". Only " + B(nb + "^" + e) + " multiplies the negative itself" + (e && even ? ", and that gives " + B(valT(A2, dec)) + "." : ".") :
-              "The brackets make the base " + B(nb) + ". " + (e === 0 ? "The power 0 still gives 1." : even ? "An even number of negatives multiply to a positive: " + B(valT(V, dec)) + "." : "An odd number of negatives multiply to a negative: " + B(valT(V, dec)) + ".")
+            ["r", tx("exponents.tag.sign"), P.neg ? tx("exponents.ev.signNeg", { a: B("−" + aT + "^" + e), b: B(aT + "^" + e), v: B(valT(V, dec)), n: B(nb + "^" + e) }) + (e && even ? tx("exponents.ev.signNegGives", { v: B(valT(A2, dec)) }) : ".") :
+              tx("exponents.ev.signBr", { b: B(nb) }) + (e === 0 ? tx("exponents.ev.signP0") : even ? tx("exponents.ev.signPEven", { v: B(valT(V, dec)) }) : tx("exponents.ev.signPOdd", { v: B(valT(V, dec)) }))
             ]
           ]
         });
@@ -3617,12 +3648,12 @@
           ee = e > 0 ? e : ae,
           fnum = e > 0 ? nn : dd,
           fden = e > 0 ? dd : nn;
-        html += sect(lead("A fraction to a power.") + " The power goes on the top and on the bottom." + (e < 0 ? " A negative power flips the fraction first." : ""),
+        html += sect(lead(tx("exponents.ev.leadFrac")) + tx("exponents.ev.fracSect") + (e < 0 ? tx("exponents.ev.fracSectNeg") : ""),
           '<div class="bigline">' + (e < 0 ? "(" + fH(fnum, fden) + ")" + supH(ee) + " = " : "") + fH(fnum + supH(ee), fden + supH(ee)) + " = " + fH(intT(fnum ** BigInt(ee)), intT(fden ** BigInt(ee))) + "</div>", st);
         items.push({
           step: st++,
           lines: [
-            ["p", "Fraction", "Top and bottom both get the power: " + B(fnum + "^" + ee + " / " + fden + "^" + ee + " = " + intT(fnum ** BigInt(ee)) + "/" + intT(fden ** BigInt(ee))) + (b.n < 0n ? ", with the sign from the negatives." : ".")]
+            ["p", tx("exponents.tag.fraction"), tx("exponents.ev.fracLine", { e: B(fnum + "^" + ee + " / " + fden + "^" + ee + " = " + intT(fnum ** BigInt(ee)) + "/" + intT(fden ** BigInt(ee))) }) + (b.n < 0n ? tx("exponents.ev.fracSign") : ".")]
           ]
         });
       }
@@ -3630,50 +3661,50 @@
         var dpl = termK(b.d),
           dgt = babs(b.n) * (P10(dpl) / b.d),
           tot = dpl * e;
-        html += sect(lead("Count the decimal places.") + " Multiply as if there were no decimal point, then put back the places.",
-          '<div class="bigline">' + dgt + supH(e) + " = " + intT(dgt ** BigInt(e)) + ' <span class="nm">·</span> ' + plural(dpl, "place") + " × " + e + " = " + plural(tot, "place") + ' <span class="nm">→</span> <span class="eqa">' + decT(absR(pv)) + "</span></div>", st);
+        html += sect(lead(tx("exponents.ev.leadDec")) + tx("exponents.ev.decSect"),
+          '<div class="bigline">' + dgt + supH(e) + " = " + intT(dgt ** BigInt(e)) + ' <span class="nm">·</span> ' + tx("exponents.nPlaces", { n: dpl }) + " × " + e + " = " + tx("exponents.nPlaces", { n: tot }) + ' <span class="nm">→</span> <span class="eqa">' + decT(absR(pv)) + "</span></div>", st);
         items.push({
           step: st++,
           lines: [
-            ["e", "Places", esc(baseStr({ b: absR(b), bk: "dec" }, "text")) + " has " + plural(dpl, "decimal place") + ", and there are " + word(e) + " of them multiplied, so the answer has " + dpl + " × " + e + " = " + B(plural(tot, "place")) + ": " + B(decT(absR(pv))) + "."]
+            ["e", tx("exponents.tag.places"), tx("exponents.ev.placesLine", { b: esc(baseStr({ b: absR(b), bk: "dec" }, "text")), d: tx("exponents.nDecPlaces", { n: dpl }), w: word(e), n: dpl, e: e, t: B(tx("exponents.nPlaces", { n: tot })), v: B(decT(absR(pv))) })]
           ],
-          aside: "Multiplying by a number less than 1 makes things smaller — that’s why " + esc(baseStr({ b: absR(b), bk: "dec" }, "text")) + supH(e) + " is smaller than " + esc(baseStr({ b: absR(b), bk: "dec" }, "text")) + "."
+          aside: tx("exponents.ev.decAside", { p: esc(baseStr({ b: absR(b), bk: "dec" }, "text")) + supH(e), b: esc(baseStr({ b: absR(b), bk: "dec" }, "text")) })
         });
       }
       if (tenBase(P) && b.n > 0n) {
-        var sh = e > 0 ? "1 followed by " + plural(e, "zero") : e === 0 ? "just 1 — no zeros" : "a 1 in the " + ordW(ae) + " place after the decimal point";
-        html += sect(lead("Powers of 10.") + " The exponent counts the zeros.", '<div class="bigline">10' + supH(e) + " = " + sh + ' <span class="nm">→</span> <span class="eqa">' + valH(V, true) + "</span></div>", st);
+        var sh = e > 0 ? tx("exponents.ev.tenPos", { z: tx("exponents.nZeros", { n: e }) }) : e === 0 ? tx("exponents.ev.tenZero") : tx("exponents.ev.tenNeg", { o: ordW(ae), n: ae });
+        html += sect(lead(tx("exponents.ev.leadTen")) + tx("exponents.ev.tenSect"), '<div class="bigline">10' + supH(e) + " = " + sh + ' <span class="nm">→</span> <span class="eqa">' + valH(V, true) + "</span></div>", st);
         items.push({
           step: st++,
           lines: [
-            ["e", "Zeros", "10" + supH(e) + " is " + sh + ": " + B(valT(V, true)) + "."]
+            ["e", tx("exponents.tag.zeros"), tx("exponents.ev.tenLine", { p: "10" + supH(e), s: sh, v: B(valT(V, true)) })]
           ],
-          aside: e < 0 ? "10⁻ⁿ = 1/10ⁿ: " + B("1/" + intT(P10(ae))) + " is the same as " + B(decT(pv)) + "." : null
+          aside: e < 0 ? tx("exponents.ev.tenAside", { a: B("1/" + intT(P10(ae))), b: B(decT(pv)) }) : null
         });
       }
       $("workHost").innerHTML = html;
       writeLog(items);
 
-      var cells = [{ k: "Value", v: valH(V, dec) }];
-      if (!isInt(V) && !dec && shortDec(V, 14)) cells.push({ k: "As a decimal", v: decT(V) });
-      else if (!isInt(V) && termK(V.d) < 0) cells.push({ k: "About", v: '<span class="ap">≈</span> ' + approxT(V) });
+      var cells = [{ k: tx("exponents.cell.value"), v: valH(V, dec) }];
+      if (!isInt(V) && !dec && shortDec(V, 14)) cells.push({ k: tx("exponents.cell.asDec"), v: decT(V) });
+      else if (!isInt(V) && termK(V.d) < 0) cells.push({ k: tx("exponents.cell.about"), v: '<span class="ap">≈</span> ' + approxT(V) });
       if (isInt(V) && babs(V.n).toString().length > 18) cells[0].long = true;
-      var facts = ["Read it as " + B(qH) + ": “" + (P.neg ? "the opposite of " : "") + esc(baseStr(P, "text")) + " " + powName(e) + "”"];
+      var facts = [tx("exponents.ev.readAs", { q: B(qH), r: P.neg ? tx("exponents.ev.oppOf", { x: esc(baseStr(P, "text")) + " " + powName(e) }) : esc(baseStr(P, "text")) + " " + powName(e) })];
       var av = absR(V);
       if (V.n !== 0n && (cmpR(av, R(10000000)) >= 0 || cmpR(av, R(1, 10000)) < 0)) {
         var so = sciOf(V),
           md = decT(so.m),
           short = md !== null && md.replace(/\D/g, "").length <= 6;
-        facts.push("In scientific notation: " + B((short ? md : "≈ " + roundDec(so.m, 3)) + " × 10" + supH(so.k)));
+        facts.push(tx("exponents.ev.inSci", { v: B((short ? md : "≈ " + roundDec(so.m, 3)) + " × 10" + supH(so.k)) }));
       }
-      if (e > 1 && isInt(b) && b.n > 0n && !P.neg) facts.push("Not " + esc(bT) + " × " + e + " = " + B(valT(mul(b, R(e)))) + " — that’s a different thing");
+      if (e > 1 && isInt(b) && b.n > 0n && !P.neg) facts.push(tx("exponents.ev.notTimes", { b: esc(bT), e: e, v: B(valT(mul(b, R(e)))) }));
       bandCells(cells, facts);
       var ck;
-      if (e > 0 && e <= 6 && b.n !== 0n) ck = "Undo it: " + valT(pv, dec) + rep(" ÷ " + bT, e) + " = 1" + OK;
-      else if (e < 0) ck = valT(absR(pv), false) + " × " + valT(absR(powR(b, ae)), dec) + " = 1, because " + bT + supH(e) + " × " + bT + supH(ae) + " = " + bT + "⁰ = 1" + OK;
+      if (e > 0 && e <= 6 && b.n !== 0n) ck = tx("exponents.ev.ckUndo", { s: valT(pv, dec) + rep(" ÷ " + bT, e) }) + OK;
+      else if (e < 0) ck = tx("exponents.ev.ckNeg", { a: valT(absR(pv), false) + " × " + valT(absR(powR(b, ae)), dec), b: bT + supH(e) + " × " + bT + supH(ae) + " = " + bT + "⁰" }) + OK;
       else if (e === 0) ck = bT + "¹ ÷ " + bT + " = " + valT(b, dec) + " ÷ " + valT(b, dec) + " = 1 = " + bT + "⁰" + OK;
-      else ck = "Each step multiplies by " + bT + "; " + plural(e, "step") + " from 1 reach " + valT(pv, dec) + OK;
-      $("closer").innerHTML = '<div class="ck"><b>Check:</b> ' + ck + "</div>";
+      else ck = tx("exponents.ev.ckSteps", { b: bT, s: tx("exponents.nSteps", { n: e }), v: valT(pv, dec) }) + OK;
+      $("closer").innerHTML = '<div class="ck"><b>' + tx("exponents.check") + "</b> " + ck + "</div>";
       return items.length;
     }
 
@@ -3681,14 +3712,14 @@
 
     /* ===================== tab 2: the exponent laws ===================== */
     var LAW = {
-      dist: { c: "c-p", tag: "Inside", name: "Power of a product" },
-      pp: { c: "c-e", tag: "Power", name: "Power of a power" },
-      num: { c: "c-n", tag: "Numbers", name: "Work out the numbers" },
-      coef: { c: "c-n", tag: "Numbers", name: "Multiply the numbers" },
-      prod: { c: "c-m", tag: "Product", name: "Product law" },
-      quot: { c: "c-v", tag: "Quotient", name: "Quotient law" },
-      zero: { c: "c-a", tag: "Zero", name: "Zero exponent" },
-      neg: { c: "c-r", tag: "Negative", name: "Negative exponent" }
+      dist: { c: "c-p", tag: tx("exponents.law.dist.tag"), name: tx("exponents.law.dist.name") },
+      pp: { c: "c-e", tag: tx("exponents.law.pp.tag"), name: tx("exponents.law.pp.name") },
+      num: { c: "c-n", tag: tx("exponents.law.num.tag"), name: tx("exponents.law.num.name") },
+      coef: { c: "c-n", tag: tx("exponents.law.coef.tag"), name: tx("exponents.law.coef.name") },
+      prod: { c: "c-m", tag: tx("exponents.law.prod.tag"), name: tx("exponents.law.prod.name") },
+      quot: { c: "c-v", tag: tx("exponents.law.quot.tag"), name: tx("exponents.law.quot.name") },
+      zero: { c: "c-a", tag: tx("exponents.law.zero.tag"), name: tx("exponents.law.zero.name") },
+      neg: { c: "c-r", tag: tx("exponents.law.neg.tag"), name: tx("exponents.law.neg.name") }
     };
 
     function cp(h, n) { var a = []; for (var i = 0; i < n; i++) a.push(h); return a.join("·"); }
@@ -3706,26 +3737,26 @@
         n = exps[1],
         tot = exps.reduce(function(a, b) { return a + b; }, 0);
       if (exps.length === 2 && m >= 1 && n >= 1 && m + n <= 10)
-        return B(pwH(bh, m) + " · " + pwH(bh, n)) + " = (" + cp(bh, m) + ") · (" + cp(bh, n) + ") = " + B(pwH(bh, tot)) + ' <span class="nm">— ' + m + " and " + n + " more make " + tot + ", so the exponents add.</span>";
-      return '<span class="nm">Like</span> ' + B(bh + "² · " + bh + "³") + " = (" + cp(bh, 2) + ") · (" + cp(bh, 3) + ") = " + B(bh + "⁵") + ' <span class="nm">— the exponents count the ' + bh + "s, so they add: 2 + 3 = 5." + (exps.some(function(x) { return x < 0; }) ? " A negative exponent counts " + bh + "s on the bottom, so it takes away." : "") + "</span>";
+        return B(pwH(bh, m) + " · " + pwH(bh, n)) + " = (" + cp(bh, m) + ") · (" + cp(bh, n) + ") = " + B(pwH(bh, tot)) + ' <span class="nm">' + tx("exponents.why.prod", { m: m, n: n, t: tot }) + "</span>";
+      return '<span class="nm">' + tx("exponents.why.like") + "</span> " + B(bh + "² · " + bh + "³") + " = (" + cp(bh, 2) + ") · (" + cp(bh, 3) + ") = " + B(bh + "⁵") + ' <span class="nm">' + tx("exponents.why.prodLike", { b: bh }) + (exps.some(function(x) { return x < 0; }) ? tx("exponents.why.prodNeg", { b: bh }) : "") + "</span>";
     }
 
     function whyQuot(bh, m, n) {
       if (m >= 1 && n >= 1 && m <= 8 && n <= 8) {
         var x = Math.min(m, n),
           res = m > n ? pwH(bh, m - n) : m < n ? fH("1", pwH(bh, n - m)) : "1";
-        return B(fH(pwH(bh, m), pwH(bh, n))) + " = " + fH(cpX(bh, m, x), cpX(bh, n, x)) + " = " + B(res) + ' <span class="nm">— ' + x + " " + bh + (x === 1 ? "" : "s") + " cancel from the top and the bottom, so take away: " + m + " − " + n + " = " + (m - n) + ".</span>";
+        return B(fH(pwH(bh, m), pwH(bh, n))) + " = " + fH(cpX(bh, m, x), cpX(bh, n, x)) + " = " + B(res) + ' <span class="nm">' + tx("exponents.why.quot", { x: x, b: bh, m: m, n: n, d: m - n }) + "</span>";
       }
-      return '<span class="nm">Like</span> ' + B(fH(bh + "⁵", bh + "²")) + " = " + fH(cpX(bh, 5, 2), cpX(bh, 2, 2)) + " = " + B(bh + "³") + ' <span class="nm">— matching ' + bh + "s cancel, so the exponents take away: 5 − 2 = 3.</span>";
+      return '<span class="nm">' + tx("exponents.why.like") + "</span> " + B(fH(bh + "⁵", bh + "²")) + " = " + fH(cpX(bh, 5, 2), cpX(bh, 2, 2)) + " = " + B(bh + "³") + ' <span class="nm">' + tx("exponents.why.quotLike", { b: bh }) + "</span>";
     }
 
     function whyPP(bh, e1, e2) {
       if (e1 >= 1 && e2 >= 2 && e2 <= 4 && e1 <= 6) {
         var a = [];
         for (var i = 0; i < e2; i++) a.push(pwH(bh, e1));
-        return B("(" + pwH(bh, e1) + ")" + supS(e2)) + " = " + a.join(" · ") + " = " + bh + "<sup>" + a.map(function() { return e1; }).join("+") + "</sup> = " + B(pwH(bh, e1 * e2)) + ' <span class="nm">— ' + word(e2) + " lots of " + e1 + ", so the exponents multiply.</span>";
+        return B("(" + pwH(bh, e1) + ")" + supS(e2)) + " = " + a.join(" · ") + " = " + bh + "<sup>" + a.map(function() { return e1; }).join("+") + "</sup> = " + B(pwH(bh, e1 * e2)) + ' <span class="nm">' + tx("exponents.why.pp", { w: word(e2), e: e1 }) + "</span>";
       }
-      return '<span class="nm">Like</span> ' + B("(" + bh + "²)³") + " = " + bh + "² · " + bh + "² · " + bh + "² = " + bh + "<sup>2+2+2</sup> = " + B(bh + "⁶") + ' <span class="nm">— three lots of 2, so the exponents multiply: 2 × 3 = 6.</span>';
+      return '<span class="nm">' + tx("exponents.why.like") + "</span> " + B("(" + bh + "²)³") + " = " + bh + "² · " + bh + "² · " + bh + "² = " + bh + "<sup>2+2+2</sup> = " + B(bh + "⁶") + ' <span class="nm">' + tx("exponents.why.ppLike") + "</span>";
     }
 
     function whyDist(ev) {
@@ -3736,17 +3767,17 @@
       if (n >= 2 && n <= 3 && !ev.quot) {
         var a = [];
         for (var i = 0; i < n; i++) a.push("(" + gh + ")");
-        return B(astH(ev.from)) + " = " + a.join(" · ") + ' <span class="nm">— every factor inside shows up ' + word(n) + " times — so</span> = " + B(res);
+        return B(astH(ev.from)) + " = " + a.join(" · ") + ' <span class="nm">' + tx("exponents.why.dist", { w: word(n) }) + "</span> = " + B(res);
       }
-      if (ev.quot) return '<span class="nm">Like</span> ' + B("(" + fH('<i class="vr">a</i>', '<i class="vr">b</i>') + ")²") + " = " + fH('<i class="vr">a</i>', '<i class="vr">b</i>') + " · " + fH('<i class="vr">a</i>', '<i class="vr">b</i>') + " = " + B(fH('<i class="vr">a</i>²', '<i class="vr">b</i>²')) + ' <span class="nm">— the power goes on the top and on the bottom.</span>';
-      return '<span class="nm">Like</span> ' + B("(2<i class=\"vr\">x</i>)³") + " = 2<i class=\"vr\">x</i> · 2<i class=\"vr\">x</i> · 2<i class=\"vr\">x</i> = 2·2·2 · <i class=\"vr\">x</i>·<i class=\"vr\">x</i>·<i class=\"vr\">x</i> = " + B("2³<i class=\"vr\">x</i>³") + ' <span class="nm">— every factor inside gets the power.</span>';
+      if (ev.quot) return '<span class="nm">' + tx("exponents.why.like") + "</span> " + B("(" + fH('<i class="vr">a</i>', '<i class="vr">b</i>') + ")²") + " = " + fH('<i class="vr">a</i>', '<i class="vr">b</i>') + " · " + fH('<i class="vr">a</i>', '<i class="vr">b</i>') + " = " + B(fH('<i class="vr">a</i>²', '<i class="vr">b</i>²')) + ' <span class="nm">' + tx("exponents.why.distQ") + "</span>";
+      return '<span class="nm">' + tx("exponents.why.like") + "</span> " + B("(2<i class=\"vr\">x</i>)³") + " = 2<i class=\"vr\">x</i> · 2<i class=\"vr\">x</i> · 2<i class=\"vr\">x</i> = 2·2·2 · <i class=\"vr\">x</i>·<i class=\"vr\">x</i>·<i class=\"vr\">x</i> = " + B("2³<i class=\"vr\">x</i>³") + ' <span class="nm">' + tx("exponents.why.distLike") + "</span>";
     }
 
-    function whyZero(bh) { return B(fH(bh + "³", bh + "³")) + " = 1 <span class=\"nm\">(anything divided by itself), and the quotient law says</span> " + bh + "<sup>3−3</sup> = " + bh + "⁰. <span class=\"nm\">So</span> " + B(bh + "⁰ = 1") + "."; }
+    function whyZero(bh) { return B(fH(bh + "³", bh + "³")) + " = 1 <span class=\"nm\">" + tx("exponents.why.zero1") + "</span> " + bh + "<sup>3−3</sup> = " + bh + "⁰. <span class=\"nm\">" + tx("exponents.why.so") + "</span> " + B(bh + "⁰ = 1") + "."; }
 
     function whyNeg(bh, k) {
       var kk = k <= 4 ? k : 2;
-      return B(fH(bh + "²", pwH(bh, 2 + kk))) + " = " + fH(cpX(bh, 2, 2), cpX(bh, 2 + kk, 2)) + " = " + fH("1", pwH(bh, kk)) + ' <span class="nm">— and the quotient law says</span> ' + bh + "<sup>2−" + (2 + kk) + "</sup> = " + pwH(bh, -kk) + '. <span class="nm">So</span> ' + B(pwH(bh, -kk) + " = " + fH("1", pwH(bh, kk))) + '<span class="nm">: a negative exponent means that many on the bottom.</span>';
+      return B(fH(bh + "²", pwH(bh, 2 + kk))) + " = " + fH(cpX(bh, 2, 2), cpX(bh, 2 + kk, 2)) + " = " + fH("1", pwH(bh, kk)) + ' <span class="nm">' + tx("exponents.why.negQ") + "</span> " + bh + "<sup>2−" + (2 + kk) + "</sup> = " + pwH(bh, -kk) + '. <span class="nm">' + tx("exponents.why.so") + "</span> " + B(pwH(bh, -kk) + " = " + fH("1", pwH(bh, kk))) + '<span class="nm">' + tx("exponents.why.negEnd") + "</span>";
     }
 
     function itemBH(it) { return itemBaseH(it, "page"); }
@@ -3760,12 +3791,12 @@
       var used = [];
       so.stages.forEach(function(s) { used.push(s.law); });
       so.fsteps.forEach(function(s) { used.push(s.law); });
-      html += sect(lead("The problem.") + " " + (nm ? "Powers of numbers — keep them as powers and use the laws on the exponents." : "Simplify: one number in front, each letter once, and only positive exponents."),
+      html += sect(lead(tx("exponents.lw.lead")) + " " + (nm ? tx("exponents.lw.sectNum") : tx("exponents.lw.sectVar")),
         '<div class="bigline"><span class="big">' + astH(P.ast) + "</span></div>", st);
       items.push({
         step: st++,
         lines: [
-          ["n", "Read", "Simplify " + B(astH(P.ast)) + ". " + (used.length ? "The laws this needs: " + used.filter(function(x, i) { return used.indexOf(x) === i && LAW[x].tag !== "Numbers"; }).map(function(x) { return LAW[x].name.toLowerCase(); }).join(", ") + "." : "")]
+          ["n", tx("exponents.tag.read"), tx("exponents.lw.readLine", { e: B(astH(P.ast)) }) + (used.length ? tx("exponents.lw.needs", { l: used.filter(function(x, i) { return used.indexOf(x) === i && LAW[x].c !== "c-n"; }).map(function(x) { return LAW[x].name.toLowerCase(); }).join(", ") }) : "")]
         ]
       });
 
@@ -3778,10 +3809,10 @@
         if (sg.law === "dist") {
           var q = sg.ev.some(function(v) { return v.quot; }),
             pr = sg.ev.some(function(v) { return v.prod; });
-          name = q && pr ? "Power of a product and a quotient" : q ? "Power of a quotient" : "Power of a product";
+          name = q && pr ? tx("exponents.lw.distBoth") : q ? tx("exponents.lw.distQuot") : tx("exponents.law.dist.name");
           sg.ev.slice(0, 3).forEach(function(v) { say.push(B(astH(v.from)) + " → " + B(astH(distInto(stripG(v.from.a), v.e)))); });
           why = whyDist(sg.ev[0]);
-          lines.push([L.c.slice(2), L.tag, "The exponent outside the brackets goes on every factor inside: " + say.join("; ") + "."]);
+          lines.push([L.c.slice(2), L.tag, tx("exponents.lw.distLine", { s: say.join("; ") })]);
         } else if (sg.law === "pp") {
           sg.ev.slice(0, 3).forEach(function(v) {
             var bh = astH(v.base);
@@ -3792,7 +3823,7 @@
             b0 = astH(v0.base);
           if (needBP(v0.base, "page")) b0 = "(" + b0 + ")";
           why = whyPP(stripG(v0.base).t === "var" ? b0 : '<i class="vr">x</i>', v0.e1, v0.e2);
-          lines.push([L.c.slice(2), L.tag, "A power of a power multiplies the exponents: " + say.join("; ") + "."]);
+          lines.push([L.c.slice(2), L.tag, tx("exponents.lw.ppLine", { s: say.join("; ") })]);
         } else {
           sg.ev.slice(0, 4).forEach(function(v) {
             var bh = astH(v.base);
@@ -3800,7 +3831,7 @@
             var mid = v.e >= 2 && v.e <= 5 ? " = " + cp(bh, v.e) : v.e < 0 ? " = " + fH("1", pwH(bh, -v.e)) : "";
             say.push(B(pwH(bh, v.e)) + mid + " = " + B(valH(v.v, anyDec(v.base))));
           });
-          lines.push(["n", L.tag, "Work out the powers of plain numbers: " + say.join("; ") + "."]);
+          lines.push(["n", L.tag, tx("exponents.lw.numLine", { s: say.join("; ") })]);
         }
         html += sect(badge(L.c, name) + " ", '<div class="bigline">= ' + astH(sg.node) + "</div>" + (why ? '<div class="why">' + why + "</div>" : ""), st);
         items.push({ step: st++, lines: lines });
@@ -3815,14 +3846,14 @@
             bots = fs.cb.map(function(x) { return valT(x, so.flat.dec); });
           text = (tops.length ? tops.join(" · ") : "1") + (bots.length ? " ÷ " + (bots.length > 1 ? "(" + bots.join(" · ") + ")" : bots[0]) : "") + " = " + valT(fs.c, false);
           say.push(B(text));
-          text = "Multiply the numbers in front together" + (bots.length ? ", and divide by the ones underneath" : "") + ": " + say.join("") + (fs.c.d !== 1n && bots.length ? " (a fraction in lowest terms)" : "") + ".";
+          text = tx(bots.length ? "exponents.lw.coefDiv" : "exponents.lw.coef", { s: say.join("") }) + (fs.c.d !== 1n && bots.length ? tx("exponents.lw.lowest") : "") + ".";
         } else if (fs.law === "prod") {
           fs.ev.slice(0, 4).forEach(function(v) {
             var bh = itemBH(v.it);
-            say.push(B(v.exps.map(function(x) { return pwH(bh, x); }).join(" · ")) + " = " + bh + sumSup(v.exps, "+") + " = " + B(pwH(bh, v.it.exp)) + (v.it.side < 0 ? " (underneath)" : ""));
+            say.push(B(v.exps.map(function(x) { return pwH(bh, x); }).join(" · ")) + " = " + bh + sumSup(v.exps, "+") + " = " + B(pwH(bh, v.it.exp)) + (v.it.side < 0 ? tx("exponents.lw.under") : ""));
           });
           why = whyProd(itemBH(fs.ev[0].it), fs.ev[0].exps);
-          text = "Same base multiplied: keep the base and add the exponents. " + say.join("; ") + ".";
+          text = tx("exponents.lw.prodLine", { s: say.join("; ") });
         } else if (fs.law === "quot") {
           fs.ev.slice(0, 4).forEach(function(v) {
             var bh = itemBH(v.it);
@@ -3830,18 +3861,18 @@
           });
           var q0 = fs.ev[0];
           why = whyQuot(itemBH(q0.it), q0.top, q0.bot);
-          text = "Same base divided: keep the base and subtract the exponents (top minus bottom). " + say.join("; ") + ".";
+          text = tx("exponents.lw.quotLine", { s: say.join("; ") });
         } else if (fs.law === "zero") {
           fs.ev.forEach(function(v) { say.push(B(pwH(itemBH(v), 0) + " = 1")); });
           why = whyZero(itemBH(fs.ev[0]));
-          text = "Anything (except 0) to the power 0 is 1: " + say.join(", ") + ".";
+          text = tx("exponents.ev.say0", { e: say.join(", ") });
         } else {
           fs.ev.forEach(function(v) {
             var bh = itemBH(v);
             say.push(v.side > 0 ? B(pwH(bh, v.exp) + " = " + fH("1", pwH(bh, -v.exp))) : B(fH("1", pwH(bh, v.exp)) + " = " + pwH(bh, -v.exp)));
           });
           why = whyNeg(itemBH(fs.ev[0]), Math.abs(fs.ev[0].exp));
-          text = "A negative exponent moves the power to the other side of the fraction line, and it turns positive: " + say.join(", ") + ".";
+          text = tx("exponents.lw.negLine", { s: say.join(", ") });
         }
         html += sect(badge(L.c, L.name) + " ", '<div class="bigline">= ' + stateH(fs.st, "page") + "</div>" + (why ? '<div class="why">' + why + "</div>" : ""), st);
         items.push({
@@ -3852,11 +3883,11 @@
         });
       });
       if (!so.stages.length && !so.fsteps.length) {
-        html += sect(lead("Nothing to combine.") + " Every base shows up once with a positive exponent, so it’s already as simple as it gets.", '<div class="bigline">= ' + stateH(so.fin, "page") + "</div>", st);
+        html += sect(lead(tx("exponents.lw.leadNothing")) + tx("exponents.lw.nothingSect"), '<div class="bigline">= ' + stateH(so.fin, "page") + "</div>", st);
         items.push({
           step: st++,
           lines: [
-            ["a", "Done", "Each base appears once, with a positive exponent: " + B(stateH(so.fin, "page")) + " is already simplified."]
+            ["a", tx("exponents.tag.done"), tx("exponents.lw.doneLine", { e: B(stateH(so.fin, "page")) })]
           ]
         });
       }
@@ -3865,17 +3896,17 @@
       items.push({
         step: st - 1,
         lines: [
-          ["a", "Answer", B(astH(P.ast)) + " = " + B(finH) + (nm && !isInt(so.value) ? " = " + B(valT(so.value, false)) : nm ? " = " + B(valT(so.value, false)) : "") + "."]
+          ["a", tx("common.answer"), B(astH(P.ast)) + " = " + B(finH) + (nm && !isInt(so.value) ? " = " + B(valT(so.value, false)) : nm ? " = " + B(valT(so.value, false)) : "") + "."]
         ]
       });
       $("workHost").innerHTML = html;
       writeLog(items);
 
-      var cells = [{ k: "Simplified", v: stateH(so.fin, "inline"), long: finT.length > 26 }]; // a slash, so the answer reads the same as text
-      if (nm && !(so.fin.items.length === 0)) cells.push({ k: "Value", v: valH(so.value, so.flat.dec), long: valT(so.value).length > 18 });
+      var cells = [{ k: tx("exponents.cell.simplified"), v: stateH(so.fin, "inline"), long: finT.length > 26 }]; // a slash, so the answer reads the same as text
+      if (nm && !(so.fin.items.length === 0)) cells.push({ k: tx("exponents.cell.value"), v: valH(so.value, so.flat.dec), long: valT(so.value).length > 18 });
       var facts = [];
-      if (used.length) facts.push("Laws used: " + used.filter(function(x, i) { return used.indexOf(x) === i && LAW[x].tag !== "Numbers"; }).map(function(x) { return LAW[x].name.toLowerCase(); }).join(", ") || "none");
-      facts.push(nm ? "Powers of the same base: add exponents to multiply, subtract to divide, multiply for a power of a power" : "Answer written with positive exponents only");
+      if (used.length) facts.push(tx("exponents.lw.used", { l: used.filter(function(x, i) { return used.indexOf(x) === i && LAW[x].c !== "c-n"; }).map(function(x) { return LAW[x].name.toLowerCase(); }).join(", ") }));
+      facts.push(nm ? tx("exponents.lw.factNum") : tx("exponents.lw.factVar"));
       bandCells(cells, facts);
       $("closer").innerHTML = lawsCheck(P);
       return st; // the closing "Answer" line shares the last step
@@ -3885,7 +3916,7 @@
       var so = P.sol;
       if (P.nm) {
         var ov = evalN(P.ast);
-        return '<div class="ck"><b>Check:</b> work out the start without the laws: ' + astH(P.ast) + " = " + valH(ov, so.flat.dec) + ", and " + stateH(so.fin, "page") + " = " + valH(so.value, so.flat.dec) + OK + "</div>";
+        return '<div class="ck"><b>' + tx("exponents.check") + "</b> " + tx("exponents.lw.ckNum", { a: astH(P.ast) + " = " + valH(ov, so.flat.dec), b: stateH(so.fin, "page") + " = " + valH(so.value, so.flat.dec) }) + OK + "</div>";
       }
       var vars = {};
       walk(P.ast, function(n) { if (n.t === "var") vars[n.s] = true; });
@@ -3915,8 +3946,8 @@
           m = so.mono,
           bv = m.c;
         Object.keys(m.v).forEach(function(k) { bv = mul(bv, powR(pick[k], m.v[k])); });
-        if (digs(a) > 40) return '<div class="ck"><b>Check:</b> put in small numbers for the letters and both sides give the same value.</div>';
-        return '<div class="ck"><b>Check</b> with ' + names.map(function(v) { return '<i class="vr">' + v + "</i> = " + vT1(pick[v]); }).join(", ") + ": the start gives " + B(valT(a, false)) + " and the answer gives " + B(valT(bv, false)) + (eqR(a, bv) ? OK : "") + "</div>";
+        if (digs(a) > 40) return '<div class="ck"><b>' + tx("exponents.check") + "</b> " + tx("exponents.lw.ckBig") + "</div>";
+        return '<div class="ck">' + tx("exponents.lw.ckWith", { v: names.map(function(v) { return '<i class="vr">' + v + "</i> = " + vT1(pick[v]); }).join(", "), a: B(valT(a, false)), b: B(valT(bv, false)) }) + (eqR(a, bv) ? OK : "") + "</div>";
       } catch (e) { return ""; }
     }
 
@@ -3969,9 +4000,9 @@
       }
       var xo = x0 + P0 * cw,
         xn = x0 + NP * cw;
-      if (steps) g += '<circle class="oldpt" cx="' + xo + '" cy="' + (yC + ch - 4) + '" r="3"/><text class="plv" x="' + xo + '" y="' + (yC + ch + 13) + '" text-anchor="middle">start</text>';
-      g += '<circle class="newpt" cx="' + xn + '" cy="' + (yC + ch - 4) + '" r="4.2"/><text class="plv" x="' + xn + '" y="' + (yC + ch + (steps ? 24 : 13)) + '" text-anchor="middle">' + (steps ? "new point" : "point") + "</text>";
-      return svgWrap(W, H, label || "The decimal point moving", g);
+      if (steps) g += '<circle class="oldpt" cx="' + xo + '" cy="' + (yC + ch - 4) + '" r="3"/><text class="plv" x="' + xo + '" y="' + (yC + ch + 13) + '" text-anchor="middle">' + tx("exponents.svg.start") + "</text>";
+      g += '<circle class="newpt" cx="' + xn + '" cy="' + (yC + ch - 4) + '" r="4.2"/><text class="plv" x="' + xn + '" y="' + (yC + ch + (steps ? 24 : 13)) + '" text-anchor="middle">' + (steps ? tx("exponents.svg.newPoint") : tx("exponents.svg.point")) + "</text>";
+      return svgWrap(W, H, label || tx("exponents.svg.moving"), g);
     }
 
     function digitsOf(r) { // |r| as digits and where its point is
@@ -3987,10 +4018,10 @@
       return { D: d.D, p: d.p, s: f + 1 - d.p };
     }
 
-    function jumpsW(s) { return plural(Math.abs(s), "jump") + " to the " + (s < 0 ? "left" : "right"); }
+    function jumpsW(s) { return tx(s < 0 ? "exponents.sc.jumpsL" : "exponents.sc.jumpsR", { j: tx("exponents.nJumps", { n: Math.abs(s) }) }); }
 
     function readSci10(m, k) { // "four point five times ten to the seventh"
-      return mT(m) + " times ten to the " + (k < 0 ? "negative " : "") + (Math.abs(k) <= 12 ? ordW(Math.abs(k)) : Math.abs(k) + "th");
+      return tx(k < 0 ? "exponents.sc.readNeg" : "exponents.sc.readPos", { m: mT(m), o: Math.abs(k) <= 12 ? ordW(Math.abs(k)) : Math.abs(k) + "th", n: Math.abs(k) });
     }
 
     function drawSci(P) {
@@ -3999,79 +4030,79 @@
         st = 0,
         so = { m: P.m, k: P.k },
         H, sv;
-      html += sect(lead("Scientific notation") + " is a number from 1 up to (but not including) 10, times a power of 10. Big numbers get a positive power, numbers between 0 and 1 a negative one.",
+      html += sect(lead(tx("exponents.sc.lead")) + tx("exponents.sc.leadSect"),
         '<div class="bigline"><span class="big">' + (P.src.plain ? stdT(P.src.v) : sciH(P.src.m, P.src.k)) + "</span></div>", st);
       items.push({
         step: st++,
         lines: [
-          ["n", "Read", P.to === "std" ? "Write " + B(sciH(P.src.m, P.src.k)) + " out in full, as an ordinary number (standard form)." :
-            P.src.plain ? "Write " + B(stdT(P.src.v)) + " in scientific notation: a number from 1 to 10 times a power of 10." :
-            B(sciH(P.src.m, P.src.k)) + " isn’t in scientific notation yet: " + B(mT(P.src.m)) + " is " + (cmpR(absR(P.src.m), ONE) < 0 ? "less than 1" : "10 or more") + "."
+          ["n", tx("exponents.tag.read"), P.to === "std" ? tx("exponents.sc.readStd", { e: B(sciH(P.src.m, P.src.k)) }) :
+            P.src.plain ? tx("exponents.sc.readPlain", { e: B(stdT(P.src.v)) }) :
+            tx("exponents.sc.notYet", { e: B(sciH(P.src.m, P.src.k)), m: B(mT(P.src.m)), w: cmpR(absR(P.src.m), ONE) < 0 ? tx("exponents.sc.less1") : tx("exponents.sc.tenMore") })
           ]
         ]
       });
       if (P.to === "std") {
         var d = digitsOf(P.src.m),
           k = P.src.k;
-        sv = hopSVG(d.D, d.p, k, "tostd", "The decimal point moves " + jumpsW(k));
-        html += sect(lead("Move the decimal point.") + " × 10" + supH(k) + " means move the point " + (k === 0 ? "nowhere" : jumpsW(k)) + (k > 0 ? " — the number gets bigger." : k < 0 ? " — the number gets smaller." : ".") + " Fill the empty places with zeros (green).",
+        sv = hopSVG(d.D, d.p, k, "tostd", tx("exponents.sc.moves", { j: jumpsW(k) }));
+        html += sect(lead(tx("exponents.sc.leadMove")) + tx("exponents.sc.moveSect", { p: "× 10" + supH(k), j: k === 0 ? tx("exponents.sc.nowhere") : jumpsW(k) }) + (k > 0 ? tx("exponents.sc.bigger") : k < 0 ? tx("exponents.sc.smaller") : ".") + tx("exponents.sc.fill"),
           '<div class="xscroll">' + sv + "</div>", st);
         items.push({
           step: st++,
           lines: [
-            ["e", "Hop", "The power is " + B(sgnT(k)) + ", so the point moves " + B(k === 0 ? "nowhere" : jumpsW(k)) + (k ? ", one place for each jump" : "") + "."]
+            ["e", tx("exponents.tag.hop"), tx("exponents.sc.hopLine", { p: B(sgnT(k)), j: B(k === 0 ? tx("exponents.sc.nowhere") : jumpsW(k)) }) + (k ? tx("exponents.sc.onePlace") : "") + "."]
           ],
-          aside: k < 0 ? "A negative power of 10 makes the number small: 10" + supH(k) + " = 1/" + intT(P10(-k)) + "." : k > 0 ? "Each jump to the right is one more × 10." : null
+          aside: k < 0 ? tx("exponents.sc.negSmall", { e: "10" + supH(k) + " = 1/" + intT(P10(-k)) }) : k > 0 ? tx("exponents.sc.jumpRight") : null
         });
-        html += sect(lead("Read off the number.") + "", '<div class="bigline">' + sciH(P.src.m, k) + ' = <span class="eqa">' + P.std + "</span></div>", st);
+        html += sect(lead(tx("exponents.sc.leadReadOff")) + "", '<div class="bigline">' + sciH(P.src.m, k) + ' = <span class="eqa">' + P.std + "</span></div>", st);
         items.push({
           step: st++,
           lines: [
-            ["a", "Write", "So " + B(sciH(P.src.m, k)) + " = " + B(P.std) + "."]
+            ["a", tx("exponents.tag.write"), tx("exponents.sc.soEq", { a: B(sciH(P.src.m, k)), b: B(P.std) })]
           ]
         });
       } else {
         var h = hopToSci(P.src.plain ? P.src.v : P.src.m),
           jj = -h.s;
-        sv = hopSVG(h.D, h.p, h.s, "tosci", "The decimal point moves " + jumpsW(h.s));
-        html += sect(lead("Move the decimal point") + " until just one digit (not 0) is in front of it: " + B(jumpsW(h.s)) + ". The gray zeros drop off.",
+        sv = hopSVG(h.D, h.p, h.s, "tosci", tx("exponents.sc.moves", { j: jumpsW(h.s) }));
+        html += sect(lead(tx("exponents.sc.leadMove2")) + tx("exponents.sc.untilOne", { j: B(jumpsW(h.s)) }),
           '<div class="xscroll">' + sv + "</div>", st);
         items.push({
           step: st++,
           lines: [
-            ["e", "Hop", "Move the point after the first digit that isn’t 0: " + B(stdT(P.src.plain ? absR(P.src.v) : absR(P.src.m))) + " → " + B(mT(absR(P.m))) + " is " + B(jumpsW(h.s)) + "."]
+            ["e", tx("exponents.tag.hop"), tx("exponents.sc.hopSci", { a: B(stdT(P.src.plain ? absR(P.src.v) : absR(P.src.m))), b: B(mT(absR(P.m))), j: B(jumpsW(h.s)) })]
           ]
         });
         if (P.src.plain) {
-          html += sect(lead("Count the jumps for the power.") + " " + (jj > 0 ? "The number was big, so the power is positive" : jj < 0 ? "The number was less than 1, so the power is negative" : "No jumps, so the power is 0") + ": " + plural(Math.abs(jj), "jump") + " → 10" + supH(jj) + ".",
+          html += sect(lead(tx("exponents.sc.leadCount")) + " " + tx(jj > 0 ? "exponents.sc.cntBig" : jj < 0 ? "exponents.sc.cntSmall" : "exponents.sc.cntNone", { j: tx("exponents.nJumps", { n: Math.abs(jj) }), p: "10" + supH(jj) }),
             '<div class="bigline">' + stdT(P.src.v) + ' = <span class="eqa">' + sciH(P.m, P.k) + "</span></div>", st);
           items.push({
             step: st++,
             lines: [
-              ["p", "Power", "Moving the point " + jumpsW(h.s) + " " + (jj > 0 ? "divided by 10" + supH(jj) : jj < 0 ? "multiplied by 10" + supH(-jj) : "changed nothing") + ", so put back " + B("× 10" + supH(jj)) + ": " + B(sciH(P.m, P.k)) + "."]
+              ["p", tx("exponents.tag.power"), tx("exponents.sc.powLine", { j: jumpsW(h.s), d: jj > 0 ? tx("exponents.sc.divBy", { p: "10" + supH(jj) }) : jj < 0 ? tx("exponents.sc.mulBy", { p: "10" + supH(-jj) }) : tx("exponents.sc.changedNothing"), x: B("× 10" + supH(jj)), v: B(sciH(P.m, P.k)) })]
             ],
-            aside: jj > 0 ? "Check the sign: a big number (10 or more) has a positive power." : jj < 0 ? "Check the sign: a number between 0 and 1 has a negative power." : null
+            aside: jj > 0 ? tx("exponents.sc.signBig") : jj < 0 ? tx("exponents.sc.signSmall") : null
           });
         } else {
           var k0 = P.src.k;
-          html += sect(lead("Fix the power to match.") + " Moving the point " + jumpsW(h.s) + " is " + (jj > 0 ? "÷ 10" + supH(jj) : "× 10" + supH(-jj)) + ", so the power of 10 goes " + (jj > 0 ? "up" : "down") + " by " + Math.abs(jj) + ".",
+          html += sect(lead(tx("exponents.sc.leadFix")) + tx(jj > 0 ? "exponents.sc.fixUp" : "exponents.sc.fixDown", { j: jumpsW(h.s), o: jj > 0 ? "÷ 10" + supH(jj) : "× 10" + supH(-jj), n: Math.abs(jj) }),
             '<div class="bigline">' + sciH(P.src.m, k0) + " = " + mT(P.m) + " × 10" + supH(jj) + " × 10" + supH(k0) + " = " + mT(P.m) + " × 10<sup>" + sgnT(jj) + (k0 < 0 ? " + (" + sgnT(k0) + ")" : " + " + k0) + '</sup> = <span class="eqa">' + sciH(P.m, P.k) + "</span></div>", st);
           items.push({
             step: st++,
             lines: [
-              ["p", "Power", B(mT(P.src.m)) + " = " + B(mT(P.m) + " × 10" + supH(jj)) + ", and the powers of 10 add: " + B(sgnT(jj) + " + " + (k0 < 0 ? "(" + sgnT(k0) + ")" : k0) + " = " + sgnT(P.k)) + "."]
+              ["p", tx("exponents.tag.power"), tx("exponents.sc.addLine", { a: B(mT(P.src.m)), b: B(mT(P.m) + " × 10" + supH(jj)), c: B(sgnT(jj) + " + " + (k0 < 0 ? "(" + sgnT(k0) + ")" : k0) + " = " + sgnT(P.k)) })]
             ],
-            aside: "The first number got " + (jj > 0 ? "smaller" : "bigger") + ", so the power went " + (jj > 0 ? "up" : "down") + " — the value stays the same."
+            aside: tx(jj > 0 ? "exponents.sc.gotSmaller" : "exponents.sc.gotBigger")
           });
         }
       }
       $("workHost").innerHTML = html;
       writeLog(items);
-      var cells = P.to === "std" ? [{ k: "Standard form", v: P.std, long: P.std.length > 22 }] : [{ k: "Scientific notation", v: sciH(P.m, P.k) }];
-      var facts = [P.to === "std" ? "In scientific notation: " + B(sciH(P.m, P.k)) : "In standard form: " + B(P.std), "Read it: “" + readSci10(P.m, P.k) + "”"];
+      var cells = P.to === "std" ? [{ k: tx("exponents.cell.std"), v: P.std, long: P.std.length > 22 }] : [{ k: tx("exponents.cell.sci"), v: sciH(P.m, P.k) }];
+      var facts = [P.to === "std" ? tx("exponents.ev.inSci", { v: B(sciH(P.m, P.k)) }) : tx("exponents.sc.inStd", { v: B(P.std) }), tx("exponents.sc.readIt", { r: readSci10(P.m, P.k) })];
       bandCells(cells, facts);
-      var ck = Math.abs(P.k) <= 12 ? mT(P.m) + " × " + valH(pow10R(P.k), true) + " = " + P.std + OK : "Count the places between the first digit and the point: " + Math.abs(P.k) + OK;
-      $("closer").innerHTML = '<div class="ck"><b>Check:</b> ' + ck + "</div>";
+      var ck = Math.abs(P.k) <= 12 ? mT(P.m) + " × " + valH(pow10R(P.k), true) + " = " + P.std + OK : tx("exponents.sc.ckCount", { n: Math.abs(P.k) }) + OK;
+      $("closer").innerHTML = '<div class="ck"><b>' + tx("exponents.check") + "</b> " + ck + "</div>";
       return items.length;
     }
 
@@ -4085,15 +4116,15 @@
         j = -h.s,
         so = sciOf(c),
         html;
-      html = sect(lead("Re-normalize.") + " " + B(mT(c)) + " isn’t from 1 up to 10. Move its point " + B(jumpsW(h.s)) + " and fix the power: the first number got " + (j > 0 ? "smaller, so the power goes up" : "bigger, so the power goes down") + " by " + Math.abs(j) + ".",
-        '<div class="xscroll">' + hopSVG(h.D, h.p, h.s, "tosci", "Moving the point to re-normalize") + '</div><div class="bigline">' + mT(c) + " × 10" + supH(K) + " = " + mT(so.m) + " × 10" + supH(j) + " × 10" + supH(K) +
+      html = sect(lead(tx("exponents.sc.leadRenorm")) + " " + tx(j > 0 ? "exponents.sc.renormUp" : "exponents.sc.renormDown", { c: B(mT(c)), j: B(jumpsW(h.s)), n: Math.abs(j) }),
+        '<div class="xscroll">' + hopSVG(h.D, h.p, h.s, "tosci", tx("exponents.svg.renorm")) + '</div><div class="bigline">' + mT(c) + " × 10" + supH(K) + " = " + mT(so.m) + " × 10" + supH(j) + " × 10" + supH(K) +
         ' = <span class="eqa">' + sciH(so.m, K + j) + "</span></div>", st);
       items.push({
         step: st,
         lines: [
-          ["e", "Normalize", B(mT(c)) + " = " + B(mT(so.m) + " × 10" + supH(j)) + ", so " + B(mT(c) + " × 10" + supH(K)) + " = " + B(sciH(so.m, K + j)) + "."]
+          ["e", tx("exponents.tag.normalize"), tx("exponents.sc.normLine", { a: B(mT(c)), b: B(mT(so.m) + " × 10" + supH(j)), c: B(mT(c) + " × 10" + supH(K)), d: B(sciH(so.m, K + j)) })]
         ],
-        aside: why || ("Watch the direction: when the first number gets " + (j > 0 ? "smaller (÷ 10)" : "bigger (× 10)") + ", the power of 10 goes " + (j > 0 ? "up" : "down") + " to make up for it.")
+        aside: why || tx(j > 0 ? "exponents.sc.dirUp" : "exponents.sc.dirDown")
       });
       return html;
     }
@@ -4108,34 +4139,38 @@
         aH = sciX(a),
         bH = sciX(b);
       var cells, facts = [],
-        ck = "";
+        ck = "",
+        rounded = false; // the check is "rounded": no ✓
       if (op === "mul" || op === "div") {
         var c = op === "mul" ? mul(a.m, b.m) : dvd(a.m, b.m),
           K = op === "mul" ? a.k + b.k : a.k - b.k,
           sy = opSym(op);
-        html += sect(lead("Regroup.") + " " + (op === "mul" ? "You can multiply in any order, so put the first numbers together and the powers of 10 together." : "Divide the first numbers, and divide the powers of 10."),
+        html += sect(lead(tx("exponents.sc.leadRegroup")) + " " + (op === "mul" ? tx("exponents.sc.regroupMul") : tx("exponents.sc.regroupDiv")),
           '<div class="bigline">(' + aH + ") " + sy + " (" + bH + ") = (" + mT(a.m) + " " + sy + " " + mTp(b.m) + ") × (10" + supH(a.k) + " " + sy + " 10" + supH(b.k) + ")</div>", st);
         items.push({
           step: st++,
           lines: [
-            ["n", "Regroup", "Group the first numbers and the powers of 10: " + B("(" + mT(a.m) + " " + sy + " " + mTp(b.m) + ") × (10" + supH(a.k) + " " + sy + " 10" + supH(b.k) + ")") + "."]
+            ["n", tx("exponents.tag.regroup"), tx("exponents.sc.regroupLine", { e: B("(" + mT(a.m) + " " + sy + " " + mTp(b.m) + ") × (10" + supH(a.k) + " " + sy + " 10" + supH(b.k) + ")") })]
           ]
         });
-        html += sect(lead(op === "mul" ? "Multiply the numbers, add the powers." : "Divide the numbers, subtract the powers.") + " " + (op === "mul" ? "10" + supH(a.k) + " × 10" + supH(b.k) + " is the product law: same base, add the exponents." : "10" + supH(a.k) + " ÷ 10" + supH(b.k) + " is the quotient law: same base, subtract the exponents."),
-          '<div class="bigline">' + mT(a.m) + " " + sy + " " + mTp(b.m) + ' = <span class="eqm">' + mT(c) + '</span> <span class="nm">and</span> 10<sup>' + sgnT(a.k) + (op === "mul" ? " + " : " − ") + (b.k < 0 ? "(" + sgnT(b.k) + ")" : b.k) + "</sup> = 10" + supH(K) +
+        html += sect(lead(op === "mul" ? tx("exponents.sc.leadMulAdd") : tx("exponents.sc.leadDivSub")) + " " + (op === "mul" ? tx("exponents.sc.prodLaw", { e: "10" + supH(a.k) + " × 10" + supH(b.k) }) : tx("exponents.sc.quotLaw", { e: "10" + supH(a.k) + " ÷ 10" + supH(b.k) })),
+          '<div class="bigline">' + mT(a.m) + " " + sy + " " + mTp(b.m) + ' = <span class="eqm">' + mT(c) + '</span> <span class="nm">' + tx("exponents.sc.and") + "</span> 10<sup>" + sgnT(a.k) + (op === "mul" ? " + " : " − ") + (b.k < 0 ? "(" + sgnT(b.k) + ")" : b.k) + "</sup> = 10" + supH(K) +
           '</div><div class="bigline">= ' + (isNormM(c) ? '<span class="eqa">' + sciH(c, K) + "</span>" : mT(c) + " × 10" + supH(K)) + "</div>", st);
         items.push({
           step: st++,
           lines: [
-            ["m", op === "mul" ? "Multiply" : "Divide", B(mT(a.m) + " " + sy + " " + mTp(b.m) + " = " + mT(c)) + ", and " + B(sgnT(a.k) + (op === "mul" ? " + " : " − ") + (b.k < 0 ? "(" + sgnT(b.k) + ")" : b.k) + " = " + sgnT(K)) + ": " + B(mT(c) + " × 10" + supH(K)) + "."]
+            ["m", op === "mul" ? tx("exponents.tag.multiply") : tx("exponents.tag.divide"), tx("exponents.sc.mdLine", { a: B(mT(a.m) + " " + sy + " " + mTp(b.m) + " = " + mT(c)), b: B(sgnT(a.k) + (op === "mul" ? " + " : " − ") + (b.k < 0 ? "(" + sgnT(b.k) + ")" : b.k) + " = " + sgnT(K)), c: B(mT(c) + " × 10" + supH(K)) })]
           ],
-          aside: op === "mul" ? "Add the powers — don’t multiply them. 10" + supH(a.k) + " × 10" + supH(b.k) + " has " + a.k + " + " + b.k + " tens multiplied." : "Subtract the powers — don’t divide them."
+          aside: op === "mul" ? tx("exponents.sc.addNotMul", { e: "10" + supH(a.k) + " × 10" + supH(b.k), a: a.k, b: b.k }) : tx("exponents.sc.subNotDiv")
         });
         if (!isNormM(c) && c.n !== 0n) html += normSect(c, K, st++, null, items);
-        cells = [{ k: "Answer", v: sciH(P.m, P.k) }];
-        if (Math.abs(P.k) <= 9) facts.push("In standard form: " + B(stdT(P.res)));
-        ck = op === "mul" ? "the other way round: " + sciH(P.m, P.k) + " ÷ (" + bH + ") = " + sciH(sciOf(dvd(P.res, P.Bv)).m, sciOf(dvd(P.res, P.Bv)).k) : "multiply back: " + sciH(P.m, P.k) + " × (" + bH + ") = " + aH;
-        if (decT(P.m) === null) ck = "this one doesn’t come out exactly — " + B(mT(P.m)) + " is rounded";
+        cells = [{ k: tx("common.answer"), v: sciH(P.m, P.k) }];
+        if (Math.abs(P.k) <= 9) facts.push(tx("exponents.sc.inStd", { v: B(stdT(P.res)) }));
+        ck = op === "mul" ? tx("exponents.sc.otherWay", { e: sciH(P.m, P.k) + " ÷ (" + bH + ") = " + sciH(sciOf(dvd(P.res, P.Bv)).m, sciOf(dvd(P.res, P.Bv)).k) }) : tx("exponents.sc.mulBack", { e: sciH(P.m, P.k) + " × (" + bH + ") = " + aH });
+        if (decT(P.m) === null) {
+          ck = tx("exponents.sc.rounded", { m: B(mT(P.m)) });
+          rounded = true;
+        }
       } else if (op === "add" || op === "sub") {
         var Kx = Math.max(a.k, b.k),
           sy2 = opSym(op),
@@ -4148,36 +4183,36 @@
         if (a.k !== b.k) {
           var d0 = digitsOf(other.m),
             sh = other.k - Kx;
-          html += sect(lead("Match the powers first.") + " You can only add or subtract the first numbers when the powers of 10 match — like lining up places. Rewrite " + B(sciX(other)) + " with 10" + supH(Kx) + ": move its point " + B(jumpsW(sh)) + ".",
-            '<div class="xscroll">' + hopSVG(d0.D, d0.p, sh, "tostd", "Rewriting with the bigger power") + '</div><div class="bigline">' + sciX(other) + " = " + mT(om) + " × 10" + supH(Kx) + "</div>", st);
+          html += sect(lead(tx("exponents.sc.leadMatch")) + tx("exponents.sc.matchSect", { x: B(sciX(other)), p: "10" + supH(Kx), j: B(jumpsW(sh)) }),
+            '<div class="xscroll">' + hopSVG(d0.D, d0.p, sh, "tostd", tx("exponents.svg.rewrite")) + '</div><div class="bigline">' + sciX(other) + " = " + mT(om) + " × 10" + supH(Kx) + "</div>", st);
           items.push({
             step: st++,
             lines: [
-              ["e", "Match", "Make the powers the same: " + B(sciX(other) + " = " + mT(om) + " × 10" + supH(Kx)) + ". (The power went up by " + (Kx - other.k) + ", so the first number goes down by that many places.)"]
+              ["e", tx("exponents.tag.match"), tx("exponents.sc.matchLine", { e: B(sciX(other) + " = " + mT(om) + " × 10" + supH(Kx)), n: Kx - other.k })]
             ],
-            aside: "Don’t add the powers of 10 here — that’s only for multiplying."
+            aside: tx("exponents.sc.dontAdd")
           });
         } else {
-          html += sect(lead("The powers already match.") + " Both are times 10" + supH(Kx) + ", so the first numbers can be " + (op === "add" ? "added" : "subtracted") + " straight away.", '<div class="bigline">' + aH + " " + sy2 + " " + bH + "</div>", st);
+          html += sect(lead(tx("exponents.sc.leadAlready")) + tx(op === "add" ? "exponents.sc.alreadyAdd" : "exponents.sc.alreadySub", { p: "10" + supH(Kx) }), '<div class="bigline">' + aH + " " + sy2 + " " + bH + "</div>", st);
           items.push({
             step: st++,
             lines: [
-              ["e", "Match", "Both numbers are times " + B("10" + supH(Kx)) + "."]
+              ["e", tx("exponents.tag.match"), tx("exponents.sc.bothTimes", { p: B("10" + supH(Kx)) })]
             ]
           });
         }
-        html += sect(lead(op === "add" ? "Add the first numbers." : "Subtract the first numbers.") + " The power of 10 stays the same.",
+        html += sect(lead(op === "add" ? tx("exponents.sc.leadAdd") : tx("exponents.sc.leadSub")) + tx("exponents.sc.stays"),
           '<div class="bigline">(' + mT(am) + " " + sy2 + " " + mTp(bm) + ") × 10" + supH(Kx) + " = " + (cc.n === 0n ? '<span class="eqa">0</span>' : isNormM(cc) ? '<span class="eqa">' + sciH(cc, Kx) + "</span>" : mT(cc) + " × 10" + supH(Kx)) + "</div>", st);
         items.push({
           step: st++,
           lines: [
-            ["m", op === "add" ? "Add" : "Subtract", B(mT(am) + " " + sy2 + " " + mTp(bm) + " = " + mT(cc)) + ", still times " + B("10" + supH(Kx)) + "."]
+            ["m", op === "add" ? tx("exponents.tag.add") : tx("exponents.tag.subtract"), tx("exponents.sc.stillTimes", { a: B(mT(am) + " " + sy2 + " " + mTp(bm) + " = " + mT(cc)), p: B("10" + supH(Kx)) })]
           ]
         });
         if (cc.n !== 0n && !isNormM(cc)) html += normSect(cc, Kx, st++, null, items);
-        cells = [{ k: "Answer", v: cc.n === 0n ? "0" : sciH(P.m, P.k) }];
-        if (Math.abs(a.k) <= 9 && Math.abs(b.k) <= 9 && P.res.n !== 0n) ck = "in standard form, " + stdT(P.A) + " " + sy2 + " " + (P.Bv.n < 0n ? "(" + stdT(P.Bv) + ")" : stdT(P.Bv)) + " = " + stdT(P.res) + OK;
-        if (P.res.n !== 0n && Math.abs(P.k) <= 9) facts.push("In standard form: " + B(stdT(P.res)));
+        cells = [{ k: tx("common.answer"), v: cc.n === 0n ? "0" : sciH(P.m, P.k) }];
+        if (Math.abs(a.k) <= 9 && Math.abs(b.k) <= 9 && P.res.n !== 0n) ck = tx("exponents.sc.inStdCk", { e: stdT(P.A) + " " + sy2 + " " + (P.Bv.n < 0n ? "(" + stdT(P.Bv) + ")" : stdT(P.Bv)) + " = " + stdT(P.res) }) + OK;
+        if (P.res.n !== 0n && Math.abs(P.k) <= 9) facts.push(tx("exponents.sc.inStd", { v: B(stdT(P.res)) }));
       } else if (op === "cmp") {
         var sa = sciOf(P.A),
           sb = sciOf(P.Bv),
@@ -4185,64 +4220,67 @@
           unB = !isNormM(b.m),
           sym = P.cmp < 0 ? "<" : P.cmp > 0 ? ">" : "=";
         if (unA || unB) {
-          html += sect(lead("Put both in scientific notation first.") + " Then the powers of 10 can be compared fairly.",
+          html += sect(lead(tx("exponents.sc.leadBoth")) + tx("exponents.sc.bothSect"),
             '<div class="bigline">' + (unA ? aH + " = " + sciH(sa.m, sa.k) : aH) + '</div><div class="bigline">' + (unB ? bH + " = " + sciH(sb.m, sb.k) : bH) + "</div>", st);
           items.push({
             step: st++,
             lines: [
-              ["e", "Normalize", (unA ? B(aH) + " = " + B(sciH(sa.m, sa.k)) : "") + (unA && unB ? "; " : "") + (unB ? B(bH) + " = " + B(sciH(sb.m, sb.k)) : "") + "."]
+              ["e", tx("exponents.tag.normalize"), (unA ? B(aH) + " = " + B(sciH(sa.m, sa.k)) : "") + (unA && unB ? "; " : "") + (unB ? B(bH) + " = " + B(sciH(sb.m, sb.k)) : "") + "."]
             ]
           });
         }
-        var tbl = '<table class="tbl"><thead><tr><th class="l">Number</th><th>Power of 10</th><th>First number</th></tr></thead><tbody>' +
+        var tbl = '<table class="tbl"><thead><tr><th class="l">' + tx("exponents.th.number") + "</th><th>" + tx("exponents.th.pow10") + "</th><th>" + tx("exponents.th.first") + "</th></tr></thead><tbody>" +
           "<tr" + (P.cmp > 0 ? ' class="hit"' : "") + '><td class="l">' + sciH(sa.m, sa.k) + "</td><td" + (sa.k !== sb.k ? ' class="k"' : "") + ">10" + supH(sa.k) + "</td><td" + (sa.k === sb.k ? ' class="k"' : "") + ">" + mT(sa.m) + "</td></tr>" +
           "<tr" + (P.cmp < 0 ? ' class="hit"' : "") + '><td class="l">' + sciH(sb.m, sb.k) + "</td><td" + (sa.k !== sb.k ? ' class="k"' : "") + ">10" + supH(sb.k) + "</td><td" + (sa.k === sb.k ? ' class="k"' : "") + ">" + mT(sb.m) + "</td></tr></tbody></table>";
-        var why2 = sa.k !== sb.k ? "The powers are different, so they decide: 10" + supH(Math.max(sa.k, sb.k)) + " is bigger than 10" + supH(Math.min(sa.k, sb.k)) + " — whatever the first numbers are (each is less than 10)." :
-          P.cmp === 0 ? "The powers match and so do the first numbers: they’re equal." : "The powers match, so compare the first numbers: " + mT(sa.m) + (P.cmp > 0 ? " > " : " < ") + mT(sb.m) + ".";
-        html += sect(lead("Compare the powers of 10 first.") + " " + why2, '<div class="xscroll">' + tbl + '</div><div class="bigline">' + aH + ' <span class="eqa">' + sym + "</span> " + bH + "</div>", st);
+        var why2 = sa.k !== sb.k ? tx("exponents.sc.cmpDiff", { a: "10" + supH(Math.max(sa.k, sb.k)), b: "10" + supH(Math.min(sa.k, sb.k)) }) :
+          P.cmp === 0 ? tx("exponents.sc.cmpEq") : tx("exponents.sc.cmpFirst", { e: mT(sa.m) + (P.cmp > 0 ? " > " : " < ") + mT(sb.m) });
+        html += sect(lead(tx("exponents.sc.leadCmp")) + " " + why2, '<div class="xscroll">' + tbl + '</div><div class="bigline">' + aH + ' <span class="eqa">' + sym + "</span> " + bH + "</div>", st);
         items.push({
           step: st++,
           lines: [
-            ["v", "Compare", why2]
+            ["v", tx("exponents.tag.compare"), why2]
           ],
-          aside: sa.k !== sb.k && (P.cmp > 0) !== (cmpR(sa.m, sb.m) > 0) && !eqR(sa.m, sb.m) ? "Don’t be fooled by the first numbers: " + mT(sa.m) + " vs " + mT(sb.m) + " points the other way, but the power of 10 counts far more." : null
+          aside: sa.k !== sb.k && (P.cmp > 0) !== (cmpR(sa.m, sb.m) > 0) && !eqR(sa.m, sb.m) ? tx("exponents.sc.fooled", { a: mT(sa.m), b: mT(sb.m) }) : null
         });
-        cells = [{ k: "Answer", v: aH + ' <span class="eqa">' + sym + "</span> " + bH, long: true }];
+        cells = [{ k: tx("common.answer"), v: aH + ' <span class="eqa">' + sym + "</span> " + bH, long: true }];
         if (P.cmp !== 0) {
           var big = P.cmp > 0 ? P.A : P.Bv,
             sml = P.cmp > 0 ? P.Bv : P.A,
             rt = dvd(big, sml);
-          facts.push("The bigger one is " + B(decT(rt) !== null && decT(rt).length < 16 ? decT(rt) : "≈ " + approxT(rt)) + " times the other");
+          facts.push(tx("exponents.sc.biggerIs", { v: B(decT(rt) !== null && decT(rt).length < 16 ? decT(rt) : "≈ " + approxT(rt)) }));
         }
-        ck = "in standard form, " + (Math.abs(sa.k) <= 9 && Math.abs(sb.k) <= 9 ? stdT(P.A) + " " + sym + " " + stdT(P.Bv) : "the number with more digits before the point is bigger") + OK;
+        ck = tx("exponents.sc.inStdCk", { e: Math.abs(sa.k) <= 9 && Math.abs(sb.k) <= 9 ? stdT(P.A) + " " + sym + " " + stdT(P.Bv) : tx("exponents.sc.moreDigits") }) + OK;
       } else {
         var c3 = dvd(a.m, b.m),
           K3 = a.k - b.k;
-        html += sect(lead("“How many times bigger” means divide.") + " Bigger ÷ smaller, with the powers of 10 subtracted.",
+        html += sect(lead(tx("exponents.sc.leadTimes")) + tx("exponents.sc.timesSect"),
           '<div class="bigline">(' + aH + ") ÷ (" + bH + ") = (" + mT(a.m) + " ÷ " + mT(b.m) + ") × 10<sup>" + sgnT(a.k) + " − " + (b.k < 0 ? "(" + sgnT(b.k) + ")" : b.k) + "</sup> = " + mT(c3) + " × 10" + supH(K3) + "</div>", st);
         items.push({
           step: st++,
           lines: [
-            ["v", "Divide", "Divide the first numbers and subtract the powers: " + B(mT(a.m) + " ÷ " + mT(b.m) + " = " + mT(c3)) + " and " + B(sgnT(a.k) + " − " + (b.k < 0 ? "(" + sgnT(b.k) + ")" : b.k) + " = " + sgnT(K3)) + "."]
+            ["v", tx("exponents.tag.divide"), tx("exponents.sc.divLine", { a: B(mT(a.m) + " ÷ " + mT(b.m) + " = " + mT(c3)), b: B(sgnT(a.k) + " − " + (b.k < 0 ? "(" + sgnT(b.k) + ")" : b.k) + " = " + sgnT(K3)) })]
           ],
-          aside: "Subtracting (" + stdOrSci(P.A) + " − " + stdOrSci(P.Bv) + ") would say how much bigger; dividing says how many times."
+          aside: tx("exponents.sc.subVsDiv", { e: stdOrSci(P.A) + " − " + stdOrSci(P.Bv) })
         });
-        html += sect(lead("As an ordinary number."), '<div class="bigline">' + mT(c3) + " × 10" + supH(K3) + ' = <span class="eqa">' + stdT(P.res) + "</span> times</div>", st);
+        html += sect(lead(tx("exponents.sc.leadOrdinary")), '<div class="bigline">' + mT(c3) + " × 10" + supH(K3) + ' = <span class="eqa">' + stdT(P.res) + "</span> " + tx("exponents.sc.timesWord") + "</div>", st);
         items.push({
           step: st++,
           lines: [
-            ["a", "Times", B(aH) + " is " + B(stdT(P.res)) + " times " + B(bH) + "."]
+            ["a", tx("exponents.tag.times"), tx("exponents.sc.timesLine", { a: B(aH), v: B(stdT(P.res)), b: B(bH) })]
           ]
         });
-        cells = [{ k: "Times bigger", v: stdT(P.res) }];
-        if (!isNormM(P.m) || Math.abs(P.k) > 0) facts.push("As a power of 10: " + B(sciH(P.m, P.k)));
+        cells = [{ k: tx("exponents.cell.timesBigger"), v: stdT(P.res) }];
+        if (!isNormM(P.m) || Math.abs(P.k) > 0) facts.push(tx("exponents.sc.asPow10", { v: B(sciH(P.m, P.k)) }));
         ck = "(" + bH + ") × " + stdT(P.res) + " = " + aH + OK;
-        if (decT(P.res) === null) ck = "it doesn’t come out exactly, so it’s rounded";
+        if (decT(P.res) === null) {
+          ck = tx("exponents.sc.roundedT");
+          rounded = true;
+        }
       }
       $("workHost").innerHTML = html;
       writeLog(items);
       bandCells(cells, facts);
-      $("closer").innerHTML = ck ? '<div class="ck"><b>Check:</b> ' + ck + (ck.indexOf("✓") < 0 && ck.indexOf("rounded") < 0 ? OK : "") + "</div>" : "";
+      $("closer").innerHTML = ck ? '<div class="ck"><b>' + tx("exponents.check") + "</b> " + ck + (ck.indexOf("✓") < 0 && !rounded ? OK : "") + "</div>" : "";
       return items.length;
     }
 
@@ -4282,9 +4320,9 @@
         i, j;
       for (i = 0; i < q; i++)
         for (j = 0; j < q; j++) g += '<rect class="sqc" x="' + (4 + j * c) + '" y="' + (4 + i * c) + '" width="' + (c - 2) + '" height="' + (c - 2) + '" rx="2"/>';
-      g += '<text class="sql" x="' + (q * c + 10) + '" y="' + (4 + q * c / 2 + 4) + '">' + q + " rows</text>";
-      g += '<text class="sql" x="' + (4 + q * c / 2) + '" y="' + (q * c + 20) + '" text-anchor="middle">' + q + " in each</text>";
-      return svgWrap(W, H, q * q + " squares make a " + q + " by " + q + " square", g);
+      g += '<text class="sql" x="' + (q * c + 10) + '" y="' + (4 + q * c / 2 + 4) + '">' + tx("exponents.svg.rows", { n: q }) + "</text>";
+      g += '<text class="sql" x="' + (4 + q * c / 2) + '" y="' + (q * c + 20) + '" text-anchor="middle">' + tx("exponents.svg.inEach", { n: q }) + "</text>";
+      return svgWrap(W, H, tx("exponents.svg.gridLabel", { s: q * q, n: q }), g);
     }
 
     function rootLineSVG(P, W) {
@@ -4309,7 +4347,7 @@
       function sB(v) { return pL + (v - lo) / (hi - lo) * inner; }
 
       function tk(x, y, lab, below, cls) { return '<line class="tkl" x1="' + f1(x) + '" y1="' + (y - 6) + '" x2="' + f1(x) + '" y2="' + (y + 6) + '"/><text class="tl' + (cls ? " " + cls : "") + '" x="' + f1(x) + '" y="' + (below ? y + 21 : y - 11) + '" text-anchor="middle">' + lab + "</text>"; }
-      g += '<text class="ptitle" x="' + pL + '" y="14">THE NUMBER</text><text class="ptitle" x="' + pL + '" y="' + (yB + 34) + '">ITS ' + (r === 3 ? "CUBE" : "SQUARE") + " ROOT</text>";
+      g += '<text class="ptitle" x="' + pL + '" y="14">' + tx("exponents.svg.theNumber") + '</text><text class="ptitle" x="' + pL + '" y="' + (yB + 34) + '">' + tx(r === 3 ? "exponents.svg.itsCube" : "exponents.svg.itsSquare") + "</text>";
       g += '<line class="ax" x1="' + (pL - 8) + '" y1="' + yT + '" x2="' + (W - pR + 8) + '" y2="' + yT + '"/><line class="ax" x1="' + (pL - 8) + '" y1="' + yB + '" x2="' + (W - pR + 8) + '" y2="' + yB + '"/>';
       g += '<line class="mid" x1="' + f1(sT(mid)) + '" y1="' + yT + '" x2="' + f1(sB(lo + 0.5)) + '" y2="' + yB + '"/>';
       g += '<line class="link" x1="' + f1(sT(n)) + '" y1="' + yT + '" x2="' + f1(sB(rf)) + '" y2="' + yB + '"/>';
@@ -4319,11 +4357,11 @@
       g += '<text class="midl" x="' + f1(sB(lo + 0.5)) + '" y="' + (yB + 21) + '" text-anchor="middle">' + String(lo + 0.5).replace("-", "−") + "</text>";
       g += '<circle class="mk" cx="' + f1(sT(n)) + '" cy="' + yT + '" r="5"/><text class="mkl" x="' + f1(Math.max(30, Math.min(W - 30, sT(n)))) + '" y="' + (yT - 12) + '" text-anchor="middle">' + esc(intT(P.n)) + "</text>";
       g += '<circle class="mk" cx="' + f1(sB(rf)) + '" cy="' + yB + '" r="5"/><text class="mkl" x="' + f1(Math.max(40, Math.min(W - 40, sB(rf)))) + '" y="' + (yB - 12) + '" text-anchor="middle">' + (r === 3 ? "∛" : "√") + esc(intT(P.n)) + " ≈ " + esc(decT(P.approx)) + "</text>";
-      return svgWrap(W, H, "Where " + rootQ(P) + " sits between " + lo + " and " + hi, g);
+      return svgWrap(W, H, tx("exponents.svg.whereRoot", { r: rootQ(P), lo: lo, hi: hi }), g);
     }
 
     function powTable(P, from, to, mark) {
-      var h = '<table class="tbl"><thead><tr><th>Number</th><th>' + (P.r === 3 ? "Cubed" : "Squared") + "</th></tr></thead><tbody>",
+      var h = "<table class=\"tbl\"><thead><tr><th>" + tx("exponents.th.number") + "</th><th>" + (P.r === 3 ? tx("exponents.th.cubed") : tx("exponents.th.squared")) + "</th></tr></thead><tbody>",
         k;
       for (k = from; k <= to; k++) {
         var kb = BigInt(k),
@@ -4340,47 +4378,46 @@
         r = P.r,
         q = P.q,
         rs = rootSym(P),
-        nm = r === 3 ? "cube" : "square",
-        times = r === 3 ? "× itself × itself" : "× itself";
+        cube = r === 3;
       var cells, facts = [],
         ck;
       if (P.perfect) {
         var aq = Number(babs(q)),
           from = Math.max(0, aq - 2),
           to = aq + 1;
-        html += sect(lead("What number " + times + " makes " + intT(babs(P.n)) + "?") + " Go through the " + nm + "s until one matches" + (P.n < 0n ? " (then the sign: a negative number cubed is negative)" : "") + ".",
+        html += sect(lead(tx(r === 3 ? "exponents.rt.whatCube" : "exponents.rt.whatSq", { n: intT(babs(P.n)) })) + tx(r === 3 ? "exponents.rt.goCubes" : "exponents.rt.goSquares") + (P.n < 0n ? tx("exponents.rt.negCube") : "") + ".",
           '<div class="xscroll">' + powTable(P, from, to, function(k) { return k === aq; }) + "</div>", st);
         items.push({
           step: st++,
           lines: [
-            ["p", "Search", (r === 3 ? intT(babs(q)) + " × " + intT(babs(q)) + " × " + intT(babs(q)) : intT(q) + " × " + intT(q)) + " = " + B(intT(babs(P.n))) + (P.n < 0n ? ", so " + B("(" + intT(q) + ")³ = " + intT(P.n)) : "") + "."]
+            ["p", tx("exponents.tag.search"), (r === 3 ? intT(babs(q)) + " × " + intT(babs(q)) + " × " + intT(babs(q)) : intT(q) + " × " + intT(q)) + " = " + B(intT(babs(P.n))) + (P.n < 0n ? tx("exponents.rt.so") + B("(" + intT(q) + ")³ = " + intT(P.n)) : "") + "."]
           ]
         });
         if (r === 2 && aq >= 1 && aq <= 14) {
-          html += sect(lead("Picture it.") + " " + intT(P.n) + " small squares make a " + aq + " by " + aq + " square — the side is the square root.", '<div class="xscroll">' + gridSVG(aq) + "</div>", st);
+          html += sect(lead(tx("exponents.rt.leadPic")) + tx("exponents.rt.picSect", { n: intT(P.n), a: aq }), '<div class="xscroll">' + gridSVG(aq) + "</div>", st);
           items.push({
             step: st++,
             lines: [
-              ["m", "Picture", "A square with " + B(intT(P.n)) + " tiles has " + B(String(aq)) + " tiles along each side."]
+              ["m", tx("exponents.tag.picture"), tx("exponents.rt.picLine", { n: B(intT(P.n)), a: B(String(aq)) })]
             ]
           });
         }
         var fz = primeFz(P.n);
         if (babs(P.n) >= 4n && fz.length) {
           var halved = fz.map(function(f) { return { p: f.p, e: f.e / r }; });
-          html += sect(lead("With exponents.") + " Break " + intT(babs(P.n)) + " into primes, then " + (r === 3 ? "divide each exponent by 3" : "halve each exponent") + ".",
+          html += sect(lead(tx("exponents.rt.leadExp")) + tx(r === 3 ? "exponents.rt.breakCube" : "exponents.rt.breakSq", { n: intT(babs(P.n)) }),
             '<div class="bigline">' + intT(babs(P.n)) + " = " + fzH(fz) + ' <span class="nm">→</span> ' + rs + "(" + fzH(fz) + ") = " + fzH(halved) + ' = <span class="eqa">' + intT(babs(q)) + "</span></div>", st);
           items.push({
             step: st++,
             lines: [
-              ["e", "Exponents", B(intT(babs(P.n)) + " = " + fzH(fz)) + "; " + (r === 3 ? "a cube root divides each exponent by 3" : "a square root halves each exponent") + ": " + B(fzH(halved) + " = " + intT(babs(q))) + "."]
+              ["e", tx("exponents.tag.exponents"), tx(r === 3 ? "exponents.rt.expLineCube" : "exponents.rt.expLineSq", { a: B(intT(babs(P.n)) + " = " + fzH(fz)), b: B(fzH(halved) + " = " + intT(babs(q))) })]
             ],
-            aside: r === 2 ? "Because (a" + supH(fz[0].e / 2) + ")² = a" + supH(fz[0].e) + " — the power of a power law, backwards." : "Because (a" + supH(fz[0].e / 3) + ")³ = a" + supH(fz[0].e) + " — the power of a power law, backwards."
+            aside: r === 2 ? tx("exponents.rt.because", { e: "(a" + supH(fz[0].e / 2) + ")² = a" + supH(fz[0].e) }) : tx("exponents.rt.because", { e: "(a" + supH(fz[0].e / 3) + ")³ = a" + supH(fz[0].e) })
           });
         }
         cells = [{ k: rs + intT(P.n), v: intT(q) }];
         facts.push(r === 3 ? intT(q) + " × " + intT(q) + " × " + intT(q) + " = " + B(intT(P.n)) : intT(q) + " × " + intT(q) + " = " + B(intT(P.n)));
-        if (r === 2 && q > 0n) facts.push("(−" + intT(q) + ")² is " + intT(P.n) + " too, but " + rs + " means the positive root");
+        if (r === 2 && q > 0n) facts.push(tx("exponents.rt.posRoot", { q: "(−" + intT(q) + ")²", n: intT(P.n), s: rs }));
         ck = intT(q) + (r === 3 ? "³" : "²") + " = " + intT(P.n) + OK;
       } else {
         var lo = Number(P.lo),
@@ -4390,43 +4427,43 @@
           lor = r === 3 ? P.lo * P.lo * P.lo : P.lo * P.lo,
           hir = r === 3 ? P.hi * P.hi * P.hi : P.hi * P.hi;
         if (r === 2 && fr < 0) fr = 0;
-        html += sect(lead("Find the " + nm + "s on each side.") + " " + intT(P.n) + " isn’t a perfect " + nm + ", so " + rootQ(P) + " isn’t a whole number. Look for the " + nm + "s just below and just above it.",
-          '<div class="xscroll">' + powTable(P, fr, tt, function(k) { return k === lo || k === hi; }) + '</div><div class="bigline">' + intT(lor) + " < " + '<span class="eqk">' + intT(P.n) + "</span> < " + intT(hir) + ' <span class="nm">so</span> ' + intT(P.lo) + " < " + rootQ(P) + " < " + intT(P.hi) + "</div>", st);
+        html += sect(lead(tx(cube ? "exponents.rt.sidesCube" : "exponents.rt.sidesSq")) + tx(cube ? "exponents.rt.notPerfCube" : "exponents.rt.notPerfSq", { n: intT(P.n), r: rootQ(P) }),
+          '<div class="xscroll">' + powTable(P, fr, tt, function(k) { return k === lo || k === hi; }) + '</div><div class="bigline">' + intT(lor) + " < " + '<span class="eqk">' + intT(P.n) + "</span> < " + intT(hir) + ' <span class="nm">' + tx("exponents.rt.soWord") + "</span> " + intT(P.lo) + " < " + rootQ(P) + " < " + intT(P.hi) + "</div>", st);
         items.push({
           step: st++,
           lines: [
-            ["p", "Between", B(intT(P.lo) + (r === 3 ? "³" : "²") + " = " + intT(lor)) + " and " + B(intT(P.hi) + (r === 3 ? "³" : "²") + " = " + intT(hir)) + ", and " + intT(P.n) + " is between them — so " + B(rootQ(P)) + " is between " + B(intT(P.lo)) + " and " + B(intT(P.hi)) + "."]
+            ["p", tx("exponents.tag.between"), tx("exponents.rt.betweenLine", { a: B(intT(P.lo) + (r === 3 ? "³" : "²") + " = " + intT(lor)), b: B(intT(P.hi) + (r === 3 ? "³" : "²") + " = " + intT(hir)), n: intT(P.n), r: B(rootQ(P)), lo: B(intT(P.lo)), hi: B(intT(P.hi)) })]
           ]
         });
         var mid = lo + 0.5,
           midR = r === 3 ? mid * mid * mid : mid * mid,
           nearLo = P.near === P.lo;
         var W = Math.max(300, Math.min(560, plotW()));
-        html += sect(lead("Which one is it nearer?") + " Halfway between " + intT(P.lo) + " and " + intT(P.hi) + " is " + String(mid).replace("-", "−") + ", and " + String(mid).replace("-", "−") + (r === 3 ? "³" : "²") + " = " + String(midR).replace("-", "−") + ". " + intT(P.n) + " is " + (Number(P.n) < midR ? "less" : "more") + ", so " + rootQ(P) + " is nearer " + B(intT(P.near)) + ".",
+        html += sect(lead(tx("exponents.rt.leadNearer")) + tx(Number(P.n) < midR ? "exponents.rt.nearLess" : "exponents.rt.nearMore", { lo: intT(P.lo), hi: intT(P.hi), m: String(mid).replace("-", "−"), p: String(mid).replace("-", "−") + (r === 3 ? "³" : "²") + " = " + String(midR).replace("-", "−"), n: intT(P.n), r: rootQ(P), near: B(intT(P.near)) }),
           '<div class="xscroll">' + rootLineSVG(P, W) + "</div>", st);
         items.push({
           step: st++,
           lines: [
-            ["v", "Nearer", "Halfway is " + B(String(mid).replace("-", "−")) + ", and " + B(String(mid).replace("-", "−") + (r === 3 ? "³" : "²") + " = " + String(midR).replace("-", "−")) + ". " + intT(P.n) + (Number(P.n) < midR ? " is below that" : " is above that") + ", so " + B(rootQ(P)) + " is nearer " + B(intT(P.near)) + "."]
+            ["v", tx("exponents.tag.nearer"), tx(Number(P.n) < midR ? "exponents.rt.nearBelow" : "exponents.rt.nearAbove", { m: B(String(mid).replace("-", "−")), p: B(String(mid).replace("-", "−") + (r === 3 ? "³" : "²") + " = " + String(midR).replace("-", "−")), n: intT(P.n), r: B(rootQ(P)), near: B(intT(P.near)) })]
           ],
-          aside: "Squaring the halfway number is the sure test. The " + nm + "s get further apart as they grow, so the number halfway between " + intT(lor) + " and " + intT(hir) + " (" + decT(R(lor + hir, 2n)) + ") isn’t the one whose " + nm + " root is " + String(mid).replace("-", "−") + " (that’s " + String(midR).replace("-", "−") + ")."
+          aside: tx(cube ? "exponents.rt.asideCube" : "exponents.rt.asideSq", { a: intT(lor), b: intT(hir), h: decT(R(lor + hir, 2n)), m: String(mid).replace("-", "−"), p: String(midR).replace("-", "−") })
         });
-        html += sect(lead("A closer look.") + " With a calculator (or by trying decimals), " + rootQ(P) + " ≈ " + decT(P.approx) + ".",
-          '<div class="bigline">' + decT(P.approx) + (r === 3 ? "³" : "²") + " ≈ " + roundDec(powR(P.approx, r), 2) + ' <span class="nm">— close to</span> ' + intT(P.n) + "</div>", st);
+        html += sect(lead(tx("exponents.rt.leadCloser")) + tx("exponents.rt.closerSect", { r: rootQ(P), v: decT(P.approx) }),
+          '<div class="bigline">' + decT(P.approx) + (r === 3 ? "³" : "²") + " ≈ " + roundDec(powR(P.approx, r), 2) + ' <span class="nm">' + tx("exponents.rt.closeTo") + "</span> " + intT(P.n) + "</div>", st);
         items.push({
           step: st++,
           lines: [
-            ["a", "Decimal", rootQ(P) + " ≈ " + B(decT(P.approx)) + ", between " + intT(P.lo) + " and " + intT(P.hi) + " and nearer " + intT(P.near) + ", as found."]
+            ["a", tx("exponents.tag.decimal"), tx("exponents.rt.decLine", { e: rootQ(P) + " ≈ " + B(decT(P.approx)), lo: intT(P.lo), hi: intT(P.hi), near: intT(P.near) })]
           ]
         });
-        cells = [{ k: "Between", v: intT(P.lo) + ' <span class="word">and</span> ' + intT(P.hi) }, { k: "Nearer to", v: intT(P.near) }];
+        cells = [{ k: tx("exponents.cell.between"), v: intT(P.lo) + ' <span class="word">' + tx("exponents.sc.and") + "</span> " + intT(P.hi) }, { k: tx("exponents.cell.nearer"), v: intT(P.near) }];
         facts.push(rootQ(P) + " ≈ " + B(decT(P.approx)));
         ck = intT(P.lo) + (r === 3 ? "³" : "²") + " = " + intT(lor) + " < " + intT(P.n) + " < " + intT(hir) + " = " + intT(P.hi) + (r === 3 ? "³" : "²") + OK;
       }
       $("workHost").innerHTML = html;
       writeLog(items);
       bandCells(cells, facts);
-      $("closer").innerHTML = '<div class="ck"><b>Check:</b> ' + ck + "</div>";
+      $("closer").innerHTML = '<div class="ck"><b>' + tx("exponents.check") + "</b> " + ck + "</div>";
       return items.length;
     }
 
@@ -4441,37 +4478,37 @@
       if (P.mode === "eval") {
         var dec = P.bk === "dec" || tenBase(P),
           V = P.V;
-        t = "Evaluate " + evalQT(P) + ".";
-        h = "Evaluate <b>" + evalInl(P) + "</b>.";
+        t = tx("exponents.rec.eval", { p: evalQT(P) }) + ".";
+        h = tx("exponents.rec.eval", { p: "<b>" + evalInl(P) + "</b>" }) + ".";
         a = valT(V, dec);
         ah = "<b>" + valH(V, dec).replace(/<span class="fr"><span class="nu">([^<]*)<\/span><span class="de">([^<]*)<\/span><\/span>/g, "$1/$2") + "</b>";
         if (!isInt(V) && !dec && shortDec(V, 14)) {
           a += " = " + decT(V);
           ah += " = <b>" + decT(V) + "</b>";
         }
-        o.short = "Evaluate " + evalQT(P);
+        o.short = tx("exponents.rec.eval", { p: evalQT(P) });
       } else if (P.mode === "laws") {
         var so = P.sol;
-        t = "Simplify " + rn(P.ast, "text") + (P.nm ? "." : ". Write the answer with positive exponents.");
-        h = "Simplify <b>" + rn(P.ast, "inline") + "</b>" + (P.nm ? "." : ". Write the answer with positive exponents.");
+        t = tx("exponents.rec.simplify", { p: rn(P.ast, "text") }) + (P.nm ? "." : tx("exponents.rec.posExp"));
+        h = tx("exponents.rec.simplify", { p: "<b>" + rn(P.ast, "inline") + "</b>" }) + (P.nm ? "." : tx("exponents.rec.posExp"));
         a = stateH(so.fin, "text");
         ah = "<b>" + stateH(so.fin, "inline") + "</b>";
         if (P.nm && so.fin.items.length) {
           a += " = " + valT(so.value, so.flat.dec);
           ah += " = <b>" + valT(so.value, so.flat.dec) + "</b>";
         }
-        o.short = "Simplify " + rn(P.ast, "text");
+        o.short = tx("exponents.rec.simplify", { p: rn(P.ast, "text") });
       } else if (P.mode === "sci") {
         if (P.to === "std") {
-          t = "Write " + sciT(P.src.m, P.src.k) + " in standard form.";
-          h = "Write <b>" + sciInl(P.src) + "</b> in standard form.";
+          t = tx("exponents.rec.toStd", { p: sciT(P.src.m, P.src.k) });
+          h = tx("exponents.rec.toStd", { p: "<b>" + sciInl(P.src) + "</b>" });
           a = P.std;
           ah = "<b>" + P.std + "</b>";
         } else {
           var src = P.src.plain ? stdT(P.src.v) : sciT(P.src.m, P.src.k),
             srcH = P.src.plain ? stdT(P.src.v) : sciInl(P.src);
-          t = "Write " + src + " in scientific notation.";
-          h = "Write <b>" + srcH + "</b> in scientific notation.";
+          t = tx("exponents.rec.toSci", { p: src });
+          h = tx("exponents.rec.toSci", { p: "<b>" + srcH + "</b>" });
           a = sciT(P.m, P.k);
           ah = "<b>" + sciH(P.m, P.k) + "</b>";
         }
@@ -4483,33 +4520,33 @@
           bH = sciInl(P.b),
           bTn = P.b.m.n < 0n ? "(" + bT + ")" : bT,
           bHn = P.b.m.n < 0n ? "(" + bH + ")" : bH;
-        var give = " Give the answer in scientific notation.";
+        var give = tx("exponents.rec.give");
         if (P.op === "mul") {
-          t = "Multiply: (" + aT + ") × (" + bT + ")." + give;
-          h = "Multiply: <b>(" + aH + ") × (" + bH + ")</b>." + give;
+          t = tx("exponents.rec.mul", { e: "(" + aT + ") × (" + bT + ")" }) + give;
+          h = tx("exponents.rec.mul", { e: "<b>(" + aH + ") × (" + bH + ")</b>" }) + give;
         } else if (P.op === "div") {
-          t = "Divide: (" + aT + ") ÷ (" + bT + ")." + give;
-          h = "Divide: <b>(" + aH + ") ÷ (" + bH + ")</b>." + give;
+          t = tx("exponents.rec.div", { e: "(" + aT + ") ÷ (" + bT + ")" }) + give;
+          h = tx("exponents.rec.div", { e: "<b>(" + aH + ") ÷ (" + bH + ")</b>" }) + give;
         } else if (P.op === "add") {
-          t = "Add: " + aT + " + " + bTn + "." + give;
-          h = "Add: <b>" + aH + " + " + bHn + "</b>." + give;
+          t = tx("exponents.rec.add", { e: aT + " + " + bTn }) + give;
+          h = tx("exponents.rec.add", { e: "<b>" + aH + " + " + bHn + "</b>" }) + give;
         } else if (P.op === "sub") {
-          t = "Subtract: " + aT + " − " + bTn + "." + give;
-          h = "Subtract: <b>" + aH + " − " + bHn + "</b>." + give;
+          t = tx("exponents.rec.sub", { e: aT + " − " + bTn }) + give;
+          h = tx("exponents.rec.sub", { e: "<b>" + aH + " − " + bHn + "</b>" }) + give;
         } else if (P.op === "cmp") {
-          t = "Which is bigger, " + aT + " or " + bT + "? Write <, > or = between them.";
-          h = "Which is bigger, <b>" + aH + "</b> or <b>" + bH + "</b>? Write &lt;, &gt; or = between them.";
+          t = tx("exponents.rec.cmpT", { a: aT, b: bT });
+          h = tx("exponents.rec.cmpH", { a: "<b>" + aH + "</b>", b: "<b>" + bH + "</b>" });
         } else {
-          t = "How many times bigger is " + aT + " than " + bT + "?";
-          h = "How many times bigger is <b>" + aH + "</b> than <b>" + bH + "</b>?";
+          t = tx("exponents.rec.times", { a: aT, b: bT });
+          h = tx("exponents.rec.times", { a: "<b>" + aH + "</b>", b: "<b>" + bH + "</b>" });
         }
         if (P.op === "cmp") {
           var sy = P.cmp < 0 ? "<" : P.cmp > 0 ? ">" : "=";
           a = aT + " " + sy + " " + bT;
           ah = aH + " <b>" + esc(sy) + "</b> " + bH;
         } else if (P.op === "times") {
-          a = stdT(P.res) + " times";
-          ah = "<b>" + stdT(P.res) + "</b> times";
+          a = stdT(P.res) + " " + tx("exponents.sc.timesWord");
+          ah = "<b>" + stdT(P.res) + "</b> " + tx("exponents.sc.timesWord");
         } else if (P.res.n === 0n) {
           a = "0";
           ah = "<b>0</b>";
@@ -4520,15 +4557,15 @@
         o.short = t.replace(give, "").replace(/\.$/, "");
       } else {
         if (P.perfect) {
-          t = "Find " + rootQ(P) + ".";
-          h = "Find <b>" + rootQ(P) + "</b>.";
+          t = tx("exponents.rec.find", { r: rootQ(P) });
+          h = tx("exponents.rec.find", { r: "<b>" + rootQ(P) + "</b>" });
           a = intT(P.q);
           ah = "<b>" + intT(P.q) + "</b>";
         } else {
-          t = rootQ(P) + " is between which two whole numbers? Which one is it nearer?";
-          h = "<b>" + rootQ(P) + "</b> is between which two whole numbers? Which one is it nearer?";
-          a = "Between " + intT(P.lo) + " and " + intT(P.hi) + ", nearer " + intT(P.near);
-          ah = "Between <b>" + intT(P.lo) + "</b> and <b>" + intT(P.hi) + "</b>, nearer <b>" + intT(P.near) + "</b>";
+          t = tx("exponents.rec.between", { r: rootQ(P) });
+          h = tx("exponents.rec.between", { r: "<b>" + rootQ(P) + "</b>" });
+          a = tx("exponents.rec.betweenAns", { lo: intT(P.lo), hi: intT(P.hi), near: intT(P.near) });
+          ah = tx("exponents.rec.betweenAns", { lo: "<b>" + intT(P.lo) + "</b>", hi: "<b>" + intT(P.hi) + "</b>", near: "<b>" + intT(P.near) + "</b>" });
         }
         o.short = t;
       }
@@ -4553,9 +4590,9 @@
       s = s.replace(/\s*(?:times|times bigger|x bigger)\s*$/i, "").replace(/(\.\.\.|…)$/, function() { approx = true; return ""; }).replace(/([^\d])\.\s*$/, "$1").trim();
       if (!s) return null;
       var t, v;
-      try { t = parse(s); } catch (e) { return { err: e && e.user ? e.user : "I can’t read that." }; }
-      if (hasVar(t)) return { err: "Use numbers only here." };
-      try { v = evalN(t); } catch (e2) { return { err: e2 && e2.user ? e2.user : "I can’t work that out." }; }
+      try { t = parse(s); } catch (e) { return { err: e && e.user ? e.user : tx("exponents.err.cantRead") }; }
+      if (hasVar(t)) return { err: tx("exponents.err.numbersOnly") };
+      try { v = evalN(t); } catch (e2) { return { err: e2 && e2.user ? e2.user : tx("exponents.err.cantWork") }; }
       var n = stripG(t),
         sg = n.t === "neg" ? stripG(n.a) : n,
         U = { t: t, v: v, sci: sciForm(t), ascii: rn(t, "ascii"), approx: approx };
@@ -4585,54 +4622,54 @@
 
     function gradeValue(f, raw) {
       var U = readUser(raw);
-      if (!U) return badMsg("Type a number, like <b>32</b>, <b>1/8</b>, <b>0.125</b> or <b>4.5 × 10^7</b>.");
+      if (!U) return badMsg(tx("exponents.ck.typeNum"));
       if (U.err) return badMsg(U.err);
       if (eqR(U.v, f.want)) {
-        if (f.sameA && U.ascii === f.sameA) return { st: "part", msg: "That’s the question written again — work out its value." };
-        if (U.frac && !U.lowest) return { st: "part", msg: "Right value — now simplify the fraction." };
+        if (f.sameA && U.ascii === f.sameA) return { st: "part", msg: tx("exponents.ck.again") };
+        if (U.frac && !U.lowest) return { st: "part", msg: tx("exponents.ck.simpFrac") };
         return { st: "ok" };
       }
-      if (termK(f.want.d) < 0 && nearRounded(U, f.want)) return { st: "ok", note: "(Exactly, it’s " + fracT(f.want) + ".)" };
+      if (termK(f.want.d) < 0 && nearRounded(U, f.want)) return { st: "ok", note: tx("exponents.ck.exactly", { v: fracT(f.want) }) };
       for (var i = 0; i < f.mist.length; i++)
         if (eqR(U.v, f.mist[i].v)) return badMsg(f.mist[i].msg);
-      if (f.want.n !== 0n && eqR(U.v, negR(f.want))) return badMsg("Check the sign.");
+      if (f.want.n !== 0n && eqR(U.v, negR(f.want))) return badMsg(tx("exponents.ck.sign"));
       return badMsg(f.generic || "");
     }
 
     function gradeSci(f, raw) {
       var U = readUser(raw);
-      if (!U || U.err) return badMsg("Type it in scientific notation, like <b>4.5 × 10^7</b> (or <b>4.5e7</b>).");
+      if (!U || U.err) return badMsg(tx("exponents.ck.typeSci"));
       var exact = decT(f.m) !== null;
       if (eqR(U.v, f.want)) {
         if (U.sci && isNormM(U.sci.m)) return { st: "ok" };
-        if (U.sci) return { st: "part", msg: "Right value, but " + B(mT(U.sci.m) + " × 10" + supH(U.sci.k)) + " isn’t in scientific notation yet: the first number must be at least 1 and less than 10." };
-        return { st: "part", msg: "That’s the right number, but it isn’t in scientific notation. Write it as a number times a power of 10 — the first number must be at least 1 and less than 10." };
+        if (U.sci) return { st: "part", msg: tx("exponents.ck.notSciYet", { e: B(mT(U.sci.m) + " × 10" + supH(U.sci.k)) }) };
+        return { st: "part", msg: tx("exponents.ck.notSci") };
       }
       if (!exact && U.sci && isNormM(U.sci.m) && U.sci.k === f.kk && nearRounded({ plain: true, dp: (decT(absR(U.sci.m), true).split(".")[1] || "").length, v: U.sci.m }, f.m))
-        return { st: "ok", note: "(It doesn’t come out exactly, so " + mT(f.m) + " is rounded.)" };
+        return { st: "ok", note: tx("exponents.ck.roundedNote", { m: mT(f.m) }) };
       for (var i = 0; i < f.mist.length; i++)
         if (eqR(U.v, f.mist[i].v)) return badMsg(f.mist[i].msg);
-      if (f.kk !== 0 && eqR(U.v, mul(f.m, pow10R(-f.kk)))) return badMsg("The decimal point moved the wrong way — the sign of the power is backwards. " + (f.kk > 0 ? "A big number (10 or more) has a positive power of 10." : "A number less than 1 has a negative power of 10."));
+      if (f.kk !== 0 && eqR(U.v, mul(f.m, pow10R(-f.kk)))) return badMsg(tx("exponents.ck.wrongWay") + (f.kk > 0 ? tx("exponents.ck.bigPos") : tx("exponents.ck.smallNeg")));
       if (U.sci && isNormM(U.sci.m)) {
-        if (eqR(U.sci.m, f.m) && Math.abs(U.sci.k - f.kk) === 1) return badMsg("The first number is right, but the power is one off. Count the jumps the decimal point makes, not the digits.");
-        if (eqR(U.sci.m, f.m)) return badMsg("The first number is right — check the power of 10.");
-        if (U.sci.k === f.kk) return badMsg("The power of 10 is right — check the first number.");
+        if (eqR(U.sci.m, f.m) && Math.abs(U.sci.k - f.kk) === 1) return badMsg(tx("exponents.ck.powOneOff"));
+        if (eqR(U.sci.m, f.m)) return badMsg(tx("exponents.ck.firstRight"));
+        if (U.sci.k === f.kk) return badMsg(tx("exponents.ck.powRight"));
       }
-      if (U.sci && !isNormM(U.sci.m)) return badMsg("Not quite — and remember, the first number must be at least 1 and less than 10.");
-      if (eqR(U.v, negR(f.want))) return badMsg("Check the sign.");
+      if (U.sci && !isNormM(U.sci.m)) return badMsg(tx("exponents.ck.notQuiteSci"));
+      if (eqR(U.v, negR(f.want))) return badMsg(tx("exponents.ck.sign"));
       return badMsg("");
     }
 
     function gradeStd(f, raw) {
       var U = readUser(raw);
-      if (!U || U.err) return badMsg("Type the number written out, like <b>45,000,000</b> or <b>0.00032</b>.");
+      if (!U || U.err) return badMsg(tx("exponents.ck.typeStd"));
       if (eqR(U.v, f.want)) {
         if (U.plain) return { st: "ok" };
-        return { st: "part", msg: "Right value — now write it out in full as an ordinary number (standard form), without a power of 10." };
+        return { st: "part", msg: tx("exponents.ck.stdPart") };
       }
-      if (f.kk !== 0 && eqR(U.v, mul(f.m, pow10R(-f.kk)))) return badMsg("The decimal point moved the wrong way. " + (f.kk > 0 ? "× 10" + supH(f.kk) + " makes the number bigger: move the point " + f.kk + " places to the right." : "× 10" + supH(f.kk) + " makes the number smaller: move the point " + (-f.kk) + " places to the left."));
-      if (eqR(U.v, mul(f.want, TEN)) || eqR(U.v, dvd(f.want, TEN))) return badMsg("One place off — count the jumps: the power says exactly how many places the point moves.");
-      if (eqR(U.v, mul(f.want, R(100))) || eqR(U.v, dvd(f.want, R(100)))) return badMsg("Two places off — the power says exactly how many places the point moves.");
+      if (f.kk !== 0 && eqR(U.v, mul(f.m, pow10R(-f.kk)))) return badMsg(tx("exponents.ck.wrongWayStd") + (f.kk > 0 ? tx("exponents.ck.stdRight", { p: "× 10" + supH(f.kk), n: f.kk }) : tx("exponents.ck.stdLeft", { p: "× 10" + supH(f.kk), n: -f.kk })));
+      if (eqR(U.v, mul(f.want, TEN)) || eqR(U.v, dvd(f.want, TEN))) return badMsg(tx("exponents.ck.onePlace"));
+      if (eqR(U.v, mul(f.want, R(100))) || eqR(U.v, dvd(f.want, R(100)))) return badMsg(tx("exponents.ck.twoPlaces"));
       return badMsg("");
     }
 
@@ -4652,19 +4689,19 @@
           else if (eqR(U.v, P.Bv) && !eqR(P.A, P.Bv)) got = -1;
         }
       }
-      if (got === null) return badMsg("Type <b>&lt;</b>, <b>&gt;</b> or <b>=</b> — the sign that goes between the two numbers.");
+      if (got === null) return badMsg(tx("exponents.ck.typeCmp"));
       if (got === P.cmp) return { st: "ok" };
       var sa = sciOf(P.A),
         sb = sciOf(P.Bv);
-      if (sa.k !== sb.k) return badMsg("Compare the powers of 10 first: 10" + supH(Math.max(sa.k, sb.k)) + " is bigger than 10" + supH(Math.min(sa.k, sb.k)) + ", whatever the first numbers are." + (!isNormM(P.a.m) || !isNormM(P.b.m) ? " (Put both in scientific notation first.)" : ""));
-      return badMsg("The powers of 10 match, so compare the first numbers.");
+      if (sa.k !== sb.k) return badMsg(tx("exponents.ck.cmpPow", { a: "10" + supH(Math.max(sa.k, sb.k)), b: "10" + supH(Math.min(sa.k, sb.k)) }) + (!isNormM(P.a.m) || !isNormM(P.b.m) ? tx("exponents.ck.putBoth") : ""));
+      return badMsg(tx("exponents.ck.cmpFirst"));
     }
 
     function gradePair(f, raw) {
       var P = f.P,
         s = String(raw || "").replace(/[−–—]/g, "-").trim(),
         m = /^(?:between\s+)?(-?\d+)\s*(?:and|to|&|,|;|\/|-|\s)\s*(-?\d+)\.?$/i.exec(s);
-      if (!m) return badMsg("Type two whole numbers, like <b>7 and 8</b>.");
+      if (!m) return badMsg(tx("exponents.ck.typePair"));
       var x = BigInt(m[1]),
         y = BigInt(m[2]),
         t;
@@ -4675,19 +4712,19 @@
       }
       if (x === P.lo && y === P.hi) return { st: "ok" };
       var pw = function(k) { return P.r === 3 ? k * k * k : k * k; };
-      if (x === pw(P.lo) && y === pw(P.hi)) return badMsg("Those are the perfect " + (P.r === 3 ? "cubes" : "squares") + " on each side. The answer is their " + (P.r === 3 ? "cube" : "square") + " roots.");
-      if (y - x !== 1n) return badMsg("Use two whole numbers next to each other (one apart).");
-      return badMsg((P.r === 3 ? "Cube" : "Square") + " them: " + intT(x) + (P.r === 3 ? "³" : "²") + " = " + intT(pw(x)) + " and " + intT(y) + (P.r === 3 ? "³" : "²") + " = " + intT(pw(y)) + ". Is " + intT(P.n) + " between those?");
+      if (x === pw(P.lo) && y === pw(P.hi)) return badMsg(tx(P.r === 3 ? "exponents.ck.perfCubes" : "exponents.ck.perfSquares"));
+      if (y - x !== 1n) return badMsg(tx("exponents.ck.nextTo"));
+      return badMsg(tx(P.r === 3 ? "exponents.ck.cubeThem" : "exponents.ck.squareThem", { a: intT(x) + (P.r === 3 ? "³" : "²") + " = " + intT(pw(x)), b: intT(y) + (P.r === 3 ? "³" : "²") + " = " + intT(pw(y)), n: intT(P.n) }));
     }
     var LAWMSG = {
-      mulExp: "When you multiply powers of the same base, add the exponents (x³ · x⁴ = x⁷). Multiplying the exponents is only for a power of a power.",
-      addExp: "A power of a power multiplies the exponents: (x²)³ = x² · x² · x² = x⁶, not x⁵.",
-      divExp: "When you divide powers of the same base, subtract the exponents — don’t divide them.",
-      noCoef: "The power outside the brackets goes on every factor inside — the number too.",
-      coefTimes: "Raise the number to the power: 2³ means 2 · 2 · 2 = 8, not 2 × 3 = 6.",
-      subFlip: "Subtract top minus bottom: x² / x⁵ = x<sup>2−5</sup> = x⁻³ = 1/x³ — the x’s left over are on the bottom.",
-      negSign: "A negative exponent doesn’t make it negative: x⁻² = 1/x², not −x².",
-      zero: "Anything (except 0) to the power 0 is 1, not 0."
+      mulExp: tx("exponents.lm.mulExp"),
+      addExp: tx("exponents.lm.addExp"),
+      divExp: tx("exponents.lm.divExp"),
+      noCoef: tx("exponents.lm.noCoef"),
+      coefTimes: tx("exponents.lm.coefTimes"),
+      subFlip: tx("exponents.lm.subFlip"),
+      negSign: tx("exponents.lm.negSign"),
+      zero: tx("exponents.lm.zero")
     };
 
     function lawMists(P) {
@@ -4761,18 +4798,18 @@
         }
         bad = bad || "group";
       })(t, 1);
-      if (bad === "group") return "Right value — now use the laws to clear the brackets, so each base shows up just once.";
-      if (bad === "neg") return "Right value — now write it with positive exponents only. A negative exponent means that many on the bottom: x⁻² = 1/x².";
-      if (bad === "zero") return "Right value — but a power 0 is just 1, so leave it out.";
-      if (bad === "numpow") return "Right value — now work out the powers of the numbers (like 2³ = 8).";
+      if (bad === "group") return tx("exponents.fi.group");
+      if (bad === "neg") return tx("exponents.fi.neg");
+      if (bad === "zero") return tx("exponents.fi.zero");
+      if (bad === "numpow") return tx("exponents.fi.numpow");
       var keys = top.concat(bot).filter(function(x) { return !x.num || x.atom; }).map(function(x) { return x.key; });
-      if (keys.some(function(k, i) { return keys.indexOf(k) !== i; })) return "Right value — now combine the powers of each base into one (use the product or quotient law).";
+      if (keys.some(function(k, i) { return keys.indexOf(k) !== i; })) return tx("exponents.fi.combine");
       if (!nm) {
         var tn = top.filter(function(x) { return x.num; }),
           bn = bot.filter(function(x) { return x.num; });
-        if (tn.length > 1 || bn.length > 1) return "Right value — now multiply the numbers into one number in front.";
-        if (tn.length && bn.length && isInt(tn[0].v) && isInt(bn[0].v) && bgcd(tn[0].v.n, bn[0].v.n) > 1n) return "Right value — now simplify the numbers: the fraction isn’t in lowest terms.";
-        if (bn.length && !tn.length && !isInt(bn[0].v)) return "Right value — tidy up the fraction in the number part.";
+        if (tn.length > 1 || bn.length > 1) return tx("exponents.fi.oneNum");
+        if (tn.length && bn.length && isInt(tn[0].v) && isInt(bn[0].v) && bgcd(tn[0].v.n, bn[0].v.n) > 1n) return tx("exponents.fi.lowest");
+        if (bn.length && !tn.length && !isInt(bn[0].v)) return tx("exponents.fi.tidy");
       }
       return null;
     }
@@ -4782,13 +4819,13 @@
         so = P.sol,
         s = String(raw || "").trim().replace(/^\s*=\s*/, ""),
         t, um;
-      try { t = parse(s); } catch (e) { return badMsg(e && e.user ? e.user : "I can’t read that."); }
-      if (hasT(t, ["add", "sub", "fn"])) return badMsg("Write it as one term — no + or −.");
-      try { um = monoOf(t, null, P.nm); } catch (e2) { return badMsg(e2 && e2.user ? e2.user : "I can’t work that out — check it."); }
+      try { t = parse(s); } catch (e) { return badMsg(e && e.user ? e.user : tx("exponents.err.cantRead")); }
+      if (hasT(t, ["add", "sub", "fn"])) return badMsg(tx("exponents.ck.oneTerm"));
+      try { um = monoOf(t, null, P.nm); } catch (e2) { return badMsg(e2 && e2.user ? e2.user : tx("exponents.ck.cantWorkCheck")); }
       var same = false;
       try { same = monoEq(um, so.mono); } catch (e3) { same = false; }
       if (same) {
-        if (P.nm && rn(t, "ascii") === P.ex && (so.stages.length || so.fsteps.length)) return { st: "part", msg: "That’s the question written again — use the laws to simplify it." };
+        if (P.nm && rn(t, "ascii") === P.ex && (so.stages.length || so.fsteps.length)) return { st: "part", msg: tx("exponents.ck.againLaws") };
         var issue = formIssue(t, P.nm);
         if (issue) return { st: "part", msg: issue };
         return { st: "ok" };
@@ -4800,15 +4837,27 @@
           cw = collapse(so.mono),
           ku = Object.keys(cu.v).sort().join(),
           kw = Object.keys(cw.v).sort().join();
-        if (!P.nm && ku === kw && Object.keys(cw.v).every(function(k) { return cu.v[k] === cw.v[k]; }) && !eqR(cu.c, cw.c)) return badMsg("The letters and exponents are right — check the number in front.");
-        if (!P.nm && eqR(cu.c, cw.c) && ku === kw) return badMsg("The number in front is right — check the exponents.");
-        if (!P.nm && ku !== kw) return badMsg("Check which letters are left — each letter in the problem should show up once (unless its powers cancel to 0).");
+        if (!P.nm && ku === kw && Object.keys(cw.v).every(function(k) { return cu.v[k] === cw.v[k]; }) && !eqR(cu.c, cw.c)) return badMsg(tx("exponents.ck.monoCoef"));
+        if (!P.nm && eqR(cu.c, cw.c) && ku === kw) return badMsg(tx("exponents.ck.monoExp"));
+        if (!P.nm && ku !== kw) return badMsg(tx("exponents.ck.monoLetters"));
       } catch (e5) {}
       return badMsg("");
     }
 
+    // an answer typed in the language in use: its words as the graders know them (exponents.ck.answerWords, a list of
+    // [pattern, replacement], matched without accents and in lower case); English comes back as it was
+    function ansW(raw) {
+      var W = traw("exponents.ck.answerWords");
+      if (!W || !W.length) return raw;
+      var f = fold(String(raw)).toLowerCase(),
+        g = f;
+      W.forEach(function(r) { g = g.replace(new RegExp(r[0], "g"), r[1]); });
+      return g === f ? raw : g;
+    }
+
     function gradeField(f, raw) {
       if (!String(raw || "").trim()) return { st: "empty" };
+      raw = ansW(raw);
       if (f.type === "mono") return gradeMono(f, raw);
       if (f.type === "sci") return gradeSci(f, raw);
       if (f.type === "std") return gradeStd(f, raw);
@@ -4835,36 +4884,36 @@
         eT = e < 0 ? "(" + sgnT(e) + ")" : sgnT(e);
       // the most likely slips first: when two slips give the same number, the first one explains it
       if (e < 0) {
-        L.add(mul(sg, negR(powR(b, ae))), "A negative exponent doesn’t make the answer negative — it means one over: " + esc(bT) + supH(e) + " = 1/" + esc(bT) + supH(ae) + ".");
-        L.add(mul(sg, powR(b, ae)), "Almost — the negative exponent means one over: " + esc(bT) + supH(e) + " = 1/" + esc(bT) + supH(ae) + ".");
+        L.add(mul(sg, negR(powR(b, ae))), tx("exponents.m.negNot", { e: esc(bT) + supH(e) + " = 1/" + esc(bT) + supH(ae) }));
+        L.add(mul(sg, powR(b, ae)), tx("exponents.m.almost", { e: esc(bT) + supH(e) + " = 1/" + esc(bT) + supH(ae) }));
       }
-      if (P.neg && e % 2 === 0 && e !== 0) L.add(P.pv, "−" + aT + supH(e) + " means −(" + aT + supH(e) + "): the exponent is on the " + aT + " only, and the minus comes after. Only (−" + aT + ")" + supH(e) + " multiplies the negative.");
-      if (!P.neg && b.n < 0n && e % 2 === 0 && e !== 0) L.add(negR(V), "The brackets make the base " + esc(bT) + ", and an even number of negatives multiply to a positive.");
-      if (b.n < 0n && e % 2 !== 0) L.add(negR(V), "An odd number of negatives multiply to a negative.");
-      if (P.neg && e % 2 !== 0 && b.n > 0n) L.add(negR(V), "Keep the minus in front — it’s outside the power.");
-      if (P.neg && e === 0) L.add(ONE, "The minus is outside the power: −(" + aT + "⁰) = −1.");
+      if (P.neg && e % 2 === 0 && e !== 0) L.add(P.pv, tx("exponents.m.negOut", { a: aT, p: supH(e) }));
+      if (!P.neg && b.n < 0n && e % 2 === 0 && e !== 0) L.add(negR(V), tx("exponents.m.evenBr", { b: esc(bT) }));
+      if (b.n < 0n && e % 2 !== 0) L.add(negR(V), tx("exponents.m.odd"));
+      if (P.neg && e % 2 !== 0 && b.n > 0n) L.add(negR(V), tx("exponents.m.keepMinus"));
+      if (P.neg && e === 0) L.add(ONE, tx("exponents.m.minus0", { a: aT }));
       if (e < 0) {
-        L.add(mul(sg, mul(b, R(e))), "A negative exponent means one over, not times: " + esc(bT) + supH(e) + " = 1/" + esc(bT) + supH(ae) + ", not " + esc(bT) + " × " + eT + ".");
-        L.add(mul(sg, dvd(ONE, mul(b, R(ae)))), "Under the 1 goes " + esc(bT) + supH(ae) + " — that’s " + esc(bT) + " multiplied " + word(ae) + " times, not " + esc(bT) + " × " + ae + ".");
+        L.add(mul(sg, mul(b, R(e))), tx("exponents.m.notTimes", { e: esc(bT) + supH(e) + " = 1/" + esc(bT) + supH(ae), b: esc(bT), x: eT }));
+        L.add(mul(sg, dvd(ONE, mul(b, R(ae)))), tx("exponents.m.under", { p: esc(bT) + supH(ae), b: esc(bT), w: word(ae), n: ae }));
       }
-      if (e > 1) L.add(mul(sg, mul(b, R(e))), "That’s " + esc(bT) + " × " + e + ". The exponent says how many " + esc(bT) + "s to multiply: " + copiesOf(P, Math.min(ae, 6), true) + (ae > 6 ? " × …" : "") + ".");
-      if (e > 1 && isInt(b) && b.n > 1n && b.n <= 12n && e <= 12) L.add(mul(sg, powR(R(e), Number(b.n))), "Base and exponent swapped: that’s " + e + supH(Number(b.n)) + ". Here " + esc(bT) + " is the number multiplied, " + word(e) + " times.");
+      if (e > 1) L.add(mul(sg, mul(b, R(e))), tx("exponents.m.times", { b: esc(bT), e: e, c: copiesOf(P, Math.min(ae, 6), true) + (ae > 6 ? " × …" : "") }));
+      if (e > 1 && isInt(b) && b.n > 1n && b.n <= 12n && e <= 12) L.add(mul(sg, powR(R(e), Number(b.n))), tx("exponents.m.swapped", { s: e + supH(Number(b.n)), b: esc(bT), w: word(e) }));
       if (e === 0) {
-        L.add(ZERO, "Anything (except 0) to the power 0 is 1 — follow the pattern: each step down divides by " + esc(bT) + ".");
-        L.add(mul(sg, b), "That’s " + esc(bT) + "¹. One more step down the pattern (÷ " + esc(bT) + ") gives " + esc(bT) + "⁰ = 1.");
+        L.add(ZERO, tx("exponents.m.zeroPat", { b: esc(bT) }));
+        L.add(mul(sg, b), tx("exponents.m.base1", { b: esc(bT) }));
       }
-      if (e === 1) L.add(ONE, "A power of 1 is just the base itself.");
+      if (e === 1) L.add(ONE, tx("exponents.m.pow1"));
       if (P.bk === "frac" && e > 1) {
-        L.add(mul(sg, R(b.n ** BigInt(e), b.d)), "The power goes on the bottom too: (" + fracT(b) + ")" + supH(e) + " = " + babs(b.n) + supH(e) + "/" + b.d + supH(e) + ".");
-        L.add(mul(sg, R(b.n, b.d ** BigInt(e))), "The power goes on the top too: (" + fracT(b) + ")" + supH(e) + " = " + babs(b.n) + supH(e) + "/" + b.d + supH(e) + ".");
+        L.add(mul(sg, R(b.n ** BigInt(e), b.d)), tx("exponents.m.fracBot", { e: "(" + fracT(b) + ")" + supH(e) + " = " + babs(b.n) + supH(e) + "/" + b.d + supH(e) }));
+        L.add(mul(sg, R(b.n, b.d ** BigInt(e))), tx("exponents.m.fracTop", { e: "(" + fracT(b) + ")" + supH(e) + " = " + babs(b.n) + supH(e) + "/" + b.d + supH(e) }));
       }
       if (P.bk === "dec" && !tenBase(P) && e > 1) {
         var dpl = termK(b.d);
-        [-2, -1, 1, 2].forEach(function(j) { L.add(mul(V, pow10R(j)), "Count the decimal places: " + aT + " has " + plural(dpl, "place") + ", so the answer has " + dpl + " × " + e + " = " + plural(dpl * e, "decimal place") + "."); });
+        [-2, -1, 1, 2].forEach(function(j) { L.add(mul(V, pow10R(j)), tx("exponents.m.decPlaces", { a: aT, p: tx("exponents.nPlaces", { n: dpl }), n: dpl, e: e, t: tx("exponents.nDecPlaces", { n: dpl * e }) })); });
       }
       if (tenBase(P) && b.n > 0n && e !== 0) {
-        L.add(mul(V, TEN), e > 0 ? "One zero too many — 10" + supH(e) + " is 1 followed by " + plural(e, "zero") + "." : "One place off — 10" + supH(e) + " has its 1 in the " + ordW(ae) + " place after the point.");
-        L.add(dvd(V, TEN), e > 0 ? "One zero short — 10" + supH(e) + " is 1 followed by " + plural(e, "zero") + "." : "One place off — 10" + supH(e) + " has its 1 in the " + ordW(ae) + " place after the point.");
+        L.add(mul(V, TEN), e > 0 ? tx("exponents.m.zeroMany", { p: "10" + supH(e), z: tx("exponents.nZeros", { n: e }) }) : tx("exponents.m.placeOff", { p: "10" + supH(e), o: ordW(ae), n: ae }));
+        L.add(dvd(V, TEN), e > 0 ? tx("exponents.m.zeroShort", { p: "10" + supH(e), z: tx("exponents.nZeros", { n: e }) }) : tx("exponents.m.placeOff", { p: "10" + supH(e), o: ordW(ae), n: ae }));
       }
       return L.list;
     }
@@ -4878,25 +4927,24 @@
         if (isNormM(c) || c.n === 0n) return;
         var so = sciOf(c),
           j = so.k;
-        L.add(mul(so.m, pow10R(K - j)), "Re-normalizing the wrong way: when " + mT(c) + " becomes " + mT(so.m) + ", the power of 10 goes " + (j > 0 ? "up" : "down") + " by " + Math.abs(j) + ", not " + (j > 0 ? "down" : "up") + ".");
+        L.add(mul(so.m, pow10R(K - j)), tx(j > 0 ? "exponents.m.renormUp" : "exponents.m.renormDown", { c: mT(c), m: mT(so.m), n: Math.abs(j) }));
       }
       if (P.op === "mul") {
         wrongNorm(mul(a.m, b.m), a.k + b.k);
-        if (Math.abs(a.k) > 1 && Math.abs(b.k) > 1) L.add(mul(mul(a.m, b.m), pow10R(a.k * b.k)), "Multiply the first numbers, but add the powers of 10: 10" + supH(a.k) + " × 10" + supH(b.k) + " = 10" + supH(a.k + b.k) + " (product law), not 10" + supH(a.k * b.k) + ".");
-        L.add(mul(add(a.m, b.m), pow10R(a.k + b.k)), "Multiply the first numbers — don’t add them.");
+        if (Math.abs(a.k) > 1 && Math.abs(b.k) > 1) L.add(mul(mul(a.m, b.m), pow10R(a.k * b.k)), tx("exponents.m.mulAddPow", { e: "10" + supH(a.k) + " × 10" + supH(b.k) + " = 10" + supH(a.k + b.k), x: "10" + supH(a.k * b.k) }));
+        L.add(mul(add(a.m, b.m), pow10R(a.k + b.k)), tx("exponents.m.mulNotAdd"));
       } else if (P.op === "div") {
-        L.add(mul(dvd(a.m, b.m), pow10R(a.k + b.k)), "When you divide, subtract the powers of 10 (quotient law) — don’t add them.");
-        if (b.k !== 0 && a.k % b.k === 0) L.add(mul(dvd(a.m, b.m), pow10R(a.k / b.k)), "Subtract the powers of 10 — don’t divide them.");
-        L.add(mul(dvd(b.m, a.m), pow10R(a.k - b.k)), "Divide in the right order: the first number ÷ the second.");
+        L.add(mul(dvd(a.m, b.m), pow10R(a.k + b.k)), tx("exponents.m.divSub"));
+        if (b.k !== 0 && a.k % b.k === 0) L.add(mul(dvd(a.m, b.m), pow10R(a.k / b.k)), tx("exponents.m.subNotDiv"));
+        L.add(mul(dvd(b.m, a.m), pow10R(a.k - b.k)), tx("exponents.m.order"));
         wrongNorm(dvd(a.m, b.m), a.k - b.k);
       } else {
-        var f = P.op === "add" ? add : sub,
-          wd = P.op === "add" ? "add" : "subtract";
+        var f = P.op === "add" ? add : sub;
         if (a.k !== b.k) {
-          L.add(mul(f(a.m, b.m), pow10R(Math.max(a.k, b.k))), "Match the powers of 10 before you " + wd + ": the first numbers can only be " + (P.op === "add" ? "added" : "subtracted") + " when the powers are the same.");
-          L.add(mul(f(a.m, b.m), pow10R(Math.min(a.k, b.k))), "Match the powers of 10 before you " + wd + ": the first numbers can only be " + (P.op === "add" ? "added" : "subtracted") + " when the powers are the same.");
+          L.add(mul(f(a.m, b.m), pow10R(Math.max(a.k, b.k))), tx(P.op === "add" ? "exponents.m.matchAdd" : "exponents.m.matchSub"));
+          L.add(mul(f(a.m, b.m), pow10R(Math.min(a.k, b.k))), tx(P.op === "add" ? "exponents.m.matchAdd" : "exponents.m.matchSub"));
         }
-        L.add(mul(f(a.m, b.m), pow10R(a.k + b.k)), "Don’t add the powers of 10 here — that’s for multiplying. Match the powers, then " + wd + " the first numbers.");
+        L.add(mul(f(a.m, b.m), pow10R(a.k + b.k)), tx(P.op === "add" ? "exponents.m.dontAddAdd" : "exponents.m.dontAddSub"));
         var K = Math.max(a.k, b.k),
           cc = f(mul(a.m, pow10R(a.k - K)), mul(b.m, pow10R(b.k - K)));
         wrongNorm(cc, K);
@@ -4907,10 +4955,10 @@
     function timesMists(P) {
       var L = mlist(P.res),
         d = P.a.k - P.b.k;
-      L.add(sub(P.A, P.Bv), "That’s how much bigger (subtracting). “How many times bigger” means divide: bigger ÷ smaller.");
-      L.add(dvd(P.Bv, P.A), "Divide the bigger one by the smaller one.");
-      if (d > 0) L.add(R(d), "That’s how many powers of 10 apart they are. Work out the whole thing: (" + mT(P.a.m) + " ÷ " + mT(P.b.m) + ") × 10" + supH(d) + ".");
-      L.add(mul(dvd(P.a.m, P.b.m), pow10R(P.a.k + P.b.k)), "Subtract the powers of 10 when you divide — don’t add them.");
+      L.add(sub(P.A, P.Bv), tx("exponents.m.howMuch"));
+      L.add(dvd(P.Bv, P.A), tx("exponents.m.bigBySmall"));
+      if (d > 0) L.add(R(d), tx("exponents.m.powApart", { e: "(" + mT(P.a.m) + " ÷ " + mT(P.b.m) + ") × 10" + supH(d) }));
+      L.add(mul(dvd(P.a.m, P.b.m), pow10R(P.a.k + P.b.k)), tx("exponents.m.divNoAdd"));
       return L.list;
     }
 
@@ -4919,37 +4967,37 @@
         L = mlist(q),
         n = R(P.n);
       if (P.r === 2) {
-        L.add(dvd(n, TWO), "Halving isn’t square-rooting: you need a number that times itself makes " + intT(P.n) + ".");
-        L.add(negR(q), "√ means the positive square root.");
-        L.add(mul(n, n), "That’s " + intT(P.n) + " squared — the square root goes the other way.");
+        L.add(dvd(n, TWO), tx("exponents.m.halving", { n: intT(P.n) }));
+        L.add(negR(q), tx("exponents.m.posRoot"));
+        L.add(mul(n, n), tx("exponents.m.squared", { n: intT(P.n) }));
       } else {
-        L.add(dvd(n, R(3)), "Dividing by 3 isn’t cube-rooting: you need a number that times itself, times itself again, makes " + intT(P.n) + ".");
-        L.add(dvd(n, TWO), "You need a number that times itself, times itself again, makes " + intT(P.n) + ".");
-        if (P.n !== 0n) L.add(negR(q), "Check the sign: a negative number cubed is negative, a positive one positive.");
+        L.add(dvd(n, R(3)), tx("exponents.m.div3", { n: intT(P.n) }));
+        L.add(dvd(n, TWO), tx("exponents.m.needCube", { n: intT(P.n) }));
+        if (P.n !== 0n) L.add(negR(q), tx("exponents.m.cubeSign"));
       }
       return L.list;
     }
 
     function fieldsFor(P) {
-      if (P.mode === "eval") return [{ k: "v", label: "Value", type: "value", want: P.V, mist: evalMists(P), sameA: paramsQA(P) }];
-      if (P.mode === "laws") return [{ k: "s", label: P.nm ? "Simplified" : "Simplified (positive exponents)", type: "mono", P: P }];
-      if (P.mode === "sci") return [P.to === "std" ? { k: "s", label: "Standard form", type: "std", want: P.v, m: P.m, kk: P.k } : { k: "s", label: "Scientific notation", type: "sci", want: P.v, m: P.m, kk: P.k, mist: [] }];
+      if (P.mode === "eval") return [{ k: "v", label: tx("exponents.cell.value"), type: "value", want: P.V, mist: evalMists(P), sameA: paramsQA(P) }];
+      if (P.mode === "laws") return [{ k: "s", label: P.nm ? tx("exponents.cell.simplified") : tx("exponents.lbl.simpPos"), type: "mono", P: P }];
+      if (P.mode === "sci") return [P.to === "std" ? { k: "s", label: tx("exponents.cell.std"), type: "std", want: P.v, m: P.m, kk: P.k } : { k: "s", label: tx("exponents.cell.sci"), type: "sci", want: P.v, m: P.m, kk: P.k, mist: [] }];
       if (P.mode === "scicalc") {
-        if (P.op === "cmp") return [{ k: "s", label: "&lt;, &gt; or =", type: "cmp", P: P }];
-        if (P.op === "times") return [{ k: "v", label: "Times bigger", type: "value", want: P.res, mist: timesMists(P) }];
-        if (P.res.n === 0n) return [{ k: "v", label: "Answer", type: "value", want: ZERO, mist: [] }];
-        return [{ k: "s", label: "Answer (scientific notation)", type: "sci", want: P.res, m: P.m, kk: P.k, mist: calcMists(P) }];
+        if (P.op === "cmp") return [{ k: "s", label: tx("exponents.lbl.cmp"), type: "cmp", P: P }];
+        if (P.op === "times") return [{ k: "v", label: tx("exponents.cell.timesBigger"), type: "value", want: P.res, mist: timesMists(P) }];
+        if (P.res.n === 0n) return [{ k: "v", label: tx("common.answer"), type: "value", want: ZERO, mist: [] }];
+        return [{ k: "s", label: tx("exponents.lbl.ansSci"), type: "sci", want: P.res, m: P.m, kk: P.k, mist: calcMists(P) }];
       }
       if (P.perfect) return [{ k: "v", label: rootQ(P), type: "value", want: R(P.q), mist: rootMists(P) }];
       var other = P.near === P.lo ? P.hi : P.lo,
         mid = String(Number(P.lo) + 0.5).replace("-", "−");
-      return [{ k: "lo", label: "Between (two whole numbers)", type: "pair", P: P }, {
+      return [{ k: "lo", label: tx("exponents.lbl.between"), type: "pair", P: P }, {
         k: "near",
-        label: "Nearer to",
+        label: tx("exponents.cell.nearer"),
         type: "value",
         want: R(P.near),
-        mist: [{ v: R(other), msg: "Check with the halfway number: " + mid + (P.r === 3 ? "³" : "²") + " = " + String(Math.pow(Number(P.lo) + 0.5, P.r)).replace("-", "−") + ". Is " + intT(P.n) + " below or above that?" }],
-        generic: "Pick one of the two whole numbers it’s between."
+        mist: [{ v: R(other), msg: tx("exponents.m.halfway", { e: mid + (P.r === 3 ? "³" : "²") + " = " + String(Math.pow(Number(P.lo) + 0.5, P.r)).replace("-", "−"), n: intT(P.n) }) }],
+        generic: tx("exponents.m.pickOne")
       }];
     }
 
@@ -4958,27 +5006,27 @@
     function hintFor(P) {
       if (P.mode === "eval") {
         var h = [];
-        if (P.e > 0) h.push("Write the base down " + (P.e === 1 ? "once" : word(P.e) + " times") + " and multiply them — the exponent is how many, not what to multiply by.");
-        if (P.e < 0) h.push("A negative exponent means one over: a⁻ⁿ = 1/aⁿ.");
-        if (P.e === 0) h.push("Follow the pattern a³, a², a¹ … — each step down divides by a. What comes after a¹?");
-        if (P.neg) h.push("The minus is outside the power: work out the power first, then make it negative.");
-        else if (P.b.n < 0n) h.push("The brackets make the negative number the base. Count the negatives: an even number make a positive.");
-        if (P.bk === "frac") h.push("Raise the top and the bottom.");
-        if (P.bk === "dec") h.push("Multiply without the point, then count the decimal places.");
+        if (P.e > 0) h.push(P.e === 1 ? tx("exponents.h.once") : tx("exponents.h.nTimes", { w: word(P.e) }));
+        if (P.e < 0) h.push(tx("exponents.h.neg"));
+        if (P.e === 0) h.push(tx("exponents.h.zero"));
+        if (P.neg) h.push(tx("exponents.h.minus"));
+        else if (P.b.n < 0n) h.push(tx("exponents.h.negBase"));
+        if (P.bk === "frac") h.push(tx("exponents.h.frac"));
+        if (P.bk === "dec") h.push(tx("exponents.h.dec"));
         return h.join(" ");
       }
-      if (P.mode === "laws") return "<b>Same base, multiplied:</b> add the exponents. <b>Divided:</b> subtract them. <b>A power of a power:</b> multiply them. <b>A power outside brackets</b> goes on every factor inside. Finish with positive exponents: x⁻² = 1/x².";
-      if (P.mode === "sci") return P.to === "std" ? "Move the decimal point as many places as the power says — right for a positive power, left for a negative one — and fill the gaps with zeros." :
-        "Move the decimal point until one digit (not 0) is in front of it. The number of jumps is the power: positive for a big number, negative for a number less than 1.";
+      if (P.mode === "laws") return tx("exponents.h.laws");
+      if (P.mode === "sci") return P.to === "std" ? tx("exponents.h.std") :
+        tx("exponents.h.sci");
       if (P.mode === "scicalc") {
-        if (P.op === "mul") return "Multiply the first numbers and add the powers of 10. If the first number comes out 10 or more, re-normalize it.";
-        if (P.op === "div") return "Divide the first numbers and subtract the powers of 10. If the first number comes out less than 1, re-normalize it.";
-        if (P.op === "add" || P.op === "sub") return "Rewrite one number so both have the same power of 10, then " + (P.op === "add" ? "add" : "subtract") + " the first numbers. The power stays the same.";
-        if (P.op === "cmp") return "Compare the powers of 10 first (once both are in scientific notation). Only when they match, compare the first numbers.";
-        return "How many times bigger means divide: the first numbers divide, the powers of 10 subtract.";
+        if (P.op === "mul") return tx("exponents.h.mul");
+        if (P.op === "div") return tx("exponents.h.div");
+        if (P.op === "add" || P.op === "sub") return tx(P.op === "add" ? "exponents.h.add" : "exponents.h.sub");
+        if (P.op === "cmp") return tx("exponents.h.cmp");
+        return tx("exponents.h.times");
       }
-      return P.perfect ? "Which number times itself" + (P.r === 3 ? ", times itself again," : "") + " makes " + intT(P.n) + "? Try the " + (P.r === 3 ? "cubes" : "squares") + " near it." :
-        "Find the perfect " + (P.r === 3 ? "cubes" : "squares") + " just below and just above " + intT(P.n) + ". For “nearer”, " + (P.r === 3 ? "cube" : "square") + " the number halfway between.";
+      return P.perfect ? tx(P.r === 3 ? "exponents.h.rootCube" : "exponents.h.rootSq", { n: intT(P.n) }) :
+        tx(P.r === 3 ? "exponents.h.estCube" : "exponents.h.estSq", { n: intT(P.n) });
     }
 
     function buildCheck(P) {
@@ -5005,7 +5053,7 @@
       $("ckHint").innerHTML = CK.hint;
       $("ckMore").hidden = CK.ok || CK.revealed;
       $("hintBtn").hidden = !!CK.hint;
-      $("ckNote").textContent = CK.revealed ? "" : "The work and the answer stay hidden until you check. Type powers with ^ (like 4.5 × 10^7 or x^3) — 4.5e7 works too.";
+      $("ckNote").textContent = CK.revealed ? "" : tx("exponents.ckNote");
     }
 
     function report(verdict) {
@@ -5036,7 +5084,7 @@
       });
       var verdict = null;
       if (empty === res.length) {
-        CK.fb = '<span class="lead">Type your answer first' + (fields.length > 1 ? " — fill in the boxes." : ".") + "</span>";
+        CK.fb = '<span class="lead">' + tx(fields.length > 1 ? "exponents.fb.firstBoxes" : "exponents.fb.first") + "</span>";
         CK.fbCls = "";
       } else if (bad.length) {
         verdict = "wrong";
@@ -5044,21 +5092,21 @@
         CK.tried = true;
         CK.fbCls = "";
         var why = bad.slice(0, 2).map(function(i) { return res[i].msg ? lab(i) + res[i].msg : ""; }).filter(Boolean);
-        CK.fb = '<span class="lead">Not quite — try again.</span>' + (fields.length > 1 ? '<span class="why">' + (fields.length - bad.length - empty) + " of " + fields.length + " right so far" + (empty ? ", " + empty + " still empty" : "") + ".</span>" : "") +
+        CK.fb = '<span class="lead">' + tx("common.notQuite") + "</span>" + (fields.length > 1 ? '<span class="why">' + tx("exponents.fb.soFar", { r: fields.length - bad.length - empty, n: fields.length }) + (empty ? tx("exponents.fb.stillEmpty", { e: empty }) : "") + ".</span>" : "") +
           why.map(function(w) { return '<span class="why">' + w + "</span>"; }).join("");
       } else if (empty) {
-        CK.fb = '<span class="lead">So far so good — fill in the rest.</span><span class="why">' + empty + " box" + (empty === 1 ? " is" : "es are") + " still empty.</span>";
+        CK.fb = '<span class="lead">' + tx("exponents.fb.soGood") + '</span><span class="why">' + tx("exponents.fb.boxesEmpty", { n: empty }) + "</span>";
         CK.fbCls = "part";
       } else if (part.length) {
         verdict = "simplify";
         CK.fbCls = "part";
-        CK.fb = '<span class="lead">Almost! Not simplified yet.</span><span class="why">' + lab(part[0]) + res[part[0]].msg + "</span>";
+        CK.fb = '<span class="lead">' + tx("exponents.fb.almost") + '</span><span class="why">' + lab(part[0]) + res[part[0]].msg + "</span>";
       } else {
         verdict = "right";
         CK.ok = true;
         CK.revealed = true;
         CK.fbCls = "ok";
-        CK.fb = '<span class="lead">✓ Correct!</span>' + (notes.length ? '<span class="why">' + notes.join(" ") + "</span>" : "") + '<span class="why">Here’s the full work.</span>';
+        CK.fb = '<span class="lead">' + tx("common.correct") + "</span>" + (notes.length ? '<span class="why">' + notes.join(" ") + "</span>" : "") + '<span class="why">' + tx("exponents.fb.fullWork") + "</span>";
       }
       if (verdict) report(verdict);
       var had = document.activeElement && document.activeElement.id;
@@ -5071,22 +5119,22 @@
 
     function lg(c, t, l) { return '<div><span class="badge ' + c + '">' + t + "</span>" + l + "</div>"; }
     var LEGEND = {
-      eval: lg("c-p", "base", "the number multiplied") + lg("c-m", "×", "multiply it out") + lg("c-v", "÷", "the pattern going down") + lg("c-r", "−", "the sign") + lg("c-a", "=", "the answer"),
-      laws: lg("c-m", "add", "product law") + lg("c-v", "subtract", "quotient law") + lg("c-e", "multiply", "power of a power") + lg("c-p", "share", "power of a product") + lg("c-r", "flip", "negative exponent"),
-      sci: lg("c-e", "jump", "one place for the decimal point") + lg("c-a", "0", "zeros filled in") + lg("c-p", "•", "where the point ends up"),
-      scicalc: lg("c-m", "×", "multiply or divide the first numbers") + lg("c-e", "jump", "re-normalize or match the powers") + lg("c-v", "?", "compare"),
-      roots: lg("c-p", "√", "the root") + lg("c-v", "½", "the halfway number") + lg("c-a", "=", "the answer")
+      eval: lg("c-p", tx("exponents.leg.eval.0t"), tx("exponents.leg.eval.0")) + lg("c-m", "×", tx("exponents.leg.eval.1")) + lg("c-v", "÷", tx("exponents.leg.eval.2")) + lg("c-r", "−", tx("exponents.leg.eval.3")) + lg("c-a", "=", tx("exponents.leg.eval.4")),
+      laws: lg("c-m", tx("exponents.leg.laws.0t"), tx("exponents.leg.laws.0")) + lg("c-v", tx("exponents.leg.laws.1t"), tx("exponents.leg.laws.1")) + lg("c-e", tx("exponents.leg.laws.2t"), tx("exponents.leg.laws.2")) + lg("c-p", tx("exponents.leg.laws.3t"), tx("exponents.leg.laws.3")) + lg("c-r", tx("exponents.leg.laws.4t"), tx("exponents.leg.laws.4")),
+      sci: lg("c-e", tx("exponents.leg.sci.0t"), tx("exponents.leg.sci.0")) + lg("c-a", "0", tx("exponents.leg.sci.1")) + lg("c-p", "•", tx("exponents.leg.sci.2")),
+      scicalc: lg("c-m", "×", tx("exponents.leg.scicalc.0")) + lg("c-e", tx("exponents.leg.scicalc.1t"), tx("exponents.leg.scicalc.1")) + lg("c-v", "?", tx("exponents.leg.scicalc.2")),
+      roots: lg("c-p", "√", tx("exponents.leg.roots.0")) + lg("c-v", "½", tx("exponents.leg.roots.1")) + lg("c-a", "=", tx("exponents.leg.roots.2"))
     };
 
     function readsH(P) {
       if (P.mode === "eval") return evalQH(P);
       if (P.mode === "laws") return astH(P.ast);
-      if (P.mode === "sci") return (P.src.plain ? stdT(P.src.v) : sciH(P.src.m, P.src.k)) + ' <span class="nm">→ ' + (P.to === "std" ? "standard form" : "scientific notation") + "</span>";
+      if (P.mode === "sci") return (P.src.plain ? stdT(P.src.v) : sciH(P.src.m, P.src.k)) + ' <span class="nm">→ ' + (P.to === "std" ? tx("exponents.rd.std") : tx("exponents.rd.sci")) + "</span>";
       if (P.mode === "scicalc") {
         var a = sciX(P.a),
           b = sciX(P.b);
-        if (P.op === "cmp") return a + ' <span class="nm">or</span> ' + b + ' <span class="nm">— which is bigger?</span>';
-        if (P.op === "times") return a + ' <span class="nm">is how many times</span> ' + b + "?";
+        if (P.op === "cmp") return a + ' <span class="nm">' + tx("exponents.rd.or") + "</span> " + b + ' <span class="nm">' + tx("exponents.rd.which") + "</span>";
+        if (P.op === "times") return a + ' <span class="nm">' + tx("exponents.rd.howMany") + "</span> " + b + "?";
         return "(" + a + ") " + opSym(P.op) + " (" + b + ")";
       }
       return rootQ(P);
@@ -5100,7 +5148,7 @@
         err = null;
       try {
         if (S.inputs[S.mode] === "\u0000link") throw new UserErr(LINKERR && LINKERR.mode === S.mode ? LINKERR.msg : EMPTY[S.mode]);
-        P = readProblem(S.mode, S.inputs[S.mode]);
+        P = readTyped(S.mode, S.inputs[S.mode]);
       } catch (e) {
         if (e && e.user) err = e.user;
         else throw e;
@@ -5118,7 +5166,7 @@
           } else throw e2;
         }
       } else total = fail(err);
-      $("reads").innerHTML = CUR ? '<span class="nm">Reads as</span>' + readsH(CUR) : "";
+      $("reads").innerHTML = CUR ? '<span class="nm">' + tx("common.readsAs") + "</span>" + readsH(CUR) : "";
       LASTW = plotW();
       $("legend").innerHTML = LEGEND[S.mode];
       lastTotal = total;
@@ -5137,7 +5185,7 @@
         hide = check && !CK.revealed;
       $("stepper").hidden = !stepMode;
       if (stepMode) {
-        $("stepCount").textContent = S.step + " of " + total;
+        $("stepCount").textContent = tx("exponents.stepOf", { n: S.step, t: total });
         $("prevBtn").disabled = S.step <= 1;
         $("nextBtn").disabled = S.step >= total;
       }
@@ -5173,7 +5221,7 @@
     function writeLog(items) {
       var html = "";
       items.forEach(function(it, i) {
-        html += "<li" + ds(it.step) + '><span class="n">Step&nbsp;' + (i + 1) + "</span>";
+        html += "<li" + ds(it.step) + '><span class="n">' + tx("exponents.stepN", { n: i + 1 }) + "</span>";
         it.lines.forEach(function(l) {
           html += '<div class="line"><span class="tag c-' + l[0] + '">' + l[1] + '</span><span class="txt">' + l[2] + "</span></div>";
         });
@@ -5228,7 +5276,7 @@
         S.inputs[LINKERR.mode] = "\u0000link";
         S.step = 1;
       } else if (q !== null) {
-        var m = mode || kindOf(q) || "eval";
+        var m = mode || (i18nQ(q) !== q && kindOf(i18nQ(q))) || kindOf(q) || "eval";
         S.mode = m;
         S.inputs[m] = q;
         S.step = 1;
@@ -5544,46 +5592,46 @@
     }
 
     /* ===================== the maker's controls ===================== */
-    var LAWV = { any: "Any of them", product: "Product (x³ · x⁴)", quotient: "Quotient (a⁷ / a²)", power: "Power of a power ((x²)³)", prodpow: "Power of a product ((2x²)³)", negzero: "Zero & negative exponents", mixed: "Mixed (several laws)" };
-    var KINDV = { "var": "Letters (x, y)", num: "Numbers (2³ · 2⁴)", either: "Either" };
-    var WAYV = { either: "Either way", tosci: "Into scientific notation", tostd: "Into standard form" };
-    var SIZEV = { either: "Big or small", big: "Big numbers (like 45,000,000)", small: "Small numbers (like 0.00032)" };
-    var OPV = { any: "Any", mul: "Multiply", div: "Divide", add: "Add", sub: "Subtract", cmp: "Compare", times: "How many times bigger" };
-    var ROOTV = { square: "Square roots (√)", cube: "Cube roots (∛)", either: "Either" };
-    var RKINDV = { perfect: "Perfect squares and cubes", estimate: "Estimate between two whole numbers", either: "Either" };
+    var LAWV = { any: tx("exponents.mk.law.v.any"), product: tx("exponents.mk.law.v.product"), quotient: tx("exponents.mk.law.v.quotient"), power: tx("exponents.mk.law.v.power"), prodpow: tx("exponents.mk.law.v.prodpow"), negzero: tx("exponents.mk.law.v.negzero"), mixed: tx("exponents.mk.law.v.mixed") };
+    var KINDV = { "var": tx("exponents.mk.kind.v.var"), num: tx("exponents.mk.kind.v.num"), either: tx("exponents.mk.kind.v.either") };
+    var WAYV = { either: tx("exponents.mk.way.v.either"), tosci: tx("exponents.mk.way.v.tosci"), tostd: tx("exponents.mk.way.v.tostd") };
+    var SIZEV = { either: tx("exponents.mk.size.v.either"), big: tx("exponents.mk.size.v.big"), small: tx("exponents.mk.size.v.small") };
+    var OPV = { any: tx("exponents.mk.op.v.any"), mul: tx("exponents.mk.op.v.mul"), div: tx("exponents.mk.op.v.div"), add: tx("exponents.mk.op.v.add"), sub: tx("exponents.mk.op.v.sub"), cmp: tx("exponents.mk.op.v.cmp"), times: tx("exponents.mk.op.v.times") };
+    var ROOTV = { square: tx("exponents.mk.root.v.square"), cube: tx("exponents.mk.root.v.cube"), either: tx("exponents.mk.root.v.either") };
+    var RKINDV = { perfect: tx("exponents.mk.rkind.v.perfect"), estimate: tx("exponents.mk.rkind.v.estimate"), either: tx("exponents.mk.rkind.v.either") };
     var MAKER = {
-      eval: [{ lbl: "Biggest exponent", seg: "max", vals: [3, 5, 8], fmt: function(v) { return "up to " + v; } }, {
-        lbl: "Also include",
+      eval: [{ lbl: tx("exponents.mk.lbl.maxExp"), seg: "max", vals: [3, 5, 8], fmt: function(v) { return tx("exponents.mk.upTo", { v: v }); } }, {
+        lbl: tx("exponents.mk.lbl.also"),
         togs: [
-          ["neg", "−", "Negative bases, and −3² vs (−3)²"],
-          ["negExp", "a⁻ⁿ", "Zero and negative exponents"],
-          ["frac", "⅔", "Fractions, like (2/3)³"],
-          ["dec", ".5", "Decimals, like 0.5²"],
-          ["ten", "10ⁿ", "Powers of 10"]
+          ["neg", "−", tx("exponents.mk.tog.neg")],
+          ["negExp", "a⁻ⁿ", tx("exponents.mk.tog.negExp")],
+          ["frac", "⅔", tx("exponents.mk.tog.frac")],
+          ["dec", ".5", tx("exponents.mk.tog.dec")],
+          ["ten", "10ⁿ", tx("exponents.mk.tog.ten")]
         ]
       }],
-      laws: [{ lbl: "Which law", seg: "law", vals: ["any", "product", "quotient", "power", "prodpow", "negzero", "mixed"], fmt: function(v) { return LAWV[v]; } },
-        { lbl: "Bases", seg: "kind", vals: ["var", "num", "either"], fmt: function(v) { return KINDV[v]; } }, {
-          lbl: "Also include",
+      laws: [{ lbl: tx("exponents.mk.lbl.law"), seg: "law", vals: ["any", "product", "quotient", "power", "prodpow", "negzero", "mixed"], fmt: function(v) { return LAWV[v]; } },
+        { lbl: tx("exponents.mk.lbl.bases"), seg: "kind", vals: ["var", "num", "either"], fmt: function(v) { return KINDV[v]; } }, {
+          lbl: tx("exponents.mk.lbl.also"),
           togs: [
-            ["coef", "3x", "Numbers in front (like 3x²)"],
-            ["two", "xy", "Two letters (x and y)"]
+            ["coef", "3x", tx("exponents.mk.tog.coef")],
+            ["two", "xy", tx("exponents.mk.tog.two")]
           ]
         }
       ],
-      sci: [{ lbl: "Which way", seg: "way", vals: ["either", "tosci", "tostd"], fmt: function(v) { return WAYV[v]; } },
-        { lbl: "Size", seg: "size", vals: ["either", "big", "small"], fmt: function(v) { return SIZEV[v]; } }
+      sci: [{ lbl: tx("exponents.mk.lbl.way"), seg: "way", vals: ["either", "tosci", "tostd"], fmt: function(v) { return WAYV[v]; } },
+        { lbl: tx("exponents.mk.lbl.size"), seg: "size", vals: ["either", "big", "small"], fmt: function(v) { return SIZEV[v]; } }
       ],
-      scicalc: [{ lbl: "Operation", seg: "op", vals: ["any", "mul", "div", "add", "sub", "cmp", "times"], fmt: function(v) { return OPV[v]; } }, {
-        lbl: "Also include",
+      scicalc: [{ lbl: tx("exponents.mk.lbl.op"), seg: "op", vals: ["any", "mul", "div", "add", "sub", "cmp", "times"], fmt: function(v) { return OPV[v]; } }, {
+        lbl: tx("exponents.mk.lbl.also"),
         togs: [
-          ["renorm", "↻", "Answers to re-normalize (like 32 × 10⁵)"],
-          ["negExp", "10⁻ⁿ", "Negative powers of 10"]
+          ["renorm", "↻", tx("exponents.mk.tog.renorm")],
+          ["negExp", "10⁻ⁿ", tx("exponents.mk.tog.negExp10")]
         ]
       }],
-      roots: [{ lbl: "Root", seg: "root", vals: ["square", "cube", "either"], fmt: function(v) { return ROOTV[v]; } },
-        { lbl: "Kind", seg: "kind", vals: ["perfect", "estimate", "either"], fmt: function(v) { return RKINDV[v]; } },
-        { lbl: "Biggest number", seg: "max", vals: [100, 400, 1000], fmt: function(v) { return "up to " + v; } }
+      roots: [{ lbl: tx("exponents.mk.lbl.root"), seg: "root", vals: ["square", "cube", "either"], fmt: function(v) { return ROOTV[v]; } },
+        { lbl: tx("exponents.mk.lbl.kind"), seg: "kind", vals: ["perfect", "estimate", "either"], fmt: function(v) { return RKINDV[v]; } },
+        { lbl: tx("exponents.mk.lbl.maxN"), seg: "max", vals: [100, 400, 1000], fmt: function(v) { return tx("exponents.mk.upTo", { v: v }); } }
       ]
     };
     // "Makes problems like: …" — a sample from the same pure generator (no aria-live here on purpose)
@@ -5592,7 +5640,7 @@
         m = null;
       if (!el) return;
       try { m = makeOne(S.mode, S.gen[S.mode], null); } catch (e) { m = null; }
-      el.innerHTML = m ? "Makes problems like: <b>" + esc(record(m.P).text) + "</b>" : "Those choices don’t make a problem — try different ones.";
+      el.innerHTML = m ? tx("exponents.mk.like", { p: esc(record(m.P).text) }) : tx("exponents.mk.none");
     }
 
     function buildMaker() {
@@ -5645,14 +5693,14 @@
       host.appendChild(smp);
       var go = document.createElement("div");
       go.className = "maker-go";
-      go.innerHTML = '<button type="button" class="go" id="genBtn">New problem</button><span class="msg" id="genMsg"></span>';
+      go.innerHTML = '<button type="button" class="go" id="genBtn">' + tx("common.newProblem") + '</button><span class="msg" id="genMsg"></span>';
       host.appendChild(go);
       paintSample();
       $("genBtn").addEventListener("click", function() {
         var avoid = {};
         if (CUR) avoid[paramsOf(CUR)] = true;
         var m = makeOne(S.mode, S.gen[S.mode], avoid);
-        if (!m) { $("genMsg").textContent = "Couldn’t make one with those settings — try different choices."; return; }
+        if (!m) { $("genMsg").textContent = tx("exponents.mk.couldnt"); return; }
         $("genMsg").textContent = "";
         setProblem(m.text);
         paintSample();
@@ -5668,43 +5716,43 @@
     }
 
     function schema() {
-      var onOff = [{ v: false, label: "Off" }, { v: true, label: "On" }];
+      var onOff = [{ v: false, label: tx("common.off") }, { v: true, label: tx("common.on") }];
 
       function ch(obj) { return Object.keys(obj).map(function(k) { return { v: k, label: obj[k] }; }); }
       return [{
           key: "mode",
-          label: "Kind of problem",
+          label: tx("exponents.sch.kindOf"),
           type: "choice",
           default: "eval",
           values: [
-            { v: "eval", label: "Work out a power (2⁵, (−3)², 5⁻²)" }, { v: "laws", label: "Exponent laws (simplify x³ · x⁴, (2x²)³)" },
-            { v: "sci", label: "Scientific notation (convert both ways)" }, { v: "scicalc", label: "Math with scientific notation (× ÷ + − and compare)" },
-            { v: "roots", label: "Square and cube roots" }
+            { v: "eval", label: tx("exponents.sch.m.eval") }, { v: "laws", label: tx("exponents.sch.m.laws") },
+            { v: "sci", label: tx("exponents.sch.m.sci") }, { v: "scicalc", label: tx("exponents.sch.m.scicalc") },
+            { v: "roots", label: tx("exponents.sch.m.roots") }
           ]
         },
-        { key: "maxExp", label: "Biggest exponent", type: "choice", default: "5", modes: ["eval"], values: [3, 5, 8].map(function(v) { return { v: String(v), label: "up to " + v }; }) },
-        { key: "negBase", label: "Negative bases, and −3² vs (−3)²", type: "toggle", default: true, values: onOff, modes: ["eval"] },
-        { key: "negExp", label: "Zero and negative exponents (negative powers of 10, for scientific notation math)", type: "toggle", default: true, values: onOff, modes: ["eval", "scicalc"] },
-        { key: "fractions", label: "Fractions as bases, like (2/3)³", type: "toggle", default: false, values: onOff, modes: ["eval"] },
-        { key: "decimals", label: "Decimals as bases, like 0.5²", type: "toggle", default: false, values: onOff, modes: ["eval"] },
-        { key: "tens", label: "Powers of 10", type: "toggle", default: false, values: onOff, modes: ["eval"] },
-        { key: "law", label: "Which law", type: "choice", default: "any", modes: ["laws"], values: ch(LAWV) }, {
+        { key: "maxExp", label: tx("exponents.mk.lbl.maxExp"), type: "choice", default: "5", modes: ["eval"], values: [3, 5, 8].map(function(v) { return { v: String(v), label: tx("exponents.mk.upTo", { v: v }) }; }) },
+        { key: "negBase", label: tx("exponents.mk.tog.neg"), type: "toggle", default: true, values: onOff, modes: ["eval"] },
+        { key: "negExp", label: tx("exponents.sch.negExp"), type: "toggle", default: true, values: onOff, modes: ["eval", "scicalc"] },
+        { key: "fractions", label: tx("exponents.sch.fractions"), type: "toggle", default: false, values: onOff, modes: ["eval"] },
+        { key: "decimals", label: tx("exponents.sch.decimals"), type: "toggle", default: false, values: onOff, modes: ["eval"] },
+        { key: "tens", label: tx("exponents.mk.tog.ten"), type: "toggle", default: false, values: onOff, modes: ["eval"] },
+        { key: "law", label: tx("exponents.mk.lbl.law"), type: "choice", default: "any", modes: ["laws"], values: ch(LAWV) }, {
           key: "kind",
-          label: "Letters or numbers (laws); perfect or estimated (roots)",
+          label: tx("exponents.sch.kind"),
           type: "choice",
           default: "var",
           modes: ["laws", "roots"],
-          values: [{ v: "var", label: KINDV["var"] }, { v: "num", label: KINDV.num }, { v: "either", label: "Either" }, { v: "perfect", label: RKINDV.perfect }, { v: "estimate", label: RKINDV.estimate }],
+          values: [{ v: "var", label: KINDV["var"] }, { v: "num", label: KINDV.num }, { v: "either", label: tx("exponents.mk.kind.v.either") }, { v: "perfect", label: RKINDV.perfect }, { v: "estimate", label: RKINDV.estimate }],
           defaultByMode: { laws: "var", roots: "either" }
         },
-        { key: "coef", label: "Numbers in front (like 3x²)", type: "toggle", default: true, values: onOff, modes: ["laws"] },
-        { key: "twoVars", label: "Two letters (x and y)", type: "toggle", default: false, values: onOff, modes: ["laws"] },
-        { key: "way", label: "Which way", type: "choice", default: "either", modes: ["sci"], values: ch(WAYV) },
-        { key: "size", label: "Big or small numbers", type: "choice", default: "either", modes: ["sci"], values: ch(SIZEV) },
-        { key: "op", label: "Operation", type: "choice", default: "any", modes: ["scicalc"], values: ch(OPV) },
-        { key: "renorm", label: "Answers to re-normalize (like 32 × 10⁵ → 3.2 × 10⁶)", type: "toggle", default: true, values: onOff, modes: ["scicalc"] },
-        { key: "root", label: "Square or cube roots", type: "choice", default: "square", modes: ["roots"], values: ch(ROOTV) },
-        { key: "max", label: "Biggest number under the root", type: "choice", default: "100", modes: ["roots"], values: [100, 400, 1000].map(function(v) { return { v: String(v), label: "up to " + v }; }) }
+        { key: "coef", label: tx("exponents.mk.tog.coef"), type: "toggle", default: true, values: onOff, modes: ["laws"] },
+        { key: "twoVars", label: tx("exponents.mk.tog.two"), type: "toggle", default: false, values: onOff, modes: ["laws"] },
+        { key: "way", label: tx("exponents.mk.lbl.way"), type: "choice", default: "either", modes: ["sci"], values: ch(WAYV) },
+        { key: "size", label: tx("exponents.sch.size"), type: "choice", default: "either", modes: ["sci"], values: ch(SIZEV) },
+        { key: "op", label: tx("exponents.mk.lbl.op"), type: "choice", default: "any", modes: ["scicalc"], values: ch(OPV) },
+        { key: "renorm", label: tx("exponents.sch.renorm"), type: "toggle", default: true, values: onOff, modes: ["scicalc"] },
+        { key: "root", label: tx("exponents.sch.root"), type: "choice", default: "square", modes: ["roots"], values: ch(ROOTV) },
+        { key: "max", label: tx("exponents.sch.max"), type: "choice", default: "100", modes: ["roots"], values: [100, 400, 1000].map(function(v) { return { v: String(v), label: tx("exponents.mk.upTo", { v: v }) }; }) }
       ];
     }
 
@@ -5779,19 +5827,19 @@
     /* ===================== wiring ===================== */
     var inp = $("numIn");
     var HINTS = {
-      eval: "One power: <code>2^5</code>, <code>(−3)^2</code>, <code>−3^2</code>, <code>5^−2</code>, <code>(2/3)^3</code>, <code>0.5^2</code>, <code>10^−3</code>. <code>^</code>, <code>**</code> and <code>x²</code> all work.",
-      laws: "Powers joined by × and ÷: <code>x^3 · x^4</code>, <code>(2x^2)^3</code>, <code>a^7 / a^2</code>, <code>(3^2)^4</code>, <code>(x^3 y^2)^2 / (x y)^3</code>. Letters side by side multiply, and they bind tighter than ÷: <code>1/2x</code> is 1/(2x).",
-      sci: "A number to put into scientific notation (<code>45,000,000</code>, <code>0.00032</code>), or one to write out (<code>4.5 × 10^7</code>, <code>3.2e−4</code>). <code>45 × 10^6</code> gets re-normalized.",
-      scicalc: "Two numbers with ×, ÷, + or −: <code>(3x10^4)(2x10^5)</code>, <code>6.4 × 10^8 ÷ 1.6 × 10^3</code>, <code>3.2e4 + 5e3</code>. Or <code>compare 3e5 and 2e6</code>, <code>how many times bigger is 6e8 than 2e5</code>.",
-      roots: "<code>√64</code>, <code>sqrt 50</code>, <code>cube root of 64</code>, <code>∛−27</code>. A number that isn’t a perfect square (or cube) is estimated between two whole numbers."
+      eval: tx("exponents.hint.eval"),
+      laws: tx("exponents.hint.laws"),
+      sci: tx("exponents.hint.sci"),
+      scicalc: tx("exponents.hint.scicalc"),
+      roots: tx("exponents.hint.roots")
     };
-    var LABELS = { eval: "Your power", laws: "Simplify", sci: "Your number", scicalc: "Your problem", roots: "Your root" };
+    var LABELS = { eval: tx("exponents.label.eval"), laws: tx("exponents.label.laws"), sci: tx("exponents.label.sci"), scicalc: tx("exponents.label.scicalc"), roots: tx("exponents.label.roots") };
     var EX = {
       eval: ["2^5", "(−3)^2", "−3^2", "5^−2", "7^0", "(2/3)^3", "0.5^2", "10^−3", "2^60"],
       laws: ["x^3 · x^4", "(2x^2)^3", "a^7 / a^2", "(3^2)^4", "x^−2 · x^5", "(x^3 y^2)^2 / (x y)^3", "2^3 · 2^4"],
       sci: ["45,000,000", "0.00032", "3.2 × 10^−4", "7.1 × 10^5", "45 × 10^6", "6.02e23"],
-      scicalc: ["(3 × 10^4)(2 × 10^5)", "6.4 × 10^8 ÷ 1.6 × 10^3", "(8 × 10^3)(5 × 10^4)", "3.2 × 10^4 + 5 × 10^3", "compare 3 × 10^5 and 2 × 10^6", "how many times bigger is 6 × 10^8 than 2 × 10^5"],
-      roots: ["√64", "√50", "√144", "cube root of 64", "∛−27", "√200", "∛50"]
+      scicalc: traw("exponents.chips.scicalc"),
+      roots: traw("exponents.chips.roots")
     };
 
     function buildChips() {
@@ -5888,9 +5936,9 @@
       function done() {
         if (settled) return;
         settled = true;
-        btn.textContent = "Link copied ✓";
+        btn.textContent = tx("common.linkCopied") + " ✓";
         clearTimeout(btn._t);
-        btn._t = setTimeout(function() { btn.textContent = "Copy link"; }, 2000);
+        btn._t = setTimeout(function() { btn.textContent = tx("common.copyLink"); }, 2000);
       }
 
       function fallback() {
@@ -5941,7 +5989,7 @@
       return t ? t === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
     }
 
-    function paint() { themeBtn.textContent = isDark() ? "Light mode" : "Dark mode"; }
+    function paint() { themeBtn.textContent = isDark() ? tx("common.lightMode") : tx("common.darkMode"); }
     themeBtn.addEventListener("click", function() {
       document.documentElement.setAttribute("data-theme", isDark() ? "light" : "dark");
       paint();

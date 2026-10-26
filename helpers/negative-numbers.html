@@ -16,6 +16,7 @@
 <link rel="canonical" href="https://showthesteps.org/helpers/negative-numbers">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","name":"Negative numbers, step by step – The Number Line","description":"Negative numbers without the guesswork. Every problem is worked on the number line and with counters, with a reason for every sign: add, subtract, multiply and divide integers, find absolute…","url":"https://showthesteps.org/helpers/negative-numbers","inLanguage":"en-US","isAccessibleForFree":true,"learningResourceType":["Interactive worked examples","Practice problems"],"interactivityType":"active","educationalUse":["Practice","Self-assessment"],"teaches":"Negative numbers","educationalLevel":["Middle school (grades 6–8)"],"audience":{"@type":"EducationalAudience","educationalRole":"student"},"publisher":{"@type":"Organization","name":"Show The Steps","url":"https://showthesteps.org/"},"isPartOf":{"@type":"WebSite","name":"Show The Steps","url":"https://showthesteps.org/"}}</script>
 <script src="../assets/site.js"></script>
+<script src="../assets/i18n.js" data-strings="negative-numbers"></script>
 <script src="../assets/nav.js" defer></script>
 <script src="../assets/progress.js" defer></script>
 <link rel="stylesheet" href="../assets/fonts/fonts.css">
@@ -1718,22 +1719,22 @@
 <div class="page">
   <header class="masthead">
     <div>
-      <div class="eyebrow">Integers, worked out</div>
+      <div class="eyebrow" data-i18n="negative-numbers.eyebrow">Integers, worked out</div>
       <h1>The Number <em>Line</em></h1>
-      <p class="tagline">Negative numbers without the guesswork. Every problem is worked on the number line and with
+      <p class="tagline" data-i18n="negative-numbers.tagline">Negative numbers without the guesswork. Every problem is worked on the number line and with
         counters, with a reason for every sign: add, subtract, multiply and divide integers, find absolute values,
         and put numbers in order.</p>
     </div>
-    <button class="theme-btn" id="themeBtn" type="button">Dark mode</button>
+    <button class="theme-btn" id="themeBtn" type="button" data-i18n="common.darkMode">Dark mode</button>
   </header>
 
   <section class="problem">
-    <div class="modes" id="modeTabs" role="group" aria-label="What kind of problem">
-      <button type="button" data-mode="add" aria-pressed="true">Add</button>
-      <button type="button" data-mode="sub" aria-pressed="false">Subtract</button>
-      <button type="button" data-mode="muldiv" aria-pressed="false">Multiply &amp; divide</button>
-      <button type="button" data-mode="abs" aria-pressed="false">Absolute value &amp; compare</button>
-      <button type="button" data-mode="chain" aria-pressed="false">Several steps</button>
+    <div class="modes" id="modeTabs" role="group" aria-label="What kind of problem" data-i18n-attr="aria-label=negative-numbers.modesAria">
+      <button type="button" data-mode="add" aria-pressed="true" data-i18n="negative-numbers.tab.add">Add</button>
+      <button type="button" data-mode="sub" aria-pressed="false" data-i18n="negative-numbers.tab.sub">Subtract</button>
+      <button type="button" data-mode="muldiv" aria-pressed="false" data-i18n="negative-numbers.tab.muldiv">Multiply &amp; divide</button>
+      <button type="button" data-mode="abs" aria-pressed="false" data-i18n="negative-numbers.tab.abs">Absolute value &amp; compare</button>
+      <button type="button" data-mode="chain" aria-pressed="false" data-i18n="negative-numbers.tab.chain">Several steps</button>
     </div>
     <div class="entry">
       <div class="fields">
@@ -1742,49 +1743,49 @@
           <input class="expr-in" id="in1" type="text" inputmode="text" autocomplete="off" spellcheck="false" value="">
         </div>
       </div>
-      <div class="keys" id="keys" aria-label="Insert a symbol">
-        <button type="button" data-k=" + " aria-label="Plus">+</button>
-        <button type="button" data-k=" − " aria-label="Minus (subtract)">&minus;</button>
-        <button type="button" data-k=" × " data-only="muldiv chain" aria-label="Times">&times;</button>
-        <button type="button" data-k=" ÷ " data-only="muldiv chain" aria-label="Divided by">&divide;</button>
-        <button type="button" class="kn" data-k="(−" aria-label="Start a negative number">(&minus;</button>
+      <div class="keys" id="keys" aria-label="Insert a symbol" data-i18n-attr="aria-label=negative-numbers.keys.aria">
+        <button type="button" data-k=" + " aria-label="Plus" data-i18n-attr="aria-label=negative-numbers.keys.plus">+</button>
+        <button type="button" data-k=" − " aria-label="Minus (subtract)" data-i18n-attr="aria-label=negative-numbers.keys.minus">&minus;</button>
+        <button type="button" data-k=" × " data-only="muldiv chain" aria-label="Times" data-i18n-attr="aria-label=negative-numbers.keys.times">&times;</button>
+        <button type="button" data-k=" ÷ " data-only="muldiv chain" aria-label="Divided by" data-i18n-attr="aria-label=negative-numbers.keys.div">&divide;</button>
+        <button type="button" class="kn" data-k="(−" aria-label="Start a negative number" data-i18n-attr="aria-label=negative-numbers.keys.neg">(&minus;</button>
         <button type="button" data-k=")">)</button>
-        <button type="button" data-k="|" data-only="abs chain" aria-label="Absolute value bar">|</button>
-        <button type="button" data-k=", " data-only="abs" aria-label="Comma">,</button>
+        <button type="button" data-k="|" data-only="abs chain" aria-label="Absolute value bar" data-i18n-attr="aria-label=negative-numbers.keys.abs">|</button>
+        <button type="button" data-k=", " data-only="abs" aria-label="Comma" data-i18n-attr="aria-label=negative-numbers.keys.comma">,</button>
       </div>
     </div>
     <p class="hint" id="hint"></p>
 
     <details class="maker" id="maker">
-      <summary>Make a problem for me <span>&mdash; pick what goes in it</span></summary>
+      <summary data-i18n="common.maker">Make a problem for me <span>&mdash; pick what goes in it</span></summary>
       <div class="maker-body" id="makerBody"></div>
     </details>
 
     <div class="examples">
-      <span class="lbl">Try</span>
+      <span class="lbl" data-i18n="common.try">Try</span>
       <span id="chips"></span>
       <span class="practice">
-        <div class="modes" role="group" aria-label="Practice mode">
-          <button type="button" id="allBtn" aria-pressed="true">Show all work</button>
-          <button type="button" id="stepBtn" aria-pressed="false">One step at a time</button>
-          <button type="button" id="checkBtn" aria-pressed="false">Check my answer</button>
+        <div class="modes" role="group" aria-label="Practice mode" data-i18n-attr="aria-label=common.practiceMode">
+          <button type="button" id="allBtn" aria-pressed="true" data-i18n="common.showAll">Show all work</button>
+          <button type="button" id="stepBtn" aria-pressed="false" data-i18n="common.oneStep">One step at a time</button>
+          <button type="button" id="checkBtn" aria-pressed="false" data-i18n="common.checkMine">Check my answer</button>
         </div>
       </span>
     </div>
   </section>
 
-  <section class="ckbox" id="checkBox" hidden aria-label="Check my answer">
-    <div class="ck-head"><span class="k">Your answer</span><span class="ck-ask" id="ckAsk"></span></div>
+  <section class="ckbox" id="checkBox" hidden aria-label="Check my answer" data-i18n-attr="aria-label=common.checkMine">
+    <div class="ck-head"><span class="k" data-i18n="common.yourAnswer">Your answer</span><span class="ck-ask" id="ckAsk"></span></div>
     <div class="ck-row">
       <span class="ck-q" id="ckQ"></span>
       <input class="expr-in ck-in" id="ckIn" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-             aria-label="Your answer" aria-describedby="ckAsk">
-      <button type="button" class="go" id="ckBtn">Check</button>
+             aria-label="Your answer" aria-describedby="ckAsk" data-i18n-attr="aria-label=common.yourAnswer">
+      <button type="button" class="go" id="ckBtn" data-i18n="common.check">Check</button>
     </div>
     <p class="ck-msg" id="ckMsg" aria-live="polite"></p>
     <div class="ck-more" id="ckMore" hidden>
-      <button type="button" class="plain-btn" id="hintBtn">Show a hint</button>
-      <button type="button" class="plain-btn" id="showBtn">Show me the work</button>
+      <button type="button" class="plain-btn" id="hintBtn" data-i18n="common.hint">Show a hint</button>
+      <button type="button" class="plain-btn" id="showBtn" data-i18n="common.showWork">Show me the work</button>
     </div>
   </section>
 
@@ -1793,26 +1794,26 @@
   <div class="board" id="board">
     <section class="panel">
       <div class="panel-head">
-        <h2>The work</h2>
+        <h2 data-i18n="common.theWork">The work</h2>
         <div class="stepper" id="stepper" hidden>
-          <button type="button" id="prevBtn" aria-label="Previous step">&larr;</button>
+          <button type="button" id="prevBtn" aria-label="Previous step" data-i18n-attr="aria-label=common.prevStep">&larr;</button>
           <span class="count" id="stepCount"></span>
-          <button type="button" id="nextBtn" aria-label="Next step">&rarr;</button>
+          <button type="button" id="nextBtn" aria-label="Next step" data-i18n-attr="aria-label=common.nextStep">&rarr;</button>
         </div>
       </div>
       <div id="workHost"></div>
       <div class="legend" id="legend">
-        <div><b class="ng">(&minus;3)</b> a negative number</div>
-        <div><b class="op-s" style="padding:0">&minus;</b> minus: subtract</div>
-        <div><i class="cdot cp">+</i> counter worth +1</div>
-        <div><i class="cdot cn">&minus;</i> counter worth <span class="ng">&minus;1</span></div>
-        <div><span class="arw" style="color:var(--pos)">&rarr;</span> jump right</div>
-        <div><span class="arw" style="color:var(--neg)">&larr;</span> jump left</div>
+        <div data-i18n="negative-numbers.legend.neg"><b class="ng">(&minus;3)</b> a negative number</div>
+        <div data-i18n="negative-numbers.legend.minus"><b class="op-s" style="padding:0">&minus;</b> minus: subtract</div>
+        <div data-i18n="negative-numbers.legend.pos"><i class="cdot cp">+</i> counter worth +1</div>
+        <div data-i18n="negative-numbers.legend.negc"><i class="cdot cn">&minus;</i> counter worth <span class="ng">&minus;1</span></div>
+        <div data-i18n="negative-numbers.legend.right"><span class="arw" style="color:var(--pos)">&rarr;</span> jump right</div>
+        <div data-i18n="negative-numbers.legend.left"><span class="arw" style="color:var(--neg)">&larr;</span> jump left</div>
       </div>
     </section>
 
     <section class="panel">
-      <div class="panel-head"><h2>Say it out loud</h2></div>
+      <div class="panel-head"><h2 data-i18n="common.sayIt">Say it out loud</h2></div>
       <ol class="log" id="log"></ol>
       <div class="closer" id="closer"></div>
     </section>
@@ -1820,10 +1821,10 @@
 
   <div class="footnote">
     <span class="btns">
-      <button class="print" type="button" id="printBtn">Print this work</button>
-      <button class="print" type="button" id="copyBtn">Copy link</button>
+      <button class="print" type="button" id="printBtn" data-i18n="common.print">Print this work</button>
+      <button class="print" type="button" id="copyBtn" data-i18n="common.copyLink">Copy link</button>
     </span>
-    <span>Every sign gets a reason. Need the arithmetic of the sizes? Work it on
+    <span data-i18n="negative-numbers.footnote">Every sign gets a reason. Need the arithmetic of the sizes? Work it on
       <a href="addition.html">+</a>, <a href="subtraction.html">&minus;</a>,
       <a href="multiplication.html">&times;</a> or <a href="division.html">&divide;</a>. Long problems that mix
       &times; &divide; with + &minus; go on <a href="order-of-operations.html">the Order Stack</a>.</span>
@@ -1855,6 +1856,9 @@
        Worksheet API: postMessage {type:"helper:options", id} and {type:"helper:make", id, count, options}.
        ====================================================================== */
     var $ = function(id) { return document.getElementById(id); };
+    // the page's words in the language in use (assets/i18n/en/negative-numbers.js and its translations)
+    if (window.HelperI18n) HelperI18n.apply();
+    var tr = function(k, v) { return window.HelperI18n ? HelperI18n.t(k, v) : k; };
     var MODES = ["add", "sub", "muldiv", "abs", "chain"];
     var EX = {
       add: ["−5 + 3", "−5 + (−3)", "4 + (−9)", "−6 + 6", "7 + 5", "−12 + 20", "0 + (−4)", "−45 + 78"],
@@ -1900,7 +1904,8 @@
 
     function op(o) { return '<span class="op-s">' + esc(o) + "</span>"; }
 
-    function plural(n, w) { return mag(n) + " " + w + (Math.abs(n) === 1 ? "" : "s"); }
+    // "3 negatives": a plural from the locale file, { n: the number as written, c: how many }
+    function plural(n, k) { return tr(k, { n: mag(n), c: Math.abs(n) }); }
 
     function gcd(a, b) {
       a = Math.abs(a);
@@ -2215,6 +2220,35 @@
       return s.replace(/^[\s,;]+|[\s,;]+$/g, "");
     }
 
+    // a typed problem in the language in use, turned into what the reader below knows: HelperI18n.normalize, with this
+    // page's own words for the language around it (negative-numbers.typedWords in the language's file: "before" runs
+    // before normalize, "after" on what it gives back). English, and text with nothing to change, come back as typed.
+    function fold(s) { return s.normalize ? s.normalize("NFD").replace(/[\u0300-\u036f]/g, "") : s; }
+
+    function readTyped(src) {
+      var H = window.HelperI18n,
+        s = String(src);
+      if (!H) return s;
+      var W = H.raw("negative-numbers.typedWords");
+      if (!W) return H.normalize(s);
+      var f = fold(s.toLowerCase()).replace(/[¿¡]/g, " ");
+      (W.before || []).forEach(function(r) { f = f.replace(new RegExp(r[0], "g"), r[1]); });
+      var n = fold(String(H.normalize(f)).toLowerCase());
+      (W.after || []).forEach(function(r) { n = n.replace(new RegExp(r[0], "g"), r[1]); });
+      n = n.replace(/\s+/g, " ").trim();
+      return n === fold(s.toLowerCase()).replace(/\s+/g, " ").trim() ? s : n;
+    }
+    // a typed problem: read in the language in use; if that can't be read, the words as they were typed (someone on the
+    // Spanish page may type it in English)
+    function parseTyped(src) {
+      var n = readTyped(src);
+      if (n === String(src)) return parseQ(src);
+      try { return parseQ(n); } catch (e) {
+        if (!(e && e.user)) throw e;
+        try { return parseQ(src); } catch (e2) { throw e; }
+      }
+    }
+
     function lex(s) {
       var out = [],
         i = 0,
@@ -2224,11 +2258,10 @@
           rest = s.slice(i);
         if (/\s/.test(c)) { i++; continue; }
         if ((m = /^\d*\.\d+|^\d+\.\d*/.exec(rest)) && /\d/.test(m[0]))
-          throw new UserErr("This page works with <strong>integers</strong> — whole numbers and their negatives, like <b>−4</b>, <b>0</b> and <b>7</b>. " +
-            "<b>" + esc(m[0]) + "</b> has a decimal point. (Decimals and fractions work on <a href=\"order-of-operations.html\">the Order Stack</a>.)");
+          throw new UserErr(tr("negative-numbers.err.decimal", { s: esc(m[0]) }));
         if ((m = /^\d+/.exec(rest))) {
           if (m[0].replace(/^0+(?=\d)/, "").length > 6)
-            throw new UserErr("<b>" + esc(m[0]) + "</b> is a big one! Keep each number to 6 digits or fewer so the pictures still make sense.");
+            throw new UserErr(tr("negative-numbers.err.big", { s: esc(m[0]) }));
           out.push({ k: "num", v: parseInt(m[0], 10), s: m[0] });
           i += m[0].length;
           continue;
@@ -2249,10 +2282,10 @@
           continue;
         }
         if (c === "^" || c === "²" || c === "³")
-          throw new UserErr("Powers aren’t on this page. Try <a href=\"order-of-operations.html\">the Order Stack</a> for those.");
+          throw new UserErr(tr("negative-numbers.err.powers"));
         if ((m = /^[a-z]+/.exec(rest)))
-          throw new UserErr("I don’t know the word <b>" + esc(m[0]) + "</b> here. Use whole numbers, + − × ÷, parentheses, bars like <b>|−7|</b> for absolute value, and commas between numbers to put them in order.");
-        throw new UserErr("I don’t know the symbol <b>" + esc(c) + "</b>. Use whole numbers, + − × ÷, parentheses, bars like <b>|−7|</b> for absolute value, and commas between numbers to put them in order.");
+          throw new UserErr(tr("negative-numbers.err.word", { w: esc(m[0]) }));
+        throw new UserErr(tr("negative-numbers.err.symbol", { c: esc(c) }));
       }
       return out;
     }
@@ -2271,8 +2304,8 @@
         }
         var t = tk[p],
           node;
-        if (!t) throw new UserErr(p > 0 ? "The problem ends with <b>" + esc(tokT(tk[p - 1])) + "</b> — what comes after it?" :
-          "Type a problem, like <b>−5 + 3</b>.");
+        if (!t) throw new UserErr(p > 0 ? tr("negative-numbers.err.endsWith", { t: esc(tokT(tk[p - 1])) }) :
+          tr("negative-numbers.err.typeOne"));
         if (t.k === "num") {
           p++;
           node = { t: "num", v: t.v };
@@ -2281,10 +2314,10 @@
           node = { t: "abs", a: atom() };
         } else if (t.k === "(") {
           p++;
-          if (tk[p] && tk[p].k === ")") throw new UserErr("There’s an empty pair of parentheses <b>( )</b> — put a number inside.");
+          if (tk[p] && tk[p].k === ")") throw new UserErr(tr("negative-numbers.err.emptyPar"));
           var inner = seq();
-          if (!tk[p] || tk[p].k !== ")") throw new UserErr(tk[p] ? "Something’s missing before <b>" + esc(tokT(tk[p])) + "</b>." :
-            "A <b>(</b> is never closed — add a <b>)</b>.");
+          if (!tk[p] || tk[p].k !== ")") throw new UserErr(tk[p] ? tr("negative-numbers.err.missingBefore", { t: esc(tokT(tk[p])) }) :
+            tr("negative-numbers.err.unclosed"));
           p++;
           if (inner.ops.length) {
             complex = true;
@@ -2293,16 +2326,14 @@
         } else if (t.k === "|") {
           p++;
           var ins = seq();
-          if (!tk[p] || tk[p].k !== "|") throw new UserErr("An absolute value bar <b>|</b> is never closed — add another <b>|</b>.");
+          if (!tk[p] || tk[p].k !== "|") throw new UserErr(tr("negative-numbers.err.barUnclosed"));
           p++;
-          if (ins.ops.length) throw new UserErr("There’s a calculation inside the bars. This page takes the absolute value of one number at a time — " +
-            "work out the inside first (the Several steps tab can do it), then put that one number between the bars, like <b>|−7|</b>.");
+          if (ins.ops.length) throw new UserErr(tr("negative-numbers.err.barCalc"));
           node = { t: "abs", a: ins.atoms[0] };
-        } else if (t.k === ")") throw new UserErr(p > 0 && tk[p - 1].k !== "op" && tk[p - 1].k !== "(" ? "There’s a <b>)</b> with no <b>(</b> to match it." : "Something’s missing before <b>)</b>.");
-        else if (t.k === "op") throw new UserErr("<b>" + esc(tokT(t)) + "</b> right after " + (p > 0 ? "<b>" + esc(tokT(tk[p - 1])) + "</b>" : "the start") +
-          " — there’s a number missing.");
-        else if (t.k === ",") throw new UserErr("There’s a comma with no number in front of it.");
-        else throw new UserErr("Something’s missing near <b>" + esc(tokT(t)) + "</b>.");
+        } else if (t.k === ")") throw new UserErr(p > 0 && tk[p - 1].k !== "op" && tk[p - 1].k !== "(" ? tr("negative-numbers.err.noOpen") : tr("negative-numbers.err.missingBefore", { t: ")" }));
+        else if (t.k === "op") throw new UserErr(p > 0 ? tr("negative-numbers.err.opAfter", { o: esc(tokT(t)), p: esc(tokT(tk[p - 1])) }) : tr("negative-numbers.err.opAtStart", { o: esc(tokT(t)) }));
+        else if (t.k === ",") throw new UserErr(tr("negative-numbers.err.commaFirst"));
+        else throw new UserErr(tr("negative-numbers.err.missingNear", { t: esc(tokT(t)) }));
         for (var i = 0; i < negs; i++) node = { t: "neg", a: node };
         return node;
       }
@@ -2325,8 +2356,7 @@
             continue;
           } // 2(−3) means 2 × (−3)
           if (t.k === "num" || t.k === "abs")
-            throw new UserErr("Two numbers in a row — <b>" + esc(tokT(tk[p - 1])) + " " + esc(tokT(t)) + "</b> — with nothing between them. " +
-              "Put an operation between them, or commas to put numbers in order: <b>5, 3</b>.");
+            throw new UserErr(tr("negative-numbers.err.twoNums", { a: esc(tokT(tk[p - 1])), b: esc(tokT(t)) }));
           break;
         }
         return { atoms: atoms, ops: ops };
@@ -2334,9 +2364,9 @@
       var top = seq();
       if (p < tk.length) {
         var t = tk[p];
-        if (t.k === ")") throw new UserErr("There’s a <b>)</b> with no <b>(</b> to match it.");
-        if (t.k === "|") throw new UserErr("That <b>|</b> bar doesn’t have a partner. Absolute value needs one on each side: <b>|−7|</b>.");
-        throw new UserErr("Something’s off near <b>" + esc(tokT(t)) + "</b>.");
+        if (t.k === ")") throw new UserErr(tr("negative-numbers.err.noOpen"));
+        if (t.k === "|") throw new UserErr(tr("negative-numbers.err.barAlone"));
+        throw new UserErr(tr("negative-numbers.err.offNear", { t: esc(tokT(t)) }));
       }
       top.complex = complex;
       return top;
@@ -2417,9 +2447,9 @@
 
     function parseQ(src) {
       var s = normalize(src);
-      if (!s) throw new UserErr("Type a problem, like <b>−5 + 3</b>, <b>−7 − (−2)</b> or <b>|−7|</b>.");
+      if (!s) throw new UserErr(tr("negative-numbers.err.typeAny"));
       var tk = lex(s);
-      if (!tk.length) throw new UserErr("Type a problem, like <b>−5 + 3</b>.");
+      if (!tk.length) throw new UserErr(tr("negative-numbers.err.typeOne"));
       var depth = 0,
         parts = [
           []
@@ -2436,18 +2466,18 @@
           if (!pt.length) return;
           var r = parseTokens(pt);
           if (r.ops.length || r.complex || !nodePlain(r.atoms[0]))
-            throw new UserErr("To put numbers in order, give a list of plain integers with commas between them, like <b>−3, 5, −8, 0</b>.");
+            throw new UserErr(tr("negative-numbers.err.listPlain"));
           vals.push(nodeVal(r.atoms[0]));
         });
         if (vals.length < 2) return single(vals[0]);
-        if (vals.length > 8) throw new UserErr("That’s " + vals.length + " numbers. Keep it to 8 or fewer so they fit on one number line.");
+        if (vals.length > 8) throw new UserErr(tr("negative-numbers.err.listLong", { n: vals.length }));
         return { kind: "list", vals: vals };
       }
       var e = parseTokens(tk);
       var hasAS = e.ops.some(function(o) { return o === "+" || o === "−"; }),
         hasMD = e.ops.some(function(o) { return o === "×" || o === "÷"; });
       if (e.complex || (hasAS && hasMD)) return { kind: "pemdas", src: String(src), why: e.complex ? "par" : "mix" };
-      if (e.ops.length > 8) throw new UserErr("That’s " + e.ops.length + " operations — keep a chain to 8 or fewer so the work fits.");
+      if (e.ops.length > 8) throw new UserErr(tr("negative-numbers.err.chainLong", { n: e.ops.length }));
       return { kind: "expr", atoms: e.atoms, ops: e.ops, vals: e.atoms.map(nodeVal) };
 
       function single(v) { return { kind: "expr", atoms: [v < 0 ? { t: "neg", a: { t: "num", v: -v } } : { t: "num", v: v }], ops: [], vals: [v] }; }
@@ -2469,17 +2499,14 @@
     }
 
     function pemdasMsg(P) {
-      return (P.why === "mix" ? "This one mixes × or ÷ with + or −" : "This one has parentheses with working inside them") +
-        ", so the <strong>order of operations</strong> decides what to do first. That’s a job for the Order Stack: " +
-        '<a href="order-of-operations.html?q=' + esc(encodeURIComponent(P.src)) + '">work it out there &rarr;</a>';
+      return tr(P.why === "mix" ? "negative-numbers.pemdas.mix" : "negative-numbers.pemdas.par", {
+        link: '<a href="order-of-operations.html?q=' + esc(encodeURIComponent(P.src)) + '">' + tr("negative-numbers.pemdas.go") + "</a>"
+      });
     }
 
     /* ===================== solving (pure: no drawing) ===================== */
     function divZeroMsg(a) {
-      return "<b>" + nH(a) + " ÷ 0</b> can’t be done. Dividing asks “what number times 0 makes " + nT(a) + "?” " +
-        (a !== 0 ? "But anything times 0 is 0, never " + nT(a) + ", so there’s no answer at all." :
-          "Every number times 0 is 0, so every number would work — there’s no one answer.") +
-        " That’s why dividing by zero is called <strong>undefined</strong>. Change the 0 to another number.";
+      return tr(a !== 0 ? "negative-numbers.div0.none" : "negative-numbers.div0.all", { a: nH(a), t: nT(a) });
     }
 
     function solve(P, mode) {
@@ -2513,14 +2540,16 @@
         else if (o === "−") res = cur - r2;
         else if (o === "×") res = cur * r2;
         else {
-          if (r2 === 0) throw new UserErr("Step " + (i + 1) + " asks for " + divZeroMsg(cur).replace(/^<b>/, "<b>"));
-          if (cur % r2 !== 0) throw new UserErr("Step " + (i + 1) + " is <b>" + nH(cur) + " ÷ " + nH(r2, true) + "</b>, which doesn’t come out even, " +
-            "so the answer isn’t an integer. Several-step problems here stay with integers — work this one on the Order Stack, which handles fractions: " +
-            '<a href="order-of-operations.html?q=' + esc(encodeURIComponent(P.src || exprT(P))) + '">open it there &rarr;</a>');
+          if (r2 === 0) throw new UserErr(tr("negative-numbers.chain.div0", { n: i + 1, msg: divZeroMsg(cur).replace(/^<b>/, "<b>") }));
+          if (cur % r2 !== 0) throw new UserErr(tr("negative-numbers.chain.uneven", {
+            n: i + 1,
+            e: nH(cur) + " ÷ " + nH(r2, true),
+            link: '<a href="order-of-operations.html?q=' + esc(encodeURIComponent(P.src || exprT(P))) + '">' + tr("negative-numbers.chain.open") + "</a>"
+          }));
           res = cur / r2;
         }
         res = res || 0;
-        if (Math.abs(res) > 1e12) throw new UserErr("The numbers get too big to follow by step " + (i + 1) + ". Try smaller numbers.");
+        if (Math.abs(res) > 1e12) throw new UserErr(tr("negative-numbers.chain.big", { n: i + 1 }));
         recs.push({ l: cur, op: o, r: r2, res: res });
         cur = res;
       }
@@ -2556,8 +2585,8 @@
 
     function problemText(P, sol) {
       if (sol.kind === "compare") {
-        if (P.vals.length === 2) return "Write <, > or =:  " + nT(P.vals[0]) + " ☐ " + nT(P.vals[1]);
-        return "Order from least to greatest: " + exprT(P);
+        if (P.vals.length === 2) return tr("negative-numbers.prob.cmp2", { a: nT(P.vals[0]), b: nT(P.vals[1]) });
+        return tr("negative-numbers.prob.order", { list: exprT(P) });
       }
       if (sol.kind === "abs" && !sol.info.typedAbs) return "|" + nT(P.vals[0]) + "|";
       return exprT(P);
@@ -2731,7 +2760,7 @@
           x = X(o.v) + (c - 1) * 21;
         s += wrapStep('<g class="nl-ord"><circle cx="' + f1(x) + '" cy="' + (ordY - 4) + '" r="9.5"/><text x="' + f1(x) + '" y="' + f1(ordY) + '" text-anchor="middle">' + o.n + "</text></g>", o.step);
       });
-      return '<div class="nl-wrap"><svg class="nl-svg" viewBox="0 0 ' + W + " " + Hh + '" role="img" aria-label="' + esc(sp.label || "Number line") + '">' + s + "</svg></div>";
+      return '<div class="nl-wrap"><svg class="nl-svg" viewBox="0 0 ' + W + " " + Hh + '" role="img" aria-label="' + esc(sp.label || tr("negative-numbers.nl.label")) + '">' + s + "</svg></div>";
     }
 
     /* ===================== pictures: counters ===================== */
@@ -2769,8 +2798,8 @@
           '<line x1="' + f1(x + 8) + '" y1="' + f1(yt - 9) + '" x2="' + f1(x - 8) + '" y2="' + f1(yb + 9) + '"/>';
       }
       if (ov) s += wrapStep('<g class="zp">' + ov + "</g>", pairStep);
-      return '<svg class="ctr-svg" width="' + f1(Wd * 1.3) + '" height="' + f1(Hd * 1.3) + '" viewBox="0 0 ' + Wd + " " + Hd + '" role="img" aria-label="Counters: ' +
-        esc(nT(a)) + " on top, " + esc(nT(b)) + ' underneath' + (pairs ? ", with " + pairs + " zero pairs crossed out" : "") + '">' + s + "</svg>";
+      return '<svg class="ctr-svg" width="' + f1(Wd * 1.3) + '" height="' + f1(Hd * 1.3) + '" viewBox="0 0 ' + Wd + " " + Hd + '" role="img" aria-label="' +
+        esc(tr(pairs ? "negative-numbers.ctr.ariaPairs" : "negative-numbers.ctr.aria", { a: nT(a), b: nT(b), n: pairs })) + '">' + s + "</svg>";
     }
     // a − b by taking away: positives on top, negatives underneath; zero pairs added when there aren't enough
     function takeAway(a, b) {
@@ -2817,8 +2846,8 @@
         }
       var Wd = lw + Math.min(cols, per) * cell + 10,
         Hd = top0 + (bands - 1) * bandH + rowH * 2 + 10;
-      s += '<text class="rowlbl" x="' + (lw - 10) + '" y="' + (top0 + rowH / 2 + 4) + '" text-anchor="end">positives</text>';
-      s += '<text class="rowlbl ngt" x="' + (lw - 10) + '" y="' + (top0 + rowH * 1.5 + 4) + '" text-anchor="end">negatives</text>';
+      s += '<text class="rowlbl" x="' + (lw - 10) + '" y="' + (top0 + rowH / 2 + 4) + '" text-anchor="end">' + esc(tr("negative-numbers.svg.positives")) + "</text>";
+      s += '<text class="rowlbl ngt" x="' + (lw - 10) + '" y="' + (top0 + rowH * 1.5 + 4) + '" text-anchor="end">' + esc(tr("negative-numbers.svg.negatives")) + "</text>";
       for (var bd = 0; bd < bands && k; bd++) { // the added zero pairs, boxed
         var c0 = Math.max(A, bd * per),
           c1 = Math.min(A + k, (bd + 1) * per) - 1;
@@ -2827,7 +2856,7 @@
           x1 = lw + (c1 % per) * cell + cell - 1,
           yt0 = top0 + bd * bandH;
         s += '<rect class="addbox" x="' + f1(x0) + '" y="' + f1(yt0 - 3) + '" width="' + f1(x1 - x0) + '" height="' + (rowH * 2 + 6) + '" rx="9"/>';
-        if (c0 === A) s += '<text class="addlbl" x="' + f1(x0 + 2) + '" y="' + f1(yt0 - 9) + '">+ ' + k + " zero pair" + (k === 1 ? "" : "s") + "</text>";
+        if (c0 === A) s += '<text class="addlbl" x="' + f1(x0 + 2) + '" y="' + f1(yt0 - 9) + '">' + esc(tr("negative-numbers.svg.addPairs", { k: k })) + "</text>";
       }
       for (c = 0; c < cols; c++) {
         var b2 = Math.floor(c / per),
@@ -2844,8 +2873,8 @@
             '<line x1="' + f1(x + 8) + '" y1="' + f1(yy - 8) + '" x2="' + f1(x - 8) + '" y2="' + f1(yy + 8) + '"/></g>';
         }
       }
-      return '<svg class="ctr-svg" width="' + f1(Wd * 1.3) + '" height="' + f1(Hd * 1.3) + '" viewBox="0 0 ' + Wd + " " + Hd + '" role="img" aria-label="Counters for ' +
-        esc(nT(a)) + " take away " + esc(nT(b)) + '">' + s + "</svg>";
+      return '<svg class="ctr-svg" width="' + f1(Wd * 1.3) + '" height="' + f1(Hd * 1.3) + '" viewBox="0 0 ' + Wd + " " + Hd + '" role="img" aria-label="' +
+        esc(tr("negative-numbers.svg.takeAria", { a: nT(a), b: nT(b) })) + '">' + s + "</svg>";
     }
 
     /* ===================== pictures: signs ===================== */
@@ -2860,10 +2889,10 @@
         ],
         ha = a > 0 ? 1 : -1,
         hb = b > 0 ? 1 : -1;
-      return '<div class="signs" role="table" aria-label="Sign rules">' + cells.map(function(c) {
+      return '<div class="signs" role="table" aria-label="' + esc(tr("negative-numbers.sign.aria")) + '">' + cells.map(function(c) {
         var on = c[0] === ha && c[1] === hb;
         return '<div class="sgc' + (on ? " hit" : "") + '" role="cell">' + cdot(c[0] > 0) + " " + o + " " + cdot(c[1] > 0) + " = " + cdot(c[0] * c[1] > 0) +
-          "<small>" + (c[0] === c[1] ? "same signs → positive" : "different signs → negative") + "</small></div>";
+          "<small>" + tr(c[0] === c[1] ? "negative-numbers.sign.same" : "negative-numbers.sign.diff") + "</small></div>";
       }).join("") + "</div>";
     }
 
@@ -2885,7 +2914,7 @@
           (prev === null ? "" : (p - prev > 0 ? "+" : "−") + mag(p - prev)) + "</td></tr>";
         prev = p;
       });
-      return '<table class="pat" aria-label="A pattern of products">' + rows + "</table>";
+      return '<table class="pat" aria-label="' + esc(tr("negative-numbers.pat.aria")) + '">' + rows + "</table>";
     }
 
     /* ===================== the work: rows, figures, words ===================== */
@@ -2914,13 +2943,12 @@
 
     function finish(ctx) {
       $("workHost").innerHTML = rowsHTML(ctx) + figsHTML(ctx);
-      writeLog(ctx.steps.map(function(st, i) { return { n: "Step&nbsp;" + (i + 1), step: i, lines: st.lines, asides: st.asides }; }));
+      writeLog(ctx.steps.map(function(st, i) { return { n: tr("negative-numbers.stepN", { n: i + 1 }), step: i, lines: st.lines, asides: st.asides }; }));
       return ctx.steps.length;
     }
 
     function ok() { return ' <span class="ok">✓</span>'; }
-    var KCC = "A shortcut you may hear: <strong>keep, change, change</strong> — keep the first number, change − to +, and change the sign " +
-      "of the second number. It’s just a quick way of saying “add the opposite”, which is why it works.";
+    var KCC = tr("negative-numbers.kcc");
 
     /* ---------- adding: the number line, counters and the rule ---------- */
     function addWork(ctx, a, b, o) {
@@ -2929,30 +2957,22 @@
         B = Math.abs(b),
         r = { c: c, sPair: -1 };
       r.sStart = addStep(ctx, [
-        ["p", "Start", (o.sub ? "Now it’s an addition. " : "") + "Start at <b>" + nH(a) + "</b> on the number line" +
-          (a === 0 ? " — that’s 0 itself." : a < 0 ? ", " + mag(a) + " to the left of 0." : ", " + mag(a) + " to the right of 0.")
-        ]
+        ["p", tr("negative-numbers.tag.start"), (o.sub ? tr("negative-numbers.add.nowAdd") : "") + tr(a === 0 ? "negative-numbers.add.start0" : a < 0 ? "negative-numbers.add.startNeg" : "negative-numbers.add.startPos", { a: nH(a), m: mag(a) })]
       ]);
       var mv, asides = [];
-      if (b === 0) mv = ["p", "Move", "Adding <b>0</b> doesn’t move you at all: you stay on <b>" + nH(a) + "</b>."];
-      else if (b > 0) mv = ["pos", "Move", "<b>" + nH(b) + "</b> is positive, and adding a positive moves you <strong>right</strong>. Jump " +
-        mag(b) + " to the right and you land on <b>" + nH(c) + "</b>."
-      ];
-      else mv = ["neg", "Move", "<b>" + nH(b) + "</b> is negative, and adding a negative moves you <strong>left</strong>. Jump " +
-        mag(b) + " to the left and you land on <b>" + nH(c) + "</b>."
-      ];
+      if (b === 0) mv = ["p", tr("negative-numbers.tag.move"), tr("negative-numbers.add.move0", { a: nH(a) })];
+      else if (b > 0) mv = ["pos", tr("negative-numbers.tag.move"), tr("negative-numbers.add.movePos", { b: nH(b), m: mag(b), c: nH(c) })];
+      else mv = ["neg", tr("negative-numbers.tag.move"), tr("negative-numbers.add.moveNeg", { b: nH(b), m: mag(b), c: nH(c) })];
       if (a !== 0 && b !== 0 && (a < 0) !== (b < 0)) {
-        if (c === 0) asides.push("You land exactly on <b>0</b>: the jump is the same size as the distance back to 0.");
-        else if ((a < 0) !== (c < 0)) asides.push("You cross 0 on the way. It takes " + mag(a) + " to get from <b>" + nH(a) + "</b> back to 0, and that leaves " +
-          mag(c) + " more on the other side.");
+        if (c === 0) asides.push(tr("negative-numbers.add.land0"));
+        else if ((a < 0) !== (c < 0)) asides.push(tr("negative-numbers.add.cross", { m: mag(a), a: nH(a), r: mag(c) }));
       }
       r.sMove = addStep(ctx, [mv], asides);
       if (a === 0 || b === 0) {
-        ctx.steps[r.sMove].lines.push(["a", "Rule", a === 0 && b === 0 ? "0 + 0 is just <b>0</b>." :
-          a === 0 ? "Starting from 0, you end up wherever the jump takes you: <b>0 + " + nH(b, true) + " = " + nH(b) + "</b>." :
-          "Adding 0 changes nothing: <b>" + nH(a) + " + 0 = " + nH(a) + "</b>."
+        ctx.steps[r.sMove].lines.push(["a", tr("negative-numbers.tag.rule"), a === 0 && b === 0 ? tr("negative-numbers.add.rule00") :
+          a === 0 ? tr("negative-numbers.add.rule0a", { bp: nH(b, true), b: nH(b) }) : tr("negative-numbers.add.rule0b", { a: nH(a) })
         ]);
-        addRow(ctx, nH(c), r.sMove, ["a", "adding 0"], { result: true });
+        addRow(ctx, nH(c), r.sMove, ["a", tr("negative-numbers.bd.adding0")], { result: true });
         r.last = r.sMove;
         return r;
       }
@@ -2960,17 +2980,15 @@
         var sR;
         if (a > 0) {
           sR = addStep(ctx, [
-            ["a", "Same signs", "Both numbers are positive, so this is ordinary adding: <b>" + mag(a) + " + " + mag(b) + " = " + nH(c) + "</b>."]
+            ["a", tr("negative-numbers.tag.same"), tr("negative-numbers.add.samePos", { a: mag(a), b: mag(b), c: nH(c) })]
           ]);
-          addRow(ctx, nH(c), sR, ["a", "same signs: add"], { result: true });
+          addRow(ctx, nH(c), sR, ["a", tr("negative-numbers.bd.sameAdd")], { result: true });
         } else {
           sR = addStep(ctx, [
-              ["a", "Same signs", "Both numbers are negative — the <strong>same sign</strong> — so add their sizes, <b>" + mag(a) + " + " + mag(b) + " = " + mag(c) +
-                "</b>, and keep the sign they share: <b>" + nH(c) + "</b>."
-              ]
+              ["a", tr("negative-numbers.tag.same"), tr("negative-numbers.add.sameNeg", { a: mag(a), b: mag(b), s: mag(c), c: nH(c) })]
             ],
-            o.counters ? ["With counters: " + plural(a, "negative") + " and " + mag(b) + " more make " + plural(c, "negative") + ". Nothing cancels, because there are no positives to pair them with."] : []);
-          addRow(ctx, '<span class="ng">−(</span>' + mag(a) + op("+") + mag(b) + '<span class="ng">)</span>', sR, ["a", "same signs: add the sizes"]);
+            o.counters ? [tr("negative-numbers.add.sameNegCtr", { pa: plural(a, "negative-numbers.pl.negative"), b: mag(b), pc: plural(c, "negative-numbers.pl.negative") })] : []);
+          addRow(ctx, '<span class="ng">−(</span>' + mag(a) + op("+") + mag(b) + '<span class="ng">)</span>', sR, ["a", tr("negative-numbers.bd.sameAddSizes")]);
           addRow(ctx, nH(c), sR, null, { result: true });
         }
         r.last = sR;
@@ -2981,28 +2999,20 @@
         sm = Math.min(A, B);
       if (c === 0) {
         r.sPair = addStep(ctx, [
-          ["a", "Zero pairs", "The signs are different and the sizes are the same (" + mag(a) + " and " + mag(b) + "). " +
-            (o.counters ? "Every positive counter pairs up with a negative one to make 0, " : "The positive part and the negative part cancel completely, ") +
-            "so nothing is left: <b>0</b>."
-          ]
-        ], ["A number plus its <strong>opposite</strong> is always <b>0</b>."]);
-        addRow(ctx, nH(0), r.sPair, ["a", "opposites cancel"], { result: true });
+          ["a", tr("negative-numbers.tag.zeroPairs"), tr(o.counters ? "negative-numbers.add.pair0Ctr" : "negative-numbers.add.pair0", { a: mag(a), b: mag(b) })]
+        ], [tr("negative-numbers.add.opp0")]);
+        addRow(ctx, nH(0), r.sPair, ["a", tr("negative-numbers.bd.opposites")], { result: true });
         r.last = r.sPair;
         return r;
       }
       r.sPair = addStep(ctx, [
-        ["a", "Zero pairs", "The signs are <strong>different</strong>, so part of it cancels. " + (o.counters ?
-            "A positive and a negative counter make a <strong>zero pair</strong>: <b>1 + " + nH(-1, true) + " = 0</b>. There are " + mag(sm) + " pair" + (sm === 1 ? "" : "s") + " — cross them out. " :
-            "The positive part and the negative part cancel " + mag(sm) + " of each other. ") +
-          "That’s the same as subtracting the sizes: <b>" + mag(bg) + " − " + mag(sm) + " = " + mag(c) + "</b>."
-        ]
+        ["a", tr("negative-numbers.tag.zeroPairs"), tr(o.counters ? "negative-numbers.add.pairCtr" : "negative-numbers.add.pair", { m1: nH(-1, true), sm: mag(sm), k: sm, bg: mag(bg), c: mag(c) })]
       ]);
       var inner = "<span>" + mag(bg) + "</span>" + op("−") + "<span>" + mag(sm) + "</span>";
-      addRow(ctx, c < 0 ? '<span class="ng">−(</span>' + inner + '<span class="ng">)</span>' : inner, r.sPair, ["a", "different signs: subtract the sizes"]);
+      addRow(ctx, c < 0 ? '<span class="ng">−(</span>' + inner + '<span class="ng">)</span>' : inner, r.sPair, ["a", tr("negative-numbers.bd.diffSub")]);
       r.last = addStep(ctx, [
-        ["m", "Sign", (o.counters ? "The " + plural(c, "counter") + " left over " + (Math.abs(c) === 1 ? "is " : "are ") + (c < 0 ? "negative" : "positive") + ". " : "") +
-          "The answer takes the sign of the number with the bigger size: " + mag(bg) + " is bigger than " + mag(sm) + ", and it belongs to <b>" + nH(big) +
-          "</b>, which is " + (big < 0 ? "negative" : "positive") + ". So the answer is <b>" + nH(c) + "</b>."
+        ["m", tr("negative-numbers.tag.sign"), (o.counters ? tr(c < 0 ? "negative-numbers.add.leftNeg" : "negative-numbers.add.leftPos", { pc: plural(c, "negative-numbers.pl.counter"), k: Math.abs(c) }) : "") +
+          tr(big < 0 ? "negative-numbers.add.signNeg" : "negative-numbers.add.signPos", { bg: mag(bg), sm: mag(sm), big: nH(big), c: nH(c) })
         ]
       ]);
       addRow(ctx, nH(c), r.last, null, { result: true });
@@ -3014,11 +3024,9 @@
         jl = (b > 0 ? "+" : "−") + mag(b);
       ctx.figs.push({
         step: -1,
-        cap: '<b class="lead">On the number line.</b> Start at <b>' + nH(a) + "</b> (the dot), then jump " +
-          (sub ? "the opposite of the number being subtracted: " : "") + (b === 0 ? "nowhere — adding 0 stays put." :
-            (b > 0 ? "<b>" + mag(b) + "</b> to the <strong>right</strong> for a positive" : "<b>" + mag(b) + "</b> to the <strong>left</strong> for a negative") + ". The ringed dot is the answer."),
+        cap: tr((sub ? "negative-numbers.fig.nlSub" : "negative-numbers.fig.nl") + (b === 0 ? "0" : b > 0 ? "Pos" : "Neg"), { a: nH(a), m: mag(b) }),
         html: nlSVG({
-          label: "Number line from " + nT(a) + ", a jump of " + jl + ", landing on " + nT(c),
+          label: tr("negative-numbers.fig.nlAria", { a: nT(a), j: jl, c: nT(c) }),
           dots: [{ v: a, kind: "start", lab: true, step: r.sStart }].concat(b ? [{ v: c, kind: "end", lab: true, step: r.sMove }] : []),
           jumps: b ? [{ from: a, to: c, label: jl, step: r.sMove, force: true }] : []
         })
@@ -3027,24 +3035,21 @@
         var pairs = a && b && (a < 0) !== (b < 0);
         ctx.figs.push({
           step: -1,
-          cap: '<b class="lead">With counters.</b> Each ' + cdot(true) + " is +1 and each " + cdot(false) + " is " + nH(-1) +
-            ". Top row: <b>" + nH(a) + "</b>. Bottom row: <b>" + nH(b) + "</b>." +
-            (pairs ? " A + and a − together make 0 — a <strong>zero pair</strong> — so the pairs cancel and only the leftovers count." : " They’re all the same kind, so nothing cancels: just count them."),
+          cap: tr("negative-numbers.fig.ctr", { cp: cdot(true), cn: cdot(false), m1: nH(-1), a: nH(a), b: nH(b) }) + tr(pairs ? "negative-numbers.fig.ctrPairs" : "negative-numbers.fig.ctrSame"),
           html: addCountersSVG(a, b, r.sPair)
         });
       } else if (a || b) {
         ctx.figs.push({
           step: -1,
-          cap: '<b class="lead">Counters skipped.</b> ' + mag(Math.max(Math.abs(a), Math.abs(b))) + " counters in a row would be too many to draw or count. " +
-            "The number line and the rule do the same job: counters are just a picture of the rule."
+          cap: tr("negative-numbers.fig.skipAdd", { n: mag(Math.max(Math.abs(a), Math.abs(b))) })
         });
       }
     }
 
     function ruleFact(a, b) {
-      if (!a || !b) return "Adding 0 changes nothing.";
-      if ((a < 0) === (b < 0)) return "Same signs: add the sizes and keep the sign.";
-      return "Different signs: subtract the sizes, and take the sign of the bigger size.";
+      if (!a || !b) return tr("negative-numbers.fact.rule0");
+      if ((a < 0) === (b < 0)) return tr("negative-numbers.fact.ruleSame");
+      return tr("negative-numbers.fact.ruleDiff");
     }
 
     function drawAdd(P, sol) {
@@ -3056,12 +3061,11 @@
       var r = addWork(ctx, a, b, { counters: Math.abs(a) <= 20 && Math.abs(b) <= 20 });
       addFigs(ctx, a, b, r, false);
       var n = finish(ctx);
-      band('<span class="k">Answer</span><span class="v">' + nH(c) + "</span>", [
-        "<b>" + n + "</b> step" + (n === 1 ? "" : "s") + ". " + ruleFact(a, b),
-        b ? "On the number line: from <b>" + nH(a) + "</b>, " + mag(b) + " to the " + (b > 0 ? "right" : "left") + "." : "Nothing to move."
+      band('<span class="k">' + tr("common.answer") + '</span><span class="v">' + nH(c) + "</span>", [
+        tr("negative-numbers.fact.steps", { n: n }) + ruleFact(a, b),
+        b ? tr(b > 0 ? "negative-numbers.fact.nlRight" : "negative-numbers.fact.nlLeft", { a: nH(a), m: mag(b) }) : tr("negative-numbers.fact.nlNone")
       ]);
-      $("closer").innerHTML = "<b>Check</b> by undoing it: take <b>" + nH(b) + "</b> back off. <b>" + nH(c) + op("−") + nH(b, true) + " = " + nH(a) + "</b>" +
-        ok() + " — back where you started.";
+      $("closer").innerHTML = tr("negative-numbers.close.add", { b: nH(b), e: nH(c) + op("−") + nH(b, true) + " = " + nH(a), ok: ok() });
       return n;
     }
 
@@ -3076,63 +3080,56 @@
       addRow(ctx, exprH(P), -1);
       if (b === 0) {
         var s = addStep(ctx, [
-          ["e", "Take away", "Taking away <b>0</b> takes away nothing, so you still have <b>" + nH(a) + "</b>."]
+          ["e", tr("negative-numbers.tag.takeAway"), tr("negative-numbers.sub.take0", { a: nH(a) })]
         ]);
-        addRow(ctx, nH(a), s, ["e", "minus 0"], { result: true });
+        addRow(ctx, nH(a), s, ["e", tr("negative-numbers.bd.minus0")], { result: true });
         ctx.figs.push({
           step: -1,
-          cap: '<b class="lead">On the number line.</b> Subtracting 0 doesn’t move you: you stay on <b>' + nH(a) + "</b>.",
-          html: nlSVG({ dots: [{ v: a, kind: "end", lab: true, step: 0 }], label: "Number line at " + nT(a) })
+          cap: tr("negative-numbers.fig.sub0", { a: nH(a) }),
+          html: nlSVG({ dots: [{ v: a, kind: "end", lab: true, step: 0 }], label: tr("negative-numbers.fig.nlAt", { a: nT(a) }) })
         });
         var n0 = finish(ctx);
-        band('<span class="k">Answer</span><span class="v">' + nH(a) + "</span>", ["<b>1</b> step. Taking away 0 changes nothing."]);
-        $("closer").innerHTML = "<b>Check:</b> <b>" + nH(a) + " + 0 = " + nH(a) + "</b>" + ok();
+        band('<span class="k">' + tr("common.answer") + '</span><span class="v">' + nH(a) + "</span>", [tr("negative-numbers.fact.sub0")]);
+        $("closer").innerHTML = tr("negative-numbers.close.sub0", { a: nH(a), ok: ok() });
         return n0;
       }
       var drawT = Math.abs(a) <= 20 && B <= 20,
         T = takeAway(a, b),
         k = T.k;
       var why = b < 0 ?
-        "Why does taking away a negative make the answer go <i>up</i>? " + (drawT ? "Look at the counters: start" : "Picture counters: start") + " with <b>" + nH(a) + "</b>. " +
-        (k ? "There " + (T.need - k === 1 ? "is" : "are") + " not enough negatives to take " + mag(b) + " away, so first add " + plural(k, "zero pair") +
-          " — each is +1 and " + nH(-1) + ", worth 0 together, so the value doesn’t change. " : "") +
-        "Now take away " + plural(b, "negative") + ". Removing " + nH(-1) + "s leaves what’s left " + mag(b) + " <i>higher</i> — exactly the same as adding " + mag(nb) + "." :
-        "Why? Taking away " + mag(b) + " and adding " + nH(nb) + " do the same thing: both move you " + mag(b) + " to the left on the number line." +
-        (k ? " With counters there aren’t enough positives to take " + mag(b) + " away, so first add " + plural(k, "zero pair") +
-          " (worth 0 — the value doesn’t change), then take " + plural(b, "positive") + " away." : "");
+        tr(drawT ? "negative-numbers.sub.whyNeg" : "negative-numbers.sub.whyNegPicture", { a: nH(a) }) +
+        (k ? tr("negative-numbers.sub.whyNegAdd", { h: T.need - k, m: mag(b), pk: plural(k, "negative-numbers.pl.zeroPair"), m1: nH(-1) }) : "") +
+        tr("negative-numbers.sub.whyNegEnd", { pb: plural(b, "negative-numbers.pl.negative"), m1: nH(-1), m: mag(b), nb: mag(nb) }) :
+        tr("negative-numbers.sub.whyPos", { m: mag(b), nb: nH(nb) }) +
+        (k ? tr("negative-numbers.sub.whyPosAdd", { m: mag(b), pk: plural(k, "negative-numbers.pl.zeroPair"), pb: plural(b, "negative-numbers.pl.positive") }) : "");
       var s0 = addStep(ctx, [
-        ["e", "Opposite", "Subtracting is the same as <strong>adding the opposite</strong>. The opposite of <b>" + nH(b) + "</b> is <b>" + nH(nb) +
-          "</b>, so <b>" + nH(a) + op("−") + nH(b, true) + "</b> becomes <b>" + nH(a) + op("+") + nH(nb, true) + "</b>."
-        ]
+        ["e", tr("negative-numbers.tag.opposite"), tr("negative-numbers.sub.opp", { b: nH(b), nb: nH(nb), e1: nH(a) + op("−") + nH(b, true), e2: nH(a) + op("+") + nH(nb, true) })]
       ], [why]);
-      addRow(ctx, nH(a) + op("+") + nH(nb, true), s0, ["e", "add the opposite"]);
+      addRow(ctx, nH(a) + op("+") + nH(nb, true), s0, ["e", tr("negative-numbers.bd.addOpp")]);
       var r = addWork(ctx, a, nb, { counters: Math.abs(a) <= 20 && B <= 20, sub: true });
       ctx.steps[r.last].asides.push(KCC);
       if (drawT) {
         ctx.figs.push({
           step: s0,
-          cap: '<b class="lead">Taking away, with counters.</b> Start with <b>' + nH(a) + "</b>" +
-            (a ? ": " + plural(a, a > 0 ? "positive" : "negative") + ". " : ": no counters at all. ") +
-            "To take away <b>" + nH(b) + "</b> you need " + plural(b, b > 0 ? "positive" : "negative") + "." +
-            (k ? " There " + (T.need - k === 1 ? "is only 1" : T.need - k ? "are only " + (T.need - k) : "are none") + ", so add " + plural(k, "zero pair") + " (the dashed box) — worth 0, so the value stays the same." : "") +
-            " Cross out the ones taken away. What’s left is the answer: <b>" + nH(c) + "</b>.",
+          cap: (a ? tr("negative-numbers.fig.take", { a: nH(a), pa: plural(a, a > 0 ? "negative-numbers.pl.positive" : "negative-numbers.pl.negative") }) : tr("negative-numbers.fig.take0", { a: nH(a) })) +
+            tr("negative-numbers.fig.takeNeed", { b: nH(b), pb: plural(b, b > 0 ? "negative-numbers.pl.positive" : "negative-numbers.pl.negative") }) +
+            (k ? tr(T.need - k === 1 ? "negative-numbers.fig.takeOnly1" : T.need - k ? "negative-numbers.fig.takeOnly" : "negative-numbers.fig.takeNone", { h: T.need - k, pk: plural(k, "negative-numbers.pl.zeroPair") }) : "") +
+            tr("negative-numbers.fig.takeEnd", { c: nH(c) }),
           html: takeAwaySVG(a, b)
         });
       } else {
         ctx.figs.push({
           step: s0,
-          cap: '<b class="lead">Counters skipped.</b> With ' + mag(Math.max(Math.abs(a), B)) + " counters it’s too many to draw. " +
-            "The idea is the same: taking away " + nH(b) + " leaves you where adding " + nH(nb) + " would."
+          cap: tr("negative-numbers.fig.skipSub", { n: mag(Math.max(Math.abs(a), B)), b: nH(b), nb: nH(nb) })
         });
       }
       addFigs(ctx, a, nb, r, true);
       var n = finish(ctx);
-      band('<span class="k">Answer</span><span class="v">' + nH(c) + "</span>", [
-        "<b>" + n + "</b> steps. Same as <b>" + nH(a) + op("+") + nH(nb, true) + "</b>: subtracting is adding the opposite.",
-        c === 0 ? "A number minus itself is 0." : "<b>" + nH(a) + "</b> is " + mag(c) + " to the " + (c < 0 ? "left" : "right") + " of <b>" + nH(b) + "</b> on the number line, so the answer is " +
-        (c < 0 ? "negative" : "positive") + "."
+      band('<span class="k">' + tr("common.answer") + '</span><span class="v">' + nH(c) + "</span>", [
+        tr("negative-numbers.fact.subSame", { n: n, e: nH(a) + op("+") + nH(nb, true) }),
+        c === 0 ? tr("negative-numbers.fact.subSelf") : tr(c < 0 ? "negative-numbers.fact.subLeft" : "negative-numbers.fact.subRight", { a: nH(a), m: mag(c), b: nH(b) })
       ]);
-      $("closer").innerHTML = "<b>Check</b> by adding back what was taken away: <b>" + nH(c) + op("+") + nH(b, true) + " = " + nH(a) + "</b>" + ok() + " — that’s where you started.";
+      $("closer").innerHTML = tr("negative-numbers.close.sub", { e: nH(c) + op("+") + nH(b, true) + " = " + nH(a), ok: ok() });
       return n;
     }
 
@@ -3158,11 +3155,11 @@
       for (i = 0; i < k; i++) jumps.push({ from: i * sz, to: (i + 1) * sz, label: lbl, step: stepJ, cls: flip ? "jg" : null, dash: flip, force: i === 0 });
       var dots = [{ v: 0, kind: "start", step: stepJ }];
       if (flip) {
-        jumps.push({ from: k * sz, to: -k * sz, label: "opposite", below: true, cls: "jo", step: stepEnd, force: true });
+        jumps.push({ from: k * sz, to: -k * sz, label: tr("negative-numbers.mj.opp"), below: true, cls: "jo", step: stepEnd, force: true });
         dots.push({ v: k * sz, kind: "ghost", lab: true, step: stepJ });
       }
       dots.push({ v: a * b, kind: "end", lab: true, step: stepEnd });
-      return { k: k, sz: sz, flip: flip, svg: nlSVG({ jumps: jumps, dots: dots, label: k + " jumps of " + nT(sz) + (flip ? ", then the opposite" : "") }) };
+      return { k: k, sz: sz, flip: flip, svg: nlSVG({ jumps: jumps, dots: dots, label: tr(flip ? "negative-numbers.mj.ariaFlip" : "negative-numbers.mj.aria", { k: k, s: nT(sz) }) }) };
     }
 
     function drawMul(P, sol) {
@@ -3175,73 +3172,56 @@
       addRow(ctx, exprH(P), -1);
       if (a === 0 || b === 0) {
         var s = addStep(ctx, [
-          ["m", "Zero", "Anything times <b>0</b> is <b>0</b>: " + (a === 0 ? "0 groups of anything is nothing." : plural(a, "group") + " of 0 is still nothing.") +
-            " And 0 is neither positive nor negative, so there’s no sign to work out."
-          ]
+          ["m", tr("negative-numbers.tag.zero"), a === 0 ? tr("negative-numbers.mul.zeroA") : tr("negative-numbers.mul.zeroB", { pa: plural(a, "negative-numbers.pl.group") })]
         ]);
-        addRow(ctx, nH(0), s, ["m", "times 0"], { result: true });
+        addRow(ctx, nH(0), s, ["m", tr("negative-numbers.bd.times0")], { result: true });
         var z = finish(ctx);
-        band('<span class="k">Answer</span><span class="v">' + nH(0) + "</span>", ["<b>1</b> step. Anything times 0 is 0."]);
-        $("closer").innerHTML = "<b>Check:</b> 0 has no sign, so no sign rule is needed. <b>" + exprT(P) + " = 0</b>" + ok();
+        band('<span class="k">' + tr("common.answer") + '</span><span class="v">' + nH(0) + "</span>", [tr("negative-numbers.fact.mul0")]);
+        $("closer").innerHTML = tr("negative-numbers.close.mul0", { e: exprT(P), ok: ok() });
         return z;
       }
       var negs = (a < 0 ? 1 : 0) + (b < 0 ? 1 : 0);
       var s0 = addStep(ctx, [
-        ["m", "Signs", negs === 0 ? "Both numbers are positive, so the answer is positive — this is the times table you already know." :
-          negs === 1 ? "One number is negative and one is positive — <strong>different signs</strong> — so the answer is <strong>negative</strong>." :
-          "Both numbers are negative — the <strong>same sign</strong> — so the answer is <strong>positive</strong>."
-        ]
+        ["m", tr("negative-numbers.tag.signs"), tr(negs === 0 ? "negative-numbers.mul.signs0" : negs === 1 ? "negative-numbers.mul.signs1" : "negative-numbers.mul.signs2")]
       ]);
       var inner = "<span>" + mag(a) + "</span>" + op("×") + "<span>" + mag(b) + "</span>";
       addRow(ctx, negs === 1 ? '<span class="ng">−(</span>' + inner + '<span class="ng">)</span>' : inner, s0,
-        ["m", negs === 0 ? "pos × pos = pos" : negs === 1 ? "different signs → negative" : "neg × neg = pos"]);
+        ["m", tr(negs === 0 ? "negative-numbers.bd.ppMul" : negs === 1 ? "negative-numbers.bd.diffNeg" : "negative-numbers.bd.nnMul")]);
       var sWhy = -1;
       if (negs) {
         if (a > 0) {
           sWhy = addStep(ctx, [
-            ["e", "Why", "<b>" + nH(a) + op("×") + nH(b, true) + "</b> means <strong>" + plural(a, "group") + " of " + nH(b) + "</strong>" +
-              (A <= 6 ? ": <b>" + repeatH(b, A) + " = " + nH(c) + "</b>" : "") + ". Adding negatives keeps moving left, so the answer ends up below 0."
-            ]
+            ["e", tr("negative-numbers.tag.why"), tr(A <= 6 ? "negative-numbers.mul.whyGroups" : "negative-numbers.mul.whyGroupsShort", { e: nH(a) + op("×") + nH(b, true), pa: plural(a, "negative-numbers.pl.group"), b: nH(b), r: A <= 6 ? repeatH(b, A) : "", c: nH(c) })]
           ]);
         } else {
           var up = b < 0;
           sWhy = addStep(ctx, [
-              ["e", "Why", "Look at the pattern in the table: each time the first number goes down by 1, the answer goes <strong>" + (up ? "up" : "down") +
-                "</strong> by " + mag(b) + ". Keep the pattern going past 0 and the answers " + (up ? "climb above 0 — so a negative times a negative is <strong>positive</strong>." :
-                  "drop below 0 — so a negative times a positive is <strong>negative</strong>.")
-              ]
+              ["e", tr("negative-numbers.tag.why"), tr(up ? "negative-numbers.mul.patUp" : "negative-numbers.mul.patDown", { m: mag(b) })]
             ],
-            up ? ["Another way to see it: <b>" + nH(a) + op("×") + nH(b, true) + "</b> is the <strong>opposite</strong> of <b>" + mag(a) + op("×") + nH(b, true) + " = " + nH(A * b) + "</b>, and the opposite of " +
-              nH(A * b) + " is " + nH(c) + "."
-            ] : ["You can also swap them: <b>" + nH(a) + op("×") + nH(b, true) + " = " + nH(b) + op("×") + nH(a, true) + "</b>, which is " + plural(b, "group") + " of " + nH(a) + "."]);
+            up ? [tr("negative-numbers.mul.another", { e: nH(a) + op("×") + nH(b, true), e2: mag(a) + op("×") + nH(b, true), p: nH(A * b), c: nH(c) })] : [tr("negative-numbers.mul.swap", { e: nH(a) + op("×") + nH(b, true) + " = " + nH(b) + op("×") + nH(a, true), pb: plural(b, "negative-numbers.pl.group"), a: nH(a) })]);
         }
       }
       var sM = addStep(ctx, [
-        ["a", "Multiply", "Now multiply the sizes: <b>" + mag(a) + " × " + mag(b) + " = " + mag(c) + "</b>. " +
-          (negs === 1 ? "With the negative sign from step 1: " : "It’s positive, so: ") + "<b>" + nH(c) + "</b>."
-        ]
+        ["a", tr("negative-numbers.tag.multiply"), tr(negs === 1 ? "negative-numbers.mul.multNeg" : "negative-numbers.mul.multPos", { a: mag(a), b: mag(b), s: mag(c), c: nH(c) })]
       ]);
       addRow(ctx, nH(c), sM, null, { result: true });
       ctx.figs.push({
         step: s0,
-        cap: '<b class="lead">The sign rule.</b> Multiplying: same signs give a positive, different signs give a negative. This problem is the highlighted one.',
+        cap: tr("negative-numbers.fig.signMul"),
         html: '<div class="figs2">' + signTable(a, b, "×") + (a < 0 && negs ? patternHTML(a, b) : "") + "</div>"
       });
       var J = multJumps(a, b, sWhy >= 0 ? sWhy : sM, sM);
       if (J) ctx.figs.push({
         step: -1,
-        cap: '<b class="lead">Repeated jumps.</b> ' + (J.flip ?
-          "First " + J.k + " jumps of <b>" + nH(J.sz) + "</b> from 0 (dashed) — that’s <b>" + mag(J.k) + op("×") + nH(J.sz, true) + " = " + nH(J.k * J.sz) + "</b>. " +
-          "Multiplying by a negative instead of a positive flips it to the <strong>opposite</strong> side of 0: <b>" + nH(c) + "</b>." :
-          (a < 0 ? "Swap the order (" + nH(b) + op("×") + nH(a, true) + "): " : "") + J.k + " jumps of <b>" + nH(J.sz) + "</b> from 0 land on <b>" + nH(c) + "</b>."),
+        cap: J.flip ? tr("negative-numbers.fig.jumpsFlip", { k: J.k, s: nH(J.sz), e: mag(J.k) + op("×") + nH(J.sz, true) + " = " + nH(J.k * J.sz), c: nH(c) }) : tr(a < 0 ? "negative-numbers.fig.jumpsSwap" : "negative-numbers.fig.jumps", { sw: nH(b) + op("×") + nH(a, true), k: J.k, s: nH(J.sz), c: nH(c) }),
         html: J.svg
       });
       var n = finish(ctx);
-      band('<span class="k">Answer</span><span class="v">' + nH(c) + "</span>", [
-        "<b>" + n + "</b> steps. " + (negs === 1 ? "Different signs → negative." : negs === 2 ? "Negative × negative → positive." : "Positive × positive → positive."),
-        "Sizes: <b>" + mag(a) + " × " + mag(b) + " = " + mag(c) + "</b>."
+      band('<span class="k">' + tr("common.answer") + '</span><span class="v">' + nH(c) + "</span>", [
+        tr("negative-numbers.fact.nSteps", { n: n }) + tr(negs === 1 ? "negative-numbers.fact.diffNeg" : negs === 2 ? "negative-numbers.fact.nnMul" : "negative-numbers.fact.ppMul"),
+        tr("negative-numbers.fact.sizesMul", { a: mag(a), b: mag(b), c: mag(c) })
       ]);
-      $("closer").innerHTML = "<b>Check</b> by dividing back: <b>" + nH(c) + op("÷") + nH(b, true) + " = " + nH(a) + "</b>" + ok();
+      $("closer").innerHTML = tr("negative-numbers.close.mul", { e: nH(c) + op("÷") + nH(b, true) + " = " + nH(a), ok: ok() });
       return n;
     }
 
@@ -3256,49 +3236,44 @@
       var cR = even ? { n: ans.v, d: 1 } : { n: ans.n, d: ans.d };
       addRow(ctx, exprH(P), -1);
       addStep(ctx, [
-        ["p", "Think", "Division undoes multiplication. <b>" + nH(a) + op("÷") + nH(b, true) + "</b> asks: what number times <b>" + nH(b) + "</b> makes <b>" + nH(a) + "</b>?"]
+        ["p", tr("negative-numbers.tag.think"), tr("negative-numbers.div.think", { e: nH(a) + op("÷") + nH(b, true), b: nH(b), a: nH(a) })]
       ]);
       if (a === 0) {
         var sz = addStep(ctx, [
-          ["m", "Zero", "<b>0 ÷ " + nH(b, true) + " = 0</b>, because <b>0 × " + nH(b, true) + " = 0</b>. 0 has no sign, so there’s nothing else to decide."]
+          ["m", tr("negative-numbers.tag.zero"), tr("negative-numbers.div.zero", { b: nH(b, true) })]
         ]);
-        addRow(ctx, nH(0), sz, ["m", "0 divided"], { result: true });
+        addRow(ctx, nH(0), sz, ["m", tr("negative-numbers.bd.zeroDiv")], { result: true });
         var z = finish(ctx);
-        band('<span class="k">Answer</span><span class="v">' + nH(0) + "</span>", ["<b>2</b> steps. 0 divided by any number (except 0) is 0."]);
-        $("closer").innerHTML = "<b>Check</b> by multiplying back: <b>0" + op("×") + nH(b, true) + " = 0</b>" + ok();
+        band('<span class="k">' + tr("common.answer") + '</span><span class="v">' + nH(0) + "</span>", [tr("negative-numbers.fact.div0")]);
+        $("closer").innerHTML = tr("negative-numbers.close.divBack", { e: "0" + op("×") + nH(b, true) + " = 0", ok: ok() });
         return z;
       }
       var negs = (a < 0 ? 1 : 0) + (b < 0 ? 1 : 0),
         cneg = negs === 1;
       var s1 = addStep(ctx, [
-          ["m", "Signs", "Dividing uses the same sign rule as multiplying: " + (negs === 1 ? "<strong>different signs → negative</strong>." :
-            negs === 2 ? "<strong>both negative → positive</strong>." : "both positive → positive.")]
+          ["m", tr("negative-numbers.tag.signs"), tr(negs === 1 ? "negative-numbers.div.signs1" : negs === 2 ? "negative-numbers.div.signs2" : "negative-numbers.div.signs0")]
         ],
-        negs ? ["Why? The answer times <b>" + nH(b) + "</b> has to make <b>" + nH(a) + "</b>. Multiplying by a " + (b < 0 ? "negative flips the sign" : "positive keeps the sign") +
-          ", so to land on a " + (a < 0 ? "negative" : "positive") + " number the answer must be <strong>" + (cneg ? "negative" : "positive") + "</strong>."
-        ] : []);
+        negs ? [tr(b < 0 ? (a < 0 ? "negative-numbers.div.whyNN" : "negative-numbers.div.whyNP") : "negative-numbers.div.whyPN", { b: nH(b), a: nH(a) })] : []);
       var inner = "<span>" + mag(a) + "</span>" + op("÷") + "<span>" + mag(b) + "</span>";
       addRow(ctx, cneg ? '<span class="ng">−(</span>' + inner + '<span class="ng">)</span>' : inner, s1,
-        ["m", negs === 0 ? "pos ÷ pos = pos" : negs === 1 ? "different signs → negative" : "neg ÷ neg = pos"]);
+        ["m", tr(negs === 0 ? "negative-numbers.bd.ppDiv" : negs === 1 ? "negative-numbers.bd.diffNeg" : "negative-numbers.bd.nnDiv")]);
       var sD, q = Math.floor(A / B),
         rm = A % B;
       if (even) {
         sD = addStep(ctx, [
-          ["a", "Divide", "Divide the sizes: <b>" + mag(a) + " ÷ " + mag(b) + " = " + mag(ans.v) + "</b>. With the sign: <b>" + nH(ans.v) + "</b>."]
+          ["a", tr("negative-numbers.tag.divide"), tr("negative-numbers.div.divide", { a: mag(a), b: mag(b), q: mag(ans.v), c: nH(ans.v) })]
         ]);
       } else {
         var rd = rat(A, B);
         sD = addStep(ctx, [
-            ["a", "Divide", "Divide the sizes: <b>" + mag(a) + " ÷ " + mag(b) + "</b> doesn’t come out even — " +
-              (q === 0 ? mag(b) + " doesn’t fit into " + mag(a) + " even once" : "it’s " + mag(q) + " remainder " + mag(rm)) + ". So the answer is <strong>not an integer</strong>. " +
-              "Write it as a fraction, <b>" + mag(a) + "/" + mag(b) + (rd.d !== B ? " = " + rd.n + "/" + rd.d : "") + "</b>" + (rd.d !== B ? " in lowest terms" : "") +
-              ", which is <b>" + decStr(rd.n, rd.d) + "</b> as a decimal. With the sign: <b>" + rH(cR) + "</b>."
+            ["a", tr("negative-numbers.tag.divide"), tr(q === 0 ? "negative-numbers.div.uneven0" : "negative-numbers.div.unevenQ", { a: mag(a), b: mag(b), q: mag(q), r: mag(rm) }) +
+              tr(rd.d !== B ? "negative-numbers.div.fracLow" : "negative-numbers.div.frac", { f: mag(a) + "/" + mag(b), g: rd.n + "/" + rd.d, d: decStr(rd.n, rd.d), c: rH(cR) })
             ]
           ],
-          ["Adding, subtracting or multiplying integers always gives an integer. Dividing is the one that can land <i>between</i> two integers — here, between " + nH(Math.floor(cR.n / cR.d)) + " and " + nH(Math.floor(cR.n / cR.d) + 1) + "."]);
+          [tr("negative-numbers.div.between", { lo: nH(Math.floor(cR.n / cR.d)), hi: nH(Math.floor(cR.n / cR.d) + 1) })]);
       }
       addRow(ctx, rH(cR), sD, null, { result: true });
-      ctx.figs.push({ step: s1, cap: '<b class="lead">The sign rule.</b> Dividing follows the same rule as multiplying. This problem is the highlighted one.', html: signTable(a, b, "÷") });
+      ctx.figs.push({ step: s1, cap: tr("negative-numbers.fig.signDiv"), html: signTable(a, b, "÷") });
       if (even && A <= 120 && Math.abs(ans.v) <= 12) {
         var k = Math.abs(ans.v),
           stp = a > 0 ? B : -B,
@@ -3307,22 +3282,20 @@
         var fwd = (stp > 0) === (b > 0);
         ctx.figs.push({
           step: -1,
-          cap: '<b class="lead">How many jumps?</b> How many jumps of <b>' + nH(b) + "</b> get from 0 to <b>" + nH(a) + "</b>? " +
-            (fwd ? "It takes " + k + " — so the answer is <b>" + nH(ans.v) + "</b>." :
-              "Jumps of " + nH(b) + " go " + (b > 0 ? "right" : "left") + ", but " + nH(a) + " is to the " + (a > 0 ? "right" : "left") + ", so you need " + k + " jumps <strong>backwards</strong> — that’s <b>" + nH(ans.v) + "</b>."),
-          html: nlSVG({ jumps: jumps, dots: [{ v: 0, kind: "start", step: sD }, { v: a, kind: "end", lab: true, step: sD }], label: k + " jumps of " + nT(B) + " from 0 to " + nT(a) })
+          cap: tr(fwd ? "negative-numbers.fig.howFwd" : b > 0 ? "negative-numbers.fig.howBackL" : "negative-numbers.fig.howBackR", { b: nH(b), a: nH(a), k: k, c: nH(ans.v) }),
+          html: nlSVG({ jumps: jumps, dots: [{ v: 0, kind: "start", step: sD }, { v: a, kind: "end", lab: true, step: sD }], label: tr("negative-numbers.fig.howAria", { k: k, s: nT(B), a: nT(a) }) })
         });
       }
       var n = finish(ctx),
-        facts = ["<b>" + n + "</b> steps. " + (negs === 1 ? "Different signs → negative." : negs === 2 ? "Negative ÷ negative → positive." : "Positive ÷ positive → positive.")];
+        facts = [tr("negative-numbers.fact.nSteps", { n: n }) + tr(negs === 1 ? "negative-numbers.fact.diffNeg" : negs === 2 ? "negative-numbers.fact.nnDiv" : "negative-numbers.fact.ppDiv")];
       if (!even) {
         var sg = cR.n < 0 ? "−" : "",
           an = Math.abs(cR.n);
-        facts.push("It doesn’t come out even, so it isn’t an integer. As a decimal: <b>" + decStr(cR.n, cR.d) + "</b>");
-        if (an > cR.d) facts.push("As a mixed number: <b>" + sg + Math.floor(an / cR.d) + " " + (an % cR.d) + "/" + cR.d + "</b>");
-      } else facts.push("Sizes: <b>" + mag(a) + " ÷ " + mag(b) + " = " + mag(ans.v) + "</b>.");
-      band('<span class="k">Answer</span><span class="v">' + rH(cR) + "</span>", facts);
-      $("closer").innerHTML = "<b>Check</b> by multiplying back: <b>" + rH(cR, true) + op("×") + nH(b, true) + " = " + nH(a) + "</b>" + ok();
+        facts.push(tr("negative-numbers.fact.notInt", { d: decStr(cR.n, cR.d) }));
+        if (an > cR.d) facts.push(tr("negative-numbers.fact.mixed", { m: sg + Math.floor(an / cR.d) + " " + (an % cR.d) + "/" + cR.d }));
+      } else facts.push(tr("negative-numbers.fact.sizesDiv", { a: mag(a), b: mag(b), q: mag(ans.v) }));
+      band('<span class="k">' + tr("common.answer") + '</span><span class="v">' + rH(cR) + "</span>", facts);
+      $("closer").innerHTML = tr("negative-numbers.close.divBack", { e: rH(cR, true) + op("×") + nH(b, true) + " = " + nH(a), ok: ok() });
       return n;
     }
 
@@ -3336,46 +3309,40 @@
       addRow(ctx, I.typedAbs ? nodeH(node, true) : '<span class="bar">|</span>' + nH(x) + '<span class="bar">|</span>', -1);
       var innerPlain = nodePlain(I.inner);
       var s0 = addStep(ctx, [
-        ["p", "Place", (I.typedAbs ? "" : "You typed just one number, so here’s its absolute value. ") +
-          (innerPlain ? "" : "Inside the bars, <b>" + rawH(I.inner) + "</b> works out to <b>" + nH(x) + "</b>. ") + "Find <b>" + nH(x) + "</b> on the number line."
-        ]
+        ["p", tr("negative-numbers.tag.place"), (I.typedAbs ? "" : tr("negative-numbers.abs.one")) + (innerPlain ? "" : tr("negative-numbers.abs.inside", { r: rawH(I.inner), x: nH(x) })) + tr("negative-numbers.abs.find", { x: nH(x) })]
       ]);
       var asides = [];
-      if (x < 0) asides.push("A distance can’t be negative — you can’t walk " + nH(x) + " steps. So an absolute value is <strong>never negative</strong>. " +
-        "The opposite, <b>" + mag(x) + "</b>, is the same distance on the other side of 0, so <b>|" + mag(x) + "| = " + mag(x) + "</b> too.");
-      else if (x > 0) asides.push("<b>" + nH(-x) + "</b> is the same distance on the other side of 0, so <b>|" + nH(-x) + "| = " + mag(x) + "</b> too.");
+      if (x < 0) asides.push(tr("negative-numbers.abs.neverNeg", { x: nH(x), m: mag(x) }));
+      else if (x > 0) asides.push(tr("negative-numbers.abs.other", { nx: nH(-x), m: mag(x) }));
       var s1 = addStep(ctx, [
-        ["a", "Distance", "<strong>Absolute value</strong> means distance from 0. " + (x === 0 ? "<b>0</b> is 0 steps from itself, so <b>|0| = 0</b>." :
-          "<b>" + nH(x) + "</b> is " + plural(x, "step") + " from 0, so <b>|" + nH(x) + "| = " + mag(x) + "</b>.")]
+        ["a", tr("negative-numbers.tag.distance"), x === 0 ? tr("negative-numbers.abs.dist0") : tr("negative-numbers.abs.dist", { x: nH(x), px: plural(x, "negative-numbers.pl.step"), m: mag(x) })]
       ], asides);
       if (I.outer) {
-        addRow(ctx, '<span class="opp">−</span><span class="pg">(</span>' + mag(x) + '<span class="pg">)</span>', s1, ["a", "distance from 0"]);
+        addRow(ctx, '<span class="opp">−</span><span class="pg">(</span>' + mag(x) + '<span class="pg">)</span>', s1, ["a", tr("negative-numbers.bd.dist")]);
         var s2 = addStep(ctx, [
-            ["e", "Opposite", "The minus sign <strong>outside</strong> the bars means “the opposite of”. The opposite of " + mag(x) + " is <b>" + nH(I.result) + "</b>."]
+            ["e", tr("negative-numbers.tag.opposite"), tr("negative-numbers.abs.outer", { m: mag(x), r: nH(I.result) })]
           ],
-          ["So <b>−|" + nT(x) + "|</b> is negative even though an absolute value never is: the bars finish first, then the minus outside flips it."]);
-        addRow(ctx, nH(I.result), s2, ["e", "the opposite"], { result: true });
-      } else addRow(ctx, nH(X), s1, ["a", "distance from 0"], { result: true });
+          [tr("negative-numbers.abs.outerAside", { x: nT(x) })]);
+        addRow(ctx, nH(I.result), s2, ["e", tr("negative-numbers.bd.theOpp")], { result: true });
+      } else addRow(ctx, nH(X), s1, ["a", tr("negative-numbers.bd.dist")], { result: true });
       var dots = [{ v: x, kind: "pt", lab: true, step: s0 }],
         brs = [];
       if (x !== 0) {
-        brs.push({ from: 0, to: x, label: plural(x, "step"), step: s1 });
-        brs.push({ from: 0, to: -x, label: "also " + mag(x), step: s1, dash: true });
+        brs.push({ from: 0, to: x, label: plural(x, "negative-numbers.pl.step"), step: s1 });
+        brs.push({ from: 0, to: -x, label: tr("negative-numbers.nl.also", { m: mag(x) }), step: s1, dash: true });
         dots.push({ v: -x, kind: "ghost", lab: true, step: s1 });
       }
       ctx.figs.push({
         step: -1,
-        cap: '<b class="lead">Distance from 0.</b> ' + (x === 0 ? "0 is right at zero: no distance at all." :
-          "The solid bracket measures from 0 to <b>" + nH(x) + "</b>: " + plural(x, "step") + ". The dashed one shows <b>" + nH(-x) + "</b> is just as far on the other side."),
-        html: nlSVG({ dots: dots, brackets: brs, label: "Distance from 0 to " + nT(x) + " is " + mag(x) })
+        cap: x === 0 ? tr("negative-numbers.fig.dist0") : tr("negative-numbers.fig.dist", { x: nH(x), px: plural(x, "negative-numbers.pl.step"), nx: nH(-x) }),
+        html: nlSVG({ dots: dots, brackets: brs, label: tr("negative-numbers.fig.distAria", { x: nT(x), m: mag(x) }) })
       });
       var n = finish(ctx);
-      band('<span class="k">Answer</span><span class="v">' + nH(I.result) + "</span>", [
-        "<b>" + nH(x) + "</b> is " + plural(x, "step") + " from 0.",
-        x ? "<b>" + nH(x) + "</b> and <b>" + nH(-x) + "</b> are opposites, and they have the same absolute value." : "0 is the only number whose absolute value is 0."
+      band('<span class="k">' + tr("common.answer") + '</span><span class="v">' + nH(I.result) + "</span>", [
+        tr("negative-numbers.fact.absSteps", { x: nH(x), px: plural(x, "negative-numbers.pl.step") }),
+        x ? tr("negative-numbers.fact.absOpp", { x: nH(x), nx: nH(-x) }) : tr("negative-numbers.fact.abs0")
       ]);
-      $("closer").innerHTML = x ? "<b>Check:</b> <b>" + nH(x) + "</b> and <b>" + nH(-x) + "</b> are both " + plural(x, "step") + " from 0, so <b>|" + nH(x) + "| = |" + nH(-x) + "| = " + mag(x) + "</b>" + ok() :
-        "<b>Check:</b> 0 sits at zero, so its distance from 0 is <b>0</b>" + ok();
+      $("closer").innerHTML = x ? tr("negative-numbers.close.abs", { x: nH(x), nx: nH(-x), px: plural(x, "negative-numbers.pl.step"), m: mag(x), ok: ok() }) : tr("negative-numbers.close.abs0", { ok: ok() });
       return n;
     }
 
@@ -3387,7 +3354,7 @@
       addRow(ctx, exprH(P), -1);
       var hasZero = vals.indexOf(0) >= 0;
       var s0 = addStep(ctx, [
-        ["p", "Place", "Put each number on the number line: negatives to the left of 0, positives to the right" + (hasZero ? ", and 0 in the middle" : "") + "."]
+        ["p", tr("negative-numbers.tag.place"), tr(hasZero ? "negative-numbers.cmp.placeZero" : "negative-numbers.cmp.place")]
       ]);
       var asides = [],
         negs = s.filter(function(v) { return v < 0; }),
@@ -3397,14 +3364,11 @@
       if (negs.length >= 2 && negs[0] !== negs[negs.length - 1]) {
         var p = negs[0],
           q = negs[negs.length - 1];
-        asides.push("Careful with negatives: <b>" + nH(p) + "</b> is <i>less</i> than <b>" + nH(q) + "</b>, even though " + mag(p) + " is more than " + mag(q) + ". " +
-          nH(p) + " is further left — further below 0 — like " + mag(p) + "° below zero being colder than " + mag(q) + "° below.");
-      } else if (negs.length && s[s.length - 1] > 0) asides.push("Every negative number is less than every positive number — negatives are all to the left of 0.");
-      if (dup !== null) asides.push("<b>" + nH(dup) + "</b> is in the list more than once. Equal numbers sit on the same spot, so they get an = sign.");
+        asides.push(tr("negative-numbers.cmp.careful", { p: nH(p), q: nH(q), mp: mag(p), mq: mag(q) }));
+      } else if (negs.length && s[s.length - 1] > 0) asides.push(tr("negative-numbers.cmp.allNeg"));
+      if (dup !== null) asides.push(tr("negative-numbers.cmp.dup", { d: nH(dup) }));
       var s1 = addStep(ctx, [
-        ["a", "Read", "Numbers get bigger as you go right, so read the dots from <strong>left to right</strong>: <b>" + s.map(function(v) { return nH(v); }).join(", ") +
-          "</b>. That’s least to greatest."
-        ]
+        ["a", tr("negative-numbers.tag.read"), tr("negative-numbers.cmp.read", { list: s.map(function(v) { return nH(v); }).join(", ") })]
       ], asides);
       var ansH, last = s1;
       if (n === 2) {
@@ -3413,60 +3377,54 @@
           rel = relOf(x, y),
           flip = rel === "<" ? ">" : rel === ">" ? "<" : "=";
         last = addStep(ctx, [
-            ["m", "Compare", "So <b>" + nH(x) + op(rel) + nH(y) + "</b>" + (rel === "<" ? " — say it “" + nT(x) + " is less than " + nT(y) + "”." :
-                rel === ">" ? " — say it “" + nT(x) + " is greater than " + nT(y) + "”." : " — they’re equal.") +
-              (rel !== "=" ? " The same fact the other way round: <b>" + nH(y) + op(flip) + nH(x) + "</b>." : "")
-            ]
+            ["m", tr("negative-numbers.tag.compare"), tr(rel === "<" ? "negative-numbers.cmp.lt" : rel === ">" ? "negative-numbers.cmp.gt" : "negative-numbers.cmp.eq", { e: nH(x) + op(rel) + nH(y), x: nT(x), y: nT(y), f: nH(y) + op(flip) + nH(x) })]
           ],
-          rel !== "=" ? ["The open side of <b>&lt;</b> or <b>&gt;</b> faces the bigger number; the point faces the smaller one."] : []);
+          rel !== "=" ? [tr("negative-numbers.cmp.open")] : []);
         ansH = nH(x) + op(rel) + nH(y);
-        addRow(ctx, ansH, last, ["m", rel === "=" ? "equal" : "left is smaller"], { result: true, eq: "→" });
+        addRow(ctx, ansH, last, ["m", tr(rel === "=" ? "negative-numbers.bd.equal" : "negative-numbers.bd.leftSmaller")], { result: true, eq: "→" });
       } else {
         ansH = relChainH(s);
-        addRow(ctx, ansH, s1, ["a", "least to greatest"], { result: true, eq: "→" });
+        addRow(ctx, ansH, s1, ["a", tr("negative-numbers.bd.leastGreatest")], { result: true, eq: "→" });
       }
       var order = s.map(function(v, j) { return { v: v, n: j + 1, step: s1 }; });
       ctx.figs.push({
         step: -1,
-        cap: '<b class="lead">On the number line.</b> Each dot is one of the numbers. Left is always smaller, so the order badges count from the left.',
-        html: nlSVG({ dots: vals.map(function(v) { return { v: v, kind: "pt", above: nT(v), step: s0 }; }), order: order, label: "Number line with " + exprT(P) })
+        cap: tr("negative-numbers.fig.cmp"),
+        html: nlSVG({ dots: vals.map(function(v) { return { v: v, kind: "pt", above: nT(v), step: s0 }; }), order: order, label: tr("negative-numbers.fig.cmpAria", { list: exprT(P) }) })
       });
       var nn = finish(ctx),
-        facts = ["Least: <b>" + nH(s[0]) + "</b> &middot; Greatest: <b>" + nH(s[n - 1]) + "</b>"];
-      if (n > 2) facts.push("Greatest to least: <b>" + s.slice().reverse().map(function(v) { return nH(v); }).join(", ") + "</b>");
-      band('<span class="k">' + (n === 2 ? "Answer" : "In order") + '</span><span class="v">' + ansH + "</span>", facts);
-      $("closer").innerHTML = "<b>Check:</b> the first one, <b>" + nH(s[0]) + "</b>, is the furthest left on the line, and the last one, <b>" + nH(s[n - 1]) +
-        "</b>, is the furthest right" + ok();
+        facts = [tr("negative-numbers.fact.leastGreatest", { a: nH(s[0]), b: nH(s[n - 1]) })];
+      if (n > 2) facts.push(tr("negative-numbers.fact.desc", { list: s.slice().reverse().map(function(v) { return nH(v); }).join(", ") }));
+      band('<span class="k">' + (n === 2 ? tr("common.answer") : tr("negative-numbers.band.inOrder")) + '</span><span class="v">' + ansH + "</span>", facts);
+      $("closer").innerHTML = tr("negative-numbers.close.cmp", { a: nH(s[0]), b: nH(s[n - 1]), ok: ok() });
       return nn;
     }
 
     /* ---------- chains, left to right ---------- */
     var OPCLS = { "+": "a", "−": "e", "×": "m", "÷": "m" },
-      OPTAG = { "+": "Add", "−": "Subtract", "×": "Multiply", "÷": "Divide" };
+      OPTAG = { "+": tr("negative-numbers.tag.add"), "−": tr("negative-numbers.tag.subtract"), "×": tr("negative-numbers.tag.multiply"), "÷": tr("negative-numbers.tag.divide") };
 
     function addRuleT(a, b, c) {
-      if (a === 0 || b === 0) return (b === 0 ? "adding 0 changes nothing" : "0 plus a number is just that number") + ": <b>" + nH(c) + "</b>.";
-      if ((a < 0) === (b < 0)) return "same signs, so add the sizes (" + mag(a) + " + " + mag(b) + " = " + mag(c) + ") and keep the sign: <b>" + nH(c) + "</b>.";
-      if (c === 0) return "a number plus its opposite is <b>0</b>.";
+      if (a === 0 || b === 0) return tr(b === 0 ? "negative-numbers.rule.addB0" : "negative-numbers.rule.addA0", { c: nH(c) });
+      if ((a < 0) === (b < 0)) return tr("negative-numbers.rule.same", { a: mag(a), b: mag(b), s: mag(c), c: nH(c) });
+      if (c === 0) return tr("negative-numbers.rule.opp");
       var big = Math.abs(a) > Math.abs(b) ? a : b;
-      return "different signs, so subtract the sizes (" + mag(Math.max(Math.abs(a), Math.abs(b))) + " − " + mag(Math.min(Math.abs(a), Math.abs(b))) + " = " + mag(c) +
-        ") and take the sign of the bigger size (" + nH(big) + " is " + (big < 0 ? "negative" : "positive") + "): <b>" + nH(c) + "</b>.";
+      return tr(big < 0 ? "negative-numbers.rule.diffNeg" : "negative-numbers.rule.diffPos", { x: mag(Math.max(Math.abs(a), Math.abs(b))), y: mag(Math.min(Math.abs(a), Math.abs(b))), s: mag(c), big: nH(big), c: nH(c) });
     }
 
     function mulRuleT(a, o, b, c) {
-      if (a === 0) return "0 " + (o === "×" ? "times anything" : "divided by any number") + " is <b>0</b>.";
-      if (b === 0) return "anything times 0 is <b>0</b>.";
+      if (a === 0) return tr(o === "×" ? "negative-numbers.rule.mulA0" : "negative-numbers.rule.divA0");
+      if (b === 0) return tr("negative-numbers.rule.mulB0");
       var negs = (a < 0 ? 1 : 0) + (b < 0 ? 1 : 0);
-      return (negs === 1 ? "one negative, so the answer is negative" : negs === 2 ? "two negatives make a positive" : "both positive, so positive") +
-        "; " + mag(a) + " " + o + " " + mag(b) + " = " + mag(c) + ": <b>" + nH(c) + "</b>.";
+      return tr(negs === 1 ? "negative-numbers.rule.m1" : negs === 2 ? "negative-numbers.rule.m2" : "negative-numbers.rule.m0", { e: mag(a) + " " + o + " " + mag(b) + " = " + mag(c), c: nH(c) });
     }
 
     function tidyT(n) {
       var s = stripPar(n),
         v = nodeVal(n);
-      if (s.t === "abs") return "<b>" + rawH(n) + "</b> is an absolute value — the distance of <b>" + nH(nodeVal(s.a)) + "</b> from 0 — so it’s <b>" + nH(v) + "</b>.";
-      if (s.t === "neg" && stripPar(s.a).t === "abs") return "<b>" + rawH(n) + "</b>: the bars give " + mag(v) + ", and the minus outside makes it the opposite: <b>" + nH(v) + "</b>.";
-      return "<b>" + rawH(n) + "</b> means the opposite of <b>" + nH(nodeVal(s.a)) + "</b>, which is <b>" + nH(v) + "</b>.";
+      if (s.t === "abs") return tr("negative-numbers.tidy.abs", { r: rawH(n), i: nH(nodeVal(s.a)), v: nH(v) });
+      if (s.t === "neg" && stripPar(s.a).t === "abs") return tr("negative-numbers.tidy.negAbs", { r: rawH(n), m: mag(v), v: nH(v) });
+      return tr("negative-numbers.tidy.neg", { r: rawH(n), i: nH(nodeVal(s.a)), v: nH(v) });
     }
 
     function chainRow(items, ops, hl) {
@@ -3506,7 +3464,7 @@
       tidy.forEach(function(idx) {
         var it = items[idx],
           st = addStep(ctx, [
-            ["e", "Tidy", "Before going left to right, tidy up: " + tidyT(it.node)]
+            ["e", tr("negative-numbers.tag.tidy"), tr("negative-numbers.chain.tidy", { t: tidyT(it.node) })]
           ]);
         cur = snap(cur);
         cur.forEach(function(c) {
@@ -3515,7 +3473,7 @@
         });
         cur[idx] = { v: it.v, fresh: "e" };
         var h2 = nextHL(cur);
-        addRow(ctx, chainRow(cur, ops, h2), st, ["e", "tidy"]);
+        addRow(ctx, chainRow(cur, ops, h2), st, ["e", tr("negative-numbers.bd.tidy")]);
       });
       var firstOpStep = ctx.steps.length,
         jumps = [],
@@ -3528,12 +3486,12 @@
           L = "<b>" + nH(r.l) + op(o) + nH(r.r, true) + "</b>: ",
           txt;
         if (o === "+") txt = L + addRuleT(r.l, r.r, r.res);
-        else if (o === "−") txt = L + "subtracting " + nH(r.r, true) + " is adding its opposite, so it’s <b>" + nH(r.l) + op("+") + nH(-r.r || 0, true) + "</b> — " + addRuleT(r.l, -r.r || 0, r.res);
+        else if (o === "−") txt = L + tr("negative-numbers.chain.sub", { r: nH(r.r, true), e: nH(r.l) + op("+") + nH(-r.r || 0, true), rule: addRuleT(r.l, -r.r || 0, r.res) });
         else txt = L + mulRuleT(r.l, o, r.r, r.res);
         var st = addStep(ctx, [
-            [OPCLS[o], OPTAG[o], (k === 0 && P.ops.length > 1 ? "Go left to right. " : "") + txt]
+            [OPCLS[o], OPTAG[o], (k === 0 && P.ops.length > 1 ? tr("negative-numbers.chain.l2r") : "") + txt]
           ],
-          k === 0 && o === "−" && r.r < 0 && P.ops.length > 1 ? ["Subtracting a negative moves you <strong>right</strong>, just like adding a positive."] : []);
+          k === 0 && o === "−" && r.r < 0 && P.ops.length > 1 ? [tr("negative-numbers.chain.subNeg")] : []);
         cur = [{ v: r.res, fresh: ops.length > 1 ? OPCLS[o] : null }].concat(snap(cur.slice(2)));
         cur.forEach(function(c, i) {
           if (i) {
@@ -3558,33 +3516,31 @@
         if (span <= 400 && sol.recs.length <= 8)
           ctx.figs.push({
             step: -1,
-            cap: '<b class="lead">On the number line.</b> Start at <b>' + nH(at) + "</b> and make one jump per step: right for adding a positive " +
-              "(or subtracting a negative), left for adding a negative (or subtracting a positive).",
-            html: nlSVG({ jumps: jumps, dots: [{ v: at, kind: "start", lab: true, step: firstOpStep }, { v: last, kind: "end", lab: true, step: n - 1 }], label: "Number line for the chain" })
+            cap: tr("negative-numbers.fig.chain", { a: nH(at) }),
+            html: nlSVG({ jumps: jumps, dots: [{ v: at, kind: "start", lab: true, step: firstOpStep }, { v: last, kind: "end", lab: true, step: n - 1 }], label: tr("negative-numbers.fig.chainAria") })
           });
       }
       finish(ctx);
-      var facts = ["<b>" + n + "</b> step" + (n === 1 ? "" : "s") + ", left to right" + (tidy.length ? ", after tidying " + tidy.length + " number" + (tidy.length === 1 ? "" : "s") : "") + "."];
+      var facts = [tidy.length ? tr("negative-numbers.fact.chainTidy", { n: n, t: tidy.length }) : tr("negative-numbers.fact.chain", { n: n })];
       var terms = [at].concat(sol.recs.map(function(r) { return r.op === "+" ? r.r : -r.r || 0; }));
-      if (as) facts.push("Same as adding: <b>" + terms.map(function(t, i) { return nH(t, i > 0); }).join(op("+")) + "</b>");
-      band('<span class="k">Answer</span><span class="v">' + nH(last) + "</span>", facts);
+      if (as) facts.push(tr("negative-numbers.fact.sameAs", { e: terms.map(function(t, i) { return nH(t, i > 0); }).join(op("+")) }));
+      band('<span class="k">' + tr("common.answer") + '</span><span class="v">' + nH(last) + "</span>", facts);
       var closer;
       if (as) {
         var ps = terms.filter(function(t) { return t > 0; }),
           ns = terms.filter(function(t) { return t < 0; });
         var P1 = ps.reduce(function(x, y) { return x + y; }, 0),
           N1 = ns.reduce(function(x, y) { return x + y; }, 0);
-        closer = "<b>Check</b> another way: turn every subtraction into adding the opposite, then add the positives and the negatives separately. " +
-          (ps.length ? "Positives: <b>" + ps.map(function(t) { return nH(t); }).join(" + ") + " = " + nH(P1) + "</b>. " : "There are no positives. ") +
-          (ns.length ? "Negatives: <b>" + ns.map(function(t, i) { return nH(t, i > 0); }).join(" + ") + " = " + nH(N1) + "</b>. " : "There are no negatives. ") +
-          "Together: <b>" + nH(P1) + op("+") + nH(N1, true) + " = " + nH(P1 + N1) + "</b>" + ok();
+        closer = tr("negative-numbers.close.chain") +
+          (ps.length ? tr("negative-numbers.close.pos", { e: ps.map(function(t) { return nH(t); }).join(" + "), s: nH(P1) }) : tr("negative-numbers.close.noPos")) +
+          (ns.length ? tr("negative-numbers.close.neg", { e: ns.map(function(t, i) { return nH(t, i > 0); }).join(" + "), s: nH(N1) }) : tr("negative-numbers.close.noNeg")) +
+          tr("negative-numbers.close.together", { e: nH(P1) + op("+") + nH(N1, true) + " = " + nH(P1 + N1), ok: ok() });
       } else {
         var vals = [at].concat(sol.recs.map(function(r) { return r.r; })),
           nz = vals.indexOf(0) >= 0,
           nneg = vals.filter(function(v) { return v < 0; }).length;
-        closer = nz ? "<b>Check:</b> there’s a 0 being multiplied or divided, so the answer has to be <b>0</b>" + ok() :
-          "<b>Check the sign</b> another way: there " + (nneg === 1 ? "is 1 negative number" : "are " + nneg + " negative numbers") + " — " +
-          (nneg % 2 ? "an odd number, so the answer is negative" : "an even number, so the answer is positive") + ": <b>" + nH(last) + "</b>" + ok();
+        closer = nz ? tr("negative-numbers.close.md0", { ok: ok() }) :
+          tr(nneg === 1 ? "negative-numbers.close.mdOne" : nneg % 2 ? "negative-numbers.close.mdOdd" : "negative-numbers.close.mdEven", { n: nneg, c: nH(last), ok: ok() });
       }
       $("closer").innerHTML = closer;
       return n;
@@ -3599,11 +3555,10 @@
         raw = S.inputs[S.mode];
       S.cur = null;
       try {
-        P = parseQ(raw);
+        P = parseTyped(raw);
         if (P.kind === "pemdas") throw new UserErr(pemdasMsg(P));
         if (!fits(S.mode, P)) {
-          if (P.kind === "expr" && !P.ops.length && nodePlain(P.atoms[0])) throw new UserErr("That’s just one number, <b>" + nH(P.vals[0]) + "</b>. Add an operation, like <b>" +
-            nH(P.vals[0]) + " + 3</b> — or, to find its absolute value, use the <b>Absolute value &amp; compare</b> tab.");
+          if (P.kind === "expr" && !P.ops.length && nodePlain(P.atoms[0])) throw new UserErr(tr("negative-numbers.err.oneNum", { x: nH(P.vals[0]) }));
           switchTo(infer(P));
         }
         P.src = raw;
@@ -3628,7 +3583,7 @@
         if (S.step > total) S.step = total;
         if (S.step < 1) S.step = 1;
         if (stepMode) {
-          $("stepCount").textContent = S.step + " of " + total;
+          $("stepCount").textContent = tr("negative-numbers.stepOf", { n: S.step, total: total });
           $("prevBtn").disabled = S.step <= 1;
           $("nextBtn").disabled = S.step >= total;
         }
@@ -3720,18 +3675,18 @@
         ask, q, ph;
       if (sol.kind === "compare") {
         if (P.vals.length === 2) {
-          ask = "Is the first number less than, greater than or equal to the second? Type <, > or = (or write the whole thing, like a &lt; b).";
+          ask = tr("negative-numbers.ck.ask2");
           q = nH(P.vals[0]) + '<span class="op-s">☐</span>' + nH(P.vals[1]);
-          ph = "<, > or =";
+          ph = tr("negative-numbers.ck.ph2");
         } else {
-          ask = "Put them in order from least to greatest, with commas between.";
+          ask = tr("negative-numbers.ck.askList");
           q = exprH(P) + '<span class="op-s">→</span>';
-          ph = "least, …, greatest";
+          ph = tr("negative-numbers.ck.phList");
         }
       } else {
-        ask = sol.ans.type === "frac" || (sol.op === "÷") ? "Type the number. If it doesn’t come out even, a fraction (like −7/2) or a decimal is fine." : "Type the number — −3, -3 or “negative 3” all work.";
+        ask = sol.ans.type === "frac" || (sol.op === "÷") ? tr("negative-numbers.ck.askDiv") : tr("negative-numbers.ck.askNum");
         q = (sol.kind === "abs" && !sol.info.typedAbs ? '<span class="bar">|</span>' + nH(P.vals[0]) + '<span class="bar">|</span>' : exprH(P)) + '<span class="op-s">=</span>';
-        ph = "your answer";
+        ph = tr("negative-numbers.ck.ph");
       }
       $("ckAsk").innerHTML = esc(ask).replace(/&amp;lt;/g, "&lt;");
       $("ckQ").innerHTML = q;
@@ -3774,16 +3729,16 @@
         c = frac ? { n: A.n, d: A.d } : { n: A.v, d: 1 };
       var x = parseAnsNum(raw);
       if (!x) {
-        if (/\d\s*r\s*\d/i.test(raw)) return { unread: true, msg: "Remainders get confusing with negatives. Give the answer as a fraction (like <b>−7/2</b>) or a decimal instead." };
-        return { unread: true, msg: "I couldn’t read that as a number. Type something like <b>−3</b>, <b>-3</b>, <b>(−3)</b> or <b>negative 3</b>" + (frac ? ", or a fraction like <b>−7/2</b> or a decimal" : "") + "." };
+        if (/\d\s*r\s*\d/i.test(raw)) return { unread: true, msg: tr("negative-numbers.ck.rem") };
+        return { unread: true, msg: tr(frac ? "negative-numbers.ck.unreadFrac" : "negative-numbers.ck.unread") };
       }
-      if (eqR(x, c)) return { ok: true, note: x.kind === "dec" && frac ? "As a fraction that’s " + rT(c) + "." : x.kind !== "int" && !frac ? "" : "" };
+      if (eqR(x, c)) return { ok: true, note: x.kind === "dec" && frac ? tr("negative-numbers.ck.asFrac", { f: rT(c) }) : x.kind !== "int" && !frac ? "" : "" };
       if (x.kind === "dec" && !isTerm(c.d)) {
         var sc = c.n * x.d / c.d,
           close = x.n === Math.round(sc) || x.n === (sc < 0 ? Math.ceil(sc) : Math.floor(sc)) || x.n === -Math.round(-sc);
-        if (close && x.k >= 2) return { ok: true, note: "Exactly, it’s " + rT(c) + " (" + decStr(c.n, c.d) + " goes on forever)." };
+        if (close && x.k >= 2) return { ok: true, note: tr("negative-numbers.ck.exactly", { f: rT(c), d: decStr(c.n, c.d) }) };
         if (close)
-          return { unread: true, msg: "Close — but that’s rounded a lot. Give at least two decimal places, or write it as a fraction." };
+          return { unread: true, msg: tr("negative-numbers.ck.close") };
       }
       return { ok: false, diag: diagnose(cur, x) };
     }
@@ -3819,37 +3774,36 @@
       if (m === "add" || m === "sub") {
         var bb = m === "add" ? b : -b || 0,
           big = Math.abs(a) > Math.abs(bb) ? a : bb;
-        if (m === "sub" && b < 0 && is(a + b)) return "It looks like you subtracted the negative as if it were positive. Taking away <b>" + nH(b) + "</b> is the same as <strong>adding " + mag(b) + "</strong>: <b>" + nH(a) + op("+") + mag(b) + "</b>.";
-        if (m === "sub" && b > 0 && is(a + b)) return "That’s what you get by adding " + mag(b) + ". Subtracting " + mag(b) + " is adding its opposite, <b>" + nH(-b) + "</b> — a move to the left.";
-        if (m === "sub" && is(b - a) && !cz) return "That’s <b>" + nH(b) + op("−") + nH(a, true) + "</b> — the numbers the other way round. Order matters in subtraction: start at <b>" + nH(a) + "</b>.";
+        if (m === "sub" && b < 0 && is(a + b)) return tr("negative-numbers.d.subNeg", { b: nH(b), m: mag(b), e: nH(a) + op("+") + mag(b) });
+        if (m === "sub" && b > 0 && is(a + b)) return tr("negative-numbers.d.subPos", { m: mag(b), nb: nH(-b) });
+        if (m === "sub" && is(b - a) && !cz) return tr("negative-numbers.d.swapped", { e: nH(b) + op("−") + nH(a, true), a: nH(a) });
         if (a && bb && (a < 0) !== (bb < 0) && (is(Math.abs(a) + Math.abs(bb)) || is(-(Math.abs(a) + Math.abs(bb)))))
-          return (m === "sub" ? "Once it’s <b>" + nH(a) + op("+") + nH(bb, true) + "</b>, the signs are different" : "The signs are different") +
-            ", so the two parts partly cancel: <strong>subtract</strong> the sizes (" + mag(Math.max(Math.abs(a), Math.abs(bb))) + " − " + mag(Math.min(Math.abs(a), Math.abs(bb))) + "), don’t add them.";
-        if (!cz && is(negC)) return "Right size, wrong sign. " + (a && bb && (a < 0) === (bb < 0) ? "Both numbers are " + (a < 0 ? "negative" : "positive") + (m === "sub" ? " once it’s an addition" : "") + ", so the answer is too." :
-          "The answer takes the sign of the number with the bigger size, <b>" + nH(big) + "</b>.");
-        if (m === "add" && is(a - b)) return "That’s <b>" + nH(a) + op("−") + nH(b, true) + "</b>. This one adds.";
+          return tr(m === "sub" ? "negative-numbers.d.cancelSub" : "negative-numbers.d.cancel", { e: nH(a) + op("+") + nH(bb, true), x: mag(Math.max(Math.abs(a), Math.abs(bb))), y: mag(Math.min(Math.abs(a), Math.abs(bb))) });
+        if (!cz && is(negC)) return a && bb && (a < 0) === (bb < 0) ? tr((a < 0 ? "negative-numbers.d.bothNeg" : "negative-numbers.d.bothPos") + (m === "sub" ? "Sub" : "")) :
+          tr("negative-numbers.d.bigSign", { big: nH(big) });
+        if (m === "add" && is(a - b)) return tr("negative-numbers.d.addNotSub", { e: nH(a) + op("−") + nH(b, true) });
       }
       if (m === "muldiv") {
         var o = P.ops[0],
           negs = (a < 0 ? 1 : 0) + (b < 0 ? 1 : 0);
-        if (o === "÷" && A.type === "frac" && x.d === 1) return "It doesn’t come out even, so the answer isn’t an integer. Give it as a fraction (like <b>7/2</b>) or a decimal.";
+        if (o === "÷" && A.type === "frac" && x.d === 1) return tr("negative-numbers.d.notInt");
         if (!cz && is(negC)) {
-          if (negs === 2) return "Right size, wrong sign: a negative " + (o === "×" ? "times" : "divided by") + " a negative is <strong>positive</strong>." + (o === "×" ? " The pattern in the hint shows why." : "");
-          if (negs === 1) return "Right size, wrong sign: one negative and one positive make a <strong>negative</strong> answer.";
-          return "Right size, wrong sign: both numbers are positive.";
+          if (negs === 2) return tr(o === "×" ? "negative-numbers.d.nnMul" : "negative-numbers.d.nnDiv");
+          if (negs === 1) return tr("negative-numbers.d.oneNeg");
+          return tr("negative-numbers.d.ppSign");
         }
-        if (o === "÷" && is(a * b)) return "That’s what you get by multiplying — this one divides.";
-        if (o === "×" && is(a + b)) return "That’s the sum — this one multiplies.";
+        if (o === "÷" && is(a * b)) return tr("negative-numbers.d.mulNotDiv");
+        if (o === "×" && is(a + b)) return tr("negative-numbers.d.sumNotMul");
       }
       if (m === "abs" && sol.info) {
         var I = sol.info;
-        if (!I.outer && I.x !== 0 && is(-Math.abs(I.x))) return "An absolute value is a distance from 0, so it’s <strong>never negative</strong>.";
-        if (I.outer && is(Math.abs(I.x))) return "Don’t forget the minus sign outside the bars: it takes the opposite.";
+        if (!I.outer && I.x !== 0 && is(-Math.abs(I.x))) return tr("negative-numbers.d.absNeg");
+        if (I.outer && is(Math.abs(I.x))) return tr("negative-numbers.d.outer");
       }
       if (m === "chain") {
         var alt = chainAlt(sol);
-        if (alt !== null && alt !== A.v && is(alt)) return "It looks like you subtracted a negative as if it were positive somewhere. Subtracting a negative is <strong>adding</strong>: <b>− " + nH(-2, true) + "</b> is <b>+ 2</b>.";
-        if (!cz && is(negC)) return "Right size, wrong sign. Go one step at a time and check the sign at each step.";
+        if (alt !== null && alt !== A.v && is(alt)) return tr("negative-numbers.d.chainSubNeg", { m2: nH(-2, true) });
+        if (!cz && is(negC)) return tr("negative-numbers.d.chainSign");
       }
       return "";
     }
@@ -3887,7 +3841,7 @@
           return {
             ok: false,
             diag: Math.abs(vals[0]) !== Math.abs(vals[1]) && (vals[0] < 0 || vals[1] < 0) && relOf(Math.abs(vals[0]), Math.abs(vals[1])) === W[t] ?
-              "It looks like you compared the sizes and ignored the signs. On the number line <b>" + nH(sorted[0]) + "</b> is further left, so it’s the smaller one." : "Picture them on the number line: the one further left is smaller."
+              tr("negative-numbers.d.sizes", { s: nH(sorted[0]) }) : tr("negative-numbers.d.picture")
           };
         }
       }
@@ -3895,7 +3849,7 @@
         toks = [],
         mm;
       var left = s.replace(re, function(z) { toks.push(z.replace(/\s+/g, "")); return " "; }).replace(/\band\b/g, " ").trim();
-      if (left) return { unread: true, msg: "I couldn’t read that. Type the numbers with commas between them, like <b>−8, −3, 0</b>" + (n === 2 ? ", or a sign: <b>&lt;</b>, <b>&gt;</b> or <b>=</b>" : "") + "." };
+      if (left) return { unread: true, msg: tr(n === 2 ? "negative-numbers.ck.unreadList2" : "negative-numbers.ck.unreadList") };
       var nums = [],
         seps = [],
         pend = null;
@@ -3906,10 +3860,10 @@
           pend = null;
         } else pend = z === ";" ? "," : z;
       });
-      if (!nums.length) return { unread: true, msg: "Type the numbers with commas between them." };
+      if (!nums.length) return { unread: true, msg: tr("negative-numbers.ck.typeNums") };
       var a1 = nums.slice().sort(function(p, q) { return p - q; }).join(","),
         a2 = sorted.join(",");
-      if (a1 !== a2) return { ok: false, diag: "Use each of the " + n + " numbers exactly once: <b>" + vals.map(function(v) { return nH(v); }).join(", ") + "</b>." };
+      if (a1 !== a2) return { ok: false, diag: tr("negative-numbers.d.eachOnce", { n: n, list: vals.map(function(v) { return nH(v); }).join(", ") }) };
       var rel = seps.some(function(z) { return z !== ","; });
       if (rel) {
         for (var i = 0; i < seps.length; i++) {
@@ -3917,11 +3871,10 @@
             q = nums[i + 1],
             z = seps[i];
           var good = z === "<" ? p < q : z === ">" ? p > q : z === "≤" ? p <= q : z === "≥" ? p >= q : z === "=" ? p === q : false;
-          if (z === ",") return { unread: true, msg: "Use the same kind of separator all the way: commas (least to greatest) or signs like <b>&lt;</b>." };
+          if (z === ",") return { unread: true, msg: tr("negative-numbers.ck.sameSep") };
           if (!good) return {
             ok: false,
-            diag: "<b>" + nH(p) + op(z) + nH(q) + "</b> isn’t true: on the number line " + nH(p) + " is " + (p === q ? "in the same place as" : "to the " + (p < q ? "left" : "right") + " of") + " " + nH(q) +
-              ", so it’s " + (p === q ? "equal" : p < q ? "smaller" : "bigger") + "." + (p < 0 && q < 0 ? " With negatives, a bigger size means <i>smaller</i>." : "")
+            diag: tr(p === q ? "negative-numbers.d.falseEq" : p < q ? "negative-numbers.d.falseLt" : "negative-numbers.d.falseGt", { e: nH(p) + op(z) + nH(q), p: nH(p), q: nH(q) }) + (p < 0 && q < 0 ? tr("negative-numbers.d.negSize") : "")
           };
         }
         return { ok: true };
@@ -3935,16 +3888,15 @@
         if (Math.abs(nums[j]) < Math.abs(nums[j - 1])) byAbs = false;
       }
       if (asc) return { ok: true };
-      if (desc) return { ok: false, diag: "That’s greatest to least. Start with the <strong>smallest</strong> — the one furthest left on the number line." };
+      if (desc) return { ok: false, diag: tr("negative-numbers.d.desc") };
       if (byAbs && sorted[0] < 0) {
         var ng = sorted.filter(function(v) { return v < 0; });
         return {
           ok: false,
-          diag: "It looks like you put them in order by size and ignored the signs. For negatives, a bigger size means further left: " +
-            (ng.length >= 2 && ng[0] !== ng[ng.length - 1] ? "<b>" + nH(ng[0]) + op("<") + nH(ng[ng.length - 1]) + "</b>." : "every negative is less than every positive.")
+          diag: ng.length >= 2 && ng[0] !== ng[ng.length - 1] ? tr("negative-numbers.d.byAbs", { e: nH(ng[0]) + op("<") + nH(ng[ng.length - 1]) }) : tr("negative-numbers.d.byAbsAll")
         };
       }
-      return { ok: false, diag: "Read the number line from left to right: the furthest-left number comes first." };
+      return { ok: false, diag: tr("negative-numbers.d.leftRight") };
     }
 
     function doCheck() {
@@ -3954,14 +3906,15 @@
         msg = $("ckMsg");
       if (!raw.trim()) {
         msg.className = "ck-msg";
-        msg.innerHTML = "Type your answer first.";
+        msg.innerHTML = tr("negative-numbers.ck.first");
         return;
       }
-      var res = cur.sol.ans.type === "list" ? checkList(raw, cur) : checkNum(raw, cur);
+      var said = readTyped(raw); // an answer typed in the language in use ("menos 3"), as the readers know it
+      var res = cur.sol.ans.type === "list" ? checkList(said, cur) : checkNum(said, cur);
       if (res.ok) {
         S.ck.solved = true;
         msg.className = "ck-msg ok";
-        msg.innerHTML = "✓ Correct!" + (res.note ? " <span>" + res.note + "</span>" : "") + ' <span>Here’s the full work.</span>';
+        msg.innerHTML = tr("common.correct") + (res.note ? " <span>" + res.note + "</span>" : "") + " <span>" + tr("negative-numbers.ck.fullWork") + "</span>";
         $("ckMore").hidden = true;
         report("right");
         if (EMBED && S.practice === "step") {
@@ -3976,7 +3929,7 @@
       } else {
         S.ck.tries++;
         msg.className = "ck-msg no";
-        msg.innerHTML = '<strong class="nq">Not quite — try again.</strong>' + (res.diag ? " " + res.diag : "");
+        msg.innerHTML = '<strong class="nq">' + tr("common.notQuite") + "</strong>" + (res.diag ? " " + res.diag : "");
         $("ckMore").hidden = false;
         report("wrong");
       }
@@ -4163,60 +4116,60 @@
     }
 
     /* ===================== the worksheet API ===================== */
-    var RANGEV = [{ v: 10, label: "−10 and 10" }, { v: 20, label: "−20 and 20" }, { v: 100, label: "−100 and 100" }];
+    var RANGEV = [{ v: 10, label: tr("negative-numbers.opt.rng", { n: 10 }) }, { v: 20, label: tr("negative-numbers.opt.rng", { n: 20 }) }, { v: 100, label: tr("negative-numbers.opt.rng", { n: 100 }) }];
     var OPTIONS = [{
         key: "mode",
-        label: "Kind of problem",
+        label: tr("negative-numbers.opt.kind"),
         type: "choice",
         default: "add",
-        values: [{ v: "add", label: "Add" }, { v: "sub", label: "Subtract" }, { v: "muldiv", label: "Multiply & divide" },
-          { v: "abs", label: "Absolute value & compare" }, { v: "chain", label: "Several steps in a row (like −3 + 8 − 5)" }, { v: "mixed", label: "A mix of everything" }
+        values: [{ v: "add", label: tr("negative-numbers.opt.add") }, { v: "sub", label: tr("negative-numbers.opt.sub") }, { v: "muldiv", label: tr("negative-numbers.opt.muldiv") },
+          { v: "abs", label: tr("negative-numbers.opt.abs") }, { v: "chain", label: tr("negative-numbers.opt.chain") }, { v: "mixed", label: tr("negative-numbers.opt.mixed") }
         ]
       },
-      { key: "range", label: "Numbers between", type: "choice", default: 10, values: RANGEV, modes: ["add", "sub", "muldiv", "abs", "chain", "mixed"] }, {
+      { key: "range", label: tr("negative-numbers.opt.range"), type: "choice", default: 10, values: RANGEV, modes: ["add", "sub", "muldiv", "abs", "chain", "mixed"] }, {
         key: "signs",
-        label: "Signs",
+        label: tr("negative-numbers.opt.signs"),
         type: "choice",
         default: "any",
         modes: ["add", "sub", "muldiv"],
-        values: [{ v: "any", label: "Any signs" }, { v: "neg", label: "Both negative" }, { v: "diff", label: "Different signs" }, { v: "subneg", label: "Subtract a negative (subtract only)" }]
+        values: [{ v: "any", label: tr("negative-numbers.opt.anySigns") }, { v: "neg", label: tr("negative-numbers.opt.bothNeg") }, { v: "diff", label: tr("negative-numbers.opt.diffSigns") }, { v: "subneg", label: tr("negative-numbers.opt.subnegOnly") }]
       },
-      { key: "zero", label: "Zero can be one of the numbers", type: "toggle", default: true, modes: ["add", "sub", "muldiv", "chain"] }, {
+      { key: "zero", label: tr("negative-numbers.opt.zero"), type: "toggle", default: true, modes: ["add", "sub", "muldiv", "chain"] }, {
         key: "op",
-        label: "Multiply or divide",
+        label: tr("negative-numbers.opt.op"),
         type: "choice",
         default: "both",
         modes: ["muldiv"],
-        values: [{ v: "both", label: "× and ÷" }, { v: "mul", label: "× only" }, { v: "div", label: "÷ only" }]
+        values: [{ v: "both", label: tr("negative-numbers.opt.both") }, { v: "mul", label: tr("negative-numbers.opt.mulOnly") }, { v: "div", label: tr("negative-numbers.opt.divOnly") }]
       },
-      { key: "whole", label: "Division comes out even (whole-number answers)", type: "toggle", default: true, modes: ["muldiv"] }, {
+      { key: "whole", label: tr("negative-numbers.opt.whole"), type: "toggle", default: true, modes: ["muldiv"] }, {
         key: "kind",
-        label: "Absolute value or compare",
+        label: tr("negative-numbers.opt.absOrCmp"),
         type: "choice",
         default: "compare",
         modes: ["abs"],
-        values: [{ v: "abs", label: "Absolute value" }, { v: "compare", label: "Compare & order" }]
+        values: [{ v: "abs", label: tr("negative-numbers.opt.absValue") }, { v: "compare", label: tr("negative-numbers.opt.compare") }]
       }, {
         key: "count",
-        label: "How many to order",
+        label: tr("negative-numbers.opt.count"),
         type: "choice",
         default: 4,
         modes: ["abs"],
         values: [2, 3, 4, 5, 6].map(function(v) { return { v: v, label: String(v) }; })
       }, {
         key: "len",
-        label: "How many numbers in a row",
+        label: tr("negative-numbers.opt.len"),
         type: "choice",
         default: 4,
         modes: ["chain"],
         values: [3, 4, 5, 6].map(function(v) { return { v: v, label: String(v) }; })
       }, {
         key: "ops",
-        label: "Signs in the row",
+        label: tr("negative-numbers.opt.ops"),
         type: "choice",
         default: "as",
         modes: ["chain"],
-        values: [{ v: "as", label: "+ and −" }, { v: "md", label: "× and ÷" }]
+        values: [{ v: "as", label: tr("negative-numbers.opt.as") }, { v: "md", label: tr("negative-numbers.opt.both") }]
       }
     ];
 
@@ -4327,9 +4280,9 @@
         url = location.href;
 
       function done() {
-        btn.textContent = "Link copied ✓";
+        btn.textContent = tr("common.linkCopied") + " ✓";
         clearTimeout(copyLink.t);
-        copyLink.t = setTimeout(function() { btn.textContent = "Copy link"; }, 2000);
+        copyLink.t = setTimeout(function() { btn.textContent = tr("common.copyLink"); }, 2000);
       }
 
       function fallback() {
@@ -4354,13 +4307,13 @@
     /* ===================== wiring ===================== */
     var in1 = $("in1");
     var HINTS = {
-      add: "Type it like <code>-5 + 3</code> or <code>-5 + (-3)</code>. A minus sign right in front of a number makes it negative; the real minus sign <code>−</code> works too.",
-      sub: "Type it like <code>-7 - (-2)</code>, <code>-7 - -2</code> or <code>4 - 9</code>. Parentheses around a negative are optional.",
-      muldiv: "Use <code>*</code>, <code>x</code> or <code>×</code> for times and <code>/</code>, <code>:</code> or <code>÷</code> for divide: <code>-4 * 3</code>, <code>-12 / (-3)</code>.",
-      abs: "Bars for absolute value: <code>|-7|</code> or <code>abs -7</code>. Or a list with commas, like <code>-3, 5, -8, 0</code>, to put in order.",
-      chain: "A few numbers with + and −, like <code>-3 + 8 - (-5)</code>, or with × and ÷, like <code>-2 * 3 / (-6)</code>. Done left to right. (Mixing × ÷ with + − is a job for the Order Stack.)"
+      add: tr("negative-numbers.hint.add"),
+      sub: tr("negative-numbers.hint.sub"),
+      muldiv: tr("negative-numbers.hint.muldiv"),
+      abs: tr("negative-numbers.hint.abs"),
+      chain: tr("negative-numbers.hint.chain")
     };
-    var LABELS = { add: "Your addition", sub: "Your subtraction", muldiv: "Your multiplication or division", abs: "An absolute value, or numbers to put in order", chain: "Your chain" };
+    var LABELS = { add: tr("negative-numbers.lab.add"), sub: tr("negative-numbers.lab.sub"), muldiv: tr("negative-numbers.lab.muldiv"), abs: tr("negative-numbers.lab.abs"), chain: tr("negative-numbers.lab.chain") };
 
     function buildChips() {
       var host = $("chips");
@@ -4432,60 +4385,60 @@
 
     /* the maker's controls, per mode */
     var RANGESEG = {
-      lbl: "Numbers between",
+      lbl: tr("negative-numbers.opt.range"),
       seg: "range",
       vals: [
-        [10, "−10 and 10"],
-        [20, "−20 and 20"],
-        [100, "−100 and 100"]
+        [10, tr("negative-numbers.opt.rng", { n: 10 })],
+        [20, tr("negative-numbers.opt.rng", { n: 20 })],
+        [100, tr("negative-numbers.opt.rng", { n: 100 })]
       ]
     };
     var SIGNS3 = [
-      ["any", "Any"],
-      ["neg", "Both negative"],
-      ["diff", "Different signs"]
+      ["any", tr("negative-numbers.opt.any")],
+      ["neg", tr("negative-numbers.opt.bothNeg")],
+      ["diff", tr("negative-numbers.opt.diffSigns")]
     ];
-    var ZEROTOG = ["zero", "0", "Zero can be one of the numbers"];
+    var ZEROTOG = ["zero", "0", tr("negative-numbers.opt.zero")];
     var MAKER = {
-      add: [RANGESEG, { lbl: "Signs", seg: "signs", vals: SIGNS3 }, { lbl: "Extras", togs: [ZEROTOG] }],
+      add: [RANGESEG, { lbl: tr("negative-numbers.opt.signs"), seg: "signs", vals: SIGNS3 }, { lbl: tr("negative-numbers.opt.extras"), togs: [ZEROTOG] }],
       sub: [RANGESEG, {
-          lbl: "Signs",
+          lbl: tr("negative-numbers.opt.signs"),
           seg: "signs",
           vals: [
-            ["any", "Any"],
-            ["subneg", "Subtract a negative"],
-            ["neg", "Both negative"],
-            ["diff", "Different signs"]
+            ["any", tr("negative-numbers.opt.any")],
+            ["subneg", tr("negative-numbers.opt.subneg")],
+            ["neg", tr("negative-numbers.opt.bothNeg")],
+            ["diff", tr("negative-numbers.opt.diffSigns")]
           ]
         },
-        { lbl: "Extras", togs: [ZEROTOG] }
+        { lbl: tr("negative-numbers.opt.extras"), togs: [ZEROTOG] }
       ],
       muldiv: [{
-          lbl: "Multiply or divide",
+          lbl: tr("negative-numbers.opt.op"),
           seg: "op",
           vals: [
-            ["both", "× and ÷"],
-            ["mul", "× only"],
-            ["div", "÷ only"]
+            ["both", tr("negative-numbers.opt.both")],
+            ["mul", tr("negative-numbers.opt.mulOnly")],
+            ["div", tr("negative-numbers.opt.divOnly")]
           ]
         },
         RANGESEG,
-        { lbl: "Signs", seg: "signs", vals: SIGNS3 }, {
-          lbl: "Extras",
+        { lbl: tr("negative-numbers.opt.signs"), seg: "signs", vals: SIGNS3 }, {
+          lbl: tr("negative-numbers.opt.extras"),
           togs: [
-            ["whole", "✓", "Division comes out even (whole-number answers)"], ZEROTOG
+            ["whole", "✓", tr("negative-numbers.opt.whole")], ZEROTOG
           ]
         }
       ],
       abs: [{
-          lbl: "Kind of problem",
+          lbl: tr("negative-numbers.opt.kind"),
           seg: "kind",
           vals: [
-            ["abs", "Absolute value"],
-            ["compare", "Compare & order"]
+            ["abs", tr("negative-numbers.opt.absValue")],
+            ["compare", tr("negative-numbers.opt.compare")]
           ]
         }, {
-          lbl: "How many to order",
+          lbl: tr("negative-numbers.opt.count"),
           seg: "count",
           vals: [
             [2, "2"],
@@ -4499,7 +4452,7 @@
         RANGESEG
       ],
       chain: [{
-          lbl: "How many numbers in a row",
+          lbl: tr("negative-numbers.opt.len"),
           seg: "len",
           vals: [
             [3, "3"],
@@ -4508,14 +4461,14 @@
             [6, "6"]
           ]
         }, {
-          lbl: "Signs in the row",
+          lbl: tr("negative-numbers.opt.ops"),
           seg: "ops",
           vals: [
-            ["as", "+ and −"],
-            ["md", "× and ÷"]
+            ["as", tr("negative-numbers.opt.as")],
+            ["md", tr("negative-numbers.opt.both")]
           ]
         },
-        RANGESEG, { lbl: "Extras", togs: [ZEROTOG] }
+        RANGESEG, { lbl: tr("negative-numbers.opt.extras"), togs: [ZEROTOG] }
       ]
     };
 
@@ -4571,11 +4524,11 @@
       paintSample();
       var go = document.createElement("div");
       go.className = "maker-go";
-      go.innerHTML = '<button type="button" class="go" id="genBtn">New problem</button><span class="msg" id="genMsg"></span>';
+      go.innerHTML = '<button type="button" class="go" id="genBtn">' + tr("common.newProblem") + '</button><span class="msg" id="genMsg"></span>';
       host.appendChild(go);
       $("genBtn").addEventListener("click", function() {
         var r = makeOne(S.mode, S.gen[S.mode]);
-        if (!r) { $("genMsg").textContent = "Couldn’t make one with those settings — try different choices."; return; }
+        if (!r) { $("genMsg").textContent = tr("negative-numbers.mk.fail"); return; }
         $("genMsg").textContent = "";
         setProblem(r.text);
       });
@@ -4590,7 +4543,7 @@
         var r = makeOne(S.mode, S.gen[S.mode]);
         t = r ? problemText(r.P, r.sol) : null;
       } catch (e) { t = null; }
-      el.innerHTML = t ? "Makes problems like: <b>" + esc(t) + "</b>" : "Those choices don’t make a problem — try different ones.";
+      el.innerHTML = t ? tr("negative-numbers.mk.like", { p: esc(t) }) : tr("negative-numbers.mk.none");
     }
 
     function paintPractice() {
@@ -4653,7 +4606,7 @@
       return t ? t === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
     }
 
-    function paint() { themeBtn.textContent = isDark() ? "Light mode" : "Dark mode"; }
+    function paint() { themeBtn.textContent = isDark() ? tr("common.lightMode") : tr("common.darkMode"); }
     themeBtn.addEventListener("click", function() {
       document.documentElement.setAttribute("data-theme", isDark() ? "light" : "dark");
       paint();
@@ -4771,7 +4724,7 @@
     if (typeof qp.q === "string" && qp.q.trim()) {
       var pm = MODES.indexOf(qp.mode) >= 0 ? qp.mode : null,
         P0 = null;
-      try { P0 = parseQ(qp.q); } catch (e) { P0 = null; }
+      try { P0 = parseTyped(qp.q); } catch (e) { P0 = null; }
       if (P0 && P0.kind !== "pemdas") {
         var mm = pm && fits(pm, P0) ? pm : infer(P0);
         S.mode = mm;

@@ -935,7 +935,7 @@
     function powerL(L, e) {
       var P = L.powers;
       e = String(e).replace(/-/g, "−").replace(/\s+/g, " ").trim();
-      if (P[e]) return P[e];
+      if (e !== "n" && e !== "negative" && P[e]) return P[e]; // "n" and "negative" are the templates, not powers
       if (/^−\d+(\.\d+)?$/.test(e)) return fillIn(P.negative, { n: e.slice(1) });
       if (/^[′'″]+$/.test(e)) return e;
       return fillIn(P.n, { n: e });
@@ -961,6 +961,11 @@
     function wordsL(L, t) {
       var F = L.fractions,
         s = prep(t).replace(/\.\.\.(?!\.)/g, "…");
+      // prep() names a few marks in English (x bar, p hat, t star, vector v, a range "3 to 5"): the language's words
+      var M = L.marks || {};
+      s = s.replace(/\b([a-zA-Z]|df) (bar|hat|star)\b/g, function(m, x, k) { return x + " " + (M[k] || k); })
+        .replace(/\bvector ([a-zA-Z])\b/g, function(m, x) { return (M.vector || "vector") + " " + x; })
+        .replace(/(\d) to (?=\d)/g, "$1 " + (M.to || "to") + " ");
       s = moneyL(L, s);
       s = s.replace(/(^|[^\d.,])(\d{1,3}(?:,\d{3})+)(?!\d|,\d)/g, function(m, pre, n) { return pre + n.replace(/,/g, ""); }); // 1,200 is one number
       // repeating digits: 0.(3), 0.1(6), and the page's marked ones

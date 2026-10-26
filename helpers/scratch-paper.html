@@ -16,6 +16,7 @@
 <link rel="canonical" href="https://showthesteps.org/helpers/scratch-paper">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","name":"Doing + − × ÷ by hand, step by step – The Scratch Paper","description":"Type a problem and do it by hand: + − × ÷ on squared paper, square by square; equations, expressions, fractions and stories line by line, with every line checked as you go.","url":"https://showthesteps.org/helpers/scratch-paper","inLanguage":"en-US","isAccessibleForFree":true,"learningResourceType":["Interactive worked examples","Practice problems"],"interactivityType":"active","educationalUse":["Practice","Self-assessment"],"teaches":"Doing + − × ÷ by hand","educationalLevel":["Elementary school (grades K–5)","Middle school (grades 6–8)"],"audience":{"@type":"EducationalAudience","educationalRole":"student"},"publisher":{"@type":"Organization","name":"Show The Steps","url":"https://showthesteps.org/"},"isPartOf":{"@type":"WebSite","name":"Show The Steps","url":"https://showthesteps.org/"}}</script>
 <script src="../assets/site.js"></script>
+<script src="../assets/i18n.js" data-strings="scratch-paper"></script>
 <script src="../assets/nav.js" defer></script>
 <script src="../assets/progress.js" defer></script>
 <link rel="stylesheet" href="../assets/fonts/fonts.css">
@@ -1656,58 +1657,58 @@
 <div class="page" id="page">
   <header class="masthead">
     <div>
-      <div class="eyebrow">Do it by hand</div>
+      <div class="eyebrow" data-i18n="scratch-paper.eyebrow">Do it by hand</div>
       <h1>The Scratch <em>Paper</em></h1>
-      <p class="tagline">Type a problem, then work it out yourself: + &minus; &times; &divide; on squared paper, square by square,
+      <p class="tagline" data-i18n="scratch-paper.tagline">Type a problem, then work it out yourself: + &minus; &times; &divide; on squared paper, square by square,
         and anything else &mdash; expressions, equations, fractions, stories &mdash; line by line. The page checks as you go.</p>
     </div>
     <button class="theme-btn" id="themeBtn" type="button">Dark mode</button>
   </header>
 
-  <section class="problem" id="problemBox" aria-label="The problem">
-    <div class="modes paper-modes" role="group" aria-label="How to work it" id="paperModes">
-      <button type="button" data-paper="squares" aria-pressed="true">On squared paper <span>(+ &minus; &times; &divide;)</span></button>
-      <button type="button" data-paper="lines" aria-pressed="false">Line by line <span>(anything else)</span></button>
+  <section class="problem" id="problemBox" aria-label="The problem" data-i18n-attr="aria-label=scratch-paper.problemAria">
+    <div class="modes paper-modes" role="group" aria-label="How to work it" id="paperModes" data-i18n-attr="aria-label=scratch-paper.paperModesAria">
+      <button type="button" data-paper="squares" aria-pressed="true" data-i18n="scratch-paper.paper.squares">On squared paper <span>(+ &minus; &times; &divide;)</span></button>
+      <button type="button" data-paper="lines" aria-pressed="false" data-i18n="scratch-paper.paper.lines">Line by line <span>(anything else)</span></button>
     </div>
     <div>
-      <label class="lbl" for="qIn">Your problem</label>
+      <label class="lbl" for="qIn" data-i18n="scratch-paper.yourProblem">Your problem</label>
       <div class="qrow">
         <textarea class="q-in" id="qIn" rows="1" inputmode="text" autocomplete="off" spellcheck="false"
                placeholder="47 × 23" aria-describedby="qHelp"></textarea>
-        <button type="button" class="go" id="startBtn">Start</button>
+        <button type="button" class="go" id="startBtn" data-i18n="scratch-paper.start">Start</button>
       </div>
-      <p class="qhelp" id="qHelp">Squared paper: + − × ÷ of plain numbers, like 478 + 356, 47 × 23 or 847 ÷ 12. Line by line: anything else —
+      <p class="qhelp" id="qHelp" data-i18n="scratch-paper.qHelp">Squared paper: + − × ÷ of plain numbers, like 478 + 356, 47 × 23 or 847 ÷ 12. Line by line: anything else —
         3(x − 2) + 4x, 2x + 5 = 17, 3/4 + 5/6, 20 − 12 ÷ 4 × 2, or a story problem.</p>
     </div>
     <div class="optrow">
-      <div class="modes small" role="group" aria-label="When to check" id="checkModes">
-        <button type="button" data-check="each" aria-pressed="true">Check as you go</button>
-        <button type="button" data-check="end" aria-pressed="false">Check at the end</button>
+      <div class="modes small" role="group" aria-label="When to check" id="checkModes" data-i18n-attr="aria-label=scratch-paper.checkModesAria">
+        <button type="button" data-check="each" aria-pressed="true" data-i18n="scratch-paper.check.each">Check as you go</button>
+        <button type="button" data-check="end" aria-pressed="false" data-i18n="scratch-paper.check.end">Check at the end</button>
       </div>
-      <div class="modes small" role="group" aria-label="Division answer" id="ansModes" hidden>
-        <button type="button" data-ans="remainder" aria-pressed="true">Remainder</button>
-        <button type="button" data-ans="decimal" aria-pressed="false">Decimals</button>
+      <div class="modes small" role="group" aria-label="Division answer" id="ansModes" hidden data-i18n-attr="aria-label=scratch-paper.ansModesAria">
+        <button type="button" data-ans="remainder" aria-pressed="true" data-i18n="scratch-paper.ans.remainder">Remainder</button>
+        <button type="button" data-ans="decimal" aria-pressed="false" data-i18n="scratch-paper.ans.decimal">Decimals</button>
       </div>
-      <div class="modes small" role="group" aria-label="Decimal places" id="placeModes" hidden>
-        <button type="button" data-places="1" aria-pressed="false">1 place</button>
-        <button type="button" data-places="2" aria-pressed="false">2 places</button>
-        <button type="button" data-places="3" aria-pressed="true">3 places</button>
-        <button type="button" data-places="4" aria-pressed="false">4 places</button>
+      <div class="modes small" role="group" aria-label="Decimal places" id="placeModes" hidden data-i18n-attr="aria-label=scratch-paper.placeModesAria">
+        <button type="button" data-places="1" aria-pressed="false" data-i18n="scratch-paper.places.1">1 place</button>
+        <button type="button" data-places="2" aria-pressed="false" data-i18n="scratch-paper.places.2">2 places</button>
+        <button type="button" data-places="3" aria-pressed="true" data-i18n="scratch-paper.places.3">3 places</button>
+        <button type="button" data-places="4" aria-pressed="false" data-i18n="scratch-paper.places.4">4 places</button>
       </div>
     </div>
 
     <details class="maker" id="maker">
-      <summary>Make a problem for me <span>&mdash; pick what goes in it</span></summary>
+      <summary data-i18n="common.maker">Make a problem for me <span>&mdash; pick what goes in it</span></summary>
       <div class="maker-body" id="makerBody"></div>
       <p class="sample" id="sample"></p>
       <div class="maker-go">
-        <button type="button" class="go" id="genBtn">New problem</button>
+        <button type="button" class="go" id="genBtn" data-i18n="common.newProblem">New problem</button>
         <span class="msg" id="genMsg"></span>
       </div>
     </details>
 
     <div class="examples">
-      <span class="lbl">Try</span>
+      <span class="lbl" data-i18n="common.try">Try</span>
       <span id="chips" style="display:contents"></span>
     </div>
   </section>
@@ -1715,89 +1716,89 @@
   <div class="linknote" id="linkNote" hidden></div>
   <p class="say" id="say" role="status" aria-live="polite"></p>
 
-  <section class="panel sheet" id="sheet" aria-label="Your sheet of squared paper">
+  <section class="panel sheet" id="sheet" aria-label="Your sheet of squared paper" data-i18n-attr="aria-label=scratch-paper.sheetAria">
     <div class="panel-head">
       <h2 id="sheetTitle">Your sheet</h2>
-      <button type="button" class="tolines" id="toLinesBtn">Do it line by line instead</button>
+      <button type="button" class="tolines" id="toLinesBtn" data-i18n="scratch-paper.toLines">Do it line by line instead</button>
       <div class="tools">
-        <button type="button" class="tool main" id="checkWorkBtn" hidden>Check my work</button>
-        <button type="button" class="tool" id="stepBtn">Show me the next step</button>
-        <button type="button" class="tool" id="showBtn">Show the answer</button>
-        <button type="button" class="tool" id="undoBtn" aria-label="Undo">Undo</button>
-        <button type="button" class="tool" id="redoBtn" aria-label="Redo">Redo</button>
-        <button type="button" class="tool" id="clearBtn">Clear</button>
+        <button type="button" class="tool main" id="checkWorkBtn" hidden data-i18n="scratch-paper.checkWork">Check my work</button>
+        <button type="button" class="tool" id="stepBtn" data-i18n="scratch-paper.nextStep">Show me the next step</button>
+        <button type="button" class="tool" id="showBtn" data-i18n="scratch-paper.showAnswer">Show the answer</button>
+        <button type="button" class="tool" id="undoBtn" aria-label="Undo" data-i18n="scratch-paper.undo" data-i18n-attr="aria-label=scratch-paper.undo">Undo</button>
+        <button type="button" class="tool" id="redoBtn" aria-label="Redo" data-i18n="scratch-paper.redo" data-i18n-attr="aria-label=scratch-paper.redo">Redo</button>
+        <button type="button" class="tool" id="clearBtn" data-i18n="scratch-paper.clear">Clear</button>
       </div>
     </div>
     <div class="paper" id="paper">
-      <div class="grid" id="grid" role="group" aria-label="Squares to fill in"></div>
+      <div class="grid" id="grid" role="group" aria-label="Squares to fill in" data-i18n-attr="aria-label=scratch-paper.gridAria"></div>
       <div class="bubble" id="bubble" hidden></div>
     </div>
     <div class="pointstep" id="pointstep" hidden></div>
-    <p class="nextline" id="nextLine"><span class="k">What to do next</span><span id="nextTxt"></span></p>
-    <div class="pad idle" id="pad" role="toolbar" aria-label="Digit pad">
+    <p class="nextline" id="nextLine"><span class="k" data-i18n="scratch-paper.whatNext">What to do next</span><span id="nextTxt"></span></p>
+    <div class="pad idle" id="pad" role="toolbar" aria-label="Digit pad" data-i18n-attr="aria-label=scratch-paper.padAria">
       <button type="button" data-k="1">1</button><button type="button" data-k="2">2</button><button type="button" data-k="3">3</button>
       <button type="button" data-k="4">4</button><button type="button" data-k="5">5</button><button type="button" data-k="6">6</button>
       <button type="button" data-k="7">7</button><button type="button" data-k="8">8</button><button type="button" data-k="9">9</button>
       <button type="button" data-k="0">0</button>
-      <button type="button" class="act" data-k="back" aria-label="Rub out">&#9003;</button>
-      <button type="button" class="act" data-k="left" aria-label="Move left">&larr;</button>
-      <button type="button" class="act" data-k="right" aria-label="Move right">&rarr;</button>
-      <button type="button" class="act" data-k="cross" aria-label="Cross out">cross out</button>
-      <button type="button" class="act done" data-k="done">Done</button>
+      <button type="button" class="act" data-k="back" aria-label="Rub out" data-i18n-attr="aria-label=scratch-paper.key.back">&#9003;</button>
+      <button type="button" class="act" data-k="left" aria-label="Move left" data-i18n-attr="aria-label=scratch-paper.key.left">&larr;</button>
+      <button type="button" class="act" data-k="right" aria-label="Move right" data-i18n-attr="aria-label=scratch-paper.key.right">&rarr;</button>
+      <button type="button" class="act" data-k="cross" aria-label="Cross out" data-i18n="scratch-paper.key.crossText" data-i18n-attr="aria-label=scratch-paper.key.cross">cross out</button>
+      <button type="button" class="act done" data-k="done" data-i18n="scratch-paper.key.done">Done</button>
     </div>
   </section>
 
-  <section class="panel lines" id="linesPanel" hidden aria-label="Your working, line by line">
+  <section class="panel lines" id="linesPanel" hidden aria-label="Your working, line by line" data-i18n-attr="aria-label=scratch-paper.linesAria">
     <div class="panel-head">
       <h2 id="linesTitle">Your working</h2>
       <div class="tools">
-        <button type="button" class="tool main" id="lCheckBtn" hidden>Check my work</button>
-        <button type="button" class="tool" id="lStepBtn">Show me the next line</button>
-        <button type="button" class="tool" id="lShowBtn">Show the answer</button>
-        <button type="button" class="tool" id="lUndoBtn">Undo</button>
-        <button type="button" class="tool" id="lRedoBtn">Redo</button>
-        <button type="button" class="tool" id="lInsBtn">Insert line</button>
-        <button type="button" class="tool" id="lDelBtn">Delete line</button>
-        <button type="button" class="tool" id="lClearBtn">Clear</button>
+        <button type="button" class="tool main" id="lCheckBtn" hidden data-i18n="scratch-paper.checkWork">Check my work</button>
+        <button type="button" class="tool" id="lStepBtn" data-i18n="scratch-paper.nextLineBtn">Show me the next line</button>
+        <button type="button" class="tool" id="lShowBtn" data-i18n="scratch-paper.showAnswer">Show the answer</button>
+        <button type="button" class="tool" id="lUndoBtn" data-i18n="scratch-paper.undo">Undo</button>
+        <button type="button" class="tool" id="lRedoBtn" data-i18n="scratch-paper.redo">Redo</button>
+        <button type="button" class="tool" id="lInsBtn" data-i18n="scratch-paper.insLine">Insert line</button>
+        <button type="button" class="tool" id="lDelBtn" data-i18n="scratch-paper.delLine">Delete line</button>
+        <button type="button" class="tool" id="lClearBtn" data-i18n="scratch-paper.clear">Clear</button>
       </div>
     </div>
     <div class="kindbar">
-      <span class="lbl">This is</span>
-      <div class="modes small" role="group" aria-label="Kind of problem" id="kindModes">
-        <button type="button" data-kind="expression" aria-pressed="false">An expression</button>
-        <button type="button" data-kind="equation" aria-pressed="false">An equation</button>
-        <button type="button" data-kind="inequality" aria-pressed="false">An inequality</button>
-        <button type="button" data-kind="system" aria-pressed="false">A system</button>
-        <button type="button" data-kind="word" aria-pressed="false">A story</button>
+      <span class="lbl" data-i18n="scratch-paper.thisIs">This is</span>
+      <div class="modes small" role="group" aria-label="Kind of problem" id="kindModes" data-i18n-attr="aria-label=scratch-paper.kindModesAria">
+        <button type="button" data-kind="expression" aria-pressed="false" data-i18n="scratch-paper.kind.expression">An expression</button>
+        <button type="button" data-kind="equation" aria-pressed="false" data-i18n="scratch-paper.kind.equation">An equation</button>
+        <button type="button" data-kind="inequality" aria-pressed="false" data-i18n="scratch-paper.kind.inequality">An inequality</button>
+        <button type="button" data-kind="system" aria-pressed="false" data-i18n="scratch-paper.kind.system">A system</button>
+        <button type="button" data-kind="word" aria-pressed="false" data-i18n="scratch-paper.kind.word">A story</button>
       </div>
     </div>
     <div class="ruled" id="ruled">
       <div class="story" id="storyBox" hidden></div>
-      <div class="given" id="givenRow"><span class="glbl">Problem</span><span class="gtext" id="givenText"></span></div>
-      <ol class="llist" id="llist" aria-label="Your lines of working"></ol>
+      <div class="given" id="givenRow"><span class="glbl" data-i18n="scratch-paper.problemLbl">Problem</span><span class="gtext" id="givenText"></span></div>
+      <ol class="llist" id="llist" aria-label="Your lines of working" data-i18n-attr="aria-label=scratch-paper.llistAria"></ol>
     </div>
-    <p class="nextline"><span class="k">What to do next</span><span id="lNextTxt"></span></p>
-    <div class="pad spad idle" id="spad" role="toolbar" aria-label="Math keys">
-      <button type="button" data-k="1">1</button><button type="button" data-k="2">2</button><button type="button" data-k="3">3</button><button type="button" data-k="4">4</button><button type="button" data-k="5">5</button><button type="button" data-k="6">6</button><button type="button" data-k="7">7</button><button type="button" data-k="8">8</button><button type="button" data-k="9">9</button><button type="button" data-k="0">0</button><button type="button" data-k="." aria-label="point">.</button>
-      <button type="button" data-k="+" aria-label="plus">+</button><button type="button" data-k="−" aria-label="minus">−</button><button type="button" data-k="×" aria-label="times">×</button><button type="button" data-k="÷" aria-label="divided by">÷</button><button type="button" data-k="(" aria-label="open bracket">(</button><button type="button" data-k=")" aria-label="close bracket">)</button><button type="button" data-k="^" aria-label="to the power">^</button><button type="button" data-k="/" aria-label="fraction bar">/</button><button type="button" data-k="=" aria-label="equals">=</button><button type="button" data-k="?" aria-label="unknown">?</button><button type="button" data-k="back" aria-label="Rub out">&#9003;</button>
-      <button type="button" data-k="x">x</button><button type="button" data-k="y">y</button><button type="button" data-k="n">n</button><button type="button" data-k="<" aria-label="less than">&lt;</button><button type="button" data-k=">" aria-label="greater than">&gt;</button><button type="button" data-k="≤" aria-label="less than or equal to">≤</button><button type="button" data-k="≥" aria-label="greater than or equal to">≥</button><button type="button" data-k="left" aria-label="Move left">&larr;</button><button type="button" data-k="right" aria-label="Move right">&rarr;</button><button type="button" class="wide2 done" data-k="enter" aria-label="Next line">Next line</button>
+    <p class="nextline"><span class="k" data-i18n="scratch-paper.whatNext">What to do next</span><span id="lNextTxt"></span></p>
+    <div class="pad spad idle" id="spad" role="toolbar" aria-label="Math keys" data-i18n-attr="aria-label=scratch-paper.spadAria">
+      <button type="button" data-k="1">1</button><button type="button" data-k="2">2</button><button type="button" data-k="3">3</button><button type="button" data-k="4">4</button><button type="button" data-k="5">5</button><button type="button" data-k="6">6</button><button type="button" data-k="7">7</button><button type="button" data-k="8">8</button><button type="button" data-k="9">9</button><button type="button" data-k="0">0</button><button type="button" data-k="." aria-label="point" data-i18n-attr="aria-label=scratch-paper.key.point">.</button>
+      <button type="button" data-k="+" aria-label="plus" data-i18n-attr="aria-label=scratch-paper.key.plus">+</button><button type="button" data-k="−" aria-label="minus" data-i18n-attr="aria-label=scratch-paper.key.minus">−</button><button type="button" data-k="×" aria-label="times" data-i18n-attr="aria-label=scratch-paper.key.times">×</button><button type="button" data-k="÷" aria-label="divided by" data-i18n-attr="aria-label=scratch-paper.key.div">÷</button><button type="button" data-k="(" aria-label="open bracket" data-i18n-attr="aria-label=scratch-paper.key.open">(</button><button type="button" data-k=")" aria-label="close bracket" data-i18n-attr="aria-label=scratch-paper.key.close">)</button><button type="button" data-k="^" aria-label="to the power" data-i18n-attr="aria-label=scratch-paper.key.pow">^</button><button type="button" data-k="/" aria-label="fraction bar" data-i18n-attr="aria-label=scratch-paper.key.frac">/</button><button type="button" data-k="=" aria-label="equals" data-i18n-attr="aria-label=scratch-paper.key.eq">=</button><button type="button" data-k="?" aria-label="unknown" data-i18n-attr="aria-label=scratch-paper.key.unknown">?</button><button type="button" data-k="back" aria-label="Rub out" data-i18n-attr="aria-label=scratch-paper.key.back">&#9003;</button>
+      <button type="button" data-k="x">x</button><button type="button" data-k="y">y</button><button type="button" data-k="n">n</button><button type="button" data-k="<" aria-label="less than" data-i18n-attr="aria-label=scratch-paper.key.lt">&lt;</button><button type="button" data-k=">" aria-label="greater than" data-i18n-attr="aria-label=scratch-paper.key.gt">&gt;</button><button type="button" data-k="≤" aria-label="less than or equal to" data-i18n-attr="aria-label=scratch-paper.key.le">≤</button><button type="button" data-k="≥" aria-label="greater than or equal to" data-i18n-attr="aria-label=scratch-paper.key.ge">≥</button><button type="button" data-k="left" aria-label="Move left" data-i18n-attr="aria-label=scratch-paper.key.left">&larr;</button><button type="button" data-k="right" aria-label="Move right" data-i18n-attr="aria-label=scratch-paper.key.right">&rarr;</button><button type="button" class="wide2 done" data-k="enter" aria-label="Next line" data-i18n="scratch-paper.key.enter" data-i18n-attr="aria-label=scratch-paper.key.enter">Next line</button>
     </div>
   </section>
 
-  <section class="done" id="doneBox" hidden aria-label="Finished">
+  <section class="done" id="doneBox" hidden aria-label="Finished" data-i18n-attr="aria-label=scratch-paper.doneAria">
     <div class="confetti" aria-hidden="true"><i style="left:8%;animation-delay:.05s"></i><i style="left:17%;animation-delay:.25s"></i><i style="left:28%;animation-delay:.1s"></i><i style="left:39%;animation-delay:.35s"></i><i style="left:50%;animation-delay:0s"></i><i style="left:61%;animation-delay:.2s"></i><i style="left:72%;animation-delay:.4s"></i><i style="left:83%;animation-delay:.15s"></i><i style="left:92%;animation-delay:.3s"></i></div>
     <div class="head"><span class="stamp" id="stamp">Solved!</span><span class="score" id="score"></span></div>
     <div id="answerHost"></div>
     <div class="acts">
-      <button type="button" class="go" id="againBtn">New problem</button>
-      <a id="seeLink" href="addition.html">See it worked out &rarr;</a>
+      <button type="button" class="go" id="againBtn" data-i18n="common.newProblem">New problem</button>
+      <a id="seeLink" href="addition.html" data-i18n="scratch-paper.seeIt">See it worked out &rarr;</a>
     </div>
   </section>
 
   <div class="footnote">
-    <button class="print" type="button" id="printBtn">Print this sheet</button>
-    <button class="print" type="button" id="copyBtn">Copy link</button>
-    <span>Squared paper: tap a square, then type a digit; to borrow, tap the digit you borrow from. Line by line: write one step on each line and press Enter.</span>
+    <button class="print" type="button" id="printBtn" data-i18n="scratch-paper.print">Print this sheet</button>
+    <button class="print" type="button" id="copyBtn" data-i18n="common.copyLink">Copy link</button>
+    <span data-i18n="scratch-paper.foot">Squared paper: tap a square, then type a digit; to borrow, tap the digit you borrow from. Line by line: write one step on each line and press Enter.</span>
   </div>
 </div>
 
@@ -1847,6 +1848,9 @@
      ============================================================================= */
   (function() {
     "use strict";
+    if (window.HelperI18n) HelperI18n.apply();
+    var tx = function(k, v) { return window.HelperI18n ? HelperI18n.t(k, v) : k; };
+    var txr = function(k) { return window.HelperI18n ? HelperI18n.raw(k) : undefined; };
     var $ = function(id) { return document.getElementById(id); };
     var PAGE = "scratch.html",
       KEY = "scratch-paper";
@@ -1871,9 +1875,16 @@
     }
 
     function placeName(e) {
-      var pos = ["ones", "tens", "hundreds", "thousands", "ten thousands", "hundred thousands", "millions", "ten millions", "hundred millions"];
-      var neg = ["tenths", "hundredths", "thousandths", "ten-thousandths", "hundred-thousandths", "millionths"];
-      return e >= 0 ? (pos[e] || "big place") : (neg[-e - 1] || "tiny place");
+      var pos = txr("scratch-paper.placesPos") || [],
+        neg = txr("scratch-paper.placesNeg") || [];
+      return e >= 0 ? (pos[e] || tx("scratch-paper.bigPlace")) : (neg[-e - 1] || tx("scratch-paper.tinyPlace"));
+    }
+
+    // a count of a place, "7 tens": the same words in English; Spanish without the article ("7 decenas")
+    function placeBare(e) {
+      var pos = txr("scratch-paper.placesPosBare") || [],
+        neg = txr("scratch-paper.placesNegBare") || [];
+      return e >= 0 ? (pos[e] || tx("scratch-paper.bigPlace")) : (neg[-e - 1] || tx("scratch-paper.tinyPlace"));
     }
 
     function parseNum(raw) {
@@ -2244,8 +2255,8 @@
       var s = String(raw == null ? "" : raw).replace(/[−–—]/g, "-").replace(/[×✕✖·∙]/g, "*").replace(/÷/g, "/")
         .replace(/＋/g, "+").replace(/\s+/g, " ").trim();
       s = s.replace(/(\d)\s*[xX]\s*(?=[\d.])/g, "$1*").replace(/=\s*\??\s*$/, "").trim();
-      if (!s) return { err: "it was empty" };
-      if (/[^\d.,+\-*\/: ]/.test(s)) return { err: "it should only have numbers and one of + − × ÷" };
+      if (!s) return { err: tx("scratch-paper.err.empty") };
+      if (/[^\d.,+\-*\/: ]/.test(s)) return { err: tx("scratch-paper.err.chars") };
       var signs = (/\+/.test(s) ? 1 : 0) + (/\*/.test(s) ? 1 : 0) + (/[\/:]/.test(s) ? 1 : 0) + (/-/.test(s) ? 1 : 0);
       var op = /\+/.test(s) ? "add" : /\*/.test(s) ? "mul" : /[\/:]/.test(s) ? "div" : /-/.test(s) ? "sub" : null;
       if (!op && opHint && /\d \d/.test(s)) { // "478 356" from a link whose "+" became a space
@@ -2253,24 +2264,24 @@
         s = s.replace(/ /g, { add: "+", sub: "-", mul: "*", div: "/" } [op]);
         signs = 1;
       }
-      if (!op) return { err: "it needs a sign between the numbers: + − × or ÷" };
-      if (signs > 1) return { err: "use one kind of sign at a time" };
-      if (/^\s*-/.test(s)) return { err: "the numbers here can’t be negative" };
+      if (!op) return { err: tx("scratch-paper.err.noSign") };
+      if (signs > 1) return { err: tx("scratch-paper.err.twoSigns") };
+      if (/^\s*-/.test(s)) return { err: tx("scratch-paper.err.negative") };
       var parts = s.split(op === "add" ? "+" : op === "sub" ? "-" : op === "mul" ? "*" : /[\/:]/).map(function(t) { return t.trim(); });
-      if (parts.some(function(t) { return !t; })) return { err: "there’s a number missing" };
+      if (parts.some(function(t) { return !t; })) return { err: tx("scratch-paper.err.missing") };
       var nums = parts.map(parseNum);
-      if (nums.some(function(n) { return !n; })) return { err: "each number should be digits, with at most one decimal point" };
+      if (nums.some(function(n) { return !n; })) return { err: tx("scratch-paper.err.digits") };
       if (op === "add") {
-        if (parts.length < 2) return { err: "it needs two or more numbers joined by +" };
-        if (parts.length > 4) return { err: "the sheet adds up to four numbers at a time" };
-        if (nums.some(function(n) { return n.i.length > 8 || n.f.length > 4; })) return { err: "keep each number to 8 digits before the point and 4 after" };
+        if (parts.length < 2) return { err: tx("scratch-paper.err.addTwo") };
+        if (parts.length > 4) return { err: tx("scratch-paper.err.addFour") };
+        if (nums.some(function(n) { return n.i.length > 8 || n.f.length > 4; })) return { err: tx("scratch-paper.err.size84") };
         return { p: { op: "add", nums: nums.map(function(n) { return n.f ? n.i + "." + n.f : n.i; }) } };
       }
-      if (parts.length !== 2) return { err: "it needs exactly two numbers" };
+      if (parts.length !== 2) return { err: tx("scratch-paper.err.two") };
       var a = nums[0],
         b = nums[1];
       if (op === "sub") {
-        if (a.i.length > 8 || b.i.length > 8 || a.f.length > 4 || b.f.length > 4) return { err: "keep each number to 8 digits before the point and 4 after" };
+        if (a.i.length > 8 || b.i.length > 8 || a.f.length > 4 || b.f.length > 4) return { err: tx("scratch-paper.err.size84") };
         return { p: { op: "sub", a: a.f ? a.i + "." + a.f : a.i, b: b.f ? b.i + "." + b.f : b.i } };
       }
       if (op === "mul") {
@@ -2288,13 +2299,13 @@
           B = t;
           note = "swap";
         }
-        if (A.length > 4 || B.length > 3) return { err: "the sheet multiplies up to 4 digits by up to 3 digits (decimal points don’t count)" };
+        if (A.length > 4 || B.length > 3) return { err: tx("scratch-paper.err.mulSize") };
         return { p: { op: "mul", a: sa, b: sb }, note: note };
       }
-      if (a.f || b.f) return { err: "long division here works with whole numbers — the Division House does decimals" };
-      if (a.i.length > 6) return { err: "keep the number you divide to 6 digits" };
-      if (b.i.length > 3) return { err: "keep the divisor to 3 digits" };
-      if (b.i === "0") return { err: "you can’t divide by 0" };
+      if (a.f || b.f) return { err: tx("scratch-paper.err.divDec") };
+      if (a.i.length > 6) return { err: tx("scratch-paper.err.divBig") };
+      if (b.i.length > 3) return { err: tx("scratch-paper.err.divisorBig") };
+      if (b.i === "0") return { err: tx("scratch-paper.err.divZero") };
       return { p: { op: "div", a: a.i, b: b.i, ans: "remainder", places: 3 } };
     }
 
@@ -2487,7 +2498,7 @@
       rule(M, n + 1, 1, L + 1);
       var lead = true;
 
-      function sumStr(k) { var c = col[k]; return c.parts.join(" + ") + (c.cin ? " + " + c.cin + " carried" : ""); }
+      function sumStr(k) { var c = col[k]; return c.cin ? tx("scratch-paper.sumCarried", { s: c.parts.join(" + "), c: c.cin }) : c.parts.join(" + "); }
       for (k = 0; k < L; k++) {
         var c = col[k],
           isLead = lead && c.d === 0 && k < ones;
@@ -2500,25 +2511,25 @@
             kind: "ans",
             main: true,
             data: 'data-e="' + c.e + '"',
-            label: "answer, " + placeName(c.e) + " place",
+            label: tx("scratch-paper.lbl.ansPlace", { place: placeName(c.e) }),
             exp: String(c.d),
             opt: isLead,
             ord: (L - 1 - k) * 2,
             dot: maxF > 0 && k === ones,
             lit: [{ r1: 1, r2: R_A, c1: C(k), c2: C(k) }],
             todo: k === 0 && c.parts.length === 0 ?
-              "Nothing is left to add in the next column — write what you carried, if anything, in front." : "Add the " + placeName(c.e) + " column" + (c.cin ? ", and don’t forget the " + c.cin + " you carried" : "") + ".",
+              tx("scratch-paper.add.todoFront") : (c.cin ? tx("scratch-paper.add.todoColCarry", { place: placeName(c.e), c: c.cin }) : tx("scratch-paper.add.todoCol", { place: placeName(c.e) })),
             why: c.parts.length === 0 ?
-              (c.cin ? "There’s nothing else in this column, so the carried <b>" + c.cin + "</b> comes straight down." : "Nothing here.") : "<b>" + sumStr(k) + " = " + c.tot + "</b>" + (c.tot >= 10 ? ": write the <b>" + c.d + "</b> here and carry the <b>" + c.cout + "</b>." : ": write it under the line."),
+              (c.cin ? tx("scratch-paper.add.whyDown", { c: c.cin }) : tx("scratch-paper.add.whyNothing")) : (c.tot >= 10 ? tx("scratch-paper.sumWriteCarry", { s: sumStr(k), tot: c.tot, d: c.d, c: c.cout }) : tx("scratch-paper.add.whyUnder", { s: sumStr(k), tot: c.tot })),
             hint: function(v) {
               if (c.parts.length === 0)
-                return c.cin ? "Bring the <b>" + c.cin + "</b> you carried straight down here." : "Nothing was carried into this column, so leave it empty.";
+                return c.cin ? tx("scratch-paper.add.hintDown", { c: c.cin }) : tx("scratch-paper.add.hintEmpty");
               var noCarry = (c.tot - c.cin) % 10;
               if (c.cin && Number(v) === noCarry)
-                return "That column needs the <b>" + c.cin + "</b> you carried: <b>" + sumStr(k) + " = " + c.tot + "</b>" + (c.tot >= 10 ? ", so write the <b>" + c.d + "</b>." : ".");
+                return c.tot >= 10 ? tx("scratch-paper.add.hintNeedCarryBig", { c: c.cin, s: sumStr(k), tot: c.tot, d: c.d }) : tx("scratch-paper.add.hintNeedCarry", { c: c.cin, s: sumStr(k), tot: c.tot });
               if (c.tot >= 10 && v === String(Math.floor(c.tot / 10)))
-                return "<b>" + sumStr(k) + " = " + c.tot + "</b>: the <b>" + c.d + "</b> goes here — the <b>" + c.cout + "</b> is carried.";
-              return "<b>" + sumStr(k) + " = " + c.tot + "</b>" + (c.tot >= 10 ? ": write the <b>" + c.d + "</b> here and carry the <b>" + c.cout + "</b>." : ": write <b>" + c.d + "</b> here.");
+                return tx("scratch-paper.add.hintSwapped", { s: sumStr(k), tot: c.tot, d: c.d, c: c.cout });
+              return c.tot >= 10 ? tx("scratch-paper.sumWriteCarry", { s: sumStr(k), tot: c.tot, d: c.d, c: c.cout }) : tx("scratch-paper.sumWrite", { s: sumStr(k), tot: c.tot, d: c.d });
             }
           });
         })(k, c, isLead);
@@ -2534,16 +2545,16 @@
             kind: "carry",
             small: true,
             data: 'data-e="' + col[k].e + '"',
-            label: "carry for the " + placeName(col[k].e) + " column",
+            label: tx("scratch-paper.lbl.carryCol", { place: placeName(col[k].e) }),
             exp: String(cv),
             opt: cv === 0 || k === 0,
             ord: (L - 2 - k) * 2 + 1,
             lit: [{ r1: 1, r2: R_A, c1: C(k + 1), c2: C(k + 1) }],
-            todo: "Write what you carry above the " + placeName(col[k].e) + " column.",
-            why: "<b>" + sumStr(k + 1) + " = " + from.tot + "</b>: carry the <b>" + cv + "</b> into the " + placeName(col[k].e) + " column.",
+            todo: tx("scratch-paper.todoCarryAbove", { place: placeName(col[k].e) }),
+            why: tx("scratch-paper.carryInto", { s: sumStr(k + 1), tot: from.tot, c: cv, place: placeName(col[k].e) }),
             hint: function(v) {
-              if (cv === 0) return "<b>" + sumStr(k + 1) + " = " + from.tot + "</b> fits in one square, so there’s nothing to carry.";
-              return "<b>" + sumStr(k + 1) + " = " + from.tot + "</b>: carry the <b>" + cv + "</b> into the " + placeName(col[k].e) + " column.";
+              if (cv === 0) return tx("scratch-paper.add.hintNoCarry", { s: sumStr(k + 1), tot: from.tot });
+              return tx("scratch-paper.carryInto", { s: sumStr(k + 1), tot: from.tot, c: cv, place: placeName(col[k].e) });
             }
           });
         })(k);
@@ -2693,7 +2704,7 @@
           one: !!(recv[k] && !recv[k].after),
           wide: !!(recv[k] && !recv[k].after),
           dot: maxF > 0 && k === ones,
-          label: "top number, " + placeName(E(k)) + " digit " + T.ch[k] + (lent[k] ? ", crossed out" : "") + (recv[k] && !recv[k].after ? ", with a 1 in front" : "") + (lent[k] ? "" : ": tap to borrow from it")
+          label: tx("scratch-paper.lbl.top" + (lent[k] ? "Crossed" : "") + (recv[k] && !recv[k].after ? "One" : ""), { place: placeName(E(k)), d: T.ch[k] })
         });
       }
       for (var j in lent) {
@@ -2708,17 +2719,17 @@
             kind: "borrow",
             small: true,
             data: 'data-e="' + E(j) + '"',
-            label: "new value for the crossed-out " + placeName(E(j)) + " digit",
+            label: tx("scratch-paper.lbl.borrow", { place: placeName(E(j)) }),
             exp: String(L0.nv),
             opt: false,
             one: !!(recv[j] && recv[j].after),
             ord: 2 * (L - 2 - j) + 1,
             lit: [{ r1: 1, r2: R_A, c1: C(j), c2: C(j) }],
-            todo: "Write the new number above the crossed-out " + (pre >= 10 ? pre : topLabel(j)) + ".",
-            why: "<b>" + pre + " − 1 = " + L0.nv + "</b>: it lent 1 to the column on its right, so write <b>" + L0.nv + "</b> above it.",
+            todo: tx("scratch-paper.sub.todoNew", { d: pre >= 10 ? pre : topLabel(j) }),
+            why: tx("scratch-paper.sub.whyNew", { pre: pre, nv: L0.nv }),
             hint: function() {
-              if (pre >= 10) return "This " + topLabel(j) + " became <b>" + pre + "</b> when it borrowed. It lends 1, so it’s <b>" + L0.nv + "</b> now.";
-              return "The <b>" + pre + "</b> lends 1 to the column on its right, so it becomes <b>" + L0.nv + "</b>.";
+              if (pre >= 10) return tx("scratch-paper.sub.hintNewBig", { d: topLabel(j), pre: pre, nv: L0.nv });
+              return tx("scratch-paper.sub.hintNew", { pre: pre, nv: L0.nv });
             }
           });
         })(Number(j));
@@ -2739,7 +2750,7 @@
             kind: "ans",
             main: true,
             data: 'data-e="' + E(k) + '"',
-            label: "answer, " + placeName(E(k)) + " place",
+            label: tx("scratch-paper.lbl.ansPlace", { place: placeName(E(k)) }),
             exp: ok ? String(d) : null,
             opt: isLead,
             ord: 2 * (L - 1 - k),
@@ -2749,22 +2760,22 @@
           var L1 = lender(k);
           cell.need = d < 0 ? (L1 >= 0 ? { type: "cross", id: "t" + L1 } : null) : (d > 9 ? { type: "uncross", id: "t" + (k - 1) } : null);
           cell.todo = d < 0 ?
-            "The " + placeName(E(k)) + " column: " + t + " − " + bb + " won’t go, so borrow. Tap the " + (L1 >= 0 ? shown(L1) : "digit") + " to cross it out." :
-            d > 9 ? "The " + placeName(E(k)) + " column has " + t + " — it didn’t need to borrow. Tap the crossed-out digit next to it to undo." :
-            "Subtract the " + placeName(E(k)) + " column: " + t + " − " + bb + ".";
+            (L1 >= 0 ? tx("scratch-paper.sub.todoBorrow", { place: placeName(E(k)), t: t, b: bb, x: shown(L1) }) : tx("scratch-paper.sub.todoBorrowDigit", { place: placeName(E(k)), t: t, b: bb })) :
+            d > 9 ? tx("scratch-paper.sub.todoUndo", { place: placeName(E(k)), t: t }) :
+            tx("scratch-paper.sub.todoCol", { place: placeName(E(k)), t: t, b: bb });
           cell.why = d < 0 ?
-            "You can’t take <b>" + bb + "</b> from <b>" + t + "</b>, so borrow: cross out the <b>" + (L1 >= 0 ? shown(L1) : "") + "</b>" + (L1 >= 0 && L1 < k - 1 ? " (the 0" + (k - 1 - L1 > 1 ? "s" : "") + " in between have nothing to lend)" : "") + "." :
-            d > 9 ? "This column didn’t need to borrow, so undo that cross-out." :
-            "<b>" + t + " − " + bb + " = " + d + "</b>: write <b>" + d + "</b> under the line.";
+            (L1 >= 0 && L1 < k - 1 ? tx("scratch-paper.sub.whyBorrowZeros", { b: bb, t: t, x: shown(L1), n: k - 1 - L1 }) : tx("scratch-paper.sub.whyBorrow", { b: bb, t: t, x: L1 >= 0 ? shown(L1) : "" })) :
+            d > 9 ? tx("scratch-paper.sub.whyUndo") :
+            tx("scratch-paper.sub.whyUnder", { t: t, b: bb, d: d });
           cell.hint = function(vv) {
             if (d < 0) {
-              if (L1 === k - 1) return "You can’t take <b>" + bb + "</b> from <b>" + t + "</b> — borrow from the <b>" + shown(L1) + "</b> first: tap it.";
-              if (L1 >= 0) return "You can’t take <b>" + bb + "</b> from <b>" + t + "</b>, and the 0 next door has nothing to lend — borrow from the <b>" + shown(L1) + "</b> first: tap it.";
-              return "You can’t take <b>" + bb + "</b> from <b>" + t + "</b> here.";
+              if (L1 === k - 1) return tx("scratch-paper.sub.hintBorrow", { b: bb, t: t, x: shown(L1) });
+              if (L1 >= 0) return tx("scratch-paper.sub.hintBorrowFar", { b: bb, t: t, x: shown(L1) });
+              return tx("scratch-paper.sub.hintCant", { b: bb, t: t });
             }
-            if (d > 9) return "This column has <b>" + t + "</b> now — too much for one square. It didn’t need to borrow: tap the crossed-out <b>" + topLabel(k - 1) + "</b> to undo it.";
-            if (lent[k] && Number(vv) === lent[k].pre - bb) return "Use the new number above the crossed-out digit: <b>" + t + " − " + bb + " = " + d + "</b>.";
-            return "<b>" + t + " − " + bb + " = " + d + "</b>: write <b>" + d + "</b> here.";
+            if (d > 9) return tx("scratch-paper.sub.hintUndo", { t: t, x: topLabel(k - 1) });
+            if (lent[k] && Number(vv) === lent[k].pre - bb) return tx("scratch-paper.sub.hintUseNew", { t: t, b: bb, d: d });
+            return tx("scratch-paper.sub.hintWrite", { t: t, b: bb, d: d });
           };
           M.cells.push(cell);
         })(k);
@@ -2794,12 +2805,12 @@
       };
       M.tap = function(id, how) {
         var k = Number(id.slice(1));
-        if (lent[k]) return { offer: id, html: "Undo crossing out the <b>" + topLabel(k) + "</b>?" };
+        if (lent[k]) return { offer: id, html: tx("scratch-paper.sub.offerUndo", { x: topLabel(k) }) };
         if (how === "check") return null;
-        if (k >= L - 1) return { refuse: "The last column has nobody on its right to lend to.", mistake: true };
+        if (k >= L - 1) return { refuse: tx("scratch-paper.sub.refuseLast"), mistake: true };
         if (v[k] <= 0) {
           var j = lender(k);
-          return { refuse: "This 0 has nothing to lend." + (j >= 0 ? " Borrow from the <b>" + shown(j) + "</b> first: tap it." : ""), mistake: true };
+          return { refuse: j >= 0 ? tx("scratch-paper.sub.refuseZeroFrom", { x: shown(j) }) : tx("scratch-paper.sub.refuseZero"), mistake: true };
         }
         W.x.s = (W.x.s || []).concat([k]);
         return { sel: "b" + k };
@@ -2859,7 +2870,7 @@
       var parts = []; // parts[r][pp] = the digit of row r at position pp
       var rowInfo = [];
 
-      function dname(r) { return r === 0 ? "ones" : placeName(r); }
+      function dname(r) { return placeName(r); }
       for (var r = 0; r < m; r++) {
         var bdig = bd[r],
           x = [],
@@ -2880,9 +2891,9 @@
         parts[r] = pr;
       }
 
-      function rowLabel(r) { return m === 1 ? "answer" : "row " + (r + 1); }
+      function rowLabel(r) { return m === 1 ? tx("scratch-paper.lbl.answer") : tx("scratch-paper.lbl.row", { n: r + 1 }); }
 
-      function bDesc(r) { return "the " + bd[r] + (m > 1 ? " in the " + dname(r) + " place" : ""); }
+      function bDesc(r) { return m > 1 ? tx("scratch-paper.mul.bDescPlace", { d: bd[r], place: dname(r) }) : tx("scratch-paper.mul.bDesc", { d: bd[r] }); }
       for (r = 0; r < m; r++) {
         (function(r) {
           var R = rowInfo[r],
@@ -2899,16 +2910,16 @@
                 main: true,
                 row: r,
                 data: 'data-row="' + r + '" data-p="' + pp + '"',
-                label: rowLabel(r) + ", " + placeName(pp) + " place",
+                label: tx("scratch-paper.lbl.rowPlace", { row: rowLabel(r), place: placeName(pp) }),
                 exp: "0",
                 opt: false,
                 ord: ord++,
                 lit: [{ r1: RB, r2: RB, c1: C(r), c2: C(r) }],
-                todo: "Row " + (r + 1) + " multiplies by " + bDesc(r) + ": start it with a placeholder 0" + (r > 1 ? " in each empty place" : "") + ".",
-                why: "The " + bd[r] + " is worth <b>" + bd[r] + " " + placeName(r) + "</b>, so this row starts with " + (r > 1 ? r + " zeros" : "a 0") + ": write <b>0</b> here.",
+                todo: tx(r > 1 ? "scratch-paper.mul.todoZeros" : "scratch-paper.mul.todoZero", { n: r + 1, b: bDesc(r) }),
+                why: tx(r > 1 ? "scratch-paper.mul.whyZeros" : "scratch-paper.mul.whyZero", { d: bd[r], bare: placeBare(r), n: r }),
                 hint: function(v) {
-                  if (Number(v) === firstW) return "Put a <b>0</b> here first: the " + bd[r] + " is in the " + dname(r) + " place, so this row starts " + (r > 1 ? r + " places" : "one place") + " to the left.";
-                  return "This row multiplies by " + bDesc(r) + ", so it starts with a placeholder <b>0</b> here.";
+                  if (Number(v) === firstW) return tx(r > 1 ? "scratch-paper.mul.hintZerosFirst" : "scratch-paper.mul.hintZeroFirst", { d: bd[r], place: dname(r), n: r });
+                  return tx("scratch-paper.mul.hintZero", { b: bDesc(r) });
                 }
               });
               plan.push("z" + r + "_" + pp);
@@ -2934,7 +2945,7 @@
                 main: true,
                 row: r,
                 data: 'data-row="' + r + '" data-p="' + pp + '"',
-                label: rowLabel(r) + ", " + placeName(pp) + " place",
+                label: tx("scratch-paper.lbl.rowPlace", { row: rowLabel(r), place: placeName(pp) }),
                 exp: String(digit),
                 opt: opt,
                 ord: ord++,
@@ -2942,19 +2953,19 @@
               };
               if (isLead) {
                 var last = R.x[lA - 1];
-                c.todo = "Write what’s left of the last product in front.";
-                c.why = "<b>" + bd[r] + " × " + last.a + (last.cin ? " + " + last.cin : "") + " = " + last.tot + "</b>: the <b>" + R.lead + "</b> goes in front.";
+                c.todo = tx("scratch-paper.mul.todoLead");
+                c.why = tx("scratch-paper.mul.whyLead", { e: bd[r] + " × " + last.a + (last.cin ? " + " + last.cin : ""), tot: last.tot, d: R.lead });
                 c.hint = function() {
-                  if (R.lead === 0) return "Nothing is left over from the last multiplication, so leave this square empty.";
-                  return "<b>" + bd[r] + " × " + last.a + (last.cin ? " + " + last.cin + " carried" : "") + " = " + last.tot + "</b>: write the <b>" + R.lead + "</b> here, in front.";
+                  if (R.lead === 0) return tx("scratch-paper.mul.hintLeadNone");
+                  return tx("scratch-paper.mul.hintLead", { e: last.cin ? tx("scratch-paper.sumCarried", { s: bd[r] + " × " + last.a, c: last.cin }) : bd[r] + " × " + last.a, tot: last.tot, d: R.lead });
                 };
               } else {
-                var fact = "<b>" + bd[r] + " × " + xx.a + " = " + xx.raw + "</b>" + (xx.cin ? ", + " + xx.cin + " carried = <b>" + xx.tot + "</b>" : "");
-                c.todo = "Multiply the " + xx.a + " by " + bDesc(r) + (xx.cin ? ", then add the " + xx.cin + " you carried" : "") + ".";
-                c.why = fact + (j < lA - 1 && xx.tot >= 10 ? ": write the <b>" + xx.w + "</b> here and carry the <b>" + xx.cout + "</b>." :
-                  j === lA - 1 && xx.tot >= 10 ? ": write the <b>" + xx.w + "</b> here and the <b>" + xx.cout + "</b> in front of it." : ": write <b>" + xx.w + "</b> here.");
+                var fact = xx.cin ? tx("scratch-paper.mul.factCarry", { b: bd[r], a: xx.a, raw: xx.raw, c: xx.cin, tot: xx.tot }) : "<b>" + bd[r] + " × " + xx.a + " = " + xx.raw + "</b>";
+                c.todo = xx.cin ? tx("scratch-paper.mul.todoMulCarry", { a: xx.a, b: bDesc(r), c: xx.cin }) : tx("scratch-paper.mul.todoMul", { a: xx.a, b: bDesc(r) });
+                c.why = j < lA - 1 && xx.tot >= 10 ? tx("scratch-paper.mul.whyCarry", { f: fact, w: xx.w, c: xx.cout }) :
+                  j === lA - 1 && xx.tot >= 10 ? tx("scratch-paper.mul.whyFront", { f: fact, w: xx.w, c: xx.cout }) : tx("scratch-paper.mul.whyWrite", { f: fact, w: xx.w });
                 c.hint = function(v) {
-                  if (xx.cin && Number(v) === xx.raw % 10) return "Add the <b>" + xx.cin + "</b> you carried: " + fact + ", so write the <b>" + xx.w + "</b>.";
+                  if (xx.cin && Number(v) === xx.raw % 10) return tx("scratch-paper.mul.hintAddCarry", { c: xx.cin, f: fact, w: xx.w });
                   return c.why;
                 };
               }
@@ -2974,17 +2985,17 @@
                 small: true,
                 row: r,
                 data: 'data-row="' + r + '" data-p="' + j + '"',
-                label: (m > 1 ? "row " + (r + 1) + " " : "") + "carry above the " + ad[j],
+                label: m > 1 ? tx("scratch-paper.lbl.rowCarryAbove", { n: r + 1, a: ad[j] }) : tx("scratch-paper.lbl.carryAbove", { a: ad[j] }),
                 exp: String(from.cout),
                 opt: from.cout === 0,
                 ord: carryOrd[j],
                 lit: [{ r1: RA, r2: RA, c1: C(j - 1), c2: C(j - 1) }, { r1: RB, r2: RB, c1: C(r), c2: C(r) }],
-                todo: "Write what you carry above the " + ad[j] + ".",
-                why: "<b>" + bd[r] + " × " + from.a + (from.cin ? " + " + from.cin : "") + " = " + from.tot + "</b>: carry the <b>" + from.cout + "</b> — write it above the " + ad[j] + ".",
+                todo: tx("scratch-paper.mul.todoCarry", { a: ad[j] }),
+                why: tx("scratch-paper.mul.whyCarryAbove", { e: bd[r] + " × " + from.a + (from.cin ? " + " + from.cin : ""), tot: from.tot, c: from.cout, a: ad[j] }),
                 hint: function() {
-                  var f = "<b>" + bd[r] + " × " + from.a + (from.cin ? " + " + from.cin + " carried" : "") + " = " + from.tot + "</b>";
-                  if (from.cout === 0) return f + " has only one digit, so there’s nothing to carry.";
-                  return f + ": carry the <b>" + from.cout + "</b>.";
+                  var f = "<b>" + (from.cin ? tx("scratch-paper.sumCarried", { s: bd[r] + " × " + from.a, c: from.cin }) : bd[r] + " × " + from.a) + " = " + from.tot + "</b>";
+                  if (from.cout === 0) return tx("scratch-paper.mul.hintOneDigit", { f: f });
+                  return tx("scratch-paper.mul.hintCarry", { f: f, c: from.cout });
                 }
               });
             })(j);
@@ -3010,7 +3021,7 @@
           sums[pp] = { parts: dsum, cin: cin, tot: tot, d: tot % 10, cout: Math.floor(tot / 10) };
           cin = sums[pp].cout;
         }
-        var sumStr = function(pp) { var s = sums[pp]; return (s.parts.length ? s.parts.join(" + ") : "0") + (s.cin ? " + " + s.cin + " carried" : ""); };
+        var sumStr = function(pp) { var s = sums[pp]; return s.cin ? tx("scratch-paper.sumCarried", { s: s.parts.length ? s.parts.join(" + ") : "0", c: s.cin }) : (s.parts.length ? s.parts.join(" + ") : "0"); };
         for (pp = 0; pp < Wd; pp++) {
           (function(pp) {
             var s = sums[pp],
@@ -3022,16 +3033,16 @@
               kind: "sum",
               main: true,
               data: 'data-p="' + pp + '"',
-              label: "sum, " + placeName(pp) + " place",
+              label: tx("scratch-paper.lbl.sumPlace", { place: placeName(pp) }),
               exp: String(s.d),
               opt: opt,
               ord: ord++,
               lit: [{ r1: RS, r2: RT, c1: C(pp), c2: C(pp) }],
-              todo: "Add the rows: the " + placeName(pp) + " column" + (s.cin ? ", with the " + s.cin + " you carried" : "") + ".",
-              why: "<b>" + sumStr(pp) + " = " + s.tot + "</b>" + (s.tot >= 10 ? ": write the <b>" + s.d + "</b> and carry the <b>" + s.cout + "</b>." : ": write <b>" + s.d + "</b> here."),
+              todo: s.cin ? tx("scratch-paper.mul.todoRowsCarry", { place: placeName(pp), c: s.cin }) : tx("scratch-paper.mul.todoRows", { place: placeName(pp) }),
+              why: s.tot >= 10 ? tx("scratch-paper.mul.sumWhyCarry", { s: sumStr(pp), tot: s.tot, d: s.d, c: s.cout }) : tx("scratch-paper.sumWrite", { s: sumStr(pp), tot: s.tot, d: s.d }),
               hint: function(v) {
-                if (s.cin && Number(v) === (s.tot - s.cin) % 10) return "That column needs the <b>" + s.cin + "</b> you carried: <b>" + sumStr(pp) + " = " + s.tot + "</b>.";
-                return "<b>" + sumStr(pp) + " = " + s.tot + "</b>" + (s.tot >= 10 ? ": write the <b>" + s.d + "</b> here and carry the <b>" + s.cout + "</b>." : ": write <b>" + s.d + "</b> here.");
+                if (s.cin && Number(v) === (s.tot - s.cin) % 10) return tx("scratch-paper.add.hintNeedCarry", { c: s.cin, s: sumStr(pp), tot: s.tot });
+                return s.tot >= 10 ? tx("scratch-paper.sumWriteCarry", { s: sumStr(pp), tot: s.tot, d: s.d, c: s.cout }) : tx("scratch-paper.sumWrite", { s: sumStr(pp), tot: s.tot, d: s.d });
               }
             };
             M.cells.push(c);
@@ -3048,16 +3059,16 @@
                 kind: "scarry",
                 small: true,
                 data: 'data-p="' + q + '"',
-                label: "carry for the sum, " + placeName(q) + " column",
+                label: tx("scratch-paper.lbl.sumCarryCol", { place: placeName(q) }),
                 exp: String(from.cout),
                 opt: from.cout === 0,
                 ord: ord - 0.5,
                 lit: [{ r1: RS, r2: RT, c1: C(q - 1), c2: C(q - 1) }],
-                todo: "Write what you carry above the " + placeName(q) + " column.",
-                why: "<b>" + sumStr(q - 1) + " = " + from.tot + "</b>: carry the <b>" + from.cout + "</b> into the " + placeName(q) + " column.",
+                todo: tx("scratch-paper.todoCarryAbove", { place: placeName(q) }),
+                why: tx("scratch-paper.carryInto", { s: sumStr(q - 1), tot: from.tot, c: from.cout, place: placeName(q) }),
                 hint: function() {
-                  if (from.cout === 0) return "<b>" + sumStr(q - 1) + " = " + from.tot + "</b> fits in one square: nothing to carry.";
-                  return "<b>" + sumStr(q - 1) + " = " + from.tot + "</b>: carry the <b>" + from.cout + "</b>.";
+                  if (from.cout === 0) return tx("scratch-paper.mul.hintSumFits", { s: sumStr(q - 1), tot: from.tot });
+                  return tx("scratch-paper.mul.hintCarry", { f: "<b>" + sumStr(q - 1) + " = " + from.tot + "</b>", c: from.cout });
                 }
               });
             })(pp + 1);
@@ -3075,10 +3086,10 @@
           ord: ord++,
           r: 0,
           c: 0,
-          label: "where the decimal point goes",
-          todo: "Put the decimal point back: count the decimal places in " + M.sa + " and " + M.sb + ", then tap where the point goes.",
-          why: "<b>" + M.sa + "</b> has " + pl(fa.length, "decimal place") + " and <b>" + M.sb + "</b> has " + fb.length + ", so the answer has <b>" + places + "</b>: count " + places + " from the right.",
-          hint: function() { return "<b>" + M.sa + "</b> has " + pl(fa.length, "decimal place") + " and <b>" + M.sb + "</b> has " + fb.length + ", so the answer needs <b>" + places + "</b>: count " + places + " from the right."; }
+          label: tx("scratch-paper.lbl.point"),
+          todo: tx("scratch-paper.mul.todoPoint", { a: M.sa, b: M.sb }),
+          why: tx("scratch-paper.mul.whyPoint", { a: M.sa, n: fa.length, b: M.sb, m: fb.length, p: places }),
+          hint: function() { return tx("scratch-paper.mul.hintPoint", { a: M.sa, n: fa.length, b: M.sb, m: fb.length, p: places }); }
         });
         plan.push("pt");
       }
@@ -3156,7 +3167,7 @@
           kind: "q",
           main: true,
           data: 'data-pos="' + i + '"',
-          label: "answer on top, above the " + dg[i] + (i >= oL ? " (a 0 after the point)" : ""),
+          label: i >= oL ? tx("scratch-paper.lbl.qAbovePt", { d: dg[i] }) : tx("scratch-paper.lbl.qAbove", { d: dg[i] }),
           exp: qE <= 9 ? String(qE) : null,
           opt: leadOpt,
           ord: ord++,
@@ -3167,17 +3178,17 @@
         };
         (function(qc, cur, qE, leadOpt, started) {
           var group = cur;
-          qc.todo = leadOpt ? "Does " + D + " go into " + cur + "? Look at more digits." : "How many " + D + "s fit into " + group + "? Write it on top, above the " + dg[qc.pos] + ".";
-          qc.why = qE > 9 ? "Something above went wrong: fix the squares marked in red first." :
-            qE === 0 ? "<b>" + D + "</b> doesn’t fit into <b>" + cur + "</b>" + (leadOpt ? ", so nothing goes on top here." : ": write <b>0</b> on top.") :
-            "<b>" + D + " × " + qE + " = " + (qE * D) + "</b>" + (qE < 9 ? " and <b>" + D + " × " + (qE + 1) + " = " + ((qE + 1) * D) + "</b> is too much" : "") + ": write <b>" + qE + "</b> on top.";
+          qc.todo = leadOpt ? tx("scratch-paper.div.todoLead", { D: D, cur: cur }) : tx("scratch-paper.div.todoQ", { D: D, g: group, d: dg[qc.pos] });
+          qc.why = qE > 9 ? tx("scratch-paper.div.whyFixAbove") :
+            qE === 0 ? (leadOpt ? tx("scratch-paper.div.whyNoFitLead", { D: D, cur: cur }) : tx("scratch-paper.div.whyNoFit", { D: D, cur: cur })) :
+            qE < 9 ? tx("scratch-paper.div.whyQ", { D: D, q: qE, p: qE * D, q1: qE + 1, p1: (qE + 1) * D }) : tx("scratch-paper.div.whyQ9", { D: D, q: qE, p: qE * D });
           qc.hint = function(v) {
             var g = Number(v);
-            if (qE > 9) return "The number to divide here is <b>" + cur + "</b>, which is too big — something above needs fixing first.";
-            if (leadOpt) return "<b>" + D + "</b> doesn’t go into <b>" + cur + "</b>: leave this square empty and look at more digits.";
-            if (qE === 0) return "<b>" + D + "</b> doesn’t go into <b>" + cur + "</b>: write <b>0</b> here.";
-            if (g > qE) return "<b>" + D + " × " + g + " = " + (g * D) + "</b>, which is more than <b>" + cur + "</b>: try a smaller number.";
-            return "<b>" + D + " × " + g + " = " + (g * D) + "</b>, and <b>" + cur + " − " + (g * D) + " = " + (cur - g * D) + "</b> still has room for another " + D + ": try a bigger number.";
+            if (qE > 9) return tx("scratch-paper.div.hintTooBig", { cur: cur });
+            if (leadOpt) return tx("scratch-paper.div.hintLead", { D: D, cur: cur });
+            if (qE === 0) return tx("scratch-paper.div.hintZero", { D: D, cur: cur });
+            if (g > qE) return tx("scratch-paper.div.hintSmaller", { D: D, g: g, p: g * D, cur: cur });
+            return tx("scratch-paper.div.hintBigger", { D: D, g: g, p: g * D, cur: cur, r: cur - g * D });
           };
         })(qc, cur, qE, leadOpt, started);
         M.cells.push(qc);
@@ -3227,14 +3238,14 @@
                 kind: "prod",
                 main: true,
                 data: 'data-pos="' + i + '" data-col="' + c + '"',
-                label: "multiply line, under the " + (c < oL ? placeName(oL - 1 - c) : placeName(oL - 1 - c)) + " place",
+                label: tx("scratch-paper.lbl.mulLine", { place: c < oL ? placeName(oL - 1 - c) : placeName(oL - 1 - c) }),
                 exp: String(dgt),
                 opt: lead,
                 ord: ord++,
                 lit: [{ r1: 1, r2: drw, c1: colOf(s0), c2: colOf(i) }],
-                todo: "Multiply: " + q + " × " + D + ". Write it under " + cur + ", lined up on the right.",
-                why: "<b>" + q + " × " + D + " = " + prod + "</b>: " + (lead ? "it has only " + pl(prodS.length, "digit") + ", so leave this square empty." : "write the <b>" + dgt + "</b> here."),
-                hint: function() { return "<b>" + q + " × " + D + " = " + prod + "</b>" + (lead ? " — only " + pl(prodS.length, "digit") + ": leave this square empty." : ": write the <b>" + dgt + "</b> here."); }
+                todo: tx("scratch-paper.div.todoMul", { q: q, D: D, cur: cur }),
+                why: lead ? tx("scratch-paper.div.whyMulShort", { q: q, D: D, p: prod, n: prodS.length }) : tx("scratch-paper.div.whyMul", { q: q, D: D, p: prod, d: dgt }),
+                hint: function() { return lead ? tx("scratch-paper.div.hintMulShort", { q: q, D: D, p: prod, n: prodS.length }) : tx("scratch-paper.div.hintMul", { q: q, D: D, p: prod, d: dgt }); }
               };
               M.cells.push(pc);
               st.prodCells.push(pc);
@@ -3253,17 +3264,17 @@
                 kind: "diff",
                 main: true,
                 data: 'data-pos="' + i + '" data-col="' + c + '"',
-                label: "subtract line, " + placeName(oL - 1 - c) + " place",
+                label: tx("scratch-paper.lbl.subLine", { place: placeName(oL - 1 - c) }),
                 exp: ok ? String(dgt) : null,
                 opt: lead,
                 ord: ord++,
                 pos: c,
                 lit: [{ r1: 1, r2: drw, c1: colOf(s0), c2: colOf(i) }],
-                todo: "Subtract: " + cur + " − " + prod + ".",
-                why: ok ? "<b>" + cur + " − " + prod + " = " + diff + "</b>: " + (lead ? (diff === 0 && t === 0 ? "nothing is left, so this square can stay empty." : "leave this square empty.") : "write the <b>" + dgt + "</b> here.") : "That multiplication is too big.",
+                todo: tx("scratch-paper.div.todoSub", { cur: cur, p: prod }),
+                why: ok ? (lead ? (diff === 0 && t === 0 ? tx("scratch-paper.div.whySubNone", { cur: cur, p: prod, r: diff }) : tx("scratch-paper.div.whySubEmpty", { cur: cur, p: prod, r: diff })) : tx("scratch-paper.div.whySub", { cur: cur, p: prod, r: diff, d: dgt })) : tx("scratch-paper.div.whyTooBig"),
                 hint: function() {
-                  if (!ok) return "<b>" + q + " × " + D + " = " + prod + "</b> is bigger than <b>" + cur + "</b>: the " + q + " on top is too big. Fix it first.";
-                  return "<b>" + cur + " − " + prod + " = " + diff + "</b>" + (lead ? ": leave this square empty." : ": write the <b>" + dgt + "</b> here.");
+                  if (!ok) return tx("scratch-paper.div.hintSubTooBig", { q: q, D: D, p: prod, cur: cur });
+                  return lead ? tx("scratch-paper.div.hintSubEmpty", { cur: cur, p: prod, r: diff }) : tx("scratch-paper.div.hintSub", { cur: cur, p: prod, r: diff, d: dgt });
                 }
               };
               M.cells.push(dc);
@@ -3318,8 +3329,8 @@
               type: "bring",
               pos: nx,
               id: "x" + nx,
-              todo: "Bring down the next digit: tap the " + dg[nx] + (nx >= oL ? " (a 0 written after the point)" : "") + ".",
-              why: "Bring down the <b>" + dg[nx] + "</b>" + (nx >= oL ? " (a 0 added after the point)" : "") + ": now there’s <b>" + (rem * 10 + Number(dg[nx])) + "</b> to divide."
+              todo: nx >= oL ? tx("scratch-paper.div.todoBringPt", { d: dg[nx] }) : tx("scratch-paper.div.todoBring", { d: dg[nx] }),
+              why: nx >= oL ? tx("scratch-paper.div.whyBringPt", { d: dg[nx], n: rem * 10 + Number(dg[nx]) }) : tx("scratch-paper.div.whyBring", { d: dg[nx], n: rem * 10 + Number(dg[nx]) })
             };
             reached = i;
             i++;
@@ -3371,15 +3382,15 @@
             kind: "borrow",
             inset: true,
             data: 'data-pos="' + st.pos + '" data-col="' + c + '"',
-            label: "new value for the crossed-out " + entryText(en),
+            label: tx("scratch-paper.lbl.divBorrow", { d: entryText(en) }),
             exp: String(L0.nv),
             opt: false,
             ord: st.diffCells[0].ord - 0.5,
             under: { t: entryText(en), one: !!(sim.recv[t] && !sim.recv[t].after) },
             one: !!(sim.recv[t] && sim.recv[t].after),
-            todo: "Write the new number for the crossed-out " + entryText(en) + ".",
-            why: "<b>" + L0.pre + " − 1 = " + L0.nv + "</b>: write <b>" + L0.nv + "</b> for it.",
-            hint: function() { return (L0.pre >= 10 ? "It became <b>" + L0.pre + "</b> when it borrowed. " : "") + "It lends 1, so it becomes <b>" + L0.nv + "</b>."; }
+            todo: tx("scratch-paper.div.todoBorrow", { d: entryText(en) }),
+            why: tx("scratch-paper.div.whyBorrow", { pre: L0.pre, nv: L0.nv }),
+            hint: function() { return L0.pre >= 10 ? tx("scratch-paper.div.hintBorrowBig", { pre: L0.pre, nv: L0.nv }) : tx("scratch-paper.div.hintBorrow", { nv: L0.nv }); }
           };
           if (st.top === dvdLine && c === 0) bc.cls = "brk";
           M.cells.push(bc);
@@ -3409,7 +3420,7 @@
           cls: (k >= oL ? "ghost" : "") + (k === 0 ? " brk" : ""),
           one: !!en.one,
           dot: extra > 0 && k === oL - 1,
-          label: "dividend digit " + dg[k] + (k >= oL ? ", a 0 after the point" : "") + ": tap to bring it down"
+          label: k >= oL ? tx("scratch-paper.lbl.dvdPt", { d: dg[k] }) : tx("scratch-paper.lbl.dvd", { d: dg[k] })
         });
       }
       /* brought-down digits */
@@ -3432,7 +3443,7 @@
               data: 'data-pos="' + pos + '"',
               cls: Number(pos) >= oL ? "ghost" : "",
               one: !!en.one,
-              label: "brought-down digit " + dg[pos]
+              label: tx("scratch-paper.lbl.brought", { d: dg[pos] })
             });
           } else if (en.kind === "cell") {
             var dc = cellBy(M, en.id);
@@ -3458,13 +3469,13 @@
               kind: "rem",
               main: true,
               data: 'data-t="' + t + '"',
-              label: "remainder, " + placeName(t) + " place",
+              label: tx("scratch-paper.lbl.remPlace", { place: placeName(t) }),
               exp: String(dgt),
               opt: lead,
               ord: 1000 + (lD - k),
-              todo: "Nothing left to bring down. Write what’s left over after the R.",
-              why: "Nothing left to bring down: <b>" + rem + "</b> is left over, so it’s <b>R " + rem + "</b>.",
-              hint: function() { return rem === 0 ? "Nothing is left over, so the remainder squares can stay empty." : "The last subtraction left <b>" + rem + "</b>: that’s the remainder."; }
+              todo: tx("scratch-paper.div.todoRem"),
+              why: tx("scratch-paper.div.whyRem", { r: rem }),
+              hint: function() { return rem === 0 ? tx("scratch-paper.div.hintRemNone") : tx("scratch-paper.div.hintRem", { r: rem }); }
             });
           })(k);
         }
@@ -3499,12 +3510,12 @@
         var fr = frontier,
           st = fr && fr.step && fr.step.active ? fr.step : null;
         // borrowing: a digit on the line you are subtracting from, while you subtract
-        if (kind === "w") return { offer: id, html: "Undo crossing this out?" };
+        if (kind === "w") return { offer: id, html: tx("scratch-paper.div.offerUndo") };
         var inTop = !!(st && st.top.map[pos] && st.top.map[pos].id === id && pos >= st.s0 && pos <= st.pos);
         if (how === "cross" || (inTop && kind !== "d")) {
           if (!inTop) {
-            if (st) return { refuse: "You can only borrow from the number you are subtracting from right now." };
-            return { refuse: "Write the multiplication under it first; then you can borrow if you need to." };
+            if (st) return { refuse: tx("scratch-paper.div.refuseOnlyTop") };
+            return { refuse: tx("scratch-paper.div.refuseMulFirst") };
           }
           var key = "d" + st.pos,
             list0 = W.x[key] || [];
@@ -3518,25 +3529,25 @@
           var idx = list0.map(function(c) { return c - st.s0; }),
             sim = borrowSim(tvs, idx),
             t = pos - st.s0;
-          if (sim.lent[t]) return { offer: id, html: "Undo crossing this out?" };
-          if (pos >= st.pos) return { refuse: "The last digit has nobody on its right to lend to.", mistake: true };
-          if (sim.v[t] <= 0) return { refuse: "This 0 has nothing to lend. Borrow from the digit to its left first.", mistake: true };
-          if (st.top.map[pos].kind === "cell" && stat(cellBy(M, st.top.map[pos].id)) !== "ok") return { refuse: "Fix this digit before you borrow from it." };
+          if (sim.lent[t]) return { offer: id, html: tx("scratch-paper.div.offerUndo") };
+          if (pos >= st.pos) return { refuse: tx("scratch-paper.div.refuseLast"), mistake: true };
+          if (sim.v[t] <= 0) return { refuse: tx("scratch-paper.div.refuseZero"), mistake: true };
+          if (st.top.map[pos].kind === "cell" && stat(cellBy(M, st.top.map[pos].id)) !== "ok") return { refuse: tx("scratch-paper.div.refuseFix") };
           W.x[key] = list0.concat([pos]);
           return { sel: "w" + st.pos + "_" + pos };
         }
         if (kind === "x" || kind === "y") {
           if (fr && fr.type === "bring") {
             if (kind === "x" && pos === fr.pos) { W.br[pos] = true; return { sel: "q" + pos }; }
-            if (kind === "x" && pos < fr.pos) return { refuse: "That digit has already been used. Bring down the next one: the <b>" + dg[fr.pos] + "</b>.", mistake: true };
-            if (kind === "x") return { refuse: "Bring down the next digit, the <b>" + dg[fr.pos] + "</b> — the one just to the right of the last digit you used.", mistake: true };
-            return { refuse: "Bring down the next digit from the top: the <b>" + dg[fr.pos] + "</b>." };
+            if (kind === "x" && pos < fr.pos) return { refuse: tx("scratch-paper.div.refuseUsed", { d: dg[fr.pos] }), mistake: true };
+            if (kind === "x") return { refuse: tx("scratch-paper.div.refuseNext", { d: dg[fr.pos] }), mistake: true };
+            return { refuse: tx("scratch-paper.div.refuseFromTop", { d: dg[fr.pos] }) };
           }
           if (fr && fr.type === "fill") {
-            if (kind === "x" && pos > M.reached) return { refuse: "Not yet — " + lowerFirst(fr.todo) };
-            return { refuse: "That’s a digit to work with, not a square to fill. " + fr.todo };
+            if (kind === "x" && pos > M.reached) return { refuse: tx("scratch-paper.notYet", { todo: lowerFirst(fr.todo) }) };
+            return { refuse: tx("scratch-paper.div.refuseNotSquare", { todo: fr.todo }) };
           }
-          return { refuse: "There’s nothing left to bring down." };
+          return { refuse: tx("scratch-paper.div.refuseNothing") };
         }
         return null;
       };
@@ -3591,7 +3602,7 @@
     }
 
     function blcm(a, b) { return a / bgcd(a, b) * b; }
-    var ZERO_MSG = "Something here divides by 0, and that can’t be done.";
+    var ZERO_MSG = tx("scratch-paper.le.zero");
 
     function rQ(n, d) {
       n = BigInt(n);
@@ -3635,7 +3646,7 @@
     function rAbs(a) { return a.n < B0 ? rNeg(a) : a; }
 
     function rPow(a, k) {
-      if (Math.abs(k) > 40) throw new LineErr("That power is too big to work out here.", "big");
+      if (Math.abs(k) > 40) throw new LineErr(tx("scratch-paper.le.bigPow"), "big");
       var r = RONE;
       for (var i = 0; i < Math.abs(k); i++) r = rMul(r, a);
       return k < 0 ? rDiv(RONE, r) : r;
@@ -3715,13 +3726,13 @@
           var w = BigInt(m[1]),
             nn = BigInt(m[2]),
             dd = BigInt(m[3]);
-          if (dd === B0) throw new LineErr("A fraction can’t have 0 on the bottom.");
+          if (dd === B0) throw new LineErr(tx("scratch-paper.le.fracZero"));
           out.push({ t: "num", q: rQ(w * dd + nn, dd), mixed: true, w: m[1], fn: m[2], fd: m[3], s: m[1] + " " + m[2] + "/" + m[3] });
           i += m[0].length;
           continue;
         }
         if (!(p && p.t === "num") && (m = /^(\d+)\/(\d+)(?![\d.])/.exec(rest))) {
-          if (BigInt(m[2]) === B0) throw new LineErr("A fraction can’t have 0 on the bottom.");
+          if (BigInt(m[2]) === B0) throw new LineErr(tx("scratch-paper.le.fracZero"));
           out.push({ t: "num", q: rQ(m[1], m[2]), frac: true, fn: m[1], fd: m[2], s: m[1] + "/" + m[2] });
           i += m[0].length;
           continue;
@@ -3770,9 +3781,9 @@
           i++;
           continue;
         }
-        if (c === "≠") throw new LineErr("Use =, <, >, ≤ or ≥ here.");
+        if (c === "≠") throw new LineErr(tx("scratch-paper.le.rels"));
         if (c === "$" || c === "%") throw new LineErr("words", "words");
-        throw new LineErr("I can’t read the “" + c + "” in this line.");
+        throw new LineErr(tx("scratch-paper.le.cantRead", { c: c }));
       }
       return out;
     }
@@ -3805,8 +3816,8 @@
           }
           if (t.t === "num" || t.t === "var" || t.t === "(") {
             var pv = toks[i - 1];
-            if (t.t === "num" && pv && pv.t === "num") throw new LineErr("There are two numbers side by side — is a sign missing between them?");
-            if (t.t === "num" && pv && pv.t === "var") throw new LineErr("Write the number in front of the letter: 2x, not x2.");
+            if (t.t === "num" && pv && pv.t === "num") throw new LineErr(tx("scratch-paper.le.twoNums"));
+            if (t.t === "num" && pv && pv.t === "var") throw new LineErr(tx("scratch-paper.le.numFirst"));
             var b2 = power();
             a = { k: "mul", a: a, b: b2, imp: true };
             continue;
@@ -3831,7 +3842,7 @@
 
       function atom() {
         var t = toks[i++];
-        if (!t) throw new LineErr("Something’s missing at the end of this line.");
+        if (!t) throw new LineErr(tx("scratch-paper.le.missingEnd"));
         if (t.t === "num") {
           var n = { k: "num", q: t.q, s: t.s };
           if (t.dec) n.dec = true;
@@ -3852,12 +3863,12 @@
         if (t.t === "(") {
           var e = expr(),
             c = toks[i++];
-          if (!c || c.t !== ")") throw new LineErr("A bracket is opened but never closed.");
+          if (!c || c.t !== ")") throw new LineErr(tx("scratch-paper.le.unclosed"));
           return { k: "par", a: e };
         }
-        if (t.t === ")") throw new LineErr("There’s a “)” without a “(” before it.");
-        if (t.t === "rel") throw new LineErr("Something’s missing before the “" + t.v + "”.");
-        throw new LineErr("Two signs are next to each other, or a sign has nothing after it.");
+        if (t.t === ")") throw new LineErr(tx("scratch-paper.le.closeOnly"));
+        if (t.t === "rel") throw new LineErr(tx("scratch-paper.le.missingBefore", { s: t.v }));
+        throw new LineErr(tx("scratch-paper.le.twoSigns"));
       }
       var ast = expr();
       return { ast: ast, i: i };
@@ -3872,17 +3883,17 @@
         lead = toks[0].v;
         i = 1;
       }
-      if (i >= toks.length) throw new LineErr("This line is empty.");
+      if (i >= toks.length) throw new LineErr(tx("scratch-paper.le.empty"));
       for (;;) {
         var r = parseExpr(toks, i);
         parts.push(r.ast);
         i = r.i;
         if (i >= toks.length) break;
         var t = toks[i];
-        if (t.t !== "rel") throw new LineErr(t.t === ")" ? "There’s a “)” without a “(” before it." : "I can’t read this line — check the signs and brackets.");
+        if (t.t !== "rel") throw new LineErr(t.t === ")" ? tx("scratch-paper.le.closeOnly") : tx("scratch-paper.le.cantReadLine"));
         rels.push(t.v);
         i++;
-        if (i >= toks.length) throw new LineErr("Something’s missing after the “" + t.v + "”.");
+        if (i >= toks.length) throw new LineErr(tx("scratch-paper.le.missingAfter", { s: t.v }));
       }
       return { parts: parts, rels: rels, lead: lead };
     }
@@ -3899,7 +3910,7 @@
       });
       groups.push(cur);
       groups = groups.filter(function(g) { return g.length; });
-      if (!groups.length) throw new LineErr("This line is empty.");
+      if (!groups.length) throw new LineErr(tx("scratch-paper.le.empty"));
       return groups.map(parseGroup);
     }
 
@@ -3955,10 +3966,10 @@
           return rDiv(ev(a.a, env), ev(a.b, env));
         case "pow":
           var e = ev(a.b, env);
-          if (!rInt(e)) throw new LineErr("This sheet works with whole-number powers only.", "pow");
+          if (!rInt(e)) throw new LineErr(tx("scratch-paper.le.wholePow"), "pow");
           return rPow(ev(a.a, env), Number(e.n));
       }
-      throw new LineErr("I can’t work this line out.");
+      throw new LineErr(tx("scratch-paper.le.cantWork"));
     }
     /* polynomials: { "": 3, "x": 2, "x^2": 1, "x*y": −1 } with exact fractions */
     function monoKey(m) { return Object.keys(m).filter(function(v) { return m[v]; }).sort().map(function(v) { return m[v] === 1 ? v : v + "^" + m[v]; }).join("*"); }
@@ -4277,18 +4288,18 @@
     function simplestNumWhy(a) {
       if (a.k === "par") a = a.a;
       if (a.k === "neg") a = a.a;
-      if (a.k !== "num") return "Finish the arithmetic: the answer is one number.";
+      if (a.k !== "num") return tx("scratch-paper.sw.oneNumber");
       if (a.mixed) {
         var fn = BigInt(a.fn),
           fd = BigInt(a.fd);
-        if (fn >= fd) return "The fraction part of a mixed number has to be less than 1.";
-        if (bgcd(fn, fd) > B1) return "Simplify the fraction part: " + a.fn + " and " + a.fd + " can both be divided by " + bgcd(fn, fd) + ".";
+        if (fn >= fd) return tx("scratch-paper.sw.mixedPart");
+        if (bgcd(fn, fd) > B1) return tx("scratch-paper.sw.fracPart", { a: a.fn, b: a.fd, g: bgcd(fn, fd) });
       } else if (a.frac) {
         var n = BigInt(a.fn),
           d = BigInt(a.fd),
           g = bgcd(n, d);
-        if (n % d === B0) return "That fraction is a whole number: write it as one.";
-        if (g > B1) return "Simplify the fraction: " + a.fn + " and " + a.fd + " can both be divided by " + g + ".";
+        if (n % d === B0) return tx("scratch-paper.sw.fracWhole");
+        if (g > B1) return tx("scratch-paper.sw.frac", { a: a.fn, b: a.fd, g: g });
       }
       return null;
     }
@@ -4330,20 +4341,20 @@
       if (!ok) return null;
       var why = null,
         hasV = Object.keys(vars).length > 0;
-      if (dup) why = "Multiply the letters together: " + dup + " × " + dup + " is " + dup + "^2.";
+      if (dup) why = tx("scratch-paper.sw.letters", { v: dup });
       else if (num.length > 1 || den.length > 1 || (num.length && den.length && (num[0].frac || num[0].mixed || num[0].dec || den[0].dec)))
-        why = hasV ? "Multiply the numbers in that term together." : "Finish the arithmetic.";
+        why = hasV ? tx("scratch-paper.sw.mulNums") : tx("scratch-paper.sw.finish");
       else {
         var nn = num[0],
           dd = den[0];
         if (nn && (nn.frac || nn.mixed)) why = simplestNumWhy(nn);
         if (nn && dd && rInt(nn.q) && rInt(dd.q)) {
-          if (rEq(dd.q, RONE)) why = "Dividing by 1 changes nothing — leave it out.";
-          else if (bgcd(nn.q.n, dd.q.n) > B1) why = "Simplify the fraction in that term.";
+          if (rEq(dd.q, RONE)) why = tx("scratch-paper.sw.divOne");
+          else if (bgcd(nn.q.n, dd.q.n) > B1) why = tx("scratch-paper.sw.fracTerm");
         }
-        if (!nn && dd && !hasV) why = "Finish the arithmetic.";
-        if (nn && hasV && rEq(nn.q, RONE) && !dd && !nn.frac) why = "You don’t need the 1: 1" + monoStr(monoKey(vars)) + " is just " + monoStr(monoKey(vars)) + ".";
-        if (nn && rZ(nn.q)) why = "0 times anything is 0 — leave that term out.";
+        if (!nn && dd && !hasV) why = tx("scratch-paper.sw.finish");
+        if (nn && hasV && rEq(nn.q, RONE) && !dd && !nn.frac) why = tx("scratch-paper.sw.one", { m: monoStr(monoKey(vars)) });
+        if (nn && rZ(nn.q)) why = tx("scratch-paper.sw.zeroTimes");
       }
       return { key: monoKey(vars), why: why };
     }
@@ -4351,16 +4362,16 @@
     function simplestWhy(a) {
       if (!hasVar(a)) {
         var t0 = termsOf(a, 1, []);
-        if (t0.length > 1) return "Finish the arithmetic: the answer is one number.";
+        if (t0.length > 1) return tx("scratch-paper.sw.oneNumber");
         return simplestNumWhy(a);
       }
       var terms = termsOf(a, 1, []),
         seen = {};
       for (var i = 0; i < terms.length; i++) {
         var mi = monoInfo(terms[i].a);
-        if (!mi) return hasParSum(terms[i].a) ? "Multiply out the brackets." : "Simplify each term: multiply its numbers and letters together.";
+        if (!mi) return hasParSum(terms[i].a) ? tx("scratch-paper.sw.mulOut") : tx("scratch-paper.sw.eachTerm");
         if (mi.why) return mi.why;
-        if (seen[mi.key]) return mi.key ? "Combine the like terms: there’s more than one " + monoStr(mi.key) + " term." : "Add the plain numbers together.";
+        if (seen[mi.key]) return mi.key ? tx("scratch-paper.sw.like", { m: monoStr(mi.key) }) : tx("scratch-paper.sw.plain");
         seen[mi.key] = 1;
       }
       return null;
@@ -4495,50 +4506,49 @@
       function add(ast, tag, msg) { out.push({ ast: ast, tag: tag, msg: msg }); }
       if (!A || !A.k) return out;
       if (n.k === "mul" && Bn && isLit(A) && isLit(Bn))
-        add({ k: "add", a: A, b: Bn }, "addmul", "You added instead of multiplying: <b>" + pr(n) + "</b> means " + pr(A) + " times " + pr(Bn) + ".");
+        add({ k: "add", a: A, b: Bn }, "addmul", tx("scratch-paper.sl.addmul", { n: pr(n), a: pr(A), b: pr(Bn) }));
       if (n.k === "add" && isLit(A) && isLit(Bn) && !isFracLit(A) && !isFracLit(Bn))
-        add({ k: "mul", a: A, b: Bn }, "muladd", "You multiplied instead of adding: <b>" + pr(n) + "</b> is a plus.");
+        add({ k: "mul", a: A, b: Bn }, "muladd", tx("scratch-paper.sl.muladd", { n: pr(n) }));
       if ((n.k === "add" || n.k === "sub") && Bn && (Bn.k === "mul" || Bn.k === "div"))
         add({ k: Bn.k, a: { k: "par", a: { k: n.k, a: A, b: Bn.a } }, b: Bn.b }, "order",
-          "Order of operations: × and ÷ come before + and −. Do <b>" + pr(Bn) + "</b> first.");
+          tx("scratch-paper.sl.order", { b: pr(Bn) }));
       if ((n.k === "add" || n.k === "sub") && Bn && (Bn.k === "mul" || Bn.k === "div") && (Bn.a.k === "mul" || Bn.a.k === "div")) {
         var lead = Bn.a;
         while (lead.k === "mul" || lead.k === "div") lead = lead.a;
         add(replaceNode(Bn, lead, { k: "par", a: { k: n.k, a: A, b: lead } }), "order",
-          "Order of operations: × and ÷ come before + and −. Do the " + (Bn.k === "mul" ? "×" : "÷") + " part, <b>" + pr(Bn) + "</b>, first.");
+          tx("scratch-paper.sl.orderPart", { op: Bn.k === "mul" ? "×" : "÷", b: pr(Bn) }));
       }
       if ((n.k === "mul" || n.k === "div") && Bn && Bn.k === "pow")
-        add({ k: "pow", a: { k: "par", a: { k: n.k, a: A, b: Bn.a } }, b: Bn.b }, "order", "Order of operations: work out the power first — <b>" + pr(Bn) + "</b>.");
+        add({ k: "pow", a: { k: "par", a: { k: n.k, a: A, b: Bn.a } }, b: Bn.b }, "order", tx("scratch-paper.sl.orderPow", { b: pr(Bn) }));
       if ((n.k === "add" || n.k === "sub") && Bn && Bn.k === "pow" && isLit(A))
-        add({ k: "pow", a: { k: "par", a: { k: n.k, a: A, b: Bn.a } }, b: Bn.b }, "order", "Order of operations: work out the power first — <b>" + pr(Bn) + "</b>.");
+        add({ k: "pow", a: { k: "par", a: { k: n.k, a: A, b: Bn.a } }, b: Bn.b }, "order", tx("scratch-paper.sl.orderPow", { b: pr(Bn) }));
       if (n.k === "mul" && A.k === "div")
-        add({ k: "div", a: A.a, b: { k: "par", a: { k: "mul", a: A.b, b: Bn } } }, "order", "× and ÷ go from left to right: do <b>" + pr(A) + "</b> first.");
+        add({ k: "div", a: A.a, b: { k: "par", a: { k: "mul", a: A.b, b: Bn } } }, "order", tx("scratch-paper.sl.ltrMulDiv", { a: pr(A) }));
       if (n.k === "div" && A.k === "div")
-        add({ k: "div", a: A.a, b: { k: "par", a: { k: "div", a: A.b, b: Bn } } }, "order", "÷ goes from left to right: do <b>" + pr(A) + "</b> first.");
+        add({ k: "div", a: A.a, b: { k: "par", a: { k: "div", a: A.b, b: Bn } } }, "order", tx("scratch-paper.sl.ltrDiv", { a: pr(A) }));
       if ((n.k === "add" || n.k === "sub") && A.k === "sub")
-        add({ k: "sub", a: A.a, b: { k: "par", a: { k: n.k, a: A.b, b: Bn } } }, "order", "+ and − go from left to right: do <b>" + pr(A) + "</b> first.");
+        add({ k: "sub", a: A.a, b: { k: "par", a: { k: n.k, a: A.b, b: Bn } } }, "order", tx("scratch-paper.sl.ltrAddSub", { a: pr(A) }));
       // brackets
-      var EVERY = "A minus in front of brackets changes the sign of <i>every</i> term inside, not just the first: ";
       if (n.k === "neg" && sumPar(A)) {
         var T = termsOf(A.a, 1, []);
-        add(sumAst([{ s: -T[0].s, a: T[0].a }].concat(T.slice(1))), "negdist", EVERY + "<b>" + pr(n) + "</b>.");
+        add(sumAst([{ s: -T[0].s, a: T[0].a }].concat(T.slice(1))), "negdist", tx("scratch-paper.sl.negdist", { n: pr(n) }));
       }
       if (n.k === "sub" && sumPar(Bn)) {
         var T2 = termsOf(Bn.a, 1, []);
         add(sumAst([{ s: 1, a: A }, { s: -T2[0].s, a: T2[0].a }].concat(T2.slice(1))), "negdist",
-          "Taking away brackets changes the sign of <i>every</i> term inside, not just the first: <b>" + pr(n) + "</b>.");
+          tx("scratch-paper.sl.subdist", { n: pr(n) }));
       }
 
       function distSlips(k, S) {
         var T3 = termsOf(S, 1, []);
         if (T3.length < 2) return;
         add(sumAst([{ s: T3[0].s, a: mulAst(k, T3[0].a) }].concat(T3.slice(1))), "first",
-          "Multiply <i>every</i> term in the brackets by <b>" + pr(k) + "</b>, not just the first one.");
+          tx("scratch-paper.sl.first", { k: pr(k) }));
         var kv = isLit(k) ? litVal(k) : null;
         if (kv && rSg(kv) < 0) {
           var ka = lit(rAbs(kv));
           add(sumAst([{ s: T3[0].s, a: mulAst(k, T3[0].a) }].concat(T3.slice(1).map(function(t) { return { s: t.s, a: mulAst(ka, t.a) }; }))), "negdist",
-            "Multiplying by a negative number changes the sign of <i>every</i> term in the brackets.");
+            tx("scratch-paper.sl.negMul"));
         }
       }
       if (n.k === "mul" && sumPar(Bn) && !sumPar(A)) distSlips(A, Bn.a);
@@ -4551,24 +4561,24 @@
         var top = n.k === "add" ? BigInt(a1.fn) + BigInt(b1.fn) : BigInt(a1.fn) - BigInt(b1.fn),
           bot = BigInt(a1.fd) + BigInt(b1.fd);
         add({ k: "num", q: rQ(top, bot), frac: true, fn: String(babs(top)), fd: String(bot), s: String(babs(top)) + "/" + bot }, "fracacross",
-          "Don’t " + (n.k === "add" ? "add" : "subtract") + " the bottoms. Rename the fractions so they have the same denominator, then " + (n.k === "add" ? "add" : "subtract") + " the tops.");
+          tx(n.k === "add" ? "scratch-paper.sl.fracAdd" : "scratch-paper.sl.fracSub"));
       }
       // powers
       if (n.k === "pow" && isLit(A) && Bn.k === "num" && rInt(Bn.q) && rSg(Bn.q) > 0) {
         var e = Number(Bn.q.n),
           rep = [];
         for (var i = 0; i < Math.min(e, 6); i++) rep.push(side(A, 5));
-        add({ k: "mul", a: A, b: Bn }, "exp", "<b>" + pr(n) + "</b> means " + rep.join(" × ") + (e > 6 ? " × …" : "") + ", not " + pr(A) + " × " + pr(Bn) + ".");
+        add({ k: "mul", a: A, b: Bn }, "exp", tx("scratch-paper.sl.exp", { n: pr(n), rep: rep.join(" × ") + (e > 6 ? " × …" : ""), a: pr(A), b: pr(Bn) }));
       }
       if (n.k === "neg" && A.k === "pow")
-        add({ k: "pow", a: { k: "par", a: { k: "neg", a: A.a } }, b: A.b }, "expneg", "<b>" + pr(n) + "</b> means −(" + pr(A) + "): the power is on the " + pr(A.a) + " only.");
+        add({ k: "pow", a: { k: "par", a: { k: "neg", a: A.a } }, b: A.b }, "expneg", tx("scratch-paper.sl.expneg", { n: pr(n), a: pr(A), b: pr(A.a) }));
       // negative numbers
       if (n.k === "sub" && isLit(Bn) && rSg(litVal(Bn)) < 0)
-        add({ k: "sub", a: A, b: lit(rAbs(litVal(Bn))) }, "subneg", "Subtracting a negative number is the same as adding: − (" + pr(lit(litVal(Bn))) + ") becomes + " + pr(lit(rAbs(litVal(Bn)))) + ".");
+        add({ k: "sub", a: A, b: lit(rAbs(litVal(Bn))) }, "subneg", tx("scratch-paper.sl.subneg", { a: pr(lit(litVal(Bn))), b: pr(lit(rAbs(litVal(Bn)))) }));
       if ((n.k === "mul" || n.k === "div") && isLit(A) && isLit(Bn) && (rSg(litVal(A)) < 0 || rSg(litVal(Bn)) < 0))
-        add({ k: "neg", a: { k: "par", a: n } }, "sign", "Check the sign: a negative " + (n.k === "mul" ? "times" : "divided by") + " a negative is positive, and a negative " + (n.k === "mul" ? "times" : "divided by") + " a positive is negative.");
+        add({ k: "neg", a: { k: "par", a: n } }, "sign", tx(n.k === "mul" ? "scratch-paper.sl.signMul" : "scratch-paper.sl.signDiv"));
       if (n.k === "add" && isLit(A) && isLit(Bn) && (rSg(litVal(A)) < 0 || rSg(litVal(Bn)) < 0))
-        add({ k: "neg", a: { k: "par", a: n } }, "sign", "Check the sign: when the numbers have different signs, take the smaller size from the bigger and keep the sign of the bigger.");
+        add({ k: "neg", a: { k: "par", a: n } }, "sign", tx("scratch-paper.sl.signAdd"));
       // like terms
       if (isSum(n) && hasVar(n)) {
         var Ts = termsOf(n, 1, []),
@@ -4587,8 +4597,7 @@
               pp[key] = c;
               var rest = Ts.filter(function(t, z) { return z !== x && z !== y; });
               var list = [{ s: 1, a: rZ(c) ? ZNODE : polyAst(pp) }].concat(rest);
-              add(sumAst(list), "unlike", "<b>" + pr(sumAst([Ts[x]]).k ? sumAst([{ s: Ts[x].s, a: Ts[x].a }]) : Ts[x].a) + "</b> and <b>" + pr(sumAst([{ s: Ts[y].s, a: Ts[y].a }])) +
-                "</b> aren’t like terms, so they can’t be combined.");
+              add(sumAst(list), "unlike", tx("scratch-paper.sl.unlike", { a: pr(sumAst([Ts[x]]).k ? sumAst([{ s: Ts[x].s, a: Ts[x].a }]) : Ts[x].a), b: pr(sumAst([{ s: Ts[y].s, a: Ts[y].a }])) }));
             });
           }
       }
@@ -4619,7 +4628,7 @@
       return { neg: neg, txt: polyStr(ab) };
     }
 
-    function didTxt(am) { return (am.neg ? "subtracted " : "added ") + "<b>" + am.txt + "</b>"; }
+    function didTxt(am) { return tx(am.neg ? "scratch-paper.mv.subtracted" : "scratch-paper.mv.added", { a: am.txt }); }
 
     function scaleWords(k) {
       if (rEq(k, RMONE)) return { v: "multiplied", by: "−1" };
@@ -4637,23 +4646,23 @@
       for (var t = 0; t < 2; t++) {
         var l = tries[t][0],
           r = tries[t][1],
-          sw = tries[t][2] ? ", and swapped the sides" : "";
+          sw = tries[t][2] ? tx("scratch-paper.mv.andSwapped") : "";
         if (sameValue(l, pL, vars) && sameValue(r, pR, vars))
-          return tries[t][2] ? "swapped the sides" : (pr(l) === pr(pL) && pr(r) === pr(pR) ? "the same as before" : "tidied up");
+          return tries[t][2] ? tx("scratch-paper.mv.swapped") : (pr(l) === pr(pL) && pr(r) === pr(pR) ? tx("scratch-paper.mv.same") : tx("scratch-paper.mv.tidied"));
         var dL = diffAst(l, pL),
           dR = diffAst(r, pR);
         if (sameValue(dL, dR, vars)) {
           var am = amountOf(dL);
-          return (am ? didTxt(am) + (am.neg ? " from" : " to") + " both sides" : "did the same to both sides") + sw;
+          return (am ? tx(am.neg ? "scratch-paper.mv.subBoth" : "scratch-paper.mv.addBoth", { a: am.txt }) : tx("scratch-paper.mv.sameBoth")) + sw;
         }
         var kL = ratioConst(l, pL, vars),
           kR = ratioConst(r, pR, vars);
-        if (kL && kR && rEq(kL, kR)) { var w = scaleWords(kL); return w.v + " both sides by <b>" + w.by + "</b>" + sw; }
+        if (kL && kR && rEq(kL, kR)) { var w = scaleWords(kL); return tx(w.v === "divided" ? "scratch-paper.mv.divBoth" : "scratch-paper.mv.mulBoth", { by: w.by }) + sw; }
       }
       return null;
     }
 
-    function scaledTxt(k) { var w = scaleWords(k); return w.v + " by <b>" + w.by + "</b>"; }
+    function scaledTxt(k, side) { var w = scaleWords(k); return tx("scratch-paper.mv." + (w.v === "divided" ? "div" : "mul") + side, { by: w.by }); }
 
     function eqDiagnose(pL, pR, L, R, vars) {
       var tries = [
@@ -4667,21 +4676,21 @@
           kR = ratioConst(r, pR, vars);
         var nice = function(k) { return k && !rEq(k, RONE) && (rInt(k) || rInt(rDiv(RONE, k))); };
         if (kL && kR && nice(kL) && rEq(rMul(kL, kR), RONE))
-          return "You " + scaledTxt(kL).replace("by", "the left side by") + " but " + scaledTxt(kR).replace("by", "the right side by") + ". Undo it the same way on <i>both</i> sides.";
+          return tx("scratch-paper.dg.scaledBoth", { l: scaledTxt(kL, "Left"), r: scaledTxt(kR, "Right") });
         var dL = diffAst(l, pL),
           dR = diffAst(r, pR),
           zL = isZeroFn(dL, vars),
           zR = isZeroFn(dR, vars);
-        if (zR && nice(kL) && !pIsConstSafe(pL)) return "You " + scaledTxt(kL).replace("by", "the left side by") + " only. Whatever you do to one side, do to the other side too.";
-        if (zL && nice(kR) && !pIsConstSafe(pR)) return "You " + scaledTxt(kR).replace("by", "the right side by") + " only. Whatever you do to one side, do to the other side too.";
+        if (zR && nice(kL) && !pIsConstSafe(pL)) return tx("scratch-paper.dg.scaledOnly", { s: scaledTxt(kL, "Left") });
+        if (zL && nice(kR) && !pIsConstSafe(pR)) return tx("scratch-paper.dg.scaledOnly", { s: scaledTxt(kR, "Right") });
         var aL = amountOf(dL),
           aR = amountOf(dR);
         if (zR) { var sv = diagExpr([pL], l, vars); if (sv) return sv.msg; }
         if (zL) { var sv2 = diagExpr([pR], r, vars); if (sv2) return sv2.msg; }
-        if (!zL && zR && aL) return "You " + didTxt(aL) + " on the left side only. Whatever you do to one side, do to the other side too.";
-        if (zL && !zR && aR) return "You " + didTxt(aR) + " on the right side only. Whatever you do to one side, do to the other side too.";
+        if (!zL && zR && aL) return tx("scratch-paper.dg.didLeft", { did: didTxt(aL) });
+        if (zL && !zR && aR) return tx("scratch-paper.dg.didRight", { did: didTxt(aR) });
         if (!zL && !zR && aL && aR && sameValue(dL, negAst(dR), vars))
-          return "You " + didTxt(aL) + " on the left but " + didTxt(aR) + " on the right. To move a term across the =, do the <i>same</i> thing to both sides: " + (aL.neg ? "subtract" : "add") + " <b>" + aL.txt + "</b> on both sides.";
+          return tx(aL.neg ? "scratch-paper.dg.didBothSub" : "scratch-paper.dg.didBothAdd", { l: didTxt(aL), r: didTxt(aR), a: aL.txt });
         // divided (or multiplied) only one term
         var oneTerm = function(k, prevSide, cur) {
           if (!nice(k)) return null;
@@ -4692,7 +4701,7 @@
             var list2 = T.map(function(x, j) { return j === i ? x : { s: x.s, a: mulAst(lit(k), x.a) }; });
             var w = scaleWords(k);
             if (sameValue(cur, sumAst(list), vars) || sameValue(cur, sumAst(list2), vars))
-              return "When you " + (w.v === "divided" ? "divide" : "multiply") + " a side by <b>" + w.by + "</b>, " + (w.v === "divided" ? "divide" : "multiply") + " <i>every</i> term on it, not just some of them.";
+              return tx(w.v === "divided" ? "scratch-paper.dg.everyDiv" : "scratch-paper.dg.everyMul", { by: w.by });
           }
           return null;
         };
@@ -4780,9 +4789,9 @@
       each(["pow"], function(k) { if (!pick) nodes.forEach(function(n) { if (!pick && n.k === k) pick = n; }); });
       if (!pick) nodes.forEach(function(n) { if (!pick && (n.k === "mul" || n.k === "div")) pick = n; });
       if (!pick) nodes.forEach(function(n) { if (!pick && (n.k === "add" || n.k === "sub")) pick = n; });
-      var where = scope ? "Inside the brackets first: " : "";
+      var where = scope ? tx("scratch-paper.st.inside") : "";
       if (!pick) {
-        if (scope) return { ast: replaceNode(root, scope, scope.a), why: "Take away the brackets.", todo: "Take away the brackets." };
+        if (scope) return { ast: replaceNode(root, scope, scope.a), why: tx("scratch-paper.st.unbracket"), todo: tx("scratch-paper.st.unbracket") };
         // one number left: tidy it
         var only = root.k === "par" ? root.a : root,
           q = numVal(only);
@@ -4790,7 +4799,7 @@
         var why0 = simplestNumWhy(only);
         if (why0 === null) return null;
         var dec = anyDec(only);
-        return { ast: dec || rInt(q) ? lit(q, dec) : fracLit(q.n, q.d), why: "Simplify: <b>" + pr(only) + " = " + rTxt(q, dec) + "</b>.", todo: "Simplify the answer." };
+        return { ast: dec || rInt(q) ? lit(q, dec) : fracLit(q.n, q.d), why: tx("scratch-paper.st.simplify", { a: pr(only), b: rTxt(q, dec) }), todo: tx("scratch-paper.st.simplifyTodo") };
       }
       var a = pick.a,
         b = pick.b,
@@ -4809,8 +4818,8 @@
           imp = fracLit(mv.n, mv.d);
         return {
           ast: replaceNode(root, mx, rSg(mv) < 0 ? { k: "neg", a: fracLit(-mv.n, mv.d) } : imp),
-          why: "Write the mixed number as an improper fraction: <b>" + pr(mx) + " = " + rTxt(mv) + "</b>.",
-          todo: "Write the mixed number as an improper fraction."
+          why: tx("scratch-paper.st.mixed", { a: pr(mx), b: rTxt(mv) }),
+          todo: tx("scratch-paper.st.mixedTodo")
         };
       }
       var fr = !dec2 && (isFracLit(a) || isFracLit(b) || (a.k === "neg" && isFracLit(a.a)) || (b.k === "neg" && isFracLit(b.a)));
@@ -4824,24 +4833,24 @@
           var fa = na < B0 ? { k: "neg", a: fracLit(-na, L) } : fracLit(na, L),
             fb = nb < B0 ? { k: "neg", a: fracLit(-nb, L) } : fracLit(nb, L);
           rep = { k: pick.k, a: fa, b: fb };
-          return { ast: replaceNode(root, pick, rep), why: where + "Give the fractions the same denominator, <b>" + L + "</b>: " + pr(rep) + ".", todo: "Rename the fractions so they have the same denominator." };
+          return { ast: replaceNode(root, pick, rep), why: where + tx("scratch-paper.st.commonDen", { d: L, e: pr(rep) }), todo: tx("scratch-paper.st.commonDenTodo") };
         }
         var top = pick.k === "add" ? nOfFrac(a) + nOfFrac(b) : nOfFrac(a) - nOfFrac(b);
         rep = top < B0 ? { k: "neg", a: fracLit(-top, da) } : fracLit(top, da);
-        return { ast: replaceNode(root, pick, rep), why: where + "The denominators match, so " + opWord(pick.k) + " the tops: <b>" + pr(pick) + " = " + pr(rep) + "</b>.", todo: "The denominators match: " + opWord(pick.k) + " the tops." };
+        return { ast: replaceNode(root, pick, rep), why: where + tx("scratch-paper.st.denMatch." + pick.k, { a: pr(pick), b: pr(rep) }), todo: tx("scratch-paper.st.denMatchTodo." + pick.k) };
       }
       if (fr && pick.k === "mul") {
         var tn = nOfFrac(a) * nOfFrac(b),
           td = dOf(a) * dOf(b);
         rep = tn < B0 ? { k: "neg", a: fracLit(-tn, td) } : fracLit(tn, td);
-        return { ast: replaceNode(root, pick, rep), why: where + "Multiply the tops and multiply the bottoms: <b>" + pr(pick) + " = " + pr(rep) + "</b>.", todo: "Multiply the tops, and multiply the bottoms." };
+        return { ast: replaceNode(root, pick, rep), why: where + tx("scratch-paper.st.fracMul", { a: pr(pick), b: pr(rep) }), todo: tx("scratch-paper.st.fracMulTodo") };
       }
       if (fr && pick.k === "div") {
         var yv = litVal(b),
           recip = rDiv(RONE, yv),
           rb = rSg(recip) < 0 ? { k: "neg", a: fracLit(-recip.n, recip.d) } : fracLit(recip.n, recip.d);
         rep = { k: "mul", a: a, b: rb };
-        return { ast: replaceNode(root, pick, rep), why: where + "Dividing by a fraction is the same as multiplying by its reciprocal (flip it over): <b>" + pr(rep) + "</b>.", todo: "Divide by a fraction by multiplying by its reciprocal." };
+        return { ast: replaceNode(root, pick, rep), why: where + tx("scratch-paper.st.fracDiv", { e: pr(rep) }), todo: tx("scratch-paper.st.fracDivTodo") };
       }
       var res;
       if (pick.k === "add") res = rAdd(x, y);
@@ -4854,11 +4863,11 @@
       }
       rep = (rInt(res) || (dec2 && isTerm(res.d))) ? lit(res, dec2) : (rSg(res) < 0 ? { k: "neg", a: fracLit(-res.n, res.d) } : fracLit(res.n, res.d));
       if (rSg(res) < 0 && rep.k === "num") rep = { k: "num", q: res, dec: dec2, s: rTxt(rAbs(res), dec2).replace(MN, "") };
-      var order = pick.k === "pow" ? "Powers come first" : (pick.k === "mul" || pick.k === "div") ? (nodes.some(function(n) { return n.k === "add" || n.k === "sub"; }) ? "× and ÷ come before + and −" : "Left to right") : "Left to right";
+      var order = pick.k === "pow" ? tx("scratch-paper.st.orderPow") : (pick.k === "mul" || pick.k === "div") ? (nodes.some(function(n) { return n.k === "add" || n.k === "sub"; }) ? tx("scratch-paper.st.orderMul") : tx("scratch-paper.st.orderLtr")) : tx("scratch-paper.st.orderLtr");
       return {
         ast: replaceNode(root, pick, rep),
-        why: where + order + ": <b>" + pr(pick) + " = " + pr(rep) + "</b>.",
-        todo: where + (pick.k === "pow" ? "Work out the power first: " : order + " — " + opWord(pick.k) + " next: ") + pr(pick) + "."
+        why: where + tx("scratch-paper.st.orderWhy", { order: order, a: pr(pick), b: pr(rep) }),
+        todo: where + (pick.k === "pow" ? tx("scratch-paper.st.powFirst", { e: pr(pick) }) : tx("scratch-paper.st.next." + pick.k, { order: order, e: pr(pick) }))
       };
     }
 
@@ -4899,19 +4908,19 @@
         if (f.sub || f.plus) {
           polys = T.map(function(t) { return pScale(safePoly(t.a) || {}, rQ(f.sub ? -t.s : t.s)); });
           txt = side(f.A, 1) + signedTerms(polys, false);
-          why = f.sub ? "Take away the brackets: subtracting them changes the sign of every term inside." : "Take away the brackets: adding them changes nothing inside.";
+          why = f.sub ? tx("scratch-paper.st.unbracketSub") : tx("scratch-paper.st.unbracketAdd");
         } else if (f.bare) {
-          return { ast: replaceNode(root, f.node, f.S), why: "Take away the brackets.", todo: "Take away the brackets." };
+          return { ast: replaceNode(root, f.node, f.S), why: tx("scratch-paper.st.unbracket"), todo: tx("scratch-paper.st.unbracket") };
         } else {
           var kp = safePoly(f.k);
           if (!kp) return null;
           if (f.both) {
             var T1 = termsOf(f.k, 1, []);
             T1.forEach(function(a1) { T.forEach(function(b1) { polys.push(pScale(pMul(safePoly(a1.a), safePoly(b1.a)), rQ(a1.s * b1.s))); }); });
-            why = "Multiply every term in the first brackets by every term in the second.";
+            why = tx("scratch-paper.st.foil");
           } else {
             polys = T.map(function(t) { return pScale(pMul(kp, safePoly(t.a) || {}), rQ(t.s)); });
-            why = f.neg ? "A minus in front of the brackets: change the sign of every term inside." : "Multiply every term inside the brackets by <b>" + pr(f.k) + "</b>.";
+            why = f.neg ? tx("scratch-paper.st.negIn") : tx("scratch-paper.st.distribute", { k: pr(f.k) });
           }
           txt = signedTerms(polys, true);
         }
@@ -4925,7 +4934,7 @@
       var p = safePoly(root);
       if (!p) return null;
       var out = parseOne(polyStr(p, dec));
-      return { ast: out, why: "Combine the like terms: <b>" + polyStr(p, dec) + "</b>.", todo: "Combine the like terms." };
+      return { ast: out, why: tx("scratch-paper.st.like", { e: polyStr(p, dec) }), todo: tx("scratch-paper.st.likeTodo") };
     }
 
     function exprStep(root, dec) { return hasVar(root) ? varStep(root, dec) : numStep(root); }
@@ -4941,7 +4950,7 @@
         tidyR = simplestWhy(R) === null;
 
       function line(a, r, b, why, todo) { return { text: eqTxt(polyStr(a, dec), r, polyStr(b, dec)), why: why, todo: todo || why.replace(/<[^>]+>/g, "") }; }
-      if (!tidyL || !tidyR) return line(pl, rel, pq, "Tidy up each side first: multiply out any brackets and combine like terms.");
+      if (!tidyL || !tidyR) return line(pl, rel, pq, tx("scratch-paper.st.tidy"));
       var D = B1;
       each([pl, pq], function(p) { for (var k in p) D = blcm(D, p[k].d); });
       if (D > B1) {
@@ -4951,7 +4960,7 @@
           D = P10;
         }
         var Dq = rQ(D);
-        return line(pScale(pl, Dq), rel, pScale(pq, Dq), "Clear the " + (dec ? "decimals" : "fractions") + ": multiply <i>both</i> sides by <b>" + D + "</b>.");
+        return line(pScale(pl, Dq), rel, pScale(pq, Dq), tx(dec ? "scratch-paper.st.clearDec" : "scratch-paper.st.clearFrac", { d: D }));
       }
       var la = pl[v] || RZERO,
         ra = pq[v] || RZERO;
@@ -4965,7 +4974,7 @@
           x[v] = rAbs(o);
           return x;
         })());
-        return line(pSub(pl, t), rel, pSub(pq, t), (rSg(o) > 0 ? "Subtract <b>" + am + "</b> from" : "Add <b>" + am + "</b> to") + " both sides, so the " + v + "’s are on one side.");
+        return line(pSub(pl, t), rel, pSub(pq, t), tx(rSg(o) > 0 ? "scratch-paper.st.subVar" : "scratch-paper.st.addVar", { a: am, v: v }));
       }
       var K = !rZ(la) ? "L" : !rZ(ra) ? "R" : null;
       if (!K) return null;
@@ -4976,7 +4985,7 @@
       if (!rZ(kc)) {
         var c = pConst(kc),
           amt = rTxt(rAbs(kc), dec);
-        return line(pSub(pl, c), rel, pSub(pq, c), (rSg(kc) > 0 ? "Subtract <b>" + amt + "</b> from" : "Add <b>" + amt + "</b> to") + " both sides, to undo the " + (rSg(kc) > 0 ? "+ " : MN + " ") + amt + ".");
+        return line(pSub(pl, c), rel, pSub(pq, c), tx(rSg(kc) > 0 ? "scratch-paper.st.subConst" : "scratch-paper.st.addConst", { a: amt, s: (rSg(kc) > 0 ? "+ " : MN + " ") + amt }));
       }
       var val = pC(op);
       if (!rEq(coef, RONE)) {
@@ -4984,14 +4993,15 @@
           nrel = ineq && rSg(coef) < 0 ? FLIP[rel] : rel;
         var r2 = K === "L" ? nrel : FLIP[nrel],
           xs = numText(x, dec);
-        var w = rEq(coef, RMONE) ? "Multiply both sides by <b>−1</b>" : "Divide both sides by <b>" + rTxt(coef, dec) + "</b>";
+        var wk = rEq(coef, RMONE) ? "Neg" : "Div",
+          flip = ineq && rSg(coef) < 0;
         return {
           text: eqTxt(v, r2, xs),
-          why: w + (ineq && rSg(coef) < 0 ? ". You multiplied or divided by a negative number, so the sign flips: <b>" + rel + "</b> becomes <b>" + nrel + "</b>." : " to get " + v + " by itself."),
-          todo: (rEq(coef, RMONE) ? "Multiply both sides by −1" : "Divide both sides by " + rTxt(coef, dec)) + (ineq && rSg(coef) < 0 ? ", and flip the sign." : ".")
+          why: tx("scratch-paper.st.why" + wk + (flip ? "Flip" : ""), { c: rTxt(coef, dec), r: rel, n: nrel, v: v }),
+          todo: tx("scratch-paper.st.todo" + wk + (flip ? "Flip" : ""), { c: rTxt(coef, dec) })
         };
       }
-      if (K === "R") return { text: eqTxt(v, FLIP[rel], numText(val, dec)), why: "Write it with " + v + " first" + (ineq ? " — turning it round turns the sign round too." : "."), todo: "Write it with " + v + " first." };
+      if (K === "R") return { text: eqTxt(v, FLIP[rel], numText(val, dec)), why: tx(ineq ? "scratch-paper.st.vFirstIneq" : "scratch-paper.st.vFirst", { v: v }), todo: tx("scratch-paper.st.vFirst", { v: v }) };
       return null;
     }
 
@@ -5007,18 +5017,18 @@
       if (!set.roots) return null;
       var fin = {
         text: set.roots.map(function(r) { return v + " = " + numText(r, dec); }).join(" or "),
-        why: (rZ(c1) ? "Take the square root of both sides — a positive and a negative number both work: " : "Factor it (or use the quadratic formula): ") + "<b>" + set.roots.map(function(r) { return v + " = " + numText(r, dec); }).join(" or ") + "</b>.",
-        todo: rZ(c1) ? "Take the square root of both sides (both signs)." : "Factor it, or use the quadratic formula."
+        why: tx(rZ(c1) ? "scratch-paper.st.sqrtBoth" : "scratch-paper.st.factor", { e: set.roots.map(function(r) { return v + " = " + numText(r, dec); }).join(tx("scratch-paper.orJoin")) }),
+        todo: rZ(c1) ? tx("scratch-paper.st.sqrtTodo") : tx("scratch-paper.st.factorTodo")
       };
       if (rZ(c1)) {
         var lone = (Object.keys(pl).length === 1 && pl[v + "^2"] && rEq(pl[v + "^2"], RONE) && pIsConst(pq));
         if (lone) return fin;
         var k = rDiv(rNeg(c0), c2);
-        return { text: v + "^2 = " + numText(k, dec), why: "Get <b>" + v + "^2</b> by itself on one side.", todo: "Get " + v + "^2 by itself." };
+        return { text: v + "^2 = " + numText(k, dec), why: tx("scratch-paper.st.sqAlone", { v: v }), todo: tx("scratch-paper.st.sqAloneTodo", { v: v }) };
       }
       var std = pIsZero(pq) && simplestWhy(L) === null;
       if (std) return fin;
-      return { text: polyStr(F, dec) + " = 0", why: "Move everything to one side, so the other side is 0.", todo: "Move everything to one side, so the other side is 0." };
+      return { text: polyStr(F, dec) + " = 0", why: tx("scratch-paper.st.zeroSide"), todo: tx("scratch-paper.st.zeroSide") };
     }
     /* ---------- the kinds of line-by-line problem ---------- */
     var KINDS = ["expression", "equation", "inequality", "system", "word"];
@@ -5049,7 +5059,7 @@
       return s.replace(/\*/g, "×").replace(/-/g, MN).replace(/\s*;\s*/g, "; ");
     }
 
-    function wordsMsg() { return LP && LP.kind === "word" ? "Save the words for your answer line, at the end." : "Write the math on each line — numbers, letters and signs."; }
+    function wordsMsg() { return LP && LP.kind === "word" ? tx("scratch-paper.gr.wordsStory") : tx("scratch-paper.gr.wordsMath"); }
 
     function setupLines(p) {
       var kind = p.kind,
@@ -5060,43 +5070,43 @@
         o.vars = [];
         return o;
       }
-      try { gs = parseLine(p.q); } catch (e) { if (e.code === "words") throw new LineErr("That looks like a story problem — pick Story."); throw e; }
+      try { gs = parseLine(p.q); } catch (e) { if (e.code === "words") throw new LineErr(tx("scratch-paper.su.story")); throw e; }
       var vars = [];
       each(gs, function(g) { each(g.parts, function(x) { varsOf(x, vars); }); });
       o.vars = vars;
       o.dec = gs.some(function(g) { return g.parts.some(hasDec); });
-      if (vars.indexOf("?") >= 0) throw new LineErr("Use a letter like x (not ?) for the unknown.");
+      if (vars.indexOf("?") >= 0) throw new LineErr(tx("scratch-paper.su.letterNotQ"));
       if (kind === "expression") {
-        if (gs.length !== 1 || gs[0].rels.length) throw new LineErr("An expression has no = or < > in it. Is it an equation?");
+        if (gs.length !== 1 || gs[0].rels.length) throw new LineErr(tx("scratch-paper.su.exprNoRel"));
         o.start = gs[0].parts[0];
-        if (vars.length > 3) throw new LineErr("Keep it to three letters or fewer.");
+        if (vars.length > 3) throw new LineErr(tx("scratch-paper.su.threeLetters"));
         if (!hasVar(o.start)) ev(o.start, {});
-        else if (!safePoly(o.start)) throw new LineErr("This sheet simplifies expressions without letters in a denominator.");
-        if (simplestWhy(o.start) === null) throw new LineErr("That’s already in simplest form — there’s nothing to work out.");
+        else if (!safePoly(o.start)) throw new LineErr(tx("scratch-paper.su.letterDen"));
+        if (simplestWhy(o.start) === null) throw new LineErr(tx("scratch-paper.su.simplest"));
         return o;
       }
       if (kind === "equation" || kind === "inequality") {
-        if (gs.length !== 1 || gs[0].rels.length !== 1) throw new LineErr(kind === "equation" ? "An equation has one = sign." : "An inequality has one of < > ≤ ≥.");
+        if (gs.length !== 1 || gs[0].rels.length !== 1) throw new LineErr(kind === "equation" ? tx("scratch-paper.su.oneEq") : tx("scratch-paper.su.oneIneq"));
         var rel = gs[0].rels[0];
-        if (kind === "equation" && rel !== "=") throw new LineErr("That has < or > in it — it’s an inequality.");
-        if (kind === "inequality" && rel === "=") throw new LineErr("That has an = sign — it’s an equation.");
-        if (vars.length !== 1) throw new LineErr(vars.length ? "Solving here works with one letter at a time." : "There’s no letter to solve for.");
+        if (kind === "equation" && rel !== "=") throw new LineErr(tx("scratch-paper.su.isIneq"));
+        if (kind === "inequality" && rel === "=") throw new LineErr(tx("scratch-paper.su.isEq"));
+        if (vars.length !== 1) throw new LineErr(vars.length ? tx("scratch-paper.su.oneLetter") : tx("scratch-paper.su.noLetter"));
         o.v = vars[0];
         o.L = gs[0].parts[0];
         o.R = gs[0].parts[1];
         o.rel = rel;
         o.set = kind === "equation" ? solveSet(o.L, o.R, o.v) : ineqSet(o.L, rel, o.R, o.v);
         if (o.set.bad) throw new LineErr(o.set.bad);
-        if (o.set.unk) throw new LineErr("This sheet can’t solve equations with " + o.v + " in a denominator yet.");
-        if (o.set.high) throw new LineErr(kind === "equation" ? "This sheet solves equations up to " + o.v + "^2." : "This sheet solves inequalities without " + o.v + "^2.");
-        if (o.set.irr) throw new LineErr("The answers to that one are square roots that don’t come out exactly — this sheet needs answers it can write as fractions.");
-        if (o.set.none) throw new LineErr(kind === "equation" ? "That equation has no solution." : "No number makes that true.");
-        if (o.set.all) throw new LineErr("Every number makes that true, so there’s nothing to solve.");
+        if (o.set.unk) throw new LineErr(tx("scratch-paper.su.unk", { v: o.v }));
+        if (o.set.high) throw new LineErr(kind === "equation" ? tx("scratch-paper.su.highEq", { v: o.v }) : tx("scratch-paper.su.highIneq", { v: o.v }));
+        if (o.set.irr) throw new LineErr(tx("scratch-paper.su.irr"));
+        if (o.set.none) throw new LineErr(kind === "equation" ? tx("scratch-paper.su.noneEq") : tx("scratch-paper.su.noneIneq"));
+        if (o.set.all) throw new LineErr(tx("scratch-paper.su.all"));
         return o;
       }
       if (kind === "system") {
-        if (gs.length !== 2 || gs.some(function(g) { return g.rels.length !== 1 || g.rels[0] !== "="; })) throw new LineErr("A system here is two equations, with a ; between them.");
-        if (vars.length !== 2) throw new LineErr("A system here has two letters, like x and y.");
+        if (gs.length !== 2 || gs.some(function(g) { return g.rels.length !== 1 || g.rels[0] !== "="; })) throw new LineErr(tx("scratch-paper.su.sysTwo"));
+        if (vars.length !== 2) throw new LineErr(tx("scratch-paper.su.sysLetters"));
         o.vs = vars;
         o.E = gs.map(function(g) { return { L: g.parts[0], R: g.parts[1] }; });
         var F = o.E.map(function(e) {
@@ -5104,7 +5114,7 @@
             b = safePoly(e.R);
           return a && b ? pSub(a, b) : null;
         });
-        if (!F[0] || !F[1] || pDeg(F[0]) > 1 || pDeg(F[1]) > 1) throw new LineErr("This sheet solves systems of straight-line (linear) equations.");
+        if (!F[0] || !F[1] || pDeg(F[0]) > 1 || pDeg(F[1]) > 1) throw new LineErr(tx("scratch-paper.su.sysLinear"));
         var x = vars[0],
           y = vars[1],
           a1 = F[0][x] || RZERO,
@@ -5114,14 +5124,14 @@
           b2 = F[1][y] || RZERO,
           c2 = rNeg(F[1][""] || RZERO);
         var det = rSub(rMul(a1, b2), rMul(a2, b1));
-        if (rZ(det)) throw new LineErr("Those two equations don’t cross at one point, so there isn’t one answer.");
+        if (rZ(det)) throw new LineErr(tx("scratch-paper.su.sysCross"));
         o.F = F;
         o.sol = {};
         o.sol[x] = rDiv(rSub(rMul(c1, b2), rMul(c2, b1)), det);
         o.sol[y] = rDiv(rSub(rMul(a1, c2), rMul(a2, c1)), det);
         return o;
       }
-      throw new LineErr("I don’t know that kind of problem.");
+      throw new LineErr(tx("scratch-paper.su.unknownKind"));
     }
 
     function state0() {
@@ -5151,16 +5161,16 @@
     function wordValue(g) {
       var vs = [];
       each(g.parts, function(p) { varsOf(p, vs); });
-      if (vs.length > 1) return { err: "Use one letter (or ?) for the number you don’t know." };
+      if (vs.length > 1) return { err: tx("scratch-paper.wv.oneLetter") };
       if (!g.rels.length) {
-        if (vs.length) return { err: "Put an = in it, like n + 5 = 12." };
+        if (vs.length) return { err: tx("scratch-paper.wv.putEq") };
         return { v: ev(g.parts[0], {}) };
       }
-      if (g.rels.some(function(r) { return r !== "="; })) return { err: "Story problems here use = (not < or >)." };
+      if (g.rels.some(function(r) { return r !== "="; })) return { err: tx("scratch-paper.wv.eqOnly") };
       if (g.parts.length > 2) {
         var vals = g.parts.filter(function(p) { return !hasVar(p); }).map(function(p) { return ev(p, {}); });
         var lone = g.parts.filter(hasVar);
-        if (lone.some(function(p) { return p.k !== "var"; })) return { err: "Write one equation at a time." };
+        if (lone.some(function(p) { return p.k !== "var"; })) return { err: tx("scratch-paper.wv.oneEq") };
         var same = vals.every(function(v) { return rEq(v, vals[0]); });
         return { v: vals[0], trueSent: same, calc: !lone.length };
       }
@@ -5173,7 +5183,7 @@
       }
       var S = solveSet(L, R, vs[0]);
       if (S.bad) return { err: S.bad };
-      if (!S.roots || S.roots.length !== 1) return { err: "I can’t solve that for one number." };
+      if (!S.roots || S.roots.length !== 1) return { err: tx("scratch-paper.wv.cantSolve") };
       return { v: S.roots[0], unknown: vs[0], L: L, R: R };
     }
     /* one line, checked against everything accepted before it */
@@ -5182,59 +5192,59 @@
       if (kind === "word") return gradeWord(text, st);
       gs = parseLine(text);
       if (kind === "expression") {
-        if (gs.length !== 1) throw new LineErr("One expression on each line, please.");
+        if (gs.length !== 1) throw new LineErr(tx("scratch-paper.gr.oneExpr"));
         var g = gs[0];
-        if (g.rels.some(function(r) { return r !== "="; }) || (g.lead && g.lead !== "=")) throw new LineErr("This is an expression to work out: use only = between its forms, no < or >.");
+        if (g.rels.some(function(r) { return r !== "="; }) || (g.lead && g.lead !== "=")) throw new LineErr(tx("scratch-paper.gr.exprEq"));
         var cur = st.last,
           prevs = st.all.slice();
         for (var k = 0; k < g.parts.length; k++) {
           var part = g.parts[k];
           if (!sameValue(part, cur, LP.vars)) {
             var d = diagExpr(prevs, part, LP.vars);
-            return { st: "bad", tag: d && d.tag, msg: d ? d.msg : (hasVar(cur) ? "This isn’t equal to the line before. Check each term, and its sign." : "This isn’t equal to the line before. Check which operation comes first, and work it out again.") };
+            return { st: "bad", tag: d && d.tag, msg: d ? d.msg : (hasVar(cur) ? tx("scratch-paper.gr.notEqVar") : tx("scratch-paper.gr.notEqNum")) };
           }
           cur = part;
           prevs.push(part);
         }
         var why = simplestWhy(cur);
-        return { st: "ok", final: why === null, notDone: why, msg: why === null ? "simplest form" : "equal", next: { all: prevs, last: cur } };
+        return { st: "ok", final: why === null, notDone: why, msg: why === null ? tx("scratch-paper.gr.simplest") : tx("scratch-paper.gr.equal"), next: { all: prevs, last: cur } };
       }
       if (kind === "equation" || kind === "inequality") {
         if (kind === "equation" && gs.length > 1) {
           var asg = gs.map(assignOf);
-          if (asg.some(function(a) { return !a || a.v !== LP.v; })) throw new LineErr("Write each answer as " + LP.v + " = a number, joined by “or”.");
+          if (asg.some(function(a) { return !a || a.v !== LP.v; })) throw new LineErr(tx("scratch-paper.gr.eachAnswer", { v: LP.v }));
           var roots = [];
           each(asg, function(a) { if (!roots.some(function(r) { return rEq(r, a.q); })) roots.push(a.q); });
           roots.sort(rCmp);
-          if (setSame({ roots: roots }, LP.set)) return { st: "ok", final: true, msg: "every solution", next: { L: st.L, R: st.R, rel: st.rel, done: true } };
-          return { st: "bad", msg: roots.length < (LP.set.roots || []).length ? "There’s another solution too: a square has a positive and a negative root." : "Put each one back into the equation: not all of them work." };
+          if (setSame({ roots: roots }, LP.set)) return { st: "ok", final: true, msg: tx("scratch-paper.gr.every"), next: { L: st.L, R: st.R, rel: st.rel, done: true } };
+          return { st: "bad", msg: roots.length < (LP.set.roots || []).length ? tx("scratch-paper.gr.another") : tx("scratch-paper.gr.putBack") };
         }
         var g2 = gs[0];
-        if (gs.length > 1) throw new LineErr("One " + (kind === "equation" ? "equation" : "inequality") + " on each line, please.");
-        if (!g2.rels.length) throw new LineErr(kind === "equation" ? "Write an equation on each line: something = something." : "Write an inequality on each line, with < > ≤ or ≥.");
-        if (g2.rels.length > 1) throw new LineErr("One " + (kind === "equation" ? "equation" : "inequality") + " on each line, please.");
+        if (gs.length > 1) throw new LineErr(kind === "equation" ? tx("scratch-paper.gr.oneEqLine") : tx("scratch-paper.gr.oneIneqLine"));
+        if (!g2.rels.length) throw new LineErr(kind === "equation" ? tx("scratch-paper.gr.writeEq") : tx("scratch-paper.gr.writeIneq"));
+        if (g2.rels.length > 1) throw new LineErr(kind === "equation" ? tx("scratch-paper.gr.oneEqLine") : tx("scratch-paper.gr.oneIneqLine"));
         var rel = g2.rels[0],
           L = g2.parts[0],
           R = g2.parts[1],
           vs = varsOf(R, varsOf(L));
-        if (vs.some(function(v) { return v !== LP.v; })) throw new LineErr("Use only the letter " + LP.v + " here.");
+        if (vs.some(function(v) { return v !== LP.v; })) throw new LineErr(tx("scratch-paper.gr.onlyLetter", { v: LP.v }));
         var vv = [LP.v];
         if (kind === "equation") {
-          if (rel !== "=") throw new LineErr("This is an equation: keep the = sign.");
+          if (rel !== "=") throw new LineErr(tx("scratch-paper.gr.keepEq"));
           var S = solveSet(L, R, LP.v);
           if (S.bad) throw new LineErr(S.bad);
-          if (S.unk || S.high) throw new LineErr("This sheet can only check lines without " + LP.v + " in a denominator.");
+          if (S.unk || S.high) throw new LineErr(tx("scratch-paper.gr.noDen", { v: LP.v }));
           if (setSame(S, LP.set)) {
             var mv = eqMove(st.L, st.R, L, R, vv),
               fin = !!assignOf(g2) && (LP.set.roots || []).length === 1;
-            return { st: "ok", final: fin, msg: mv ? mv : "same solution", next: { L: L, R: R, rel: "=", done: fin } };
+            return { st: "ok", final: fin, msg: mv ? mv : tx("scratch-paper.gr.sameSol"), next: { L: L, R: R, rel: "=", done: fin } };
           }
-          return { st: "bad", msg: eqDiagnose(st.L, st.R, L, R, vv) || "This line doesn’t have the same solution as the line before. Check your last move." };
+          return { st: "bad", msg: eqDiagnose(st.L, st.R, L, R, vv) || tx("scratch-paper.gr.notSameSol") };
         }
-        if (rel === "=") throw new LineErr("Keep the inequality sign (< > ≤ or ≥), not =.");
+        if (rel === "=") throw new LineErr(tx("scratch-paper.gr.keepIneq"));
         var S2 = ineqSet(L, rel, R, LP.v);
         if (S2.bad) throw new LineErr(S2.bad);
-        if (S2.unk || S2.high) throw new LineErr("This sheet checks inequalities without " + LP.v + "^2 or " + LP.v + " in a denominator.");
+        if (S2.unk || S2.high) throw new LineErr(tx("scratch-paper.gr.ineqLimits", { v: LP.v }));
         var kL = ratioConst(L, st.L, vv),
           kR = ratioConst(R, st.R, vv),
           kS = ratioConst(L, st.R, vv),
@@ -5243,22 +5253,22 @@
         if (setSame(S2, LP.set)) {
           var mv2 = eqMove(st.L, st.R, L, R, vv),
             fin2 = !!ineqFinal(g2);
-          if (mv2 && kk && rSg(kk) < 0) mv2 += ", and flipped the sign";
-          return { st: "ok", final: fin2, msg: mv2 || "same solution", next: { L: L, R: R, rel: rel, done: fin2 } };
+          if (mv2 && kk && rSg(kk) < 0) mv2 += tx("scratch-paper.mv.andFlipped");
+          return { st: "ok", final: fin2, msg: mv2 || tx("scratch-paper.gr.sameSol"), next: { L: L, R: R, rel: rel, done: fin2 } };
         }
         var msg = null;
         if (S2.ray && LP.set.ray && rEq(S2.ray.c, LP.set.ray.c)) {
           var mirrored = S2.ray.r === FLIP[LP.set.ray.r],
             w = kk ? scaleWords(kk) : null;
-          if (mirrored && kk && rSg(kk) < 0) msg = "You " + w.v + " both sides by <b>" + w.by + "</b>, a negative number, so the inequality sign has to flip: <b>" + st.rel + "</b> becomes <b>" + FLIP[st.rel] + "</b>.";
-          else if (mirrored && kk) msg = "You " + w.v + " by a positive number, so the sign stays the same — only flip it when you multiply or divide by a negative.";
-          else if (mirrored) msg = "Check which way the inequality sign points.";
-          else msg = "Keep the same kind of sign: an “or equal to” sign (≤ or ≥) stays “or equal to”.";
+          if (mirrored && kk && rSg(kk) < 0) msg = tx(w.v === "divided" ? "scratch-paper.gr.flipDiv" : "scratch-paper.gr.flipMul", { by: w.by, a: st.rel, b: FLIP[st.rel] });
+          else if (mirrored && kk) msg = tx(w.v === "divided" ? "scratch-paper.gr.keepDiv" : "scratch-paper.gr.keepMul");
+          else if (mirrored) msg = tx("scratch-paper.gr.whichWay");
+          else msg = tx("scratch-paper.gr.orEqual");
         }
-        return { st: "bad", msg: msg || eqDiagnose(st.L, st.R, L, R, vv) || "This line doesn’t have the same solutions as the line before. Check your last move." };
+        return { st: "bad", msg: msg || eqDiagnose(st.L, st.R, L, R, vv) || tx("scratch-paper.gr.notSameSols") };
       }
       if (kind === "system") return gradeSystem(text, gs, st);
-      throw new LineErr("I don’t know that kind of problem.");
+      throw new LineErr(tx("scratch-paper.su.unknownKind"));
     }
 
     function gradeSystem(text, gs, st) {
@@ -5269,22 +5279,21 @@
       if (pm) {
         var a = numbersIn(pm[1]),
           b = numbersIn(pm[2]);
-        if (a.length === 1 && b.length === 1 && rEq(a[0], env[vs[0]]) && rEq(b[0], env[vs[1]])) return { st: "ok", final: true, msg: "the answer", next: { known: env, last: null, done: true } };
-        return { st: "bad", msg: "That pair isn’t the solution: put the numbers into both equations to check." };
+        if (a.length === 1 && b.length === 1 && rEq(a[0], env[vs[0]]) && rEq(b[0], env[vs[1]])) return { st: "ok", final: true, msg: tx("scratch-paper.gr.theAnswer"), next: { known: env, last: null, done: true } };
+        return { st: "bad", msg: tx("scratch-paper.gr.badPair") };
       }
       for (var i = 0; i < gs.length; i++) {
         var g = gs[i];
-        if (g.rels.length !== 1 || g.rels[0] !== "=") throw new LineErr("Each line of a system is an equation (or two, joined by “and” or a comma).");
+        if (g.rels.length !== 1 || g.rels[0] !== "=") throw new LineErr(tx("scratch-paper.gr.sysEach"));
         var gv = varsOf(g.parts[1], varsOf(g.parts[0]));
-        if (gv.some(function(v) { return vs.indexOf(v) < 0; })) throw new LineErr("Use only the letters " + vs.join(" and ") + ".");
+        if (gv.some(function(v) { return vs.indexOf(v) < 0; })) throw new LineErr(tx("scratch-paper.gr.onlyLetters", { a: vs[0], b: vs[1] }));
         var l = ev(g.parts[0], env),
           r = ev(g.parts[1], env);
         if (!rEq(l, r)) {
           var one = gv.length === 1 ? solveSet(g.parts[0], g.parts[1], gv[0]) : null;
           return {
             st: "bad",
-            msg: (one && one.roots && one.roots.length === 1 ? "That gives " + gv[0] + " = " + rTxt(one.roots[0]) + ", which doesn’t fit both equations. " : "That equation isn’t true for the answer to the system. ") +
-              "Check the last step: when you add or subtract equations, or put a value in, do it to every term on both sides."
+            msg: one && one.roots && one.roots.length === 1 ? tx("scratch-paper.gr.sysGives", { e: gv[0] + " = " + rTxt(one.roots[0]) }) : tx("scratch-paper.gr.sysNotTrue")
           };
         }
         var as = assignOf(g);
@@ -5295,12 +5304,12 @@
       for (k in st.known) known[k] = st.known[k];
       for (k in assigns) known[k] = assigns[k];
       var both = Object.keys(assigns).length === 2 || (Object.keys(assigns).length === 1 && st.lastAssign && Object.keys(st.lastAssign).some(function(x) { return !assigns[x]; }));
-      var mvMsg = Object.keys(assigns).length ? Object.keys(assigns).map(function(x) { return x + " = " + rTxt(assigns[x]); }).join(", ") : "true for the solution";
-      return { st: "ok", final: both, msg: both ? "both answers" : mvMsg, next: { known: known, last: gs, lastAssign: assigns, done: both } };
+      var mvMsg = Object.keys(assigns).length ? Object.keys(assigns).map(function(x) { return x + " = " + rTxt(assigns[x]); }).join(", ") : tx("scratch-paper.gr.trueSol");
+      return { st: "ok", final: both, msg: both ? tx("scratch-paper.gr.both") : mvMsg, next: { known: known, last: gs, lastAssign: assigns, done: both } };
     }
 
     function gradeWord(text, st) {
-      if (!WP.ans) return { st: "wait", msg: "Reading the story…" };
+      if (!WP.ans) return { st: "wait", msg: tx("scratch-paper.gr.reading") };
       var A = WP.ans,
         gs = null,
         sentence = /^\$?\s*[\d.,]+( \d+\/\d+)?\s*[a-zA-Z]{1,3}\.?$/.test(lnorm(text)) && !/^[\d.,\s]*(x|y|n)$/.test(lnorm(text));
@@ -5310,30 +5319,30 @@
         else throw e;
       }
       if (sentence) {
-        if (!st.setup) return { st: "bad", msg: "Start with your working: a number sentence or an equation for the story, like 12 − 5 = ? or n + 5 = 12." };
-        if (A.fail || !A.nums.length) return { st: "ok", final: true, unchecked: true, msg: "answer written (the story couldn’t be read, so it isn’t checked)", next: { setup: st.setup, value: st.value, last: st.last, done: true } };
+        if (!st.setup) return { st: "bad", msg: tx("scratch-paper.gr.startWorking") };
+        if (A.fail || !A.nums.length) return { st: "ok", final: true, unchecked: true, msg: tx("scratch-paper.gr.unchecked"), next: { setup: st.setup, value: st.value, last: st.last, done: true } };
         var ns = numbersIn(text);
         var ok = A.nums.every(function(q) { return ns.some(function(m) { return rEq(m, q); }); });
-        if (ok) return { st: "ok", final: true, msg: "that answers the question", next: { setup: st.setup, value: st.value, last: st.last, done: true } };
-        return { st: "bad", msg: "That isn’t the story’s answer. Look at what your working gave, and say it as the answer to the question" + (A.unit ? " (with the units: " + A.unit + ")" : "") + "." };
+        if (ok) return { st: "ok", final: true, msg: tx("scratch-paper.gr.answers"), next: { setup: st.setup, value: st.value, last: st.last, done: true } };
+        return { st: "bad", msg: A.unit ? tx("scratch-paper.gr.notAnswerUnit", { u: A.unit }) : tx("scratch-paper.gr.notAnswer") };
       }
-      if (gs.length !== 1) throw new LineErr("One number sentence or equation on each line, please.");
+      if (gs.length !== 1) throw new LineErr(tx("scratch-paper.gr.oneSentence"));
       var g = gs[0],
         val = wordValue(g);
       if (val.err) throw new LineErr(val.err);
-      if (val.trueSent === false) return { st: "bad", msg: "That isn’t true: the two sides aren’t equal. Check the arithmetic." };
+      if (val.trueSent === false) return { st: "bad", msg: tx("scratch-paper.gr.notTrue") };
       if (!st.setup) {
         if (A.main && !rEq(val.v, A.main) && !(A.eqVal && rEq(val.v, A.eqVal)))
-          return { st: "bad", tag: "setup", msg: "That works out to a different answer from the story. Read it again: what does the question ask for — and does the amount get bigger or smaller?" };
-        return { st: "ok", msg: "that fits the story", next: { setup: g, value: val.v, last: g } };
+          return { st: "bad", tag: "setup", msg: tx("scratch-paper.gr.otherAnswer") };
+        return { st: "ok", msg: tx("scratch-paper.gr.fits"), next: { setup: g, value: val.v, last: g } };
       }
       if (rEq(val.v, st.value)) {
         // the answer on its own ("7") finishes it too
         var bare = !g.rels.length && isLit(g.parts[0]) && (!A.main || rEq(val.v, A.main)) && !A.fail && A.nums.length === 1;
-        if (bare) return { st: "ok", final: true, msg: "that’s the answer", next: { setup: st.setup, value: st.value, last: g, done: true } };
-        return { st: "ok", msg: "same answer", next: { setup: st.setup, value: st.value, last: g } };
+        if (bare) return { st: "ok", final: true, msg: tx("scratch-paper.gr.thatsIt"), next: { setup: st.setup, value: st.value, last: g, done: true } };
+        return { st: "ok", msg: tx("scratch-paper.gr.sameAns"), next: { setup: st.setup, value: st.value, last: g } };
       }
-      if (val.calc && val.trueSent) return { st: "ok", msg: "true", next: { setup: st.setup, value: st.value, last: st.last } };
+      if (val.calc && val.trueSent) return { st: "ok", msg: tx("scratch-paper.gr.true"), next: { setup: st.setup, value: st.value, last: st.last } };
       var prev = st.last,
         d = null;
       if (val.unknown && prev && prev.rels.length === 1) d = eqDiagnose(prev.parts[0], prev.parts[1], val.L, val.R, [val.unknown]);
@@ -5341,7 +5350,7 @@
         var dv = diagExpr([prev.parts[0]], g.parts[0], []);
         d = dv && dv.msg;
       }
-      return { st: "bad", msg: d || "That doesn’t give the same answer as the line before. Check your last step." };
+      return { st: "bad", msg: d || tx("scratch-paper.gr.notSameAns") };
     }
     /* the next line, from the last line that was right */
     function nextFrom(st) {
@@ -5375,7 +5384,7 @@
       var vs = LP.vs,
         known = st.known || {};
       if (known[vs[0]] && known[vs[1]])
-        return { text: vs[0] + " = " + numText(LP.sol[vs[0]], LP.dec) + ", " + vs[1] + " = " + numText(LP.sol[vs[1]], LP.dec), why: "Write both answers.", todo: "Write both answers." };
+        return { text: vs[0] + " = " + numText(LP.sol[vs[0]], LP.dec) + ", " + vs[1] + " = " + numText(LP.sol[vs[1]], LP.dec), why: tx("scratch-paper.ss.both"), todo: tx("scratch-paper.ss.both") };
       var last = st.last && st.last.length === 1 ? st.last[0] : null;
       if (last) {
         var lv = varsOf(last.parts[1], varsOf(last.parts[0]));
@@ -5388,7 +5397,7 @@
             var E = LP.E.filter(function(e, i) { return LP.F[i][other] && !rZ(LP.F[i][other]); })[0] || LP.E[0];
             var l = substVar(E.L, kv, as.q),
               r = substVar(E.R, kv, as.q);
-            return { text: pr(l) + " = " + pr(r), why: "Put <b>" + kv + " = " + rTxt(as.q) + "</b> into an equation to find " + other + ".", todo: "Put " + kv + " = " + rTxt(as.q) + " into one of the equations." };
+            return { text: pr(l) + " = " + pr(r), why: tx("scratch-paper.ss.putIn", { e: kv + " = " + rTxt(as.q), v: other }), todo: tx("scratch-paper.ss.putInTodo", { e: kv + " = " + rTxt(as.q) }) };
           }
         }
       }
@@ -5408,23 +5417,23 @@
         a2 = cf(F[1], x);
       if (!rZ(b1) && rEq(b1, rNeg(b2))) {
         m2 = RMONE;
-        how = "Add the two equations: the " + y + "’s cancel.";
-      } else if (!rZ(b1) && rEq(b1, b2)) { how = "Subtract the second equation from the first: the " + y + "’s cancel."; } else if (!rZ(a1) && rEq(a1, rNeg(a2))) {
+        how = tx("scratch-paper.ss.add", { v: y });
+      } else if (!rZ(b1) && rEq(b1, b2)) { how = tx("scratch-paper.ss.sub", { v: y }); } else if (!rZ(a1) && rEq(a1, rNeg(a2))) {
         elim = x;
         m2 = RMONE;
-        how = "Add the two equations: the " + x + "’s cancel.";
+        how = tx("scratch-paper.ss.add", { v: x });
       } else if (!rZ(a1) && rEq(a1, a2)) {
         elim = x;
-        how = "Subtract the second equation from the first: the " + x + "’s cancel.";
+        how = tx("scratch-paper.ss.sub", { v: x });
       } else {
         var e = rZ(b1) || rZ(b2) ? x : y,
           c1 = cf(F[0], e),
           c2 = cf(F[1], e);
-        if (rZ(c1) || rZ(c2)) { var only = rZ(c1) ? 0 : 1; return { text: pr(LP.E[only].L) + " = " + pr(LP.E[only].R), why: "This equation has only one letter: solve it first.", todo: "Start with the equation that has only one letter." }; }
+        if (rZ(c1) || rZ(c2)) { var only = rZ(c1) ? 0 : 1; return { text: pr(LP.E[only].L) + " = " + pr(LP.E[only].R), why: tx("scratch-paper.ss.oneLetter"), todo: tx("scratch-paper.ss.oneLetterTodo") }; }
         elim = e;
         m1 = rAbs(c2);
         m2 = rSg(c1) === rSg(c2) ? rAbs(c1) : rNeg(rAbs(c1));
-        how = "Multiply the first equation by <b>" + rTxt(m1) + "</b> and the second by <b>" + rTxt(rAbs(m2)) + "</b>, then " + (rSg(m2) > 0 ? "subtract" : "add") + " them: the " + e + "’s cancel.";
+        how = tx(rSg(m2) > 0 ? "scratch-paper.ss.mulSub" : "scratch-paper.ss.mulAdd", { a: rTxt(m1), b: rTxt(rAbs(m2)), v: e });
       }
       var C = pSub(pScale(F[0], m1), pScale(F[1], m2)),
         keep = elim === x ? y : x,
@@ -5437,7 +5446,7 @@
     function wordStep(st) {
       var A = WP.ans;
       if (!A || A.fail) return null;
-      if (!st.setup) { if (!A.setup) return null; return { text: A.setup, why: "Write the story as a number sentence (or an equation): <b>" + A.setup + "</b>.", todo: "Write the story as a number sentence, or an equation." }; }
+      if (!st.setup) { if (!A.setup) return null; return { text: A.setup, why: tx("scratch-paper.ws.setup", { e: A.setup }), todo: tx("scratch-paper.ws.setupTodo") }; }
       var g = st.last,
         vs = [];
       each(g.parts, function(p) { varsOf(p, vs); });
@@ -5445,7 +5454,7 @@
       if (!vs.length && !g.rels.length) solved = isLit(g.parts[0]);
       else if (!vs.length) solved = g.parts.some(isLit);
       else solved = !!assignOf(g);
-      if (solved) return { text: A.sentence, why: "Answer the question in a sentence, with the units: <b>" + A.sentence + "</b>", todo: "Answer the question in a sentence, with the units." };
+      if (solved) return { text: A.sentence, why: tx("scratch-paper.ws.sentence", { e: A.sentence }), todo: tx("scratch-paper.ws.sentenceTodo") };
       if (vs.length === 1 && g.rels.length === 1) {
         var L = g.parts[0],
           R = g.parts[1],
@@ -5495,6 +5504,7 @@
           var m = /^(.+?) (=|<|>|≤|≥) ([a-z])$/.exec(t);
           if (m && !/[a-z]/.test(m[1])) t = m[3] + " " + FLIP[m[2]] + " " + m[1];
         }
+        t = t.replace(/ or /g, tx("scratch-paper.orJoin"));
         return { text: t, html: esc(t) };
       } catch (e) { return { text: "?", html: "?" }; } finally { LP = keepLP; }
     }
@@ -5539,8 +5549,14 @@
       var vt = v.innerHTML.replace(/<\/span>\s*<span/g, "</span> <span").replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/&nbsp;/g, " ").replace(/\s+/g, " ").trim(),
         unitEl = v.querySelector(".word"),
         fact = doc.querySelector(".answer .fact");
+      // the story page shows its labels in the visitor's language: read them with its own strings
+      var fw = doc.defaultView,
+        ft = function(k, en) { try { var s = fw.HelperI18n.t(k); return s && s !== k ? s : en; } catch (e) { return en; } },
+        reEsc = function(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); },
+        readLbl = ft("story-problems.reader.whatIReadFix", "What I read:").split("{")[0].replace(/<[^>]*>/g, "").trim() || "What I read:",
+        eqTags = [ft("story-problems.alg.equation", "Equation"), ft("story-problems.work.equation", "Equation"), "Equation"];
       var rs = doc.getElementById("readSum"),
-        km = rs && /What I read:\s*([^·]+)/.exec(rs.textContent);
+        km = rs && new RegExp(reEsc(readLbl) + "\\s*([^·]+)").exec(rs.textContent);
       var eq = null,
         calcs = [];
       each(doc.querySelectorAll("#log .line"), function(l) {
@@ -5548,7 +5564,7 @@
           b = l.querySelector(".txt b");
         if (!b) return;
         var t = b.textContent.replace(/\s+/g, " ").trim();
-        if (/^Equation$/i.test(tag) && !eq) eq = /<br/i.test(b.innerHTML) || /;/.test(t) ? "two" : t;
+        if (eqTags.some(function(x) { return x.toLowerCase() === tag.toLowerCase(); }) && !eq) eq = /<br/i.test(b.innerHTML) || /;/.test(t) ? "two" : t;
         if (/^[+−×÷]$/.test(tag) && /=/.test(t) && !/[a-z]/i.test(t.replace(/R/g, ""))) calcs.push(t);
       });
       var nums = /\d:\d\d/.test(vt) || / R \d/.test(vt) ? [] : numbersIn(vt);
@@ -5589,7 +5605,7 @@
         fin = false;
       f.setAttribute("aria-hidden", "true");
       f.tabIndex = -1;
-      f.title = "story reader";
+      f.title = tx("scratch-paper.ui.storyReader");
       f.style.cssText = "position:absolute;left:-10000px;top:0;width:900px;height:700px;border:0;visibility:hidden";
 
       function done(ans) {
@@ -5618,7 +5634,7 @@
         var f = document.createElement("iframe");
         f.setAttribute("aria-hidden", "true");
         f.tabIndex = -1;
-        f.title = "story maker";
+        f.title = tx("scratch-paper.ui.storyMaker");
         f.style.cssText = "position:absolute;left:-10000px;top:0;width:600px;height:400px;border:0;visibility:hidden";
         f.onload = function() {
           WPAPI.ready = true;
@@ -5874,7 +5890,7 @@
         if (!t) { out.push({ st: "empty", stBefore: st }); return; }
         var r;
         try { r = gradeLine(t, st); } catch (e) {
-          r = { st: "err", msg: e instanceof LineErr ? (e.code === "words" ? wordsMsg() : esc(e.msg).replace(/&lt;b&gt;|&lt;\/b&gt;/g, "")) : "I can’t read this line." };
+          r = { st: "err", msg: e instanceof LineErr ? (e.code === "words" ? wordsMsg() : esc(e.msg).replace(/&lt;b&gt;|&lt;\/b&gt;/g, "")) : tx("scratch-paper.ui.cantReadLine") };
           if (!(e instanceof LineErr) && window.console) console.error(e);
         }
         r.stBefore = st;
@@ -5904,11 +5920,11 @@
     }
 
     function lineLabel(i, r, vis) {
-      var s = "Line " + (i + 1);
+      var s = tx("scratch-paper.ui.line", { n: i + 1 });
       if (!vis) return s;
-      if (r.st === "ok") return s + ", right" + (r.final ? ", finished" : "");
-      if (r.st === "bad") return s + ", needs another look";
-      if (r.st === "err") return s + ", can’t be read";
+      if (r.st === "ok") return r.final ? tx("scratch-paper.ui.lineOkFinal", { n: i + 1 }) : tx("scratch-paper.ui.lineOk", { n: i + 1 });
+      if (r.st === "bad") return tx("scratch-paper.ui.lineBad", { n: i + 1 });
+      if (r.st === "err") return tx("scratch-paper.ui.lineErr", { n: i + 1 });
       return s;
     }
 
@@ -5919,7 +5935,7 @@
       var focusId = LFOCUS && document.activeElement && document.activeElement.classList && document.activeElement.classList.contains("lin") ? LFOCUS : null;
       host.innerHTML = W.lines.map(function(l, i) {
         return '<li class="lrow" data-lid="' + l.id + '"><span class="ln" aria-hidden="true">' + (i + 1) + '</span>' +
-          '<div class="lmain"><input class="lin" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" data-lid="' + l.id + '" aria-label="Line ' + (i + 1) +
+          '<div class="lmain"><input class="lin" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" data-lid="' + l.id + '" aria-label="' + tx("scratch-paper.ui.line", { n: i + 1 }) +
           '" aria-describedby="lh' + l.id + '" value="' + esc(l.t) + '"><span class="lmark" aria-hidden="true"></span></div>' +
           '<div class="lhint" id="lh' + l.id + '"></div></li>';
       }).join("");
@@ -5952,7 +5968,7 @@
         li.querySelector(".lmark").textContent = vis ? (r.st === "ok" ? "✓" : r.st === "bad" || r.st === "err" ? "✗" : r.st === "wait" ? "…" : "") : "";
         var hint = "";
         if (vis) {
-          if (r.st === "ok") hint = (r.msg ? cap1(r.msg) : "") + (W.lshown[l.id] ? (r.msg ? " · " : "") + "filled in for you" : "");
+          if (r.st === "ok") hint = (r.msg ? cap1(r.msg) : "") + (W.lshown[l.id] ? (r.msg ? " · " : "") + tx("scratch-paper.ui.filledIn") : "");
           else hint = r.msg || "";
         }
         li.querySelector(".lhint").innerHTML = hint;
@@ -5988,17 +6004,17 @@
 
     function paintLinesNext() {
       var t = "";
-      if (W.done) t = W.revealed ? "That’s the whole answer, filled in. Try another one yourself!" : "Done — every line is right.";
-      else if (LP.kind === "word" && !WP.ans) t = "Reading the story…";
-      else if (LP.kind === "word" && WP.ans && WP.ans.fail) t = "Write a number sentence or an equation for the story, work it out, then answer in a sentence. (I couldn’t read this story, so only the arithmetic is checked.)";
+      if (W.done) t = W.revealed ? tx("scratch-paper.ui.wholeAnswer") : tx("scratch-paper.ui.allLinesRight");
+      else if (LP.kind === "word" && !WP.ans) t = tx("scratch-paper.gr.reading");
+      else if (LP.kind === "word" && WP.ans && WP.ans.fail) t = tx("scratch-paper.ui.storyFail");
       else {
         var b = baseState(),
           nx = null;
         try { nx = nextFrom(b.st); } catch (e) { nx = null; }
-        if (b.at >= 0 && S.check === "each") t = "Fix line " + (b.at + 1) + " first. " + (nx ? nx.todo : "");
+        if (b.at >= 0 && S.check === "each") t = tx("scratch-paper.ui.fixLine", { n: b.at + 1 }) + " " + (nx ? nx.todo : "");
         else if (nx) t = nx.todo;
-        else if (S.check === "end") t = "Everything is written: press <b>Check my work</b>.";
-        else t = "Check the lines marked in red.";
+        else if (S.check === "end") t = tx("scratch-paper.ui.allWritten");
+        else t = tx("scratch-paper.ui.checkRed");
       }
       $("lNextTxt").innerHTML = t;
     }
@@ -6020,7 +6036,7 @@
         if (r.st !== "ok") W.mistakes++;
       }
       if (S.check === "each") {
-        if (r.st === "bad" || r.st === "err") say('<span class="lead">' + (r.st === "err" ? "I can’t read line " + (i + 1) + "." : "Line " + (i + 1) + ": not quite.") + "</span> " + r.msg, "no");
+        if (r.st === "bad" || r.st === "err") say('<span class="lead">' + (r.st === "err" ? tx("scratch-paper.ui.cantReadN", { n: i + 1 }) : tx("scratch-paper.ui.lineNotQuite", { n: i + 1 })) + "</span> " + r.msg, "no");
         else say("", "");
       }
       var stay = S.check === "each" && (r.st === "bad" || r.st === "err");
@@ -6046,9 +6062,9 @@
         W.reported = true;
         report(W.revealed ? "shown" : "right");
       }
-      if (W.revealed) say('<span class="lead">Here’s the whole answer.</span> The lines in blue were filled in for you.', "");
-      else if (unchecked) say('<span class="lead">Done.</span> I couldn’t read this story, so I checked the arithmetic but not the answer.', "");
-      else say('<span class="lead">✓ Correct!</span> You worked it out line by line: <b>' + esc(answerOf(P).text) + "</b>.", "ok");
+      if (W.revealed) say(tx("scratch-paper.ui.revealedLines"), "");
+      else if (unchecked) say(tx("scratch-paper.ui.doneUnchecked"), "");
+      else say(tx("scratch-paper.ui.correctLines", { a: esc(answerOf(P).text) }), "ok");
       paintLines();
       var box = $("doneBox");
       box.classList.remove("on");
@@ -6058,12 +6074,12 @@
 
     function lStep(silent) {
       if (W.done) return false;
-      if (LP.kind === "word" && !WP.ans) { if (!silent) say("Still reading the story…", ""); return false; }
+      if (LP.kind === "word" && !WP.ans) { if (!silent) say(tx("scratch-paper.ui.stillReading"), ""); return false; }
       LG = gradeAll();
       var b = baseState(),
         nx = null;
       try { nx = nextFrom(b.st); } catch (e) { nx = null; }
-      if (!nx) { if (!silent) say(lDone() ? "There’s nothing left to write." : "There’s nothing more I can suggest from here — check the lines marked in red.", ""); return false; }
+      if (!nx) { if (!silent) say(lDone() ? tx("scratch-paper.ui.nothingLeft") : tx("scratch-paper.ui.nothingMore"), ""); return false; }
       HIST.push(snap());
       FUT = [];
       var id = lid(),
@@ -6079,7 +6095,7 @@
       W.lshown[id] = true;
       W.hints++;
       noteHint();
-      if (!silent) say('<span class="lead">Next line:</span> ' + nx.why, "");
+      if (!silent) say(tx("scratch-paper.ui.nextLineSay", { why: nx.why }), "");
       LG = gradeAll();
       if (!lDone(LG) && W.lines[W.lines.length - 1].id === id) W.lines.push({ id: lid(), t: "" });
       paintLines();
@@ -6105,7 +6121,7 @@
       LG = gradeAll();
       if (lDone(LG)) lFinish();
       else {
-        say("I couldn’t finish this one from here.", "");
+        say(tx("scratch-paper.ui.cantFinish"), "");
         paintLines(true);
       }
     }
@@ -6127,7 +6143,7 @@
       W.checks++;
       if (bad) {
         report("wrong");
-        say('<span class="lead">' + (bad === 1 ? "One line needs" : bad + " lines need") + " another look.</span> " + "The hint is under each line marked ✗.", "no");
+        say(tx("scratch-paper.ui.linesBad", { n: bad }), "no");
         paintLines();
         save();
         return;
@@ -6139,7 +6155,7 @@
       }
       var lastR = null;
       each(LG, function(r) { if (r.st !== "empty") lastR = r; });
-      say('<span class="lead">Everything so far is right.</span> ' + (!filled ? "Start with the first line." : lastR && lastR.notDone ? "But it isn’t finished: " + lowerFirst(lastR.notDone) : "Keep going — you’re not at the answer yet."), "ok");
+      say(tx("scratch-paper.ui.soFarRight", { more: !filled ? tx("scratch-paper.ui.startFirstLine") : lastR && lastR.notDone ? tx("scratch-paper.ui.notFinished", { why: lowerFirst(lastR.notDone) }) : tx("scratch-paper.ui.keepGoingLines") }), "ok");
       paintLines();
       save();
     }
@@ -6199,7 +6215,7 @@
       W.lshown = {};
       $("doneBox").hidden = true;
       $("answerHost").innerHTML = "";
-      say(was ? "A fresh page for the same problem." : "", "");
+      say(was ? tx("scratch-paper.ui.freshPage") : "", "");
       paintLines(true);
       focusLine(W.lines[0].id);
       save();
@@ -6223,13 +6239,13 @@
       $("storyBox").hidden = !isW;
       if (isW) {
         var A = WP.ans;
-        $("storyBox").innerHTML = '<span class="lbl">The story</span><p>' + esc(LP.story) + "</p>" +
-          (A ? (A.fail ? '<p class="snote">I couldn’t read this story well enough to know its answer, so I’ll check your arithmetic only.</p>' :
-            (A.kind ? '<p class="snote">What I read: ' + esc(A.kind) + ".</p>" : "")) : '<p class="snote">Reading the story…</p>');
+        $("storyBox").innerHTML = '<span class="lbl">' + tx("scratch-paper.ui.theStory") + '</span><p>' + esc(LP.story) + "</p>" +
+          (A ? (A.fail ? '<p class="snote">' + tx("scratch-paper.ui.storyCantRead") + '</p>' :
+            (A.kind ? '<p class="snote">' + tx("scratch-paper.ui.whatIRead", { k: esc(A.kind) }) + "</p>" : "")) : '<p class="snote">' + tx("scratch-paper.gr.reading") + '</p>');
       }
       $("givenRow").hidden = isW;
       $("givenText").textContent = isW ? "" : prettyQ(LP.q, LP.kind);
-      $("linesTitle").innerHTML = "Your working: <b>" + esc(isW ? (LP.story.length > 42 ? LP.story.slice(0, 40) + "…" : LP.story) : prettyQ(LP.q, LP.kind)) + "</b>";
+      $("linesTitle").innerHTML = tx("scratch-paper.ui.yourWorking", { q: esc(isW ? (LP.story.length > 42 ? LP.story.slice(0, 40) + "…" : LP.story) : prettyQ(LP.q, LP.kind)) });
     }
     /* ---------- events on the ruled paper ---------- */
     $("llist").addEventListener("focusin", function(e) {
@@ -6347,7 +6363,7 @@
         var k = b.getAttribute("data-kind");
         if (!P || P.op !== "lines" || P.kind === k) return;
         var np = { op: "lines", kind: k, q: P.q };
-        try { setupLines(np); } catch (e) { say('<span class="lead">That doesn’t fit.</span> ' + esc((e && e.msg) || "It can’t be read as that kind of problem."), "no"); return; }
+        try { setupLines(np); } catch (e) { say(tx("scratch-paper.ui.doesntFit", { msg: esc((e && e.msg) || tx("scratch-paper.ui.notThatKind")) }), "no"); return; }
         setProblem(np);
       });
     });
@@ -6389,10 +6405,10 @@
     function cellLabel(c) {
       var v = val(c.id),
         s = c.label;
-      if (c.kind === "point") s += v === null ? ", not placed yet" : ", " + pl(Number(v), "place") + " from the right";
-      else s += v === null ? ", empty" : ", " + v;
-      if (W.shown[c.id]) s += ", filled in for you";
-      if (marked(c)) s += ", needs another look: " + strip(c.hint(v));
+      if (c.kind === "point") s += v === null ? tx("scratch-paper.cl.notPlaced") : tx("scratch-paper.cl.placesFromRight", { n: Number(v) });
+      else s += v === null ? tx("scratch-paper.cl.empty") : ", " + v;
+      if (W.shown[c.id]) s += tx("scratch-paper.cl.shown");
+      if (marked(c)) s += tx("scratch-paper.cl.bad", { h: strip(c.hint(v)) });
       return s;
     }
 
@@ -6492,9 +6508,9 @@
         pp;
       var bad = marked(c),
         sel = S.sel === "pt";
-      var h = '<div class="cap">' + (v === null ? "Put the decimal point back in the answer: tap the gap where it goes." :
-        "The point is <b>" + pl(Number(v), "place") + "</b> from the right." + (W.shown.pt ? " (filled in for you)" : "")) + "</div>";
-      h += '<div class="gaps" role="group" aria-label="Where the decimal point goes">';
+      var h = '<div class="cap">' + (v === null ? tx("scratch-paper.pt.cap") :
+        (W.shown.pt ? tx("scratch-paper.pt.isShown", { n: Number(v) }) : tx("scratch-paper.pt.is", { n: Number(v) }))) + "</div>";
+      h += '<div class="gaps" role="group" aria-label="' + tx("scratch-paper.pt.gapsAria") + '">';
       for (pp = Wd - 1; pp >= 0; pp--) {
         var id2 = M.totalCell(pp),
           d2 = id2 ? val(id2) : null,
@@ -6504,7 +6520,7 @@
           var on = v !== null && Number(v) === pp;
           h += '<button type="button" class="gap' + (on ? " on" : "") + (on && bad ? " bad" : "") + (on && W.shown.pt ? " shown" : "") + (sel && (on || (v === null && pp === 1)) ? " sel" : "") +
             '" data-id="pt" data-kind="point" data-p="' + pp + '" tabindex="' + ((on || (v === null && pp === 1)) ? 0 : -1) +
-            '" aria-label="' + esc("put the point with " + pl(pp, "digit") + " after it" + (on ? ", the point is here" : "") + (on && bad ? ", needs another look" : "")) + '"></button>';
+            '" aria-label="' + esc(tx("scratch-paper.pt.gap", { n: pp }) + (on ? tx("scratch-paper.pt.here") : "") + (on && bad ? tx("scratch-paper.pt.bad") : "")) + '"></button>';
         }
       }
       h += "</div>";
@@ -6529,7 +6545,7 @@
       var el = elFor(info.id);
       if (!el || info.id === "pt") { b.hidden = true; return; }
       b.className = "bubble" + (info.offer ? " offer" : "");
-      b.innerHTML = info.html + (info.offer ? '<div class="row"><button type="button" class="yes" data-offer="undo">Undo cross-out</button><button type="button" class="no" data-offer="keep">Keep it</button></div>' : "");
+      b.innerHTML = info.html + (info.offer ? '<div class="row"><button type="button" class="yes" data-offer="undo">' + tx("scratch-paper.bub.undo") + '</button><button type="button" class="no" data-offer="keep">' + tx("scratch-paper.bub.keep") + '</button></div>' : "");
       b.hidden = false;
       var pa = $("paper"),
         pr = pa.getBoundingClientRect(),
@@ -6558,13 +6574,13 @@
 
     function paintNext() {
       var t;
-      if (W.done) t = W.revealed ? "That’s the whole answer, filled in. Try another one yourself!" : "Done — every square is right.";
+      if (W.done) t = W.revealed ? tx("scratch-paper.ui.wholeAnswer") : tx("scratch-paper.sh.allRight");
       else {
         var a = M.next(S.check === "each");
         if (!a && S.check === "end" && !M.isDone) a = null;
         if (a) t = a.todo;
-        else if (S.check === "end") t = "Everything is filled in: press <b>Check my work</b>.";
-        else t = "Fix the squares marked in red.";
+        else if (S.check === "end") t = tx("scratch-paper.sh.allFilled");
+        else t = tx("scratch-paper.sh.fixRed");
       }
       $("nextTxt").innerHTML = t || "";
     }
@@ -6605,7 +6621,7 @@
           draw();
           paintTools();
           paintNext();
-        } else if (!opts.quiet) say('<span class="lead">Everything is filled in.</span> Press <b>Check my work</b> to see how you did.');
+        } else if (!opts.quiet) say(tx("scratch-paper.sh.filledSay"));
       }
       if (W.done) paintDone();
       if ((hadFocus || opts.focus || padFocus) && S.sel) focusSel();
@@ -6653,18 +6669,18 @@
       if (W.done) return;
       var c = S.sel && M.byId[S.sel];
       if (!c) {
-        if (S.sel && M.tapById[S.sel]) { say("That’s a digit of the problem. Tap a square to write in.", ""); return; }
+        if (S.sel && M.tapById[S.sel]) { say(tx("scratch-paper.sh.isDigit"), ""); return; }
         var a = M.next(S.check === "each");
         if (a && a.type === "fill" && M.byId[a.id]) {
           c = M.byId[a.id];
           S.sel = c.id;
         } else {
-          say("Tap a square first, then type the digit.", "");
+          say(tx("scratch-paper.sh.tapFirst"), "");
           render();
           return;
         }
       }
-      if (c.kind === "point" && Number(d) >= M.Wd) { say("The answer doesn’t have that many digits.", ""); return; }
+      if (c.kind === "point" && Number(d) >= M.Wd) { say(tx("scratch-paper.sh.tooMany"), ""); return; }
       push();
       W.v[c.id] = String(d);
       delete W.shown[c.id];
@@ -6675,7 +6691,7 @@
         s = c2 ? stat(c2) : "ok";
       if (S.check === "each" && c2) {
         if (W.first[c.id] === undefined) { W.first[c.id] = s === "ok"; if (s === "bad") W.mistakes++; }
-        if (s === "bad") say('<span class="lead">Not quite.</span> ' + c2.hint(String(d)), "no");
+        if (s === "bad") say(tx("scratch-paper.sh.notQuite", { h: c2.hint(String(d)) }), "no");
         else {
           say("", "");
           JUSTOK = c.id;
@@ -6725,7 +6741,7 @@
       if (r.refuse) {
         if (r.mistake && S.check === "each") W.mistakes++;
         BUB = { id: id, html: r.refuse };
-        say('<span class="lead">' + (r.mistake ? "Not that one." : "Hold on.") + "</span> " + r.refuse, r.mistake ? "no" : "");
+        say(tx(r.mistake ? "scratch-paper.sh.notThatOne" : "scratch-paper.sh.holdOn", { m: r.refuse }), r.mistake ? "no" : "");
         S.sel = id;
         render({ focus: true });
         return;
@@ -6743,7 +6759,7 @@
       push();
       M.untap(id);
       BUB = null;
-      say("Cross-out undone.", "");
+      say(tx("scratch-paper.sh.undone"), "");
       S.sel = null;
       render();
     }
@@ -6826,12 +6842,12 @@
     function stepOnce() {
       if (W.done) return;
       var a = M.next(true);
-      if (!a) { say("There’s nothing left to do on this sheet.", ""); return; }
+      if (!a) { say(tx("scratch-paper.sh.nothingLeft"), ""); return; }
       push();
       W.hints++;
       noteHint();
       var sel = apply(a, true);
-      say('<span class="lead">Next step:</span> ' + a.why, "");
+      say(tx("scratch-paper.sh.nextStep", { why: a.why }), "");
       BUB = null;
       M = model();
       S.sel = sel || (a.type === "fill" ? a.id : S.sel);
@@ -6873,7 +6889,7 @@
       W.checks++;
       if (bad.length) {
         report("wrong");
-        say('<span class="lead">' + (bad.length === 1 ? "One square needs" : bad.length + " squares need") + " another look.</span> They’re underlined in red — tap one to see a hint.", "no");
+        say(tx("scratch-paper.sh.squaresBad", { n: bad.length }), "no");
         S.sel = bad[0].id;
         BUB = null;
         render({ focus: true, quiet: true });
@@ -6884,7 +6900,7 @@
         render();
         return;
       }
-      say('<span class="lead">Everything so far is right.</span> ' + (filled ? "Keep going." : "Start with the first square."), "ok");
+      say(tx("scratch-paper.ui.soFarRight", { more: filled ? tx("scratch-paper.sh.keepGoing") : tx("scratch-paper.sh.startFirst") }), "ok");
       render({ quiet: true });
     }
 
@@ -6900,7 +6916,7 @@
       W.revealed = false;
       S.sel = null;
       BUB = null;
-      say(was ? "A fresh sheet for the same problem." : "", "");
+      say(was ? tx("scratch-paper.sh.fresh") : "", "");
       $("doneBox").hidden = true;
       $("answerHost").innerHTML = "";
       render();
@@ -6916,8 +6932,8 @@
         W.reported = true;
         report(W.revealed ? "shown" : "right");
       }
-      if (W.revealed) say('<span class="lead">Here’s the whole answer.</span> The squares in blue were filled in for you.', "");
-      else say('<span class="lead">✓ Correct!</span> You worked it out by hand: <b>' + esc(answerOf(P).text) + "</b>.", "ok");
+      if (W.revealed) say(tx("scratch-paper.sh.revealed"), "");
+      else say(tx("scratch-paper.sh.correct", { a: esc(answerOf(P).text) }), "ok");
       paintDone();
       var box = $("doneBox");
       box.classList.remove("on");
@@ -6952,17 +6968,17 @@
         unit = lines ? "line" : "square";
       box.hidden = false;
       box.classList.toggle("shownend", W.revealed);
-      $("stamp").textContent = W.revealed ? "Shown" : (W.mistakes === 0 && !W.hints ? "Perfect!" : "Solved!");
+      $("stamp").textContent = W.revealed ? tx("scratch-paper.done.shown") : (W.mistakes === 0 && !W.hints ? tx("scratch-paper.done.perfect") : tx("scratch-paper.done.solved"));
       var t;
-      if (W.revealed && !sc.tried) t = "Every " + unit + " was filled in for you. Try it yourself with <b>New problem</b>.";
+      if (W.revealed && !sc.tried) t = tx("scratch-paper.done.allShown." + unit);
       else {
-        t = "<b>" + sc.right + "</b> of <b>" + sc.tried + "</b> " + unit + (sc.tried === 1 ? "" : "s") + " right first time";
-        if (sc.shown) t += " · " + pl(sc.shown, unit) + " filled in for you";
-        if (!lines && W.mistakes > sc.tried - sc.right) t += " · " + pl(W.mistakes - (sc.tried - sc.right), "slip") + " with a cross-out or bring-down";
+        t = tx("scratch-paper.done.first." + unit, { r: sc.right, n: sc.tried });
+        if (sc.shown) t += " · " + tx("scratch-paper.done.filled." + unit, { n: sc.shown });
+        if (!lines && W.mistakes > sc.tried - sc.right) t += " · " + tx("scratch-paper.done.slips", { n: W.mistakes - (sc.tried - sc.right) });
         t += ".";
       }
       $("score").innerHTML = t;
-      $("answerHost").innerHTML = '<div class="answer"><span class="k">Answer</span><span class="v">' + A.html + "</span>" +
+      $("answerHost").innerHTML = '<div class="answer"><span class="k">' + tx("common.answer") + '</span><span class="v">' + A.html + "</span>" +
         '<div class="facts"><div class="fact">' + esc(qText(P)) + " = <b>" + A.html + "</b></div></div></div>";
       $("seeLink").href = helperLink(P);
       $("againBtn").hidden = EMBED;
@@ -7073,12 +7089,12 @@
     $("pointstep").addEventListener("keydown", onKey);
 
     function crossKey() {
-      if (!S.sel) { say("Tap the digit you want to cross out.", ""); return; }
+      if (!S.sel) { say(tx("scratch-paper.sh.tapCross"), ""); return; }
       if (M.tapById[S.sel]) { tap(S.sel, "cross"); return; }
       var c = M.byId[S.sel];
       if (c && c.inset) { tap(S.sel); return; }
       if (c && P.op === "div" && c.kind === "diff") { tap(S.sel, "cross"); return; }
-      say("Only a digit you borrow from can be crossed out.", "");
+      say(tx("scratch-paper.sh.onlyBorrow"), "");
     }
     /* the digit pad: keep the square focused while it is used */
     $("pad").addEventListener("pointerdown", function(e) { if (e.target.closest("button")) e.preventDefault(); });
@@ -7153,7 +7169,7 @@
       if (lines) {
         try { LP = setupLines(p); } catch (e) {
           LP = null;
-          say('<span class="lead">Hmm.</span> ' + esc((e && e.msg) || "That problem couldn’t be read."), "no");
+          say(tx("scratch-paper.hmm", { m: esc((e && e.msg) || tx("scratch-paper.cantReadProblem")) }), "no");
           return;
         }
         if (!W.lines || !W.lines.length) linesFresh();
@@ -7170,11 +7186,11 @@
         return;
       }
       LP = null;
-      $("sheetTitle").innerHTML = "Your sheet: <b>" + esc(qText(p)) + "</b>";
+      $("sheetTitle").innerHTML = tx("scratch-paper.yourSheet", { q: esc(qText(p)) });
       M = model();
       var note = "";
-      if (p.op === "sub" && M.neg) note = "<b>" + esc(commasBig(p.b)) + "</b> is bigger, so work out <b>" + esc(commasBig(p.b)) + " − " + esc(commasBig(p.a)) + "</b> and the answer is negative.";
-      if (p.op === "mul" && M.places > 0) note = "Ignore the decimal points for now: work out <b>" + M.A + " × " + M.B + "</b>, then put the point back at the end.";
+      if (p.op === "sub" && M.neg) note = tx("scratch-paper.note.neg", { b: esc(commasBig(p.b)), a: esc(commasBig(p.a)) });
+      if (p.op === "mul" && M.places > 0) note = tx("scratch-paper.note.points", { a: M.A, b: M.B });
       say(note, "");
       render();
     }
@@ -7186,16 +7202,16 @@
       if (t !== null && (r.err || r.p.kind === "word")) { var r2 = parseLines1(t, kind); if (!r2.err) return r2; }
       // a few words around some math ("what is 25 times 4 exactly?") is a question about a problem, not a story to read
       if (!kind && !r.err && r.p.kind === "word" && (String(raw).match(/[a-z]{2,}/gi) || []).length < 6)
-        return { err: "Type just the problem, like 478 + 356 or 2x + 5 = 17 — or a whole story problem.", lines: true };
+        return { err: tx("scratch-paper.err.justProblem"), lines: true };
       return r;
     }
 
     function parseLines1(raw, kind) {
       var q = String(raw == null ? "" : raw).replace(/\s+/g, " ").trim();
-      if (!q) return { err: "it was empty" };
+      if (!q) return { err: tx("scratch-paper.err.empty") };
       var k = kind || detectKind(q),
         p = { op: "lines", kind: k, q: prettyQ(q, k) };
-      try { setupLines(p); } catch (e) { return { err: (e && e.msg) || "It couldn’t be read.", lines: true }; }
+      try { setupLines(p); } catch (e) { return { err: (e && e.msg) || tx("scratch-paper.err.couldntRead"), lines: true }; }
       return { p: p };
     }
 
@@ -7209,8 +7225,38 @@
       return plain ? r : r2;
     }
 
+    // a problem typed in the language in use, as the readers know it: HelperI18n.normalize, with this page's own words for
+    // the language (scratch-paper.typedWords: { before, after } lists of [pattern, replacement], matched without accents
+    // and in lower case). English, and text with nothing to change, come back as they were.
+    function fold(s) { return s.normalize ? s.normalize("NFD").replace(/[̀-ͯ]/g, "") : s; }
+
+    function i18nQ(q) {
+      if (!window.HelperI18n || HelperI18n.lang === "en" || q === null || q === undefined) return q;
+      var Wd = txr("scratch-paper.typedWords") || {},
+        s = String(q);
+      var run = function(list, t) {
+        if (!list || !list.length) return t;
+        var f = fold(t).toLowerCase(),
+          g = f;
+        list.forEach(function(r) { g = g.replace(new RegExp(r[0], "g"), r[1]); });
+        return g === f ? t : g;
+      };
+      return run(Wd.after, HelperI18n.normalize(run(Wd.before, s)));
+    }
+
+    // read(text) -> { p } or { err }: the reading of the text in the visitor's language, when it makes a problem that
+    // isn't a story; else the text as it was typed
+    function readQ(raw, read) {
+      var n = i18nQ(raw);
+      if (n !== raw) {
+        var r = read(n);
+        if (!r.err && !(r.p.op === "lines" && r.p.kind === "word")) return r;
+      }
+      return read(raw);
+    }
+
     function problemErr(r) {
-      return r.lines ? '<span class="lead">Hmm.</span> ' + esc(r.err) : '<span class="lead">Hmm.</span> That problem couldn’t be read: ' + r.err + ".";
+      return r.lines ? tx("scratch-paper.hmm", { m: esc(r.err) }) : tx("scratch-paper.hmmWhy", { m: r.err });
     }
 
     function openProblem(p, note) {
@@ -7219,7 +7265,7 @@
         p.places = S.places;
       }
       setProblem(p);
-      if (note === "swap") say("The longer number goes on top, so the sheet works out <b>" + esc(qText(p)) + "</b>.", "");
+      if (note === "swap") say(tx("scratch-paper.note.swap", { q: esc(qText(p)) }), "");
       if (p.op === "lines") { if (!W.done && W.lines.length) focusLine(W.lines[W.lines.length - 1].id); return; }
       var first = M.focusOrder.filter(function(c) { return c.main; })[0];
       if (first && !W.done) {
@@ -7229,7 +7275,7 @@
     }
 
     function startFromBox() {
-      var r = detectProblem($("qIn").value);
+      var r = readQ($("qIn").value, function(t) { return detectProblem(t); });
       if (r.err) {
         say(problemErr(r), "no");
         $("qIn").focus();
@@ -7249,7 +7295,7 @@
     function toLines() {
       if (P.op === "lines") return;
       var np = { op: "lines", kind: "expression", q: qText(P) };
-      try { setupLines(np); } catch (e) { say('<span class="lead">Hmm.</span> ' + esc((e && e.msg) || "That can’t be done line by line."), "no"); return; }
+      try { setupLines(np); } catch (e) { say(tx("scratch-paper.hmm", { m: esc((e && e.msg) || tx("scratch-paper.err.notLines")) }), "no"); return; }
       openProblem(np);
     }
 
@@ -7257,7 +7303,7 @@
       if (P.op !== "lines") return;
       var r = parseProblem(P.q);
       if (r.err) {
-        say('<span class="lead">This one stays line by line.</span> Squared paper is for + − × ÷ of plain numbers, like 478 + 356, 47 × 23 or 847 ÷ 12.', "");
+        say(tx("scratch-paper.note.staysLines"), "");
         paintOpts();
         return;
       }
@@ -7318,7 +7364,7 @@
         if (r.err) return;
         b.type = "button";
         b.className = "chip";
-        b.textContent = r.p.op === "lines" && r.p.kind === "word" ? "Ana has 12 shells… (a story)" : qText(r.p);
+        b.textContent = r.p.op === "lines" && r.p.kind === "word" ? tx("scratch-paper.chipStory") : qText(r.p);
         b.addEventListener("click", function() { openProblem(JSON.parse(JSON.stringify(r.p))); });
         host.appendChild(b);
       });
@@ -7328,44 +7374,44 @@
     var ALL = ["add", "sub", "mul", "div"];
     var OPTS = [{
         key: "mode",
-        label: "Kind of problem",
+        label: tx("scratch-paper.mk.kind"),
         type: "choice",
         "default": "add",
-        values: [{ v: "add", label: "Adding" }, { v: "sub", label: "Subtracting" }, { v: "mul", label: "Multiplying" }, { v: "div", label: "Long division" },
-          { v: "lines", label: "Line by line (algebra, fractions, order, stories)" }
+        values: [{ v: "add", label: tx("scratch-paper.mk.adding") }, { v: "sub", label: tx("scratch-paper.mk.subtracting") }, { v: "mul", label: tx("scratch-paper.mk.multiplying") }, { v: "div", label: tx("scratch-paper.mk.longDiv") },
+          { v: "lines", label: tx("scratch-paper.mk.lines") }
         ]
       }, {
         key: "kind",
-        label: "What to work out, line by line",
+        label: tx("scratch-paper.mk.whatLines"),
         type: "choice",
         "default": "equation",
         modes: ["lines"],
-        values: [{ v: "expression", label: "An expression" }, { v: "equation", label: "An equation" }, { v: "inequality", label: "An inequality" },
-          { v: "system", label: "A system of two equations" }, { v: "word", label: "A story problem" }
+        values: [{ v: "expression", label: tx("scratch-paper.mk.anExpr") }, { v: "equation", label: tx("scratch-paper.mk.anEq") }, { v: "inequality", label: tx("scratch-paper.mk.anIneq") },
+          { v: "system", label: tx("scratch-paper.mk.aSys") }, { v: "word", label: tx("scratch-paper.mk.aStory") }
         ]
       }, {
         key: "topic",
-        label: "What kind of expression",
+        label: tx("scratch-paper.mk.exprKind"),
         type: "choice",
         "default": "order",
         modes: ["lines"],
         kinds: ["expression"],
-        values: [{ v: "order", label: "Order of operations" }, { v: "fractions", label: "Fractions" }, { v: "decimals", label: "Decimals" },
-          { v: "integers", label: "Negative numbers" }, { v: "exponents", label: "Powers" }, { v: "simplify", label: "Simplify (with x)" }
+        values: [{ v: "order", label: tx("scratch-paper.mk.order") }, { v: "fractions", label: tx("scratch-paper.mk.fractions") }, { v: "decimals", label: tx("scratch-paper.mk.decimals") },
+          { v: "integers", label: tx("scratch-paper.mk.negNums") }, { v: "exponents", label: tx("scratch-paper.mk.powers") }, { v: "simplify", label: tx("scratch-paper.mk.simplify") }
         ]
       }, {
         key: "steps",
-        label: "How many steps (equations, inequalities)",
+        label: tx("scratch-paper.mk.steps"),
         type: "choice",
         "default": "two",
         modes: ["lines"],
         kinds: ["equation", "inequality"],
-        values: [{ v: "one", label: "One step (x + 5 = 12)" }, { v: "two", label: "Two steps (2x + 5 = 17)" }, { v: "both", label: "Letters on both sides" },
-          { v: "brackets", label: "With brackets" }
+        values: [{ v: "one", label: tx("scratch-paper.mk.one") }, { v: "two", label: tx("scratch-paper.mk.two") }, { v: "both", label: tx("scratch-paper.mk.both") },
+          { v: "brackets", label: tx("scratch-paper.mk.brackets") }
         ]
       }, {
         key: "negatives",
-        label: "Negative numbers (inequalities: dividing by a negative)",
+        label: tx("scratch-paper.mk.negatives"),
         type: "toggle",
         "default": false,
         modes: ["lines"],
@@ -7373,81 +7419,81 @@
         glyph: "−"
       }, {
         key: "story",
-        label: "Kind of story",
+        label: tx("scratch-paper.mk.storyKind"),
         type: "choice",
         "default": "any",
         modes: ["lines"],
         kinds: ["word"],
-        values: [{ v: "any", label: "Any kind" }, { v: "addsub", label: "Adding and taking away" }, { v: "compare", label: "How many more" },
-          { v: "groups", label: "Equal groups" }, { v: "times", label: "Times as many" }, { v: "twostep", label: "Two steps" },
-          { v: "rate", label: "Rates" }, { v: "fraction", label: "Fractions of amounts" }, { v: "percent", label: "Percents" },
-          { v: "money", label: "Money and change" }, { v: "algebra", label: "Solved with an equation" }
+        values: [{ v: "any", label: tx("scratch-paper.mk.any") }, { v: "addsub", label: tx("scratch-paper.mk.addsub") }, { v: "compare", label: tx("scratch-paper.mk.compare") },
+          { v: "groups", label: tx("scratch-paper.mk.groups") }, { v: "times", label: tx("scratch-paper.mk.times") }, { v: "twostep", label: tx("scratch-paper.mk.twostep") },
+          { v: "rate", label: tx("scratch-paper.mk.rate") }, { v: "fraction", label: tx("scratch-paper.mk.fraction") }, { v: "percent", label: tx("scratch-paper.mk.percent") },
+          { v: "money", label: tx("scratch-paper.mk.money") }, { v: "algebra", label: tx("scratch-paper.mk.algebra") }
         ]
       }, {
         key: "count",
-        label: "How many numbers",
+        label: tx("scratch-paper.mk.count"),
         type: "choice",
         "default": 2,
         modes: ["add"],
-        values: [{ v: 2, label: "2 numbers" }, { v: 3, label: "3 numbers" }, { v: 4, label: "4 numbers" }]
+        values: [{ v: 2, label: tx("scratch-paper.mk.n2") }, { v: 3, label: tx("scratch-paper.mk.n3") }, { v: 4, label: tx("scratch-paper.mk.n4") }]
       }, {
         key: "digits",
-        label: "Digits in each number",
+        label: tx("scratch-paper.mk.digits"),
         type: "choice",
         "default": 3,
         modes: ["add", "sub"],
-        values: [1, 2, 3, 4, 5].map(function(v) { return { v: v, label: v + " (like " + ["7", "47", "347", "5347", "65,347"][v - 1] + ")" }; })
+        values: [1, 2, 3, 4, 5].map(function(v) { return { v: v, label: tx("scratch-paper.mk.like", { n: v, ex: ["7", "47", "347", "5347", "65,347"][v - 1] }) }; })
       }, {
         key: "top",
-        label: "Digits on top",
+        label: tx("scratch-paper.mk.top"),
         type: "choice",
         "default": 2,
         modes: ["mul"],
-        values: [1, 2, 3, 4].map(function(v) { return { v: v, label: v + " (like " + ["7", "47", "347", "5347"][v - 1] + ")" }; })
+        values: [1, 2, 3, 4].map(function(v) { return { v: v, label: tx("scratch-paper.mk.like", { n: v, ex: ["7", "47", "347", "5347"][v - 1] }) }; })
       }, {
         key: "by",
-        label: "Digits in the number you multiply by",
+        label: tx("scratch-paper.mk.by"),
         type: "choice",
         "default": 1,
         modes: ["mul"],
-        values: [1, 2, 3].map(function(v) { return { v: v, label: v + " (like " + ["6", "23", "152"][v - 1] + ")" }; })
+        values: [1, 2, 3].map(function(v) { return { v: v, label: tx("scratch-paper.mk.like", { n: v, ex: ["6", "23", "152"][v - 1] }) }; })
       }, {
         key: "dividend",
-        label: "Digits in the number you divide",
+        label: tx("scratch-paper.mk.dividend"),
         type: "choice",
         "default": 3,
         modes: ["div"],
-        values: [2, 3, 4, 5, 6].map(function(v) { return { v: v, label: v + " (like " + ["84", "847", "5847", "35,847", "135,847"][v - 2] + ")" }; })
+        values: [2, 3, 4, 5, 6].map(function(v) { return { v: v, label: tx("scratch-paper.mk.like", { n: v, ex: ["84", "847", "5847", "35,847", "135,847"][v - 2] }) }; })
       }, {
         key: "divisor",
-        label: "Digits in the divisor",
+        label: tx("scratch-paper.mk.divisor"),
         type: "choice",
         "default": 1,
         modes: ["div"],
-        values: [1, 2, 3].map(function(v) { return { v: v, label: v + " (like " + ["7", "12", "125"][v - 1] + ")" }; })
+        values: [1, 2, 3].map(function(v) { return { v: v, label: tx("scratch-paper.mk.like", { n: v, ex: ["7", "12", "125"][v - 1] }) }; })
       },
-      { key: "decimals", label: "Decimals", type: "toggle", "default": false, modes: ["add", "sub", "mul"], glyph: "0.5" }, {
+      { key: "decimals", label: tx("scratch-paper.mk.decimals"), type: "toggle", "default": false, modes: ["add", "sub", "mul"], glyph: "0.5" }, {
         key: "regroup",
-        label: "Carrying or borrowing",
+        label: tx("scratch-paper.mk.regroup"),
         type: "choice",
         "default": "some",
         modes: ["add", "sub", "mul"],
-        values: [{ v: "none", label: "None" }, { v: "some", label: "Some" }, { v: "lots", label: "Lots" }]
+        values: [{ v: "none", label: tx("scratch-paper.mk.rNone") }, { v: "some", label: tx("scratch-paper.mk.rSome") }, { v: "lots", label: tx("scratch-paper.mk.rLots") }]
       }, {
         key: "ans",
-        label: "Answer as",
+        label: tx("scratch-paper.mk.ansAs"),
         type: "choice",
         "default": "remainder",
         modes: ["div"],
-        values: [{ v: "remainder", label: "A remainder" }, { v: "decimal", label: "Decimals (zeros brought down)" }]
+        values: [{ v: "remainder", label: tx("scratch-paper.mk.aRem") }, { v: "decimal", label: tx("scratch-paper.mk.aDec") }]
       },
-      { key: "zero", label: "A 0 inside the answer", type: "toggle", "default": false, modes: ["div"], glyph: "0" }, {
+      { key: "zero", label: tx("scratch-paper.mk.zero"), type: "toggle", "default": false, modes: ["div"], glyph: "0" }, {
         key: "check",
-        label: "Marking",
+        label: tx("scratch-paper.mk.marking"),
         type: "choice",
         "default": "each",
         modes: ALL.concat(["lines"]),
-        values: [{ v: "each", label: "Check as you go" }, { v: "end", label: "Check at the end" }]
+        values: [{ v: "each", label: tx("scratch-paper.mk.each") }, { v: "end", label: tx("scratch-paper.mk.end") }]
       }
     ];
 
@@ -7773,7 +7819,7 @@
     function schema() {
       return OPTS.map(function(op) {
         var o = { key: op.key, label: op.label, type: op.type, "default": op["default"] };
-        o.values = op.type === "toggle" ? [{ v: false, label: "Off" }, { v: true, label: "On" }] : op.values.map(function(v) { return { v: v.v, label: v.label }; });
+        o.values = op.type === "toggle" ? [{ v: false, label: tx("common.off") }, { v: true, label: tx("common.on") }] : op.values.map(function(v) { return { v: v.v, label: v.label }; });
         if (op.modes) { o.modes = op.modes.slice(); }
         if (op.kinds) { o.kinds = op.kinds.slice(); }
         return o;
@@ -7848,7 +7894,7 @@
         lbl.className = "lbl";
         lbl.setAttribute("data-for", op.key);
         if (op.kinds) lbl.setAttribute("data-kinds", op.kinds.join(" "));
-        lbl.textContent = op.key === "regroup" ? "Carrying" : op.label;
+        lbl.textContent = op.key === "regroup" ? tx("scratch-paper.mk.carrying") : op.label;
         host.appendChild(lbl);
         var g = document.createElement("div");
         g.className = "modes small";
@@ -7856,7 +7902,7 @@
         g.setAttribute("aria-label", op.label);
         g.setAttribute("data-for", op.key);
         if (op.kinds) g.setAttribute("data-kinds", op.kinds.join(" "));
-        var vals = op.type === "toggle" ? [{ v: false, label: "No" }, { v: true, label: "Yes" }] : op.values;
+        var vals = op.type === "toggle" ? [{ v: false, label: tx("scratch-paper.mk.no") }, { v: true, label: tx("scratch-paper.mk.yes") }] : op.values;
         each(vals, function(v) {
           var btn = document.createElement("button");
           btn.type = "button";
@@ -7886,31 +7932,31 @@
         });
       });
       var rl = document.querySelector('#makerBody .lbl[data-for="regroup"]');
-      if (rl) rl.textContent = S.gen.mode === "sub" ? "Borrowing" : "Carrying";
+      if (rl) rl.textContent = S.gen.mode === "sub" ? tx("scratch-paper.mk.borrowing") : tx("scratch-paper.mk.carrying");
       paintSample();
     }
 
     function paintSample() {
       var el = $("sample"),
         r = null;
-      if (S.gen.mode === "lines" && S.gen.kind === "word") { el.innerHTML = "Makes problems like: <b>a story problem</b>, written by the Story Problem page — you write the number sentence, work it out, and answer in a sentence."; return; }
+      if (S.gen.mode === "lines" && S.gen.kind === "word") { el.innerHTML = tx("scratch-paper.mk.likeStory"); return; }
       try { r = makeOne(S.gen); } catch (e) { r = null; }
-      el.innerHTML = r ? "Makes problems like: <b>" + esc(qText(r.p)) + "</b>" : "Those choices don’t make a problem — try different ones.";
+      el.innerHTML = r ? tx("scratch-paper.mk.makes", { p: esc(qText(r.p)) }) : tx("scratch-paper.mk.none");
     }
 
     function fromMaker(G) {
       if (G.mode === "lines" && G.kind === "word") {
-        $("genMsg").textContent = "Writing a story…";
+        $("genMsg").textContent = tx("scratch-paper.mk.writing");
         wpMakeSet(1, G, function(list) {
-          if (!list.length || !list[0]._p) { $("genMsg").textContent = "Couldn’t get a story just now — try again."; return; }
+          if (!list.length || !list[0]._p) { $("genMsg").textContent = tx("scratch-paper.mk.noStory"); return; }
           $("genMsg").textContent = "";
           openProblem(list[0]._p);
         });
         return;
       }
       var r = makeOne(G);
-      if (!r) { $("genMsg").textContent = "Couldn’t make one with those settings — try different choices."; return; }
-      $("genMsg").textContent = r.exact ? "" : "Couldn’t match every setting, so this one is a little different.";
+      if (!r) { $("genMsg").textContent = tx("scratch-paper.mk.fail"); return; }
+      $("genMsg").textContent = r.exact ? "" : tx("scratch-paper.mk.inexact");
       if (r.p.op === "div") {
         S.ans = r.p.ans;
         r.p.places = S.places;
@@ -7954,32 +8000,32 @@
       if (ck !== null) {
         ck = ck.trim().toLowerCase();
         if (ck === "each" || ck === "end") S.check = ck;
-        else notes.push("“check” can be each or end");
+        else notes.push(tx("scratch-paper.ln.check"));
       }
       var an = sp.get("ans");
       if (an !== null) {
         an = an.trim().toLowerCase();
         if (an === "remainder" || an === "decimal") S.ans = an;
-        else notes.push("“ans” can be remainder or decimal");
+        else notes.push(tx("scratch-paper.ln.ans"));
       }
       var plc = sp.get("places");
       if (plc !== null) {
         var n = parseInt(plc, 10);
         if (n >= 1 && n <= 6) S.places = n;
-        else notes.push("“places” can be 1 to 6");
+        else notes.push(tx("scratch-paper.ln.places"));
       }
       var pr = sp.get("practice");
       if (pr !== null) {
         pr = pr.trim().toLowerCase();
         if (pr === "all") REVEAL_ON_LOAD = true;
-        else if (pr !== "check" && pr !== "step") notes.push("“practice” can be all, step or check");
+        else if (pr !== "check" && pr !== "step") notes.push(tx("scratch-paper.ln.practice"));
       }
       var op = sp.get("op"),
         hint = null;
       if (op !== null) {
         op = op.trim().toLowerCase();
         hint = { add: "add", sub: "sub", mul: "mul", div: "div", plus: "add", minus: "sub", times: "mul", divide: "div", lines: "lines", line: "lines" } [op] || null;
-        if (!hint) notes.push("“op” can be add, sub, mul, div or lines");
+        if (!hint) notes.push(tx("scratch-paper.ln.op"));
       }
       if (sp.has("q")) {
         var raw = rawParam("q") || "",
@@ -7988,19 +8034,22 @@
           kd = kd.trim().toLowerCase();
           kd = { story: "word", stories: "word" } [kd] || kd;
           if (KINDS.indexOf(kd) < 0) {
-            notes.push("“kind” can be expression, equation, inequality, system or word");
+            notes.push(tx("scratch-paper.ln.kind"));
             kd = null;
           }
         }
         if (hint === "lines" || kd) {
-          r = parseLinesProblem(raw, kd);
+          r = readQ(raw, function(t) { return parseLinesProblem(t, kd); });
           if (!r.err && r.p.kind === "word" && sp.get("wp")) r.p.wp = sp.get("wp");
         } else {
-          r = parseProblem(raw, hint);
-          if (r.err && !hint) { var r2 = parseLinesProblem(raw, null); if (!r2.err) r = r2; }
-          if (!r.err && hint && r.p.op !== hint) r = { err: "its op says " + hint + " but the problem uses another sign" };
+          r = readQ(raw, function(t) {
+            var x = parseProblem(t, hint);
+            if (x.err && !hint) { var x2 = parseLinesProblem(t, null); if (!x2.err) x = x2; }
+            return x;
+          });
+          if (!r.err && hint && r.p.op !== hint) r = { err: tx("scratch-paper.ln.opSays", { op: hint }) };
         }
-        if (r.err) notes.unshift("its problem, “" + esc(raw) + "”, couldn’t be read: " + String(r.err).replace(/\.$/, ""));
+        if (r.err) notes.unshift(tx("scratch-paper.ln.unread", { q: esc(raw), err: String(r.err).replace(/\.$/, "") }));
         else {
           out = r.p;
           if (out.op === "div") { // a link's division is the same everywhere: remainder, 3 places unless it says
@@ -8010,7 +8059,7 @@
           }
         }
       }
-      return { p: out, msg: notes.length ? "That link didn’t quite work — " + notes.join("; ") + ". Here’s the last problem instead." : null };
+      return { p: out, msg: notes.length ? tx("scratch-paper.ln.msg", { notes: notes.join("; ") }) : null };
     }
 
     /* ===================== saving ===================== */
@@ -8086,7 +8135,7 @@
       return t ? t === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
     }
 
-    function paintTheme() { themeBtn.textContent = isDark() ? "Light mode" : "Dark mode"; }
+    function paintTheme() { themeBtn.textContent = isDark() ? tx("common.lightMode") : tx("common.darkMode"); }
     themeBtn.addEventListener("click", function() {
       document.documentElement.setAttribute("data-theme", isDark() ? "light" : "dark");
       paintTheme();
@@ -8101,7 +8150,7 @@
       function show(t) {
         btn.textContent = t;
         clearTimeout(copyTimer);
-        copyTimer = setTimeout(function() { btn.textContent = "Copy link"; }, 2000);
+        copyTimer = setTimeout(function() { btn.textContent = tx("common.copyLink"); }, 2000);
       }
 
       function fallback() {
@@ -8116,9 +8165,9 @@
         ta.select();
         try { ok = document.execCommand("copy"); } catch (e) {}
         document.body.removeChild(ta);
-        show(ok ? "Link copied ✓" : "Couldn’t copy — use the address bar");
+        show(ok ? tx("scratch-paper.copied") : tx("scratch-paper.copyFail"));
       }
-      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(function() { show("Link copied ✓"); }, fallback);
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(function() { show(tx("scratch-paper.copied")); }, fallback);
       else fallback();
     });
 

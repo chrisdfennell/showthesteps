@@ -11550,7 +11550,8 @@
       },
       /* i18n.js, the languages: the six Spanish pilots open in Spanish with lang=es (the same answers, the practice
          buttons in Spanish, no key or {placeholder} left, nothing missing) and in English without it; lang=es stays in
-         the address and gives a page without its own strings a Spanish bar; problems typed in Spanish are read; problems
+         the address and gives a page without its own strings a Spanish bar; every other helper opens in Spanish too (the
+         same answers, no key or {placeholder} left, nothing missing); problems typed in Spanish are read; problems
          typed in English come back from normalize() exactly as they were; numbers and dates in the language's way */
       "i18n.js": function(T) {
         var kp = 0,
@@ -11592,6 +11593,12 @@
           return false;
         }
 
+        // shows(), or for "~words" those words somewhere in the answer
+        function has(doc, want) {
+          if (want.charAt(0) !== "~") return shows(doc, want);
+          return answerOf(doc).toLowerCase().indexOf(want.slice(1).toLowerCase()) >= 0;
+        }
+
         // the practice button that shows all the work (its id differs from page to page)
         function allButton(doc, text) { return [].filter.call(doc.querySelectorAll("button"), function(b) { return b.textContent.trim() === text; })[0] || null; }
         var PILOTS = [
@@ -11602,7 +11609,125 @@
           ["fractions.html?mode=simplify&q=18/24", ["3/4"]],
           ["percents.html?q=" + encodeURIComponent("15% of 80"), ["12"]]
         ];
-        var RAW = /\b(?:common|lang|nav|tools|play|tutor|voice|photo|addition|subtraction|multiplication|division|fractions|percents|assign|standards|qr|embed|glossary|progress)\.[a-z]\w*/,
+        // the other helpers in Spanish (the converters' rows): a link, and what its answer must show, as numbers or "~words"
+        var SPANISH = [
+          ["algebra.html?mode=solve&q=" + encodeURIComponent("5x - 4 = 2x + 8"), ["4"]],
+          ["algebra.html?mode=ineq&q=" + encodeURIComponent("|x + 1| >= 2"), ["3", "1"]],
+          ["algebra.html?mode=sys&q=" + encodeURIComponent("2x + y = 7;x - y = 2"), ["3 1"]],
+          ["order-of-operations.html?q=" + encodeURIComponent("20 − 12 ÷ 4 × 2 + 1"), ["15"]],
+          ["order-of-operations.html?q=" + encodeURIComponent("tres más cuatro por dos"), ["11"]],
+          ["negative-numbers.html?q=" + encodeURIComponent("-7-(-2)"), ["5"]],
+          ["negative-numbers.html?q=" + encodeURIComponent("-12÷-3"), ["4"]],
+          ["negative-numbers.html?q=" + encodeURIComponent("-3,5,-8,0"), ["8 3 0 5"]],
+          ["negative-numbers.html?q=" + encodeURIComponent("|-7|"), ["7"]],
+          ["number-sense.html?mode=place&n=3742&task=value&at=2", ["700"]],
+          ["number-sense.html?mode=place&n=4052&task=words", ["~cuatro mil cincuenta y dos"]],
+          ["number-sense.html?mode=round&n=995&to=ten", ["1,000"]],
+          ["number-sense.html?mode=money&kind=change&cost=365&pay=500", ["1.35"]],
+          ["exponents.html?mode=eval&b=2&e=5", ["32"]],
+          ["exponents.html?mode=eval&b=3&e=2&neg=1", ["9"]],
+          ["exponents.html?mode=sci&n=45000000", ["4.5"]],
+          ["exponents.html?mode=roots&r=2&n=50", ["7"]],
+          ["factors-and-primes.html?q=" + encodeURIComponent("factores de 36"), ["1 2 3 4 6 9 12 18 36"]],
+          ["factors-and-primes.html?q=" + encodeURIComponent("máximo común divisor de 12 y 18"), ["6"]],
+          ["ratios.html?q=" + encodeURIComponent("simplifica 12:18"), ["2:3"]],
+          ["ratios.html?q=" + encodeURIComponent("reparte 60 en 2:3"), ["24"]],
+          ["unit-conversions.html?q=" + encodeURIComponent("5 pies 7 pulgadas a pulgadas"), ["67"]],
+          ["unit-conversions.html?q=" + encodeURIComponent("2 galones a tazas"), ["32"]],
+          ["lines-and-slope.html?mode=slope&q=" + encodeURIComponent("(1,2) (5,4)"), ["1/2"]],
+          ["lines-and-slope.html?mode=equation&q=" + encodeURIComponent("(1,2) and (5,4)"), ["1/2", "3/2"]],
+          ["lines-and-slope.html?mode=parallel&q=" + encodeURIComponent("y=2x+1 and y=2x-3"), ["~paralelas"]],
+          ["graphing.html?mode=systems&e1=" + encodeURIComponent("x+y=6") + "&e2=" + encodeURIComponent("x-y=2"), ["4 2"]],
+          ["graphing.html?mode=optimize&goal=max&obj=" + encodeURIComponent("3x+5y") + "&name=P&cons=" + encodeURIComponent("x+y<=10;2x+y<=16;x>=0;y>=0"), ["50"]],
+          ["geometry.html?mode=area&shape=rect&l=8&w=5", ["40", "26"]],
+          ["geometry.html?mode=area&shape=heron&a=13&b=14&c=15", ["84", "42"]],
+          ["geometry.html?mode=right&shape=check&a=5&b=12&c=13", ["~sí"]],
+          ["geometry.html?mode=angle&shape=poly&n=6", ["720", "120", "60"]],
+          ["statistics.html?mode=center&q=" + encodeURIComponent("4,8,6,5,7"), ["6", "~ninguna", "4"]],
+          ["statistics.html?mode=box&q=" + encodeURIComponent("3,7,8,5,12,14,21,13,18"), ["3", "6", "12", "16", "21", "10"]],
+          ["probability.html?mode=simple&x=die6&ev=eq:4", ["1/6"]],
+          ["probability.html?mode=compound&kind=without&x=" + encodeURIComponent("bag(red:4,blue:6)") + "&ev=is:red&ev2=is:red", ["2/15"]],
+          ["probability.html?mode=space&x=die6,die6&ev=sum:7&view=grid", ["1/6"]],
+          ["probability.html?mode=expected&kind=predict&x=die6&ev=eq:3&n=60", ["10"]],
+          ["quadratics.html?mode=expand&ex=" + encodeURIComponent("(x+3)(x-5)"), ["2 15"]],
+          ["quadratics.html?mode=factor&p=" + encodeURIComponent("x^2+x+1"), ["~primo"]],
+          ["quadratics.html?mode=solve&eq=" + encodeURIComponent("x^2-5x+6=0"), ["2", "3"]],
+          ["quadratics.html?mode=vertex&p=" + encodeURIComponent("2x^2-8x+3"), ["2", "5"]],
+          ["quadratics.html?mode=divide&n=" + encodeURIComponent("x^3-2x^2+4") + "&d=x-3", ["13"]],
+          ["radicals.html?mode=simplify&r=" + encodeURIComponent("sqrt(72)"), ["6 2"]],
+          ["radicals.html?mode=operate&ex=" + encodeURIComponent("sqrt(12)+sqrt(27)"), ["5 3"]],
+          ["radicals.html?mode=rationalize&n=4&d=" + encodeURIComponent("3-sqrt(5)"), ["3 5"]],
+          ["radicals.html?mode=exponents&task=value&ex=" + encodeURIComponent("16^(-3/4)"), ["1/8"]],
+          ["radicals.html?mode=rateq&eq=" + encodeURIComponent("3/(x-2)=5/(x+1)"), ["13/2"]],
+          ["functions.html?mode=eval&f=" + encodeURIComponent("x^2-3x+2") + "&at=4", ["6"]],
+          ["functions.html?mode=compose&f=" + encodeURIComponent("x^2+1") + "&g=2x-3&ask=fg&at=3", ["10"]],
+          ["functions.html?mode=parity&f=" + encodeURIComponent("x^3-x"), ["~impar"]],
+          ["functions.html?mode=piece&pw=" + encodeURIComponent("x+2 if x<0;x^2 if x>=0") + "&at=-3", ["1"]],
+          ["logarithms.html?mode=meaning&task=eval&b=9&a=27", ["3", "2"]],
+          ["logarithms.html?mode=expeq&eq=" + encodeURIComponent("4^x-3*2^x-4=0"), ["2"]],
+          ["logarithms.html?mode=growth&kind=compound&p=1000&r=5&n=12&t=10", ["1647.01"]],
+          ["sequences.html?mode=arith&task=term&a1=3&d=4&n=20&show=3", ["79"]],
+          ["sequences.html?mode=sum&task=inf&a1=12&r=1/2&show=3", ["24"]],
+          ["complex-numbers.html?mode=div&a=" + encodeURIComponent("3+2i") + "&b=1-4i", ["5", "17", "14", "17"]],
+          ["complex-numbers.html?mode=solve&eq=" + encodeURIComponent("x^2+4x+13=0"), ["2", "3"]],
+          ["complex-numbers.html?mode=plane&z=3-4i", ["5"]],
+          ["trigonometry.html?mode=special&f=sin&a=30&u=deg", ["1/2"]],
+          ["trigonometry.html?mode=right&find=opp&ang=30&hyp=10", ["5"]],
+          ["trigonometry.html?mode=circle&task=convert&a=7pi/4&u=rad", ["315"]],
+          ["calculus.html?mode=derivative&f=" + encodeURIComponent("x^3") + "&a=2", ["12"]],
+          ["calculus.html?mode=limit&f=" + encodeURIComponent("(x^2-9)/(x-3)") + "&a=3", ["6"]],
+          ["calculus.html?mode=optimize&kind=box&a=12&b=12&u=in", ["2", "128"]],
+          ["college-statistics.html?q=" + encodeURIComponent("puntuación z para x = 85 con media 70 y desviación estándar 10"), ["1.50"]],
+          ["college-statistics.html?q=" + encodeURIComponent("P(60 < X < 80) con media 70 y DE 10"), ["0.6826"]],
+          ["college-statistics.html?q=" + encodeURIComponent("binomial: 10 ensayos, p = 0.25, probabilidad de al menos 8 éxitos"), ["0.0004"]],
+          ["matrices-and-vectors.html?q=" + encodeURIComponent("determinante de [[2, -1], [3, 4]]"), ["11"]],
+          ["matrices-and-vectors.html?q=" + encodeURIComponent("magnitud de ⟨3, −4⟩"), ["5"]],
+          ["matrices-and-vectors.html?q=" + encodeURIComponent("ángulo entre ⟨1, 0⟩ y ⟨1, 1⟩"), ["45"]],
+          ["money-math.html?mode=compound&task=amount&p=5000&r=4&n=12&t=10", ["7454.16", "2454.16"]],
+          ["money-math.html?q=" + encodeURIComponent("45 horas a $18 la hora"), ["855.00"]],
+          ["counting.html?mode=comb&kind=ncr&n=10&r=3&ctx=committee", ["120"]],
+          ["counting.html?q=" + encodeURIComponent("10 elige 3"), ["120"]],
+          ["counting.html?q=" + encodeURIComponent("las letras de MISSISSIPPI"), ["34650"]],
+          ["scratch-paper.html?op=add&q=478%2B356", ["834"]],
+          ["scratch-paper.html?op=div&q=847/12&ans=remainder", ["70", "7"]],
+          ["story-problems.html?type=compare&a=7&b=12&v=1", ["5"]],
+          ["story-problems.html?type=money&kind=one&a=7.45&pay=10", ["2.55"]],
+          ["story-problems.html?q=" + encodeURIComponent("Sam had 45 stickers. He gave away 17. How many stickers does he have left?"), ["28"]],
+          ["aviation.html?mode=wind&tc=360&tas=110&wd=270&ws=15", ["352", "109", "~a la izquierda"]],
+          ["aviation.html?q=" + encodeURIComponent("qué significa -FZRA"), ["~lluvia engelante ligera"]],
+          ["aviation.html?mode=weight&items=Empty:1700:36,Pilot:250:37,Passenger:250:37,Fuel:40gal:48&env=35@1500,35@1950,38.5@2550,47.3@2550,47.3@1500", ["37.39", "2440", "~por delante del límite delantero"]],
+          ["aviation.html?q=" + encodeURIComponent("120 nudos a mph"), ["138.09"]],
+          ["nursing.html?q=" + encodeURIComponent("15 mg/kg para un niño de 44 libras"), ["20", "300"]],
+          ["nursing.html?q=" + encodeURIComponent("Indicado 250 mg, disponible 125 mg por 5 mL"), ["10"]],
+          ["nursing.html?q=" + encodeURIComponent("500 mL en 4 horas factor de goteo 15"), ["31"]],
+          ["nursing.html?q=" + encodeURIComponent("101.3 °F a °C"), ["38.5"]],
+          ["pharmacy.html?q=" + encodeURIComponent("1 tab PO BID x 10 days quantity"), ["2", "20"]],
+          ["pharmacy.html?q=" + encodeURIComponent("mezcla 10% y 2% para obtener 5%, 500 g"), ["187.5", "312.5"]],
+          ["pharmacy.html?q=" + encodeURIComponent("40 °F a °C"), ["4.4"]],
+          ["carpentry.html?mode=tape&task=add&t=5ft7-3/8in,2ft9-5/8in", ["8 5", "101"]],
+          ["carpentry.html?mode=angles&task=miter&n=6", ["30"]],
+          ["carpentry.html?mode=concrete&task=posts&n=8&dia=10in&dep=3ft", ["0.48", "13.09"]],
+          ["machining.html?mode=rpm&task=rpm&sfm=100&d=1/2", ["764"]],
+          ["machining.html?mode=thread&task=drill&maj=1/4&tpi=20", ["~#7"]],
+          ["machining.html?mode=fit&task=fit&hn=1.000&hp=0.002&hm=0&sn=0.998&sp=0&sm=0.001", ["~con holgura"]],
+          ["electrical.html?mode=ohm&v=12&r=4", ["3"]],
+          ["electrical.html?q=" + encodeURIComponent("caída de voltaje 12 AWG cobre 100 pies 16 A 120 V"), ["6.336"]],
+          ["electrical.html?q=" + encodeURIComponent("cuántos focos de 100 W en un circuito de 15 A 120 V"), ["14"]],
+          ["hvac-plumbing.html?mode=heat&x=36000&u=btuh&to=ton", ["3"]],
+          ["hvac-plumbing.html?q=" + encodeURIComponent("60 pies de columna psi"), ["25.98"]],
+          ["cooking.html?mode=volume&q=" + encodeURIComponent("cuántas tazas hay en un galón"), ["16"]],
+          ["cooking.html?mode=time&q=" + encodeURIComponent("asado de 6 lb a 20 minutos por libra listo a las 6:30 pm"), ["2", "4:30"]],
+          ["business.html?mode=markup&q=" + encodeURIComponent("costo $12 precio $20"), ["8.00", "66.67", "40"]],
+          ["business.html?mode=till&q=" + encodeURIComponent("caja 6 billetes de $20, 8 billetes de $10\ninicio $100\nventas en efectivo $50"), ["200.00", "150.00", "~$50.00 de sobrante", "100.00"]],
+          ["business.html?mode=payroll&q=" + encodeURIComponent("entrada 8:45 salida 5:15 comida de 30 minutos"), ["8"]],
+          ["automotive.html?q=" + encodeURIComponent("corona de 41 dientes y piñón de 11 dientes"), ["3.73"]],
+          ["automotive.html?q=" + encodeURIComponent("350 lb-ft de torque a 4500 rpm, ¿cuántos caballos de fuerza?"), ["299.9"]],
+          ["automotive.html?q=" + encodeURIComponent("400 millas con 16 galones"), ["25"]],
+          ["real-estate.html?q=" + encodeURIComponent("sala de 16 x 18 y cocina de 10 x 12"), ["408"]],
+          ["real-estate.html?q=" + encodeURIComponent("3 acres a pies cuadrados"), ["130,680"]],
+          ["real-estate.html?q=" + encodeURIComponent("NOI de $50,000 y precio de $625,000, tasa de capitalización"), ["8.00"]]
+        ];
+        var RAW = /\b(?:common|lang|nav|tools|play|tutor|voice|photo|addition|subtraction|multiplication|division|fractions|percents|algebra|order-of-operations|negative-numbers|number-sense|exponents|factors-and-primes|ratios|unit-conversions|lines-and-slope|graphing|geometry|statistics|probability|quadratics|radicals|functions|logarithms|sequences|complex-numbers|trigonometry|calculus|college-statistics|matrices-and-vectors|money-math|counting|scratch-paper|story-problems|aviation|nursing|pharmacy|carpentry|machining|electrical|hvac-plumbing|cooking|business|automotive|real-estate|assign|standards|qr|embed|glossary|progress)\.[a-z]\w*/,
           HOLE = /\{[A-Za-z_]\w*[|}]/;
         // typed in Spanish, on its helper: a number the answer must show ("" when any answer will do)
         var TYPED = [
@@ -11664,7 +11789,45 @@
           ["percents", "impuesto del 8% sobre 45", "48.6"],
           ["percents", "propina del 15% sobre 40", "6"],
           ["percents", "interés de 500 al 4% por 3 años", "560"],
-          ["percents", "veinte por ciento de qué número es quince", "75"]
+          ["percents", "veinte por ciento de qué número es quince", "75"],
+          ["algebra", "resuelve 3x más 5 es igual a 20", "5"],
+          ["order-of-operations", "tres más cuatro por dos", "11"],
+          ["negative-numbers", "menos doce dividido entre menos tres", "4"],
+          ["number-sense", "redondea 48,751 a la unidad de millar más cercana", "49,000"],
+          ["exponents", "raíz cúbica de 64", "4"],
+          ["factors-and-primes", "factores de 36", "1, 2, 3, 4, 6, 9, 12, 18, 36"],
+          ["ratios", "6 manzanas por $4.50", "0.75"],
+          ["unit-conversions", "98.6 °F a °C", "37"],
+          ["lines-and-slope", "pendiente 2 que pasa por (1, 3)", "2 1"],
+          ["graphing", "x + y = 6 y x - y = 2", "4 2"],
+          ["geometry", "área de un rectángulo de 8 por 5", "40"],
+          ["statistics", "la media de 5 números es 8: 6, 9, 7, 10", "8"],
+          ["probability", "probabilidad de roja con 3 rojas, 5 azules y 2 verdes", "3/10"],
+          ["quadratics", "x al cuadrado menos 5x más 6 igual a 0", "2 3"],
+          ["radicals", "la raíz cuadrada de 72", "6 2"],
+          ["functions", "f(x) = x al cuadrado menos 3x más 2; f(4)", "6"],
+          ["logarithms", "log base dos de 8", "3"],
+          ["sequences", "término 20 de 3, 7, 11", "79"],
+          ["complex-numbers", "módulo de 5 + 12i", "13"],
+          ["trigonometry", "seno de 30 grados", "1/2"],
+          ["calculus", "integral de 0 a 2 de x^2 dx", "8/3"],
+          ["college-statistics", "IC del 95% para una media: x̄ = 52, s = 8, n = 25", "48.70"],
+          ["matrices-and-vectors", "resuelve el sistema 3x - y = 5 y 4x + 3y = 11", "2"],
+          ["money-math", "préstamo para auto de $20,000 al 6% por 5 años", "386.66"],
+          ["counting", "diagonales de un octágono", "20"],
+          ["scratch-paper", "cuánto es 47 más 38", "85"],
+          ["story-problems", "Maya tiene 4 cajas con 6 crayones en cada caja. También tiene 5 crayones sueltos. ¿Cuántos crayones tiene en total?", "29"],
+          ["aviation", "viento 270 a 15, curso 360, TAS 110", "352"],
+          ["nursing", "heparina 25,000 unidades en 250 mL a 1,000 unidades por hora", "10"],
+          ["pharmacy", "1 tableta por vía oral dos veces al día durante 10 días", "20"],
+          ["carpentry", "losa de 20 por 24 pies de 4 pulgadas de grueso", "5.93"],
+          ["machining", "broca para machuelo 1/2-13", "27/64"],
+          ["electrical", "12 V a través de 4 ohmios", "3"],
+          ["hvac-plumbing", "36000 BTU a toneladas", "3"],
+          ["cooking", "2/3 de taza de azúcar por 3", "2"],
+          ["business", "costo $12 precio $20", "8"],
+          ["automotive", "mezcla 50:1 para 2 galones", "5.12"],
+          ["real-estate", "avaluada en $200,000 a 30 milésimas", "6,000"]
         ];
         if (depth !== "thorough") TYPED = TYPED.filter(function(c, i) { return i % 8 === 0; });
         var chain = Promise.resolve();
@@ -11704,9 +11867,29 @@
             });
           });
         });
+        // the other helpers in Spanish: the same answers, nothing missing, no key or {placeholder} left
+        SPANISH.forEach(function(P) {
+          chain = chain.then(function() {
+            var link = P[0] + "&lang=es&practice=all";
+            return load(link).then(function(fr) {
+              var d = docOf(fr),
+                w = fr.f.contentWindow;
+              return until(function() { return d.querySelector(".answer .v") && w.HelperI18n && w.HelperI18n.lang === "es"; }, 6000).then(function() {
+                check(d.documentElement.lang === "es", link + ": <html lang> is " + d.documentElement.lang + ", not es", link);
+                check(P[1].every(function(x) { return has(d, x); }), link + ": the answer is “" + answerOf(d) + "”, expected " + P[1].join(", "), link);
+                var miss = w.HelperI18n && w.HelperI18n.missing ? w.HelperI18n.missing() : ["(no HelperI18n)"];
+                check(!miss.length, link + ": keys es.js doesn’t have: " + miss.slice(0, 5).join(", "), link);
+                var txt = (d.querySelector(".page") || d.body).innerText,
+                  raw = RAW.exec(txt) || HOLE.exec(txt);
+                check(!raw, link + ": “" + (raw ? raw[0] : "") + "” left in the page", link);
+                drop(fr);
+              });
+            });
+          });
+        });
         // a page without its own strings: lang=es gives it the Spanish bar; numbers and dates the language's way
         chain = chain.then(function() {
-          var link = "ratios.html?lang=es";
+          var link = "flashcards.html?lang=es";
           return load(link).then(function(fr) {
             var d = docOf(fr),
               w = fr.f.contentWindow;
@@ -11728,7 +11911,7 @@
               var d = docOf(fr);
               return until(function() { return d.querySelector(".answer .v"); }, 5000).then(function() {
                 var note = [].map.call(d.querySelectorAll(".notice"), function(e) { return e.innerText; }).join(" ").replace(/\s+/g, " ").trim();
-                check((c[2] ? shows(d, c[2]) : !!answerOf(d)) && !note, "typed “" + c[1] + "”: the answer is “" + answerOf(d) + "”" + (note ? ", with the note “" + note.slice(0, 80) + "”" : "") + (c[2] ? ", expected " + c[2] : ""), link);
+                check((c[2] ? has(d, c[2]) : !!answerOf(d)) && !note, "typed “" + c[1] + "”: the answer is “" + answerOf(d) + "”" + (note ? ", with the note “" + note.slice(0, 80) + "”" : "") + (c[2] ? ", expected " + c[2] : ""), link);
                 drop(fr);
               });
             });

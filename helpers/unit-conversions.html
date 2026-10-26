@@ -16,6 +16,7 @@
 <link rel="canonical" href="https://showthesteps.org/helpers/unit-conversions">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","name":"Unit conversions, step by step – The Measuring Tape","description":"Measurement and unit conversions, step by step. Inches, feet, yards and miles; ounces, pounds, cups and gallons; the metric staircase; customary to metric; time; temperature; and rates, area and volume with unit fractions that cancel.","url":"https://showthesteps.org/helpers/unit-conversions","inLanguage":"en-US","isAccessibleForFree":true,"learningResourceType":["Interactive worked examples","Practice problems"],"interactivityType":"active","educationalUse":["Practice","Self-assessment"],"teaches":"Unit conversions","educationalLevel":["Elementary school (grades K–5)","Middle school (grades 6–8)"],"audience":{"@type":"EducationalAudience","educationalRole":"student"},"publisher":{"@type":"Organization","name":"Show The Steps","url":"https://showthesteps.org/"},"isPartOf":{"@type":"WebSite","name":"Show The Steps","url":"https://showthesteps.org/"}}</script>
 <script src="../assets/site.js"></script>
+<script src="../assets/i18n.js" data-strings="unit-conversions"></script>
 <script src="../assets/nav.js" defer></script>
 <script src="../assets/progress.js" defer></script>
 <link rel="stylesheet" href="../assets/fonts/fonts.css">
@@ -1847,9 +1848,9 @@
 <div class="page" id="page">
   <header class="masthead">
     <div>
-      <div class="eyebrow">Measurement &amp; unit conversions, worked out</div>
+      <div class="eyebrow" data-i18n="unit-conversions.eyebrow">Measurement &amp; unit conversions, worked out</div>
       <h1>The Measuring <em>Tape</em></h1>
-      <p class="tagline">How many inches in 5 feet 7 inches? How many cups in 2 gallons, meters in 3.2 kilometers, feet per
+      <p class="tagline" data-i18n="unit-conversions.tagline">How many inches in 5 feet 7 inches? How many cups in 2 gallons, meters in 3.2 kilometers, feet per
         second in 60 miles an hour? Find the fact that links the units, decide whether to multiply or divide, and watch
         the units cancel &mdash; with the metric staircase, the gallon kingdom and a thermometer to show why.
         Ratios and unit rates are on <a href="ratios.html">the Ratio Table</a>, clock times on <a href="number-sense.html">the Place Value Chart</a>.</p>
@@ -1858,63 +1859,63 @@
   </header>
 
   <section class="problem">
-    <div class="modes" id="modeTabs" role="group" aria-label="What kind of problem">
-      <button type="button" data-mode="length" aria-pressed="true">Length</button>
-      <button type="button" data-mode="weight" aria-pressed="false">Weight &amp; capacity</button>
-      <button type="button" data-mode="metric" aria-pressed="false">Metric</button>
-      <button type="button" data-mode="systems" aria-pressed="false">Between systems</button>
-      <button type="button" data-mode="time" aria-pressed="false">Time</button>
-      <button type="button" data-mode="temp" aria-pressed="false">Temperature</button>
-      <button type="button" data-mode="rates" aria-pressed="false">Rates, area &amp; volume</button>
+    <div class="modes" id="modeTabs" role="group" aria-label="What kind of problem" data-i18n-attr="aria-label=unit-conversions.modesLabel">
+      <button type="button" data-mode="length" aria-pressed="true" data-i18n="unit-conversions.tab.length">Length</button>
+      <button type="button" data-mode="weight" aria-pressed="false" data-i18n="unit-conversions.tab.weight">Weight &amp; capacity</button>
+      <button type="button" data-mode="metric" aria-pressed="false" data-i18n="unit-conversions.tab.metric">Metric</button>
+      <button type="button" data-mode="systems" aria-pressed="false" data-i18n="unit-conversions.tab.systems">Between systems</button>
+      <button type="button" data-mode="time" aria-pressed="false" data-i18n="unit-conversions.tab.time">Time</button>
+      <button type="button" data-mode="temp" aria-pressed="false" data-i18n="unit-conversions.tab.temp">Temperature</button>
+      <button type="button" data-mode="rates" aria-pressed="false" data-i18n="unit-conversions.tab.rates">Rates, area &amp; volume</button>
     </div>
     <div class="entry">
       <div class="numfield">
         <label for="numIn" id="numLab">Convert</label>
         <input class="expr-in" id="numIn" type="text" inputmode="text" autocomplete="off" spellcheck="false" value="">
       </div>
-      <div class="keys" id="keys" aria-label="Insert a symbol">
-        <button type="button" data-k=" to ">to</button>
-        <button type="button" data-k=" + " data-only="length weight time metric" aria-label="Plus">+</button>
-        <button type="button" data-k=" − " data-only="length weight time metric" aria-label="Minus">&minus;</button>
-        <button type="button" data-k="°" data-only="temp" aria-label="Degrees">°</button>
-        <button type="button" data-k="/" data-only="rates" aria-label="Per">/</button>
-        <button type="button" data-k="²" data-only="rates" aria-label="Squared">²</button>
-        <button type="button" data-k="³" data-only="rates" aria-label="Cubed">³</button>
+      <div class="keys" id="keys" aria-label="Insert a symbol" data-i18n-attr="aria-label=unit-conversions.keysLabel">
+        <button type="button" data-k=" to " data-i18n="unit-conversions.key.to" data-i18n-attr="data-k=unit-conversions.key.toK">to</button>
+        <button type="button" data-k=" + " data-only="length weight time metric" aria-label="Plus" data-i18n-attr="aria-label=unit-conversions.key.plus">+</button>
+        <button type="button" data-k=" − " data-only="length weight time metric" aria-label="Minus" data-i18n-attr="aria-label=unit-conversions.key.minus">&minus;</button>
+        <button type="button" data-k="°" data-only="temp" aria-label="Degrees" data-i18n-attr="aria-label=unit-conversions.key.deg">°</button>
+        <button type="button" data-k="/" data-only="rates" aria-label="Per" data-i18n-attr="aria-label=unit-conversions.key.per">/</button>
+        <button type="button" data-k="²" data-only="rates" aria-label="Squared" data-i18n-attr="aria-label=unit-conversions.key.sq">²</button>
+        <button type="button" data-k="³" data-only="rates" aria-label="Cubed" data-i18n-attr="aria-label=unit-conversions.key.cu">³</button>
       </div>
     </div>
     <div class="reads" id="reads"></div>
     <p class="hint" id="hint"></p>
 
     <details class="maker" id="maker">
-      <summary>Make a problem for me <span>&mdash; pick what goes in it</span></summary>
+      <summary data-i18n="common.maker">Make a problem for me <span>&mdash; pick what goes in it</span></summary>
       <div class="maker-body" id="makerBody"></div>
     </details>
 
     <div class="examples">
-      <span class="lbl">Try</span>
+      <span class="lbl" data-i18n="common.try">Try</span>
       <span id="chips"></span>
       <span class="practice">
-        <div class="modes" role="group" aria-label="Practice mode">
-          <button type="button" id="allBtn" aria-pressed="true">Show all work</button>
-          <button type="button" id="stepBtn" aria-pressed="false">One step at a time</button>
-          <button type="button" id="checkBtn" aria-pressed="false">Check my answer</button>
+        <div class="modes" role="group" aria-label="Practice mode" data-i18n-attr="aria-label=common.practiceMode">
+          <button type="button" id="allBtn" aria-pressed="true" data-i18n="common.showAll">Show all work</button>
+          <button type="button" id="stepBtn" aria-pressed="false" data-i18n="common.oneStep">One step at a time</button>
+          <button type="button" id="checkBtn" aria-pressed="false" data-i18n="common.checkMine">Check my answer</button>
         </div>
       </span>
     </div>
   </section>
 
   <section class="ckbox" id="ckBox" hidden aria-labelledby="ckH">
-    <h2 id="ckH">Your answer</h2>
+    <h2 id="ckH" data-i18n="common.yourAnswer">Your answer</h2>
     <div class="ckq" id="ckQ"></div>
     <div class="ckrow">
       <div class="ckfields" id="ckFields"></div>
-      <button type="button" class="go" id="ckGo">Check</button>
+      <button type="button" class="go" id="ckGo" data-i18n="common.check">Check</button>
     </div>
     <div class="ckfb" id="ckFb" aria-live="polite"></div>
     <div class="ckhint" id="ckHint" hidden></div>
     <div class="ckmore" id="ckMore" hidden>
-      <button type="button" class="print" id="hintBtn">Show a hint</button>
-      <button type="button" class="print" id="showBtn">Show me the work</button>
+      <button type="button" class="print" id="hintBtn" data-i18n="common.hint">Show a hint</button>
+      <button type="button" class="print" id="showBtn" data-i18n="common.showWork">Show me the work</button>
     </div>
     <div class="cknote" id="ckNote"></div>
   </section>
@@ -1924,11 +1925,11 @@
   <div class="board" id="board">
     <section class="panel">
       <div class="panel-head">
-        <h2>The work</h2>
+        <h2 data-i18n="common.theWork">The work</h2>
         <div class="stepper" id="stepper" hidden>
-          <button type="button" id="prevBtn" aria-label="Previous step">&larr;</button>
+          <button type="button" id="prevBtn" aria-label="Previous step" data-i18n-attr="aria-label=common.prevStep">&larr;</button>
           <span class="count" id="stepCount"></span>
-          <button type="button" id="nextBtn" aria-label="Next step">&rarr;</button>
+          <button type="button" id="nextBtn" aria-label="Next step" data-i18n-attr="aria-label=common.nextStep">&rarr;</button>
         </div>
       </div>
       <div id="workHost"></div>
@@ -1936,7 +1937,7 @@
     </section>
 
     <section class="panel">
-      <div class="panel-head"><h2>Say it out loud</h2></div>
+      <div class="panel-head"><h2 data-i18n="common.sayIt">Say it out loud</h2></div>
       <ol class="log" id="log"></ol>
       <div class="closer" id="closer"></div>
     </section>
@@ -1944,8 +1945,8 @@
 
   <div class="footnote">
     <span class="btns">
-      <button class="print" type="button" id="printBtn">Print this work</button>
-      <button class="print" type="button" id="copyBtn">Copy link</button>
+      <button class="print" type="button" id="printBtn" data-i18n="common.print">Print this work</button>
+      <button class="print" type="button" id="copyBtn" data-i18n="common.copyLink">Copy link</button>
     </span>
     <span id="footLinks">Every number is kept exact, with fractions, and decimals alongside where they help.</span>
   </div>
@@ -2018,19 +2019,21 @@
      ============================================================================= */
   (function() {
     "use strict";
+    if (window.HelperI18n) HelperI18n.apply();
+    var tx = function(k, v) { return window.HelperI18n ? HelperI18n.t(k, v) : k; };
     var $ = function(id) { return document.getElementById(id); };
     var PAGE = "unit-conversions.html",
       STORE = "measuring-tape",
       TITLE = "The Measuring Tape";
     var MODES = ["length", "weight", "metric", "systems", "time", "temp", "rates"];
     var TITLES = {
-      length: "Length",
-      weight: "Weight & capacity",
-      metric: "Metric",
-      systems: "Between systems",
-      time: "Time",
-      temp: "Temperature",
-      rates: "Rates, area & volume"
+      length: tx("unit-conversions.title.length"),
+      weight: tx("unit-conversions.title.weight"),
+      metric: tx("unit-conversions.title.metric"),
+      systems: tx("unit-conversions.title.systems"),
+      time: tx("unit-conversions.title.time"),
+      temp: tx("unit-conversions.title.temp"),
+      rates: tx("unit-conversions.title.rates")
     };
     var EMBED = /(?:^|[?&])embed=1(?:&|$)/.test(location.search);
 
@@ -2039,11 +2042,12 @@
       if (HS && HS.url) return HS.url(name, params);
       return name + ".html" + (params ? "?" + params : "");
     }
+    var DEFIN = window.HelperI18n && HelperI18n.lang !== "en" ? HelperI18n.raw("unit-conversions.defList") : null; // the first problems, in the language in use
     var S = {
       mode: "length",
       practice: "all",
       step: 1,
-      inputs: {
+      inputs: DEFIN ? JSON.parse(JSON.stringify(DEFIN)) : {
         length: "5 ft 7 in to inches",
         weight: "2 gallons to cups",
         metric: "3.2 km to m",
@@ -2079,8 +2083,10 @@
 
     function ds(step) { return (step === undefined || step === null || step < 0) ? "" : ' data-step="' + step + '"'; }
 
-    function andList(a) { return a.length < 2 ? (a[0] || "") : a.slice(0, -1).join(", ") + " and " + a[a.length - 1]; }
-    var WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"];
+    var AND = tx("unit-conversions.and");
+
+    function andList(a) { return a.length < 2 ? (a[0] || "") : a.slice(0, -1).join(", ") + AND + a[a.length - 1]; }
+    var WORDS = (window.HelperI18n && HelperI18n.raw("unit-conversions.words")) || ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"];
 
     function word(k) { return k >= 0 && k < WORDS.length ? WORDS[k] : String(k); }
 
@@ -2107,7 +2113,7 @@
     function R(n, d) {
       n = BigInt(n);
       d = d === undefined ? 1n : BigInt(d);
-      if (d === 0n) throw new UserErr("Something here divides by <b>0</b> — that can’t be done.");
+      if (d === 0n) throw new UserErr(tx("unit-conversions.err.div0"));
       if (d < 0n) {
         n = -n;
         d = -d;
@@ -2128,7 +2134,7 @@
 
     function mul(a, b) { return R(a.n * b.n, a.d * b.d); }
 
-    function dvd(a, b) { if (b.n === 0n) throw new UserErr("Something here divides by <b>0</b> — that can’t be done."); return R(a.n * b.d, a.d * b.n); }
+    function dvd(a, b) { if (b.n === 0n) throw new UserErr(tx("unit-conversions.err.div0")); return R(a.n * b.d, a.d * b.n); }
 
     function negR(a) { return R(-a.n, a.d); }
 
@@ -2311,6 +2317,28 @@
       degC: { key: "degC", one: "degree Celsius", many: "degrees Celsius", ab: "°C", name: "Celsius" },
       K: { key: "K", one: "kelvin", many: "kelvins", ab: "K", name: "Kelvin" }
     };
+    /* the units' names in the language in use (unit-conversions.unitWords: key → [one, many, gender]); English keeps its
+       own. Only the words change: the keys, the abbreviations and the facts stay as they are. */
+    var UWD = window.HelperI18n && HelperI18n.lang !== "en" ? HelperI18n.raw("unit-conversions.unitWords") : null;
+    var UWORDS = {}; // the language's own unit words (without accents) that English doesn't use: a sign a problem is typed in it
+    if (UWD) {
+      var ENW = {},
+        wordsOf = function(t) { t = String(t).toLowerCase(); return (t.normalize ? t.normalize("NFD").replace(/[\u0300-\u036f]/g, "") : t).split(/\s+/); };
+      Object.keys(U).concat(Object.keys(TEMPS)).forEach(function(k) {
+        var o = U[k] || TEMPS[k];
+        wordsOf(o.one + " " + o.many).forEach(function(x) { ENW[x] = 1; });
+      });
+      Object.keys(U).concat(Object.keys(TEMPS)).forEach(function(k) {
+        var w = UWD[k],
+          o = U[k] || TEMPS[k];
+        if (!w || typeof w !== "object") return;
+        wordsOf(w[0] + " " + w[1]).forEach(function(x) { if (!ENW[x]) UWORDS[x] = 1; });
+        o.one = w[0];
+        o.many = w[1];
+        o.fem = w[2] === "f";
+        if (TEMPS[k] && w[3]) o.name = w[3];
+      });
+    }
     var KEYS_CI = {}; // lower-case key → key (for links)
     Object.keys(U).concat(Object.keys(TEMPS)).forEach(function(k) { KEYS_CI[k.toLowerCase()] = k; });
 
@@ -2370,18 +2398,18 @@
     var KINDW = { len: "a length", mass: "a weight", vol: "a capacity (volume)", time: "a time", area: "an area", money: "money", temp: "a temperature" };
 
     function dimWords(cu) {
-      if (cu.temp) return "a temperature";
+      if (cu.temp) return tx("unit-conversions.dim.temp");
       var d = dimOf(cu);
-      if (d === "L1") return "a length";
-      if (d === "L2") return "an area";
-      if (d === "L3") return "a volume (capacity)";
-      if (d === "M1") return "a weight";
-      if (d === "T1") return "a time";
-      if (d === "$1") return "an amount of money";
-      if (d === "L1 T-1") return "a speed";
-      if (d === "$1 M-1") return "a price per weight";
-      if (/^\$1/.test(d)) return "a price per unit";
-      return "a rate";
+      if (d === "L1") return tx("unit-conversions.dim.len");
+      if (d === "L2") return tx("unit-conversions.dim.area");
+      if (d === "L3") return tx("unit-conversions.dim.vol");
+      if (d === "M1") return tx("unit-conversions.dim.mass");
+      if (d === "T1") return tx("unit-conversions.dim.time");
+      if (d === "$1") return tx("unit-conversions.dim.money");
+      if (d === "L1 T-1") return tx("unit-conversions.dim.speed");
+      if (d === "$1 M-1") return tx("unit-conversions.dim.pricePerWeight");
+      if (/^\$1/.test(d)) return tx("unit-conversions.dim.pricePerUnit");
+      return tx("unit-conversions.dim.rate");
     }
 
     /* how a unit is written */
@@ -2405,15 +2433,25 @@
     function atomW(a, many) {
       var u = U[a.u],
         w = many ? u.many : u.one;
+      if (UWD && a.p > 1) { var adj = UWD[a.p === 2 ? "_sq" : "_cu"] || []; return w + " " + adj[(u.fem ? 2 : 0) + (many ? 1 : 0)]; } // pies cuadrados, pulgadas cúbicas
       return a.p === 2 ? "square " + w : a.p === 3 ? "cubic " + w : w;
     }
+    var PER = tx("unit-conversions.per");
 
     function cuW(cu, many) {
       if (cu.temp) return many ? TEMPS[cu.temp].many : TEMPS[cu.temp].one;
       var w = cu.n.map(function(a) { return atomW(a, many); }).join(" ");
-      if (cu.d.length) w += " per " + cu.d.map(function(a) { return atomW(a, false); }).join(" ");
+      if (cu.d.length) w += PER + cu.d.map(function(a) { return atomW(a, false); }).join(" ");
       return w;
     }
+    // a unit's name with an article, in the language in use: { a: "a foot" / "un pie", the: "the foot" / "el pie" }
+    function femOf(cu) { return !!(UWD && !cu.temp && U[cu.n[0].u].fem); }
+
+    function aW(cu) { return UWD ? (femOf(cu) ? UWD._una : UWD._un) + " " + oneW(cu) : art(oneW(cu)); }
+
+    function theW(cu) { return UWD ? (femOf(cu) ? UWD._la : UWD._el) + " " + oneW(cu) : "the " + oneW(cu); }
+
+    function thePl(cu) { return UWD ? (femOf(cu) ? UWD._las : UWD._los) + " " + manyW(cu) : "the " + manyW(cu); }
 
     function manyV(v) { return !(v && eqR(absR(v), ONE)); }
     // a quantity: 5 ft, $3.20/lb, 20¢/oz, 432 in², 37 °C
@@ -2439,9 +2477,9 @@
 
     function measW(parts) { return parts.map(function(p) { return qW(p.v, p.cu); }).join(" "); }
 
-    function tgtT(cus) { return cus.map(cuAbT).join(" and "); }
+    function tgtT(cus) { return cus.map(cuAbT).join(AND); }
 
-    function tgtW(cus) { return cus.map(function(c) { return cuW(c, true); }).join(" and "); }
+    function tgtW(cus) { return cus.map(function(c) { return cuW(c, true); }).join(AND); }
 
     /* ===================== the facts that link units ===================== */
     // an edge says 1 b = k a  (a and b are atom keys: "ft", "ft^2", "acre", "mL" …)
@@ -2573,7 +2611,7 @@
       if (from !== "mo" && to !== "mo") return;
       var other = from === "mo" ? to : from;
       if (other !== "yr" && other !== "mo")
-        throw new UserErr("Months aren’t all the same length — they have 28, 29, 30 or 31 days — so months only convert exactly to years (<b>12 months = 1 year</b>). For days or weeks, pick a month and count its days.");
+        throw new UserErr(tx("unit-conversions.err.months"));
     }
 
     /* ===================== reading what is typed ===================== */
@@ -2646,6 +2684,15 @@
       ["fps", function() { return cuRate(atom("ft"), atom("s")); }],
       ["cc", function() { return cuOf("cm", 3); }]
     ];
+    // the language's own names for the units are read too (pulgadas, pies, libras …): from unitWords, without accents,
+    // and the extra ones in aliasWords ({ units: [[text, key] …], temps: [[text, key] …] })
+    if (UWD) {
+      var fold0 = function(w) { w = String(w).toLowerCase(); return w.normalize ? w.normalize("NFD").replace(/[\u0300-\u036f]/g, "") : w; };
+      Object.keys(U).forEach(function(k) { if (UWD[k] && typeof UWD[k] === "object") al(k, [fold0(UWD[k][1]), fold0(UWD[k][0])]); });
+      var ALX = HelperI18n.raw("unit-conversions.aliasWords") || {};
+      (ALX.units || []).forEach(function(a) { ALIAS.push([a[0], a[1]]); });
+      (ALX.temps || []).forEach(function(a) { TALIAS.unshift([a[0], a[1]]); });
+    }
     ALIAS.sort(function(a, b) { return b[0].length - a[0].length; });
     var SHORT1 = { s: 1, h: 1, d: 1, m: 1, g: 1, l: 1, y: 1, "in": 1, mi: 1, mo: 1, ac: 1, ha: 1, c: 1, f: 1, k: 1 };
     var CONNECT = ["to", "into", "in", "per", "and", "as", "many", "much", "is", "are", "equals", "of", "a", "an", "one", "the", "convert", "change", "write", "express"];
@@ -2924,14 +2971,14 @@
         if ((m = /^(\d+ \d+\/\d+|\d+\/\d+|\d*\.\d+|\d+\.?)/.exec(rest)) && /[\d]/.test(m[0])) {
           var raw = m[1].replace(/\.$/, ""),
             v;
-          if (raw.replace(/\D/g, "").length > 12) throw new UserErr("That number is too long for this page — up to 12 digits, please.");
+          if (raw.replace(/\D/g, "").length > 12) throw new UserErr(tx("unit-conversions.err.tooLong"));
           var mm = /^(\d+) (\d+)\/(\d+)$/.exec(raw),
             ff = /^(\d+)\/(\d+)$/.exec(raw);
           if (mm) {
-            if (/^0+$/.test(mm[3])) throw new UserErr("A fraction can’t have <b>0</b> on the bottom.");
+            if (/^0+$/.test(mm[3])) throw new UserErr(tx("unit-conversions.err.frac0"));
             v = add(R(BigInt(mm[1])), R(BigInt(mm[2]), BigInt(mm[3])));
           } else if (ff) {
-            if (/^0+$/.test(ff[2])) throw new UserErr("A fraction can’t have <b>0</b> on the bottom.");
+            if (/^0+$/.test(ff[2])) throw new UserErr(tx("unit-conversions.err.frac0"));
             v = R(BigInt(ff[1]), BigInt(ff[2]));
           } else v = parseDecStr(raw.charAt(0) === "." ? "0" + raw : raw);
           if (neg) v = negR(v);
@@ -3009,7 +3056,7 @@
           i++;
           continue;
         }
-        throw new UserErr("I can’t read <b>" + esc(c) + "</b> in that.");
+        throw new UserErr(tx("unit-conversions.err.cantRead", { c: esc(c) }));
       }
       return out;
     }
@@ -3126,34 +3173,50 @@
       return { s: s.replace(/\s+/g, " ").trim(), dp: dp };
     }
     var EMPTY = {
-      length: "Type a length to convert, like <b>5 ft 7 in to inches</b>, or two to add, like <b>5 ft 7 in + 3 ft 8 in</b>.",
-      weight: "Type a weight or a capacity to convert, like <b>2 gallons to cups</b> or <b>3 lb to oz</b>.",
-      metric: "Type a metric measure to convert, like <b>3.2 km to m</b> or <b>450 mg to g</b>.",
-      systems: "Type a measure to change between customary and metric, like <b>5 mi to km</b> or <b>70 kg to lb</b>.",
-      time: "Type a time to convert, like <b>2 h 45 min to minutes</b>, or two to add, like <b>2 h 45 min + 1 h 30 min</b>.",
-      temp: "Type a temperature to convert, like <b>98.6 °F to °C</b> or <b>37 °C to °F</b>.",
-      rates: "Type a rate, an area or a volume to convert, like <b>60 mph to ft/s</b> or <b>3 sq ft to sq in</b> — or a unit rate, like <b>150 miles in 3 hours</b>."
+      length: tx("unit-conversions.empty.length"),
+      weight: tx("unit-conversions.empty.weight"),
+      metric: tx("unit-conversions.empty.metric"),
+      systems: tx("unit-conversions.empty.systems"),
+      time: tx("unit-conversions.empty.time"),
+      temp: tx("unit-conversions.empty.temp"),
+      rates: tx("unit-conversions.empty.rates")
     };
+    // a problem typed in the language in use, in the words the reader knows: this page's own words (unit-conversions.typedWords,
+    // before and after the shared ones) and the shared ones (HelperI18n.normalize), without accents; English as it was
+    function typedQ(q) {
+      var tw = window.HelperI18n && HelperI18n.lang !== "en" ? HelperI18n.raw("unit-conversions.typedWords") : null;
+      if (!tw) return window.HelperI18n ? HelperI18n.normalize(String(q == null ? "" : q)) : q;
+      var s = String(q == null ? "" : q).toLowerCase();
+      if (s.normalize) s = s.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      // typed in English after all (half a mile in feet): read as it is, when it has English words and none of the language's
+      var ws = s.split(/[^a-z]+/).filter(Boolean),
+        en = tw.english && tw.english.length ? new RegExp("^(?:" + tw.english.join("|") + ")$") : null,
+        own = tw.own && tw.own.length ? new RegExp("^(?:" + tw.own.join("|") + ")$") : null;
+      if (en && ws.some(function(w) { return en.test(w); }) && !ws.some(function(w) { return UWORDS[w] || (own && own.test(w)); })) return q;
+      (tw.before || []).forEach(function(r) { s = s.replace(new RegExp(r[0], "g"), r[1]); });
+      s = HelperI18n.normalize(s);
+      (tw.after || []).forEach(function(r) { s = s.replace(new RegExp(r[0], "g"), r[1]); });
+      return s.replace(/\s+/g, " ").trim();
+    }
 
     function readProblem(mode, text) {
-      var s0 = normU(text);
+      var s0 = normU(typedQ(text));
       s0 = s0.replace(/^(?:please\s+)?(?:can you\s+)?/, "");
       if (!s0) throw new UserErr(EMPTY[mode]);
       // things this page doesn't do, said plainly instead of half-read: a measure times a number, "how many 8 oz cups fit"
       if (/(?:[a-z.]|\d)\s*(?:\*|\bx\b|\btimes\b|\bmultiplied by\b)\s*\d/.test(s0) && !/\b(?:per|square|sq|cubic|cu)\b|\^/.test(s0))
-        throw new UserErr("This page changes units, and adds or subtracts measures — it doesn’t multiply them. To multiply, change the measure to one unit first (like <b>4 ft 3 in to inches</b>), then multiply that number.");
+        throw new UserErr(tx("unit-conversions.err.noMultiply"));
       if (/\bhow many \d[\d.\/ ]*\s*-?\s*(?:fl oz|oz|ounces?|cups?|ml|l|liters?|litres?|gallons?|quarts?|pints?|grams?|g|pounds?|lbs?|inch(?:es)?|in|feet|foot|ft|yards?|cm|m|meters?)\s+(?:[a-z]+\s+)?(?:cups?|bottles?|glasses?|bags?|boxes?|jars?|cans?|pieces?|servings?|scoops?|containers?|bowls?|lengths?|strips?|boards?|packs?|packets?)\b/.test(s0))
-        throw new UserErr("That asks how many containers fit — change the big amount to the small unit first (like <b>1 gal to fl oz</b>), then divide by the size of one container.");
+        throw new UserErr(tx("unit-conversions.err.containers"));
       var rd = takeRounding(s0),
         s = rd.s;
       var T = lexU(s, mode);
       if (!T.length) throw new UserErr(EMPTY[mode]);
-      if (T.length > 60) throw new UserErr("That’s too long for this page — try a shorter problem.");
+      if (T.length > 60) throw new UserErr(tx("unit-conversions.err.tooLongProblem"));
       var clocks = T.filter(function(t) { return t.t === "clock"; });
       if (clocks.length) {
         var link = clocks.length >= 2 ? "mode=time&kind=elapsed&from=" + clocks[0].raw + "&to=" + clocks[1].raw : "mode=time&kind=read&t=" + clocks[0].raw;
-        throw new UserErr("That’s a clock time" + (clocks.length >= 2 ? " — how much time passes from " + B(esc(clocks[0].raw)) + " to " + B(esc(clocks[1].raw)) + " is worked out on a clock" : "") + ". Clock times live on the Place Value Chart: <a href=\"" + esc(siteUrl("number-sense", link)) + "\">" +
-          (clocks.length >= 2 ? "find the elapsed time there" : "read the clock there") + "</a>. Here you can change units of time, like <b>2 h 45 min to minutes</b>.");
+        throw new UserErr(tx(clocks.length >= 2 ? "unit-conversions.err.clock2" : "unit-conversions.err.clock1", { a: B(esc(clocks[0].raw)), b: clocks.length >= 2 ? B(esc(clocks[1].raw)) : "", href: esc(siteUrl("number-sense", link)) }));
       }
       var D = groupU(T);
       var meas = D.filter(function(x) { return x.t === "meas"; }),
@@ -3161,20 +3224,20 @@
       var unknownTemp = meas.some(function(x) { return x.parts.some(function(p) { return p.cu.temp === "?"; }); });
       if (unknownTemp) {
         var tg = units.length && units[units.length - 1].cus[0].temp;
-        if (tg && tg !== "?") { meas.forEach(function(x) { x.parts.forEach(function(p) { if (p.cu.temp === "?") p.cu = { temp: tg === "degC" ? "degF" : "degC" }; }); }); } else throw new UserErr("Which scale is that — <b>°F</b> (Fahrenheit) or <b>°C</b> (Celsius)? Type it, like <b>98.6 °F to °C</b>.");
+        if (tg && tg !== "?") { meas.forEach(function(x) { x.parts.forEach(function(p) { if (p.cu.temp === "?") p.cu = { temp: tg === "degC" ? "degF" : "degC" }; }); }); } else throw new UserErr(tx("unit-conversions.err.whichScale"));
       }
-      units.forEach(function(x) { if (x.cus.some(function(c) { return c.temp === "?"; })) throw new UserErr("Which scale — <b>°F</b>, <b>°C</b> or <b>K</b>? Type it, like <b>37 °C to °F</b>."); });
+      units.forEach(function(x) { if (x.cus.some(function(c) { return c.temp === "?"; })) throw new UserErr(tx("unit-conversions.err.whichScale3")); });
       var bare = D.filter(function(x) { return x.t === "num"; });
       var words = D.filter(function(x) { return x.t === "w"; }).map(function(x) { return x.s; });
       var hasW = function(w) { return words.indexOf(w) >= 0; };
       var idx = function(x) { return D.indexOf(x); };
       if (!meas.length) {
-        if (bare.length && units.length) throw new UserErr("Give the number its unit too, like <b>" + esc(numBox(bare[0].v)) + " ft to in</b> — which unit is <b>" + esc(numBox(bare[0].v)) + "</b> in?");
-        if (bare.length) throw new UserErr("Add the units, like <b>" + esc(numBox(bare[0].v)) + " ft to inches</b> — a number on its own doesn’t say what it measures.");
-        if (units.length) throw new UserErr("Give an amount to convert, like <b>5 " + esc(cuAbT(units[0].cus[0])) + "</b> — then say what to change it to.");
+        if (bare.length && units.length) throw new UserErr(tx("unit-conversions.err.giveUnit", { n: esc(numBox(bare[0].v)) }));
+        if (bare.length) throw new UserErr(tx("unit-conversions.err.addUnits", { n: esc(numBox(bare[0].v)) }));
+        if (units.length) throw new UserErr(tx("unit-conversions.err.giveAmount", { u: esc(cuAbT(units[0].cus[0])) }));
         throw new UserErr(EMPTY[mode]);
       }
-      if (meas.length > 2) throw new UserErr("That has more than two measures in it. Convert one, like <b>5 ft 7 in to inches</b>, or add or subtract two, like <b>5 ft 7 in + 3 ft 8 in</b>.");
+      if (meas.length > 2) throw new UserErr(tx("unit-conversions.err.moreThan2"));
       /* two measures: add, subtract, or a unit rate */
       if (meas.length === 2) {
         var A = meas[0],
@@ -3187,10 +3250,10 @@
         var subFrom = before.some(function(x) { return isW(x, ["subtract"]); }) && between.some(function(x) { return isW(x, ["from"]); });
         var subW = before.some(function(x) { return isW(x, ["subtract"]); }) && !subFrom;
         var diffW = before.some(function(x) { return isW(x, ["difference"]); });
-        if (A.parts[0].cu.temp || Bm.parts[0].cu.temp) throw new UserErr("Convert one temperature at a time, like <b>98.6 °F to °C</b>.");
+        if (A.parts[0].cu.temp || Bm.parts[0].cu.temp) throw new UserErr(tx("unit-conversions.err.oneTemp"));
         var sameDim = dimOf(A.parts[0].cu) === dimOf(Bm.parts[0].cu);
         if (plus || minus || addW || subFrom || subW || diffW) {
-          if (!sameDim) throw new UserErr("To add or subtract measures, they need to measure the same thing — " + B(esc(measT(A.parts))) + " is " + dimWords(A.parts[0].cu) + " but " + B(esc(measT(Bm.parts))) + " is " + dimWords(Bm.parts[0].cu) + ".");
+          if (!sameDim) throw new UserErr(tx("unit-conversions.err.sameThing", { a: B(esc(measT(A.parts))), da: dimWords(A.parts[0].cu), b: B(esc(measT(Bm.parts))), db: dimWords(Bm.parts[0].cu) }));
           if (subFrom) return mkAddSub(Bm.parts, A.parts, "sub", rd.dp);
           if (diffW) {
             var ta = totalOf(A.parts),
@@ -3210,12 +3273,12 @@
           var tgt = units.length && idx(units[units.length - 1]) > idx(Bm) ? units[units.length - 1].cus : null;
           return mkRate(top, per, tgt ? tgt[0] : null, rd.dp);
         }
-        if (sameDim) throw new UserErr("There are two measures here — to add them put <b>+</b> between them, to subtract use <b>−</b>; to convert, give one measure and the unit to change it to, like <b>5 ft 7 in to inches</b>.");
-        throw new UserErr("I can’t tell what to do with " + B(esc(measT(A.parts))) + " and " + B(esc(measT(Bm.parts))) + ". For a unit rate, write them like <b>150 miles in 3 hours</b>.");
+        if (sameDim) throw new UserErr(tx("unit-conversions.err.twoMeasures"));
+        throw new UserErr(tx("unit-conversions.err.cantTell", { a: B(esc(measT(A.parts))), b: B(esc(measT(Bm.parts))) }));
       }
       /* one measure: convert it */
       var M = meas[0];
-      if (bare.length && units.length) throw new UserErr("There’s a number without a unit (" + B(esc(numBox(bare[0].v))) + ") — give every number its unit, like <b>5 ft 7 in to inches</b>.");
+      if (bare.length && units.length) throw new UserErr(tx("unit-conversions.err.noUnit", { n: B(esc(numBox(bare[0].v))) }));
       var target = null;
       if (units.length) {
         var after = units.filter(function(u) { return idx(u) > idx(M); }),
@@ -3224,7 +3287,7 @@
       }
       if (!target) {
         if (M.parts.length > 1 && simple(M.parts[0].cu)) target = [M.parts[M.parts.length - 1].cu];
-        else throw new UserErr("Convert " + B(esc(measT(M.parts))) + " to what? Add the unit you want, like <b>" + esc(measT(M.parts)) + " to " + esc(suggestUnit(M.parts[0].cu)) + "</b>.");
+        else throw new UserErr(tx("unit-conversions.err.toWhat", { m: B(esc(measT(M.parts))), ex: esc(measT(M.parts)) + tx("unit-conversions.box.to") + esc(suggestUnit(M.parts[0].cu)) }));
       }
       if (M.parts[0].cu.temp || target[0].temp) return mkTemp(M.parts, target, rd.dp);
       return mkConv(M.parts, target, rd.dp);
@@ -3269,8 +3332,8 @@
     var MAXV = R(1000000000);
 
     function bigOk(v) {
-      if (cmpR(absR(v), MAXV) > 0) throw new UserErr("That’s a very big number — keep measures under a billion, please.");
-      if (v.d > 1000000n) throw new UserErr("That fraction is too fine for this page — keep the bottom under a million.");
+      if (cmpR(absR(v), MAXV) > 0) throw new UserErr(tx("unit-conversions.err.billion"));
+      if (v.d > 1000000n) throw new UserErr(tx("unit-conversions.err.fine"));
       return v;
     }
 
@@ -3309,18 +3372,18 @@
       if ((ka === "mass" && kb === "vol") || (ka === "vol" && kb === "mass")) {
         var fl = a.n[0].u === "floz" || b.n[0].u === "floz",
           oz = a.n[0].u === "oz" || b.n[0].u === "oz";
-        return (fl && oz ? "Ounces (oz) and fluid ounces (fl oz) sound alike, but they measure different things: <b>ounces measure weight</b> (16 oz = 1 lb) and <b>fluid ounces measure capacity</b> (8 fl oz = 1 cup). " :
-            B(esc(cap(cuW(a, true)))) + " measure " + (ka === "mass" ? "weight" : "capacity (how much something holds)") + " and " + B(esc(cuW(b, true))) + " measure " + (kb === "mass" ? "weight" : "capacity") + ". ") +
-          "They don’t convert into each other: a cup of water weighs about 8.3 oz, but a cup of flour only about 4.5 oz. Convert weight to weight, or capacity to capacity.";
+        return (fl && oz ? tx("unit-conversions.dt.ozFloz") :
+            tx("unit-conversions.dt.measure", { a: B(esc(cap(cuW(a, true)))), ka: tx(ka === "mass" ? "unit-conversions.dt.weight" : "unit-conversions.dt.capacityLong"), b: B(esc(cuW(b, true))), kb: tx(kb === "mass" ? "unit-conversions.dt.weight" : "unit-conversions.dt.capacity") })) +
+          tx("unit-conversions.dt.dont");
       }
-      return "You can’t turn " + dimWords(a) + " (" + B(esc(cuAbT(a))) + ") into " + dimWords(b) + " (" + B(esc(cuAbT(b))) + ") — convert between units that measure the same thing.";
+      return tx("unit-conversions.dt.cantTurn", { da: dimWords(a), a: B(esc(cuAbT(a))), db: dimWords(b), b: B(esc(cuAbT(b))) });
     }
 
     function checkCU(cu) {
       if (cu.temp) return;
-      if (cu.n.length !== 1 || cu.d.length > 1) throw new UserErr("That unit is too tangled for this page — use one unit, or one unit per one unit, like <b>mi/h</b>.");
-      if (cu.d.length && cu.n[0].u === cu.d[0].u && cu.n[0].p === cu.d[0].p) throw new UserErr("A unit per the same unit cancels out — try a rate like <b>mi/h</b>.");
-      if (cu.d.length && dimOf(cu) === "") throw new UserErr("Those units cancel out completely — try a rate like <b>mi/h</b> or <b>$/lb</b>.");
+      if (cu.n.length !== 1 || cu.d.length > 1) throw new UserErr(tx("unit-conversions.err.tangled"));
+      if (cu.d.length && cu.n[0].u === cu.d[0].u && cu.n[0].p === cu.d[0].p) throw new UserErr(tx("unit-conversions.err.cancelsOut"));
+      if (cu.d.length && dimOf(cu) === "") throw new UserErr(tx("unit-conversions.err.cancelAll"));
     }
 
     function mkConv(src, tgt, dp) {
@@ -3330,34 +3393,34 @@
       });
       tgt.forEach(checkCU);
       var d0 = dimOf(src[0].cu);
-      src.forEach(function(p) { if (sgn(p.v) < 0) throw new UserErr("A measure can’t be negative here — " + B(esc(qT(p.v, p.cu))) + " doesn’t make sense as " + dimWords(p.cu) + "."); });
+      src.forEach(function(p) { if (sgn(p.v) < 0) throw new UserErr(tx("unit-conversions.err.negative", { q: B(esc(qT(p.v, p.cu))), d: dimWords(p.cu) })); });
       tgt.forEach(function(c) { if (dimOf(c) !== d0) throw new UserErr(dimTrouble(src[0].cu, c)); });
-      if (src.length > 4 || tgt.length > 4) throw new UserErr("Up to four units at a time, please.");
+      if (src.length > 4 || tgt.length > 4) throw new UserErr(tx("unit-conversions.err.upTo4"));
       if (src.length > 1) {
         src = src.slice().sort(function(a, b) { return cmpR(cuF(b.cu), cuF(a.cu)); });
         for (var i = 1; i < src.length; i++)
-          if (sameCU(src[i].cu, src[i - 1].cu)) throw new UserErr("That measure uses " + B(esc(cuAbT(src[i].cu))) + " twice.");
+          if (sameCU(src[i].cu, src[i - 1].cu)) throw new UserErr(tx("unit-conversions.err.twice", { u: B(esc(cuAbT(src[i].cu))) }));
       }
       if (tgt.length > 1) {
         tgt = tgt.slice().sort(function(a, b) { return cmpR(cuF(b), cuF(a)); });
         var ts = {};
         tgt.forEach(function(c) {
-          if (!simple(c)) throw new UserErr("Mixed units (like <b>ft and in</b>) are for plain lengths, weights, capacities and times.");
+          if (!simple(c)) throw new UserErr(tx("unit-conversions.err.mixedPlain"));
           var k = U[c.n[0].u].sys;
           ts[k] = 1;
-          if (ts[cuKey(c)]) throw new UserErr("That asks for " + B(esc(cuAbT(c))) + " twice.");
+          if (ts[cuKey(c)]) throw new UserErr(tx("unit-conversions.err.asksTwice", { u: B(esc(cuAbT(c))) }));
           ts[cuKey(c)] = 1;
         });
-        if (ts.us && ts.metric) throw new UserErr("Mix units from one system at a time — like <b>ft and in</b> or <b>m and cm</b>, not both.");
+        if (ts.us && ts.metric) throw new UserErr(tx("unit-conversions.err.oneSystem"));
         var small = tgt[tgt.length - 1];
         for (var j = 0; j < tgt.length - 1; j++)
-          if (!isInt(dvd(cuF(tgt[j]), cuF(small)))) throw new UserErr("Those units don’t split evenly into each other.");
+          if (!isInt(dvd(cuF(tgt[j]), cuF(small)))) throw new UserErr(tx("unit-conversions.err.notEven"));
       }
-      if (tgt.length === 1 && src.length === 1 && sameCU(src[0].cu, tgt[0])) throw new UserErr("That’s already in " + B(esc(cuW(tgt[0], true))) + " — pick a different unit to change it to.");
+      if (tgt.length === 1 && src.length === 1 && sameCU(src[0].cu, tgt[0])) throw new UserErr(tx("unit-conversions.err.already", { u: B(esc(cuW(tgt[0], true))) }));
       var only = { usd: 1, cent: 1 };
       if (src.every(function(p) { return simple(p.cu) && only[p.cu.n[0].u]; })) {
         var c0 = src.length === 1 && src[0].cu.n[0].u === "usd" ? "mode=money&kind=convert&c=" + numA(mul(src[0].v, R(100))) + "&to=cents" : src.length === 1 ? "mode=money&kind=convert&c=" + numA(src[0].v) + "&to=dollars" : "mode=money";
-        throw new UserErr("Dollars and cents are on the Place Value Chart: <a href=\"" + esc(siteUrl("number-sense", c0)) + "\">change it there</a>. Here, money comes in with a rate, like <b>$3.20 per pound to cents per ounce</b>.");
+        throw new UserErr(tx("unit-conversions.err.money", { href: esc(siteUrl("number-sense", c0)) }));
       }
       var total = totalOf(src),
         P = { kind: "conv", src: src, tgt: tgt, dp: dp, total: total };
@@ -3380,7 +3443,7 @@
       }
       P.mode = natMode(P);
       if (P.mode === "systems" && P.dp === null) P.dp = 2;
-      if (P.res && P.res.n !== 0n && (P.res.n.toString().length > 40)) throw new UserErr("That answer is too big to show here.");
+      if (P.res && P.res.n !== 0n && (P.res.n.toString().length > 40)) throw new UserErr(tx("unit-conversions.err.tooBigAns"));
       return P;
     }
     // the facts from one unit to another: for a rate, the top and the bottom on their own
@@ -3390,7 +3453,7 @@
       function one(x, y, den) {
         if (aKey(x) === aKey(y)) return;
         var p = findPath(aKey(x), aKey(y));
-        if (!p) throw new UserErr("I don’t know a way from " + B(esc(atomAbT(x))) + " to " + B(esc(atomAbT(y))) + ".");
+        if (!p) throw new UserErr(tx("unit-conversions.err.noWay", { a: B(esc(atomAbT(x))), b: B(esc(atomAbT(y))) }));
         monthCheck(p, x.u, y.u);
         p.forEach(function(st) { out.push({ st: st, den: den }); });
       }
@@ -3405,15 +3468,15 @@
     }
 
     function mkTemp(src, tgt, dp) {
-      if (src.length !== 1 || tgt.length !== 1) throw new UserErr("Convert one temperature at a time, like <b>98.6 °F to °C</b>.");
+      if (src.length !== 1 || tgt.length !== 1) throw new UserErr(tx("unit-conversions.err.oneTemp"));
       var from = src[0].cu.temp,
         to = tgt[0].temp;
-      if (!from || !to) throw new UserErr("A temperature only converts to another temperature scale — <b>°F</b>, <b>°C</b> or <b>K</b>.");
-      if (from === to) throw new UserErr("That’s already in " + B(TEMPS[to].ab) + " — pick a different scale.");
+      if (!from || !to) throw new UserErr(tx("unit-conversions.err.tempOnly"));
+      if (from === to) throw new UserErr(tx("unit-conversions.err.alreadyScale", { u: B(TEMPS[to].ab) }));
       var v = bigOk(src[0].v);
-      if (cmpR(v, R(100000)) > 0 || cmpR(v, R(-100000)) < 0) throw new UserErr("Keep temperatures between −100,000 and 100,000 degrees, please.");
+      if (cmpR(v, R(100000)) > 0 || cmpR(v, R(-100000)) < 0) throw new UserErr(tx("unit-conversions.err.tempRange"));
       var c = from === "degC" ? v : from === "degF" ? mul(sub(v, R(32)), R(5, 9)) : sub(v, parseDecStr("273.15"));
-      if (cmpR(c, parseDecStr("-273.15")) < 0) throw new UserErr(B(esc(numT(v) + " " + TEMPS[from].ab)) + " is colder than absolute zero (−273.15 °C, −459.67 °F, 0 K) — nothing can be that cold.");
+      if (cmpR(c, parseDecStr("-273.15")) < 0) throw new UserErr(tx("unit-conversions.err.absZero", { t: B(esc(numT(v) + " " + TEMPS[from].ab)) }));
       var res = to === "degC" ? c : to === "degF" ? add(mul(c, R(9, 5)), R(32)) : add(c, parseDecStr("273.15"));
       var P = { kind: "temp", v: v, from: from, to: to, c: c, res: res, dp: dp, mode: "temp" };
       if (P.dp === null && !isTermD(res.d)) P.dp = 1;
@@ -3422,8 +3485,8 @@
 
     function mkAddSub(a, b, op, dp) {
       var all = a.concat(b);
-      all.forEach(function(p) { bigOk(p.v); if (!simple(p.cu) || p.cu.temp) throw new UserErr("Add and subtract plain lengths, weights, capacities or times, like <b>5 ft 7 in + 3 ft 8 in</b>."); if (sgn(p.v) < 0) throw new UserErr("Measures can’t be negative here."); });
-      if (all.some(function(p) { return U[p.cu.n[0].u].kind === "money"; })) throw new UserErr("Adding money is on <a href=\"" + esc(siteUrl("addition")) + "\">the Carry Column</a>.");
+      all.forEach(function(p) { bigOk(p.v); if (!simple(p.cu) || p.cu.temp) throw new UserErr(tx("unit-conversions.err.addPlain")); if (sgn(p.v) < 0) throw new UserErr(tx("unit-conversions.err.negHere")); });
+      if (all.some(function(p) { return U[p.cu.n[0].u].kind === "money"; })) throw new UserErr(tx("unit-conversions.err.addMoney", { href: esc(siteUrl("addition")) }));
       var d0 = dimOf(all[0].cu);
       all.forEach(function(p) { if (dimOf(p.cu) !== d0) throw new UserErr(dimTrouble(all[0].cu, p.cu)); });
       var keys = {},
@@ -3437,12 +3500,12 @@
       units.sort(function(x, y) { return cmpR(cuF(y), cuF(x)); });
       var sy = {};
       units.forEach(function(c) { sy[U[c.n[0].u].sys] = 1; });
-      if (sy.us && sy.metric) throw new UserErr("Those mix customary and metric units — change one of them first (the <b>Between systems</b> tab), then add.");
-      if (units.length > 4) throw new UserErr("Up to four units at a time, please.");
+      if (sy.us && sy.metric) throw new UserErr(tx("unit-conversions.err.mixSystems"));
+      if (units.length > 4) throw new UserErr(tx("unit-conversions.err.upTo4"));
       var sm = units[units.length - 1];
       for (var i = 0; i < units.length - 1; i++) {
         var r = dvd(cuF(units[i]), cuF(sm));
-        if (!isInt(r) || units[i].n[0].u === "mo") throw new UserErr("Those units don’t regroup evenly (like " + B(esc(cuAbT(units[i]))) + " and " + B(esc(cuAbT(sm))) + ") — convert them to one unit first.");
+        if (!isInt(r) || units[i].n[0].u === "mo") throw new UserErr(tx("unit-conversions.err.regroup", { a: B(esc(cuAbT(units[i]))), b: B(esc(cuAbT(sm))) }));
       }
 
       function cols(parts) { return units.map(function(c) { var hit = parts.filter(function(p) { return sameCU(p.cu, c); })[0]; return hit ? hit.v : ZERO; }); }
@@ -3450,8 +3513,8 @@
         Bv = cols(b),
         ta = totalOf(a),
         tb = totalOf(b);
-      if (op === "sub" && cmpR(ta, tb) < 0) throw new UserErr(B(esc(measT(b))) + " is more than " + B(esc(measT(a))) + ", so taking it away would go below zero. Subtract the smaller one from the bigger one: <b>" + esc(measT(b)) + " − " + esc(measT(a)) + "</b>.");
-      if (op === "sub" && eqR(ta, tb)) throw new UserErr("Those are the same amount, so the difference is <b>0</b>.");
+      if (op === "sub" && cmpR(ta, tb) < 0) throw new UserErr(tx("unit-conversions.err.belowZero", { b: B(esc(measT(b))), a: B(esc(measT(a))), x: esc(measT(b)) + " − " + esc(measT(a)) }));
+      if (op === "sub" && eqR(ta, tb)) throw new UserErr(tx("unit-conversions.err.same0"));
       // the answer, regrouped
       var tot = op === "add" ? add(ta, tb) : sub(ta, tb),
         rest = dvd(tot, cuF(sm)),
@@ -3471,15 +3534,15 @@
     function mkRate(top, per, to, dp) {
       bigOk(top.v);
       bigOk(per.v);
-      if (!simple(top.cu) || !simple(per.cu) && !(per.cu.n.length === 1 && !per.cu.d.length)) throw new UserErr("For a unit rate, give two plain amounts, like <b>150 miles in 3 hours</b> or <b>$4.50 for 3 lb</b>.");
-      if (top.cu.temp || per.cu.temp) throw new UserErr("Temperatures don’t make rates here — convert them on the <b>Temperature</b> tab.");
-      if (sgn(per.v) <= 0 || sgn(top.v) < 0) throw new UserErr("Both amounts need to be bigger than 0 — you can’t share among 0 " + esc(cuW(per.cu, true)) + ".");
+      if (!simple(top.cu) || !simple(per.cu) && !(per.cu.n.length === 1 && !per.cu.d.length)) throw new UserErr(tx("unit-conversions.err.twoPlain"));
+      if (top.cu.temp || per.cu.temp) throw new UserErr(tx("unit-conversions.err.tempRates"));
+      if (sgn(per.v) <= 0 || sgn(top.v) < 0) throw new UserErr(tx("unit-conversions.err.share0", { u: esc(cuW(per.cu, true)) }));
       var rc = cuRate(top.cu.n[0], per.cu.n[0]);
-      if (dimOf(rc) === "") throw new UserErr("Those two measure the same kind of thing — to compare them, convert one, like <b>" + esc(qT(top.v, top.cu)) + " to " + esc(cuAbT(per.cu)) + "</b>.");
+      if (dimOf(rc) === "") throw new UserErr(tx("unit-conversions.err.sameKind", { x: esc(qT(top.v, top.cu)) + tx("unit-conversions.box.to") + esc(cuAbT(per.cu)) }));
       var P = { kind: "rate", top: top, per: per, rc: rc, unit: dvd(top.v, per.v), dp: dp, mode: "rates" };
       if (to) {
         checkCU(to);
-        if (simple(to) && !to.temp && dimOf(to) !== dimOf(rc)) throw new UserErr("A rate like " + B(esc(cuAbT(rc))) + " converts to another rate, like <b>" + esc(suggestRate(rc)) + "</b>, not to " + B(esc(cuAbT(to))) + ".");
+        if (simple(to) && !to.temp && dimOf(to) !== dimOf(rc)) throw new UserErr(tx("unit-conversions.err.rateTo", { r: B(esc(cuAbT(rc))), s: esc(suggestRate(rc)), t: B(esc(cuAbT(to))) }));
         if (to.temp || dimOf(to) !== dimOf(rc)) throw new UserErr(dimTrouble(rc, to));
         if (!sameCU(to, rc)) {
           convPaths(rc, to);
@@ -3564,7 +3627,7 @@
       }
       return out;
     }
-    var LINKBAD = "That link’s problem couldn’t be read — check the numbers and units after <b>m=</b>, <b>to=</b>, <b>a=</b>, <b>b=</b>, <b>top=</b> or <b>per=</b>.";
+    var LINKBAD = tx("unit-conversions.err.link");
 
     function fromParams(sp) {
       var g = function(k) { var v = sp.get(k); return v === null ? null : String(v); };
@@ -3597,7 +3660,7 @@
       return null;
     }
     // what goes in the box: reads back as exactly this problem
-    var BOXAB = { cup: ["cup", "cups"], ton: ["ton", "tons"], acre: ["acre", "acres"], d: ["day", "days"], wk: ["week", "weeks"], mo: ["month", "months"], yr: ["year", "years"] };
+    var BOXAB = (window.HelperI18n && HelperI18n.raw("unit-conversions.boxWords")) || { cup: ["cup", "cups"], ton: ["ton", "tons"], acre: ["acre", "acres"], d: ["day", "days"], wk: ["week", "weeks"], mo: ["month", "months"], yr: ["year", "years"] };
 
     function cuBox(cu, v) {
       if (cu.temp) return TEMPS[cu.temp].ab;
@@ -3611,14 +3674,16 @@
     }
 
     function measBox(parts) { return parts.map(function(p) { return qBox(p.v, p.cu); }).join(" "); }
-    var DPWORD = ["the nearest whole number", "the nearest tenth", "the nearest hundredth", "the nearest thousandth", "4 decimal places"];
+    var DPWORD = (window.HelperI18n && HelperI18n.raw("unit-conversions.dpWords")) || ["the nearest whole number", "the nearest tenth", "the nearest hundredth", "the nearest thousandth", "4 decimal places"];
+    // the words in the box (the problem as it would be typed): " to ", " and ", " for ", " in ", ", to " — read back by typedQ
+    var BX = { to: tx("unit-conversions.box.to"), and: tx("unit-conversions.box.and"), forW: tx("unit-conversions.box.for"), inW: tx("unit-conversions.box.in"), round: tx("unit-conversions.box.round") };
 
     function qText(P) {
-      var dpS = P.dp === dpDefault(P) || P.dp === null || P.dp === undefined ? "" : ", to " + DPWORD[P.dp];
-      if (P.kind === "conv") return measBox(P.src) + " to " + P.tgt.map(function(c) { return cuBox(c); }).join(" and ") + dpS;
-      if (P.kind === "temp") return numBox(P.v) + " " + TEMPS[P.from].ab + " to " + TEMPS[P.to].ab + dpS;
+      var dpS = P.dp === dpDefault(P) || P.dp === null || P.dp === undefined ? "" : BX.round + DPWORD[P.dp];
+      if (P.kind === "conv") return measBox(P.src) + BX.to + P.tgt.map(function(c) { return cuBox(c); }).join(BX.and) + dpS;
+      if (P.kind === "temp") return numBox(P.v) + " " + TEMPS[P.from].ab + BX.to + TEMPS[P.to].ab + dpS;
       if (P.kind === "addsub") return measBox(P.a) + (P.op === "add" ? " + " : " − ") + measBox(P.b) + dpS;
-      return qBox(P.top.v, P.top.cu) + (P.top.cu.n[0].u === "usd" ? " for " : " in ") + qBox(P.per.v, P.per.cu) + (P.to ? " to " + cuBox(P.to) : "") + dpS;
+      return qBox(P.top.v, P.top.cu) + (P.top.cu.n[0].u === "usd" ? BX.forW : BX.inW) + qBox(P.per.v, P.per.cu) + (P.to ? BX.to + cuBox(P.to) : "") + dpS;
     }
     var MODE_ALIAS = {
       length: "length",
@@ -3806,7 +3871,7 @@
         out += arrowHead(xb, yb, Math.atan2(yb - cy, xb - xm), "rt-tip" + cl);
         out += svgT(clampX(xm, tw(a.lab, 8), 0, W), top ? yb - h - 6 : yb + h + 15, a.lab, "rt-op" + cl);
       });
-      return svgWrap(W, H, "Ratio table: " + spec.cols.map(function(c) { return c.v.join(" goes with "); }).join("; "), out);
+      return svgWrap(W, H, tx("unit-conversions.svg.table", { cols: spec.cols.map(function(c) { return c.v.join(tx("unit-conversions.svg.goesWith")); }).join("; ") }), out);
     }
     // the measuring tape: two scales that line up. ticks: [{ p:0..1, top, bot, hl, sm }]
     function tapeSVG(names, ticks) {
@@ -3851,7 +3916,7 @@
           takenB.push([xb, wB]);
         }
       });
-      return svgWrap(W, H, "Measuring tape: " + names[0] + " on top, " + names[1] + " underneath; " + ticks.filter(function(t) { return t.hl; }).map(function(t) { return t.top + " lines up with " + t.bot; }).join("; "), out);
+      return svgWrap(W, H, tx("unit-conversions.svg.tape", { a: names[0], b: names[1], pairs: ticks.filter(function(t) { return t.hl; }).map(function(t) { return tx("unit-conversions.svg.linesUp", { a: t.top, b: t.bot }); }).join("; ") }), out);
     }
     // the tape for one fact: big units counted along the top, small ones underneath
     function factTape(vBig, k, bigCu, smallCu, fromBig) {
@@ -3891,7 +3956,7 @@
           on = p[2] === fromRank || p[2] === toRank;
         out += rect(x, y, stepW - 4, H - y - 22, "st-step" + (on ? " hi" : p[2] === 0 ? " base" : ""), 4);
         out += svgT(x + stepW / 2 - 2, y + 17, key, "st-p" + (on ? " hi" : ""));
-        out += svgT(x + stepW / 2 - 2, y + 31, p[1] || "base", "st-n");
+        out += svgT(x + stepW / 2 - 2, y + 31, p[1] ? tx("unit-conversions.pfx." + p[0]) : tx("unit-conversions.svg.base"), "st-n");
       });
       var iFrom = 3 - fromRank,
         iTo = 3 - toRank,
@@ -3908,10 +3973,10 @@
         out += arrowHead(x2 - 6 * dir, y2, Math.atan2(y2 - ym, (x2 - 6 * dir) - (x1 + x2) / 2), "st-tip" + cl);
         out += svgT((x1 + x2) / 2, ym + 2, down ? "×10" : "÷10", "st-op" + cl);
       }
-      out += svgT(W / 2, H - 6, "each step down: × 10 (the number gets bigger) · each step up: ÷ 10", "st-n");
+      out += svgT(W / 2, H - 6, tx("unit-conversions.svg.stairNote"), "st-n");
       void lo;
       void hi;
-      return svgWrap(W, H, "Metric staircase from " + (PFX[iFrom][0] + base) + " to " + (PFX[iTo][0] + base) + ": " + Math.abs(iTo - iFrom) + " steps " + (down ? "down" : "up"), out);
+      return svgWrap(W, H, tx(down ? "unit-conversions.svg.stairDown" : "unit-conversions.svg.stairUp", { a: PFX[iFrom][0] + base, b: PFX[iTo][0] + base, n: Math.abs(iTo - iFrom) }), out);
     }
     // the decimal point hopping k places (k > 0: right)
     function pointSVG(v, k) {
@@ -3959,8 +4024,8 @@
           xm = (xa + xb) / 2;
         out += '<path class="pv-hop" d="M' + f1(xa) + " " + (y0 - 4) + "Q" + f1(xm) + " " + (y0 - 26) + " " + f1(xb) + " " + (y0 - 4) + '"/>';
       }
-      out += svgT(gx(oldAt), y0 + 54, "was", "pv-lab") + svgT(gx(newAt), y0 + 54, "now", "pv-lab");
-      return svgWrap(W, H, "The decimal point moves " + Math.abs(k) + " place" + (Math.abs(k) === 1 ? "" : "s") + " to the " + (k > 0 ? "right" : "left"), out);
+      out += svgT(gx(oldAt), y0 + 54, tx("unit-conversions.svg.was"), "pv-lab") + svgT(gx(newAt), y0 + 54, tx("unit-conversions.svg.now"), "pv-lab");
+      return svgWrap(W, H, tx(k > 0 ? "unit-conversions.svg.pointRight" : "unit-conversions.svg.pointLeft", { n: Math.abs(k) }), out);
     }
     // the gallon kingdom: a gallon holds 4 quarts, a quart 2 pints, a pint 2 cups
     function gallonSVG(hi) {
@@ -3969,21 +4034,21 @@
         out = "",
         g = { x: 6, y: 22, w: 440, h: 206 };
       out += rect(g.x, g.y, g.w, g.h, "gk-g", 10) + rect(g.x, g.y, g.w, g.h, "gk-box" + (hi.gal ? " gk-hi" : ""), 10);
-      out += svgT(g.x + 10, 15, "1 gallon = 4 quarts = 8 pints = 16 cups", "gk-t" + (hi.gal ? " hi" : ""), "start");
+      out += svgT(g.x + 10, 15, tx("unit-conversions.svg.gallon"), "gk-t" + (hi.gal ? " hi" : ""), "start");
       for (var q = 0; q < 4; q++) {
         var qx = g.x + 8 + (q % 2) * 216,
           qy = g.y + 10 + Math.floor(q / 2) * 96,
           qw = 208,
           qh = 88;
         out += rect(qx, qy, qw, qh, "gk-q", 7) + rect(qx, qy, qw, qh, "gk-box" + (hi.qt && q === 0 ? " gk-hi" : ""), 7);
-        out += svgT(qx + 8, qy + 14, "Q", "gk-t" + (hi.qt && q === 0 ? " hi" : ""), "start");
+        out += svgT(qx + 8, qy + 14, tx("unit-conversions.svg.Q"), "gk-t" + (hi.qt && q === 0 ? " hi" : ""), "start");
         for (var p = 0; p < 2; p++) {
           var px = qx + 22 + p * 92,
             py = qy + 6,
             pw = 86,
             ph = 76;
           out += rect(px, py, pw, ph, "gk-p", 6) + rect(px, py, pw, ph, "gk-box" + (hi.pt && q === 0 && p === 0 ? " gk-hi" : ""), 6);
-          out += svgT(px + 7, py + 13, "P", "gk-t" + (hi.pt && q === 0 && p === 0 ? " hi" : ""), "start");
+          out += svgT(px + 7, py + 13, tx("unit-conversions.svg.P"), "gk-t" + (hi.pt && q === 0 && p === 0 ? " hi" : ""), "start");
           for (var c = 0; c < 2; c++) {
             var cx = px + 20 + c * 32,
               cy = py + 18,
@@ -3991,11 +4056,11 @@
               ch = 52,
               onC = hi.cup && q === 0 && p === 0 && c === 0;
             out += rect(cx, cy, cw, ch, "gk-c", 5) + rect(cx, cy, cw, ch, "gk-box" + (onC ? " gk-hi" : ""), 5);
-            out += svgT(cx + cw / 2, cy + 31, "C", "gk-t" + (onC ? " hi" : ""));
+            out += svgT(cx + cw / 2, cy + 31, tx("unit-conversions.svg.C"), "gk-t" + (onC ? " hi" : ""));
           }
         }
       }
-      return svgWrap(W, H, "The gallon kingdom: 1 gallon holds 4 quarts, each quart 2 pints, each pint 2 cups — 16 cups in all", out);
+      return svgWrap(W, H, tx("unit-conversions.svg.gallonLabel"), out);
     }
     // a thermometer with °F on the left and °C (or K) on the right
     function thermoSVG(fv, cv, showK) {
@@ -4022,9 +4087,9 @@
       }
       out += svgT(x - 26, H - 8, "°F", "th-name", "end") + svgT(x + 26, H - 8, showK ? "K" : "°C", "th-name", "start");
       [
-        [32, "water freezes"],
-        [98.6, "body"],
-        [212, "water boils"]
+        [32, tx("unit-conversions.svg.freezes")],
+        [98.6, tx("unit-conversions.svg.body")],
+        [212, tx("unit-conversions.svg.boils")]
       ].forEach(function(m) {
         if (m[0] < lo || m[0] > hi || Math.abs(Y(m[0]) - Y(f)) < 12) return;
         out += line(x + 62, Y(m[0]), x + 80, Y(m[0]), "th-mark") + svgT(x + 84, Y(m[0]) + 3.5, m[1], "th-ml", "start");
@@ -4033,7 +4098,7 @@
       out += line(x - 92, yv, x + 92, yv, "th-line");
       out += svgT(x - 96, yv + 4, shortT(fv) + "°F", "th-hi", "end");
       out += svgT(x + 96, yv + 4, showK ? shortT(add(cv, parseDecStr("273.15"))) + " K" : shortT(cv) + "°C", "th-hi", "start");
-      return svgWrap(W + 50, H, "Thermometer: " + shortT(fv) + " °F lines up with " + shortT(cv) + " °C", out);
+      return svgWrap(W + 50, H, tx("unit-conversions.svg.thermo", { f: shortT(fv), c: shortT(cv) }), out);
     }
     // a square (or a cube, as layers) cut into k × k small squares
     function gridSVG(k, p, bigAb, smallAb) {
@@ -4050,8 +4115,8 @@
         out += rect(x0, y0, side, side, "ag-big");
         out += svgT(x0 + side / 2, y0 + side + 18, "1 " + bigAb + " = " + k + " " + smallAb, "ag-k");
         out += svgT(x0 - 8, y0 + side / 2 + 4, k + " " + smallAb, "ag-t", "end");
-        out += svgT(x0 + side / 2, y0 + side + 36, k + " rows of " + k + " = " + (k * k) + " small squares", "ag-t");
-        return svgWrap(W + 40, H, "1 square " + bigAb + " is " + k + " by " + k + " " + smallAb + ": " + (k * k) + " square " + smallAb, out);
+        out += svgT(x0 + side / 2, y0 + side + 36, tx("unit-conversions.svg.rowsOf", { k: k, kk: k * k }), "ag-t");
+        return svgWrap(W + 40, H, tx("unit-conversions.svg.sqLabel", { a: bigAb, k: k, b: smallAb, kk: k * k }), out);
       }
       var cs = Math.min(26, 120 / k),
         lw = k * cs,
@@ -4062,10 +4127,10 @@
         var lx = 10 + L * (lw + gapL);
         for (var r2 = 0; r2 < k; r2++)
           for (var c2 = 0; c2 < k; c2++) out += rect(lx + c2 * cs, 8 + r2 * cs, cs, cs, "ag-sq");
-        out += rect(lx, 8, lw, lw, "ag-big") + svgT(lx + lw / 2, lw + 24, "layer " + (L + 1), "ag-t");
+        out += rect(lx, 8, lw, lw, "ag-big") + svgT(lx + lw / 2, lw + 24, tx("unit-conversions.svg.layer", { n: L + 1 }), "ag-t");
       }
-      out += svgT(W2 / 2, lw + 44, k + " layers of " + k + " × " + k + " = " + (k * k * k) + " small cubes", "ag-k");
-      return svgWrap(W2, H2, "1 cubic " + bigAb + " is " + k + " layers of " + k + " by " + k + ": " + (k * k * k) + " cubic " + smallAb, out);
+      out += svgT(W2 / 2, lw + 44, tx("unit-conversions.svg.layersOf", { k: k, kkk: k * k * k }), "ag-k");
+      return svgWrap(W2, H2, tx("unit-conversions.svg.cuLabel", { a: bigAb, k: k, b: smallAb, kkk: k * k * k }), out);
     }
 
     /* ===================== unit fractions and chains ===================== */
@@ -4117,20 +4182,20 @@
         var b = e.base,
           kb = numT(b.k),
           prod = e.p === 2 ? kb + " × " + kb : kb + " × " + kb + " × " + kb;
-        return { h: factH(b) + ", so " + factH(e) + ' <span class="nm">(' + esc(prod) + " = " + numH(e.k) + ")</span>", t: factT(b) + ", so " + factT(e) + " (" + prod + " = " + numT(e.k) + ")" };
+        return { h: factH(b) + tx("unit-conversions.f.so") + factH(e) + ' <span class="nm">(' + esc(prod) + " = " + numH(e.k) + ")</span>", t: factT(b) + tx("unit-conversions.f.so") + factT(e) + " (" + prod + " = " + numT(e.k) + ")" };
       }
       var br = e.tag === "bridge" ? bridgeOf(e) : null;
-      var note = br ? "exactly" + (br[2] !== br[3] ? ", about " + br[3] : "") : e.tag === "vol3" && e.b === "gal" ? "exactly" : "";
+      var note = br ? tx("unit-conversions.f.exactly") + (br[2] !== br[3] ? tx("unit-conversions.f.about", { x: br[3] }) : "") : e.tag === "vol3" && e.b === "gal" ? tx("unit-conversions.f.exactly") : "";
       return { h: factH(e) + (note ? ' <span class="nm">(' + note + ")</span>" : ""), t: factT(e) + (note ? " (" + note + ")" : "") };
     }
 
     function bridgeAside(steps) {
       var br = steps.filter(function(s) { return s.st.e.tag === "bridge"; });
       if (!br.length) return "";
-      return "Customary and metric meet at exact facts: since 1959 an inch is defined as exactly 2.54 cm and a pound as exactly 0.45359237 kg, and a US gallon is exactly 231 cubic inches (3.785411784 L). So the facts are exact — only the final answer gets rounded.";
+      return tx("unit-conversions.f.bridgeAside");
     }
 
-    function multWord(m) { return isInt(m) ? "multiply by " + numT(m) : "divide by " + numT(dvd(ONE, m)); }
+    function multWord(m) { return isInt(m) ? tx("unit-conversions.f.multBy", { x: numT(m) }) : tx("unit-conversions.f.divBy", { x: numT(dvd(ONE, m)) }); }
 
     /* ===================== the answer band ===================== */
     function shownOf(v, dp) { // { v: what's shown, approx: it was rounded }
@@ -4160,7 +4225,7 @@
     function fracNote(v, cu) {
       if (isInt(v) || !isTermD(v.d) || v.d > 16n || !simple(cu) || U[cu.n[0].u].sys === "metric" || cu.temp) return null;
       var m = mixP(v);
-      return "As a fraction: " + B((m.ng ? "−" : "") + (m.w ? bs(m.w) : "") + frH(bs(m.r), bs(m.d)) + "&nbsp;" + cuAbH(cu));
+      return tx("unit-conversions.f.asFraction", { x: B((m.ng ? "−" : "") + (m.w ? bs(m.w) : "") + frH(bs(m.r), bs(m.d)) + "&nbsp;" + cuAbH(cu)) });
     }
 
     function bandCells(cells, facts) {
@@ -4178,13 +4243,13 @@
       if (dp === null || dp === undefined) return;
       var r = roundK(v, dp);
       if (eqR(r, v)) return;
-      var name = ["the nearest whole number", "the nearest tenth", "the nearest hundredth", "the nearest thousandth", "4 decimal places"][dp];
+      var name = DPNAME[dp];
       var digits = decOf(v, dp + 3),
         nextD = (function() { var t = decStr(babs(v.n), v.d, dp + 2).replace(/,/g, "").replace("…", ""); var f = (t.split(".")[1] || "") + "0000"; return f.charAt(dp); })();
-      W.add("<b>Round</b> to " + name + ": look at the next digit (" + B(nextD) + "). " + (Number(nextD) >= 5 ? "5 or more rounds up." : "Less than 5 rounds down."),
+      W.add(tx(Number(nextD) >= 5 ? "unit-conversions.r.capUp" : "unit-conversions.r.capDown", { name: name, d: B(nextD) }),
         eqL(esc(digits) + " " + esc(cuAbT(cu)) + " ≈ " + '<span class="res">' + qFixH(r, cu, dp) + "</span>"),
         [
-          ["r", "round", "Round " + B(digits) + " to " + name + ": " + B(qFixT(r, cu, dp)) + "."]
+          ["r", tx("unit-conversions.tag.round"), tx("unit-conversions.r.say", { d: B(digits), name: name, x: B(qFixT(r, cu, dp)) })]
         ]);
     }
 
@@ -4192,10 +4257,10 @@
     function readStep(W, P, extra) {
       var src = P.src,
         tg = P.tgt;
-      W.add("<b>What we have, and what we want.</b> " + (extra || ""),
+      W.add(tx("unit-conversions.c.haveWant") + (extra || ""),
         eqL(measH(src) + opS("=") + QM + "&nbsp;" + tg.map(cuAbH).join(" " + QM + "&nbsp;")),
         [
-          ["p", "read", "We have " + B(measT(src)) + " and want it in " + B(tgtW(tg)) + "."]
+          ["p", tx("unit-conversions.tag.read"), tx("unit-conversions.c.weHave", { a: B(measT(src)), b: B(tgtW(tg)) })]
         ]);
     }
 
@@ -4220,10 +4285,12 @@
     }
 
     function checkLine(P, v, cuFrom, res, cuTo) {
-      var bigFrom = bigger(cuFrom, cuTo);
-      return bigFrom ? "A " + esc(oneW(cuTo)) + " is smaller than a " + esc(oneW(cuFrom)) + ", so it takes <b>more</b> of them: " + B(numT(res)) + " is more than " + B(numT(v)) + OKM :
-        "A " + esc(oneW(cuTo)) + " is bigger than a " + esc(oneW(cuFrom)) + ", so it takes <b>fewer</b> of them: " + B(numT(res)) + " is less than " + B(numT(v)) + OKM;
+      var bigFrom = bigger(cuFrom, cuTo),
+        o = { to: esc(oneW(cuTo)), from: esc(oneW(cuFrom)), To: esc(cap(theW(cuTo))), theFrom: esc(theW(cuFrom)), r: B(numT(res)), v: B(numT(v)) };
+      return tx(bigFrom ? "unit-conversions.c.smaller" : "unit-conversions.c.bigger", o) + OKM;
     }
+    // an atom's name with "a" / "an" (English) or "un" / "una"
+    function aAtom(a) { return UWD ? (U[a.u].fem ? UWD._una : UWD._un) + " " + atomW(a, false) : art(atomW(a, false)); }
 
     function drawOneFact(P, s) {
       var W = new Work(),
@@ -4240,12 +4307,12 @@
         bigCu = big ? a.cu : tg,
         smallCu = big ? tg : a.cu;
       var pic = kingdomFor(a.cu, tg);
-      W.add("<b>The fact that links them.</b> " + cap(art(oneW(bigCu))) + " is the bigger unit: 1 " + esc(oneW(bigCu)) + " is " + B(numT(k)) + " " + esc(manyW(smallCu)) + ".",
+      W.add(tx("unit-conversions.c.factLead", { A: cap(aW(bigCu)), The: cap(theW(bigCu)), big: esc(oneW(bigCu)), k: B(numT(k)), smalls: esc(manyW(smallCu)) }),
         eqL(factInfo(e).h) + pic,
         [
-          ["e", "fact", "The fact to know: " + B(factT(e)) + "."]
+          ["e", tx("unit-conversions.tag.fact"), tx("unit-conversions.c.factToKnow", { f: B(factT(e)) })]
         ],
-        U[a.cu.n[0].u].kind === "time" && (a.cu.n[0].u === "h" || tg.n[0].u === "h") && (a.cu.n[0].u === "min" || tg.n[0].u === "min") ? "Time doesn’t go in tens: an hour is <b>60</b> minutes, not 100. That’s why 2 h 30 min is 2.5 h, not 2.30 h." : "");
+        U[a.cu.n[0].u].kind === "time" && (a.cu.n[0].u === "h" || tg.n[0].u === "h") && (a.cu.n[0].u === "min" || tg.n[0].u === "min") ? tx("unit-conversions.c.timeAside") : "");
       var tape = factTape(big ? v : res, k, bigCu, smallCu, big);
       if (big) {
         var rt = xs(ratioTableSVG({
@@ -4253,41 +4320,41 @@
           cols: [{ v: ["1", numT(k)], cls: ["rt-one", "rt-one"] }, { v: [shortT(v), shortT(res)], cls: ["rt-cell", "rt-hl"] }],
           arcs: [{ a: 0, b: 1, lab: "× " + shortT(v), side: "top" }, { a: 0, b: 1, lab: "× " + shortT(v), side: "bot" }]
         }));
-        W.add("<b>Multiply or divide?</b> We’re going from a big unit to a small one. Each " + esc(fromW) + " holds " + B(numT(k)) + " " + esc(manyW(tg)) + ", so there will be <b>more</b> of them: <b>multiply</b> by " + B(numT(k)) + ".",
+        W.add(tx("unit-conversions.c.mulCap", { from: esc(fromW), k: B(numT(k)), tos: esc(manyW(tg)) }),
           rt + (tape ? xs(tape) : ""),
           [
-            ["m", "× " + numT(k), "Big unit to small unit means more of them, so multiply: every " + fromW + " is " + numT(k) + " " + manyW(tg) + "."]
+            ["m", "× " + numT(k), tx("unit-conversions.c.mulSay", { from: fromW, k: numT(k), tos: manyW(tg) })]
           ],
-          "The ratio table says the same thing: 1 " + esc(fromW) + " goes with " + esc(numT(k)) + " " + esc(manyW(tg)) + ", so " + esc(numT(v)) + " of them go with " + esc(numT(v)) + " times as many.");
-        W.add("<b>Work it out</b> — and the units: " + esc(manyW(a.cu)) + " cancel, leaving " + esc(manyW(tg)) + ".",
+          tx("unit-conversions.c.mulAside", { from: esc(fromW), k: esc(numT(k)), tos: esc(manyW(tg)), v: esc(numT(v)) }));
+        W.add(tx("unit-conversions.c.workOut", { froms: esc(manyW(a.cu)), tos: esc(manyW(tg)), theFroms: esc(cap(thePl(a.cu))) }),
           eqL(numH(v) + opS("×") + numH(k) + opS("=") + '<span class="res">' + numH(res) + "</span>") + eqL(chainH(v, a.cu, [s], tg)),
           [
-            ["m", "multiply", B(numT(v) + " × " + numT(k) + " = " + numT(res)) + ", so " + B(qT(v, a.cu) + " = " + qT(res, tg)) + "."]
+            ["m", tx("unit-conversions.tag.multiply"), tx("unit-conversions.c.soEq", { x: B(numT(v) + " × " + numT(k) + " = " + numT(res)), eq: B(qT(v, a.cu) + " = " + qT(res, tg)) })]
           ]);
       } else {
-        W.add("<b>Multiply or divide?</b> We’re going from a small unit to a big one. It takes " + B(numT(k)) + " " + esc(manyW(a.cu)) + " to make 1 " + esc(toW) + ", so there will be <b>fewer</b> " + esc(manyW(tg)) + ": <b>divide</b> by " + B(numT(k)) + ".",
+        W.add(tx("unit-conversions.c.divCap", { k: B(numT(k)), froms: esc(manyW(a.cu)), to: esc(toW), tos: esc(manyW(tg)) }),
           tape ? xs(tape) : "",
           [
-            ["v", "÷ " + numT(k), "Small unit to big unit means fewer of them, so divide: every " + numT(k) + " " + manyW(a.cu) + " make 1 " + toW + "."]
+            ["v", "÷ " + numT(k), tx("unit-conversions.c.divSay", { k: numT(k), froms: manyW(a.cu), to: toW })]
           ]);
         var q = floorR(res),
           rem = sub(v, mul(R(q), k)),
-          remT = !isInt(res) && isInt(v) && isInt(k) ? " — that’s " + B(bs(q) + " R " + numT(rem)) + ": " + bs(q) + " whole " + esc(manyW(tg)) + " and " + esc(numT(rem)) + " " + esc(manyW(a.cu)) + " over, and " + esc(numT(rem)) + "/" + esc(numT(k)) + " of " + art(esc(toW)) : "";
-        W.add("<b>Work it out</b> — and the units: " + esc(manyW(a.cu)) + " cancel, leaving " + esc(manyW(tg)) + "." + remT,
+          remT = !isInt(res) && isInt(v) && isInt(k) ? tx("unit-conversions.c.remT", { qr: B(bs(q) + " R " + numT(rem)), q: bs(q), tos: esc(manyW(tg)), rem: esc(numT(rem)), froms: esc(manyW(a.cu)), k: esc(numT(k)), aTo: UWD ? esc(aW(tg)) : art(esc(toW)) }) : "";
+        W.add(tx("unit-conversions.c.workOut", { froms: esc(manyW(a.cu)), tos: esc(manyW(tg)), theFroms: esc(cap(thePl(a.cu))) }) + remT,
           eqL(numH(v) + opS("÷") + numH(k) + opS("=") + '<span class="res">' + numH(res) + "</span>" + (!isTermD(res.d) ? ' <span class="nm">≈ ' + esc(apx(res, 2)) + "</span>" : "")) + eqL(chainH(v, a.cu, [s], tg)),
           [
-            ["v", "divide", B(numT(v) + " ÷ " + numT(k) + " = " + numAp(res)) + ", so " + B(qT(v, a.cu) + " = " + qT(res, tg)) + "."]
+            ["v", tx("unit-conversions.tag.divide"), tx("unit-conversions.c.soEq", { x: B(numT(v) + " ÷ " + numT(k) + " = " + numAp(res)), eq: B(qT(v, a.cu) + " = " + qT(res, tg)) })]
           ],
-          !isInt(res) && isInt(v) && U[tg.n[0].u].sys !== "metric" ? "Want it as a whole number of " + esc(manyW(tg)) + " and some " + esc(manyW(a.cu)) + "? Ask for both: <b>" + esc(qBox(v, a.cu) + " to " + cuBox(tg) + " and " + cuBox(a.cu)) + "</b>." : "");
+          !isInt(res) && isInt(v) && U[tg.n[0].u].sys !== "metric" ? tx("unit-conversions.c.askBoth", { tos: esc(manyW(tg)), froms: esc(manyW(a.cu)), x: esc(qBox(v, a.cu) + BX.to + cuBox(tg) + BX.and + cuBox(a.cu)) }) : "");
       }
       roundStep(W, res, tg, P.dp);
-      W.add("<b>Check</b> that it makes sense.", whyH(checkLine(P, v, a.cu, res, tg) + "<br>And back the other way: " + B(numT(res) + (big ? " ÷ " : " × ") + numT(k) + " = " + numT(v)) + OKM),
+      W.add(tx("unit-conversions.c.checkCap"), whyH(checkLine(P, v, a.cu, res, tg) + tx("unit-conversions.c.backOther", { x: B(numT(res) + (big ? " ÷ " : " × ") + numT(k) + " = " + numT(v)) }) + OKM),
         [
-          ["a", "check", (big ? "Smaller unit, bigger number" : "Bigger unit, smaller number") + " — it makes sense. Back again: " + B(numT(res) + (big ? " ÷ " : " × ") + numT(k) + " = " + numT(v)) + "."]
+          ["a", tx("unit-conversions.tag.check"), tx("unit-conversions.c.makesSense", { s: tx(big ? "unit-conversions.c.sense1" : "unit-conversions.c.sense2"), x: B(numT(res) + (big ? " ÷ " : " × ") + numT(k) + " = " + numT(v)) })]
         ]);
       var ans = ansQ(res, tg, P.dp);
-      bandCells([{ k: "In " + manyW(tg), v: ans.h, s: ans.s }], [B(factH(e)), (big ? "Big to small: multiply by " : "Small to big: divide by ") + B(numT(k)), fracNote(res, tg)].filter(Boolean));
-      return finish(W, '<div class="ck">So <b>' + esc(qT(v, a.cu)) + " = " + esc(ans.t) + "</b>.</div>");
+      bandCells([{ k: tx("unit-conversions.c.inU", { u: manyW(tg) }), v: ans.h, s: ans.s }], [B(factH(e)), tx(big ? "unit-conversions.c.bigSmall" : "unit-conversions.c.smallBig", { k: B(numT(k)) }), fracNote(res, tg)].filter(Boolean));
+      return finish(W, '<div class="ck">' + tx("unit-conversions.c.so", { x: esc(qT(v, a.cu)) + " = " + esc(ans.t) }) + "</div>");
     }
 
     function drawChain(P, steps) {
@@ -4299,7 +4366,7 @@
       var nS = steps.filter(function(s) { return !s.den; }),
         dS = steps.filter(function(s) { return s.den; });
       var rateConv = !!(a.cu.d.length);
-      readStep(W, P, rateConv ? "A rate has a unit on top and a unit underneath; change each one with its own fact." : "");
+      readStep(W, P, rateConv ? tx("unit-conversions.c.rateExtra") : "");
       var facts = steps.map(function(s) { return factInfo(s.st.e); });
       var sq = steps.filter(function(s) { return s.st.e.tag === "sq" || s.st.e.tag === "cube"; });
       var pic = "";
@@ -4313,14 +4380,14 @@
         }
       }
       if (!pic) pic = kingdomFor(a.cu, tg);
-      var lead = steps.length === 1 ? "<b>The fact that links them.</b>" : "<b>The facts that link them.</b> " + (rateConv ? "One for the top unit" + (nS.length ? "" : " (it stays the same)") + ", one for the bottom." : "No single everyday fact goes straight from " + esc(manyW(a.cu)) + " to " + esc(manyW(tg)) + ", so go through " + andList(steps.slice(0, -1).map(function(s) { return esc(manyW(cuOf(atomOfKey(s.st.to).u, atomOfKey(s.st.to).p))); })) + ".");
-      var sqNote = sq.length ? " " + (sq[0].st.e.p === 2 ? "An area unit is a square: 1 " + esc(atomW(atomOfKey(sq[0].st.e.b), false)) + " is " + numT(sq[0].st.e.base.k) + " by " + numT(sq[0].st.e.base.k) + " of the small unit, so <b>square the factor</b> — it isn’t just " + numT(sq[0].st.e.base.k) + "." :
-        "A volume unit is a cube: " + numT(sq[0].st.e.base.k) + " long, " + numT(sq[0].st.e.base.k) + " wide and " + numT(sq[0].st.e.base.k) + " high, so <b>cube the factor</b>.") : "";
+      var lead = steps.length === 1 ? tx("unit-conversions.c.leadOne") : tx("unit-conversions.c.leadMany") + (rateConv ? tx(nS.length ? "unit-conversions.c.topBottom" : "unit-conversions.c.topSame") : tx("unit-conversions.c.through", { a: esc(manyW(a.cu)), b: esc(manyW(tg)), list: andList(steps.slice(0, -1).map(function(s) { return esc(manyW(cuOf(atomOfKey(s.st.to).u, atomOfKey(s.st.to).p))); })) }));
+      var sqNote = sq.length ? (sq[0].st.e.p === 2 ? tx("unit-conversions.c.sqNote", { u: esc(atomW(atomOfKey(sq[0].st.e.b), false)), k: numT(sq[0].st.e.base.k) }) :
+        tx("unit-conversions.c.cuNote", { k: numT(sq[0].st.e.base.k) })) : "";
       W.add(lead + sqNote, facts.map(function(f) { return eqL(f.h); }).join("") + pic,
         [
-          ["e", steps.length === 1 ? "fact" : "facts", "The fact" + (steps.length === 1 ? "" : "s") + ": " + facts.map(function(f) { return B(f.t); }).join("; ") + "."]
+          ["e", tx(steps.length === 1 ? "unit-conversions.tag.fact" : "unit-conversions.tag.facts"), tx(steps.length === 1 ? "unit-conversions.c.theFact" : "unit-conversions.c.theFacts", { list: facts.map(function(f) { return B(f.t); }).join("; ") })]
         ],
-        bridgeAside(steps) || (sq.length ? "The trap: 1 " + esc(atomW(atomOfKey(sq[0].st.e.b), false)) + " is <b>not</b> " + esc(numT(sq[0].st.e.base.k)) + " " + esc(atomW(atomOfKey(sq[0].st.e.a), true)) + " — it is " + esc(numT(sq[0].st.e.k)) + "." : ""));
+        bridgeAside(steps) || (sq.length ? tx("unit-conversions.c.trap", { u: esc(atomW(atomOfKey(sq[0].st.e.b), false)), k: esc(numT(sq[0].st.e.base.k)), us: esc(atomW(atomOfKey(sq[0].st.e.a), true)), kk: esc(numT(sq[0].st.e.k)) }) : ""));
       // one link at a time
       if (steps.length > 1) {
         var cur = v,
@@ -4331,8 +4398,8 @@
             X = atomOfKey(s.st.from),
             Y = atomOfKey(s.st.to);
           var nextCu = s.den ? { n: curCu.n, d: [Y] } : { n: [Y], d: curCu.d };
-          var why = s.den ? "Per " + esc(atomW(X, false)) + " → per " + esc(atomW(Y, false)) + ": " + (isInt(m) ? "a " + esc(atomW(X, false)) + " is only 1/" + numT(m) + " of " + art(esc(atomW(Y, false))) + ", so " + esc(atomW(Y, false)) + " gets " + numT(m) + " times as much — <b>multiply</b>." : "each " + esc(atomW(X, false)) + " is " + numT(dvd(ONE, m)) + " " + esc(atomW(Y, true)) + ", so there’s less in each " + esc(atomW(Y, false)) + " — <b>divide</b>.") :
-            esc(cap(atomW(X, true))) + " → " + esc(atomW(Y, true)) + ": " + (isInt(m) ? "bigger to smaller — <b>multiply</b> by " + numT(m) + "." : "smaller to bigger — <b>divide</b> by " + numT(dvd(ONE, m)) + ".");
+          var why = s.den ? tx(isInt(m) ? "unit-conversions.c.perMul" : "unit-conversions.c.perDiv", { x: esc(atomW(X, false)), y: esc(atomW(Y, false)), ys: esc(atomW(Y, true)), aX: esc(aAtom(X)), aY: UWD ? esc(aAtom(Y)) : art(esc(atomW(Y, false))), m: isInt(m) ? numT(m) : numT(dvd(ONE, m)) }) :
+            tx(isInt(m) ? "unit-conversions.c.unitMul" : "unit-conversions.c.unitDiv", { Xs: esc(cap(atomW(X, true))), ys: esc(atomW(Y, true)), m: isInt(m) ? numT(m) : numT(dvd(ONE, m)) });
           W.add(why, eqL(chainH(cur, curCu, [s], nextCu)),
             [
               [isInt(m) ? "m" : "v", isInt(m) ? "× " + numT(m) : "÷ " + numT(dvd(ONE, m)), B(qT(cur, curCu) + " = " + qT(nxt, nextCu)) + "."]
@@ -4342,22 +4409,22 @@
         });
       }
       var ops = arithT(v, steps);
-      W.add(steps.length > 1 ? "<b>All at once</b> with unit fractions: each fraction equals 1 (top and bottom are the same amount), so multiplying by it changes the units, not the amount. Units on the top and the bottom cancel." :
-        "<b>Use the fact as a unit fraction</b>: top and bottom are the same amount, so it equals 1 — multiplying by it changes the units, not the amount. The " + esc(manyW(a.cu)) + " cancel.",
+      W.add(steps.length > 1 ? tx("unit-conversions.c.allAtOnce") :
+        tx("unit-conversions.c.useFact", { froms: esc(manyW(a.cu)), theFroms: esc(thePl(a.cu)) }),
         eqL(chainH(v, a.cu, steps, tg)) + eqL(esc(ops) + opS("=") + '<span class="res">' + numH(res) + "</span>" + (!isTermD(res.d) ? ' <span class="nm">≈ ' + esc(apx(res, Math.max(2, P.dp || 0))) + "</span>" : "")),
         [
-          ["u", "cancel", "Line up the unit fractions so the units cancel: " + B(ops + " = " + numAp(res)) + " " + manyW(tg) + "."]
+          ["u", tx("unit-conversions.tag.cancel"), tx("unit-conversions.c.lineUp", { x: B(ops + " = " + numAp(res)), tos: manyW(tg) })]
         ]);
       roundStep(W, res, tg, P.dp);
       var back = steps.slice().reverse(),
         est = estimateLine(P, steps);
-      W.add("<b>Check</b> that it makes sense.", whyH((simple(a.cu) && simple(tg) ? checkLine(P, v, a.cu, res, tg) : "Work it backwards: " + B(numT(roundK(res, 6)) + " " + cuAbT(tg)) + " changes back to " + (eqR(roundK(res, 6), res) ? "" : "about ") + B(qT(roundK(chainVal(res, back.map(function(s) { return { st: { from: s.st.to, to: s.st.from, e: s.st.e, dir: -s.st.dir }, den: s.den }; })), 4), a.cu)) + OKM) + (est ? "<br>" + est : "")),
+      W.add(tx("unit-conversions.c.checkCap"), whyH((simple(a.cu) && simple(tg) ? checkLine(P, v, a.cu, res, tg) : tx("unit-conversions.c.backwards", { a: B(numT(roundK(res, 6)) + " " + cuAbT(tg)), about: eqR(roundK(res, 6), res) ? "" : tx("unit-conversions.c.aboutW"), b: B(qT(roundK(chainVal(res, back.map(function(s) { return { st: { from: s.st.to, to: s.st.from, e: s.st.e, dir: -s.st.dir }, den: s.den }; })), 4), a.cu)) }) + OKM) + (est ? "<br>" + est : "")),
         [
-          ["a", "check", (simple(a.cu) && simple(tg) ? (bigger(a.cu, tg) ? "Smaller unit, bigger number" : "Bigger unit, smaller number") + " — it makes sense." : "Backwards it comes out to " + qT(a.v, a.cu) + " again.") + (est ? " " + stripTags(est) : "")]
+          ["a", tx("unit-conversions.tag.check"), (simple(a.cu) && simple(tg) ? tx("unit-conversions.c.itMakes", { s: tx(bigger(a.cu, tg) ? "unit-conversions.c.sense1" : "unit-conversions.c.sense2") }) : tx("unit-conversions.c.backAgain", { x: qT(a.v, a.cu) })) + (est ? " " + stripTags(est) : "")]
         ]);
       var ans = ansQ(res, tg, P.dp);
-      bandCells([{ k: "In " + manyW(tg), v: ans.h, s: ans.s }], facts.map(function(f) { return B(f.h); }).concat(ans.t.indexOf("≈") === 0 && P.dp !== null ? ["Exactly " + B(esc(decOf(res, 6))) + " " + esc(cuAbT(tg))] : [], [fracNote(res, tg)].filter(Boolean)));
-      return finish(W, '<div class="ck">So <b>' + esc(qT(v, a.cu)) + " = " + esc(ans.t) + "</b>.</div>");
+      bandCells([{ k: tx("unit-conversions.c.inU", { u: manyW(tg) }), v: ans.h, s: ans.s }], facts.map(function(f) { return B(f.h); }).concat(ans.t.indexOf("≈") === 0 && P.dp !== null ? [tx("unit-conversions.c.exactly", { x: B(esc(decOf(res, 6))), u: esc(cuAbT(tg)) })] : [], [fracNote(res, tg)].filter(Boolean)));
+      return finish(W, '<div class="ck">' + tx("unit-conversions.c.so", { x: esc(qT(v, a.cu)) + " = " + esc(ans.t) }) + "</div>");
     }
 
     function estimateLine(P, steps) {
@@ -4365,21 +4432,21 @@
       if (!br.length || steps.length !== 1) return "";
       var b = bridgeOf(br[0].st.e),
         ROUGH = {
-          "in": ["2.5", "about 2½ cm to an inch"],
-          ft: ["0.3", "about 30 cm to a foot"],
-          yd: ["0.9", "a yard is a bit less than a meter"],
-          mi: ["1.6", "about 1.6 km to a mile"],
-          lb: ["0.45", "about 0.45 kg to a pound (a kilogram is about 2.2 lb)"],
-          oz: ["28", "about 28 g to an ounce"],
-          gal: ["3.8", "about 3.8 L to a gallon"],
-          qt: ["0.95", "a quart is a bit less than a liter"],
-          floz: ["30", "about 30 mL to a fluid ounce"]
+          "in": ["2.5", tx("unit-conversions.rough.in")],
+          ft: ["0.3", tx("unit-conversions.rough.ft")],
+          yd: ["0.9", tx("unit-conversions.rough.yd")],
+          mi: ["1.6", tx("unit-conversions.rough.mi")],
+          lb: ["0.45", tx("unit-conversions.rough.lb")],
+          oz: ["28", tx("unit-conversions.rough.oz")],
+          gal: ["3.8", tx("unit-conversions.rough.gal")],
+          qt: ["0.95", tx("unit-conversions.rough.qt")],
+          floz: ["30", tx("unit-conversions.rough.floz")]
         };
       var r = ROUGH[b[1]];
       if (!r) return "";
       var k = parseDecStr(r[0]),
         est = br[0].st.dir === 1 ? mul(P.src[0].v, k) : dvd(P.src[0].v, k);
-      return "Estimate: " + r[1] + ", so about " + B(esc(apx(est, 1)) + " " + esc(cuAbT(P.tgt[0]))) + " — close to " + B(esc(apx(P.res, 2))) + OKM;
+      return tx("unit-conversions.c.estimate", { r: r[1], e: B(esc(apx(est, 1)) + " " + esc(cuAbT(P.tgt[0]))), x: B(esc(apx(P.res, 2))) }) + OKM;
     }
     // the metric staircase
     function drawMetric(P) {
@@ -4396,34 +4463,34 @@
         base = MBASE[fu.kind][0];
       readStep(W, P);
       var steps = Math.abs(n);
-      W.add("<b>Find both on the metric staircase.</b> Every step is a power of ten. From " + esc(fu.ab) + " " + (down ? "down" : "up") + " to " + esc(tu.ab) + " is " + B(steps) + " step" + (steps === 1 ? "" : "s") + ".",
+      W.add(tx(down ? "unit-conversions.m.findDown" : "unit-conversions.m.findUp", { a: esc(fu.ab), b: esc(tu.ab), n: B(steps), k: steps }),
         xs(stairSVG(base, fu.rank, tu.rank)),
         [
-          ["e", steps + " step" + (steps === 1 ? "" : "s"), "On the staircase, " + B(fu.ab) + " to " + B(tu.ab) + " is " + B(steps) + " step" + (steps === 1 ? "" : "s") + " " + (down ? "down" : "up") + "."]
+          ["e", tx("unit-conversions.m.tagSteps", { k: steps }), tx(down ? "unit-conversions.m.onStairDown" : "unit-conversions.m.onStairUp", { a: B(fu.ab), b: B(tu.ab), n: B(steps), k: steps })]
         ],
-        "The prefixes always mean the same thing: kilo = 1,000, hecto = 100, deka = 10, deci = 1/10, centi = 1/100, milli = 1/1,000 — of a meter, a gram or a liter alike.");
+        tx("unit-conversions.m.prefixes"));
       var pw = steps === 1 ? "10" : "10" + (steps === 2 ? "²" : steps === 3 ? "³" : "<sup>" + steps + "</sup>");
-      W.add("<b>" + (down ? "Multiply" : "Divide") + "</b> by 10 for each step: " + (down ? "a smaller unit means more of them" : "a bigger unit means fewer of them") + ".",
+      W.add(tx(down ? "unit-conversions.m.mulCap" : "unit-conversions.m.divCap"),
         eqL(Array(steps + 1).join(down ? "× 10 " : "÷ 10 ").trim().replace(/ (?=[×÷])/g, " ") + opS("=") + (down ? "×" : "÷") + " " + numH(k) + opS("=") + (down ? "×" : "÷") + " " + pw) +
         eqL(factH(down ? { a: tu.key, b: fu.key, k: k } : { a: fu.key, b: tu.key, k: k })),
         [
-          [down ? "m" : "v", (down ? "× " : "÷ ") + numT(k), (down ? "Down " : "Up ") + steps + " step" + (steps === 1 ? "" : "s") + ": " + (down ? "multiply" : "divide") + " by " + B(numT(k)) + " (that’s " + stripTags(pw) + ")."]
+          [down ? "m" : "v", (down ? "× " : "÷ ") + numT(k), tx(down ? "unit-conversions.m.sayDown" : "unit-conversions.m.sayUp", { k: steps, x: B(numT(k)), p: stripTags(pw) })]
         ]);
       var pic = pointSVG(v, down ? steps : -steps);
-      W.add("<b>Move the decimal point</b> " + B(steps) + " place" + (steps === 1 ? "" : "s") + " to the " + (down ? "right" : "left") + " — that’s what " + (down ? "× " : "÷ ") + numT(k) + " does to every digit. " + (pic && (down ? decPlaces(v.d) < steps : true) ? "Fill empty places with zeros." : ""),
+      W.add(tx(down ? "unit-conversions.m.moveRight" : "unit-conversions.m.moveLeft", { n: B(steps), k: steps, op: (down ? "× " : "÷ ") + numT(k) }) + (pic && (down ? decPlaces(v.d) < steps : true) ? tx("unit-conversions.m.fillZeros") : ""),
         eqL(numH(v) + opS(down ? "×" : "÷") + numH(k) + opS("=") + '<span class="res">' + numH(res) + "</span>") + (pic ? xs(pic) : ""),
         [
-          ["u", "point", "Move the point " + steps + " place" + (steps === 1 ? "" : "s") + " " + (down ? "right" : "left") + ": " + B(numT(v)) + " becomes " + B(numT(res)) + "."]
+          ["u", tx("unit-conversions.tag.point"), tx(down ? "unit-conversions.m.pointRight" : "unit-conversions.m.pointLeft", { k: steps, a: B(numT(v)), b: B(numT(res)) })]
         ],
-        "Moving it the wrong way is the usual slip. Check the size: " + (down ? esc(tu.many) + " are smaller, so you need more of them — the number must get bigger." : esc(tu.many) + " are bigger, so you need fewer of them — the number must get smaller."));
+        tx(down ? "unit-conversions.m.slipDown" : "unit-conversions.m.slipUp", { us: esc(tu.many), Theus: esc(cap(thePl(tg))) }));
       roundStep(W, res, tg, P.dp);
-      W.add("<b>Check</b> that it makes sense.", whyH(checkLine(P, v, a.cu, res, tg)),
+      W.add(tx("unit-conversions.c.checkCap"), whyH(checkLine(P, v, a.cu, res, tg)),
         [
-          ["a", "check", (down ? "Smaller unit, bigger number" : "Bigger unit, smaller number") + ": " + B(qT(v, a.cu) + " = " + qT(res, tg)) + "."]
+          ["a", tx("unit-conversions.tag.check"), tx("unit-conversions.c.senseColon", { s: tx(down ? "unit-conversions.c.sense1" : "unit-conversions.c.sense2"), x: B(qT(v, a.cu) + " = " + qT(res, tg)) })]
         ]);
       var ans = ansQ(res, tg, P.dp);
-      bandCells([{ k: "In " + manyW(tg), v: ans.h, s: ans.s }], [B(steps + " step" + (steps === 1 ? "" : "s") + " " + (down ? "down" : "up")) + " the staircase: " + (down ? "× " : "÷ ") + B(numT(k)), "The point moves " + steps + " place" + (steps === 1 ? "" : "s") + " " + (down ? "right" : "left")]);
-      return finish(W, '<div class="ck">So <b>' + esc(qT(v, a.cu)) + " = " + esc(ans.t) + "</b>.</div>");
+      bandCells([{ k: tx("unit-conversions.c.inU", { u: manyW(tg) }), v: ans.h, s: ans.s }], [tx("unit-conversions.m.factSteps", { b: B(tx(down ? "unit-conversions.m.stepsDown" : "unit-conversions.m.stepsUp", { k: steps })), op: down ? "× " : "÷ ", x: B(numT(k)) }), tx(down ? "unit-conversions.m.movesRight" : "unit-conversions.m.movesLeft", { k: steps })]);
+      return finish(W, '<div class="ck">' + tx("unit-conversions.c.so", { x: esc(qT(v, a.cu)) + " = " + esc(ans.t) }) + "</div>");
     }
     // 5 ft 7 in → inches (or feet)
     function partSteps(W, parts, tg) {
@@ -4434,10 +4501,10 @@
           r = chainVal(p.v, steps);
         conv.push(r);
         var m = steps.length === 1 ? stepMult(steps[0]) : null;
-        W.add("Change " + B(qT(p.v, p.cu)) + " to " + esc(manyW(tg)) + ": " + steps.map(function(s) { return B(factT(s.st.e)); }).join(", then ") + ".",
+        W.add(tx("unit-conversions.p.change", { a: B(qT(p.v, p.cu)), tos: esc(manyW(tg)), facts: steps.map(function(s) { return B(factT(s.st.e)); }).join(tx("unit-conversions.p.then")) }),
           eqL(chainH(p.v, p.cu, steps, tg)) + (m ? eqL(numH(p.v) + opS(isInt(m) ? "×" : "÷") + numH(isInt(m) ? m : dvd(ONE, m)) + opS("=") + numH(r)) : ""),
           [
-            [m && !isInt(m) ? "v" : "m", m ? (isInt(m) ? "× " : "÷ ") + numT(isInt(m) ? m : dvd(ONE, m)) : "chain", B(qT(p.v, p.cu)) + " is " + B(arithT(p.v, steps) + " = " + numAp(r)) + " " + manyW(tg) + "."]
+            [m && !isInt(m) ? "v" : "m", m ? (isInt(m) ? "× " : "÷ ") + numT(isInt(m) ? m : dvd(ONE, m)) : tx("unit-conversions.tag.chain"), tx("unit-conversions.p.is", { a: B(qT(p.v, p.cu)), x: B(arithT(p.v, steps) + " = " + numAp(r)), tos: manyW(tg) })]
           ]);
       });
       return conv;
@@ -4447,22 +4514,22 @@
       var W = new Work(),
         tg = P.tgt[0],
         res = P.res;
-      readStep(W, P, "A mixed measure is a sum: " + B(measT(P.src)) + " means " + B(P.src.map(function(p) { return qT(p.v, p.cu); }).join(" + ")) + ".");
+      readStep(W, P, tx("unit-conversions.fm.sum", { a: B(measT(P.src)), b: B(P.src.map(function(p) { return qT(p.v, p.cu); }).join(" + ")) }));
       var conv = partSteps(W, P.src, tg);
-      W.add("<b>Add the parts</b> — now they’re all in " + esc(manyW(tg)) + ".",
+      W.add(tx("unit-conversions.fm.addCap", { tos: esc(manyW(tg)) }),
         eqL(conv.map(numH).join(opS("+")) + opS("=") + '<span class="res">' + qH(res, tg) + "</span>"),
         [
-          ["a", "add", B(conv.map(numT).join(" + ") + " = " + numAp(res)) + " " + manyW(tg) + "."]
+          ["a", tx("unit-conversions.tag.add"), tx("unit-conversions.fm.addSay", { x: B(conv.map(numT).join(" + ") + " = " + numAp(res)), tos: manyW(tg) })]
         ],
-        P.src.length === 2 && simple(tg) && sameCU(P.src[1].cu, tg) ? "Don’t just write the digits side by side: " + esc(measT(P.src)) + " is <b>not</b> " + esc(numT(P.src[0].v) + numT(P.src[1].v)) + " " + esc(cuAbT(tg)) + "." : "");
+        P.src.length === 2 && simple(tg) && sameCU(P.src[1].cu, tg) ? tx("unit-conversions.fm.sideBySide", { m: esc(measT(P.src)), d: esc(numT(P.src[0].v) + numT(P.src[1].v)), u: esc(cuAbT(tg)) }) : "");
       roundStep(W, res, tg, P.dp);
       var ans = ansQ(res, tg, P.dp);
-      W.add("<b>Check</b>: " + esc(manyW(tg)) + " " + (bigger(P.src[0].cu, tg) ? "are smaller than " + esc(manyW(P.src[0].cu)) + ", so the number grew" : "are bigger, so the number shrank") + ".", whyH("Every part is counted once, in " + esc(manyW(tg)) + ": " + B(esc(measT(P.src))) + " = " + B(esc(ans.t)) + OKM),
+      W.add(tx(bigger(P.src[0].cu, tg) ? "unit-conversions.fm.checkGrew" : "unit-conversions.fm.checkShrank", { tos: esc(manyW(tg)), froms: esc(manyW(P.src[0].cu)), Thetos: esc(cap(thePl(tg))), theFroms: esc(thePl(P.src[0].cu)) }), whyH(tx("unit-conversions.fm.once", { tos: esc(manyW(tg)), a: B(esc(measT(P.src))), b: B(esc(ans.t)) }) + OKM),
         [
-          ["a", "check", "So " + B(measT(P.src) + " = " + ans.t) + "."]
+          ["a", tx("unit-conversions.tag.check"), tx("unit-conversions.c.soSay", { x: B(measT(P.src) + " = " + ans.t) })]
         ]);
-      bandCells([{ k: "In " + manyW(tg), v: ans.h, s: ans.s }], [B(esc(measT(P.src))) + " = " + conv.map(function(c) { return B(esc(numT(c))); }).join(" + ") + " " + esc(cuAbT(tg)), fracNote(res, tg)].filter(Boolean));
-      return finish(W, '<div class="ck">So <b>' + esc(measT(P.src)) + " = " + esc(ans.t) + "</b>.</div>");
+      bandCells([{ k: tx("unit-conversions.c.inU", { u: manyW(tg) }), v: ans.h, s: ans.s }], [B(esc(measT(P.src))) + " = " + conv.map(function(c) { return B(esc(numT(c))); }).join(" + ") + " " + esc(cuAbT(tg)), fracNote(res, tg)].filter(Boolean));
+      return finish(W, '<div class="ck">' + tx("unit-conversions.c.so", { x: esc(measT(P.src)) + " = " + esc(ans.t) }) + "</div>");
     }
     // 67 in → ft and in;  200 min → h and min
     function drawToMixed(P) {
@@ -4470,12 +4537,12 @@
         tg = P.tgt,
         sm = tg[tg.length - 1],
         tot = P.resSmall;
-      readStep(W, P, "Split it into whole " + esc(manyW(tg[0])) + " and what’s left over.");
+      readStep(W, P, tx("unit-conversions.tm.split", { us: esc(manyW(tg[0])) }));
       var srcSm = P.src.length === 1 && sameCU(P.src[0].cu, sm);
       if (!srcSm) {
         var conv = partSteps(W, P.src, sm);
-        if (conv.length > 1) W.add("<b>Add the parts</b>, all in " + esc(manyW(sm)) + ".", eqL(conv.map(numH).join(opS("+")) + opS("=") + qH(tot, sm)), [
-          ["a", "add", B(conv.map(numT).join(" + ") + " = " + numT(tot)) + " " + manyW(sm) + "."]
+        if (conv.length > 1) W.add(tx("unit-conversions.tm.addCap", { us: esc(manyW(sm)) }), eqL(conv.map(numH).join(opS("+")) + opS("=") + qH(tot, sm)), [
+          ["a", tx("unit-conversions.tag.add"), tx("unit-conversions.fm.addSay", { x: B(conv.map(numT).join(" + ") + " = " + numT(tot)), tos: manyW(sm) })]
         ]);
       }
       var rest = tot,
@@ -4488,23 +4555,23 @@
           left = sub(rest, mul(q, r));
         var fact = "1 " + cuAbT(tg[i]) + " = " + numT(r) + " " + cuAbT(sm);
         lines.push(eqL(numH(rest) + opS("÷") + numH(r) + opS("=") + B(bs(q.n)) + ' <span class="nm">R</span> ' + numH(left), "(" + esc(fact) + ")"));
-        says.push(B(numT(rest) + " ÷ " + numT(r) + " = " + bs(q.n) + " R " + numT(left)) + ": " + B(bs(q.n) + " " + cuAbT(tg[i])) + " with " + numT(left) + " " + manyW(sm) + " left over");
+        says.push(tx("unit-conversions.tm.with", { a: B(numT(rest) + " ÷ " + numT(r) + " = " + bs(q.n) + " R " + numT(left)), b: B(bs(q.n) + " " + cuAbT(tg[i])), n: numT(left), us: manyW(sm) }));
         rest = left;
       }
-      W.add("<b>Divide</b> to find how many whole " + esc(manyW(tg[0])) + " fit" + (tg.length > 2 ? ", then how many " + esc(manyW(tg[1])) + " fit in what’s left" : "") + ". The remainder stays in " + esc(manyW(sm)) + ".",
+      W.add(tx(tg.length > 2 ? "unit-conversions.tm.divCap3" : "unit-conversions.tm.divCap2", { a: esc(manyW(tg[0])), b: tg.length > 2 ? esc(manyW(tg[1])) : "", s: esc(manyW(sm)) }),
         lines.join(""), [
-          ["v", "divide", says.join("; ") + "."]
+          ["v", tx("unit-conversions.tag.divide"), says.join("; ") + "."]
         ],
-        tg[0].n[0].u === "h" || tg[0].n[0].u === "min" ? "The remainder is minutes (or seconds), not a decimal: 1.67 hours is <b>not</b> 1 hour 67 minutes." : "");
+        tg[0].n[0].u === "h" || tg[0].n[0].u === "min" ? tx("unit-conversions.tm.timeAside") : "");
       var ansT = measT(parts),
         ansH = measH(parts);
       var back = parts.map(function(p, j) { return j < parts.length - 1 ? numT(p.v) + " × " + numT(dvd(cuF(p.cu), cuF(sm))) : numT(p.v); }).join(" + ");
-      W.add("<b>Check</b>: put it back together.", whyH(B(esc(back)) + " = " + B(esc(numT(tot)) + " " + esc(cuAbT(sm))) + OKM),
+      W.add(tx("unit-conversions.tm.checkCap"), whyH(B(esc(back)) + " = " + B(esc(numT(tot)) + " " + esc(cuAbT(sm))) + OKM),
         [
-          ["a", "check", B(back + " = " + numT(tot)) + " " + manyW(sm) + " — it matches."]
+          ["a", tx("unit-conversions.tag.check"), tx("unit-conversions.tm.matches", { x: B(back + " = " + numT(tot)), us: manyW(sm) })]
         ]);
-      bandCells([{ k: "In " + tgtW(tg), v: ansH, s: ansT }], [B(esc(measT(P.src))) + " = " + B(esc(numT(tot)) + " " + esc(cuAbT(sm))), "Check: " + B(esc(back) + " = " + esc(numT(tot)))]);
-      return finish(W, '<div class="ck">So <b>' + esc(measT(P.src)) + " = " + esc(ansT) + "</b>.</div>");
+      bandCells([{ k: tx("unit-conversions.c.inU", { u: tgtW(tg) }), v: ansH, s: ansT }], [B(esc(measT(P.src))) + " = " + B(esc(numT(tot)) + " " + esc(cuAbT(sm))), tx("unit-conversions.tm.factCheck", { x: B(esc(back) + " = " + esc(numT(tot))) })]);
+      return finish(W, '<div class="ck">' + tx("unit-conversions.c.so", { x: esc(measT(P.src)) + " = " + esc(ansT) }) + "</div>");
     }
 
     /* ===================== adding and subtracting measures ===================== */
@@ -4525,17 +4592,17 @@
         sm = U0[n - 1];
       var ratio = function(i) { return dvd(cuF(U0[i - 1]), cuF(U0[i])); }; // how many of unit i make one of unit i−1
       var cellsOf = function(arr) { return arr.map(function(x) { return { h: numH(x) }; }); };
-      W.add("<b>Line them up</b> in columns, one column for each unit — like lining up place values.",
+      W.add(tx("unit-conversions.as.lineUp"),
         xs(colTable(U0, [{ cells: cellsOf(A) }, { op: add_ ? "+" : "−", cells: cellsOf(Bv) }], 1)),
         [
-          ["p", "line up", (add_ ? "Add " : "Subtract ") + B(measT(P.b)) + (add_ ? " to " : " from ") + B(measT(P.a)) + ", unit by unit."]
+          ["p", tx("unit-conversions.tag.lineUp"), tx(add_ ? "unit-conversions.as.addSay" : "unit-conversions.as.subSay", { b: B(measT(P.b)), a: B(measT(P.a)) })]
         ]);
       var col, borrows = [];
       if (add_) {
         col = A.map(function(x, i) { return add(x, Bv[i]); });
-        W.add("<b>Add each column.</b>", xs(colTable(U0, [{ cells: cellsOf(A) }, { op: "+", cells: cellsOf(Bv) }], 1, col.map(numH))),
+        W.add(tx("unit-conversions.as.addCol"), xs(colTable(U0, [{ cells: cellsOf(A) }, { op: "+", cells: cellsOf(Bv) }], 1, col.map(numH))),
           [
-            ["a", "add", U0.map(function(c, i) { return B(numT(A[i]) + " + " + numT(Bv[i]) + " = " + numT(col[i])) + " " + manyW(c); }).join(", ") + "."]
+            ["a", tx("unit-conversions.tag.add"), U0.map(function(c, i) { return B(numT(A[i]) + " + " + numT(Bv[i]) + " = " + numT(col[i])) + " " + manyW(c); }).join(", ") + "."]
           ]);
       } else {
         var Aw = A.slice(),
@@ -4551,17 +4618,17 @@
           }
         }
         if (borrows.length) {
-          W.add("<b>Borrow</b> where the top is too small: " + borrows.map(function(b) { return "1 " + esc(oneW(U0[b.from])) + " = " + B(numT(b.r)) + " " + esc(manyW(U0[b.to])); }).join(", ") + " — not 10!",
+          W.add(tx("unit-conversions.as.borrowCap", { list: borrows.map(function(b) { return "1 " + esc(oneW(U0[b.from])) + " = " + B(numT(b.r)) + " " + esc(manyW(U0[b.to])); }).join(", ") }),
             xs(colTable(U0, [{ cells: Aw.map(function(x, k) { var ch = !eqR(x, A[k]); return { h: (ch ? '<small>' + numH(A[k]) + "</small>" : "") + numH(x), cls: ch ? "carry" : "" }; }) }, { op: "−", cells: cellsOf(Bv) }], 1)),
             [
-              ["r", "borrow", borrows.map(function(b) { return "Trade 1 " + oneW(U0[b.from]) + " for " + B(numT(b.r) + " " + manyW(U0[b.to])); }).join("; ") + ": the top becomes " + B(measT(U0.map(function(c, k) { return { v: Aw[k], cu: c }; }))) + "."]
+              ["r", tx("unit-conversions.tag.borrow"), tx("unit-conversions.as.topBecomes", { list: borrows.map(function(b) { return tx("unit-conversions.as.trade", { a: oneW(U0[b.from]), b: B(numT(b.r) + " " + manyW(U0[b.to])) }); }).join("; "), x: B(measT(U0.map(function(c, k) { return { v: Aw[k], cu: c }; }))) })]
             ],
-            "Borrowing a " + esc(oneW(U0[borrows[0].from])) + " gives " + esc(numT(borrows[0].r)) + " " + esc(manyW(U0[borrows[0].to])) + ", because that’s how many make one — borrowing works in tens only for place value.");
+            tx("unit-conversions.as.borrowAside", { a: esc(oneW(U0[borrows[0].from])), r: esc(numT(borrows[0].r)), bs: esc(manyW(U0[borrows[0].to])) }));
         }
         col = Aw.map(function(x, k) { return sub(x, Bv[k]); });
-        W.add("<b>Subtract each column.</b>", xs(colTable(U0, [{ cells: cellsOf(Aw) }, { op: "−", cells: cellsOf(Bv) }], 1, col.map(numH))),
+        W.add(tx("unit-conversions.as.subCol"), xs(colTable(U0, [{ cells: cellsOf(Aw) }, { op: "−", cells: cellsOf(Bv) }], 1, col.map(numH))),
           [
-            ["v", "subtract", U0.map(function(c, k) { return B(numT(Aw[k]) + " − " + numT(Bv[k]) + " = " + numT(col[k])) + " " + manyW(c); }).join(", ") + "."]
+            ["v", tx("unit-conversions.tag.subtract"), U0.map(function(c, k) { return B(numT(Aw[k]) + " − " + numT(Bv[k]) + " = " + numT(col[k])) + " " + manyW(c); }).join(", ") + "."]
           ]);
         A = Aw;
       }
@@ -4578,13 +4645,13 @@
         }
       }
       if (carries.length) {
-        W.add("<b>Regroup</b>: " + carries.map(function(cr) { return B(qT(cr.was, U0[cr.at])) + " is " + (eqR(cr.q, ONE) ? "more than " : "at least " + numT(cr.q) + " × ") + "1 " + esc(oneW(U0[cr.at - 1])) + " (" + esc(numT(cr.r)) + " " + esc(cuAbT(U0[cr.at])) + ")"; }).join("; ") + ". Trade them up.",
+        W.add(tx("unit-conversions.as.regCap", { list: carries.map(function(cr) { return tx(eqR(cr.q, ONE) ? "unit-conversions.as.isMore" : "unit-conversions.as.isAtLeast", { a: B(qT(cr.was, U0[cr.at])), q: numT(cr.q), u: esc(oneW(U0[cr.at - 1])), r: esc(numT(cr.r)), ab: esc(cuAbT(U0[cr.at])) }); }).join("; ") }),
           carries.map(function(cr) { return eqL(qH(cr.was, U0[cr.at]) + opS("=") + qH(cr.q, U0[cr.at - 1]) + " " + qH(sub(cr.was, mul(cr.q, cr.r)), U0[cr.at]), "(" + numT(cr.q) + " × " + numT(cr.r) + " = " + numT(mul(cr.q, cr.r)) + ")"); }).join("") +
           eqL('<span class="res">' + measH(U0.map(function(c, k) { return { v: reg[k], cu: c }; })) + "</span>"),
           [
-            ["r", "regroup", carries.map(function(cr) { return B(qT(cr.was, U0[cr.at]) + " = " + qT(cr.q, U0[cr.at - 1]) + " " + qT(sub(cr.was, mul(cr.q, cr.r)), U0[cr.at])) + ": carry " + numT(cr.q) + " " + (eqR(cr.q, ONE) ? oneW(U0[cr.at - 1]) : manyW(U0[cr.at - 1])); }).join("; ") + "."]
+            ["r", tx("unit-conversions.tag.regroup"), carries.map(function(cr) { return tx("unit-conversions.as.carry", { x: B(qT(cr.was, U0[cr.at]) + " = " + qT(cr.q, U0[cr.at - 1]) + " " + qT(sub(cr.was, mul(cr.q, cr.r)), U0[cr.at])), q: numT(cr.q), u: eqR(cr.q, ONE) ? oneW(U0[cr.at - 1]) : manyW(U0[cr.at - 1]) }); }).join("; ") + "."]
           ],
-          "Carry when a column reaches " + esc(numT(ratio(n - 1))) + " " + esc(manyW(sm)) + " — not 10. Units carry at their own number.");
+          tx("unit-conversions.as.carryAside", { r: esc(numT(ratio(n - 1))), us: esc(manyW(sm)) }));
       }
       var parts = U0.map(function(c, k) { return { v: P.res[k], cu: c }; }),
         ansT = measT(parts),
@@ -4592,13 +4659,13 @@
       var ta = dvd(totalOf(P.a), cuF(sm)),
         tb = dvd(totalOf(P.b), cuF(sm)),
         tt = dvd(P.total, cuF(sm));
-      W.add("<b>Check</b> with one unit: change both to " + esc(manyW(sm)) + ".",
-        whyH(B(numT(ta) + (add_ ? " + " : " − ") + numT(tb) + " = " + numT(tt)) + " " + esc(manyW(sm)) + ", and " + B(esc(ansT)) + " is " + B(numT(tt)) + " " + esc(manyW(sm)) + " too" + OKM),
+      W.add(tx("unit-conversions.as.checkCap", { us: esc(manyW(sm)) }),
+        whyH(tx("unit-conversions.as.checkWhy", { x: B(numT(ta) + (add_ ? " + " : " − ") + numT(tb) + " = " + numT(tt)), us: esc(manyW(sm)), a: B(esc(ansT)), t: B(numT(tt)) }) + OKM),
         [
-          ["a", "check", "In " + manyW(sm) + ": " + B(numT(ta) + (add_ ? " + " : " − ") + numT(tb) + " = " + numT(tt)) + " — the same as " + B(ansT) + "."]
+          ["a", tx("unit-conversions.tag.check"), tx("unit-conversions.as.checkSay", { us: manyW(sm), x: B(numT(ta) + (add_ ? " + " : " − ") + numT(tb) + " = " + numT(tt)), a: B(ansT) })]
         ]);
-      bandCells([{ k: add_ ? "Sum" : "Difference", v: ansH, s: ansT }], [B(esc(measT(P.a))) + (add_ ? " + " : " − ") + B(esc(measT(P.b))), "In " + esc(manyW(sm)) + ": " + B(numT(tt))]);
-      return finish(W, '<div class="ck">So <b>' + esc(measT(P.a)) + (add_ ? " + " : " − ") + esc(measT(P.b)) + " = " + esc(ansT) + "</b>.</div>");
+      bandCells([{ k: tx(add_ ? "unit-conversions.as.sum" : "unit-conversions.as.diff"), v: ansH, s: ansT }], [B(esc(measT(P.a))) + (add_ ? " + " : " − ") + B(esc(measT(P.b))), tx("unit-conversions.as.inUs", { us: esc(manyW(sm)), x: B(numT(tt)) })]);
+      return finish(W, '<div class="ck">' + tx("unit-conversions.c.so", { x: esc(measT(P.a)) + (add_ ? " + " : " − ") + esc(measT(P.b)) + " = " + esc(ansT) }) + "</div>");
     }
 
     /* ===================== unit rates ===================== */
@@ -4609,26 +4676,26 @@
         u = P.unit,
         rc = P.rc;
       var perOne = cuOf(per.cu.n[0].u, per.cu.n[0].p);
-      W.add("<b>What we have.</b> A <b>unit rate</b> is the amount for <b>1</b> " + esc(oneW(perOne)) + ".",
-        eqL(qH(top.v, top.cu) + ' <span class="nm">for</span> ' + qH(per.v, per.cu) + opS("→") + QM + ' <span class="nm">for</span> 1&nbsp;' + cuAbH(perOne)),
+      W.add(tx("unit-conversions.rt.have", { u: esc(oneW(perOne)) }),
+        eqL(qH(top.v, top.cu) + ' <span class="nm">' + tx("unit-conversions.rt.for") + "</span> " + qH(per.v, per.cu) + opS("→") + QM + ' <span class="nm">' + tx("unit-conversions.rt.for") + "</span> 1&nbsp;" + cuAbH(perOne)),
         [
-          ["p", "read", B(qT(top.v, top.cu)) + " for " + B(qT(per.v, per.cu)) + ". We want the amount for 1 " + oneW(perOne) + "."]
+          ["p", tx("unit-conversions.tag.read"), tx("unit-conversions.rt.readSay", { a: B(qT(top.v, top.cu)), b: B(qT(per.v, per.cu)), u: oneW(perOne) })]
         ]);
       var rt = xs(ratioTableSVG({
         rows: [cuAbT(top.cu), cuAbT(per.cu)],
         cols: [{ v: [shortT(top.v), shortT(per.v)] }, { v: [shortT(u), "1"], cls: ["rt-hl", "rt-one"] }],
         arcs: [{ a: 0, b: 1, lab: "÷ " + shortT(per.v), side: "top", v: true }, { a: 0, b: 1, lab: "÷ " + shortT(per.v), side: "bot", v: true }]
       }));
-      W.add("<b>Divide both</b> by " + B(numT(per.v)) + " to get down to 1 " + esc(oneW(perOne)) + " — the same ÷ on both keeps the rate the same.",
+      W.add(tx("unit-conversions.rt.divCap", { n: B(numT(per.v)), u: esc(oneW(perOne)) }),
         rt + eqL(qH(top.v, top.cu) + opS("÷") + numH(per.v) + opS("=") + '<span class="res">' + qH(u, top.cu) + "</span>" + (!isTermD(u.d) ? ' <span class="nm">≈ ' + esc(apx(u, 2)) + "</span>" : "")),
         [
-          ["v", "÷ " + numT(per.v), B(numT(top.v) + " ÷ " + numT(per.v) + " = " + numAp(u)) + ": " + B(qT(u, top.cu)) + " for every 1 " + oneW(perOne) + "."]
+          ["v", "÷ " + numT(per.v), tx("unit-conversions.rt.divSay", { x: B(numT(top.v) + " ÷ " + numT(per.v) + " = " + numAp(u)), r: B(qT(u, top.cu)), u: oneW(perOne) })]
         ],
-        "Dividing the wrong way round (" + esc(numT(per.v)) + " ÷ " + esc(numT(top.v)) + ") gives " + esc(manyW(perOne)) + " per " + esc(oneW(cuOf(top.cu.n[0].u))) + " — a different rate. Put what you want “per one of” underneath.");
-      W.add("<b>Write it as a rate</b>: “per” means “for each 1”.",
+        tx("unit-conversions.rt.wrongWay", { a: esc(numT(per.v)), b: esc(numT(top.v)), us: esc(manyW(perOne)), t: esc(oneW(cuOf(top.cu.n[0].u))) }));
+      W.add(tx("unit-conversions.rt.asRate"),
         eqL('<span class="res">' + qH(u, rc) + "</span>" + ' <span class="nm">(' + esc(qW(u, rc)) + ")</span>"),
         [
-          ["a", "rate", "The unit rate is " + B(qT(u, rc)) + " — " + qW(u, rc) + "."]
+          ["a", tx("unit-conversions.tag.rate"), tx("unit-conversions.rt.isSay", { x: B(qT(u, rc)), w: qW(u, rc) })]
         ]);
       var res = u,
         outCu = rc;
@@ -4636,24 +4703,24 @@
         var steps = convPaths(rc, P.to);
         res = P.res;
         outCu = P.to;
-        W.add("<b>Change the units</b> of the rate with unit fractions: " + steps.map(function(s) { return B(factT(s.st.e)); }).join(", ") + ".",
+        W.add(tx("unit-conversions.rt.changeCap", { list: steps.map(function(s) { return B(factT(s.st.e)); }).join(", ") }),
           eqL(chainH(u, rc, steps, P.to)) + eqL(esc(arithT(u, steps)) + opS("=") + '<span class="res">' + numH(res) + "</span>" + (!isTermD(res.d) ? ' <span class="nm">≈ ' + esc(apx(res, 2)) + "</span>" : "")),
           [
-            ["u", "cancel", B(arithT(u, steps) + " = " + numAp(res)) + ", so " + B(qT(u, rc) + " = " + qT(res, P.to)) + "."]
+            ["u", tx("unit-conversions.tag.cancel"), tx("unit-conversions.c.soEq", { x: B(arithT(u, steps) + " = " + numAp(res)), eq: B(qT(u, rc) + " = " + qT(res, P.to)) })]
           ]);
       }
       roundStep(W, res, outCu, P.dp);
-      W.add("<b>Check</b>: the rate times " + B(numT(per.v)) + " should give back the total.",
+      W.add(tx("unit-conversions.rt.checkCap", { n: B(numT(per.v)) }),
         whyH(B(numT(u) + " × " + numT(per.v) + " = " + numT(mul(u, per.v))) + OKM),
         [
-          ["a", "check", B(numT(u) + " × " + numT(per.v) + " = " + numT(top.v)) + " — back to the start."]
+          ["a", tx("unit-conversions.tag.check"), tx("unit-conversions.rt.backStart", { x: B(numT(u) + " × " + numT(per.v) + " = " + numT(top.v)) })]
         ]);
       var ans = ansQ(res, outCu, P.dp);
-      var rq = (top.cu.n[0].u === "usd" ? qT(top.v, top.cu) + " for " + qW(per.v, per.cu) : qW(top.v, top.cu) + " in " + qW(per.v, per.cu)).replace(/,/g, "");
-      bandCells([{ k: P.to ? "In " + manyW(P.to) : "Unit rate", v: ans.h, s: ans.s }], [B(esc(qT(top.v, top.cu))) + " ÷ " + B(esc(numT(per.v))) + (P.to ? " = " + B(esc(qT(u, rc))) : ""),
-        'More rates and the better buy: <a href="' + esc(siteUrl("ratios", "mode=rate&q=" + encodeURIComponent(rq))) + '">the Ratio Table</a>'
+      var rq = (top.cu.n[0].u === "usd" ? qT(top.v, top.cu) + BX.forW + qW(per.v, per.cu) : qW(top.v, top.cu) + BX.inW + qW(per.v, per.cu)).replace(/,/g, "");
+      bandCells([{ k: P.to ? tx("unit-conversions.c.inU", { u: manyW(P.to) }) : tx("unit-conversions.rt.unitRate"), v: ans.h, s: ans.s }], [B(esc(qT(top.v, top.cu))) + " ÷ " + B(esc(numT(per.v))) + (P.to ? " = " + B(esc(qT(u, rc))) : ""),
+        tx("unit-conversions.rt.more", { href: esc(siteUrl("ratios", "mode=rate&q=" + encodeURIComponent(rq))) })
       ]);
-      return finish(W, '<div class="ck">So the unit rate is <b>' + esc(ans.t) + "</b>.</div>");
+      return finish(W, '<div class="ck">' + tx("unit-conversions.rt.so", { x: esc(ans.t) }) + "</div>");
     }
 
     /* ===================== temperature ===================== */
@@ -4669,10 +4736,10 @@
         fv = from === "degF" ? v : add(mul(c, R(9, 5)), R(32));
       var F = TEMPS[from],
         T = TEMPS[to];
-      W.add("<b>What we have, and what we want.</b> Temperature scales don’t start at the same zero, so it’s not just one × or ÷.",
+      W.add(tx("unit-conversions.c.haveWant") + tx("unit-conversions.tp.zero"),
         eqL(qH(v, { temp: from }) + opS("=") + QM + "&nbsp;" + esc(T.ab)),
         [
-          ["p", "read", "We have " + B(qT(v, { temp: from })) + " and want " + T.name + "."]
+          ["p", tx("unit-conversions.tag.read"), tx("unit-conversions.tp.weHave", { a: B(qT(v, { temp: from })), n: T.name })]
         ]);
       var steps = [];
       if (from === "degF") steps.push("FtoC");
@@ -4685,17 +4752,17 @@
         if (st === "FtoC") {
           var a1 = sub(cur, R(32)),
             a2 = mul(a1, R(5, 9));
-          W.add("<b>Fahrenheit to Celsius</b>: C = (F − 32) × 5/9. Water freezes at 32 °F = 0 °C and boils at 212 °F = 100 °C — the 180 Fahrenheit degrees between match 100 Celsius degrees, so each °F is 5/9 of a °C, counted from 32.",
+          W.add(tx("unit-conversions.tp.ftocCap"),
             eqL("C = (F − 32) × " + frH("5", "9")) + eqL("(" + numH(cur) + " − 32)" + opS("×") + frH("5", "9") + opS("=") + numH(a1) + opS("×") + frH("5", "9") + opS("=") + '<span class="res">' + numH(a2) + "</span>" + (!isTermD(a2.d) ? ' <span class="nm">≈ ' + esc(apx(a2, 2)) + "</span>" : "")),
             [
-              ["v", "− 32", "First take away 32: " + B(numT(cur) + " − 32 = " + numT(a1)) + "."],
-              ["m", "× 5/9", "Then multiply by 5/9: " + B(numT(a1) + " × 5/9 = " + numAp(a2)) + " °C."]
+              ["v", "− 32", tx("unit-conversions.tp.minus32", { x: B(numT(cur) + " − 32 = " + numT(a1)) })],
+              ["m", "× 5/9", tx("unit-conversions.tp.times59", { x: B(numT(a1) + " × 5/9 = " + numAp(a2)) })]
             ],
-            "Both steps matter, in this order: subtract 32 <b>first</b>, then × 5/9. Skipping the − 32, or doing it after, gives the wrong answer.");
+            tx("unit-conversions.tp.ftocAside"));
           cur = a2;
         } else if (st === "KtoC") {
           var k1 = sub(cur, T273);
-          W.add("<b>Kelvin to Celsius</b>: a kelvin is the same size as a Celsius degree, but 0 K is absolute zero, −273.15 °C. So subtract 273.15.",
+          W.add(tx("unit-conversions.tp.ktocCap"),
             eqL("C = K − 273.15") + eqL(numH(cur) + " − 273.15" + opS("=") + '<span class="res">' + numH(k1) + "</span>"),
             [
               ["v", "− 273.15", B(numT(cur) + " − 273.15 = " + numT(k1)) + " °C."]
@@ -4704,17 +4771,17 @@
         } else if (st === "CtoF") {
           var b1 = mul(cur, R(9, 5)),
             b2 = add(b1, R(32));
-          W.add("<b>Celsius to Fahrenheit</b>: F = C × 9/5 + 32. Each °C is 9/5 (1.8) of a °F, and Fahrenheit starts 32 degrees higher.",
+          W.add(tx("unit-conversions.tp.ctofCap"),
             eqL("F = C × " + frH("9", "5") + " + 32") + eqL(numH(cur) + opS("×") + frH("9", "5") + " + 32" + opS("=") + numH(b1) + " + 32" + opS("=") + '<span class="res">' + numH(b2) + "</span>"),
             [
-              ["m", "× 9/5", "First multiply by 9/5 (that’s 1.8): " + B(numT(cur) + " × 9/5 = " + numT(b1)) + "."],
-              ["a", "+ 32", "Then add 32: " + B(numT(b1) + " + 32 = " + numT(b2)) + " °F."]
+              ["m", "× 9/5", tx("unit-conversions.tp.times95", { x: B(numT(cur) + " × 9/5 = " + numT(b1)) })],
+              ["a", "+ 32", tx("unit-conversions.tp.plus32", { x: B(numT(b1) + " + 32 = " + numT(b2)) })]
             ],
-            "Both steps matter: × 9/5 <b>and</b> + 32. Leaving out the + 32 is the most common slip.");
+            tx("unit-conversions.tp.ctofAside"));
           cur = b2;
         } else {
           var c1 = add(cur, T273);
-          W.add("<b>Celsius to Kelvin</b>: add 273.15 — the kelvin scale starts at absolute zero, 273.15 degrees below 0 °C.",
+          W.add(tx("unit-conversions.tp.ctokCap"),
             eqL("K = C + 273.15") + eqL(numH(cur) + " + 273.15" + opS("=") + '<span class="res">' + numH(c1) + "</span>"),
             [
               ["a", "+ 273.15", B(numT(cur) + " + 273.15 = " + numT(c1)) + " K."]
@@ -4723,28 +4790,28 @@
         }
         void last;
       });
-      W.add("<b>On the thermometer</b>: both scales side by side.", xs(thermoSVG(fv, c, from === "K" || to === "K")),
+      W.add(tx("unit-conversions.tp.thermoCap"), xs(thermoSVG(fv, c, from === "K" || to === "K")),
         [
-          ["e", "picture", B(shortT(fv) + " °F") + " lines up with " + B(shortT(c) + " °C") + (from === "K" || to === "K" ? " and " + B(shortT(add(c, T273)) + " K") : "") + "."]
+          ["e", tx("unit-conversions.tag.picture"), tx("unit-conversions.tp.linesUp", { f: B(shortT(fv) + " °F"), c: B(shortT(c) + " °C"), k: from === "K" || to === "K" ? tx("unit-conversions.tp.andK", { k: B(shortT(add(c, T273)) + " K") }) : "" })]
         ]);
       roundStep(W, res, { temp: to }, P.dp);
       var back = to === "degC" ? (from === "degF" ? numT(res) + " × 9/5 + 32 = " + numT(add(mul(res, R(9, 5)), R(32))) : numT(res) + " + 273.15 = " + numT(add(res, T273))) :
         to === "degF" ? "(" + numT(res) + " − 32) × 5/9 = " + numT(mul(sub(res, R(32)), R(5, 9))) : numT(res) + " − 273.15 = " + numT(sub(res, T273));
-      W.add("<b>Check</b>: go back the other way.", whyH(B(esc(back)) + OKM), [
-        ["a", "check", "Back again: " + B(back) + "."]
+      W.add(tx("unit-conversions.tp.checkCap"), whyH(B(esc(back)) + OKM), [
+        ["a", tx("unit-conversions.tag.check"), tx("unit-conversions.tp.backAgain", { x: B(back) })]
       ]);
       var ans = ansQ(res, { temp: to }, P.dp);
-      bandCells([{ k: "In " + T.name, v: ans.h, s: ans.s }], [to === "degC" || from === "degC" && to === "degF" ? (from === "degF" ? "C = (F − 32) × 5/9" : to === "degF" ? "F = C × 9/5 + 32" : "C = K − 273.15") : "K = C + 273.15",
-        "Water freezes at " + B("32 °F = 0 °C") + " and boils at " + B("212 °F = 100 °C")
+      bandCells([{ k: tx("unit-conversions.c.inU", { u: T.name }), v: ans.h, s: ans.s }], [to === "degC" || from === "degC" && to === "degF" ? (from === "degF" ? "C = (F − 32) × 5/9" : to === "degF" ? "F = C × 9/5 + 32" : "C = K − 273.15") : "K = C + 273.15",
+        tx("unit-conversions.tp.freezeBoil", { a: B("32 °F = 0 °C"), b: B("212 °F = 100 °C") })
       ]);
-      return finish(W, '<div class="ck">So <b>' + esc(qT(v, { temp: from })) + " = " + esc(ans.t) + "</b>.</div>");
+      return finish(W, '<div class="ck">' + tx("unit-conversions.c.so", { x: esc(qT(v, { temp: from })) + " = " + esc(ans.t) }) + "</div>");
     }
 
     /* ===================== problems as words: check box, worksheets ===================== */
     function inl(h) { return h.replace(/<span class="fr"><span class="nu">([^<]*)<\/span><span class="de">([^<]*)<\/span><\/span>/g, function(m, a, b) { return " " + a + "/" + b; }).replace(/<span class="ux[^"]*">([^<]*)<\/span>/g, "$1").replace(/<span class="ap">([^<]*)<\/span>/g, "$1"); }
-    var DPNAME = ["the nearest whole number", "the nearest tenth", "the nearest hundredth", "the nearest thousandth", "4 decimal places"];
+    var DPNAME = DPWORD;
 
-    function roundAsk(P) { return P.dp === null || P.dp === undefined ? "" : " Round to " + DPNAME[P.dp] + "."; }
+    function roundAsk(P) { return P.dp === null || P.dp === undefined ? "" : tx("unit-conversions.rec.round", { x: DPNAME[P.dp] }); }
 
     function answerOf(P) { // { t, h }
       if (P.kind === "conv" && P.tgt.length > 1) return { t: measT(P.parts), h: "<b>" + inl(measH(P.parts)) + "</b>" };
@@ -4761,29 +4828,29 @@
         var sT = measT(P.src),
           sH = inl(measH(P.src));
         if (P.tgt.length > 1) {
-          t = "Write " + sT + " as " + tgtW(P.tgt) + ".";
-          h = "Write <b>" + sH + "</b> as <b>" + esc(tgtW(P.tgt)) + "</b>.";
+          t = tx("unit-conversions.rec.write", { a: sT, b: tgtW(P.tgt) });
+          h = tx("unit-conversions.rec.write", { a: "<b>" + sH + "</b>", b: "<b>" + esc(tgtW(P.tgt)) + "</b>" });
         } else {
-          t = "Convert " + sT + " to " + manyW(P.tgt[0]) + "." + roundAsk(P);
-          h = "Convert <b>" + sH + "</b> to <b>" + esc(manyW(P.tgt[0])) + "</b>." + roundAsk(P);
+          t = tx("unit-conversions.rec.convert", { a: sT, b: manyW(P.tgt[0]) }) + roundAsk(P);
+          h = tx("unit-conversions.rec.convert", { a: "<b>" + sH + "</b>", b: "<b>" + esc(manyW(P.tgt[0])) + "</b>" }) + roundAsk(P);
         }
-        o.short = "Convert " + sT + " to " + tgtT(P.tgt);
+        o.short = tx("unit-conversions.rec.short", { a: sT, b: tgtT(P.tgt) });
       } else if (P.kind === "temp") {
-        t = "Convert " + qT(P.v, { temp: P.from }) + " to " + TEMPS[P.to].name + "." + roundAsk(P);
-        h = "Convert <b>" + esc(qT(P.v, { temp: P.from })) + "</b> to <b>" + TEMPS[P.to].name + "</b>." + roundAsk(P);
-        o.short = "Convert " + qT(P.v, { temp: P.from }) + " to " + TEMPS[P.to].ab;
+        t = tx("unit-conversions.rec.convert", { a: qT(P.v, { temp: P.from }), b: TEMPS[P.to].name }) + roundAsk(P);
+        h = tx("unit-conversions.rec.convert", { a: "<b>" + esc(qT(P.v, { temp: P.from })) + "</b>", b: "<b>" + TEMPS[P.to].name + "</b>" }) + roundAsk(P);
+        o.short = tx("unit-conversions.rec.short", { a: qT(P.v, { temp: P.from }), b: TEMPS[P.to].ab });
       } else if (P.kind === "addsub") {
-        var w = P.op === "add" ? "Add" : "Subtract",
+        var w = tx(P.op === "add" ? "unit-conversions.rec.add" : "unit-conversions.rec.sub"),
           sg = P.op === "add" ? " + " : " − ";
         t = w + ": " + measT(P.a) + sg + measT(P.b) + ".";
         h = w + ": <b>" + inl(measH(P.a)) + sg + inl(measH(P.b)) + "</b>.";
         o.short = measT(P.a) + sg + measT(P.b);
       } else {
-        var lead = P.top.cu.n[0].u === "usd" ? qT(P.top.v, P.top.cu) + " for " + qW(P.per.v, P.per.cu) : qW(P.top.v, P.top.cu) + " in " + qW(P.per.v, P.per.cu);
-        var want = P.to ? "find the rate in " + manyW(P.to) : "find the unit rate in " + manyW(P.rc);
+        var lead = P.top.cu.n[0].u === "usd" ? qT(P.top.v, P.top.cu) + BX.forW + qW(P.per.v, P.per.cu) : qW(P.top.v, P.top.cu) + BX.inW + qW(P.per.v, P.per.cu);
+        var want = P.to ? tx("unit-conversions.rec.findRate", { u: manyW(P.to) }) : tx("unit-conversions.rec.findUnit", { u: manyW(P.rc) });
         t = cap(lead) + ": " + want + "." + roundAsk(P);
         h = "<b>" + esc(cap(lead)) + "</b>: " + esc(want) + "." + roundAsk(P);
-        o.short = lead + (P.to ? " → " + cuAbT(P.to) : " → unit rate");
+        o.short = lead + (P.to ? " → " + cuAbT(P.to) : tx("unit-conversions.rec.toUnit"));
       }
       var a = answerOf(P);
       o.text = t;
@@ -4810,7 +4877,7 @@
     }
     // what was typed, as { nums:[{v, i}] } or { parts:[{v, cu, i}] } or { err }
     function readAns(raw, temp, cus) {
-      var s = normU(cleanUser(raw)),
+      var s = normU(cleanUser(UWD ? typedQ(raw) : raw)),
         cl;
       if (!s) return null;
       if (cus && cus.length === 2 && (cl = /^(\d+):(\d{2})$/.exec(s))) return { parts: [{ v: R(BigInt(cl[1])), cu: cus[0], i: { k: 0, frac: false } }, { v: R(BigInt(cl[2])), cu: cus[1], i: { k: 0, frac: false } }] };
@@ -4830,12 +4897,14 @@
 
     function simplifyMsg(i, want, cu) {
       if (!i || !i.frac) return null;
-      if (i.mixed && i.wn >= i.wd) return "Right amount — but the fraction part is a whole or more. Simplify it into the whole number: <b>" + esc(fracForm(want) + " " + cuAbT(cu)) + "</b>.";
-      if (bgcd(i.wn, i.wd) > 1n) return "Right amount — now simplify the fraction: <b>" + esc(fracForm(want)) + "</b>" + (i.mixed ? "" : " (" + esc(i.wn + "/" + i.wd) + " = " + esc(fracForm(want)) + ")") + ".";
+      if (i.mixed && i.wn >= i.wd) return tx("unit-conversions.g.wholeOrMore", { x: esc(fracForm(want) + " " + cuAbT(cu)) });
+      if (bgcd(i.wn, i.wd) > 1n) return tx("unit-conversions.g.simplifyFrac", { x: esc(fracForm(want)), y: i.mixed ? "" : " (" + esc(i.wn + "/" + i.wd) + " = " + esc(fracForm(want)) + ")" });
       return null;
     }
 
-    function placesName(k) { return ["a whole number", "the tenth", "the hundredth", "the thousandth"][k] || k + " decimal places"; }
+    var PLACESW = (window.HelperI18n && HelperI18n.raw("unit-conversions.placesWords")) || ["a whole number", "the tenth", "the hundredth", "the thousandth"];
+
+    function placesName(k) { return PLACESW[k] || tx("unit-conversions.g.kPlaces", { k: k }); }
     // is a typed number v (with info i) an acceptable form of `want`? → "ok" | "close" | null
     function okNum(v, i, want, dp) {
       if (eqR(v, want)) return "ok";
@@ -4873,18 +4942,18 @@
         cu = f.cu,
         ex = qT(want, cu);
       var tn = function() { return '<b>' + esc(ansQ(want, cu, f.dp).t) + '</b>'; };
-      if (!A || A.err) return { st: "bad", msg: "I can’t read that — type a number, like <b>" + esc(numBox(roundK(want, 2)).replace(/^-/, "−")) + "</b>, with its unit if you like." };
-      if (A.onlyUnit) return { st: "bad", msg: "That’s just a unit — type the number too." };
+      if (!A || A.err) return { st: "bad", msg: tx("unit-conversions.g.cantRead", { x: esc(numBox(roundK(want, 2)).replace(/^-/, "−")) }) };
+      if (A.onlyUnit) return { st: "bad", msg: tx("unit-conversions.g.onlyUnit") };
       var v, i, cuU = null;
       if (A.nums) {
-        if (A.nums.length !== 1) return { st: "bad", msg: "Type one number" + (cu.temp ? "" : ", in " + esc(manyW(cu))) + "." };
+        if (A.nums.length !== 1) return { st: "bad", msg: cu.temp ? tx("unit-conversions.g.oneNum") : tx("unit-conversions.g.oneNumIn", { u: esc(manyW(cu)) }) };
         v = A.nums[0].v;
         i = A.nums[0].i;
       } else if (A.parts.length > 1) {
         var tot = totalOf(A.parts.filter(function(p) { return !p.cu.temp; }));
-        if (A.parts.some(function(p) { return p.cu.temp; }) || dimOf(A.parts[0].cu) !== dimOf(cu)) return { st: "bad", msg: "That’s " + dimWords(A.parts[0].cu) + " — the question asks for " + dimWords(cu) + "." };
+        if (A.parts.some(function(p) { return p.cu.temp; }) || dimOf(A.parts[0].cu) !== dimOf(cu)) return { st: "bad", msg: tx("unit-conversions.g.thatsDim", { a: dimWords(A.parts[0].cu), b: dimWords(cu) }) };
         var vt = dvd(tot, cuF(cu));
-        if (eqR(vt, want) || okNum(vt, { k: 4, frac: false }, want, f.dp) === "ok") return { st: "part", msg: "Right amount, but write it all in " + esc(manyW(cu)) + ": " + B(esc(measT(A.parts))) + " = " + tn() + "." };
+        if (eqR(vt, want) || okNum(vt, { k: 4, frac: false }, want, f.dp) === "ok") return { st: "part", msg: tx("unit-conversions.g.allIn", { u: esc(manyW(cu)), a: B(esc(measT(A.parts))), b: tn() }) };
         return { st: "bad", msg: diagHit(f.diag, vt, { k: 0, frac: false }) || "" };
       } else {
         v = A.parts[0].v;
@@ -4897,29 +4966,29 @@
         var conv = inTarget(v, cuU, cu);
         if (conv === null) {
           var fl = !cuU.temp && !cu.temp && simple(cuU) && simple(cu) && ((cuU.n[0].u === "oz" && U[cu.n[0].u].kind === "vol") || (cuU.n[0].u === "floz" && U[cu.n[0].u].kind === "mass"));
-          if (fl && (eqR(v, want) || okNum(v, i, want, f.dp) === "ok")) return { st: "part", msg: "Right number, but the unit is " + esc(cuAbT(cuU)) + ". " + (cuU.n[0].u === "oz" ? "This is capacity, so it’s <b>fluid</b> ounces (fl oz) — plain ounces measure weight." : "This is a weight, so it’s ounces (oz) — fluid ounces measure capacity.") };
-          return { st: "bad", msg: "That’s " + dimWords(cuU) + " (" + esc(cuAbT(cuU)) + "), but the question asks for " + dimWords(cu) + " in " + esc(manyW(cu)) + "." };
+          if (fl && (eqR(v, want) || okNum(v, i, want, f.dp) === "ok")) return { st: "part", msg: tx("unit-conversions.g.rightNum", { u: esc(cuAbT(cuU)) }) + tx(cuU.n[0].u === "oz" ? "unit-conversions.g.isCapacity" : "unit-conversions.g.isWeight") };
+          return { st: "bad", msg: tx("unit-conversions.g.dimWrong", { a: dimWords(cuU), u: esc(cuAbT(cuU)), b: dimWords(cu), us: esc(manyW(cu)) }) };
         }
         if (okNum(conv, { k: Math.max(i.k, 2), frac: i.frac }, want, f.dp) === "ok" || eqR(conv, want) || (okNum(v, i, inTarget(want, cu, cuU), null) === "ok"))
-          return { st: "part", msg: "Right amount, but in " + esc(manyW(cuU)) + " — the question asks for " + esc(manyW(cu)) + ": " + B(esc(qT(v, cuU))) + " = " + tn() + "." };
-        return { st: "bad", msg: "That’s in " + esc(manyW(cuU)) + " — the question asks for " + esc(manyW(cu)) + ". " + (diagHit(f.diag, conv, { k: 2, frac: false }) || "") };
+          return { st: "part", msg: tx("unit-conversions.g.rightIn", { a: esc(manyW(cuU)), b: esc(manyW(cu)), x: B(esc(qT(v, cuU))), y: tn() }) };
+        return { st: "bad", msg: tx("unit-conversions.g.thatsIn", { a: esc(manyW(cuU)), b: esc(manyW(cu)) }) + (diagHit(f.diag, conv, { k: 2, frac: false }) || "") };
       }
-      if (v.n < 0n && !cu.temp) return { st: "bad", msg: "A measure can’t be negative here." };
+      if (v.n < 0n && !cu.temp) return { st: "bad", msg: tx("unit-conversions.g.neg") };
       var ok = okNum(v, i, want, f.dp);
       if (ok === "ok") {
         var sm = eqR(v, want) ? simplifyMsg(i, want, cu) : null;
         if (sm) return { st: "part", msg: sm };
-        var note = !eqR(v, want) ? "(Rounded is fine — exactly, it’s " + esc(isTermD(want.d) ? decOf(want) : niceFrac(want) ? numT(want) + " ≈ " + decOf(want, 5) : decOf(want, 6)) + ".)" : null;
+        var note = !eqR(v, want) ? tx("unit-conversions.g.roundedOk", { x: esc(isTermD(want.d) ? decOf(want) : niceFrac(want) ? numT(want) + " ≈ " + decOf(want, 5) : decOf(want, 6)) }) : null;
         return { st: "ok", note: note };
       }
-      if (f.rough && relNear(v, want, R(3, 1000)) && (f.dp === null || f.dp === undefined || i.k >= f.dp)) return { st: "ok", note: "(Your factor was a little rounded — exactly, it’s " + esc(decOf(want, 4)) + ".)" };
+      if (f.rough && relNear(v, want, R(3, 1000)) && (f.dp === null || f.dp === undefined || i.k >= f.dp)) return { st: "ok", note: tx("unit-conversions.g.factorRounded", { x: esc(decOf(want, 4)) }) };
       var m = ok && ok.indexOf("close") === 0 ? null : diagHit(f.diag, v, i);
       if (m) return { st: "bad", msg: m };
       if (ok && ok.indexOf("close") === 0) {
         var nd = Number(ok.split(":")[1]);
-        return { st: "bad", msg: "Close — but that’s rounded to " + placesName(i.k) + ". " + (f.dp !== null && f.dp !== undefined ? "Round to " + DPNAME[f.dp] + ": " + tn() + "." : "Give it to " + placesName(nd) + (niceFrac(want) ? ", or as a fraction" : "") + ".") };
+        return { st: "bad", msg: tx("unit-conversions.g.closeRounded", { p: placesName(i.k) }) + (f.dp !== null && f.dp !== undefined ? tx("unit-conversions.g.roundTo", { x: DPNAME[f.dp], y: tn() }) : tx(niceFrac(want) ? "unit-conversions.g.giveToFrac" : "unit-conversions.g.giveTo", { p: placesName(nd) })) };
       }
-      if (relNear(v, want, R(1, 100)) && !eqR(v, want)) return { st: "bad", msg: "Very close — check the arithmetic and the rounding." };
+      if (relNear(v, want, R(1, 100)) && !eqR(v, want)) return { st: "bad", msg: tx("unit-conversions.g.veryClose") };
       return { st: "bad" };
     }
 
@@ -4940,32 +5009,32 @@
         sm = cus[cus.length - 1],
         wantT = measT(want);
       var tot = dvd(f.total, cuF(sm));
-      if (!A || A.err) return { st: "bad", msg: "I can’t read that — type it like <b>" + esc(exampleMixed(want)) + "</b>." };
-      if (A.onlyUnit) return { st: "bad", msg: "That’s just a unit — type the numbers too, like <b>" + esc(exampleMixed(want)) + "</b>." };
+      if (!A || A.err) return { st: "bad", msg: tx("unit-conversions.g.typeLike", { x: esc(exampleMixed(want)) }) };
+      if (A.onlyUnit) return { st: "bad", msg: tx("unit-conversions.g.onlyUnitN", { x: esc(exampleMixed(want)) }) };
       if (A.nums) {
         if (A.nums.length === cus.length) {
           var parts = A.nums.map(function(n, j) { return { v: n.v, cu: cus[j] }; });
-          if (eqR(dvd(totalOf(parts), cuF(sm)), tot) && regrouped(parts, cus)) return { st: "part", msg: "Right numbers — now write the units: <b>" + esc(wantT) + "</b>." };
-          return { st: "bad", msg: "Write the units with the numbers, like <b>" + esc(exampleMixed(want)) + "</b>." };
+          if (eqR(dvd(totalOf(parts), cuF(sm)), tot) && regrouped(parts, cus)) return { st: "part", msg: tx("unit-conversions.g.writeUnits", { x: esc(wantT) }) };
+          return { st: "bad", msg: tx("unit-conversions.g.withNums", { x: esc(exampleMixed(want)) }) };
         }
         if (A.nums.length === 1) {
-          if (eqR(A.nums[0].v, tot)) return { st: "part", msg: "Right amount in " + esc(manyW(sm)) + " — now split it into " + esc(tgtW(cus)) + ": <b>" + esc(wantT) + "</b>." };
-          return { st: "bad", msg: "Write it with units, like <b>" + esc(exampleMixed(want)) + "</b>." };
+          if (eqR(A.nums[0].v, tot)) return { st: "part", msg: tx("unit-conversions.g.splitIt", { a: esc(manyW(sm)), b: esc(tgtW(cus)), x: esc(wantT) }) };
+          return { st: "bad", msg: tx("unit-conversions.g.withUnits", { x: esc(exampleMixed(want)) }) };
         }
-        return { st: "bad", msg: "Write it with units, like <b>" + esc(exampleMixed(want)) + "</b>." };
+        return { st: "bad", msg: tx("unit-conversions.g.withUnits", { x: esc(exampleMixed(want)) }) };
       }
       var P0 = A.parts;
-      if (P0.some(function(p) { return p.cu.temp || !simple(p.cu) || dimOf(p.cu) !== dimOf(sm); })) return { st: "bad", msg: "Those units don’t measure " + dimWords(sm).replace(/^an? /, "the same thing — it’s ") + "." };
+      if (P0.some(function(p) { return p.cu.temp || !simple(p.cu) || dimOf(p.cu) !== dimOf(sm); })) return { st: "bad", msg: UWD ? tx("unit-conversions.g.notSameThing", { d: dimWords(sm) }) : "Those units don’t measure " + dimWords(sm).replace(/^an? /, "the same thing — it’s ") + "." };
       var ut = dvd(totalOf(P0), cuF(sm)),
         keysOK = P0.every(function(p) { return cus.some(function(c) { return sameCU(c, p.cu); }); });
       if (eqR(ut, tot)) {
-        if (!keysOK) return { st: "part", msg: "Right amount, but use " + esc(tgtW(cus)) + ": <b>" + esc(wantT) + "</b>." };
+        if (!keysOK) return { st: "part", msg: tx("unit-conversions.g.butUse", { a: esc(tgtW(cus)), x: esc(wantT) }) };
         var ordered = cus.map(function(c) { var h = P0.filter(function(p) { return sameCU(p.cu, c); })[0]; return { v: h ? h.v : ZERO, cu: c }; });
-        if (P0.length === 1 && cus.length > 1 && !sameCU(P0[0].cu, cus[0]) && cmpR(P0[0].v, dvd(cuF(cus[0]), cuF(P0[0].cu))) >= 0) return { st: "part", msg: "Right amount — now split it into " + esc(tgtW(cus)) + ": <b>" + esc(wantT) + "</b>." };
-        if (P0.length === 1 && cus.length > 1 && sameCU(P0[0].cu, cus[0]) && !isInt(P0[0].v)) return { st: "part", msg: "Right amount — now write the part after the point in " + esc(manyW(sm)) + ": <b>" + esc(wantT) + "</b>." };
-        if (!regrouped(ordered, cus)) return { st: "part", msg: "Right amount, but not regrouped — simplify it: <b>" + esc(measT(ordered.filter(function(p) { return !isZ(p.v); }))) + " = " + esc(wantT) + "</b>." };
+        if (P0.length === 1 && cus.length > 1 && !sameCU(P0[0].cu, cus[0]) && cmpR(P0[0].v, dvd(cuF(cus[0]), cuF(P0[0].cu))) >= 0) return { st: "part", msg: tx("unit-conversions.g.nowSplit", { a: esc(tgtW(cus)), x: esc(wantT) }) };
+        if (P0.length === 1 && cus.length > 1 && sameCU(P0[0].cu, cus[0]) && !isInt(P0[0].v)) return { st: "part", msg: tx("unit-conversions.g.afterPoint", { a: esc(manyW(sm)), x: esc(wantT) }) };
+        if (!regrouped(ordered, cus)) return { st: "part", msg: tx("unit-conversions.g.notRegrouped", { x: esc(measT(ordered.filter(function(p) { return !isZ(p.v); }))) + " = " + esc(wantT) }) };
         var frs = P0.map(function(p) { return simplifyMsg(p.i, p.v, p.cu); }).filter(Boolean);
-        if (frs.length) return { st: "part", msg: "Right amount — now simplify the fraction: <b>" + esc(wantT) + "</b>." };
+        if (frs.length) return { st: "part", msg: tx("unit-conversions.g.simplifyFracM", { x: esc(wantT) }) };
         return { st: "ok" };
       }
       var dm = diagHit(f.diag, ut, { k: 0, frac: false });
@@ -5002,15 +5071,16 @@
         if (metricOnly) {
           var n = U[src.cu.n[0].u].rank - U[tg.n[0].u].rank,
             st = Math.abs(n);
-          push(inv, "The decimal point went the wrong way. " + esc(cap(manyW(tg))) + " are " + (n > 0 ? "smaller" : "bigger") + " than " + esc(manyW(src.cu)) + ", so the number should get " + (n > 0 ? "bigger — move the point right" : "smaller — move the point left") + ".");
+          var dv = { A: esc(cap(manyW(tg))), b: esc(manyW(src.cu)), tA: esc(cap(theW(tg))), tb: esc(theW(src.cu)) };
+          push(inv, tx(n > 0 ? "unit-conversions.d.pointSmaller" : "unit-conversions.d.pointBigger", dv));
           [-2, -1, 1, 2].forEach(function(j) {
             var moved = st + j;
             if (moved <= 0) return;
-            push(mul(mul(src.v, K), P10(n > 0 ? j : -j)), "That moves the point " + moved + " place" + (moved === 1 ? "" : "s") + ". From " + esc(U[src.cu.n[0].u].ab) + " to " + esc(U[tg.n[0].u].ab) + " is " + st + " step" + (st === 1 ? "" : "s") + " on the staircase, so it moves " + st + " place" + (st === 1 ? "" : "s") + ".");
+            push(mul(mul(src.v, K), P10(n > 0 ? j : -j)), tx("unit-conversions.d.moves", { m: moved, a: esc(U[src.cu.n[0].u].ab), b: esc(U[tg.n[0].u].ab), s: st }));
           });
         } else if (simple(src.cu) && simple(tg)) {
-          push(inv, bigF ? "You divided, but " + esc(manyW(tg)) + " are smaller than " + esc(manyW(src.cu)) + ", so there should be <b>more</b> of them — multiply." : "You multiplied, but " + esc(manyW(tg)) + " are bigger than " + esc(manyW(src.cu)) + ", so there should be <b>fewer</b> of them — divide.");
-        } else push(inv, "That’s upside down — you multiplied where you should divide (or the other way round). Line up the unit fractions so the old units cancel.");
+          push(inv, tx(bigF ? "unit-conversions.d.divided" : "unit-conversions.d.multiplied", { a: esc(manyW(tg)), b: esc(manyW(src.cu)), tA: esc(cap(theW(tg))), tb: esc(theW(src.cu)) }));
+        } else push(inv, tx("unit-conversions.d.upsideDown"));
         if (sq.length === 1 && steps.length === 1) {
           var e = sq[0].st.e,
             kb = e.base.k,
@@ -5018,12 +5088,12 @@
             p = e.p;
           var bigA = atomW(atomOfKey(e.b), false),
             smA = atomW(atomOfKey(e.a), true);
-          var msgS = p === 2 ? "Square the factor: 1 " + esc(bigA) + " is " + numT(kb) + " × " + numT(kb) + " = " + B(numT(e.k)) + " " + esc(smA) + ", not " + numT(kb) + "." : "Cube the factor: 1 " + esc(bigA) + " is " + numT(kb) + " × " + numT(kb) + " × " + numT(kb) + " = " + B(numT(e.k)) + " " + esc(smA) + ", not " + numT(kb) + ".";
+          var msgS = tx(p === 2 ? "unit-conversions.d.square" : "unit-conversions.d.cube", { a: esc(bigA), k: numT(kb), x: B(numT(e.k)), b: esc(smA) });
           push(dir === 1 ? mul(src.v, kb) : dvd(src.v, kb), msgS);
           if (p === 3) push(dir === 1 ? mul(src.v, mul(kb, kb)) : dvd(src.v, mul(kb, kb)), msgS);
         }
         if ((sys.us || sys.time) && !sys.metric && simple(src.cu) && simple(tg)) {
-          var tens = sys.time ? "Time doesn’t go by tens: " + esc(factT(steps[0].st.e)) + "." : "Customary units don’t go by tens: " + esc(steps.map(function(s) { return factT(s.st.e); }).join(", ")) + ".";
+          var tens = sys.time ? tx("unit-conversions.d.timeTens", { x: esc(factT(steps[0].st.e)) }) : tx("unit-conversions.d.custTens", { x: esc(steps.map(function(s) { return factT(s.st.e); }).join(", ")) });
           [10, 100, 1000].forEach(function(t) {
             if (steps.length === 1 && eqR(steps[0].st.e.k, R(t))) return;
             push(bigF ? mul(src.v, R(t)) : dvd(src.v, R(t)), tens);
@@ -5032,9 +5102,9 @@
         // fluid ounces vs ounces
         var us = [src.cu, tg].filter(simple).map(function(c) { return c.n[0].u; });
         if (us.indexOf("floz") >= 0 && us.some(function(u) { return ["cup", "pt", "qt", "gal"].indexOf(u) >= 0; }))
-          push(bigF ? mul(mul(src.v, K), R(2)) : dvd(mul(src.v, K), R(2)), "A cup is <b>8</b> fluid ounces. (16 oz = 1 lb is for weight — ounces and fluid ounces aren’t the same.)");
+          push(bigF ? mul(mul(src.v, K), R(2)) : dvd(mul(src.v, K), R(2)), tx("unit-conversions.d.cup8"));
         if (us.indexOf("oz") >= 0 && us.indexOf("lb") >= 0)
-          push(bigF ? mul(mul(src.v, K), R(1, 2)) : mul(mul(src.v, K), R(2)), "A pound is <b>16</b> ounces. (8 fl oz = 1 cup is for capacity.)");
+          push(bigF ? mul(mul(src.v, K), R(1, 2)) : mul(mul(src.v, K), R(2)), tx("unit-conversions.d.lb16"));
         // systems: a rough factor
         steps.forEach(function(s) {
           if (s.st.e.tag !== "bridge" || steps.length !== 1) return;
@@ -5044,7 +5114,7 @@
             var r = parseDecStr(rs),
               est = cmpR(r, ONE) > 0 && cmpR(s.st.e.k, ONE) < 0 ? dvd(ONE, r) : r; // "2.2 lb per kg" is the other way round
             var x = s.st.dir === 1 ? mul(src.v, est) : dvd(src.v, est);
-            if (!relNear(x, v, R(3, 1000))) push(x, rs + " is only a rough factor — " + esc(factT(s.st.e)) + " exactly. For an answer to " + DPNAME[P.dp === null ? 2 : P.dp] + ", use at least " + b[3] + ".");
+            if (!relNear(x, v, R(3, 1000))) push(x, tx("unit-conversions.d.rough", { r: rs, x: esc(factT(s.st.e)), p: DPNAME[P.dp === null ? 2 : P.dp], b: b[3] }));
           });
         });
       }
@@ -5055,14 +5125,14 @@
           var p0 = a[0],
             p1 = a[1];
           if (sameCU(p1.cu, tg)) {
-            push(conv[0], "Don’t forget the " + esc(qT(p1.v, p1.cu)) + " — add it on.");
-            push(add(p0.v, p1.v), "Change the " + esc(qT(p0.v, p0.cu)) + " to " + esc(manyW(tg)) + " before adding: " + esc(qT(p0.v, p0.cu)) + " = " + esc(qT(conv[0], tg)) + ".");
-            if (isInt(p0.v) && isInt(p1.v)) push(parseDecStr(numA(p0.v) + numA(p1.v)), esc(measT(a)) + " isn’t " + esc(numA(p0.v) + numA(p1.v)) + " " + esc(cuAbT(tg)) + " — change the " + esc(manyW(p0.cu)) + " to " + esc(manyW(tg)) + " first (" + esc(qT(conv[0], tg)) + "), then add the " + esc(qT(p1.v, p1.cu)) + ".");
+            push(conv[0], tx("unit-conversions.d.forget", { x: esc(qT(p1.v, p1.cu)) }));
+            push(add(p0.v, p1.v), tx("unit-conversions.d.changeFirst", { x: esc(qT(p0.v, p0.cu)), u: esc(manyW(tg)), y: esc(qT(conv[0], tg)) }));
+            if (isInt(p0.v) && isInt(p1.v)) push(parseDecStr(numA(p0.v) + numA(p1.v)), tx("unit-conversions.d.sideBySide", { m: esc(measT(a)), d: esc(numA(p0.v) + numA(p1.v)), ab: esc(cuAbT(tg)), a: esc(manyW(p0.cu)), u: esc(manyW(tg)), y: esc(qT(conv[0], tg)), x: esc(qT(p1.v, p1.cu)) }));
           }
           if (sameCU(p0.cu, tg) && isInt(p1.v) && isInt(p0.v)) {
             var dec = parseDecStr(numA(p0.v) + "." + numA(p1.v));
-            push(dec, esc(measT(a)) + " isn’t " + esc(numT(dec)) + " " + esc(cuAbT(tg)) + ": " + esc(qT(p1.v, p1.cu)) + " is " + esc(numT(p1.v)) + "/" + esc(numT(dvd(cuF(tg), cuF(p1.cu)))) + " of " + art(esc(oneW(tg))) + ", not ." + esc(numA(p1.v)) + ".");
-            push(p0.v, "Don’t drop the " + esc(qT(p1.v, p1.cu)) + " — it’s part of " + art(esc(oneW(tg))) + ".");
+            push(dec, tx("unit-conversions.d.asDecimal", { m: esc(measT(a)), d: esc(numT(dec)), ab: esc(cuAbT(tg)), x: esc(qT(p1.v, p1.cu)), n: esc(numT(p1.v)), k: esc(numT(dvd(cuF(tg), cuF(p1.cu)))), one: esc(aW(tg)), r: esc(numA(p1.v)) }));
+            push(p0.v, tx("unit-conversions.d.dontDrop", { x: esc(qT(p1.v, p1.cu)), one: esc(aW(tg)) }));
           }
         }
       }
@@ -5091,14 +5161,14 @@
             q10 = ONE;
           c10[n - 1] = sub(c10[n - 1], mul(q10, R(10)));
           c10[n - 2] = add(c10[n - 2], q10);
-          push(totalTens(c10), "Regroup at " + numT(r) + " " + esc(manyW(sm)) + ", not 10: " + esc(numT(r)) + " " + esc(cuAbT(sm)) + " = 1 " + esc(cuAbT(cus[n - 2])) + ".");
+          push(totalTens(c10), tx("unit-conversions.d.regroupAt", { r: numT(r), u: esc(manyW(sm)), re: esc(numT(r)), ab: esc(cuAbT(sm)), big: esc(cuAbT(cus[n - 2])) }));
         }
         if (P.op === "sub" && cmpR(P.A[n - 1], P.B[n - 1]) < 0) {
           var b10 = P.A.slice();
           b10[n - 2] = sub(b10[n - 2], ONE);
           b10[n - 1] = add(b10[n - 1], R(10));
-          push(totalTens(b10.map(function(x, k) { return sub(x, P.B[k]); })), "When you borrow 1 " + esc(oneW(cus[n - 2])) + ", you get " + B(numT(r)) + " " + esc(manyW(sm)) + ", not 10.");
-          push(totalTens(P.A.map(function(x, k) { return absR(sub(x, P.B[k])); })), "In the " + esc(manyW(sm)) + " column the top number is smaller (" + esc(numT(P.A[n - 1])) + " − " + esc(numT(P.B[n - 1])) + "), so you can’t flip it round. Borrow 1 " + esc(oneW(cus[n - 2])) + " = " + esc(numT(r)) + " " + esc(cuAbT(sm)) + " first.");
+          push(totalTens(b10.map(function(x, k) { return sub(x, P.B[k]); })), tx("unit-conversions.d.borrowGet", { big: esc(oneW(cus[n - 2])), r: B(numT(r)), u: esc(manyW(sm)) }));
+          push(totalTens(P.A.map(function(x, k) { return absR(sub(x, P.B[k])); })), tx("unit-conversions.d.noFlip", { u: esc(manyW(sm)), a: esc(numT(P.A[n - 1])), b: esc(numT(P.B[n - 1])), big: esc(oneW(cus[n - 2])), r: esc(numT(r)), ab: esc(cuAbT(sm)) }));
         }
         void rs;
       }
@@ -5114,7 +5184,7 @@
         fr = sub(x, R(q));
       if (isZ(fr)) return null;
       var list = [1, 2].map(function(k) { var d = roundK(fr, k); return { hi: R(q), lo: mul(d, P10(k)) }; }).filter(function(d) { return isInt(d.lo) && !isZ(d.lo); });
-      return { list: list, msg: esc(apx(x, 2)) + " " + esc(cuAbT(big)) + " isn’t " + esc(bs(q)) + " " + esc(cuAbT(big)) + " " + esc(numT(list.length ? list[list.length - 1].lo : ZERO)) + " " + esc(cuAbT(sm)) + " — the part after the point is a fraction of " + art(esc(oneW(big))) + ". Find the remainder in " + esc(manyW(sm)) + " instead." };
+      return { list: list, msg: tx("unit-conversions.d.decTrap", { x: esc(apx(x, 2)), big: esc(cuAbT(big)), q: esc(bs(q)), lo: esc(numT(list.length ? list[list.length - 1].lo : ZERO)), sm: esc(cuAbT(sm)), one: esc(aW(big)), u: esc(manyW(sm)) }) };
     }
 
     function diagTemp(P) {
@@ -5126,28 +5196,28 @@
         R95 = R(9, 5),
         R32 = R(32);
       if (P.from === "degF" && P.to === "degC") {
-        push(sub(v, R32), "You subtracted 32 — now multiply by 5/9 as well.");
-        push(mul(v, R59), "Subtract 32 first, then multiply by 5/9.");
-        push(sub(mul(v, R59), R32), "Do it in this order: subtract 32 first, <b>then</b> × 5/9.");
-        push(mul(sub(v, R32), R95), "Going to Celsius, multiply by 5/9 (not 9/5) — a Celsius degree is bigger, so there are fewer of them.");
-        push(mul(add(v, R32), R59), "Subtract the 32 — don’t add it.");
+        push(sub(v, R32), tx("unit-conversions.d.t.sub32"));
+        push(mul(v, R59), tx("unit-conversions.d.t.sub32first"));
+        push(sub(mul(v, R59), R32), tx("unit-conversions.d.t.orderFC"));
+        push(mul(sub(v, R32), R95), tx("unit-conversions.d.t.use59"));
+        push(mul(add(v, R32), R59), tx("unit-conversions.d.t.dontAdd"));
       } else if (P.from === "degC" && P.to === "degF") {
-        push(mul(v, R95), "Don’t forget to add 32 after multiplying by 9/5.");
-        push(add(v, R32), "Multiply by 9/5 first, then add 32.");
-        push(mul(add(v, R32), R95), "Do it in this order: × 9/5 first, <b>then</b> + 32.");
-        push(add(mul(v, R59), R32), "Going to Fahrenheit, multiply by 9/5 (not 5/9).");
+        push(mul(v, R95), tx("unit-conversions.d.t.add32"));
+        push(add(v, R32), tx("unit-conversions.d.t.mul95first"));
+        push(mul(add(v, R32), R95), tx("unit-conversions.d.t.orderCF"));
+        push(add(mul(v, R59), R32), tx("unit-conversions.d.t.use95"));
       } else if (P.from === "degC" && P.to === "K") {
-        push(sub(v, T273), "Kelvin is the bigger number here: <b>add</b> 273.15.");
-        push(add(v, R(273)), "Use 273.15, not 273: K = C + 273.15.");
+        push(sub(v, T273), tx("unit-conversions.d.t.addK"));
+        push(add(v, R(273)), tx("unit-conversions.d.t.use273K"));
       } else if (P.from === "K" && P.to === "degC") {
-        push(add(v, T273), "Going from kelvin to Celsius, <b>subtract</b> 273.15.");
-        push(sub(v, R(273)), "Use 273.15, not 273: C = K − 273.15.");
+        push(add(v, T273), tx("unit-conversions.d.t.subK"));
+        push(sub(v, R(273)), tx("unit-conversions.d.t.use273C"));
       } else if (P.from === "degF" && P.to === "K") {
-        push(P.c, "That’s the Celsius temperature — add 273.15 to get kelvin.");
-        push(add(v, T273), "Change °F to °C first ((F − 32) × 5/9), then add 273.15.");
+        push(P.c, tx("unit-conversions.d.t.celsiusK"));
+        push(add(v, T273), tx("unit-conversions.d.t.fFirst"));
       } else if (P.from === "K" && P.to === "degF") {
-        push(add(mul(v, R95), R32), "Change kelvin to °C first (− 273.15), then × 9/5 + 32.");
-        push(P.c, "That’s the Celsius temperature — now × 9/5 + 32 for Fahrenheit.");
+        push(add(mul(v, R95), R32), tx("unit-conversions.d.t.kFirst"));
+        push(P.c, tx("unit-conversions.d.t.celsiusF"));
       }
       return out;
     }
@@ -5159,11 +5229,11 @@
       var inv = dvd(P.per.v, P.top.v),
         m = mul(P.top.v, P.per.v);
       var cv = function(x) { return P.to ? mul(x, dvd(cuF(P.rc), cuF(P.to))) : x; };
-      push(cv(inv), "That’s upside down — it’s " + esc(manyW(cuOf(P.per.cu.n[0].u))) + " per " + esc(oneW(cuOf(P.top.cu.n[0].u))) + ". Divide the " + esc(manyW(cuOf(P.top.cu.n[0].u))) + " by the " + esc(manyW(cuOf(P.per.cu.n[0].u))) + ".");
-      push(cv(m), "Multiplying gives a bigger total, not the amount for 1. Divide to share it out.");
+      push(cv(inv), tx("unit-conversions.d.r.upside", { a: esc(manyW(cuOf(P.per.cu.n[0].u))), b: esc(oneW(cuOf(P.top.cu.n[0].u))), c: esc(manyW(cuOf(P.top.cu.n[0].u))), ta: esc(thePl(cuOf(P.top.cu.n[0].u))), tb: esc(thePl(cuOf(P.per.cu.n[0].u))) }));
+      push(cv(m), tx("unit-conversions.d.r.mult"));
       if (P.to) {
-        push(P.unit, "That’s the rate in " + esc(manyW(P.rc)) + " — now change it to " + esc(manyW(P.to)) + ".");
-        push(mul(P.unit, dvd(cuF(P.to), cuF(P.rc))), "The unit change went the wrong way round — line up the unit fractions so the old units cancel.");
+        push(P.unit, tx("unit-conversions.d.r.nowChange", { a: esc(manyW(P.rc)), b: esc(manyW(P.to)) }));
+        push(mul(P.unit, dvd(cuF(P.to), cuF(P.rc))), tx("unit-conversions.d.r.wrongWay"));
       }
       return out;
     }
@@ -5171,46 +5241,46 @@
     function fieldsFor(P) {
       if (P.kind === "conv" && P.tgt.length > 1) {
         var dt = decTrapOf(P);
-        return [{ k: "v", label: "In " + tgtW(P.tgt), type: "mixed", cus: P.tgt, parts: P.parts, total: P.total, diag: mixedDiag(P), decTrap: dt ? dt.list : null, decTrapMsg: dt ? dt.msg : "" }];
+        return [{ k: "v", label: tx("unit-conversions.fl.in", { u: tgtW(P.tgt) }), type: "mixed", cus: P.tgt, parts: P.parts, total: P.total, diag: mixedDiag(P), decTrap: dt ? dt.list : null, decTrapMsg: dt ? dt.msg : "" }];
       }
       if (P.kind === "addsub") {
         var pr = P.units.map(function(c, k) { return { v: P.res[k], cu: c }; });
-        return [{ k: "v", label: P.op === "add" ? "Sum" : "Difference", type: "mixed", cus: P.units, parts: pr, total: P.total, diag: mixedDiag(P) }];
+        return [{ k: "v", label: tx(P.op === "add" ? "unit-conversions.fl.sum" : "unit-conversions.fl.diff"), type: "mixed", cus: P.units, parts: pr, total: P.total, diag: mixedDiag(P) }];
       }
-      if (P.kind === "temp") return [{ k: "v", label: "In " + TEMPS[P.to].name, type: "qty", cu: { temp: P.to }, want: P.res, dp: P.dp, diag: diagTemp(P) }];
-      if (P.kind === "rate") { var oc = P.to || P.rc; return [{ k: "v", label: P.to ? "In " + manyW(oc) : "Unit rate (" + cuAbT(oc) + ")", type: "qty", cu: oc, want: P.res, dp: P.dp, diag: diagRate(P) }]; }
+      if (P.kind === "temp") return [{ k: "v", label: tx("unit-conversions.fl.in", { u: TEMPS[P.to].name }), type: "qty", cu: { temp: P.to }, want: P.res, dp: P.dp, diag: diagTemp(P) }];
+      if (P.kind === "rate") { var oc = P.to || P.rc; return [{ k: "v", label: P.to ? tx("unit-conversions.fl.in", { u: manyW(oc) }) : tx("unit-conversions.fl.unitRate", { u: cuAbT(oc) }), type: "qty", cu: oc, want: P.res, dp: P.dp, diag: diagRate(P) }]; }
       var tg = P.tgt[0],
         br = P.mode === "systems" || (P.src.length === 1 && convPaths(P.src[0].cu, tg).some(function(s) { return s.st.e.tag === "bridge"; }));
-      return [{ k: "v", label: "In " + manyW(tg), type: "qty", cu: tg, want: P.res, dp: P.dp, diag: diagConv(P), rough: br }];
+      return [{ k: "v", label: tx("unit-conversions.fl.in", { u: manyW(tg) }), type: "qty", cu: tg, want: P.res, dp: P.dp, diag: diagConv(P), rough: br }];
     }
 
     function hintFor(P) {
       if (P.kind === "temp") {
-        if (P.from === "degF") return "Use " + B("C = (F − 32) × 5/9") + ": subtract 32 first, then multiply by 5/9." + (P.to === "K" ? " Then add 273.15 for kelvin." : "");
-        if (P.from === "K") return "First " + B("C = K − 273.15") + "." + (P.to === "degF" ? " Then " + B("F = C × 9/5 + 32") + "." : "");
-        return P.to === "degF" ? "Use " + B("F = C × 9/5 + 32") + ": multiply by 9/5 (1.8), then add 32." : "Use " + B("K = C + 273.15") + ".";
+        if (P.from === "degF") return tx("unit-conversions.h.fToC", { f: B("C = (F − 32) × 5/9") }) + (P.to === "K" ? tx("unit-conversions.h.thenK") : "");
+        if (P.from === "K") return tx("unit-conversions.h.kFirst", { f: B("C = K − 273.15") }) + (P.to === "degF" ? tx("unit-conversions.h.thenF", { f: B("F = C × 9/5 + 32") }) : "");
+        return P.to === "degF" ? tx("unit-conversions.h.cToF", { f: B("F = C × 9/5 + 32") }) : tx("unit-conversions.h.use", { f: B("K = C + 273.15") });
       }
       if (P.kind === "addsub") {
         var sm = P.units[P.units.length - 1],
           up = P.units[P.units.length - 2];
         var r = dvd(cuF(up), cuF(sm));
-        return P.op === "add" ? "Add each column, then regroup: every " + B(numT(r) + " " + cuAbT(sm)) + " make " + B("1 " + cuAbT(up)) + "." : "Subtract column by column. If the top " + esc(manyW(sm)) + " are too few, borrow " + B("1 " + cuAbT(up) + " = " + numT(r) + " " + cuAbT(sm)) + ".";
+        return P.op === "add" ? tx("unit-conversions.h.addCols", { a: B(numT(r) + " " + cuAbT(sm)), b: B("1 " + cuAbT(up)) }) : tx("unit-conversions.h.subCols", { u: esc(manyW(sm)), tu: esc(thePl(sm)), b: B("1 " + cuAbT(up) + " = " + numT(r) + " " + cuAbT(sm)) });
       }
-      if (P.kind === "rate") return "Divide " + B(numT(P.top.v)) + " by " + B(numT(P.per.v)) + " to get the amount for 1 " + esc(oneW(cuOf(P.per.cu.n[0].u))) + "." + (P.to ? " Then change the units with unit fractions so the old ones cancel." : "");
+      if (P.kind === "rate") return tx("unit-conversions.h.rate", { a: B(numT(P.top.v)), b: B(numT(P.per.v)), u: esc(oneW(cuOf(P.per.cu.n[0].u))) }) + (P.to ? tx("unit-conversions.h.rateThen") : "");
       var tg = P.tgt[0];
       if (P.tgt.length > 1) {
         var smu = P.tgt[P.tgt.length - 1],
           rr = dvd(cuF(P.tgt[0]), cuF(smu));
-        return "Get it all in " + esc(manyW(smu)) + " first, then divide by " + B(numT(rr)) + " (1 " + esc(cuAbT(P.tgt[0])) + " = " + esc(numT(rr)) + " " + esc(cuAbT(smu)) + "): the whole number is the " + esc(manyW(P.tgt[0])) + ", the remainder stays in " + esc(manyW(smu)) + ".";
+        return tx("unit-conversions.h.toMixed", { u: esc(manyW(smu)), r: B(numT(rr)), big: esc(cuAbT(P.tgt[0])), re: esc(numT(rr)), sm: esc(cuAbT(smu)), bigs: esc(manyW(P.tgt[0])), tbigs: esc(thePl(P.tgt[0])) });
       }
-      if (P.src.length > 1) return "Change each part to " + esc(manyW(tg)) + " first, then add them up.";
+      if (P.src.length > 1) return tx("unit-conversions.h.fromMixed", { u: esc(manyW(tg)) });
       var a = P.src[0];
       if (simple(a.cu) && simple(tg) && U[a.cu.n[0].u].sys === "metric" && U[tg.n[0].u].sys === "metric") {
         var n = U[a.cu.n[0].u].rank - U[tg.n[0].u].rank;
-        return "On the staircase, " + esc(U[a.cu.n[0].u].ab) + " to " + esc(U[tg.n[0].u].ab) + " is " + Math.abs(n) + " step" + (Math.abs(n) === 1 ? "" : "s") + " " + (n > 0 ? "down: move the point right" : "up: move the point left") + " " + Math.abs(n) + " place" + (Math.abs(n) === 1 ? "" : "s") + ".";
+        return tx(n > 0 ? "unit-conversions.h.stairDown" : "unit-conversions.h.stairUp", { a: esc(U[a.cu.n[0].u].ab), b: esc(U[tg.n[0].u].ab), n: Math.abs(n) });
       }
       var steps = convPaths(a.cu, tg);
-      return "Use " + steps.map(function(s) { return B(factT(s.st.e)); }).join(", then ") + ". " + (simple(a.cu) && simple(tg) ? (bigger(a.cu, tg) ? "Big unit to small unit: multiply." : "Small unit to big unit: divide.") : "Write each fact as a unit fraction so the old units cancel.");
+      return tx("unit-conversions.h.use", { f: steps.map(function(s) { return B(factT(s.st.e)); }).join(tx("unit-conversions.h.then")) }) + " " + tx(simple(a.cu) && simple(tg) ? (bigger(a.cu, tg) ? "unit-conversions.h.bigSmall" : "unit-conversions.h.smallBig") : "unit-conversions.h.fracs");
     }
 
     function exampleMixed(parts) { var ex = [2, 1, 4, 3]; return parts.map(function(p, j) { return ex[j] + " " + cuAbT(p.cu); }).join(" "); }
@@ -5220,7 +5290,7 @@
       $("ckQ").innerHTML = record(P).html;
       $("ckFields").innerHTML = f.map(function(x) {
         var mk = CK.marks[x.k] || "",
-          ph = x.type === "mixed" ? "e.g. " + exampleMixed(x.parts) : x.cu.temp ? "e.g. 25" : "e.g. 12";
+          ph = tx("unit-conversions.ph.eg", { x: x.type === "mixed" ? exampleMixed(x.parts) : x.cu.temp ? "25" : "12" });
         return '<div class="ckf"><label for="ck_' + x.k + '">' + esc(x.label) + '</label><div class="ckin"><input id="ck_' + x.k + '" data-k="' + x.k +
           '" type="text" autocomplete="off" spellcheck="false" inputmode="text" placeholder="' + esc(ph) + '" value="' + esc(CK.vals[x.k] || "") + '">' +
           (x.type === "qty" ? '<span class="ckunit">' + esc(cuAbT(x.cu)) + "</span>" : "") +
@@ -5242,9 +5312,9 @@
       $("ckMore").hidden = CK.ok || CK.revealed;
       $("hintBtn").hidden = !!CK.hint;
       var f0 = f[0],
-        note = f0.type === "mixed" ? "Type it with its units, like " + exampleMixed(f0.parts) + "." :
-        "Type the number — the unit (" + cuAbT(f0.cu) + ") is optional. " + (f0.dp !== null && f0.dp !== undefined ? "Round to " + DPNAME[f0.dp] + "." : "Fractions (2 1/3) and decimals (2.33) are both fine.");
-      $("ckNote").textContent = CK.revealed ? "" : "The work and the answer stay hidden until you check. " + note;
+        note = f0.type === "mixed" ? tx("unit-conversions.ck.withUnits", { x: exampleMixed(f0.parts) }) :
+        tx("unit-conversions.ck.unitOptional", { u: cuAbT(f0.cu) }) + (f0.dp !== null && f0.dp !== undefined ? tx("unit-conversions.ck.roundTo", { x: DPNAME[f0.dp] }) : tx("unit-conversions.ck.bothFine"));
+      $("ckNote").textContent = CK.revealed ? "" : tx("unit-conversions.ck.hidden") + note;
     }
 
     function report(verdict) {
@@ -5274,7 +5344,7 @@
       });
       var verdict = null;
       if (empty === res.length) {
-        CK.fb = '<span class="lead">Type your answer first.</span>';
+        CK.fb = '<span class="lead">' + tx("unit-conversions.ck.first") + "</span>";
         CK.fbCls = "";
       } else if (bad.length) {
         verdict = "wrong";
@@ -5282,18 +5352,18 @@
         CK.tried = true;
         CK.fbCls = "";
         var why = bad.map(function(i) { return res[i].msg || ""; }).filter(Boolean);
-        CK.fb = '<span class="lead">Not quite — try again.</span>' + why.map(function(w) { return '<span class="why">' + w + "</span>"; }).join("");
+        CK.fb = '<span class="lead">' + tx("common.notQuite") + "</span>" + why.map(function(w) { return '<span class="why">' + w + "</span>"; }).join("");
       } else if (part.length) {
         verdict = "simplify";
         CK.fbCls = "part";
         CK.tried = true;
-        CK.fb = '<span class="lead">Almost!</span><span class="why">' + res[part[0]].msg + "</span>";
+        CK.fb = '<span class="lead">' + tx("unit-conversions.ck.almost") + '</span><span class="why">' + res[part[0]].msg + "</span>";
       } else {
         verdict = "right";
         CK.ok = true;
         CK.revealed = true;
         CK.fbCls = "ok";
-        CK.fb = '<span class="lead">✓ Correct!</span>' + (notes.length ? '<span class="why">' + notes.join(" ") + "</span>" : "") + '<span class="why">Here’s the full work.</span>';
+        CK.fb = '<span class="lead">' + tx("common.correct") + "</span>" + (notes.length ? '<span class="why">' + notes.join(" ") + "</span>" : "") + '<span class="why">' + tx("unit-conversions.ck.fullWork") + "</span>";
       }
       if (verdict) report(verdict);
       var had = document.activeElement && document.activeElement.id;
@@ -5303,26 +5373,26 @@
 
     /* ===================== render ===================== */
     var DRAW = { conv: drawConv, addsub: drawAddSub, rate: drawRate, temp: drawTemp };
+    var LGK = function(k) { return tx("unit-conversions.lg." + k); };
     var LEGEND = {
-      length: lg("c-e", "fact", "the fact (12 in = 1 ft)") + lg("c-m", "×", "big unit → small: multiply") + lg("c-v", "÷", "small unit → big: divide") + lg("c-r", "regroup", "carry and borrow") + lg("c-a", "✓", "result and check"),
-      weight: lg("c-e", "fact", "the fact (16 oz = 1 lb, 4 qt = 1 gal)") + lg("c-m", "×", "big → small: multiply") + lg("c-v", "÷", "small → big: divide") + lg("c-r", "regroup", "carry and borrow") + lg("c-a", "✓", "result and check"),
-      metric: lg("c-e", "steps", "steps on the staircase") + lg("c-m", "× 10ⁿ", "down: multiply") + lg("c-v", "÷ 10ⁿ", "up: divide") + lg("c-u", "point", "the decimal point moves") + lg("c-a", "✓", "result and check"),
-      systems: lg("c-e", "fact", "the exact fact that links the systems") + lg("c-u", "cancel", "unit fractions; units cancel") + lg("c-r", "round", "rounding at the end") + lg("c-a", "✓", "result, check and estimate"),
-      time: lg("c-e", "fact", "60 s = 1 min, 60 min = 1 h …") + lg("c-m", "×", "big → small: multiply") + lg("c-v", "÷", "small → big: divide") + lg("c-r", "regroup", "carry and borrow at 60, 24 …") + lg("c-a", "✓", "result and check"),
-      temp: lg("c-v", "− 32", "take away the offset") + lg("c-m", "× 5/9", "change the degree size") + lg("c-a", "+ 32", "add the offset") + lg("c-e", "picture", "the thermometer") + lg("c-a", "✓", "check"),
-      rates: lg("c-e", "fact", "the facts (squared or cubed for area and volume)") + lg("c-u", "cancel", "unit fractions; units cancel") + lg("c-v", "÷", "the amount for 1") + lg("c-a", "✓", "result and check")
+      length: lg("c-e", LGK("fact"), LGK("length.e")) + lg("c-m", "×", LGK("length.m")) + lg("c-v", "÷", LGK("length.v")) + lg("c-r", LGK("regroup"), LGK("carry")) + lg("c-a", "✓", LGK("result")),
+      weight: lg("c-e", LGK("fact"), LGK("weight.e")) + lg("c-m", "×", LGK("bigSmall")) + lg("c-v", "÷", LGK("smallBig")) + lg("c-r", LGK("regroup"), LGK("carry")) + lg("c-a", "✓", LGK("result")),
+      metric: lg("c-e", LGK("steps"), LGK("metric.e")) + lg("c-m", "× 10ⁿ", LGK("metric.m")) + lg("c-v", "÷ 10ⁿ", LGK("metric.v")) + lg("c-u", LGK("point"), LGK("metric.u")) + lg("c-a", "✓", LGK("result")),
+      systems: lg("c-e", LGK("fact"), LGK("systems.e")) + lg("c-u", LGK("cancel"), LGK("cancelL")) + lg("c-r", LGK("round"), LGK("systems.r")) + lg("c-a", "✓", LGK("systems.a")),
+      time: lg("c-e", LGK("fact"), LGK("time.e")) + lg("c-m", "×", LGK("bigSmall")) + lg("c-v", "÷", LGK("smallBig")) + lg("c-r", LGK("regroup"), LGK("time.r")) + lg("c-a", "✓", LGK("result")),
+      temp: lg("c-v", "− 32", LGK("temp.v")) + lg("c-m", "× 5/9", LGK("temp.m")) + lg("c-a", "+ 32", LGK("temp.a")) + lg("c-e", LGK("picture"), LGK("temp.e")) + lg("c-a", "✓", LGK("check")),
+      rates: lg("c-e", LGK("fact"), LGK("rates.e")) + lg("c-u", LGK("cancel"), LGK("cancelL")) + lg("c-v", "÷", LGK("rates.v")) + lg("c-a", "✓", LGK("result"))
     };
 
     function readsH(P) {
-      if (P.kind === "conv") return measH(P.src) + " → " + P.tgt.map(function(c) { return esc(manyW(c)); }).join(" and ") + (P.dp !== null && P.dp !== undefined ? ' <span class="nm">(' + DPNAME[P.dp] + ")</span>" : "");
+      if (P.kind === "conv") return measH(P.src) + " → " + P.tgt.map(function(c) { return esc(manyW(c)); }).join(AND) + (P.dp !== null && P.dp !== undefined ? ' <span class="nm">(' + DPNAME[P.dp] + ")</span>" : "");
       if (P.kind === "temp") return qH(P.v, { temp: P.from }) + " → " + esc(TEMPS[P.to].name);
       if (P.kind === "addsub") return measH(P.a) + (P.op === "add" ? " + " : " − ") + measH(P.b);
-      return qH(P.top.v, P.top.cu) + ' <span class="nm">' + (P.top.cu.n[0].u === "usd" ? "for" : "in") + "</span> " + qH(P.per.v, P.per.cu) + " → " + esc(P.to ? manyW(P.to) : "the unit rate");
+      return qH(P.top.v, P.top.cu) + ' <span class="nm">' + tx(P.top.cu.n[0].u === "usd" ? "unit-conversions.rd.for" : "unit-conversions.rd.in") + "</span> " + qH(P.per.v, P.per.cu) + " → " + esc(P.to ? manyW(P.to) : tx("unit-conversions.rd.unitRate"));
     }
 
     function wrongTab(P) {
-      var where = { length: "customary length (inches, feet, yards, miles)", weight: "customary weight and capacity", metric: "metric units only", systems: "customary to metric", time: "units of time", temp: "temperature", rates: "rates, area and volume" };
-      return "That reads as " + B(stripTags(readsH(P)).replace(/&/g, "&amp;").replace(/</g, "&lt;")) + " — " + where[P.mode] + ", so it belongs on the <b>" + esc(TITLES[P.mode]) + "</b> tab.";
+      return tx("unit-conversions.wt.reads", { x: B(stripTags(readsH(P)).replace(/&/g, "&amp;").replace(/</g, "&lt;")), w: tx("unit-conversions.wt." + P.mode), t: esc(TITLES[P.mode]) });
     }
     var lastTotal = 0;
 
@@ -5353,7 +5423,7 @@
           } else throw e2;
         }
       } else total = fail(err, go);
-      $("reads").innerHTML = CUR ? '<span class="nm">Reads as</span>' + readsH(CUR) : "";
+      $("reads").innerHTML = CUR ? '<span class="nm">' + tx("common.readsAs") + "</span>" + readsH(CUR) : "";
       $("legend").innerHTML = LEGEND[S.mode];
       lastTotal = total;
       if (total) {
@@ -5371,7 +5441,7 @@
         hide = check && !CK.revealed;
       $("stepper").hidden = !stepMode;
       if (stepMode) {
-        $("stepCount").textContent = S.step + " of " + total;
+        $("stepCount").textContent = tx("unit-conversions.stepOf", { n: S.step, total: total });
         $("prevBtn").disabled = S.step <= 1;
         $("nextBtn").disabled = S.step >= total;
       }
@@ -5398,7 +5468,7 @@
     function writeLog(items) {
       var html = "";
       items.forEach(function(it, i) {
-        html += "<li" + ds(it.step) + '><span class="n">Step&nbsp;' + (i + 1) + "</span>";
+        html += "<li" + ds(it.step) + '><span class="n">' + tx("common.step") + "&nbsp;" + (i + 1) + "</span>";
         it.lines.forEach(function(l) {
           html += '<div class="line"><span class="tag c-' + l[0] + '">' + esc(l[1]) + '</span><span class="txt">' + l[2] + "</span></div>";
         });
@@ -5417,7 +5487,7 @@
       if (old) old.parentNode.removeChild(old);
       var el = document.createElement("div");
       el.className = "notice";
-      el.innerHTML = msg + (go && !EMBED && TITLES[go] ? '<div><button type="button" class="ghost" data-go="' + go + '">Work it on the ' + esc(TITLES[go]) + " tab</button></div>" : "");
+      el.innerHTML = msg + (go && !EMBED && TITLES[go] ? '<div><button type="button" class="ghost" data-go="' + go + '">' + tx("unit-conversions.workOn", { t: esc(TITLES[go]) }) + "</button></div>" : "");
       $("board").parentNode.insertBefore(el, $("board"));
       $("statusLine").textContent = el.textContent;
       var b = el.querySelector("[data-go]");
@@ -5769,57 +5839,57 @@
     }
 
     /* ===================== the maker's controls ===================== */
-    var TASKV = { any: "A mix", down: "Big unit → small (3 ft → in)", up: "Small unit → big (36 in → ft)", tomixed: "Into mixed units (67 in → ft and in)", frommixed: "From mixed units (5 ft 7 in → in)", add: "Add, with regrouping", sub: "Subtract, with borrowing" };
-    var TASKV_T = { any: "A mix", down: "Big unit → small (3 h → min)", up: "Small unit → big (180 min → h)", tomixed: "Into mixed units (200 min → h and min)", frommixed: "From mixed units (2 h 45 min → min)", add: "Add, with regrouping", sub: "Subtract, with borrowing" };
-    var LUNITV = { inft: "Inches and feet", inftyd: "Inches, feet and yards", all: "Up to miles" };
-    var WCV = { weight: "Weight (oz, lb, tons)", capacity: "Capacity (fl oz, cups, pints, quarts, gallons)", both: "Both" };
-    var MBASEV = { any: "Any", m: "Meters (length)", g: "Grams (mass)", L: "Liters (capacity)" };
-    var MSTEPV = { "1": "1 step (× or ÷ 10)", "2": "2 steps (100)", "3": "3 steps (1,000)", any: "Any" };
-    var MDIRV = { either: "Either way", down: "Down (km → m)", up: "Up (m → km)" };
-    var SYSWV = { any: "Any", length: "Length", weight: "Weight", capacity: "Capacity" };
-    var SYSDV = { either: "Either way", tometric: "Customary → metric", tocustomary: "Metric → customary" };
-    var SYSRV = { "0": "Whole number", "1": "Nearest tenth", "2": "Nearest hundredth" };
-    var TUNITV = { small: "Seconds, minutes, hours", big: "Hours, days, weeks, months", any: "Any (with years)" };
-    var TDIRV = { any: "A mix", ftoc: "°F → °C", ctof: "°C → °F", kelvin: "With kelvin" };
-    var RTASKV = { any: "A mix", speed: "Speeds (mph → ft/s)", unitrate: "Unit rates (150 mi in 3 h)", price: "Price per unit ($/lb → ¢/oz)", area: "Area (ft² → in²)", volume: "Volume (yd³ → ft³)" };
+    var TASKV = { any: tx("unit-conversions.mv.taskv.any"), down: tx("unit-conversions.mv.taskv.down"), up: tx("unit-conversions.mv.taskv.up"), tomixed: tx("unit-conversions.mv.taskv.tomixed"), frommixed: tx("unit-conversions.mv.taskv.frommixed"), add: tx("unit-conversions.mv.taskv.add"), sub: tx("unit-conversions.mv.taskv.sub") };
+    var TASKV_T = { any: tx("unit-conversions.mv.taskvt.any"), down: tx("unit-conversions.mv.taskvt.down"), up: tx("unit-conversions.mv.taskvt.up"), tomixed: tx("unit-conversions.mv.taskvt.tomixed"), frommixed: tx("unit-conversions.mv.taskvt.frommixed"), add: tx("unit-conversions.mv.taskvt.add"), sub: tx("unit-conversions.mv.taskvt.sub") };
+    var LUNITV = { inft: tx("unit-conversions.mv.lunitv.inft"), inftyd: tx("unit-conversions.mv.lunitv.inftyd"), all: tx("unit-conversions.mv.lunitv.all") };
+    var WCV = { weight: tx("unit-conversions.mv.wcv.weight"), capacity: tx("unit-conversions.mv.wcv.capacity"), both: tx("unit-conversions.mv.wcv.both") };
+    var MBASEV = { any: tx("unit-conversions.mv.mbasev.any"), m: tx("unit-conversions.mv.mbasev.m"), g: tx("unit-conversions.mv.mbasev.g"), L: tx("unit-conversions.mv.mbasev.L") };
+    var MSTEPV = { "1": tx("unit-conversions.mv.mstepv.1"), "2": tx("unit-conversions.mv.mstepv.2"), "3": tx("unit-conversions.mv.mstepv.3"), any: tx("unit-conversions.mv.mstepv.any") };
+    var MDIRV = { either: tx("unit-conversions.mv.mdirv.either"), down: tx("unit-conversions.mv.mdirv.down"), up: tx("unit-conversions.mv.mdirv.up") };
+    var SYSWV = { any: tx("unit-conversions.mv.syswv.any"), length: tx("unit-conversions.mv.syswv.length"), weight: tx("unit-conversions.mv.syswv.weight"), capacity: tx("unit-conversions.mv.syswv.capacity") };
+    var SYSDV = { either: tx("unit-conversions.mv.sysdv.either"), tometric: tx("unit-conversions.mv.sysdv.tometric"), tocustomary: tx("unit-conversions.mv.sysdv.tocustomary") };
+    var SYSRV = { "0": tx("unit-conversions.mv.sysrv.0"), "1": tx("unit-conversions.mv.sysrv.1"), "2": tx("unit-conversions.mv.sysrv.2") };
+    var TUNITV = { small: tx("unit-conversions.mv.tunitv.small"), big: tx("unit-conversions.mv.tunitv.big"), any: tx("unit-conversions.mv.tunitv.any") };
+    var TDIRV = { any: tx("unit-conversions.mv.tdirv.any"), ftoc: tx("unit-conversions.mv.tdirv.ftoc"), ctof: tx("unit-conversions.mv.tdirv.ctof"), kelvin: tx("unit-conversions.mv.tdirv.kelvin") };
+    var RTASKV = { any: tx("unit-conversions.mv.rtaskv.any"), speed: tx("unit-conversions.mv.rtaskv.speed"), unitrate: tx("unit-conversions.mv.rtaskv.unitrate"), price: tx("unit-conversions.mv.rtaskv.price"), area: tx("unit-conversions.mv.rtaskv.area"), volume: tx("unit-conversions.mv.rtaskv.volume") };
 
     function segK(lbl, seg, obj) { return { lbl: lbl, seg: seg, vals: Object.keys(obj), fmt: function(v) { return obj[v]; } }; }
     var MAKER = {
-      length: [segK("What to do", "task", TASKV), segK("Units", "units", LUNITV), {
-        lbl: "Also include",
+      length: [segK(tx("unit-conversions.mk.whatToDo"), "task", TASKV), segK(tx("unit-conversions.mk.units"), "units", LUNITV), {
+        lbl: tx("unit-conversions.mk.include"),
         togs: [
-          ["frac", "½", "Fractions in the answers (2 1/2 ft)"]
+          ["frac", "½", tx("unit-conversions.mk.tg.fracFt")]
         ]
       }],
-      weight: [segK("Measure", "what", WCV), segK("What to do", "task", TASKV), {
-        lbl: "Also include",
+      weight: [segK(tx("unit-conversions.mk.measure"), "what", WCV), segK(tx("unit-conversions.mk.whatToDo"), "task", TASKV), {
+        lbl: tx("unit-conversions.mk.include"),
         togs: [
-          ["frac", "½", "Fractions in the answers (1 1/2 lb)"]
+          ["frac", "½", tx("unit-conversions.mk.tg.fracLb")]
         ]
       }],
-      metric: [segK("Unit", "base", MBASEV), segK("How far", "steps", MSTEPV), segK("Direction", "dir", MDIRV), {
-        lbl: "Also include",
+      metric: [segK(tx("unit-conversions.mk.unit"), "base", MBASEV), segK(tx("unit-conversions.mk.howFar"), "steps", MSTEPV), segK(tx("unit-conversions.mk.direction"), "dir", MDIRV), {
+        lbl: tx("unit-conversions.mk.include"),
         togs: [
-          ["dec", "3.2", "Decimals (3.2 km, 0.45 L)"]
+          ["dec", "3.2", tx("unit-conversions.mk.tg.dec")]
         ]
       }],
-      systems: [segK("Measure", "what", SYSWV), segK("Direction", "dir", SYSDV), { lbl: "Round to", seg: "dp", vals: [0, 1, 2], fmt: function(v) { return SYSRV[String(v)]; } }],
-      time: [segK("What to do", "task", TASKV_T), segK("Units", "units", TUNITV), {
-        lbl: "Also include",
+      systems: [segK(tx("unit-conversions.mk.measure"), "what", SYSWV), segK(tx("unit-conversions.mk.direction"), "dir", SYSDV), { lbl: tx("unit-conversions.mk.roundTo"), seg: "dp", vals: [0, 1, 2], fmt: function(v) { return SYSRV[String(v)]; } }],
+      time: [segK(tx("unit-conversions.mk.whatToDo"), "task", TASKV_T), segK(tx("unit-conversions.mk.units"), "units", TUNITV), {
+        lbl: tx("unit-conversions.mk.include"),
         togs: [
-          ["frac", "½", "Fractions in the answers (2 1/2 h)"]
+          ["frac", "½", tx("unit-conversions.mk.tg.fracH")]
         ]
       }],
-      temp: [segK("Direction", "dir", TDIRV), {
-        lbl: "Also include",
+      temp: [segK(tx("unit-conversions.mk.direction"), "dir", TDIRV), {
+        lbl: tx("unit-conversions.mk.include"),
         togs: [
-          ["nice", "✓", "Whole-number answers"]
+          ["nice", "✓", tx("unit-conversions.mk.tg.nice")]
         ]
       }],
-      rates: [segK("Kind", "task", RTASKV), {
-        lbl: "Also include",
+      rates: [segK(tx("unit-conversions.mk.kind"), "task", RTASKV), {
+        lbl: tx("unit-conversions.mk.include"),
         togs: [
-          ["metric", "km", "Metric units too"]
+          ["metric", "km", tx("unit-conversions.mk.tg.metric")]
         ]
       }]
     };
@@ -5829,7 +5899,7 @@
         m = null;
       if (!el) return;
       try { m = makeOne(S.mode, S.gen[S.mode], null); } catch (e) { m = null; }
-      el.innerHTML = m ? "Makes problems like: <b>" + esc(record(m.P).text) + "</b>" : "Those choices don’t make a problem — try different ones.";
+      el.innerHTML = m ? tx("unit-conversions.mk.sample", { x: esc(record(m.P).text) }) : tx("unit-conversions.mk.none");
     }
 
     function buildMaker() {
@@ -5882,14 +5952,14 @@
       host.appendChild(smp);
       var go = document.createElement("div");
       go.className = "maker-go";
-      go.innerHTML = '<button type="button" class="go" id="genBtn">New problem</button><span class="msg" id="genMsg"></span>';
+      go.innerHTML = '<button type="button" class="go" id="genBtn">' + tx("unit-conversions.mk.newProblem") + '</button><span class="msg" id="genMsg"></span>';
       host.appendChild(go);
       paintSample();
       $("genBtn").addEventListener("click", function() {
         var avoid = {};
         if (CUR) avoid[paramsOf(CUR)] = true;
         var m = makeOne(S.mode, S.gen[S.mode], avoid);
-        if (!m) { $("genMsg").textContent = "Couldn’t make one with those settings — try different choices."; return; }
+        if (!m) { $("genMsg").textContent = tx("unit-conversions.mk.cantMake"); return; }
         $("genMsg").textContent = "";
         setProblem(m.text);
         paintSample();
@@ -5905,42 +5975,42 @@
     }
 
     function schema() {
-      var onOff = [{ v: false, label: "Off" }, { v: true, label: "On" }];
+      var onOff = [{ v: false, label: tx("common.off") }, { v: true, label: tx("common.on") }];
 
       function ch(obj) { return Object.keys(obj).map(function(k) { return { v: k, label: obj[k] }; }); }
       return [{
           key: "mode",
-          label: "Kind of problem",
+          label: tx("unit-conversions.sc.mode"),
           type: "choice",
           default: "length",
           modes: MODES.slice(),
           values: [
-            { v: "length", label: "Length: inches, feet, yards, miles" }, { v: "weight", label: "Weight and capacity: ounces, pounds, cups, gallons" },
-            { v: "metric", label: "Metric: the staircase (km, m, cm, g, L …)" }, { v: "systems", label: "Between customary and metric" },
-            { v: "time", label: "Time: seconds to years" }, { v: "temp", label: "Temperature: °F, °C and K" },
-            { v: "rates", label: "Rates, area and volume (unit fractions)" }
+            { v: "length", label: tx("unit-conversions.sc.m.length") }, { v: "weight", label: tx("unit-conversions.sc.m.weight") },
+            { v: "metric", label: tx("unit-conversions.sc.m.metric") }, { v: "systems", label: tx("unit-conversions.sc.m.systems") },
+            { v: "time", label: tx("unit-conversions.sc.m.time") }, { v: "temp", label: tx("unit-conversions.sc.m.temp") },
+            { v: "rates", label: tx("unit-conversions.sc.m.rates") }
           ]
         },
-        { key: "lenTask", label: "What to do", type: "choice", default: "any", modes: ["length"], values: ch(TASKV) },
-        { key: "lenUnits", label: "Units", type: "choice", default: "inft", modes: ["length"], values: ch(LUNITV) },
-        { key: "lenFrac", label: "Fractions in the answers", type: "toggle", default: false, values: onOff, modes: ["length"] },
-        { key: "wcWhat", label: "Weight or capacity", type: "choice", default: "both", modes: ["weight"], values: ch(WCV) },
-        { key: "wcTask", label: "What to do", type: "choice", default: "any", modes: ["weight"], values: ch(TASKV) },
-        { key: "wcFrac", label: "Fractions in the answers", type: "toggle", default: false, values: onOff, modes: ["weight"] },
-        { key: "metBase", label: "Unit", type: "choice", default: "any", modes: ["metric"], values: ch(MBASEV) },
-        { key: "metSteps", label: "Steps on the staircase", type: "choice", default: "any", modes: ["metric"], values: ch(MSTEPV) },
-        { key: "metDir", label: "Direction", type: "choice", default: "either", modes: ["metric"], values: ch(MDIRV) },
-        { key: "metDec", label: "Decimals (3.2 km)", type: "toggle", default: true, values: onOff, modes: ["metric"] },
-        { key: "sysWhat", label: "Measure", type: "choice", default: "any", modes: ["systems"], values: ch(SYSWV) },
-        { key: "sysDir", label: "Direction", type: "choice", default: "either", modes: ["systems"], values: ch(SYSDV) },
-        { key: "sysRound", label: "Round to", type: "choice", default: "2", modes: ["systems"], values: ch(SYSRV) },
-        { key: "timeTask", label: "What to do", type: "choice", default: "any", modes: ["time"], values: ch(TASKV_T) },
-        { key: "timeUnits", label: "Units", type: "choice", default: "small", modes: ["time"], values: ch(TUNITV) },
-        { key: "timeFrac", label: "Fractions in the answers", type: "toggle", default: false, values: onOff, modes: ["time"] },
-        { key: "tempDir", label: "Direction", type: "choice", default: "any", modes: ["temp"], values: ch(TDIRV) },
-        { key: "tempNice", label: "Whole-number answers", type: "toggle", default: true, values: onOff, modes: ["temp"] },
-        { key: "rateTask", label: "Kind", type: "choice", default: "any", modes: ["rates"], values: ch(RTASKV) },
-        { key: "rateMetric", label: "Metric units too", type: "toggle", default: false, values: onOff, modes: ["rates"] }
+        { key: "lenTask", label: tx("unit-conversions.sc.lenTask"), type: "choice", default: "any", modes: ["length"], values: ch(TASKV) },
+        { key: "lenUnits", label: tx("unit-conversions.sc.lenUnits"), type: "choice", default: "inft", modes: ["length"], values: ch(LUNITV) },
+        { key: "lenFrac", label: tx("unit-conversions.sc.lenFrac"), type: "toggle", default: false, values: onOff, modes: ["length"] },
+        { key: "wcWhat", label: tx("unit-conversions.sc.wcWhat"), type: "choice", default: "both", modes: ["weight"], values: ch(WCV) },
+        { key: "wcTask", label: tx("unit-conversions.sc.wcTask"), type: "choice", default: "any", modes: ["weight"], values: ch(TASKV) },
+        { key: "wcFrac", label: tx("unit-conversions.sc.wcFrac"), type: "toggle", default: false, values: onOff, modes: ["weight"] },
+        { key: "metBase", label: tx("unit-conversions.sc.metBase"), type: "choice", default: "any", modes: ["metric"], values: ch(MBASEV) },
+        { key: "metSteps", label: tx("unit-conversions.sc.metSteps"), type: "choice", default: "any", modes: ["metric"], values: ch(MSTEPV) },
+        { key: "metDir", label: tx("unit-conversions.sc.metDir"), type: "choice", default: "either", modes: ["metric"], values: ch(MDIRV) },
+        { key: "metDec", label: tx("unit-conversions.sc.metDec"), type: "toggle", default: true, values: onOff, modes: ["metric"] },
+        { key: "sysWhat", label: tx("unit-conversions.sc.sysWhat"), type: "choice", default: "any", modes: ["systems"], values: ch(SYSWV) },
+        { key: "sysDir", label: tx("unit-conversions.sc.sysDir"), type: "choice", default: "either", modes: ["systems"], values: ch(SYSDV) },
+        { key: "sysRound", label: tx("unit-conversions.sc.sysRound"), type: "choice", default: "2", modes: ["systems"], values: ch(SYSRV) },
+        { key: "timeTask", label: tx("unit-conversions.sc.timeTask"), type: "choice", default: "any", modes: ["time"], values: ch(TASKV_T) },
+        { key: "timeUnits", label: tx("unit-conversions.sc.timeUnits"), type: "choice", default: "small", modes: ["time"], values: ch(TUNITV) },
+        { key: "timeFrac", label: tx("unit-conversions.sc.timeFrac"), type: "toggle", default: false, values: onOff, modes: ["time"] },
+        { key: "tempDir", label: tx("unit-conversions.sc.tempDir"), type: "choice", default: "any", modes: ["temp"], values: ch(TDIRV) },
+        { key: "tempNice", label: tx("unit-conversions.sc.tempNice"), type: "toggle", default: true, values: onOff, modes: ["temp"] },
+        { key: "rateTask", label: tx("unit-conversions.sc.rateTask"), type: "choice", default: "any", modes: ["rates"], values: ch(RTASKV) },
+        { key: "rateMetric", label: tx("unit-conversions.sc.rateMetric"), type: "toggle", default: false, values: onOff, modes: ["rates"] }
       ];
     }
 
@@ -6010,16 +6080,16 @@
     /* ===================== wiring ===================== */
     var inp = $("numIn");
     var HINTS = {
-      length: "A length and the unit you want: <code>5 ft 7 in to inches</code>, <code>67 in to ft and in</code>, <code>how many yards in 1 mile</code>, <code>5'7\" to in</code>. Add or subtract: <code>5 ft 7 in + 3 ft 8 in</code>.",
-      weight: "Weight (oz, lb, tons) or capacity (fl oz, cups, pints, quarts, gallons): <code>2 gallons to cups</code>, <code>50 oz to lb and oz</code>, <code>3 lb 10 oz − 1 lb 12 oz</code>.",
-      metric: "Meters, grams or liters with a prefix: <code>3.2 km to m</code>, <code>450 mg to g</code>, <code>2.5 L to mL</code>, <code>75 cm to m</code>.",
-      systems: "Customary to metric or back: <code>5 mi to km</code>, <code>12 in to cm</code>, <code>70 kg to lb</code>, <code>2 gal to L, to the nearest tenth</code>.",
-      time: "Seconds up to years: <code>2 h 45 min to minutes</code>, <code>200 min to h and min</code>, <code>how many seconds in a day</code>, <code>2 h 45 min + 1 h 30 min</code>.",
-      temp: "A temperature and the scale you want: <code>98.6 °F to °C</code>, <code>37 C to F</code>, <code>300 K to °C</code>, <code>−40 °F to °C</code>.",
-      rates: "A rate, area or volume: <code>60 mph to ft/s</code>, <code>3 sq ft to sq in</code>, <code>2 cubic yards to cubic feet</code>, <code>$3.20 per pound to cents per ounce</code>. A unit rate: <code>150 miles in 3 hours</code>."
+      length: tx("unit-conversions.hint.length"),
+      weight: tx("unit-conversions.hint.weight"),
+      metric: tx("unit-conversions.hint.metric"),
+      systems: tx("unit-conversions.hint.systems"),
+      time: tx("unit-conversions.hint.time"),
+      temp: tx("unit-conversions.hint.temp"),
+      rates: tx("unit-conversions.hint.rates")
     };
-    var LABELS = { length: "Convert or add lengths", weight: "Convert or add weights and capacities", metric: "Convert metric units", systems: "Convert between systems", time: "Convert or add times", temp: "Convert a temperature", rates: "Convert a rate, area or volume" };
-    var EX = {
+    var LABELS = { length: tx("unit-conversions.lab.length"), weight: tx("unit-conversions.lab.weight"), metric: tx("unit-conversions.lab.metric"), systems: tx("unit-conversions.lab.systems"), time: tx("unit-conversions.lab.time"), temp: tx("unit-conversions.lab.temp"), rates: tx("unit-conversions.lab.rates") };
+    var EX = (window.HelperI18n && HelperI18n.raw("unit-conversions.exList")) || {
       length: ["5 ft 7 in to inches", "67 in to ft and in", "3 yd to ft", "how many feet in 2 miles", "30 in to ft", "5 ft 7 in + 3 ft 8 in", "6 ft 2 in − 2 ft 9 in", "2 1/2 ft to in"],
       weight: ["2 gallons to cups", "3 lb to oz", "40 fl oz to cups", "50 oz to lb and oz", "3 lb 10 oz − 1 lb 12 oz", "2 tons to pounds", "3 qt to pints", "6 tsp to tbsp"],
       metric: ["3.2 km to m", "450 mg to g", "2.5 L to mL", "75 cm to m", "0.8 kg to g", "2 m 35 cm to cm", "3500 mm to m"],
@@ -6121,7 +6191,7 @@
     $("hintBtn").addEventListener("click", function() {
       if (!CUR) return;
       CK.hinted = true;
-      CK.hint = "<b>Hint:</b> " + hintFor(CUR);
+      CK.hint = tx("unit-conversions.hintLead") + hintFor(CUR);
       render();
     });
     $("showBtn").addEventListener("click", function() {
@@ -6148,9 +6218,9 @@
       function done() {
         if (settled) return;
         settled = true;
-        btn.textContent = "Link copied ✓";
+        btn.textContent = tx("common.linkCopied") + " ✓";
         clearTimeout(btn._t);
-        btn._t = setTimeout(function() { btn.textContent = "Copy link"; }, 2000);
+        btn._t = setTimeout(function() { btn.textContent = tx("common.copyLink"); }, 2000);
       }
 
       function fallback() {
@@ -6194,14 +6264,14 @@
       return t ? t === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
     }
 
-    function paint() { themeBtn.textContent = isDark() ? "Light mode" : "Dark mode"; }
+    function paint() { themeBtn.textContent = isDark() ? tx("common.lightMode") : tx("common.darkMode"); }
     themeBtn.addEventListener("click", function() {
       document.documentElement.setAttribute("data-theme", isDark() ? "light" : "dark");
       paint();
       save();
     });
     $("maker").addEventListener("toggle", save);
-    $("footLinks").innerHTML = "Every number is kept exact — fractions, with decimals alongside and rounding stated. Unit rates and the better buy: <a href=\"" + esc(siteUrl("ratios", "mode=rate&q=" + encodeURIComponent("150 miles in 3 hours"))) + "\">the Ratio Table</a>. Clock times and money: <a href=\"" + esc(siteUrl("number-sense", "mode=time&kind=elapsed&from=2:45&to=4:10")) + "\">the Place Value Chart</a>. Fractions in the answers: <a href=\"" + esc(siteUrl("fractions")) + "\">the Fraction Bar</a>. Area and volume of shapes: <a href=\"" + esc(siteUrl("geometry")) + "\">the Shape Shop</a>.";
+    $("footLinks").innerHTML = tx("unit-conversions.footLinks", { r: esc(siteUrl("ratios", "mode=rate&q=" + encodeURIComponent(tx("unit-conversions.footRateQ")))), n: esc(siteUrl("number-sense", "mode=time&kind=elapsed&from=2:45&to=4:10")), f: esc(siteUrl("fractions")), g: esc(siteUrl("geometry")) });
 
     function save() {
       if (EMBED) return;

@@ -16,6 +16,7 @@
 <link rel="canonical" href="https://showthesteps.org/helpers/geometry">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","name":"Geometry: area, volume and angles, step by step – The Shape Shop","description":"Area, perimeter, volume, right triangles and angles. Pick a shape and type its measurements: you get a drawing to scale, the formula and why it works, the numbers put in, then every bit of…","url":"https://showthesteps.org/helpers/geometry","inLanguage":"en-US","isAccessibleForFree":true,"learningResourceType":["Interactive worked examples","Practice problems"],"interactivityType":"active","educationalUse":["Practice","Self-assessment"],"teaches":"Geometry: area, volume and angles","educationalLevel":["Elementary school (grades K–5)","Middle school (grades 6–8)","High school (grades 9–12)"],"audience":{"@type":"EducationalAudience","educationalRole":"student"},"publisher":{"@type":"Organization","name":"Show The Steps","url":"https://showthesteps.org/"},"isPartOf":{"@type":"WebSite","name":"Show The Steps","url":"https://showthesteps.org/"}}</script>
 <script src="../assets/site.js"></script>
+<script src="../assets/i18n.js" data-strings="geometry"></script>
 <script src="../assets/nav.js" defer></script>
 <script src="../assets/progress.js" defer></script>
 <link rel="stylesheet" href="../assets/fonts/fonts.css">
@@ -1744,9 +1745,9 @@
 <div class="page">
   <header class="masthead">
     <div>
-      <div class="eyebrow">Geometry, worked out</div>
+      <div class="eyebrow" data-i18n="geometry.eyebrow">Geometry, worked out</div>
       <h1>The Shape <em>Shop</em></h1>
-      <p class="tagline">Area, perimeter, volume, right triangles and angles. Pick a shape and type its
+      <p class="tagline" data-i18n="geometry.tagline">Area, perimeter, volume, right triangles and angles. Pick a shape and type its
         measurements: you get a drawing to scale, the formula and why it works, the numbers put in,
         then every bit of arithmetic one operation at a time.</p>
     </div>
@@ -1754,38 +1755,38 @@
   </header>
 
   <section class="problem">
-    <div class="modes" id="modeT" role="group" aria-label="What to work out">
-      <button type="button" data-m="area">Area &amp; perimeter</button>
-      <button type="button" data-m="vol">Volume &amp; surface area</button>
-      <button type="button" data-m="right">Right triangles</button>
-      <button type="button" data-m="angle">Angles</button>
+    <div class="modes" id="modeT" role="group" aria-label="What to work out" data-i18n-attr="aria-label=geometry.modesLabel">
+      <button type="button" data-m="area" data-i18n="geometry.tab.area">Area &amp; perimeter</button>
+      <button type="button" data-m="vol" data-i18n="geometry.tab.vol">Volume &amp; surface area</button>
+      <button type="button" data-m="right" data-i18n="geometry.tab.right">Right triangles</button>
+      <button type="button" data-m="angle" data-i18n="geometry.tab.angle">Angles</button>
     </div>
     <div class="pick">
       <span class="lbl" id="pickLbl">Shape</span>
-      <div class="modes small" id="shapeT" role="group" aria-label="Which shape"></div>
+      <div class="modes small" id="shapeT" role="group" aria-label="Which shape" data-i18n-attr="aria-label=geometry.shapesLabel"></div>
     </div>
     <div class="fields" id="fields"></div>
     <div class="opts">
-      <span class="optgrp" id="unitGrp"><span class="lbl">Units</span>
-        <span class="modes small" id="unitT" role="group" aria-label="Units"></span></span>
-      <span class="optgrp" id="piGrp"><span class="lbl">&pi; as</span>
-        <span class="modes small" id="piT" role="group" aria-label="How to use pi"></span></span>
+      <span class="optgrp" id="unitGrp"><span class="lbl" data-i18n="geometry.units">Units</span>
+        <span class="modes small" id="unitT" role="group" aria-label="Units" data-i18n-attr="aria-label=geometry.units"></span></span>
+      <span class="optgrp" id="piGrp"><span class="lbl" data-i18n="geometry.piAs">&pi; as</span>
+        <span class="modes small" id="piT" role="group" aria-label="How to use pi" data-i18n-attr="aria-label=geometry.piLabel"></span></span>
     </div>
     <p class="hint" id="hint"></p>
 
     <details class="maker" id="maker">
-      <summary>Make a problem for me <span>&mdash; pick what goes in it</span></summary>
+      <summary data-i18n="common.maker">Make a problem for me <span>&mdash; pick what goes in it</span></summary>
       <div class="maker-body" id="makerBody"></div>
     </details>
 
     <div class="examples">
-      <span class="lbl">Try</span>
+      <span class="lbl" data-i18n="common.try">Try</span>
       <span id="chips"></span>
       <span class="practice">
-        <div class="modes" role="group" aria-label="Practice mode">
-          <button type="button" id="allBtn" aria-pressed="true">Show all work</button>
-          <button type="button" id="stepBtn" aria-pressed="false">One step at a time</button>
-          <button type="button" id="checkBtn" aria-pressed="false">Check my answer</button>
+        <div class="modes" role="group" aria-label="Practice mode" data-i18n-attr="aria-label=common.practiceMode">
+          <button type="button" id="allBtn" aria-pressed="true" data-i18n="common.showAll">Show all work</button>
+          <button type="button" id="stepBtn" aria-pressed="false" data-i18n="common.oneStep">One step at a time</button>
+          <button type="button" id="checkBtn" aria-pressed="false" data-i18n="common.checkMine">Check my answer</button>
         </div>
       </span>
     </div>
@@ -1795,14 +1796,14 @@
   <div class="notice" id="urlNote" hidden></div>
 
   <section class="mine" id="mine" hidden aria-labelledby="mineH">
-    <div class="mine-head"><h2 id="mineH">Your answer</h2>
-      <span>Work it out on paper, then type what you got. Units are optional; &pi; and &radic; are fine (25&pi;, 5&radic;2).</span></div>
+    <div class="mine-head"><h2 id="mineH" data-i18n="common.yourAnswer">Your answer</h2>
+      <span data-i18n="geometry.mineNote">Work it out on paper, then type what you got. Units are optional; &pi; and &radic; are fine (25&pi;, 5&radic;2).</span></div>
     <form class="mine-form" id="mineForm" autocomplete="off" novalidate>
       <div class="fields" id="mineFields"></div>
       <div class="mine-go">
-        <button type="submit" class="go" id="mineGo">Check</button>
-        <button type="button" class="sbtn" id="hintBtn" hidden>Show a hint</button>
-        <button type="button" class="sbtn" id="showBtn" hidden>Show me the work</button>
+        <button type="submit" class="go" id="mineGo" data-i18n="common.check">Check</button>
+        <button type="button" class="sbtn" id="hintBtn" hidden data-i18n="common.hint">Show a hint</button>
+        <button type="button" class="sbtn" id="showBtn" hidden data-i18n="common.showWork">Show me the work</button>
       </div>
     </form>
     <div class="mine-fb" id="mineFb" aria-live="polite"></div>
@@ -1811,37 +1812,37 @@
   <div class="board" id="board">
     <section class="panel">
       <div class="panel-head">
-        <h2>The work</h2>
+        <h2 data-i18n="common.theWork">The work</h2>
         <div class="stepper" id="stepper" hidden>
-          <button type="button" id="prevBtn" aria-label="Previous step">&larr;</button>
+          <button type="button" id="prevBtn" aria-label="Previous step" data-i18n-attr="aria-label=common.prevStep">&larr;</button>
           <span class="count" id="stepCount"></span>
-          <button type="button" id="nextBtn" aria-label="Next step">&rarr;</button>
+          <button type="button" id="nextBtn" aria-label="Next step" data-i18n-attr="aria-label=common.nextStep">&rarr;</button>
         </div>
       </div>
       <div id="figHost"></div>
-      <p class="chk-ph">The working is hidden while you try it yourself. Check your answer above, or ask for a hint.</p>
+      <p class="chk-ph" data-i18n="geometry.chkWork">The working is hidden while you try it yourself. Check your answer above, or ask for a hint.</p>
       <div id="workHost"></div>
       <div class="legend" id="legend">
-        <div><span class="badge c-p">( )</span> Parentheses</div><span class="then">&rarr;</span>
-        <div><span class="badge c-e">x&sup2;</span> Powers</div><span class="then">&rarr;</span>
-        <div><span class="badge c-m">&times; &divide;</span> left to right</div><span class="then">&rarr;</span>
-        <div><span class="badge c-a">+ &minus;</span> left to right</div>
-        <div><span class="badge c-p">&asymp;</span> rounded or approximate</div>
+        <div data-i18n="geometry.legend.p"><span class="badge c-p">( )</span> Parentheses</div><span class="then">&rarr;</span>
+        <div data-i18n="geometry.legend.e"><span class="badge c-e">x&sup2;</span> Powers</div><span class="then">&rarr;</span>
+        <div data-i18n="geometry.legend.m"><span class="badge c-m">&times; &divide;</span> left to right</div><span class="then">&rarr;</span>
+        <div data-i18n="geometry.legend.a"><span class="badge c-a">+ &minus;</span> left to right</div>
+        <div data-i18n="geometry.legend.r"><span class="badge c-p">&asymp;</span> rounded or approximate</div>
       </div>
     </section>
 
     <section class="panel">
-      <div class="panel-head"><h2>Say it out loud</h2></div>
-      <p class="chk-ph">Each step gets explained here once you&rsquo;ve checked your answer.</p>
+      <div class="panel-head"><h2 data-i18n="common.sayIt">Say it out loud</h2></div>
+      <p class="chk-ph" data-i18n="geometry.chkSay">Each step gets explained here once you&rsquo;ve checked your answer.</p>
       <ol class="log" id="log"></ol>
       <div class="closer" id="closer"></div>
     </section>
   </div>
 
   <div class="footnote">
-    <button class="print" type="button" id="printBtn">Print this work</button>
-    <button class="print" type="button" id="copyBtn">Copy link</button>
-    <span>Formula, then the numbers, then one operation per line. Stuck on a step? Work it on
+    <button class="print" type="button" id="printBtn" data-i18n="common.print">Print this work</button>
+    <button class="print" type="button" id="copyBtn" data-i18n="common.copyLink">Copy link</button>
+    <span data-i18n="geometry.footnote">Formula, then the numbers, then one operation per line. Stuck on a step? Work it on
       <a href="addition.html">+</a>, <a href="subtraction.html">&minus;</a>,
       <a href="multiplication.html">&times;</a> or <a href="division.html">&divide;</a>, or see the order of
       operations on <a href="order-of-operations.html">The Order Stack</a>.</span>
@@ -1898,6 +1899,43 @@
      Making problems never touches what's on screen, the inputs, the maker settings or localStorage. */
   (function() {
     "use strict";
+    if (window.HelperI18n) HelperI18n.apply();
+    var tx = function(k, v) { return window.HelperI18n ? HelperI18n.t(k, v) : k; };
+    var EN = !window.HelperI18n || HelperI18n.lang === "en";
+    // a language's own data from its locale file (word lists, patterns), or null in English
+    function own(k) { return EN ? null : HelperI18n.raw(k) || null; }
+
+    function fold(s) { return String(s).normalize ? String(s).normalize("NFD").replace(/[\u0300-\u036f]/g, "") : String(s); }
+    // a typed problem in the language in use, as the reader knows it: this page's own phrases (geometry.re.typed in the
+    // language's file, matched without accents and in lower case; corner names like AB stay capitals), then the shared
+    // HelperI18n.normalize. English comes back unchanged.
+    function readTyped(q) {
+      if (EN || q === null || q === undefined) return q;
+      var P = own("geometry.re.typed"),
+        s = String(q);
+      if (P && P.length) {
+        // lower case, except corner names in capitals (AB, ABC, ∠C)
+        var f = fold(s.replace(/[¿¡]/g, " ")).replace(/[A-Za-z]+/g, function(w) { return /^[A-Z]{1,3}$/.test(w) ? w : w.toLowerCase(); }),
+          g = f;
+        P.forEach(function(r) { g = g.replace(new RegExp(r[0], "g"), r[1]); });
+        if (g !== f) s = g;
+      }
+      return HelperI18n.normalize(s);
+    }
+    // the same for a typed answer (units and words in the language): geometry.re.answer
+    function readAnswerWords(a) {
+      var P = own("geometry.re.answer"),
+        s = String(a);
+      if (!P || !P.length) return s;
+      s = fold(s).toLowerCase();
+      P.forEach(function(r) { s = s.replace(new RegExp(r[0], "g"), r[1]); });
+      return s;
+    }
+    // "Area" → the language's word for it: the answers keep their English names (they're looked up by them)
+    function ansK(k) {
+      var key = ANSK[k];
+      return key ? tx(key) : k;
+    }
     var $ = function(id) { return document.getElementById(id); };
 
     /* ===================== helpers ===================== */
@@ -1978,7 +2016,7 @@
           r = R(a.n * b.n, a.d * b.d);
           return { n: r.n, d: r.d, pi: a.pi || b.pi, deg: a.deg || b.deg, ap: ap };
         case "÷":
-          if (b.n === 0n) throw new UserErr("Something here divides by zero — check the numbers.");
+          if (b.n === 0n) throw new UserErr(tx("geometry.err.div0"));
           r = R(a.n * b.d, a.d * b.n);
           return { n: r.n, d: r.d, pi: a.pi && !b.pi, deg: a.deg && !b.deg, ap: ap };
         case "^":
@@ -2290,14 +2328,14 @@
       return s;
     }
     var BADGE = { "+": "+", "−": "−", "×": "×", "÷": "÷", "^": "x²" };
-    var VERB = { "+": "Add", "−": "Subtract", "×": "Multiply", "÷": "Divide" };
+    var VERB = { "+": tx("geometry.tag.add"), "−": tx("geometry.tag.subtract"), "×": tx("geometry.tag.multiply"), "÷": tx("geometry.tag.divide") };
 
     /* ===================== units ===================== */
     var UNITS = ["none", "mm", "cm", "m", "in", "ft", "yd"];
 
     function unitT(pow) {
       if (S.mode === "angle" || !pow) return "";
-      if (S.unit === "none") return pow === 2 ? "square units" : pow === 3 ? "cubic units" : "units";
+      if (S.unit === "none") return pow === 2 ? tx("geometry.u.sq") : pow === 3 ? tx("geometry.u.cu") : tx("geometry.u.one");
       return S.unit + (pow === 2 ? "²" : pow === 3 ? "³" : "");
     }
 
@@ -2324,9 +2362,9 @@
     // what "×" with a fraction out front sounds like
     function fracWords(fv, other, res) {
       var oh = "<b>" + other + "</b>";
-      if (fv.n === 1n && fv.d === 2n) return "is half of " + oh;
-      if (fv.n === 1n && fv.d === 3n) return "is a third of " + oh;
-      if (fv.n === 4n && fv.d === 3n) return "means a third of " + oh + ", four times over";
+      if (fv.n === 1n && fv.d === 2n) return tx("geometry.fw.half", { o: oh });
+      if (fv.n === 1n && fv.d === 3n) return tx("geometry.fw.third", { o: oh });
+      if (fv.n === 4n && fv.d === 3n) return tx("geometry.fw.fourThirds", { o: oh });
       return "";
     }
 
@@ -2344,8 +2382,8 @@
           rep = [];
         for (var i = 0; i < k; i++) rep.push(base);
         return {
-          tag: k === 2 ? "Square" : k === 3 ? "Cube" : "Power",
-          txt: "<b>" + base + "<sup>" + k + "</sup></b> means <b>" + rep.join(" × ") + " = " + vh + "</b>."
+          tag: k === 2 ? tx("geometry.tag.square") : k === 3 ? tx("geometry.tag.cube") : tx("geometry.tag.power"),
+          txt: tx("geometry.op.power", { b: base, k: k, rep: rep.join(" × "), v: vh })
         };
       }
       if (n.op === "×") {
@@ -2354,31 +2392,30 @@
           var s = "<b>" + ah + " × π = " + vh + "</b>.";
           if (!C.seen.piStays) {
             C.seen.piStays = true;
-            s += " π isn’t a number we can write out exactly, so it stays as a symbol on the end — " +
-              vh + " means “" + ah + " lots of π”.";
+            s += tx("geometry.op.piStays", { v: vh, a: ah });
           }
           return { tag: '× <span class="sym">π</span>', txt: s };
         }
         if (a.fr) {
           var w = fracWords(a.v, bh, vh);
           if (w) return {
-            tag: "Multiply",
+            tag: tx("geometry.tag.multiply"),
             txt: "<b>" + ah + " × " + bh + "</b> " + w + ": <b>" + vh + "</b>." +
-              (valParts(v).frac ? " It doesn’t come out even, so it stays a fraction for now." : "")
+              (valParts(v).frac ? tx("geometry.op.notEven") : "")
           };
         }
         if (b.raw === "3.14") return { tag: "× 3.14", txt: "<b>" + ah + " × 3.14 = " + vh + "</b>." };
-        return { tag: "Multiply", txt: "<b>" + ah + " × " + bh + " = " + vh + "</b>." };
+        return { tag: tx("geometry.tag.multiply"), txt: "<b>" + ah + " × " + bh + " = " + vh + "</b>." };
       }
       if (n.op === "÷") {
         var t2 = "<b>" + ah + " ÷ " + bh + " = " + vh + "</b>.";
-        if (valParts(v).frac) t2 += " It doesn’t divide evenly, so it stays a fraction for now.";
-        return { tag: "Divide", txt: t2 };
+        if (valParts(v).frac) t2 += tx("geometry.op.notDivide");
+        return { tag: tx("geometry.tag.divide"), txt: t2 };
       }
       var t3 = "<b>" + ah + " " + n.op + " " + bh + " = " + vh + "</b>.";
       if (n.op === "+" && a.v.pi && b.v.pi && !C.seen.piAdd) {
         C.seen.piAdd = true;
-        t3 += " Adding π’s is like adding anything else: " + vT(a.v).replace("π", "") + " of them and " + vT(b.v).replace("π", "") + " more.";
+        t3 += tx("geometry.op.piAdd", { a: vT(a.v).replace("π", ""), b: vT(b.v).replace("π", "") });
       }
       return { tag: VERB[n.op], txt: t3 };
     }
@@ -2386,13 +2423,13 @@
     function whyText(C, st, firstInGroup) {
       var c = st.counts,
         s = "";
-      if (st.group && firstInGroup) s = "Parentheses first: <b>" + H(st.group) + "</b>.";
+      if (st.group && firstInGroup) s = tx("geometry.why.par", { g: H(st.group) });
       else if (st.cls === "e" && (c.m || c.a) && !C.seen.wE) {
         C.seen.wE = true;
-        s = "Powers come first, before " + (c.m && c.a ? "× and +" : c.m ? "× and ÷" : "+ and −") + ".";
+        s = tx("geometry.why.pow", { ops: c.m && c.a ? tx("geometry.why.opsMA") : c.m ? tx("geometry.why.opsM") : tx("geometry.why.opsA") });
       } else if (st.cls === "m" && c.a && !C.seen.wM) {
         C.seen.wM = true;
-        s = "× and ÷ come before + and −.";
+        s = tx("geometry.why.md");
       }
       return s;
     }
@@ -2420,31 +2457,31 @@
 
       /* the formula */
       var s0 = logItem(C, [
-        ["p", o.ftag || "Formula", o.why]
+        ["p", o.ftag || tx("geometry.tag.formula"), o.why]
       ], o.aside);
       addRow(B, { lhs: o.lhs, rel: o.lhs === "" ? "" : "=", expr: H(ft), step: s0, cls: "formula" });
 
       /* numbers in */
       var names = varsIn(ft, []),
         put = names.map(function(nm) { return "<b>" + varH(nm) + " = " + vars[nm].h + "</b>"; });
-      var subTxt = put.length ? "Put in the numbers: " + put.join(", ") + "." : "Put in the numbers.";
+      var subTxt = put.length ? tx("geometry.put.list", { list: put.join(", ") }) : tx("geometry.put.none");
       var subAside = o.subAside || null;
       if (hasPi) {
         if (o.s && o.s !== o.f && !C.seen.piMove) {
           C.seen.piMove = true;
-          subTxt += " I’ve moved π to the end — you can multiply in any order, and this keeps the numbers simple until the last step.";
+          subTxt += tx("geometry.put.piMove");
         }
         if (S.pi === "314" && !C.seen.pi314) {
           C.seen.pi314 = true;
-          subTxt += " Use <b>3.14</b> for π. That’s close but not exact, so from here it’s <b>≈</b> (about equal) instead of =.";
+          subTxt += tx("geometry.put.pi314");
         }
         if (S.pi === "calc" && !C.seen.piCalc) {
           C.seen.piCalc = true;
-          subTxt += " Keep π as a symbol while we work, then use the calculator’s π (3.14159…) at the very end.";
+          subTxt += tx("geometry.put.piCalc");
         }
       }
       var s1 = logItem(C, [
-        ["p", "Put in", subTxt]
+        ["p", tx("geometry.tag.putIn"), subTxt]
       ], subAside);
 
       /* one operation at a time */
@@ -2460,7 +2497,7 @@
           if (sAll === null) {
             var parts = run.map(function(y) { return "<b>" + leafH(y.pick.a) + " + " + leafH(y.pick.b) + " = " + vH(y.value) + "</b>"; });
             sAll = logItem(C, [
-              ["a", "Add", "Add them up, left to right: " + parts.join(", ") + "."]
+              ["a", tx("geometry.tag.add"), tx("geometry.addUp", { parts: parts.join(", ") })]
             ]);
           }
           stepIx.push(sAll);
@@ -2498,17 +2535,15 @@
         if (fin.pi && S.pi === "calc") {
           var dec = fmtF(toF(fin), 2);
           var sC = logItem(C, [
-            ["p", "Round", "Now use the calculator’s π: <b>" + finP.h + " = " + finP.h.replace("π", "") + " × 3.14159… ≈ " + dec +
-              "</b>, rounded to 2 decimal places."
-            ]
+            ["p", tx("geometry.tag.round"), tx("geometry.round.calc", { f: finP.h, c: finP.h.replace("π", ""), d: dec })]
           ]);
           addRow(B, { rel: "≈", expr: esc(dec) + unitH(o.pow), step: sC, cls: "result" });
         } else if (!fin.pi && (!isTermD(fin.d) || places(fin.d) > 4)) {
           var r2 = roundRat(fin.n, fin.d, 2);
-          var whyR = !isTermD(fin.d) ? "<b>" + finP.h + "</b> doesn’t come out even as a decimal (it’s " + esc(fmtF(toF(fin), 4)) + "…), so round it: " :
-            "That’s a lot of decimal places, so round it: ";
+          var whyR = !isTermD(fin.d) ? tx("geometry.round.notEven", { f: finP.h, d: esc(fmtF(toF(fin), 4)) }) :
+            tx("geometry.round.many");
           var sR = logItem(C, [
-            ["p", "Round", whyR + "<b>≈ " + esc(r2) + "</b>, to 2 decimal places."]
+            ["p", tx("geometry.tag.round"), tx("geometry.round.to2", { why: whyR, r: esc(r2) })]
           ]);
           addRow(B, { rel: "≈", expr: esc(r2) + (fin.deg ? "°" : "") + unitH(o.pow), step: sR, cls: "result" });
         }
@@ -2547,9 +2582,7 @@
         var r = info.v,
           rh = vH(r);
         var s = logItem(C, [
-          ["e", "Root", "Undo the square with a square root: <b>√" + sqH + " = " + rh + "</b>, because <b>" +
-            rh + " × " + rh + " = " + sqH + "</b>."
-          ]
+          ["e", tx("geometry.tag.root"), tx("geometry.root.exact", { s: sqH, r: rh })]
         ]);
         addRow(B, { lhs: L, rel: "=", expr: radH(sqH), step: s });
         addRow(B, { rel: "=", expr: rh + (o.noUnit ? "" : unitH(1)), step: s, cls: "result" });
@@ -2559,10 +2592,8 @@
       } else {
         var dec2 = fmtF(info.f, 2),
           sR = logItem(C, [
-            ["e", "Root", "Undo the square with a square root: <b>" + L + " = √" + sqH + "</b>. " +
-              (info.int ? "No whole number times itself makes " + sqH + " (" + Math.floor(info.f) + "² = " + (Math.floor(info.f) * Math.floor(info.f)) +
-                " and " + Math.ceil(info.f) + "² = " + (Math.ceil(info.f) * Math.ceil(info.f)) + "), so the answer is between " +
-                Math.floor(info.f) + " and " + Math.ceil(info.f) + "." : "It isn’t a perfect square.")
+            ["e", tx("geometry.tag.root"), tx("geometry.root.undo", { L: L, s: sqH }) +
+              (info.int ? tx("geometry.root.between", { s: sqH, a: Math.floor(info.f), a2: (Math.floor(info.f) * Math.floor(info.f)), b: Math.ceil(info.f), b2: (Math.ceil(info.f) * Math.ceil(info.f)) }) : tx("geometry.root.notPerfect"))
             ]
           ]);
         addRow(B, { lhs: L, rel: "=", expr: radH(sqH), step: sR });
@@ -2573,24 +2604,17 @@
             kk = (k * k).toString();
           exactH = (k.toString()) + (mm === 1n ? "" : radH(mm.toString()));
           var sS = logItem(C, [
-            ["e", "Simplify", "Look for the biggest perfect square that goes into " + sqH + ": <b>" + sqH + " = " + kk + " × " + mm +
-              "</b>. The square root of " + kk + " is " + k + ", so " + k + " comes out in front and " + mm + " stays inside: <b>√" +
-              sqH + " = √" + kk + " × √" + mm + " = " + k + "√" + mm + "</b>."
-            ]
+            ["e", tx("geometry.tag.simplify"), tx("geometry.root.simp", { s: sqH, kk: kk, m: mm, k: k })]
           ]);
           addRow(B, { rel: "=", expr: radH(kk + '<span class="op-s">×</span>' + mm), step: sS });
           addRow(B, { rel: "=", expr: esc(k.toString()) + radH(mm.toString()) + (o.noUnit ? "" : unitH(1)), step: sS, cls: "result" });
         } else if (info.int && !C.seen.noSimp) {
           C.seen.noSimp = true;
-          C.log[sR].lines.push(["e", "Simplify", "Can √" + sqH + " be simpler? Only if a perfect square (4, 9, 16, 25, …) goes into " + sqH +
-            " — none does, so √" + sqH + " is as simple as it gets."
-          ]);
+          C.log[sR].lines.push(["e", tx("geometry.tag.simplify"), tx("geometry.root.noSimp", { s: sqH })]);
         }
         var back = Number(roundRat(BigInt(Math.round(info.f * 100)), 100n, 2).replace(/,/g, ""));
         var sD = logItem(C, [
-          ["p", "Round", "As a decimal: <b>√" + sqH + " ≈ " + esc(dec2) + "</b>, rounded to 2 decimal places. Check: <b>" +
-            esc(dec2) + " × " + esc(dec2) + " = " + esc(fmtF(back * back, 4)) + "</b>, very close to " + sqH + "."
-          ]
+          ["p", tx("geometry.tag.round"), tx("geometry.root.dec", { s: sqH, d: esc(dec2), b: esc(fmtF(back * back, 4)) })]
         ]);
         addRow(B, { rel: "≈", expr: esc(dec2) + (o.noUnit ? "" : unitH(1)), step: sD, cls: "result" });
         res.h = exactH;
@@ -2849,7 +2873,7 @@
       ].forEach(function(t) { F.ra(P[t[0]], P[t[1]], P[t[2]], 9, "k"); });
       F.label(P[0], P[1], lab(square ? "s" : "l", l), "", c);
       F.label(P[1], P[2], lab(square ? "s" : "w", w), "", c);
-      return F.svg(square ? "A square, drawn to scale" : "A rectangle, drawn to scale");
+      return F.svg(square ? tx("geometry.svg.square") : tx("geometry.svg.rect"));
     }
 
     function figTri(b, h, px, s1, s2, grid, hStep) {
@@ -2886,7 +2910,7 @@
       if (nearA) side = 1;
       if (nearB) side = -1;
       F.textPx([mid[0] + side * 8, mid[1] + 5], lab("h", h), "q", side > 0 ? "start" : "end");
-      return F.svg("A triangle drawn to scale, with its height dashed and the rectangle with the same base and height");
+      return F.svg(tx("geometry.svg.tri"));
     }
 
     function figPara(b, h, off, s, grid) {
@@ -2912,7 +2936,7 @@
       if (s) F.label(A, D, lab("s", s), "", c);
       var mid = F.p([off, Y / 2]);
       F.textPx([mid[0] + 8, mid[1] + 5], lab("h", h), "q", "start");
-      return F.svg("A parallelogram drawn to scale, with its height dashed");
+      return F.svg(tx("geometry.svg.para"));
     }
 
     function figTrap(a, b, h, p, c, d, grid) {
@@ -2930,7 +2954,7 @@
         cc = cen(P);
       var F = new Fig([A, B, C2, D, A2, D2]);
       F.poly([B, D2, A2, C2], "ghostf");
-      F.text(cen([B, D2, A2, C2]), "copy", "sm");
+      F.text(cen([B, D2, A2, C2]), tx("geometry.svg.copy"), "sm");
       F.poly(P, "shp");
       if (grid) F.grid(P, Math.min(0, p), Math.max(Bb, p + Ta), 0, Y);
       F.poly(P, "out");
@@ -2946,7 +2970,7 @@
       var mid = F.p([hx, Y * 0.3]),
         side = hx < Bb / 2 ? 1 : -1;
       F.textPx([mid[0] + side * 8, mid[1] + 5], lab("h", h), "q", side > 0 ? "start" : "end");
-      return F.svg("A trapezoid drawn to scale, with a flipped copy that makes a parallelogram");
+      return F.svg(tx("geometry.svg.trap"));
     }
 
     function figCircle(r, isD, grid, given) {
@@ -2977,7 +3001,7 @@
         F.text([Rr / 2, 0], lab("r", given), "km", "middle", "", 20);
       }
       F.add('<circle class="dot" cx="' + f1(C0[0]) + '" cy="' + f1(C0[1]) + '" r="3.5"/>');
-      return F.svg("A circle drawn to scale, with a square on its radius");
+      return F.svg(tx("geometry.svg.circle"));
     }
 
     function figL(W, H, w, h, grid) {
@@ -3030,7 +3054,7 @@
       F.label(P[1], P[2], esc(lenT(num(apply("−", H.v, h.v)))), "d", cB);
       F.text(cA, "A", "big kk");
       F.text(cB, "B", "big kk");
-      return F.svg("An L-shape drawn to scale, split into rectangles A and B, with the missing corner dashed");
+      return F.svg(tx("geometry.svg.L"));
     }
 
     /* ---------- solids ---------- */
@@ -3122,7 +3146,7 @@
       F.label(P[0], P[1], lab(cube ? "s" : "l", l), "", r.mid);
       F.label(P[0], P[3], lab(cube ? "s" : "h", h), "", r.mid);
       F.label(P[1], P[5], lab(cube ? "s" : "w", w), "", r.mid, 7);
-      return F.svg(cube ? "A cube sketch with hidden edges dashed" : "A box (rectangular prism) sketch with hidden edges dashed");
+      return F.svg(cube ? tx("geometry.svg.cube") : tx("geometry.svg.box"));
     }
 
     function figNet(l, w, h, cube) {
@@ -3130,12 +3154,12 @@
         Z = w.f,
         Y = h.f;
       var faces = [
-        { n: "left", r: [0, Z, Z, Z + Y], d: [w, h], c: "nf3" },
-        { n: "front", r: [Z, Z, Z + X, Z + Y], d: [l, h], c: "nf1" },
-        { n: "right", r: [Z + X, Z, 2 * Z + X, Z + Y], d: [w, h], c: "nf3" },
-        { n: "back", r: [2 * Z + X, Z, 2 * Z + 2 * X, Z + Y], d: [l, h], c: "nf1" },
-        { n: "top", r: [Z, Z + Y, Z + X, 2 * Z + Y], d: [l, w], c: "nf2" },
-        { n: "bottom", r: [Z, 0, Z + X, Z], d: [l, w], c: "nf2" }
+        { n: tx("geometry.face.left"), r: [0, Z, Z, Z + Y], d: [w, h], c: "nf3" },
+        { n: tx("geometry.face.front"), r: [Z, Z, Z + X, Z + Y], d: [l, h], c: "nf1" },
+        { n: tx("geometry.face.right"), r: [Z + X, Z, 2 * Z + X, Z + Y], d: [w, h], c: "nf3" },
+        { n: tx("geometry.face.back"), r: [2 * Z + X, Z, 2 * Z + 2 * X, Z + Y], d: [l, h], c: "nf1" },
+        { n: tx("geometry.face.top"), r: [Z, Z + Y, Z + X, 2 * Z + Y], d: [l, w], c: "nf2" },
+        { n: tx("geometry.face.bottom"), r: [Z, 0, Z + X, Z], d: [l, w], c: "nf2" }
       ];
       var F = new Fig([
         [0, 0],
@@ -3182,7 +3206,7 @@
       F.line([Z, Z], [Z + X, Z], "fold");
       F.line([Z, Z + Y], [Z + X, Z + Y], "fold");
       F.poly(o, "out");
-      return F.svg("The net of the " + (cube ? "cube" : "box") + ": its six faces unfolded flat, each labeled with its area");
+      return F.svg(cube ? tx("geometry.svg.netCube") : tx("geometry.svg.netBox"));
     }
 
     function ellipseD(C, rx, ry, a1, a2) { // arc of an ellipse from parameter a1 to a2 (degrees, counter-clockwise on screen)
@@ -3215,7 +3239,7 @@
       F.add('<circle class="dot" cx="' + f1(C1[0]) + '" cy="' + f1(C1[1]) + '" r="3"/>');
       F.textPx([C1[0] + RX + 8, C1[1] + 5], rLab, "km", "start");
       F.label([Rr, 0], [Rr, Hh], lab("h", h), "", [0, Hh / 2]);
-      return F.svg("A cylinder sketch with the hidden back edge dashed");
+      return F.svg(tx("geometry.svg.cyl"));
     }
 
     function figCone(r, h, rLab, lLab) {
@@ -3253,7 +3277,7 @@
       F.textPx([hm[0] - 8, hm[1] + 5], lab("h", h), "q", "end");
       F.label([Rr, 0], [0, Hh], lLab.q, "km", [0, 0], 9, ' data-until="' + lLab.until + '"');
       F.label([Rr, 0], [0, Hh], lLab.t, "km", [0, 0], 9, ' data-step="' + lLab.until + '"');
-      return F.svg("A cone sketch: the height, radius and slant height make a right triangle");
+      return F.svg(tx("geometry.svg.cone"));
     }
 
     function figSphere(r, rLab) {
@@ -3273,7 +3297,7 @@
       F.line([0, 0], [Rr, 0], "rad");
       F.add('<circle class="dot" cx="' + f1(C0[0]) + '" cy="' + f1(C0[1]) + '" r="3"/>');
       F.textPx([C0[0] + RP / 2, C0[1] - 8], rLab, "km");
-      return F.svg("A sphere sketch with its radius");
+      return F.svg(tx("geometry.svg.sphere"));
     }
 
     function figTPrism(b, h, px, L, s1, s2) {
@@ -3311,7 +3335,7 @@
       if (s2) {
         F.along(P[1], P[2], lab("s2", s2), "", tc, 6);
       }
-      return F.svg("A triangular prism sketch with hidden edges dashed");
+      return F.svg(tx("geometry.svg.tprism"));
     }
 
     function figPyr(s, h, lLab) {
@@ -3346,7 +3370,7 @@
       var LM = F.p([(P[4][0] + fm[0]) / 2, (P[4][1] + fm[1]) / 2]);
       F.textPx([LM[0] + 9, LM[1] + 12], lLab.q, "km", "start", ' data-until="' + lLab.until + '"');
       F.textPx([LM[0] + 9, LM[1] + 12], lLab.t, "km", "start", ' data-step="' + lLab.until + '"');
-      return F.svg("A square pyramid sketch: height, half the base and slant height make a right triangle");
+      return F.svg(tx("geometry.svg.pyr"));
     }
 
     /* ---------- squares on the sides of a triangle ---------- */
@@ -3437,7 +3461,7 @@
       sqLabels(Sa, o.la, o.sa, "ka");
       sqLabels(Sb, o.lb, o.sb, "km");
       sqLabels(Sc, o.lc, o.sc, "kk");
-      return F.svg("A triangle with a square drawn on each side; each square is labeled with its area");
+      return F.svg(tx("geometry.svg.squares"));
     }
 
     /* ---------- angles ---------- */
@@ -3495,7 +3519,7 @@
       });
       var C = F.p(O);
       F.add('<circle class="dot" cx="' + f1(C[0]) + '" cy="' + f1(C[1]) + '" r="3.5"/>');
-      return F.svg(o.aria || "Angles drawn to their true size");
+      return F.svg(o.aria || tx("geometry.svg.rays"));
     }
 
     function figTriAng(A, B, xs) {
@@ -3549,7 +3573,7 @@
       corner(Qp, Pp, Tp, B, xs.b, false);
       corner(Tp, Pp, Qp, 180 - A - B, xs.x, true, xs.until, xs.q);
       F.poly([P, Q, T], "out");
-      return F.svg("A triangle with its angles drawn to their true size");
+      return F.svg(tx("geometry.svg.triAng"));
     }
 
     function figVert(a, xs) {
@@ -3580,7 +3604,7 @@
       });
       var C = F.p(O);
       F.add('<circle class="dot" cx="' + f1(C[0]) + '" cy="' + f1(C[1]) + '" r="3.5"/>');
-      return F.svg("Two crossing lines with the four angles drawn to their true size");
+      return F.svg(tx("geometry.svg.vert"));
     }
     // parallel lines cut by a transversal; th = the angle at position 2 (top right of the upper crossing)
     function figPar(th, labels) {
@@ -3639,7 +3663,7 @@
           else F.textPx([VP[0], VP[1] + 5], L.t, L.cls, "middle");
         });
       });
-      return F.svg("Two parallel lines cut by a transversal, with the eight angles numbered");
+      return F.svg(tx("geometry.svg.par"));
     }
 
     function figPoly(n, labels) {
@@ -3674,13 +3698,13 @@
       F.textPx([exP[0] + 4, exP[1] + 5], labels.e, "q", "start", labels.eu != null ? ' data-step="' + labels.eu + '"' : "");
       if (labels.eu != null) F.textPx([exP[0] + 4, exP[1] + 5], labels.eq, "q", "start", ' data-until="' + labels.eu + '"');
       if (n <= 40) F.add('<circle class="dot" cx="' + f1(P0[0]) + '" cy="' + f1(P0[1]) + '" r="3.5"/>');
-      return F.svg("A regular polygon cut into triangles from one corner, with one interior and one exterior angle marked");
+      return F.svg(tx("geometry.svg.poly"));
     }
 
     /* ===================== reading the fields ===================== */
     function fieldName(fd, Vv) {
-      if (fd.rd) return Vv.rd === "d" ? "diameter (d)" : "radius (r)";
-      return fd.label.toLowerCase() + (fd.sym ? " (" + fd.sym + ")" : "");
+      if (fd.rd) return Vv.rd === "d" ? tx("geometry.fn.diameter") : tx("geometry.fn.radiusR");
+      return tx("geometry.fn." + fd.lk) + (fd.sym ? " (" + fd.sym + ")" : "");
     }
 
     function FieldErr(msg, k) {
@@ -3689,17 +3713,18 @@
     }
 
     function readOne(s, fd, nm) {
-      var r = parseNum(s);
-      if (r.bad) return r.zeroDen ? "You can’t have 0 on the bottom of a fraction — check the " + nm + "." :
-        "<b>" + esc(s) + "</b> isn’t a number I can read for the " + nm + ". Use something like <b>12</b>, <b>2.5</b> or <b>3/4</b>.";
-      if (r.neg) return fd.deg ? "An angle can’t be negative — the " + nm + " has to be more than 0°." :
-        "A length can’t be negative — the " + nm + " has to be more than 0.";
-      if (r.v.n === 0n) return fd.deg ? "The " + nm + " can’t be 0° — there’d be no angle at all." :
-        "The " + nm + " can’t be 0 — a side has to have some length.";
-      if (r.digits > 10) return "<b>" + esc(s) + "</b> has a lot of digits. Keep each number to 10 digits or fewer.";
-      if (r.dp > 4) return "<b>" + esc(s) + "</b> has more than 4 decimal places — round it a little first.";
-      if (Number(r.v.n) / Number(r.v.d) > 100000) return "<b>" + esc(s) + "</b> is too big to draw. Keep measurements under 100,000.";
-      if (fd.whole && r.v.d !== 1n) return "The " + nm + " has to be a whole number — a polygon can’t have " + esc(s) + " sides.";
+      var r = parseNum(s),
+        N = { nm: nm, Nm: nm.charAt(0).toUpperCase() + nm.slice(1), s: esc(s) };
+      if (r.bad) return r.zeroDen ? tx("geometry.err.zeroDen", N) :
+        tx("geometry.err.read", N);
+      if (r.neg) return fd.deg ? tx("geometry.err.negAngle", N) :
+        tx("geometry.err.negLen", N);
+      if (r.v.n === 0n) return fd.deg ? tx("geometry.err.zeroAngle", N) :
+        tx("geometry.err.zeroLen", N);
+      if (r.digits > 10) return tx("geometry.err.digits", N);
+      if (r.dp > 4) return tx("geometry.err.dp", N);
+      if (Number(r.v.n) / Number(r.v.d) > 100000) return tx("geometry.err.big", N);
+      if (fd.whole && r.v.d !== 1n) return tx("geometry.err.whole", N);
       var v = fd.deg ? V(r.v.n, r.v.d, { deg: true }) : r.v;
       return num(v, r.h + (fd.deg ? "°" : ""), r.t + (fd.deg ? "°" : ""));
     }
@@ -3716,14 +3741,14 @@
           nm = fieldName(fd, Vv);
         if (!s) {
           if (optional || fd.opt) return null;
-          throw new FieldErr("Fill in the " + nm + ".", k);
+          throw new FieldErr(tx("geometry.err.fill", { nm: nm }), k);
         }
         if (fd.list) {
           var bits = s.split(/[\s,;]+/).filter(function(x) { return x; }),
             out = [];
-          if (bits.length > 8) throw new FieldErr("That’s a lot of angles! Keep it to 8 or fewer.", k);
+          if (bits.length > 8) throw new FieldErr(tx("geometry.err.many"), k);
           bits.forEach(function(b) {
-            var r = readOne(b, fd, "angle");
+            var r = readOne(b, fd, tx("geometry.fn.angleItem"));
             if (typeof r === "string") throw new FieldErr(r, k);
             out.push(r);
           });
@@ -3754,35 +3779,38 @@
           t3 = isTermD(c3.d) && places(c3.d) <= 2 ? decStr(c3.n < 0n ? -c3.n : c3.n, c3.d) : roundRat(c3.n, c3.d, 2);
         if (S.pi === "exact") {
           main = ex + u;
-          facts.push("With the calculator’s π: <b>≈ " + calc + "</b>" + us + ", rounded to 2 decimal places");
-          facts.push("With π ≈ 3.14: <b>≈ " + t3 + "</b>" + us);
+          facts.push(tx("geometry.fact.calc2", { c: calc, u: us }));
+          facts.push(tx("geometry.fact.with314", { t: t3, u: us }));
         } else if (S.pi === "314") {
           main = "≈ " + esc(t3) + u;
-          facts.push("Exact, in terms of π: <b>" + ex + "</b>" + us);
-          facts.push("With the calculator’s π: <b>≈ " + calc + "</b>" + us + " (2 decimal places)");
+          facts.push(tx("geometry.fact.exactPi", { e: ex, u: us }));
+          facts.push(tx("geometry.fact.calcDp", { c: calc, u: us }));
         } else {
           main = "≈ " + esc(calc) + u;
-          facts.push("Exact, in terms of π: <b>" + ex + "</b>" + us);
-          facts.push("Rounded to 2 decimal places. With π ≈ 3.14 it’s <b>≈ " + t3 + "</b>" + us);
+          facts.push(tx("geometry.fact.exactPi", { e: ex, u: us }));
+          facts.push(tx("geometry.fact.round314", { t: t3, u: us }));
         }
         // the number in front of π shown as a decimal (20.25π)? give its fraction too (81/4 π)
         if (x.d !== 1n && !x.ap && !valParts(x).frac)
-          facts.push("Exact, as a fraction: <b>" + valParts(x, true).h + "</b>" + us);
+          facts.push(tx("geometry.fact.exactFrac", { f: valParts(x, true).h, u: us }));
       } else if (isTermD(v.d) && places(v.d) <= 4) {
         main = (v.ap ? "≈ " : "") + vH(v) + u;
         if (v.d !== 1n && !v.ap) {
           var fa = v.n < 0n ? -v.n : v.n,
             fs = v.n < 0n ? "−" : "";
-          facts.push("As a fraction: <b>" + fs + frHTML(fa.toString(), v.d.toString()) +
-            (fa > v.d ? " = " + fs + (fa / v.d) + " " + frHTML((fa % v.d).toString(), v.d.toString()) : "") + "</b>" + us);
+          facts.push(tx("geometry.fact.asFrac", {
+            f: fs + frHTML(fa.toString(), v.d.toString()) +
+              (fa > v.d ? " = " + fs + (fa / v.d) + " " + frHTML((fa % v.d).toString(), v.d.toString()) : ""),
+            u: us
+          }));
         }
       } else {
         main = "≈ " + esc(roundRat(v.n, v.d, 2)) + u;
         if (!isTermD(v.d)) {
           var a = v.n < 0n ? -v.n : v.n,
             mixed = a > v.d ? " = " + (a / v.d) + " " + frHTML((a % v.d).toString(), v.d.toString()) : "";
-          facts.push("Rounded to 2 decimal places. Exactly, it’s <b>" + vH(v) + mixed + "</b>" + us);
-        } else facts.push("Rounded to 2 decimal places. Exactly, it’s <b>" + vH(v) + "</b>" + us);
+          facts.push(tx("geometry.fact.roundExact", { v: vH(v) + mixed, u: us }));
+        } else facts.push(tx("geometry.fact.roundExact", { v: vH(v), u: us }));
       }
       return { main: main, facts: facts };
     }
@@ -3794,97 +3822,116 @@
     }
 
     function note(C, title, html) { C.blocks.push({ kind: "note", title: title, html: html }); }
+    var ANSK = {
+      "Area": "geometry.ans.area",
+      "Perimeter": "geometry.ans.perimeter",
+      "Circumference": "geometry.ans.circ",
+      "Volume": "geometry.ans.volume",
+      "Surface area": "geometry.ans.surface",
+      "Slant height": "geometry.ans.slant",
+      "Hypotenuse <span class=\"sym\">c</span>": "geometry.ans.hypSym",
+      "Missing leg <span class=\"sym\">b</span>": "geometry.ans.legSym",
+      "Right triangle?": "geometry.ans.isRight",
+      "Missing angle": "geometry.ans.missingAngle",
+      "Vertical angle ∠3": "geometry.ans.vert3",
+      "∠2 and ∠4": "geometry.ans.a2a4",
+      "Interior angles add to": "geometry.ans.interiorSum",
+      "Each interior angle": "geometry.ans.eachInterior",
+      "Each exterior angle": "geometry.ans.eachExterior",
+      "Hypotenuse c": "geometry.ans.hypC",
+      "Missing leg b": "geometry.ans.legB",
+      "Missing angle x": "geometry.ans.angleX",
+      "Right triangle? (yes or no)": "geometry.ans.isRightYN",
+      "Sum of the interior angles": "geometry.ans.sumInterior"
+    };
 
     /* ===================== the shapes ===================== */
-    function F(k, label, sym, o) { o = o || {}; return { k: k, label: label, sym: sym, opt: o.opt || "", list: !!o.list, rd: !!o.rd, deg: !!o.deg, pos: !!o.pos, whole: !!o.whole }; }
+    function F(k, lk, sym, o) { o = o || {}; return { k: k, lk: lk, label: tx("geometry.f." + lk), sym: sym, opt: o.opt ? tx(o.opt) : "", list: !!o.list, rd: !!o.rd, deg: !!o.deg, pos: !!o.pos, whole: !!o.whole }; }
 
     function triApex(g, b, h, s1, s2, C, what) { // where the top corner sits, from the three sides (or a guess)
       var px = b.f * 0.36,
         warn = null;
       if (s1 && s2) {
         var x = [b.f, s1.f, s2.f].sort(function(p, q) { return p - q; });
-        if (x[0] + x[1] <= x[2] * (1 + 1e-12)) throw new UserErr("Those three sides can’t make a triangle: <b>" + fmtF(x[0], 4) + " + " + fmtF(x[1], 4) +
-          " = " + fmtF(x[0] + x[1], 4) + "</b>, which isn’t more than <b>" + fmtF(x[2], 4) + "</b>. The two shorter sides have to add up to more than the longest one, or they can’t reach each other.");
-        if (h.f > Math.min(s1.f, s2.f) * (1 + 1e-9)) throw new UserErr("The height (<b>" + h.t + "</b>) is longer than a slanted side (<b>" + (s1.f < s2.f ? s1.t : s2.t) +
-          "</b>). The height is the straight-up distance from the top corner down to the base, so it can’t be longer than a side that leans.");
+        if (x[0] + x[1] <= x[2] * (1 + 1e-12)) throw new UserErr(tx("geometry.err.triIneq", { x: fmtF(x[0], 4), y: fmtF(x[1], 4), s: fmtF(x[0] + x[1], 4), z: fmtF(x[2], 4) }));
+        if (h.f > Math.min(s1.f, s2.f) * (1 + 1e-9)) throw new UserErr(tx("geometry.err.hTooLong", { h: h.t, s: (s1.f < s2.f ? s1.t : s2.t) }));
         px = (b.f * b.f + s1.f * s1.f - s2.f * s2.f) / (2 * b.f);
         var hc = Math.sqrt(Math.max(0, s1.f * s1.f - px * px));
         if (Math.abs(hc - h.f) > Math.max(0.01, 0.006 * h.f))
-          warn = "Heads up: a triangle with base <b>" + b.t + "</b> and sides <b>" + s1.t + "</b> and <b>" + s2.t + "</b> has a height of about <b>" +
-          fmtF(hc, 2) + "</b>, not " + h.t + ". The " + what + " below uses the height you typed, so double-check the measurements.";
+          warn = tx("geometry.warn.triH", { b: b.t, s1: s1.t, s2: s2.t, hc: fmtF(hc, 2), h: h.t, what: what });
       }
       return { px: px, warn: warn };
     }
     var WHY = {
-      rectA: "Area is how many unit squares it takes to cover the shape. A rectangle is rows of squares: <b>l</b> squares in each row and <b>w</b> rows, so multiply <b>length × width</b>.",
-      rectP: "Perimeter is the distance all the way around the edge. A rectangle has two lengths and two widths: add one length and one width, then double it.",
-      sqA: "A square is a rectangle with all four sides the same, so its area is <b>side × side</b>, written <b>s²</b>. That’s why “squared” means a number times itself!",
-      sqP: "Four sides, all the same length: <b>4 × s</b>.",
-      triA: "A triangle is exactly half of a rectangle with the same base and height — that’s the dashed rectangle in the drawing. So work out the rectangle and halve it: <b>½ × base × height</b>.",
-      triAside: "The height has to be measured straight up from the base, at a right angle to it (the dashed line) — not along a slanted side.",
-      triP: "Perimeter is the distance around: add the three sides.",
-      paraA: "Cut the shaded triangle off one end of the parallelogram and slide it to the other end (the dashed spot): it becomes a rectangle with the same base and height. So <b>area = base × height</b>.",
-      paraP: "A parallelogram has two bases and two slanted sides: add one of each, then double it.",
-      trapA: "Two copies of the trapezoid, one flipped over (dashed), fit together into a parallelogram. Its base is <b>a + b</b> and it has the same height, so it has area <b>(a + b) × h</b>. One trapezoid is half of that: <b>½ × (a + b) × h</b>.",
-      trapAside: "Another way to see it: average the two parallel sides, (a + b) ÷ 2, then multiply by the height.",
-      trapP: "Perimeter is the distance around: add all four sides.",
-      rFromD: "The radius goes from the center to the edge; the diameter goes all the way across, so it’s two radii. Halve it: <b>r = d ÷ 2</b>.",
-      circA: "<b>A = π × r²</b>. The shaded square in the drawing is r × r, or r². A circle covers a bit more than 3 of those squares — exactly π of them (π ≈ 3.14).",
-      circCr: "Every circle is π times as far around as it is across — that’s what π means. Across is the diameter, which is 2 radii, so <b>C = 2 × π × r</b>. The distance around a circle is called its <b>circumference</b>.",
-      circCd: "Every circle is π times as far around as it is across — that’s what π means. Across is the diameter, so <b>C = π × d</b>. The distance around a circle is called its <b>circumference</b>.",
-      lA: "Split the L along the dashed line into two rectangles. <b>A</b> is the tall part: <b>W − w</b> wide and <b>H</b> tall. <b>B</b> is the short part: <b>w</b> wide and <b>H − h</b> tall. The area of the L is A + B.",
-      lAside: "You could split it the other way instead (a wide rectangle along the bottom and a narrow one on top) — you get the same answer.",
-      lCheck: "Or start with the whole <b>W × H</b> rectangle and take away the missing corner (dashed), which is <b>w × h</b>.",
-      lP: "Walk around the outside: the bottom (<b>W</b>), up the right side to the notch (<b>H − h</b>), across the notch (<b>w</b>), up (<b>h</b>), along the top (<b>W − w</b>) and down the left side (<b>H</b>).",
-      boxV: "Volume counts the unit cubes that fill the shape. The bottom layer is <b>l × w</b> cubes, and there are <b>h</b> layers stacked up: <b>V = l × w × h</b>.",
-      boxS: "Surface area is the total area of all the faces — the cardboard it takes to make the box (see the net below). There are three pairs of matching faces: top and bottom (<b>l × w</b>), front and back (<b>l × h</b>), left and right (<b>w × h</b>). Add one of each, then double it.",
-      cubeV: "All the edges are the same, so <b>V = s × s × s = s³</b>. That’s why “cubed” means a number times itself three times!",
-      cubeS: "A cube has 6 faces, and every one is the same square, <b>s²</b>: <b>SA = 6 × s²</b>.",
-      cylV: "A cylinder is a stack of circles. The base is a circle with area π × r², and the stack is h tall: <b>V = π × r² × h</b>.",
-      cylS: "Two circles (top and bottom, π × r² each) plus the label around the side. Unroll the label and it’s a rectangle: h tall and as long as the distance around the circle, 2 × π × r. So <b>SA = 2 × π × r² + 2 × π × r × h</b>.",
-      coneV: "A cone holds exactly ⅓ of the cylinder with the same base and height — it takes three cones of water to fill that cylinder. So <b>V = ⅓ × π × r² × h</b>.",
-      coneL: "For the surface area we need the <b>slant height l</b>: from the tip, down the side, to the edge. The height, the radius and the slant height make a right triangle (shaded in the drawing), so use the Pythagorean theorem: <b>l² = r² + h²</b>.",
-      coneS: "The base is a circle (π × r²). The curved side, unrolled, is a fan shape with area π × r × l. So <b>SA = π × r² + π × r × l</b>.",
-      sphV: "<b>V = <sup>4</sup>⁄<sub>3</sub> × π × r³</b>. Archimedes found that a sphere fills exactly ⅔ of the smallest cylinder it fits inside.",
-      sphS: "<b>SA = 4 × π × r²</b> — exactly four circles with the same radius. It’s also the same as the label of the cylinder that just fits around it.",
-      tpV: "A prism is the same shape all the way through, so <b>volume = area of the end × length</b>. The end is a triangle, ½ × b × h, so <b>V = ½ × b × h × l</b>.",
-      tpS: "Two triangle ends (½ × b × h each) plus three rectangles around the sides. The three rectangles side by side make one long strip: as long as the triangle’s perimeter (b + s₁ + s₂) and as wide as the prism’s length l.",
-      pyV: "A pyramid holds exactly ⅓ of the box with the same base and height. The base is a square, s², so <b>V = ⅓ × s² × h</b>.",
-      pyL: "Each triangle face needs its own height: the <b>slant height l</b>, straight up the middle of the face. The pyramid’s height <b>h</b>, half the base <b>s ÷ 2</b>, and <b>l</b> make a right triangle (shaded): <b>l² = h² + (s ÷ 2)²</b>.",
-      pyS: "The square base (<b>s²</b>) plus four triangle faces, each ½ × s × l: <b>SA = s² + 4 × ½ × s × l</b>.",
-      pyth: "In a right triangle, the square on the longest side — the <b>hypotenuse c</b>, across from the right angle — has exactly the same area as the squares on the two shorter sides (the <b>legs</b>) put together: <b>a² + b² = c²</b>. Look at the squares in the drawing.",
-      leg: "Start from <b>a² + b² = c²</b>. We know c and a, so take a² away from both sides: <b>b² = c² − a²</b>. In the drawing: the missing leg’s square is what’s left of the big square after taking away the other leg’s square.",
-      check: "If the triangle has a right angle, the squares on the two shorter sides add up to exactly the square on the longest side. So work out both and compare.",
-      angTri: "The three angles inside any triangle add up to <b>180°</b>. (Tear the corners off a paper triangle and they fit together into a straight line.) So x is what’s left after taking away the two you know.",
-      angLine: "Angles that sit side by side on a straight line make a half turn, so they add up to <b>180°</b>. Take away the ones you know.",
-      angComp: "Two angles that together fill a right angle (a square corner) are <b>complementary</b>: they add up to <b>90°</b>.",
-      angPoint: "Angles all the way around a point make a full turn: they add up to <b>360°</b>. Take away the ones you know.",
-      angVert: "Where two straight lines cross, angles next to each other sit on a straight line, so they add up to <b>180°</b>.",
-      angPar: "Every angle in this picture either matches the one you know or adds with it to make <b>180°</b> (they sit on a straight line). Find the other size first.",
-      polyS: "From one corner, draw lines to every other corner: they cut the polygon into <b>n − 2</b> triangles (shaded). Each triangle’s angles add to 180°, so all the polygon’s angles add to <b>(n − 2) × 180°</b>.",
-      polyI: "A <b>regular</b> polygon has all its sides and angles equal, so share the total out equally: <b>S ÷ n</b>.",
-      polyE: "The exterior angle is how far you turn at each corner as you walk around the edge. All the turns together make one full turn, <b>360°</b>, so each one is <b>360° ÷ n</b>."
+      rectA: tx("geometry.why.rectA"),
+      rectP: tx("geometry.why.rectP"),
+      sqA: tx("geometry.why.sqA"),
+      sqP: tx("geometry.why.sqP"),
+      triA: tx("geometry.why.triA"),
+      triAside: tx("geometry.why.triAside"),
+      triP: tx("geometry.why.triP"),
+      paraA: tx("geometry.why.paraA"),
+      paraP: tx("geometry.why.paraP"),
+      trapA: tx("geometry.why.trapA"),
+      trapAside: tx("geometry.why.trapAside"),
+      trapP: tx("geometry.why.trapP"),
+      rFromD: tx("geometry.why.rFromD"),
+      circA: tx("geometry.why.circA"),
+      circCr: tx("geometry.why.circCr"),
+      circCd: tx("geometry.why.circCd"),
+      lA: tx("geometry.why.lA"),
+      lAside: tx("geometry.why.lAside"),
+      lCheck: tx("geometry.why.lCheck"),
+      lP: tx("geometry.why.lP"),
+      boxV: tx("geometry.why.boxV"),
+      boxS: tx("geometry.why.boxS"),
+      cubeV: tx("geometry.why.cubeV"),
+      cubeS: tx("geometry.why.cubeS"),
+      cylV: tx("geometry.why.cylV"),
+      cylS: tx("geometry.why.cylS"),
+      coneV: tx("geometry.why.coneV"),
+      coneL: tx("geometry.why.coneL"),
+      coneS: tx("geometry.why.coneS"),
+      sphV: tx("geometry.why.sphV"),
+      sphS: tx("geometry.why.sphS"),
+      tpV: tx("geometry.why.tpV"),
+      tpS: tx("geometry.why.tpS"),
+      pyV: tx("geometry.why.pyV"),
+      pyL: tx("geometry.why.pyL"),
+      pyS: tx("geometry.why.pyS"),
+      pyth: tx("geometry.why.pyth"),
+      leg: tx("geometry.why.leg"),
+      check: tx("geometry.why.check"),
+      angTri: tx("geometry.why.angTri"),
+      angLine: tx("geometry.why.angLine"),
+      angComp: tx("geometry.why.angComp"),
+      angPoint: tx("geometry.why.angPoint"),
+      angVert: tx("geometry.why.angVert"),
+      angPar: tx("geometry.why.angPar"),
+      polyS: tx("geometry.why.polyS"),
+      polyI: tx("geometry.why.polyI"),
+      polyE: tx("geometry.why.polyE")
     };
 
     function lhsH(s) { return esc(s).replace(/[A-Za-z]/g, "<i>$&</i>"); }
 
     /* ---------- area & perimeter ---------- */
     function gridCap(list, extra) {
-      return " Each small square is <b>1 " + (S.unit === "none" ? "unit" : esc(S.unit)) + " × 1 " + (S.unit === "none" ? "unit" : esc(S.unit)) + "</b>" + (extra || "") + ".";
+      return tx("geometry.gridCap", { u: S.unit === "none" ? tx("geometry.u.unit") : esc(S.unit), extra: extra || "" });
     }
 
     function runRect(C, g, square) {
       var l = square ? g("s") : g("l"),
         w = square ? l : g("w");
       var grid = gridOK([l, w]) && l.f * w.f <= 400;
-      var A = chain(C, block(C, "Area", "how many unit squares cover it"), square ? { lhs: lhsH("A"), f: "s^2", vars: { s: l }, pow: 2, why: WHY.sqA } : { lhs: lhsH("A"), f: "l × w", vars: { l: l, w: w }, pow: 2, why: WHY.rectA });
-      var P = chain(C, block(C, "Perimeter", "the distance around the edge"), square ? { lhs: lhsH("P"), f: "4 × s", vars: { s: l }, pow: 1, why: WHY.sqP } : { lhs: lhsH("P"), f: "2 × (l + w)", vars: { l: l, w: w }, pow: 1, why: WHY.rectP, aside: "Same as adding all four sides: l + w + l + w." });
-      addFig(C, figRect(l, w, square, grid), "<b class=\"lead\">Drawn to scale.</b>" + (grid ? gridCap([l, w], " — count them: " + w.t + " rows of " + l.t) : ""));
+      var A = chain(C, block(C, tx("geometry.b.area"), tx("geometry.bn.rectA")), square ? { lhs: lhsH("A"), f: "s^2", vars: { s: l }, pow: 2, why: WHY.sqA } : { lhs: lhsH("A"), f: "l × w", vars: { l: l, w: w }, pow: 2, why: WHY.rectA });
+      var P = chain(C, block(C, tx("geometry.b.perimeter"), tx("geometry.bn.rectP")), square ? { lhs: lhsH("P"), f: "4 × s", vars: { s: l }, pow: 1, why: WHY.sqP } : { lhs: lhsH("P"), f: "2 × (l + w)", vars: { l: l, w: w }, pow: 1, why: WHY.rectP, aside: tx("geometry.aside.rectP") });
+      addFig(C, figRect(l, w, square, grid), tx("geometry.cap.scale") + (grid ? gridCap([l, w], tx("geometry.cap.countRows", { w: w.t, l: l.t })) : ""));
       answer(C, "Area", A, 2);
       answer(C, "Perimeter", P, 1);
       var sum4 = apply("+", apply("+", l.v, w.v), apply("+", l.v, w.v));
-      C.closer = grid ? "<b>Check:</b> count the squares in the drawing — " + w.t + " rows of " + l.t + " is <b>" + vT(A.v) + "</b> <span class=\"ok\">✓</span>" :
-        "<b>Check:</b> walk around all four sides: " + [l.t, w.t, l.t, w.t].join(" + ") + " = <b>" + vT(sum4) + "</b> <span class=\"ok\">✓</span>";
+      C.closer = grid ? tx("geometry.close.rectGrid", { w: w.t, l: l.t, a: vT(A.v) }) :
+        tx("geometry.close.rectWalk", { sum: [l.t, w.t, l.t, w.t].join(" + "), p: vT(sum4) });
     }
 
     function runTri(C, g) {
@@ -3892,21 +3939,21 @@
         h = g("h"),
         s1 = g.opt("s1"),
         s2 = g.opt("s2");
-      var ap = triApex(g, b, h, s1, s2, C, "area");
-      var A = chain(C, block(C, "Area", "half of the base × height rectangle"), { lhs: lhsH("A"), f: "[1/2] × b × h", vars: { b: b, h: h }, pow: 2, why: WHY.triA, aside: ap.warn || WHY.triAside });
+      var ap = triApex(g, b, h, s1, s2, C, tx("geometry.what.area"));
+      var A = chain(C, block(C, tx("geometry.b.area"), tx("geometry.bn.triA")), { lhs: lhsH("A"), f: "[1/2] × b × h", vars: { b: b, h: h }, pow: 2, why: WHY.triA, aside: ap.warn || WHY.triAside });
       var P = null;
-      if (s1 && s2) P = chain(C, block(C, "Perimeter", "the three sides added up"), { lhs: lhsH("P"), f: "b + s1 + s2", vars: { b: b, s1: s1, s2: s2 }, pow: 1, why: WHY.triP, sum: true });
-      else note(C, "Perimeter", "To get the perimeter I need all three sides — fill in the two slanted sides, <b>s₁</b> and <b>s₂</b>. (The height isn’t a side: it’s inside the triangle.)");
+      if (s1 && s2) P = chain(C, block(C, tx("geometry.b.perimeter"), tx("geometry.bn.triP")), { lhs: lhsH("P"), f: "b + s1 + s2", vars: { b: b, s1: s1, s2: s2 }, pow: 1, why: WHY.triP, sum: true });
+      else note(C, tx("geometry.b.perimeter"), tx("geometry.note.triP"));
       var grid = gridOK([b, h]);
       addFig(C, figTri(b, h, ap.px, s1 && s2 ? s1 : null, s1 && s2 ? s2 : null, grid),
-        "<b class=\"lead\">Drawn to scale.</b> The dashed rectangle has the same base and height; the triangle is exactly half of it." +
-        (grid ? gridCap() + " The pieces of squares the triangle cuts through pair up into whole ones." : "") +
-        (ap.px < 0 || ap.px > b.f ? " This triangle leans over so far that its height lands outside the base — that’s fine, the base is just extended (dashed)." : ""));
+        tx("geometry.cap.scale") + tx("geometry.cap.tri") +
+        (grid ? gridCap() + tx("geometry.cap.triPieces") : "") +
+        (ap.px < 0 || ap.px > b.f ? tx("geometry.cap.triLean") : ""));
       answer(C, "Area", A, 2);
       if (P) answer(C, "Perimeter", P, 1);
       if (ap.warn) C.facts.push(ap.warn);
       var rect = apply("×", b.v, h.v);
-      C.closer = "<b>Check:</b> the dashed rectangle is " + b.t + " × " + h.t + " = <b>" + vT(rect) + "</b>, and half of that is <b>" + vT(A.v) + "</b> <span class=\"ok\">✓</span>";
+      C.closer = tx("geometry.close.tri", { b: b.t, h: h.t, r: vT(rect), a: vT(A.v) });
     }
 
     function runPara(C, g) {
@@ -3915,28 +3962,27 @@
         s = g.opt("s"),
         off = Math.min(b.f * 0.32, h.f * 0.7);
       if (s) {
-        if (s.f < h.f * (1 - 1e-9)) throw new UserErr("The slanted side (<b>" + s.t + "</b>) can’t be shorter than the height (<b>" + h.t +
-          "</b>). The height is the shortest way across from the bottom to the top.");
+        if (s.f < h.f * (1 - 1e-9)) throw new UserErr(tx("geometry.err.paraShort", { s: s.t, h: h.t }));
         off = Math.sqrt(Math.max(0, s.f * s.f - h.f * h.f));
       }
-      var A = chain(C, block(C, "Area", "base × height, not the slanted side"), {
+      var A = chain(C, block(C, tx("geometry.b.area"), tx("geometry.bn.paraA")), {
         lhs: lhsH("A"),
         f: "b × h",
         vars: { b: b, h: h },
         pow: 2,
         why: WHY.paraA,
-        aside: s ? "Don’t use the slanted side for area: " + s.t + (off > 1e-9 ? " is longer than the height, so it would count area that isn’t there." : " is the same as the height here, so this parallelogram is really a rectangle.") : null
+        aside: s ? (off > 1e-9 ? tx("geometry.aside.paraLonger", { s: s.t }) : tx("geometry.aside.paraSame", { s: s.t })) : null
       });
       var P = null;
-      if (s) P = chain(C, block(C, "Perimeter", "two bases and two slanted sides"), { lhs: lhsH("P"), f: "2 × (b + s)", vars: { b: b, s: s }, pow: 1, why: WHY.paraP });
-      else note(C, "Perimeter", "To get the perimeter I need the slanted side too — fill in <b>s</b>. The height is inside the shape, so it isn’t part of the edge.");
+      if (s) P = chain(C, block(C, tx("geometry.b.perimeter"), tx("geometry.bn.paraP")), { lhs: lhsH("P"), f: "2 × (b + s)", vars: { b: b, s: s }, pow: 1, why: WHY.paraP });
+      else note(C, tx("geometry.b.perimeter"), tx("geometry.note.paraP"));
       var grid = gridOK([b, h]);
-      addFig(C, figPara(b, h, off, s, grid), "<b class=\"lead\">Drawn to scale.</b>" + (off > 0 && off <= b.f ? " Slide the shaded triangle across to the dashed spot and you have a " + b.t + " × " + h.t + " rectangle." : "") +
-        (grid ? gridCap() : "") + (s ? "" : " Without the slanted side I’ve guessed how far it leans."));
+      addFig(C, figPara(b, h, off, s, grid), tx("geometry.cap.scale") + (off > 0 && off <= b.f ? tx("geometry.cap.paraSlide", { b: b.t, h: h.t }) : "") +
+        (grid ? gridCap() : "") + (s ? "" : tx("geometry.cap.paraGuess")));
       answer(C, "Area", A, 2);
       if (P) answer(C, "Perimeter", P, 1);
-      C.closer = P ? "<b>Check:</b> walk around: " + [b.t, s.t, b.t, s.t].join(" + ") + " = <b>" + vT(P.v) + "</b> <span class=\"ok\">✓</span>" :
-        "<b>Check:</b> the area is the same as a " + b.t + " × " + h.t + " rectangle: <b>" + vT(A.v) + "</b> <span class=\"ok\">✓</span>";
+      C.closer = P ? tx("geometry.close.walk", { sum: [b.t, s.t, b.t, s.t].join(" + "), p: vT(P.v) }) :
+        tx("geometry.close.paraArea", { b: b.t, h: h.t, a: vT(A.v) });
     }
 
     function runTrap(C, g) {
@@ -3947,8 +3993,8 @@
         d = g.opt("d"),
         p = (b.f - a.f) / 2,
         warn = null;
-      if (c && c.f < h.f * (1 - 1e-9)) throw new UserErr("The left side (<b>" + c.t + "</b>) can’t be shorter than the height (<b>" + h.t + "</b>) — the height is the shortest way from the bottom to the top.");
-      if (d && d.f < h.f * (1 - 1e-9)) throw new UserErr("The right side (<b>" + d.t + "</b>) can’t be shorter than the height (<b>" + h.t + "</b>) — the height is the shortest way from the bottom to the top.");
+      if (c && c.f < h.f * (1 - 1e-9)) throw new UserErr(tx("geometry.err.trapLeft", { c: c.t, h: h.t }));
+      if (d && d.f < h.f * (1 - 1e-9)) throw new UserErr(tx("geometry.err.trapRight", { c: d.t, h: h.t }));
       if (c && d) {
         var pc = Math.sqrt(Math.max(0, c.f * c.f - h.f * h.f)),
           best = null;
@@ -3960,30 +4006,28 @@
         });
         p = best.p;
         if (best.err > Math.max(0.01, 0.006 * d.f))
-          warn = "Heads up: with parallel sides <b>" + a.t + "</b> and <b>" + b.t + "</b>, height <b>" + h.t + "</b> and left side <b>" + c.t +
-          "</b>, the right side would be about <b>" + fmtF(best.dd, 2) + "</b>, not " + d.t + ". Double-check the measurements.";
+          warn = tx("geometry.warn.trap", { a: a.t, b: b.t, h: h.t, c: c.t, dd: fmtF(best.dd, 2), d: d.t });
       }
-      var A = chain(C, block(C, "Area", "half of a parallelogram"), { lhs: lhsH("A"), f: "[1/2] × (a + b) × h", vars: { a: a, b: b, h: h }, pow: 2, why: WHY.trapA, aside: WHY.trapAside });
+      var A = chain(C, block(C, tx("geometry.b.area"), tx("geometry.bn.trapA")), { lhs: lhsH("A"), f: "[1/2] × (a + b) × h", vars: { a: a, b: b, h: h }, pow: 2, why: WHY.trapA, aside: WHY.trapAside });
       var P = null;
-      if (c && d) P = chain(C, block(C, "Perimeter", "all four sides added up"), { lhs: lhsH("P"), f: "a + b + c + d", vars: { a: a, b: b, c: c, d: d }, pow: 1, why: WHY.trapP, sum: true, aside: warn });
-      else note(C, "Perimeter", "To get the perimeter I need both slanted sides — fill in <b>c</b> and <b>d</b>.");
+      if (c && d) P = chain(C, block(C, tx("geometry.b.perimeter"), tx("geometry.bn.trapP")), { lhs: lhsH("P"), f: "a + b + c + d", vars: { a: a, b: b, c: c, d: d }, pow: 1, why: WHY.trapP, sum: true, aside: warn });
+      else note(C, tx("geometry.b.perimeter"), tx("geometry.note.trapP"));
       var grid = gridOK([a, b, h]) && b.f + a.f <= 30;
       addFig(C, figTrap(a, b, h, p, c && d ? c : null, c && d ? d : null, grid),
-        "<b class=\"lead\">Drawn to scale.</b> <b>a</b> and <b>b</b> are the two parallel sides. With the flipped copy (dashed) it makes a parallelogram " + vT(apply("+", a.v, b.v)) + " long." +
+        tx("geometry.cap.scale") + tx("geometry.cap.trap", { L: vT(apply("+", a.v, b.v)) }) +
         (grid ? gridCap() : ""));
       answer(C, "Area", A, 2);
       if (P) answer(C, "Perimeter", P, 1);
       if (warn) C.facts.push(warn);
       var avg = apply("÷", apply("+", a.v, b.v), V(2));
-      C.closer = "<b>Check:</b> the average of the parallel sides is (" + a.t + " + " + b.t + ") ÷ 2 = " + vT(avg) + ", and " + vT(avg) + " × " + h.t +
-        " = <b>" + vT(apply("×", avg, h.v)) + "</b> <span class=\"ok\">✓</span>";
+      C.closer = tx("geometry.close.trap", { a: a.t, b: b.t, avg: vT(avg), h: h.t, r: vT(apply("×", avg, h.v)) });
     }
     // radius from radius-or-diameter
     function getR(C, g) {
       var isD = g.V.rd === "d",
         x = g("r");
       if (!isD) return { r: x, d: null, isD: false };
-      var R_ = chain(C, block(C, "Radius", "half the diameter"), { lhs: lhsH("r"), f: "d ÷ 2", vars: { d: x }, pow: 1, why: WHY.rFromD });
+      var R_ = chain(C, block(C, tx("geometry.b.radius"), tx("geometry.bn.radius")), { lhs: lhsH("r"), f: "d ÷ 2", vars: { d: x }, pow: 1, why: WHY.rFromD });
       return { r: R_.num, d: x, isD: true };
     }
 
@@ -3992,23 +4036,22 @@
     function piEstimate(C, name, r) {
       var coef = V(r.x.n, r.x.d),
         three = apply("×", coef, V(3));
-      return "<b>Estimate:</b> π is a bit more than 3, so the " + name + " should be a bit more than 3 × " + vT(coef) + " = " + vT(three) +
-        ". It’s <b>≈ " + fmtF(toF(r.x), 2) + "</b> <span class=\"ok\">✓</span>";
+      return tx("geometry.close.estimate", { name: name, c: vT(coef), t: vT(three), f: fmtF(toF(r.x), 2) });
     }
 
     function runCircle(C, g) {
       var rr = getR(C, g),
         r = rr.r;
-      var A = chain(C, block(C, "Area", "the space inside"), { lhs: lhsH("A"), f: "π × r^2", s: "r^2 × π", vars: { r: r }, pow: 2, why: WHY.circA });
+      var A = chain(C, block(C, tx("geometry.b.area"), tx("geometry.bn.inside")), { lhs: lhsH("A"), f: "π × r^2", s: "r^2 × π", vars: { r: r }, pow: 2, why: WHY.circA });
       var Cc = rr.isD ?
-        chain(C, block(C, "Circumference", "the distance around"), { lhs: lhsH("C"), f: "π × d", s: "d × π", vars: { d: rr.d }, pow: 1, why: WHY.circCd }) :
-        chain(C, block(C, "Circumference", "the distance around"), { lhs: lhsH("C"), f: "2 × π × r", s: "2 × r × π", vars: { r: r }, pow: 1, why: WHY.circCr });
+        chain(C, block(C, tx("geometry.b.circ"), tx("geometry.bn.around")), { lhs: lhsH("C"), f: "π × d", s: "d × π", vars: { d: rr.d }, pow: 1, why: WHY.circCd }) :
+        chain(C, block(C, tx("geometry.b.circ"), tx("geometry.bn.around")), { lhs: lhsH("C"), f: "2 × π × r", s: "2 × r × π", vars: { r: r }, pow: 1, why: WHY.circCr });
       var grid = r.v.d === 1n && r.f <= 10;
-      addFig(C, figCircle(r, rr.isD, grid, rr.isD ? rr.d : r), "<b class=\"lead\">Drawn to scale.</b> The shaded square is <b>r × r</b>. The circle holds about 3.14 of those squares." +
+      addFig(C, figCircle(r, rr.isD, grid, rr.isD ? rr.d : r), tx("geometry.cap.scale") + tx("geometry.cap.circle") +
         (grid ? gridCap() : ""));
       answer(C, "Area", A, 2);
       answer(C, "Circumference", Cc, 1);
-      C.closer = piEstimate(C, "area", A);
+      C.closer = piEstimate(C, tx("geometry.what.area"), A);
     }
 
     function runL(C, g) {
@@ -4016,27 +4059,27 @@
         H_ = g("H"),
         w = g("w"),
         h = g("h");
-      if (w.f >= W.f) throw new FieldErr("The cut-out (<b>" + w.t + "</b> wide) has to be narrower than the whole shape (<b>" + W.t + "</b>) — otherwise there’s no L left.", "w");
-      if (h.f >= H_.f) throw new FieldErr("The cut-out (<b>" + h.t + "</b> tall) has to be shorter than the whole shape (<b>" + H_.t + "</b>) — otherwise there’s no L left.", "h");
+      if (w.f >= W.f) throw new FieldErr(tx("geometry.err.LW", { w: w.t, W: W.t }), "w");
+      if (h.f >= H_.f) throw new FieldErr(tx("geometry.err.LH", { h: h.t, H: H_.t }), "h");
       var vars = { W: W, H: H_, w: w, h: h };
-      var A = chain(C, block(C, "Area", "split into rectangles A and B"), { lhs: lhsH("A"), f: "(W − w) × H + w × (H − h)", vars: vars, pow: 2, why: WHY.lA, aside: WHY.lAside });
-      var A2 = chain(C, block(C, "Area, another way", "the big rectangle minus the missing corner"), { lhs: lhsH("A"), f: "W × H − w × h", vars: vars, pow: 2, why: WHY.lCheck, ftag: "Check" });
-      var P = chain(C, block(C, "Perimeter", "all six sides"), {
+      var A = chain(C, block(C, tx("geometry.b.area"), tx("geometry.bn.LA")), { lhs: lhsH("A"), f: "(W − w) × H + w × (H − h)", vars: vars, pow: 2, why: WHY.lA, aside: WHY.lAside });
+      var A2 = chain(C, block(C, tx("geometry.b.area2"), tx("geometry.bn.LA2")), { lhs: lhsH("A"), f: "W × H − w × h", vars: vars, pow: 2, why: WHY.lCheck, ftag: tx("geometry.tag.check") });
+      var P = chain(C, block(C, tx("geometry.b.perimeter"), tx("geometry.bn.LP")), {
         lhs: lhsH("P"),
         f: "W + (H − h) + w + h + (W − w) + H",
         vars: vars,
         pow: 1,
         why: WHY.lP,
         sum: true,
-        aside: "Notice that the notch doesn’t change the perimeter: its two edges (" + w.t + " and " + h.t + ") make up exactly for the missing bits of the top and the side. It’s the same as the whole rectangle, 2 × (W + H)."
+        aside: tx("geometry.aside.notch", { w: w.t, h: h.t })
       });
       var grid = gridOK([W, H_, w, h]);
-      addFig(C, figL(W, H_, w, h, grid), "<b class=\"lead\">Drawn to scale.</b> The dashed line splits the L into rectangles <b>A</b> and <b>B</b>; the green numbers are sides worked out from the others." +
+      addFig(C, figL(W, H_, w, h, grid), tx("geometry.cap.scale") + tx("geometry.cap.L") +
         (grid ? gridCap() : ""));
       answer(C, "Area", A, 2);
       answer(C, "Perimeter", P, 1);
       var same = A.v.n === A2.v.n && A.v.d === A2.v.d;
-      C.closer = "<b>Check:</b> both ways give <b>" + vT(A.v) + "</b> " + (same ? '<span class="ok">✓</span>' : '<span class="no">✗</span>');
+      C.closer = tx("geometry.close.L", { a: vT(A.v) }) + (same ? '<span class="ok">✓</span>' : '<span class="no">✗</span>');
     }
 
     /* ---------- volume & surface area ---------- */
@@ -4044,58 +4087,58 @@
       var l = cube ? g("s") : g("l"),
         w = cube ? l : g("w"),
         h = cube ? l : g("h");
-      var Vv = chain(C, block(C, "Volume", "how many unit cubes fill it"), cube ? { lhs: lhsH("V"), f: "s^3", vars: { s: l }, pow: 3, why: WHY.cubeV } : { lhs: lhsH("V"), f: "l × w × h", vars: { l: l, w: w, h: h }, pow: 3, why: WHY.boxV });
-      var SA = chain(C, block(C, "Surface area", "all the faces added up"), cube ? { lhs: lhsH("SA"), f: "6 × s^2", vars: { s: l }, pow: 2, why: WHY.cubeS } : { lhs: lhsH("SA"), f: "2 × (l × w + l × h + w × h)", vars: { l: l, w: w, h: h }, pow: 2, why: WHY.boxS });
-      addFig(C, figBox(l, w, h, cube), "<b class=\"lead\">A sketch.</b> The dashed edges are at the back, hidden behind the box.");
-      addFig(C, figNet(l, w, h, cube), "<b class=\"lead\">The net</b> — the " + (cube ? "cube" : "box") + " unfolded flat. Matching faces have matching colors; fold on the dashed lines to make it.");
+      var Vv = chain(C, block(C, tx("geometry.b.volume"), tx("geometry.bn.boxV")), cube ? { lhs: lhsH("V"), f: "s^3", vars: { s: l }, pow: 3, why: WHY.cubeV } : { lhs: lhsH("V"), f: "l × w × h", vars: { l: l, w: w, h: h }, pow: 3, why: WHY.boxV });
+      var SA = chain(C, block(C, tx("geometry.b.surface"), tx("geometry.bn.boxS")), cube ? { lhs: lhsH("SA"), f: "6 × s^2", vars: { s: l }, pow: 2, why: WHY.cubeS } : { lhs: lhsH("SA"), f: "2 × (l × w + l × h + w × h)", vars: { l: l, w: w, h: h }, pow: 2, why: WHY.boxS });
+      addFig(C, figBox(l, w, h, cube), tx("geometry.cap.sketch") + tx("geometry.cap.box"));
+      addFig(C, figNet(l, w, h, cube), cube ? tx("geometry.cap.netCube") : tx("geometry.cap.netBox"));
       answer(C, "Volume", Vv, 3);
       answer(C, "Surface area", SA, 2);
       var lw = num(apply("×", l.v, w.v)),
         lh = num(apply("×", l.v, h.v)),
         wh = num(apply("×", w.v, h.v));
-      C.closer = "<b>Check with the net:</b> " + [lw.t, lw.t, lh.t, lh.t, wh.t, wh.t].join(" + ") + " = <b>" + vT(SA.v) + "</b> <span class=\"ok\">✓</span>";
+      C.closer = tx("geometry.close.net", { sum: [lw.t, lw.t, lh.t, lh.t, wh.t, wh.t].join(" + "), sa: vT(SA.v) });
     }
 
     function runCyl(C, g) {
       var h = g("h"),
         rr = getR(C, g),
         r = rr.r;
-      var Vv = chain(C, block(C, "Volume", "circle area × height"), { lhs: lhsH("V"), f: "π × r^2 × h", s: "r^2 × h × π", vars: { r: r, h: h }, pow: 3, why: WHY.cylV });
-      var SA = chain(C, block(C, "Surface area", "two circles + the label"), {
+      var Vv = chain(C, block(C, tx("geometry.b.volume"), tx("geometry.bn.cylV")), { lhs: lhsH("V"), f: "π × r^2 × h", s: "r^2 × h × π", vars: { r: r, h: h }, pow: 3, why: WHY.cylV });
+      var SA = chain(C, block(C, tx("geometry.b.surface"), tx("geometry.bn.cylS")), {
         lhs: lhsH("SA"),
         f: "2 × π × r^2 + 2 × π × r × h",
         s: "2 × r^2 × π + 2 × r × h × π",
         vars: { r: r, h: h },
         pow: 2,
         why: WHY.cylS,
-        aside: "You might also see it written <b>SA = 2πr(r + h)</b> — same thing, with the 2πr taken out of both parts."
+        aside: tx("geometry.aside.cylS")
       });
-      addFig(C, figCyl(r, h, rLabel(rr)), "<b class=\"lead\">A sketch.</b> The dashed half of the bottom circle is at the back.");
+      addFig(C, figCyl(r, h, rLabel(rr)), tx("geometry.cap.sketch") + tx("geometry.cap.cyl"));
       answer(C, "Volume", Vv, 3);
       answer(C, "Surface area", SA, 2);
-      C.closer = piEstimate(C, "volume", Vv);
+      C.closer = piEstimate(C, tx("geometry.what.volume"), Vv);
     }
 
     function runCone(C, g) {
       var h = g("h"),
         rr = getR(C, g),
         r = rr.r;
-      var Vv = chain(C, block(C, "Volume", "⅓ of the cylinder"), { lhs: lhsH("V"), f: "[1/3] × π × r^2 × h", s: "[1/3] × r^2 × h × π", vars: { r: r, h: h }, pow: 3, why: WHY.coneV });
-      var BL = block(C, "Slant height", "Pythagoras: l² = r² + h²");
-      var sq = chain(C, BL, { lhs: lhsH("l²"), lhsT: "l²", f: "r^2 + h^2", vars: { r: r, h: h }, noFinal: true, why: WHY.coneL, ftag: "Pythag" });
+      var Vv = chain(C, block(C, tx("geometry.b.volume"), tx("geometry.bn.coneV")), { lhs: lhsH("V"), f: "[1/3] × π × r^2 × h", s: "[1/3] × r^2 × h × π", vars: { r: r, h: h }, pow: 3, why: WHY.coneV });
+      var BL = block(C, tx("geometry.b.slant"), tx("geometry.bn.coneL"));
+      var sq = chain(C, BL, { lhs: lhsH("l²"), lhsT: "l²", f: "r^2 + h^2", vars: { r: r, h: h }, noFinal: true, why: WHY.coneL, ftag: tx("geometry.tag.pythag") });
       var rt = rootRows(C, BL, sq.v, { letter: lhsH("l") });
       var lStep = C.lastStep;
-      var SA = chain(C, block(C, "Surface area", "base + curved side"), {
+      var SA = chain(C, block(C, tx("geometry.b.surface"), tx("geometry.bn.coneS")), {
         lhs: lhsH("SA"),
         f: "π × r^2 + π × r × l",
         s: "r^2 × π + r × l × π",
         vars: { r: r, l: rt.num },
         pow: 2,
         why: WHY.coneS,
-        subAside: rt.info.exact ? null : "We’re using l rounded to 2 decimal places, <b>" + rt.dec + "</b>, so this answer is approximate too."
+        subAside: rt.info.exact ? null : tx("geometry.aside.lRounded", { d: rt.dec })
       });
       var lT = rt.info.exact ? lab("l", rt.num) : it("l") + " ≈ " + esc(rt.dec) + (S.unit === "none" ? "" : " " + esc(S.unit));
-      addFig(C, figCone(r, h, rLabel(rr), { q: it("l"), t: lT, until: lStep }), "<b class=\"lead\">A sketch.</b> The shaded right triangle has the height <b>h</b> and radius <b>r</b> as its legs and the slant height <b>l</b> as its hypotenuse.");
+      addFig(C, figCone(r, h, rLabel(rr), { q: it("l"), t: lT, until: lStep }), tx("geometry.cap.sketch") + tx("geometry.cap.cone"));
       answer(C, "Volume", Vv, 3);
       answer(C, "Surface area", SA, 2);
       C.answers.push({
@@ -4109,20 +4152,20 @@
           full = piv * (r.f * r.f + r.f * rt.info.f),
           shown = coefF(SA.x) * piv;
         if (fmtF(full, 2) !== fmtF(shown, 2))
-          C.facts.push("The surface area used l rounded to " + rt.dec + ". Keeping every digit of l, it’s <b>≈ " + fmtF(full, 2) + "</b> " + esc(unitT(2)) + " — rounding early nudges answers a little.");
+          C.facts.push(tx("geometry.fact.lKeepCone", { d: rt.dec, f: fmtF(full, 2), u: esc(unitT(2)) }));
       }
-      C.closer = piEstimate(C, "volume", Vv);
+      C.closer = piEstimate(C, tx("geometry.what.volume"), Vv);
     }
 
     function runSphere(C, g) {
       var rr = getR(C, g),
         r = rr.r;
-      var Vv = chain(C, block(C, "Volume", "the space inside"), { lhs: lhsH("V"), f: "[4/3] × π × r^3", s: "[4/3] × r^3 × π", vars: { r: r }, pow: 3, why: WHY.sphV });
-      var SA = chain(C, block(C, "Surface area", "four circles’ worth"), { lhs: lhsH("SA"), f: "4 × π × r^2", s: "4 × r^2 × π", vars: { r: r }, pow: 2, why: WHY.sphS });
-      addFig(C, figSphere(r, rLabel(rr)), "<b class=\"lead\">A sketch.</b> The dashed half of the middle circle (the equator) is round the back.");
+      var Vv = chain(C, block(C, tx("geometry.b.volume"), tx("geometry.bn.inside")), { lhs: lhsH("V"), f: "[4/3] × π × r^3", s: "[4/3] × r^3 × π", vars: { r: r }, pow: 3, why: WHY.sphV });
+      var SA = chain(C, block(C, tx("geometry.b.surface"), tx("geometry.bn.sphS")), { lhs: lhsH("SA"), f: "4 × π × r^2", s: "4 × r^2 × π", vars: { r: r }, pow: 2, why: WHY.sphS });
+      addFig(C, figSphere(r, rLabel(rr)), tx("geometry.cap.sketch") + tx("geometry.cap.sphere"));
       answer(C, "Volume", Vv, 3);
       answer(C, "Surface area", SA, 2);
-      C.closer = piEstimate(C, "surface area", SA);
+      C.closer = piEstimate(C, tx("geometry.what.surface"), SA);
     }
 
     function runTPrism(C, g) {
@@ -4131,12 +4174,12 @@
         L = g("l"),
         s1 = g.opt("s1"),
         s2 = g.opt("s2");
-      var ap = triApex(g, b, h, s1, s2, C, "work");
-      var Vv = chain(C, block(C, "Volume", "triangle area × length"), { lhs: lhsH("V"), f: "[1/2] × b × h × l", vars: { b: b, h: h, l: L }, pow: 3, why: WHY.tpV, aside: ap.warn });
+      var ap = triApex(g, b, h, s1, s2, C, tx("geometry.what.work"));
+      var Vv = chain(C, block(C, tx("geometry.b.volume"), tx("geometry.bn.tpV")), { lhs: lhsH("V"), f: "[1/2] × b × h × l", vars: { b: b, h: h, l: L }, pow: 3, why: WHY.tpV, aside: ap.warn });
       var SA = null;
-      if (s1 && s2) SA = chain(C, block(C, "Surface area", "two triangles + three rectangles"), { lhs: lhsH("SA"), f: "2 × [1/2] × b × h + (b + s1 + s2) × l", vars: { b: b, h: h, l: L, s1: s1, s2: s2 }, pow: 2, why: WHY.tpS });
-      else note(C, "Surface area", "For the surface area I need all three sides of the triangle — fill in the two slanted sides, <b>s₁</b> and <b>s₂</b>.");
-      addFig(C, figTPrism(b, h, ap.px, L, s1 && s2 ? s1 : null, s1 && s2 ? s2 : null), "<b class=\"lead\">A sketch.</b> The triangle at the front is the same all the way through. Dashed edges are hidden at the back.");
+      if (s1 && s2) SA = chain(C, block(C, tx("geometry.b.surface"), tx("geometry.bn.tpS")), { lhs: lhsH("SA"), f: "2 × [1/2] × b × h + (b + s1 + s2) × l", vars: { b: b, h: h, l: L, s1: s1, s2: s2 }, pow: 2, why: WHY.tpS });
+      else note(C, tx("geometry.b.surface"), tx("geometry.note.tpS"));
+      addFig(C, figTPrism(b, h, ap.px, L, s1 && s2 ? s1 : null, s1 && s2 ? s2 : null), tx("geometry.cap.sketch") + tx("geometry.cap.tprism"));
       answer(C, "Volume", Vv, 3);
       if (SA) answer(C, "Surface area", SA, 2);
       if (ap.warn) C.facts.push(ap.warn);
@@ -4145,28 +4188,28 @@
           r2 = num(apply("×", s1.v, L.v)),
           r3 = num(apply("×", s2.v, L.v)),
           t = num(apply("×", V(1, 2), apply("×", b.v, h.v)));
-        C.closer = "<b>Check, face by face:</b> two triangles " + t.t + " + " + t.t + ", and rectangles " + r1.t + " + " + r2.t + " + " + r3.t + " = <b>" + vT(SA.v) + "</b> <span class=\"ok\">✓</span>";
+        C.closer = tx("geometry.close.tprism", { t: t.t, r1: r1.t, r2: r2.t, r3: r3.t, sa: vT(SA.v) });
       }
     }
 
     function runPyr(C, g) {
       var s = g("s"),
         h = g("h");
-      var Vv = chain(C, block(C, "Volume", "⅓ of the box"), { lhs: lhsH("V"), f: "[1/3] × s^2 × h", vars: { s: s, h: h }, pow: 3, why: WHY.pyV });
-      var BL = block(C, "Slant height", "Pythagoras: l² = h² + (s ÷ 2)²");
-      var sq = chain(C, BL, { lhs: lhsH("l²"), lhsT: "l²", f: "h^2 + (s ÷ 2)^2", vars: { s: s, h: h }, noFinal: true, why: WHY.pyL, ftag: "Pythag" });
+      var Vv = chain(C, block(C, tx("geometry.b.volume"), tx("geometry.bn.pyV")), { lhs: lhsH("V"), f: "[1/3] × s^2 × h", vars: { s: s, h: h }, pow: 3, why: WHY.pyV });
+      var BL = block(C, tx("geometry.b.slant"), tx("geometry.bn.pyL"));
+      var sq = chain(C, BL, { lhs: lhsH("l²"), lhsT: "l²", f: "h^2 + (s ÷ 2)^2", vars: { s: s, h: h }, noFinal: true, why: WHY.pyL, ftag: tx("geometry.tag.pythag") });
       var rt = rootRows(C, BL, sq.v, { letter: lhsH("l") });
       var lStep = C.lastStep;
-      var SA = chain(C, block(C, "Surface area", "the base + four triangles"), {
+      var SA = chain(C, block(C, tx("geometry.b.surface"), tx("geometry.bn.pyS")), {
         lhs: lhsH("SA"),
         f: "s^2 + 4 × [1/2] × s × l",
         vars: { s: s, l: rt.num },
         pow: 2,
         why: WHY.pyS,
-        subAside: rt.info.exact ? null : "We’re using l rounded to 2 decimal places, <b>" + rt.dec + "</b>, so this answer is approximate too."
+        subAside: rt.info.exact ? null : tx("geometry.aside.lRounded", { d: rt.dec })
       });
       var lT = rt.info.exact ? lab("l", rt.num) : it("l") + " ≈ " + esc(rt.dec) + (S.unit === "none" ? "" : " " + esc(S.unit));
-      addFig(C, figPyr(s, h, { q: it("l"), t: lT, until: lStep }), "<b class=\"lead\">A sketch.</b> The shaded right triangle is inside the pyramid: the height <b>h</b>, half the base, and the slant height <b>l</b> up the middle of the front face.");
+      addFig(C, figPyr(s, h, { q: it("l"), t: lT, until: lStep }), tx("geometry.cap.sketch") + tx("geometry.cap.pyr"));
       answer(C, "Volume", Vv, 3);
       answer(C, "Surface area", SA, 2);
       C.answers.push({
@@ -4177,12 +4220,11 @@
       });
       if (!rt.info.exact) {
         var full = s.f * s.f + 2 * s.f * rt.info.f;
-        if (fmtF(full, 2) !== fmtF(toF(SA.v), 2)) C.facts.push("The surface area used l rounded to " + rt.dec + ". Keeping every digit of l, it’s <b>≈ " + fmtF(full, 2) + "</b> " + esc(unitT(2)) + ".");
+        if (fmtF(full, 2) !== fmtF(toF(SA.v), 2)) C.facts.push(tx("geometry.fact.lKeep", { d: rt.dec, f: fmtF(full, 2), u: esc(unitT(2)) }));
       }
       var face = num(apply("×", V(1, 2), apply("×", s.v, rt.num.v))),
         base = num(apply("×", s.v, s.v));
-      C.closer = "<b>Check, face by face:</b> each triangle is ½ × " + s.t + " × " + rt.num.t + " = " + face.t + "; four of them plus the base " + base.t +
-        " gives <b>" + vT(SA.v) + "</b> <span class=\"ok\">✓</span>";
+      C.closer = tx("geometry.close.pyr", { s: s.t, l: rt.num.t, f: face.t, b: base.t, sa: vT(SA.v) });
     }
 
     /* ---------- right triangles ---------- */
@@ -4215,9 +4257,9 @@
       if (p[0] * p[0] + p[1] * p[1] !== p[2] * p[2]) return null;
       var name = p.join("-"),
         allInt = L === 1n;
-      if (allInt && g === 1n) return "<b>" + name + "</b> is a <b>Pythagorean triple</b>: three whole numbers that fit a² + b² = c² exactly.";
+      if (allInt && g === 1n) return tx("geometry.triple", { name: name });
       var k = allInt ? g.toString() : vT(V(g, L));
-      return "These sides are <b>" + k + " ×</b> the <b>" + name + "</b> Pythagorean triple — scale up (or down) a right triangle and it stays a right triangle.";
+      return tx("geometry.tripleK", { k: k, name: name });
     }
 
     function sqLab(letter, v, until) {
@@ -4230,18 +4272,18 @@
       if (kind === "hyp") {
         a = g("a");
         b = g("b");
-        B1 = block(C, "The hypotenuse", "the longest side, across from the right angle");
-        sqv = chain(C, B1, { lhs: lhsH("c²"), lhsT: "c²", f: "a^2 + b^2", vars: { a: a, b: b }, noFinal: true, why: WHY.pyth, ftag: "Pythag" });
+        B1 = block(C, tx("geometry.b.hyp"), tx("geometry.bn.hyp"));
+        sqv = chain(C, B1, { lhs: lhsH("c²"), lhsT: "c²", f: "a^2 + b^2", vars: { a: a, b: b }, noFinal: true, why: WHY.pyth, ftag: tx("geometry.tag.pythag") });
         sqStep = C.lastStep;
         rt = rootRows(C, B1, sqv.v, { letter: lhsH("c") });
         c = rt.num;
       } else {
         a = g("a");
         c = g("c");
-        if (c.f <= a.f) throw new FieldErr(c.f === a.f ? "If the hypotenuse equals the leg, the other leg would be 0. The hypotenuse has to be longer than either leg." :
-          "The hypotenuse (<b>" + c.t + "</b>) has to be the longest side of a right triangle — longer than the leg <b>" + a.t + "</b>. Did you swap them?", "c");
-        B1 = block(C, "The missing leg", "take the known leg’s square away from the hypotenuse’s");
-        sqv = chain(C, B1, { lhs: lhsH("b²"), lhsT: "b²", f: "c^2 − a^2", vars: { a: a, c: c }, noFinal: true, why: WHY.leg, ftag: "Pythag" });
+        if (c.f <= a.f) throw new FieldErr(c.f === a.f ? tx("geometry.err.hypEq") :
+          tx("geometry.err.hypShort", { c: c.t, a: a.t }), "c");
+        B1 = block(C, tx("geometry.b.leg"), tx("geometry.bn.leg"));
+        sqv = chain(C, B1, { lhs: lhsH("b²"), lhsT: "b²", f: "c^2 − a^2", vars: { a: a, c: c }, noFinal: true, why: WHY.leg, ftag: tx("geometry.tag.pythag") });
         sqStep = C.lastStep;
         rt = rootRows(C, B1, sqv.v, { letter: lhsH("b") });
         b = rt.num;
@@ -4280,8 +4322,8 @@
           gb: small ? Math.round(bF) : 0,
           gc: small && cInt && cF <= 15 ? Math.round(cF) : 0
         }),
-        "<b class=\"lead\">Drawn to scale.</b> Each side has a square built on it. The two smaller squares together have exactly the same area as the big one." +
-        (small ? " Count the little squares to see it." : ""));
+        tx("geometry.cap.scale") + tx("geometry.cap.squares") +
+        (small ? tx("geometry.cap.countSmall") : ""));
       // the answer
       var L = kind === "hyp" ? "c" : "b",
         main;
@@ -4290,7 +4332,7 @@
       else main = "≈ " + esc(rt.dec) + unitH(1);
       var facts = [];
       facts.push((kind === "hyp" ? "c² = a² + b² = " : "b² = c² − a² = ") + "<b>" + vH(sqv.v) + "</b>");
-      if (!ex) facts.push("√" + vT(sqv.v) + " isn’t a whole number, so the decimal is rounded to 2 places" + (rt.h.indexOf("rad") >= 0 ? "; <b>" + rt.h + "</b> is the exact answer" : ""));
+      if (!ex) facts.push(rt.h.indexOf("rad") >= 0 ? tx("geometry.fact.notWholeExact", { s: vT(sqv.v), h: rt.h }) : tx("geometry.fact.notWhole", { s: vT(sqv.v) }));
       if (ex) { var tn = tripleNote(a.v, kind === "hyp" ? b.v : rt.v, kind === "hyp" ? rt.v : c.v); if (tn) facts.push(tn); }
       C.answers.push({
         k: kind === "hyp" ? 'Hypotenuse <span class="sym">c</span>' : 'Missing leg <span class="sym">b</span>',
@@ -4301,8 +4343,7 @@
       var A2 = vT(apply("^", a.v, V(2))),
         B2 = kind === "hyp" ? vT(apply("^", b.v, V(2))) : vT(sqv.v),
         C2 = kind === "hyp" ? vT(sqv.v) : vT(apply("^", c.v, V(2)));
-      C.closer = "<b>Check:</b> " + A2 + " + " + B2 + " = " + C2 + " <span class=\"ok\">✓</span>, and the hypotenuse is the longest side: <b>" +
-        fmtF(cF, 2) + "</b> is more than " + fmtF(a.f, 2) + " and " + fmtF(bF, 2) + " <span class=\"ok\">✓</span>";
+      C.closer = tx("geometry.close.right", { a2: A2, b2: B2, c2: C2, c: fmtF(cF, 2), a: fmtF(a.f, 2), b: fmtF(bF, 2) });
     }
 
     function runCheck(C, g) {
@@ -4311,9 +4352,8 @@
       var x = o[0],
         y = o[1],
         z = o[2];
-      if (x.f + y.f <= z.f * (1 + 1e-12)) throw new UserErr("Those three sides can’t make a triangle at all: <b>" + x.t + " + " + y.t + "</b> isn’t more than <b>" + z.t +
-        "</b>. The two shorter sides have to add up to more than the longest, or they can’t meet.");
-      var B1 = block(C, "The two shorter sides", "square each, then add");
+      if (x.f + y.f <= z.f * (1 + 1e-12)) throw new UserErr(tx("geometry.err.notTri", { x: x.t, y: y.t, z: z.t }));
+      var B1 = block(C, tx("geometry.b.short2"), tx("geometry.bn.short2"));
       var left = chain(C, B1, {
         lhs: "",
         lhsT: "",
@@ -4321,24 +4361,24 @@
         vars: { a: x, b: y },
         noFinal: true,
         why: WHY.check +
-          (s[2] !== z ? " The longest side is <b>" + z.t + "</b>, so that one is <b>c</b> — it’s always the one across from the right angle." : ""),
-        ftag: "Pythag"
+          (s[2] !== z ? tx("geometry.why.longest", { z: z.t }) : ""),
+        ftag: tx("geometry.tag.pythag")
       });
       var stepL = C.lastStep;
-      var B2 = block(C, "The longest side", "square it");
-      var right = chain(C, B2, { lhs: "", lhsT: "", f: "c^2", vars: { c: z }, noFinal: true, why: "Now the square on the longest side, <b>c</b>.", ftag: "Square" });
+      var B2 = block(C, tx("geometry.b.longest"), tx("geometry.bn.longest"));
+      var right = chain(C, B2, { lhs: "", lhsT: "", f: "c^2", vars: { c: z }, noFinal: true, why: tx("geometry.why.squareC"), ftag: tx("geometry.tag.square") });
       var stepR = C.lastStep;
       var cmp = (left.v.n * right.v.d) - (right.v.n * left.v.d),
         isR = cmp === 0n;
-      var B3 = block(C, "Compare", isR ? "they match" : "they don’t match");
+      var B3 = block(C, tx("geometry.b.compare"), isR ? tx("geometry.bn.match") : tx("geometry.bn.noMatch"));
       B3.lw = 3;
       var kindW = isR ? "right" : cmp > 0n ? "acute" : "obtuse";
-      var why = isR ? "<b>" + vH(left.v) + " = " + vH(right.v) + "</b>, so the squares fit exactly: <b>yes, it’s a right triangle</b>. The right angle is between the sides " + x.t + " and " + y.t + "." :
-        "<b>" + vH(left.v) + (cmp > 0n ? " > " : " < ") + vH(right.v) + "</b>, so <b>it isn’t a right triangle</b>. " +
-        (cmp > 0n ? "The squares on the short sides are too big for the longest side, so the biggest angle is less than 90°: it’s an <b>acute</b> triangle." :
-          "The longest side’s square is too big, so the biggest angle is more than 90°: it’s an <b>obtuse</b> triangle.");
+      var why = isR ? tx("geometry.cmp.yes", { l: vH(left.v), r: vH(right.v), x: x.t, y: y.t }) :
+        tx("geometry.cmp.no", { l: vH(left.v), op: (cmp > 0n ? " > " : " < "), r: vH(right.v) }) +
+        (cmp > 0n ? tx("geometry.cmp.acute") :
+          tx("geometry.cmp.obtuse"));
       var sc = logItem(C, [
-        [isR ? "a" : "e", "Compare", why]
+        [isR ? "a" : "e", tx("geometry.b.compare"), why]
       ]);
       addRow(B3, { lhs: "", rel: "", expr: vH(left.v) + '<span class="op-s">' + (isR ? "=" : "≠") + "</span>" + vH(right.v) + (isR ? ' <span class="u">✓</span>' : ""), step: sc, cls: "result" });
       C.lastStep = sc;
@@ -4358,19 +4398,19 @@
           gb: small && isR ? y.f : 0,
           gc: small && isR ? z.f : 0
         }),
-        "<b class=\"lead\">Drawn to scale.</b> " + (isR ? "The two smaller squares add up to exactly the big one, and the corner between them is a right angle." :
-          "The marked angle is the one across from the longest side. For a right triangle it would be exactly 90°."));
+        tx("geometry.cap.scale") + " " + (isR ? tx("geometry.cap.checkYes") :
+          tx("geometry.cap.checkNo")));
       C.answers.push({
         k: "Right triangle?",
-        main: isR ? "Yes" : "No",
+        main: isR ? tx("geometry.yes") : tx("geometry.no"),
         ck: { yn: isR, pow: 0 },
         facts: [
-          "a² + b² = <b>" + vH(left.v) + "</b> and c² = <b>" + vH(right.v) + "</b>",
-          isR ? (tripleNote(x.v, y.v, z.v) || "The angle between the two shorter sides is exactly 90°.") : "It’s an <b>" + kindW + "</b> triangle: its biggest angle is about <b>" + fmtF(gam * 180 / Math.PI, 1) + "°</b>."
+          tx("geometry.fact.squares", { l: vH(left.v), r: vH(right.v) }),
+          isR ? (tripleNote(x.v, y.v, z.v) || tx("geometry.fact.exact90")) : tx("geometry.fact.kind", { kind: tx("geometry.kind." + kindW), g: fmtF(gam * 180 / Math.PI, 1) })
         ]
       });
-      C.closer = isR ? "<b>So:</b> " + vT(left.v) + " = " + vT(right.v) + " — a right triangle <span class=\"ok\">✓</span>" :
-        "<b>So:</b> " + vT(left.v) + " ≠ " + vT(right.v) + " — not a right triangle <span class=\"no\">✗</span>";
+      C.closer = isR ? tx("geometry.close.isRight", { l: vT(left.v), r: vT(right.v) }) :
+        tx("geometry.close.notRight", { l: vT(left.v), r: vT(right.v) });
     }
 
     /* ---------- a triangle from its three sides: Heron's formula ---------- */
@@ -4414,36 +4454,34 @@
       var o = [a, b, c].slice().sort(function(p, q) { return p.f - q.f; });
       var sumS = apply("+", o[0].v, o[1].v),
         okT = sumS.n * o[2].v.d > o[2].v.n * sumS.d;
-      if (!okT) throw new UserErr("Those three sides can’t make a triangle: the two shorter ones, <b>" + o[0].t + " + " + o[1].t + " = " + vT(sumS) + "</b>, " +
-        (sumS.n * o[2].v.d === o[2].v.n * sumS.d ? "only just equal" : "don’t reach past") + " the longest one, <b>" + o[2].t + "</b>. Any two sides of a triangle have to add up to <i>more</i> than the third (the <b>triangle inequality</b>), or the ends can’t meet" +
-        (sumS.n * o[2].v.d === o[2].v.n * sumS.d ? " — they’d lie flat in a straight line" : "") + ".");
+      if (!okT) throw new UserErr(tx(sumS.n * o[2].v.d === o[2].v.n * sumS.d ? "geometry.err.heronEq" : "geometry.err.heronShort", { a: o[0].t, b: o[1].t, s: vT(sumS), c: o[2].t }));
       var lab3 = { a: "a", b: "b", c: "c" };
       // 0. it can be a triangle
-      var B0 = { kind: "note", title: "Can it be a triangle?", html: "" };
+      var B0 = { kind: "note", title: tx("geometry.b.canTri"), html: "" };
       C.blocks.push(B0);
       var s0 = logItem(C, [
-        ["a", "Check", "First make sure the sides can make a triangle: the two shorter ones have to add up to more than the longest. <b>" + o[0].t + " + " + o[1].t + " = " + vH(sumS) + "</b>, which is more than <b>" + o[2].t + "</b> ✓ (the <b>triangle inequality</b>)."]
+        ["a", tx("geometry.tag.check"), tx("geometry.heron.ineq", { a: o[0].t, b: o[1].t, s: vH(sumS), c: o[2].t })]
       ]);
       B0.html = '<span data-step="' + s0 + '">' + o[0].t + " + " + o[1].t + " = " + vH(sumS) + " &gt; " + o[2].t + ' <span class="ok">✓</span></span>';
       // 1. the perimeter, and half of it
-      var P = chain(C, block(C, "Perimeter", "the three sides added up"), { lhs: lhsH("P"), f: "a + b + c", vars: { a: a, b: b, c: c }, pow: 1, why: WHY.triP, sum: true });
-      var sv = chain(C, block(C, "Half the perimeter", "Heron’s formula starts from s, the semi-perimeter"), { lhs: lhsH("s"), f: "P ÷ 2", vars: { P: num(P.v) }, noFinal: true, why: "Heron’s formula needs <b>s</b>, half the perimeter (the <b>semi-perimeter</b>): <b>s = (a + b + c) ÷ 2</b>.", ftag: "s" });
+      var P = chain(C, block(C, tx("geometry.b.perimeter"), tx("geometry.bn.triP")), { lhs: lhsH("P"), f: "a + b + c", vars: { a: a, b: b, c: c }, pow: 1, why: WHY.triP, sum: true });
+      var sv = chain(C, block(C, tx("geometry.b.halfP"), tx("geometry.bn.halfP")), { lhs: lhsH("s"), f: "P ÷ 2", vars: { P: num(P.v) }, noFinal: true, why: tx("geometry.heron.s"), ftag: "s" });
       // 2. Heron: A² = s(s − a)(s − b)(s − c)
-      var B2 = block(C, "Area", "Heron’s formula, from the three sides");
-      var sq = chain(C, B2, { lhs: lhsH("A²"), lhsT: "A²", f: "s × (s − a) × (s − b) × (s − c)", vars: { s: num(sv.v), a: a, b: b, c: c }, noFinal: true, ftag: "Heron", why: "<b>Heron’s formula</b> gives the area from the three sides alone — no height needed: <b>A = √(s(s − a)(s − b)(s − c))</b>. Work out what’s under the root first: each bracket is how much longer s is than one side.", aside: "It’s named after Hero of Alexandria, who wrote it down about 2,000 years ago." });
+      var B2 = block(C, tx("geometry.b.area"), tx("geometry.bn.heron"));
+      var sq = chain(C, B2, { lhs: lhsH("A²"), lhsT: "A²", f: "s × (s − a) × (s − b) × (s − c)", vars: { s: num(sv.v), a: a, b: b, c: c }, noFinal: true, ftag: tx("geometry.tag.heron"), why: tx("geometry.heron.why"), aside: tx("geometry.heron.aside") });
       var r = rootExact(sq.v),
         sqH = vH(sq.v),
         dec = fmtF(r.f, 2),
         unit2 = unitH(2);
       if (r.exact) {
         var sE = logItem(C, [
-          ["e", "Root", "Take the square root: <b>√" + sqH + " = " + vH(r.v) + "</b>, because <b>" + vH(r.v) + " × " + vH(r.v) + " = " + sqH + "</b>."]
+          ["e", tx("geometry.tag.root"), tx("geometry.heron.rootExact", { s: sqH, r: vH(r.v) })]
         ]);
         addRow(B2, { lhs: lhsH("A"), rel: "=", expr: radH(sqH), step: sE });
         addRow(B2, { rel: "=", expr: vH(r.v) + unit2, step: sE, cls: "result" });
         if (!isTermD(r.v.d) || places(r.v.d) > 4) {
           var sE2 = logItem(C, [
-            ["p", "Round", "As a decimal, <b>≈ " + esc(dec) + "</b>, to 2 decimal places."]
+            ["p", tx("geometry.tag.round"), tx("geometry.heron.dec", { d: esc(dec) })]
           ]);
           addRow(B2, { rel: "≈", expr: esc(dec) + unit2, step: sE2, cls: "result" });
         }
@@ -4451,23 +4489,23 @@
         var lines = [],
           sR;
         sR = logItem(C, [
-          ["e", "Root", "Take the square root: <b>A = √" + sqH + "</b>. It isn’t a perfect square, so keep it as a root and simplify it." + (r.d === 1n ? "" : " It’s a fraction, " + sqH + " = " + frHTML(String(sq.v.n), String(sq.v.d)) + ", so " + (r.sqD ? "take the root of the top and the bottom: <b>√" + sq.v.n + " ÷ √" + sq.v.d + " = √" + r.N + " ÷ " + r.d + "</b>." : "multiply its top and bottom by " + sq.v.d + " to make the bottom a perfect square: <b>√(" + r.N + " ÷ " + sq.v.d + "²) = √" + r.N + " ÷ " + r.d + "</b>."))]
+          ["e", tx("geometry.tag.root"), tx("geometry.heron.root", { s: sqH }) + (r.d === 1n ? "" : tx(r.sqD ? "geometry.heron.fracSq" : "geometry.heron.fracMul", { s: sqH, f: frHTML(String(sq.v.n), String(sq.v.d)), n: sq.v.n, d: sq.v.d, N: r.N, rd: r.d }))]
         ]);
         addRow(B2, { lhs: lhsH("A"), rel: "=", expr: radH(sqH), step: sR });
         if (r.d !== 1n) addRow(B2, { rel: "=", expr: radH(esc(String(r.N))) + '<span class="op-s">÷</span>' + esc(String(r.d)), step: sR });
         if (r.m !== null && r.k > 1n) {
           var kk = (r.k * r.k).toString();
           var sS = logItem(C, [
-            ["e", "Simplify", "Find the biggest perfect square in " + r.N + ": <b>" + r.N + " = " + kk + " × " + r.m + "</b>, and √" + kk + " = " + r.k + ", so <b>√" + r.N + " = " + r.k + "√" + r.m + "</b>" + (r.d !== 1n ? ", and " + r.k + "√" + r.m + " ÷ " + r.d + " = <b>" + esc(rootT(r)) + "</b>" : "") + "."]
+            ["e", tx("geometry.tag.simplify"), tx(r.d !== 1n ? "geometry.heron.simpD" : "geometry.heron.simp", { N: r.N, kk: kk, m: r.m, k: r.k, d: r.d, t: esc(rootT(r)) })]
           ]);
           addRow(B2, { rel: "=", expr: radH(kk + '<span class="op-s">×</span>' + r.m) + (r.d !== 1n ? '<span class="op-s">÷</span>' + esc(String(r.d)) : ""), step: sS });
           addRow(B2, { rel: "=", expr: rootH(r) + unit2, step: sS, cls: "result" });
         } else if (r.m !== null) {
-          C.log[sR].lines.push(["e", "Simplify", "No perfect square (4, 9, 16, 25, …) goes into " + r.N + ", so √" + r.N + " is as simple as it gets" + (r.d !== 1n ? ": <b>A = " + esc(rootT(r)) + "</b>" : "") + "."]);
+          C.log[sR].lines.push(["e", tx("geometry.tag.simplify"), tx(r.d !== 1n ? "geometry.heron.noSimpD" : "geometry.heron.noSimp", { N: r.N, t: esc(rootT(r)) })]);
           if (r.d !== 1n) addRow(B2, { rel: "=", expr: rootH(r) + unit2, step: sR, cls: "result" });
         }
         var sD = logItem(C, [
-          ["p", "Round", "As a decimal: <b>A ≈ " + esc(dec) + "</b>, rounded to 2 decimal places."]
+          ["p", tx("geometry.tag.round"), tx("geometry.heron.decA", { d: esc(dec) })]
         ]);
         addRow(B2, { rel: "≈", expr: esc(dec) + unit2, step: sD, cls: "result" });
       }
@@ -4484,10 +4522,10 @@
       var half = apply("×", V(1, 2), apply("×", x.v, y.v));
       if (isR) {
         var sRt = logItem(C, [
-          ["a", "Right?", "These sides fit <b>a² + b² = c²</b>: " + x.t + "² + " + y.t + "² = " + vH(x2) + " + " + vH(y2) + " = " + vH(l2) + " = " + z.t + "². So it’s a <b>right triangle</b>, and its two legs are a base and a height: <b>½ × " + x.t + " × " + y.t + " = " + vH(half) + "</b> — the same area ✓."]
+          ["a", tx("geometry.tag.isRight"), tx("geometry.heron.right", { x: x.t, y: y.t, x2: vH(x2), y2: vH(y2), l2: vH(l2), z: z.t, h: vH(half) })]
         ]);
-        note(C, "It’s a right triangle", '<span data-step="' + sRt + '">' + x.t + "² + " + y.t + "² = " + z.t + "², so ½ × " + x.t + " × " + y.t + " = " + vH(half) + ' <span class="ok">✓</span></span>');
-        C.facts.push("It’s a right triangle (" + esc(x.t) + "² + " + esc(y.t) + "² = " + esc(z.t) + "²), so ½ × leg × leg = ½ × " + esc(x.t) + " × " + esc(y.t) + " = <b>" + vH(half) + "</b> checks it");
+        note(C, tx("geometry.b.itsRight"), '<span data-step="' + sRt + '">' + tx("geometry.heron.noteR", { x: x.t, y: y.t, z: z.t, h: vH(half) }) + ' <span class="ok">✓</span></span>');
+        C.facts.push(tx("geometry.heron.factR", { x: esc(x.t), y: esc(y.t), z: esc(z.t), h: vH(half) }));
       }
       // the drawing, to scale: B and C along the bottom, A above
       var ax = (a.f * a.f + c.f * c.f - b.f * b.f) / (2 * a.f),
@@ -4520,18 +4558,18 @@
           P0 = Fg.p(p[0]);
         Fg.textPx([P0[0] + dx / L * 16, P0[1] - dy / L * 16 + 5], esc(p[1]), "big", "middle");
       });
-      addFig(C, Fg.svg("A triangle with sides " + a.t + ", " + b.t + " and " + c.t + ", drawn to scale"), "<b class=\"lead\">Drawn to scale.</b> Three sides fix the triangle’s shape completely — that’s why Heron’s formula needs nothing else." + (isR ? " The square corner is across from the longest side." : ""));
+      addFig(C, Fg.svg(tx("geometry.svg.heron", { a: a.t, b: b.t, c: c.t })), tx("geometry.cap.scale") + tx("geometry.cap.heron") + (isR ? tx("geometry.cap.heronR") : ""));
       // the answers
-      var facts = ["s = " + vH(sv.v) + ", and A² = s(s − a)(s − b)(s − c) = <b>" + sqH + "</b>"];
+      var facts = [tx("geometry.heron.fact", { s: vH(sv.v), q: sqH })];
       if (r.exact) answer(C, "Area", { x: r.v, v: r.v }, 2);
       else {
-        facts.push("<b>" + rootH(r) + "</b> is the exact area; the decimal is rounded to 2 places");
+        facts.push(tx("geometry.heron.exactArea", { r: rootH(r) }));
         C.answers.push({ k: "Area", main: rootH(r) + " ≈ " + esc(dec) + unit2, mainT: rootT(r) + " ≈ " + dec + (unitT(2) ? " " + unitT(2) : ""), facts: facts, ck: { c: r.f, pi: false, pow: 2, simp: rootT(r) } });
       }
       if (r.exact) C.answers[0].facts = facts.concat(C.answers[0].facts);
       answer(C, "Perimeter", P, 1);
-      C.closer = isR ? "<b>Check:</b> it’s a right triangle, so ½ × " + x.t + " × " + y.t + " = <b>" + vH(half) + "</b> — the same as Heron’s formula <span class=\"ok\">✓</span>" :
-        "<b>Check:</b> stand it on side " + esc(lab3.a) + " = " + a.t + ". Corner A is " + fmtF(ax, 2) + " along from B, so its height is √(" + c.t + "² − " + fmtF(ax, 2) + "²) ≈ <b>" + fmtF(ay, 2) + "</b>, and ½ × " + a.t + " × " + fmtF(ay, 2) + " ≈ <b>" + fmtF(a.f * ay / 2, 2) + "</b> <span class=\"ok\">✓</span>";
+      C.closer = isR ? tx("geometry.close.heronR", { x: x.t, y: y.t, h: vH(half) }) :
+        tx("geometry.close.heron", { la: esc(lab3.a), a: a.t, ax: fmtF(ax, 2), c: c.t, ay: fmtF(ay, 2), area: fmtF(a.f * ay / 2, 2) });
     }
 
     /* ---------- angles ---------- */
@@ -4551,9 +4589,9 @@
       var s = sumV(list),
         sT = vT(s);
       var cmp = s.n - BigInt(total) * s.d;
-      var lead = list.length > 1 ? "Those angles already add up to " : "That angle is ";
-      if (cmp === 0n) throw new UserErr(lead + "exactly <b>" + total + "°</b> — that leaves 0° for x, so there’s no angle left to find.");
-      if (cmp > 0n) throw new UserErr(lead + "<b>" + esc(sT) + "</b>, which is more than " + total + "° — " + what + " only add up to " + total + "°, so there’s no room left for x.");
+      var many = list.length > 1;
+      if (cmp === 0n) throw new UserErr(tx(many ? "geometry.too.exactMany" : "geometry.too.exactOne", { t: total }));
+      if (cmp > 0n) throw new UserErr(tx(many ? "geometry.too.overMany" : "geometry.too.overOne", { s: esc(sT), t: total, what: what }));
     }
 
     function xLabel(v) { return it("x") + " = " + esc(vT(v)); }
@@ -4561,39 +4599,39 @@
     function runAngTri(C, g) {
       var a = g("a"),
         b = g("b");
-      tooMuch([a, b], 180, "the angles of a triangle");
+      tooMuch([a, b], 180, tx("geometry.what.triAngles"));
       var k = knownF(180, [a, b]);
-      var X = chain(C, block(C, "The missing angle", "the three angles make 180°"), { lhs: lhsH("x"), f: k.f, vars: k.vars, pow: 0, why: WHY.angTri });
-      addFig(C, figTriAng(a.f, b.f, { a: esc(a.t), b: esc(b.t), x: xLabel(X.v), q: it("x"), until: C.lastStep }), "<b class=\"lead\">Drawn with the true angles.</b> The unknown angle x is highlighted.");
+      var X = chain(C, block(C, tx("geometry.b.missingAngle"), tx("geometry.bn.tri180")), { lhs: lhsH("x"), f: k.f, vars: k.vars, pow: 0, why: WHY.angTri });
+      addFig(C, figTriAng(a.f, b.f, { a: esc(a.t), b: esc(b.t), x: xLabel(X.v), q: it("x"), until: C.lastStep }), tx("geometry.cap.trueAngles") + tx("geometry.cap.xLit"));
       var xf = toF(X.v),
         type = Math.max(a.f, b.f, xf);
-      var kind = Math.abs(type - 90) < 1e-9 ? "a <b>right</b> triangle (one angle is exactly 90°)" : type > 90 ? "an <b>obtuse</b> triangle (one angle is more than 90°)" : "an <b>acute</b> triangle (every angle is less than 90°)";
+      var kind = Math.abs(type - 90) < 1e-9 ? tx("geometry.kind.rightTri") : type > 90 ? tx("geometry.kind.obtuseTri") : tx("geometry.kind.acuteTri");
       C.answers.push({
         k: "Missing angle",
         main: lhsH("x") + " = " + vH(X.v) + (valParts(X.v).frac ? " ≈ " + fmtF(xf, 2) + "°" : ""),
-        facts: ["It’s " + kind + "."],
+        facts: [tx("geometry.fact.itsKind", { kind: kind })],
         ck: { c: xf, pi: false, pow: 0 }
       });
-      C.closer = "<b>Check:</b> " + a.t + " + " + b.t + " + " + vT(X.v) + " = <b>180°</b> <span class=\"ok\">✓</span>";
+      C.closer = tx("geometry.close.angTri", { a: a.t, b: b.t, x: vT(X.v) });
     }
 
     function runAngList(C, g, total) {
       var list = g("a");
-      tooMuch(list, total, total === 180 ? "angles on a straight line" : total === 90 ? "complementary angles" : "angles around a point");
+      tooMuch(list, total, total === 180 ? tx("geometry.what.line") : total === 90 ? tx("geometry.what.comp") : tx("geometry.what.point"));
       var k = knownF(total, list);
-      var why = total === 180 ? WHY.angLine + (list.length === 1 ? " Two angles like this are called <b>supplementary</b>." : "") :
+      var why = total === 180 ? WHY.angLine + (list.length === 1 ? tx("geometry.why.supp") : "") :
         total === 90 ? WHY.angComp : WHY.angPoint;
-      var X = chain(C, block(C, "The missing angle", total === 180 ? "a straight line is 180°" : total === 90 ? "a right angle is 90°" : "a full turn is 360°"), { lhs: lhsH("x"), f: k.f, vars: k.vars, pow: 0, why: why });
+      var X = chain(C, block(C, tx("geometry.b.missingAngle"), total === 180 ? tx("geometry.bn.line180") : total === 90 ? tx("geometry.bn.right90") : tx("geometry.bn.turn360")), { lhs: lhsH("x"), f: k.f, vars: k.vars, pow: 0, why: why });
       var parts = list.map(function(x) { return { deg: x.f, txt: esc(x.t) }; });
       parts.push({ deg: toF(X.v), x: true, txt: xLabel(X.v), q: it("x"), until: C.lastStep });
-      addFig(C, figRays(parts, total), "<b class=\"lead\">Drawn with the true angles.</b> The unknown angle x is highlighted.");
+      addFig(C, figRays(parts, total), tx("geometry.cap.trueAngles") + tx("geometry.cap.xLit"));
       C.answers.push({
         k: "Missing angle",
         main: lhsH("x") + " = " + vH(X.v) + (valParts(X.v).frac ? " ≈ " + fmtF(toF(X.v), 2) + "°" : ""),
         ck: { c: toF(X.v), pi: false, pow: 0 },
-        facts: [total === 90 ? "x and " + list[0].t + " are complementary." : total === 180 && list.length === 1 ? "x and " + list[0].t + " are supplementary." : total === 360 ? "A full turn is 360°." : "A straight line is 180°."]
+        facts: [total === 90 ? tx("geometry.fact.comp", { a: list[0].t }) : total === 180 && list.length === 1 ? tx("geometry.fact.supp", { a: list[0].t }) : total === 360 ? tx("geometry.fact.turn") : tx("geometry.fact.line")]
       });
-      C.closer = "<b>Check:</b> " + list.map(function(x) { return x.t; }).join(" + ") + " + " + vT(X.v) + " = <b>" + total + "°</b> <span class=\"ok\">✓</span>";
+      C.closer = tx("geometry.close.angList", { list: list.map(function(x) { return x.t; }).join(" + "), x: vT(X.v), t: total });
     }
 
     function table(C, title, note2, rows) {
@@ -4604,25 +4642,25 @@
 
     function runVert(C, g) {
       var a = g("a");
-      if (a.f >= 180) throw new FieldErr("An angle between two crossing lines has to be less than 180° — <b>" + a.t + "</b> is too big.", "a");
-      var Y = chain(C, block(C, "The angle next door", "neighbors make a straight line, 180°"), { lhs: lhsH("y"), f: "180° − a", vars: { a: a }, pow: 0, why: WHY.angVert });
+      if (a.f >= 180) throw new FieldErr(tx("geometry.err.vert180", { a: a.t }), "a");
+      var Y = chain(C, block(C, tx("geometry.b.nextDoor"), tx("geometry.bn.nextDoor")), { lhs: lhsH("y"), f: "180° − a", vars: { a: a }, pow: 0, why: WHY.angVert });
       var sY = C.lastStep;
       var s3 = logItem(C, [
-          ["a", "Vertical", "Angles <b>opposite</b> each other where two lines cross are called <b>vertical angles</b>, and they’re always equal: <b>∠3 = ∠1 = " + a.t + "</b>, and <b>∠4 = ∠2 = " + vT(Y.v) + "</b>."]
+          ["a", tx("geometry.tag.vertical"), tx("geometry.vert.s3", { a: a.t, y: vT(Y.v) })]
         ],
-        "Why? ∠1 + ∠2 = 180° and ∠2 + ∠3 = 180° (both pairs sit on a straight line), so ∠1 and ∠3 must be the same size.");
-      table(C, "All four angles", "", [
-        { n: "∠1", v: a.t, r: "given", c: "c-p" },
-        { n: "∠2", v: vT(Y.v), r: "next to ∠1 on a straight line: 180° − " + a.t, c: "c-m", step: sY },
-        { n: "∠3", v: a.t, r: "<b>vertical</b> to ∠1 (opposite it), so equal", c: "c-p", step: s3 },
-        { n: "∠4", v: vT(Y.v), r: "<b>vertical</b> to ∠2, so equal", c: "c-m", step: s3 }
+        tx("geometry.vert.aside"));
+      table(C, tx("geometry.b.all4"), "", [
+        { n: "∠1", v: a.t, r: tx("geometry.given"), c: "c-p" },
+        { n: "∠2", v: vT(Y.v), r: tx("geometry.vert.r2", { a: a.t }), c: "c-m", step: sY },
+        { n: "∠3", v: a.t, r: tx("geometry.vert.r3"), c: "c-p", step: s3 },
+        { n: "∠4", v: vT(Y.v), r: tx("geometry.vert.r4"), c: "c-m", step: s3 }
       ]);
       C.lastStep = s3;
       addFig(C, figVert(a.f, [{ t: "∠1 = " + esc(a.t) }, { t: "∠2 = " + esc(vT(Y.v)), q: "∠2", until: sY, cls: "km" }, { t: "∠3 = " + esc(a.t), q: "∠3", until: s3, cls: "q" },
         { t: "∠4 = " + esc(vT(Y.v)), q: "∠4", until: s3, cls: "km" }
-      ]), "<b class=\"lead\">Drawn with the true angles.</b> Opposite angles (the same color) are equal.");
-      C.answers.push({ k: "Vertical angle ∠3", main: vH(a.v), facts: [] }, { k: "∠2 and ∠4", main: vH(Y.v), facts: ["Vertical angles are equal; neighboring angles add to 180°."] });
-      C.closer = "<b>Check:</b> all the way round, " + [a.t, vT(Y.v), a.t, vT(Y.v)].join(" + ") + " = <b>360°</b> <span class=\"ok\">✓</span>";
+      ]), tx("geometry.cap.trueAngles") + tx("geometry.cap.vert"));
+      C.answers.push({ k: "Vertical angle ∠3", main: vH(a.v), facts: [] }, { k: "∠2 and ∠4", main: vH(Y.v), facts: [tx("geometry.fact.vert")] });
+      C.closer = tx("geometry.close.vert", { sum: [a.t, vT(Y.v), a.t, vT(Y.v)].join(" + ") });
     }
     // where two parallel lines are crossed: 1 2 / 3 4 at the top crossing, 5 6 / 7 8 at the bottom one
     function parRel(p, q) {
@@ -4632,10 +4670,10 @@
         qq = (q - 1) % 4 + 1,
         pr = [Math.min(p, q), Math.max(p, q)].join("");
       if (tp === tq) {
-        if ((pp === 1 && qq === 4) || (pp === 4 && qq === 1) || (pp === 2 && qq === 3) || (pp === 3 && qq === 2)) return { eq: true, name: "vertical angles", why: "opposite each other at the same crossing" };
-        return { eq: false, name: "a straight line", why: "next to each other on a straight line" };
+        if ((pp === 1 && qq === 4) || (pp === 4 && qq === 1) || (pp === 2 && qq === 3) || (pp === 3 && qq === 2)) return { eq: true, name: "vertical angles", why: "opposite each other at the same crossing", nm: tx("geometry.pn.vertical"), wy: tx("geometry.pw.vertical") };
+        return { eq: false, name: "a straight line", why: "next to each other on a straight line", nm: tx("geometry.pn.line"), wy: tx("geometry.pw.line") };
       }
-      if (pp === qq) return { eq: true, name: "corresponding angles", why: "in the same spot at each crossing" };
+      if (pp === qq) return { eq: true, name: "corresponding angles", why: "in the same spot at each crossing", nm: tx("geometry.pn.corr"), wy: tx("geometry.pw.corr") };
       var M = {
         "36": ["alternate interior", true],
         "45": ["alternate interior", true],
@@ -4648,24 +4686,25 @@
       };
       var m = M[pr];
       if (!m) return null;
+      var kk = m[0].indexOf("alternate interior") === 0 ? "altIn" : m[0].indexOf("alternate exterior") === 0 ? "altEx" : m[0].indexOf("co-interior") === 0 ? "coIn" : "ssEx";
       var why = m[0].indexOf("alternate interior") === 0 ? "between the parallel lines, on opposite sides of the transversal (they make a Z shape)" :
         m[0].indexOf("alternate exterior") === 0 ? "outside the parallel lines, on opposite sides of the transversal" :
         m[0].indexOf("co-interior") === 0 ? "between the parallel lines, on the same side of the transversal (a C shape)" :
         "outside the parallel lines, on the same side of the transversal";
-      return { eq: m[1], name: m[0] + " angles", why: why };
+      return { eq: m[1], name: m[0] + " angles", why: why, nm: tx("geometry.pn." + kk), wy: tx("geometry.pw." + kk) };
     }
 
     function runPar(C, g) {
       var a = g("a"),
         pos = Number(g.V.pos) || 1;
       if (pos < 1 || pos > 8) pos = 1;
-      if (a.f >= 180) throw new FieldErr("An angle where two lines cross has to be less than 180° — <b>" + a.t + "</b> is too big.", "a");
-      var Y = chain(C, block(C, "The other size", "the two sizes add to 180°"), { lhs: lhsH("y"), f: "180° − a", vars: { a: a }, pow: 0, why: WHY.angPar });
+      if (a.f >= 180) throw new FieldErr(tx("geometry.err.par180", { a: a.t }), "a");
+      var Y = chain(C, block(C, tx("geometry.b.otherSize"), tx("geometry.bn.otherSize")), { lhs: lhsH("y"), f: "180° − a", vars: { a: a }, pow: 0, why: WHY.angPar });
       var sY = C.lastStep,
         eqSet = [2, 3, 6, 7].indexOf(pos) >= 0 ? [2, 3, 6, 7] : [1, 4, 5, 8];
       var th = [2, 3, 6, 7].indexOf(pos) >= 0 ? a.f : 180 - a.f;
       var right = Math.abs(a.f - 90) < 1e-9;
-      var rows = [{ n: "∠" + pos, v: a.t, r: "given", c: "c-p" }],
+      var rows = [{ n: "∠" + pos, v: a.t, r: tx("geometry.given"), c: "c-p" }],
         known = [pos],
         labels = {},
         done = {};
@@ -4688,10 +4727,10 @@
         rl = parRel(from, qq);
         var vq = val(qq),
           vf = val(from);
-        var txt = rl.eq ? "<b>" + rl.name + "</b> with ∠" + from + " (" + rl.why + "), so equal to it" :
-          (rl.name === "a straight line" ? "on <b>a straight line</b> with ∠" + from : "<b>" + rl.name + "</b> with ∠" + from + " (" + rl.why + ")") + ", so they add to 180°: 180° − " + vf.t;
+        var txt = rl.eq ? tx("geometry.par.eq", { name: rl.nm, f: from, why: rl.wy }) :
+          tx(rl.name === "a straight line" ? "geometry.par.line" : "geometry.par.sum", { name: rl.nm, f: from, why: rl.wy, v: vf.t });
         var st = logItem(C, [
-          [eqSet.indexOf(qq) >= 0 ? "p" : "m", "∠" + qq, "<b>∠" + qq + " = " + vq.t + "</b>: " + txt + "."]
+          [eqSet.indexOf(qq) >= 0 ? "p" : "m", "∠" + qq, tx("geometry.par.step", { q: qq, v: vq.t, txt: txt })]
         ]);
         rows.push({ n: "∠" + qq, v: vq.t, r: txt, c: eqSet.indexOf(qq) >= 0 ? "c-p" : "c-m", step: st });
         labels[qq] = { t: esc(vq.t), until: st, cls: eqSet.indexOf(qq) >= 0 ? "d" : "km" };
@@ -4704,81 +4743,81 @@
         labels[q].arc = q === pos ? "x" : inEq ? "" : "km";
         labels[q].sec = q === pos ? "x" : inEq ? true : "km";
       }
-      table(C, "All eight angles", "", rows);
-      addFig(C, figPar(th, labels), "<b class=\"lead\">Drawn with the true angles.</b> The arrows mark the parallel lines. The given angle is highlighted;" +
-        (right ? " here every angle is 90°." : " the green angles all equal " + a.t + " and the purple ones all equal " + vT(Y.v) + "."));
+      table(C, tx("geometry.b.all8"), "", rows);
+      addFig(C, figPar(th, labels), tx("geometry.cap.trueAngles") + tx("geometry.cap.par") +
+        (right ? tx("geometry.cap.par90") : tx("geometry.cap.parColors", { a: a.t, y: vT(Y.v) })));
       var eqList = eqSet.filter(function(x) { return true; }).map(function(x) { return "∠" + x; }).join(", ");
       var other = [1, 2, 3, 4, 5, 6, 7, 8].filter(function(x) { return eqSet.indexOf(x) < 0; }).map(function(x) { return "∠" + x; }).join(", ");
-      C.answers.push({ k: eqList, main: vH(a.v), facts: [] }, { k: other, main: vH(Y.v), facts: ["Each angle either matches ∠" + pos + " or adds with it to 180°."] });
-      C.closer = "<b>Check:</b> at each crossing, " + [a.t, vT(Y.v), a.t, vT(Y.v)].join(" + ") + " = <b>360°</b> <span class=\"ok\">✓</span>";
+      C.answers.push({ k: eqList, main: vH(a.v), facts: [] }, { k: other, main: vH(Y.v), facts: [tx("geometry.fact.par", { p: pos })] });
+      C.closer = tx("geometry.close.par", { sum: [a.t, vT(Y.v), a.t, vT(Y.v)].join(" + ") });
     }
-    var PNAME = { 3: "triangle", 4: "quadrilateral", 5: "pentagon", 6: "hexagon", 7: "heptagon", 8: "octagon", 9: "nonagon", 10: "decagon", 11: "hendecagon", 12: "dodecagon" };
+    var PNAME = { 3: tx("geometry.poly.3"), 4: tx("geometry.poly.4"), 5: tx("geometry.poly.5"), 6: tx("geometry.poly.6"), 7: tx("geometry.poly.7"), 8: tx("geometry.poly.8"), 9: tx("geometry.poly.9"), 10: tx("geometry.poly.10"), 11: tx("geometry.poly.11"), 12: tx("geometry.poly.12") };
 
     function runPoly(C, g) {
       var n = g("n");
-      if (n.f < 3) throw new FieldErr("A polygon needs at least <b>3</b> sides — with " + n.t + " the sides can’t close up.", "n");
-      if (n.f > 100) throw new FieldErr("Keep it to 100 sides or fewer — after that it looks just like a circle!", "n");
-      var Sm = chain(C, block(C, "Sum of the interior angles", "(n − 2) triangles of 180°"), { lhs: lhsH("S"), f: "(n − 2) × 180°", vars: { n: n }, pow: 0, why: WHY.polyS });
-      var I = chain(C, block(C, "Each interior angle", "share the sum out equally"), { lhs: lhsH("I"), f: "S ÷ n", vars: { S: Sm.num, n: n }, pow: 0, why: WHY.polyI });
+      if (n.f < 3) throw new FieldErr(tx("geometry.err.poly3", { n: n.t }), "n");
+      if (n.f > 100) throw new FieldErr(tx("geometry.err.poly100"), "n");
+      var Sm = chain(C, block(C, tx("geometry.b.sumInt"), tx("geometry.bn.sumInt")), { lhs: lhsH("S"), f: "(n − 2) × 180°", vars: { n: n }, pow: 0, why: WHY.polyS });
+      var I = chain(C, block(C, tx("geometry.b.eachInt"), tx("geometry.bn.eachInt")), { lhs: lhsH("I"), f: "S ÷ n", vars: { S: Sm.num, n: n }, pow: 0, why: WHY.polyI });
       var sI = C.lastStep;
-      var E = chain(C, block(C, "Each exterior angle", "the turn at each corner"), { lhs: lhsH("E"), f: "360° ÷ n", vars: { n: n }, pow: 0, why: WHY.polyE });
+      var E = chain(C, block(C, tx("geometry.b.eachExt"), tx("geometry.bn.eachExt")), { lhs: lhsH("E"), f: "360° ÷ n", vars: { n: n }, pow: 0, why: WHY.polyE });
       var sE = C.lastStep;
-      var nm = PNAME[n.f] || n.t + "-gon",
+      var nm = PNAME[n.f] || tx("geometry.poly.ngon", { n: n.t }),
         iT = valParts(I.v).frac ? "≈ " + fmtF(toF(I.v), 2) + "°" : vT(I.v),
         eT = valParts(E.v).frac ? "≈ " + fmtF(toF(E.v), 2) + "°" : vT(E.v);
-      addFig(C, figPoly(n.f, { i: esc(iT), iq: "?", iu: sI, e: esc(eT), eq: "?", eu: sE }), "<b class=\"lead\">A regular " + esc(nm) + ".</b>" +
-        (n.f <= 40 ? " The lines from the dotted corner cut it into <b>" + (n.f - 2) + "</b> triangles." : "") +
-        " Purple: an interior angle. Orange: the exterior angle at the same corner — the turn you make there. Together they make a straight line.");
+      addFig(C, figPoly(n.f, { i: esc(iT), iq: "?", iu: sI, e: esc(eT), eq: "?", eu: sE }), tx("geometry.cap.poly", { nm: esc(nm) }) +
+        (n.f <= 40 ? tx("geometry.cap.polyCut", { k: (n.f - 2) }) : "") +
+        tx("geometry.cap.polyColors"));
       answer(C, "Interior angles add to", Sm, 0);
       C.answers.push({
         k: "Each interior angle",
         main: (valParts(I.v).frac ? "≈ " + fmtF(toF(I.v), 2) + "°" : vH(I.v)),
-        facts: valParts(I.v).frac ? ["Exactly " + vH(I.v) + "; rounded to 2 decimal places"] : [],
+        facts: valParts(I.v).frac ? [tx("geometry.fact.exactly", { v: vH(I.v) })] : [],
         ck: { c: toF(I.v), pi: false, pow: 0 }
       });
       C.answers.push({
         k: "Each exterior angle",
         main: (valParts(E.v).frac ? "≈ " + fmtF(toF(E.v), 2) + "°" : vH(E.v)),
-        facts: ["A regular " + esc(nm) + " has " + n.t + " equal sides and " + n.t + " equal angles."],
+        facts: [tx("geometry.fact.regular", { nm: esc(nm), n: n.t })],
         ck: { c: toF(E.v), pi: false, pow: 0 }
       });
       var tot = apply("+", I.v, E.v);
-      C.closer = "<b>Check:</b> interior + exterior at one corner = " + vH(I.v) + " + " + vH(E.v) + " = <b>" + vH(tot) + "</b> — a straight line <span class=\"ok\">✓</span>";
+      C.closer = tx("geometry.close.poly", { i: vH(I.v), e: vH(E.v), t: vH(tot) });
     }
 
     var SH = {
       area: [
-        { id: "rect", name: "Rectangle", f: [F("l", "Length", "l"), F("w", "Width", "w")], d: { l: "8", w: "5" }, run: function(C, g) { runRect(C, g, false); } },
-        { id: "square", name: "Square", f: [F("s", "Side", "s")], d: { s: "6" }, run: function(C, g) { runRect(C, g, true); } },
-        { id: "tri", name: "Triangle", f: [F("b", "Base", "b"), F("h", "Height", "h"), F("s1", "Left side", "s₁", { opt: "for perimeter" }), F("s2", "Right side", "s₂", { opt: "for perimeter" })], d: { b: "6", h: "4", s1: "5", s2: "5" }, run: runTri },
-        { id: "heron", name: "Triangle from 3 sides", f: [F("a", "Side", "a"), F("b", "Side", "b"), F("c", "Side", "c")], d: { a: "5", b: "6", c: "7" }, run: runHeron },
-        { id: "para", name: "Parallelogram", f: [F("b", "Base", "b"), F("h", "Height", "h"), F("s", "Slanted side", "s", { opt: "for perimeter" })], d: { b: "9", h: "4", s: "5" }, run: runPara },
-        { id: "trap", name: "Trapezoid", f: [F("a", "Top", "a"), F("b", "Bottom", "b"), F("h", "Height", "h"), F("c", "Left side", "c", { opt: "for perimeter" }), F("d", "Right side", "d", { opt: "for perimeter" })], d: { a: "4", b: "10", h: "4", c: "5", d: "5" }, run: runTrap },
-        { id: "circle", name: "Circle", f: [F("r", "Radius", "r", { rd: true })], d: { r: "5", rd: "r" }, pi: true, run: runCircle },
-        { id: "lshape", name: "L-shape", f: [F("W", "Total width", "W"), F("H", "Total height", "H"), F("w", "Cut-out width", "w"), F("h", "Cut-out height", "h")], d: { W: "10", H: "8", w: "4", h: "3" }, run: runL }
+        { id: "rect", name: tx("geometry.sh.area.rect"), f: [F("l", "length", "l"), F("w", "width", "w")], d: { l: "8", w: "5" }, run: function(C, g) { runRect(C, g, false); } },
+        { id: "square", name: tx("geometry.sh.area.square"), f: [F("s", "side", "s")], d: { s: "6" }, run: function(C, g) { runRect(C, g, true); } },
+        { id: "tri", name: tx("geometry.sh.area.tri"), f: [F("b", "base", "b"), F("h", "height", "h"), F("s1", "left", "s₁", { opt: "geometry.opt.perim" }), F("s2", "right", "s₂", { opt: "geometry.opt.perim" })], d: { b: "6", h: "4", s1: "5", s2: "5" }, run: runTri },
+        { id: "heron", name: tx("geometry.sh.area.heron"), f: [F("a", "side", "a"), F("b", "side", "b"), F("c", "side", "c")], d: { a: "5", b: "6", c: "7" }, run: runHeron },
+        { id: "para", name: tx("geometry.sh.area.para"), f: [F("b", "base", "b"), F("h", "height", "h"), F("s", "slanted", "s", { opt: "geometry.opt.perim" })], d: { b: "9", h: "4", s: "5" }, run: runPara },
+        { id: "trap", name: tx("geometry.sh.area.trap"), f: [F("a", "top", "a"), F("b", "bottom", "b"), F("h", "height", "h"), F("c", "left", "c", { opt: "geometry.opt.perim" }), F("d", "right", "d", { opt: "geometry.opt.perim" })], d: { a: "4", b: "10", h: "4", c: "5", d: "5" }, run: runTrap },
+        { id: "circle", name: tx("geometry.sh.area.circle"), f: [F("r", "radius", "r", { rd: true })], d: { r: "5", rd: "r" }, pi: true, run: runCircle },
+        { id: "lshape", name: tx("geometry.sh.area.lshape"), f: [F("W", "totalW", "W"), F("H", "totalH", "H"), F("w", "cutW", "w"), F("h", "cutH", "h")], d: { W: "10", H: "8", w: "4", h: "3" }, run: runL }
       ],
       vol: [
-        { id: "box", name: "Box", f: [F("l", "Length", "l"), F("w", "Width", "w"), F("h", "Height", "h")], d: { l: "8", w: "3", h: "5" }, run: function(C, g) { runBox(C, g, false); } },
-        { id: "cube", name: "Cube", f: [F("s", "Edge", "s")], d: { s: "4" }, run: function(C, g) { runBox(C, g, true); } },
-        { id: "cyl", name: "Cylinder", f: [F("r", "Radius", "r", { rd: true }), F("h", "Height", "h")], d: { r: "3", h: "10", rd: "r" }, pi: true, run: runCyl },
-        { id: "cone", name: "Cone", f: [F("r", "Radius", "r", { rd: true }), F("h", "Height", "h")], d: { r: "3", h: "4", rd: "r" }, pi: true, run: runCone },
-        { id: "sphere", name: "Sphere", f: [F("r", "Radius", "r", { rd: true })], d: { r: "3", rd: "r" }, pi: true, run: runSphere },
-        { id: "tprism", name: "Triangular prism", f: [F("b", "Triangle base", "b"), F("h", "Triangle height", "h"), F("l", "Length", "l"), F("s1", "Left side", "s₁", { opt: "for surface area" }), F("s2", "Right side", "s₂", { opt: "for surface area" })], d: { b: "6", h: "4", l: "10", s1: "5", s2: "5" }, run: runTPrism },
-        { id: "pyr", name: "Square pyramid", f: [F("s", "Base edge", "s"), F("h", "Height", "h")], d: { s: "6", h: "4" }, run: runPyr }
+        { id: "box", name: tx("geometry.sh.vol.box"), f: [F("l", "length", "l"), F("w", "width", "w"), F("h", "height", "h")], d: { l: "8", w: "3", h: "5" }, run: function(C, g) { runBox(C, g, false); } },
+        { id: "cube", name: tx("geometry.sh.vol.cube"), f: [F("s", "edge", "s")], d: { s: "4" }, run: function(C, g) { runBox(C, g, true); } },
+        { id: "cyl", name: tx("geometry.sh.vol.cyl"), f: [F("r", "radius", "r", { rd: true }), F("h", "height", "h")], d: { r: "3", h: "10", rd: "r" }, pi: true, run: runCyl },
+        { id: "cone", name: tx("geometry.sh.vol.cone"), f: [F("r", "radius", "r", { rd: true }), F("h", "height", "h")], d: { r: "3", h: "4", rd: "r" }, pi: true, run: runCone },
+        { id: "sphere", name: tx("geometry.sh.vol.sphere"), f: [F("r", "radius", "r", { rd: true })], d: { r: "3", rd: "r" }, pi: true, run: runSphere },
+        { id: "tprism", name: tx("geometry.sh.vol.tprism"), f: [F("b", "triBase", "b"), F("h", "triHeight", "h"), F("l", "length", "l"), F("s1", "left", "s₁", { opt: "geometry.opt.sa" }), F("s2", "right", "s₂", { opt: "geometry.opt.sa" })], d: { b: "6", h: "4", l: "10", s1: "5", s2: "5" }, run: runTPrism },
+        { id: "pyr", name: tx("geometry.sh.vol.pyr"), f: [F("s", "baseEdge", "s"), F("h", "height", "h")], d: { s: "6", h: "4" }, run: runPyr }
       ],
       right: [
-        { id: "hyp", name: "The hypotenuse", f: [F("a", "Leg", "a"), F("b", "Other leg", "b")], d: { a: "6", b: "8" }, run: function(C, g) { runRight(C, g, "hyp"); } },
-        { id: "leg", name: "A missing leg", f: [F("a", "Leg", "a"), F("c", "Hypotenuse", "c")], d: { a: "5", c: "13" }, run: function(C, g) { runRight(C, g, "leg"); } },
-        { id: "check", name: "Is it a right triangle?", f: [F("a", "Side", "a"), F("b", "Side", "b"), F("c", "Side", "c")], d: { a: "5", b: "12", c: "13" }, run: runCheck }
+        { id: "hyp", name: tx("geometry.sh.right.hyp"), f: [F("a", "leg", "a"), F("b", "otherLeg", "b")], d: { a: "6", b: "8" }, run: function(C, g) { runRight(C, g, "hyp"); } },
+        { id: "leg", name: tx("geometry.sh.right.leg"), f: [F("a", "leg", "a"), F("c", "hyp", "c")], d: { a: "5", c: "13" }, run: function(C, g) { runRight(C, g, "leg"); } },
+        { id: "check", name: tx("geometry.sh.right.check"), f: [F("a", "side", "a"), F("b", "side", "b"), F("c", "side", "c")], d: { a: "5", b: "12", c: "13" }, run: runCheck }
       ],
       angle: [
-        { id: "tri", name: "In a triangle", f: [F("a", "Angle", "a", { deg: true }), F("b", "Angle", "b", { deg: true })], d: { a: "50", b: "60" }, run: runAngTri },
-        { id: "line", name: "On a straight line", f: [F("a", "Known angles", "", { deg: true, list: true })], d: { a: "130" }, run: function(C, g) { runAngList(C, g, 180); } },
-        { id: "comp", name: "Complementary", f: [F("a", "Known angle", "a", { deg: true })], d: { a: "35" }, run: function(C, g) { runAngList(C, function(k, o) { var x = g(k, o); return x ? [x] : x; }, 90); } },
-        { id: "point", name: "Around a point", f: [F("a", "Known angles", "", { deg: true, list: true })], d: { a: "90, 120, 75" }, run: function(C, g) { runAngList(C, g, 360); } },
-        { id: "vert", name: "Vertical angles", f: [F("a", "∠1", "", { deg: true })], d: { a: "65" }, run: runVert },
-        { id: "par", name: "Parallel lines", f: [F("a", "Angle", "", { deg: true }), F("pos", "Which angle", "", { pos: true })], d: { a: "65", pos: "1" }, run: runPar },
-        { id: "poly", name: "Polygon", f: [F("n", "Number of sides", "n", { whole: true })], d: { n: "6" }, run: runPoly }
+        { id: "tri", name: tx("geometry.sh.angle.tri"), f: [F("a", "angle", "a", { deg: true }), F("b", "angle", "b", { deg: true })], d: { a: "50", b: "60" }, run: runAngTri },
+        { id: "line", name: tx("geometry.sh.angle.line"), f: [F("a", "knownAngles", "", { deg: true, list: true })], d: { a: "130" }, run: function(C, g) { runAngList(C, g, 180); } },
+        { id: "comp", name: tx("geometry.sh.angle.comp"), f: [F("a", "knownAngle", "a", { deg: true })], d: { a: "35" }, run: function(C, g) { runAngList(C, function(k, o) { var x = g(k, o); return x ? [x] : x; }, 90); } },
+        { id: "point", name: tx("geometry.sh.angle.point"), f: [F("a", "knownAngles", "", { deg: true, list: true })], d: { a: "90, 120, 75" }, run: function(C, g) { runAngList(C, g, 360); } },
+        { id: "vert", name: tx("geometry.sh.angle.vert"), f: [F("a", "a1", "", { deg: true })], d: { a: "65" }, run: runVert },
+        { id: "par", name: tx("geometry.sh.angle.par"), f: [F("a", "angle", "", { deg: true }), F("pos", "which", "", { pos: true })], d: { a: "65", pos: "1" }, run: runPar },
+        { id: "poly", name: tx("geometry.sh.angle.poly"), f: [F("n", "nSides", "n", { whole: true })], d: { n: "6" }, run: runPoly }
       ]
     };
 
@@ -4800,12 +4839,12 @@
         angle: { shape: "any", dec: "whole" }
       }
     };
-    var PICK = { area: "Shape", vol: "Solid", right: "Find", angle: "Type" };
+    var PICK = { area: tx("geometry.pick.area"), vol: tx("geometry.pick.vol"), right: tx("geometry.pick.right"), angle: tx("geometry.pick.angle") };
     var HINT = {
-      area: "Whole numbers, decimals (<code>2.5</code>) or fractions (<code>3/4</code>, <code>1 1/2</code>) all work. Leave a box empty if you don’t know it.",
-      vol: "Whole numbers, decimals (<code>2.5</code>) or fractions (<code>3/4</code>, <code>1 1/2</code>) all work. Leave a box empty if you don’t know it.",
-      right: "The two legs meet at the right angle; the hypotenuse is the long side across from it. Decimals and fractions work too.",
-      angle: "Type angles in degrees. Where there’s more than one known angle, separate them with commas: <code>90, 120, 75</code>."
+      area: tx("geometry.hint.area"),
+      vol: tx("geometry.hint.area"),
+      right: tx("geometry.hint.right"),
+      angle: tx("geometry.hint.angle")
     };
 
     function defOf(m, id) {
@@ -4846,7 +4885,7 @@
     function writeLog(items) {
       var html = "";
       items.forEach(function(it2, i) {
-        html += '<li data-step="' + i + '"><span class="n">Step&nbsp;' + (i + 1) + "</span>";
+        html += '<li data-step="' + i + '"><span class="n">' + tx("geometry.stepN", { n: i + 1 }) + "</span>";
         it2.lines.forEach(function(l) {
           html += '<div class="line"><span class="tag c-' + l[0] + '">' + l[1] + '</span><span class="txt">' + l[2] + "</span></div>";
         });
@@ -4866,9 +4905,9 @@
         facts = [];
       el.className = "answer";
       var many = C.answers.length > 1;
-      C.answers.forEach(function(a) { a.facts.forEach(function(f) { facts.push((many && a.facts.length ? '<span class="fk">' + a.k + ":</span> " : "") + f); }); });
+      C.answers.forEach(function(a) { a.facts.forEach(function(f) { facts.push((many && a.facts.length ? '<span class="fk">' + ansK(a.k) + ":</span> " : "") + f); }); });
       facts = facts.concat(C.facts);
-      el.innerHTML = C.answers.map(function(a) { return '<div class="ag"><span class="k">' + a.k + '</span><span class="v"><span class="vv">' + a.main + "</span></span></div>"; }).join("") +
+      el.innerHTML = C.answers.map(function(a) { return '<div class="ag"><span class="k">' + ansK(a.k) + '</span><span class="v"><span class="vv">' + a.main + "</span></span></div>"; }).join("") +
         '<div class="facts">' + facts.map(function(f) { return '<div class="fact">' + f + "</div>"; }).join("") + "</div>";
       $("board").parentNode.insertBefore(el, $("board"));
     }
@@ -4932,7 +4971,7 @@
       try { d.run(C, getter(d, vals())); } catch (e) {
         if (e && e.user) return fail(e.user, e.field);
         if (window.console) console.error(e);
-        return fail("Something went wrong working that out — try different numbers.");
+        return fail(tx("geometry.err.wrong"));
       }
       lastC = C;
       $("legend").style.display = "";
@@ -4947,7 +4986,7 @@
       if (S.step < 1) S.step = 1;
       $("stepper").hidden = !S.stepMode;
       if (S.stepMode) {
-        $("stepCount").textContent = S.step + " of " + total;
+        $("stepCount").textContent = tx("geometry.stepOf", { n: S.step, total: total });
         $("prevBtn").disabled = S.step <= 1;
         $("nextBtn").disabled = S.step >= total;
       }
@@ -4995,18 +5034,18 @@
         html = "";
       d.f.forEach(function(fd) {
         if (fd.pos) {
-          html += '<div class="fld"><label>' + esc(fd.label) + '</label><div class="modes small" role="group" aria-label="Which angle is given">';
+          html += '<div class="fld"><label>' + esc(fd.label) + '</label><div class="modes small" role="group" aria-label="' + esc(tx("geometry.whichGiven")) + '">';
           for (var i = 1; i <= 8; i++) html += '<button type="button" data-pos="' + i + '" aria-pressed="' + (String(Vv.pos) === String(i)) + '">∠' + i + "</button>";
           html += "</div></div>";
           return;
         }
 
         function symS(s) { return ' (<span class="sym">' + esc(s) + "</span>)"; }
-        var lbl = fd.rd ? (Vv.rd === "d" ? "Diameter" + symS("d") : "Radius" + symS("r")) : esc(fd.label) + (fd.sym ? symS(fd.sym) : "");
-        var suf = fd.deg ? "°" : fd.whole ? "sides" : (S.unit === "none" ? "" : S.unit);
+        var lbl = fd.rd ? (Vv.rd === "d" ? tx("geometry.f.diameter") + symS("d") : tx("geometry.f.radius") + symS("r")) : esc(fd.label) + (fd.sym ? symS(fd.sym) : "");
+        var suf = fd.deg ? "°" : fd.whole ? tx("geometry.suf.sides") : (S.unit === "none" ? "" : S.unit);
         html += '<div class="fld' + (fd.list ? " wide" : "") + '">';
-        if (fd.rd) html += '<div class="modes small" role="group" aria-label="Radius or diameter"><button type="button" data-rd="r" aria-pressed="' + (Vv.rd !== "d") +
-          '">I know the radius</button><button type="button" data-rd="d" aria-pressed="' + (Vv.rd === "d") + '">the diameter</button></div>';
+        if (fd.rd) html += '<div class="modes small" role="group" aria-label="' + esc(tx("geometry.rdLabel")) + '"><button type="button" data-rd="r" aria-pressed="' + (Vv.rd !== "d") +
+          '">' + tx("geometry.rd.r") + '</button><button type="button" data-rd="d" aria-pressed="' + (Vv.rd === "d") + '">' + tx("geometry.rd.d") + "</button></div>";
         html += '<label for="f_' + fd.k + '">' + lbl + (fd.opt ? " <i>" + esc(fd.opt) + "</i>" : "") + '</label><span class="inrow"><input class="num-in" id="f_' + fd.k +
           '" data-k="' + fd.k + '" type="text" inputmode="' + (fd.list ? "text" : "decimal") + '" autocomplete="off" spellcheck="false" value="' +
           esc(Vv[fd.k] == null ? "" : Vv[fd.k]).replace(/"/g, "&quot;") + '"><span class="suf">' + esc(suf) + "</span></span></div>";
@@ -5046,7 +5085,7 @@
       UNITS.forEach(function(u) {
         var b = document.createElement("button");
         b.type = "button";
-        b.textContent = u;
+        b.textContent = u === "none" ? tx("geometry.unit.none") : u;
         b.setAttribute("aria-pressed", String(S.unit === u));
         b.addEventListener("click", function() {
           S.unit = u;
@@ -5060,9 +5099,9 @@
       var ph = $("piT");
       ph.innerHTML = "";
       [
-        ["exact", "exact (25π)"],
+        ["exact", tx("geometry.pi.exact")],
         ["314", "3.14"],
-        ["calc", "calculator π"]
+        ["calc", tx("geometry.pi.calc")]
       ].forEach(function(p) {
         var b = document.createElement("button");
         b.type = "button";
@@ -5082,52 +5121,52 @@
     /* examples */
     var EX = {
       area: [
-        ["Rectangle 8 × 5", "rect", { l: "8", w: "5" }],
-        ["Square 2.5", "square", { s: "2.5" }],
-        ["Triangle b 6, h 4", "tri", { b: "6", h: "4", s1: "5", s2: "5" }],
-        ["Triangle b 7, h 3", "tri", { b: "7", h: "3", s1: "", s2: "" }],
-        ["Leaning triangle", "tri", { b: "4", h: "12", s1: "13", s2: "15" }],
-        ["Sides 5, 6, 7", "heron", { a: "5", b: "6", c: "7" }],
-        ["Sides 13, 14, 15", "heron", { a: "13", b: "14", c: "15" }],
-        ["Parallelogram 9 by 4", "para", { b: "9", h: "4", s: "5" }],
-        ["Trapezoid 4 & 10", "trap", { a: "4", b: "10", h: "4", c: "5", d: "5" }],
-        ["Circle r 5", "circle", { r: "5", rd: "r" }],
-        ["Circle d 9", "circle", { r: "9", rd: "d" }],
-        ["L-shape", "lshape", { W: "10", H: "8", w: "4", h: "3" }]
+        [tx("geometry.ex.area.0"), "rect", { l: "8", w: "5" }],
+        [tx("geometry.ex.area.1"), "square", { s: "2.5" }],
+        [tx("geometry.ex.area.2"), "tri", { b: "6", h: "4", s1: "5", s2: "5" }],
+        [tx("geometry.ex.area.3"), "tri", { b: "7", h: "3", s1: "", s2: "" }],
+        [tx("geometry.ex.area.4"), "tri", { b: "4", h: "12", s1: "13", s2: "15" }],
+        [tx("geometry.ex.area.5"), "heron", { a: "5", b: "6", c: "7" }],
+        [tx("geometry.ex.area.6"), "heron", { a: "13", b: "14", c: "15" }],
+        [tx("geometry.ex.area.7"), "para", { b: "9", h: "4", s: "5" }],
+        [tx("geometry.ex.area.8"), "trap", { a: "4", b: "10", h: "4", c: "5", d: "5" }],
+        [tx("geometry.ex.area.9"), "circle", { r: "5", rd: "r" }],
+        [tx("geometry.ex.area.10"), "circle", { r: "9", rd: "d" }],
+        [tx("geometry.ex.area.11"), "lshape", { W: "10", H: "8", w: "4", h: "3" }]
       ],
       vol: [
-        ["Box 8 × 3 × 5", "box", { l: "8", w: "3", h: "5" }],
-        ["Cube 4", "cube", { s: "4" }],
-        ["Cylinder r 3, h 10", "cyl", { r: "3", h: "10", rd: "r" }],
-        ["Cone r 3, h 4", "cone", { r: "3", h: "4", rd: "r" }],
-        ["Cone r 2, h 5", "cone", { r: "2", h: "5", rd: "r" }],
-        ["Sphere d 12", "sphere", { r: "12", rd: "d" }],
-        ["Triangular prism", "tprism", { b: "6", h: "4", l: "10", s1: "5", s2: "5" }],
-        ["Square pyramid", "pyr", { s: "6", h: "4" }],
-        ["Box 2.5 × 1.2 × 4", "box", { l: "2.5", w: "1.2", h: "4" }]
+        [tx("geometry.ex.vol.0"), "box", { l: "8", w: "3", h: "5" }],
+        [tx("geometry.ex.vol.1"), "cube", { s: "4" }],
+        [tx("geometry.ex.vol.2"), "cyl", { r: "3", h: "10", rd: "r" }],
+        [tx("geometry.ex.vol.3"), "cone", { r: "3", h: "4", rd: "r" }],
+        [tx("geometry.ex.vol.4"), "cone", { r: "2", h: "5", rd: "r" }],
+        [tx("geometry.ex.vol.5"), "sphere", { r: "12", rd: "d" }],
+        [tx("geometry.ex.vol.6"), "tprism", { b: "6", h: "4", l: "10", s1: "5", s2: "5" }],
+        [tx("geometry.ex.vol.7"), "pyr", { s: "6", h: "4" }],
+        [tx("geometry.ex.vol.8"), "box", { l: "2.5", w: "1.2", h: "4" }]
       ],
       right: [
-        ["Legs 3 & 4", "hyp", { a: "3", b: "4" }],
-        ["Legs 6 & 8", "hyp", { a: "6", b: "8" }],
-        ["Legs 5 & 5", "hyp", { a: "5", b: "5" }],
-        ["Legs 1 & 2", "hyp", { a: "1", b: "2" }],
-        ["Leg 5, hyp 13", "leg", { a: "5", c: "13" }],
-        ["Leg 1.5, hyp 2.5", "leg", { a: "1.5", c: "2.5" }],
-        ["Leg 4, hyp 8", "leg", { a: "4", c: "8" }],
-        ["Check 5, 12, 13", "check", { a: "5", b: "12", c: "13" }],
-        ["Check 4, 5, 6", "check", { a: "4", b: "5", c: "6" }]
+        [tx("geometry.ex.right.0"), "hyp", { a: "3", b: "4" }],
+        [tx("geometry.ex.right.1"), "hyp", { a: "6", b: "8" }],
+        [tx("geometry.ex.right.2"), "hyp", { a: "5", b: "5" }],
+        [tx("geometry.ex.right.3"), "hyp", { a: "1", b: "2" }],
+        [tx("geometry.ex.right.4"), "leg", { a: "5", c: "13" }],
+        [tx("geometry.ex.right.5"), "leg", { a: "1.5", c: "2.5" }],
+        [tx("geometry.ex.right.6"), "leg", { a: "4", c: "8" }],
+        [tx("geometry.ex.right.7"), "check", { a: "5", b: "12", c: "13" }],
+        [tx("geometry.ex.right.8"), "check", { a: "4", b: "5", c: "6" }]
       ],
       angle: [
-        ["Triangle 50°, 60°", "tri", { a: "50", b: "60" }],
-        ["Triangle 90°, 35°", "tri", { a: "90", b: "35" }],
-        ["Straight line 130°", "line", { a: "130" }],
-        ["Line 40°, 75°", "line", { a: "40, 75" }],
-        ["Complementary 35°", "comp", { a: "35" }],
-        ["Around a point", "point", { a: "90, 120, 75" }],
-        ["Vertical 65°", "vert", { a: "65" }],
-        ["Parallel lines 65°", "par", { a: "65", pos: "1" }],
-        ["Hexagon", "poly", { n: "6" }],
-        ["Heptagon", "poly", { n: "7" }]
+        [tx("geometry.ex.angle.0"), "tri", { a: "50", b: "60" }],
+        [tx("geometry.ex.angle.1"), "tri", { a: "90", b: "35" }],
+        [tx("geometry.ex.angle.2"), "line", { a: "130" }],
+        [tx("geometry.ex.angle.3"), "line", { a: "40, 75" }],
+        [tx("geometry.ex.angle.4"), "comp", { a: "35" }],
+        [tx("geometry.ex.angle.5"), "point", { a: "90, 120, 75" }],
+        [tx("geometry.ex.angle.6"), "vert", { a: "65" }],
+        [tx("geometry.ex.angle.7"), "par", { a: "65", pos: "1" }],
+        [tx("geometry.ex.angle.8"), "poly", { n: "6" }],
+        [tx("geometry.ex.angle.9"), "poly", { n: "7" }]
       ]
     };
 
@@ -5224,7 +5263,7 @@
             v = { b: sc(t[0]), h: sc(t[1]), s1: sc(t[2]), s2: sc(t[3]) };
           } else {
             v = { b: gv(2, M, dec), h: gv(1, M, dec), s1: "", s2: "" };
-            msg = "Numbers this small can’t make a whole-number triangle with a whole height, so the slanted sides are left out.";
+            msg = tx("geometry.mk.noWhole");
           }
           if (d.id === "tprism") v.l = gv(2, M, dec);
           break;
@@ -5399,28 +5438,28 @@
         html += "</div>";
       }
       seg(PICK[m], "shape", [
-        ["any", "Any"]
+        ["any", tx("geometry.mk.any")]
       ].concat(SH[m].map(function(d) { return [d.id, d.name]; })));
-      if (m !== "angle") seg("Biggest measurement", "max", [
+      if (m !== "angle") seg(tx("geometry.mk.max"), "max", [
         [10, "10"],
         [20, "20"],
         [50, "50"],
         [100, "100"]
       ]);
-      seg("Kind of numbers", "dec", [
-        ["whole", "Whole numbers"],
-        ["dec", m === "angle" ? "With halves (.5)" : "Decimals"]
+      seg(tx("geometry.mk.kind"), "dec", [
+        ["whole", tx("geometry.mk.whole")],
+        ["dec", m === "angle" ? tx("geometry.mk.halves") : tx("geometry.mk.dec")]
       ]);
-      if (m === "right") seg("Answers", "nice", [
-        ["nice", "Whole numbers"],
-        ["any", "Any (some are square roots like √50)"]
+      if (m === "right") seg(tx("geometry.mk.answers"), "nice", [
+        ["nice", tx("geometry.mk.whole")],
+        ["any", tx("geometry.mk.anyRoots")]
       ]);
-      if (m !== "angle") seg("Units", "units", [
-        ["keep", "Keep mine"],
-        ["mix", "Mix them up"]
+      if (m !== "angle") seg(tx("geometry.units"), "units", [
+        ["keep", tx("geometry.mk.keep")],
+        ["mix", tx("geometry.mk.mix")]
       ]);
       html += '<p class="sample" id="sample"></p>';
-      html += '<div class="maker-go"><button type="button" class="go" id="genBtn">New problem</button><span class="msg" id="genMsg"></span></div>';
+      html += '<div class="maker-go"><button type="button" class="go" id="genBtn">' + tx("common.newProblem") + '</button><span class="msg" id="genMsg"></span></div>';
       host.innerHTML = html;
       paintSample();
       Array.prototype.forEach.call(host.querySelectorAll("[data-gk]"), function(b) {
@@ -5449,7 +5488,7 @@
         var r = gen(S.mode, S.gen[S.mode], null);
         t = probText(S.mode, r.id, r.v, r.unit || S.unit);
       } catch (e) { t = null; }
-      el.innerHTML = t ? "Makes problems like: <b>" + esc(t) + "</b>" : "Those choices don’t make a problem — try different ones.";
+      el.innerHTML = t ? tx("geometry.mk.like", { t: esc(t) }) : tx("geometry.mk.none");
     }
 
     function buildAll() {
@@ -5497,8 +5536,7 @@
     ];
 
     function qNote(q) {
-      return "I couldn’t tell what <b>“" + esc(String(q).slice(0, 80)) + "”</b> is asking about, so here’s the last problem you had. Try something like " +
-        QEX.map(function(x) { return '<a href="?q=' + encodeURIComponent(x) + '">' + esc(x) + "</a>"; }).join(", ") + " — or pick a shape above.";
+      return tx("geometry.qNote", { q: esc(String(q).slice(0, 80)), list: (own("geometry.qexList") || QEX).map(function(x) { return '<a href="?q=' + encodeURIComponent(x) + '">' + esc(x) + "</a>"; }).join(", ") });
     }
 
     function readURL() {
@@ -5513,7 +5551,7 @@
       function get(key) { var v = P.get(key); return v == null ? null : String(v).slice(0, 60); }
       var q = P.get("q");
       if (q != null && q.trim()) {
-        var r = parseQ(q.slice(0, 200));
+        var r = parseQ(readTyped(q.slice(0, 200)));
         if (r) {
           S.mode = r.mode;
           S.shape[r.mode] = r.id;
@@ -5589,8 +5627,7 @@
           S.stepMode = pr === "step";
         } else bad.push("practice");
       }
-      if (bad.length && !note) note = "Part of that link didn’t make sense to me (<b>" + bad.map(function(key) { return esc(key + "=" + String(P.get(key)).slice(0, 30)); }).join(", ") +
-        "</b>), so I’ve used the nearest problem I could make. Check the numbers above.";
+      if (bad.length && !note) note = tx("geometry.badLink", { bad: bad.map(function(key) { return esc(key + "=" + String(P.get(key)).slice(0, 30)); }).join(", ") });
       return note;
     }
 
@@ -5927,18 +5964,18 @@
     /* ===================== check my answer ===================== */
     var MINE = { sig: null, fresh: true, targets: [], tried: false };
     var DIAG = {
-      isP: "That’s the perimeter — the distance around the edge. Area is the space inside.",
-      isA: "That’s the area — the space inside. The perimeter is the distance around the edge.",
-      isC: "That’s the circumference (2 × π × r) — the distance around. Area is π × r²: square the radius.",
-      isCA: "That’s the area (π × r²). The circumference is the distance around: 2 × π × r.",
-      isSA: "That’s the surface area — the outside. Volume is the space inside.",
-      isV: "That’s the volume — the space inside. Surface area is the total area of the outside.",
-      halfT: "It looks like you forgot the ½. A triangle is half of the rectangle with the same base and height, so halve b × h.",
-      halfTrap: "It looks like you forgot the ½. Two copies of the trapezoid make a parallelogram, so one is half of (a + b) × h.",
-      slant: "It looks like you used a slanted side as the height. The height goes straight up from the base, at a right angle to it (dashed in the drawing).",
-      dAsR: "It looks like you used the diameter as the radius. The radius is half the diameter: r = d ÷ 2.",
-      rAsD: "It looks like you treated the radius as the diameter and halved it. The radius is already the radius — use it as it is.",
-      slantV: "It looks like you used the slant height. For volume, use the height straight up the middle (h)."
+      isP: tx("geometry.diag.isP"),
+      isA: tx("geometry.diag.isA"),
+      isC: tx("geometry.diag.isC"),
+      isCA: tx("geometry.diag.isCA"),
+      isSA: tx("geometry.diag.isSA"),
+      isV: tx("geometry.diag.isV"),
+      halfT: tx("geometry.diag.halfT"),
+      halfTrap: tx("geometry.diag.halfTrap"),
+      slant: tx("geometry.diag.slant"),
+      dAsR: tx("geometry.diag.dAsR"),
+      rAsD: tx("geometry.diag.rAsD"),
+      slantV: tx("geometry.diag.slantV")
     };
     // what the answer box asks for: one target per answer, each with the right value(s) and common wrong ones (alts)
     function targetsFor(C, mode, id, Vv) {
@@ -5966,13 +6003,14 @@
         if (!ck) return;
         T.push({
           simp: ck.simp || null,
-          label: label,
+          label: ansK(label),
+          lab2: ansK(label.replace(/ \(yes or no\)$/, "")),
           pow: ck.pow || 0,
           pi: !!ck.pi,
           yn: ck.yn,
           cands: ck.yn != null ? [] : [{ c: ck.c, pi: !!ck.pi }].concat(more || []),
           alts: (alts || []).filter(function(a) { return a; }),
-          ph: ck.yn != null ? "yes or no" : mode === "angle" ? "degrees" : ""
+          ph: ck.yn != null ? tx("geometry.ph.yn") : mode === "angle" ? tx("geometry.ph.deg") : ""
         });
       }
       var a1 = A["Area"],
@@ -5990,12 +6028,12 @@
         if (id === "rect") {
           var L_ = f("l"),
             W_ = f("w");
-          aA.push(al([N(L_ + W_)], "It looks like you added the length and width. For area, multiply them: l × w."));
-          pA.push(al([N(L_ + W_)], "That’s one length and one width — only halfway round. Double it to go all the way around."));
+          aA.push(al([N(L_ + W_)], tx("geometry.ck.rectAdd")));
+          pA.push(al([N(L_ + W_)], tx("geometry.ck.rectHalf")));
         } else if (id === "square") {
           X = f("s");
-          aA.push(al([N(2 * X)], "s² means s × s — the side times itself, not times 2."), al([N(4 * X)], DIAG.isP));
-          pA.push(al([N(2 * X)], "A square has four equal sides, so its perimeter is 4 × s."));
+          aA.push(al([N(2 * X)], tx("geometry.ck.sqTimes2")), al([N(4 * X)], DIAG.isP));
+          pA.push(al([N(2 * X)], tx("geometry.ck.sqP")));
         } else if (id === "tri") {
           b = f("b");
           h = f("h");
@@ -6003,8 +6041,8 @@
           x2 = f("s2");
           aA.push(al([N(b * h)], DIAG.halfT));
           if (x1 && x2) {
-            aA.push(al([N(b * x1 / 2), N(b * x2 / 2)], DIAG.slant), al([N(b * x1), N(b * x2)], DIAG.slant + " And remember the ½."));
-            pA.push(al([N(b + h + x1), N(b + h + x2), N(b + h + x1 + x2)], "The height isn’t part of the edge — it’s inside the triangle. Add the three sides: b + s₁ + s₂."));
+            aA.push(al([N(b * x1 / 2), N(b * x2 / 2)], DIAG.slant), al([N(b * x1), N(b * x2)], DIAG.slant + tx("geometry.ck.remHalf")));
+            pA.push(al([N(b + h + x1), N(b + h + x2), N(b + h + x1 + x2)], tx("geometry.ck.triH")));
           }
         } else if (id === "heron") {
           var ha = f("a"),
@@ -6012,19 +6050,19 @@
             hc = f("c"),
             hs = (ha + hb + hc) / 2,
             h2 = hs * (hs - ha) * (hs - hb) * (hs - hc);
-          aA.push(al([N(h2)], "That’s A² — what’s under the square root. Take the square root to get the area."),
-            al([N(Math.sqrt(hs * (hs - ha) * (hs - hb) * (hs - hc) * 4)), N(Math.sqrt(2 * hs * (hs - ha) * (hs - hb) * (hs - hc)))], "Use s, half the perimeter, in every part of the formula: s(s − a)(s − b)(s − c)."),
-            al([N(ha * hb / 2), N(hb * hc / 2), N(ha * hc / 2)], "½ × one side × another only works when those two sides meet at a right angle (the legs). With three sides, use Heron’s formula."));
-          pA.push(al([N(hs)], "That’s s, half the perimeter. The perimeter is all three sides: a + b + c."));
+          aA.push(al([N(h2)], tx("geometry.ck.heronA2")),
+            al([N(Math.sqrt(hs * (hs - ha) * (hs - hb) * (hs - hc) * 4)), N(Math.sqrt(2 * hs * (hs - ha) * (hs - hb) * (hs - hc)))], tx("geometry.ck.heronS")),
+            al([N(ha * hb / 2), N(hb * hc / 2), N(ha * hc / 2)], tx("geometry.ck.heronHalf")));
+          pA.push(al([N(hs)], tx("geometry.ck.heronP")));
         } else if (id === "para") {
           b = f("b");
           h = f("h");
           X = f("s");
-          aA.push(al([N(b * h / 2)], "No ½ for a parallelogram — that’s for triangles. Cut and slide it into a rectangle: base × height."));
+          aA.push(al([N(b * h / 2)], tx("geometry.ck.paraHalf")));
           if (X) {
             aA.push(al([N(b * X)], DIAG.slant));
-            pA.push(al([N(2 * (b + h))], "That uses the height — but the height is inside the shape. The edge is two bases and two slanted sides: 2 × (b + s)."),
-              al([N(b + X)], "That’s one base and one slanted side — only halfway round. Double it."));
+            pA.push(al([N(2 * (b + h))], tx("geometry.ck.paraH")),
+              al([N(b + X)], tx("geometry.ck.paraHalfway")));
           }
         } else if (id === "trap") {
           var ta = f("a"),
@@ -6035,7 +6073,7 @@
           aA.push(al([N((ta + tb) * h)], DIAG.halfTrap));
           if (tc && td) {
             aA.push(al([N((ta + tb) * tc / 2), N((ta + tb) * td / 2)], DIAG.slant));
-            pA.push(al([N(ta + tb + 2 * h)], "The height isn’t part of the edge — use the two slanted sides: a + b + c + d."));
+            pA.push(al([N(ta + tb + 2 * h)], tx("geometry.ck.trapH")));
           }
         } else if (id === "circle") {
           isD = Vv.rd === "d";
@@ -6045,10 +6083,10 @@
           var cA = [al([P(R_ * R_)], DIAG.isCA)];
           if (isD) {
             aA.push(al([P(X * X)], DIAG.dAsR));
-            cA.push(al([P(2 * X)], DIAG.dAsR + " With the diameter it’s just C = π × d."));
+            cA.push(al([P(2 * X)], DIAG.dAsR + tx("geometry.ck.withD")));
           } else {
             aA.push(al([P(R_ * R_ / 4)], DIAG.rAsD));
-            cA.push(al([P(R_)], "That’s π × r. The distance around is π × the diameter, and the diameter is 2 × r, so C = 2 × π × r."));
+            cA.push(al([P(R_)], tx("geometry.ck.circPiR")));
           }
           add("Area", a1, aA);
           add("Circumference", c1, cA);
@@ -6058,8 +6096,8 @@
             LH = f("H"),
             lw = f("w"),
             lh = f("h");
-          aA.push(al([N(LW * LH)], "That’s the whole rectangle — take away the missing corner, w × h."), al([N(LW * LH + lw * lh)], "The missing corner should be taken away, not added."));
-          pA.push(al([N(2 * LW + 2 * LH - lw - lh)], "You missed the two edges of the notch (w and h). Walk all the way round the outside — it has six sides."));
+          aA.push(al([N(LW * LH)], tx("geometry.ck.Lwhole")), al([N(LW * LH + lw * lh)], tx("geometry.ck.Ladded")));
+          pA.push(al([N(2 * LW + 2 * LH - lw - lh)], tx("geometry.ck.Lnotch")));
         }
         add("Area", a1, aA);
         add("Perimeter", p1, pA);
@@ -6077,11 +6115,11 @@
             bw = id === "cube" ? bl : f("w"),
             bh = id === "cube" ? bl : f("h");
           if (id === "box") {
-            vA.push(al([N(bl + bw + bh)], "It looks like you added. Volume multiplies: l × w × h."));
-            sA.push(al([N(bl * bw + bl * bh + bw * bh)], "That’s one face from each pair — three faces. A box has six, so double it."));
+            vA.push(al([N(bl + bw + bh)], tx("geometry.ck.boxAdd")));
+            sA.push(al([N(bl * bw + bl * bh + bw * bh)], tx("geometry.ck.box3")));
           } else {
-            vA.push(al([N(3 * bl)], "s³ means s × s × s, not 3 × s."), al([N(bl * bl)], "That’s the area of one face (s²). Volume is s³ = s × s × s."));
-            sA.push(al([N(bl * bl)], "That’s one face — a cube has 6 faces, so 6 × s²."), al([N(4 * bl * bl)], "That’s only four faces — don’t forget the top and the bottom: 6 × s²."));
+            vA.push(al([N(3 * bl)], tx("geometry.ck.cube3s")), al([N(bl * bl)], tx("geometry.ck.cubeFace")));
+            sA.push(al([N(bl * bl)], tx("geometry.ck.cubeOne")), al([N(4 * bl * bl)], tx("geometry.ck.cubeFour")));
           }
         } else if (id === "cyl" || id === "cone" || id === "sphere") {
           isD = Vv.rd === "d";
@@ -6091,27 +6129,27 @@
           sw = isD ? DIAG.dAsR : DIAG.rAsD;
           h = f("h");
           if (id === "cyl") {
-            vA.push(al([P(2 * R_ * h)], "That’s just the label around the side (2 × π × r × h). Volume is the circle’s area times the height: π × r² × h."),
+            vA.push(al([P(2 * R_ * h)], tx("geometry.ck.cylLabel")),
               al([P(rr * rr * h)], sw));
-            sA.push(al([P(2 * R_ * h)], "That’s only the curved side — add the two circles on the ends (2 × π × r²)."),
-              al([P(R_ * R_ + 2 * R_ * h)], "That’s only one circle — a cylinder has a top and a bottom."),
-              al([P(2 * R_ * R_)], "That’s just the two circles — add the label around the side (2 × π × r × h)."),
+            sA.push(al([P(2 * R_ * h)], tx("geometry.ck.cylCurved")),
+              al([P(R_ * R_ + 2 * R_ * h)], tx("geometry.ck.cylOne")),
+              al([P(2 * R_ * R_)], tx("geometry.ck.cylTwo")),
               al([P(2 * rr * rr + 2 * rr * h)], sw));
           } else if (id === "cone") {
             var lf = Math.sqrt(R_ * R_ + h * h),
               lr = l1 ? l1.c : lf,
               lc = l1 ? Number(fmtF(lr, 2).replace(/,/g, "")) : lf;
             moreS.push(P(R_ * R_ + R_ * lf));
-            vA.push(al([P(R_ * R_ * h)], "It looks like you forgot the ⅓ — a cone holds a third of the cylinder with the same base and height."),
+            vA.push(al([P(R_ * R_ * h)], tx("geometry.ck.coneThird")),
               al([P(R_ * R_ * lf / 3), P(R_ * R_ * lc / 3)], DIAG.slantV), al([P(rr * rr * h / 3)], sw));
-            lA.push(al([N(R_ + h)], "You can’t just add r and h. Square them, add, then take the square root: l² = r² + h²."),
-              al([N(R_ * R_ + h * h)], "That’s l² — take the square root to get l."),
-              al([N(Math.sqrt(Math.abs(h * h - R_ * R_)))], "The slant height is the longest side of the right triangle, so add the squares: l² = r² + h²."));
-            sA.push(al([P(R_ * lf), P(R_ * lc)], "That’s only the curved side — add the circle on the bottom (π × r²)."),
-              al([P(R_ * R_ + R_ * h)], "It looks like you used the height for the curved side. It needs the slant height: π × r × l."));
+            lA.push(al([N(R_ + h)], tx("geometry.ck.coneAdd")),
+              al([N(R_ * R_ + h * h)], tx("geometry.ck.l2")),
+              al([N(Math.sqrt(Math.abs(h * h - R_ * R_)))], tx("geometry.ck.coneLong")));
+            sA.push(al([P(R_ * lf), P(R_ * lc)], tx("geometry.ck.coneCurved")),
+              al([P(R_ * R_ + R_ * h)], tx("geometry.ck.coneH")));
           } else {
-            vA.push(al([P(4 * R_ * R_ * R_)], "It looks like you forgot to divide by 3: V = 4/3 × π × r³."), al([P(4 * rr * rr * rr / 3)], sw));
-            sA.push(al([P(R_ * R_)], "That’s one circle’s worth — a sphere’s surface is exactly four of them: 4 × π × r²."), al([P(4 * rr * rr)], sw));
+            vA.push(al([P(4 * R_ * R_ * R_)], tx("geometry.ck.sph3")), al([P(4 * rr * rr * rr / 3)], sw));
+            sA.push(al([P(R_ * R_)], tx("geometry.ck.sphOne")), al([P(4 * rr * rr)], sw));
           }
         } else if (id === "tprism") {
           b = f("b");
@@ -6119,11 +6157,11 @@
           var pl = f("l");
           x1 = f("s1");
           x2 = f("s2");
-          vA.push(al([N(b * h * pl)], "It looks like you forgot the ½ — the end is a triangle, ½ × b × h."));
+          vA.push(al([N(b * h * pl)], tx("geometry.ck.tpHalf")));
           if (x1 && x2) {
             vA.push(al([N(b * x1 * pl / 2), N(b * x2 * pl / 2)], DIAG.slant));
-            sA.push(al([N((b + x1 + x2) * pl)], "That’s just the three rectangles — add the two triangle ends."),
-              al([N(2 * b * h + (b + x1 + x2) * pl)], "Each triangle end is ½ × b × h — it looks like you forgot the ½."));
+            sA.push(al([N((b + x1 + x2) * pl)], tx("geometry.ck.tpRect")),
+              al([N(2 * b * h + (b + x1 + x2) * pl)], tx("geometry.ck.tpEnds")));
           }
         } else if (id === "pyr") {
           var ps = f("s"),
@@ -6132,14 +6170,14 @@
           plf = Math.sqrt(h * h + ps * ps / 4);
           var plr = l1 ? Number(fmtF(l1.c, 2).replace(/,/g, "")) : plf;
           moreS.push(N(ps * ps + 2 * ps * plf));
-          vA.push(al([N(ps * ps * h)], "It looks like you forgot the ⅓ — a pyramid holds a third of the box with the same base and height."),
+          vA.push(al([N(ps * ps * h)], tx("geometry.ck.pyThird")),
             al([N(ps * ps * plf / 3), N(ps * ps * plr / 3)], DIAG.slantV));
-          lA.push(al([N(h * h + ps * ps / 4)], "That’s l² — take the square root to get l."),
-            al([N(Math.sqrt(h * h + ps * ps))], "Use half the base edge (s ÷ 2): the slant height goes up the middle of a face."),
-            al([N(h + ps / 2)], "You can’t just add them. Square, add, then take the square root: l² = h² + (s ÷ 2)²."));
-          sA.push(al([N(ps * ps + 2 * ps * h)], "It looks like you used the height for the triangle faces. Each face needs the slant height: ½ × s × l."),
-            al([N(2 * ps * plf), N(2 * ps * plr)], "That’s just the four triangles — add the square base (s²)."),
-            al([N(ps * ps + 4 * ps * plf), N(ps * ps + 4 * ps * plr)], "Each triangle face is ½ × s × l — it looks like you forgot the ½."));
+          lA.push(al([N(h * h + ps * ps / 4)], tx("geometry.ck.l2")),
+            al([N(Math.sqrt(h * h + ps * ps))], tx("geometry.ck.pyHalfBase")),
+            al([N(h + ps / 2)], tx("geometry.ck.pyAdd")));
+          sA.push(al([N(ps * ps + 2 * ps * h)], tx("geometry.ck.pyH")),
+            al([N(2 * ps * plf), N(2 * ps * plr)], tx("geometry.ck.pyTri")),
+            al([N(ps * ps + 4 * ps * plf), N(ps * ps + 4 * ps * plr)], tx("geometry.ck.pyFaceHalf")));
         }
         add("Volume", v1, vA);
         add("Surface area", s1, sA, moreS);
@@ -6151,28 +6189,28 @@
           ra = f("a");
         if (id === "hyp") {
           var rb = f("b");
-          add("Hypotenuse c", ck, [al([N(ra + rb)], "You can’t just add the legs. Square them, add, then take the square root: c² = a² + b²."),
-            al([N(ra * ra + rb * rb)], "That’s c² — now take the square root to get c."),
-            al([N(Math.sqrt(Math.abs(ra * ra - rb * rb)))], "For the hypotenuse, add the squares — don’t subtract. It’s the longest side.")
+          add("Hypotenuse c", ck, [al([N(ra + rb)], tx("geometry.ck.hypAdd")),
+            al([N(ra * ra + rb * rb)], tx("geometry.ck.c2")),
+            al([N(Math.sqrt(Math.abs(ra * ra - rb * rb)))], tx("geometry.ck.hypSub"))
           ]);
         } else if (id === "leg") {
           var rc = f("c");
-          add("Missing leg b", ck, [al([N(Math.sqrt(rc * rc + ra * ra))], "It looks like you added the squares. For a missing leg, subtract: b² = c² − a²."),
-            al([N(rc * rc - ra * ra)], "That’s b² — take the square root to get b."),
-            al([N(rc * rc + ra * ra)], "Two things: subtract the squares (b² = c² − a²), then take the square root."),
-            al([N(rc - ra)], "You can’t just subtract the sides. Square them, subtract, then take the square root.")
+          add("Missing leg b", ck, [al([N(Math.sqrt(rc * rc + ra * ra))], tx("geometry.ck.legAdd")),
+            al([N(rc * rc - ra * ra)], tx("geometry.ck.b2")),
+            al([N(rc * rc + ra * ra)], tx("geometry.ck.legTwo")),
+            al([N(rc - ra)], tx("geometry.ck.legSub"))
           ]);
         } else add("Right triangle? (yes or no)", ck);
         return T;
       }
       /* angles */
-      var TOT = { 90: "a right angle", 180: "a straight line", 360: "a full turn" };
+      var TOT = { 90: tx("geometry.tot.right"), 180: tx("geometry.tot.line"), 360: tx("geometry.tot.turn") };
       if (id === "tri") {
         var ga = f("a"),
           gb = f("b");
-        add("Missing angle x", A["Missing angle"], [al([N(360 - ga - gb)], "You used 360°, but the three angles of a triangle add up to 180°."),
-          al([N(90 - ga - gb)], "You took them away from 90°. The angles of a triangle add up to 180°."),
-          al([N(ga + gb)], "That’s the two angles added together. Now take that away from 180°.")
+        add("Missing angle x", A["Missing angle"], [al([N(360 - ga - gb)], tx("geometry.ck.tri360")),
+          al([N(90 - ga - gb)], tx("geometry.ck.tri90")),
+          al([N(ga + gb)], tx("geometry.ck.triSum"))
         ]);
       } else if (id === "line" || id === "comp" || id === "point") {
         var lst = f("a");
@@ -6182,17 +6220,17 @@
           alts = [];
         [90, 180, 360].forEach(function(t2) {
           if (t2 === tot) return;
-          var msg = id === "comp" && t2 === 180 ? "You took it away from 180° — that gives the supplement. Complementary angles add up to 90°." :
-            "You took " + (lst.length > 1 ? "them" : "it") + " away from " + t2 + "° — that’s " + TOT[t2] + ". " + (id === "line" ? "A straight line is 180°." : id === "comp" ? "Complementary angles make a right angle: 90°." : "All the way around a point is 360°.");
+          var msg = id === "comp" && t2 === 180 ? tx("geometry.ck.compSupp") :
+            tx(lst.length > 1 ? "geometry.ck.tookThem" : "geometry.ck.tookIt", { t: t2, name: TOT[t2] }) + (id === "line" ? tx("geometry.fact.line") : id === "comp" ? tx("geometry.ck.endComp") : tx("geometry.ck.endPoint"));
           alts.push(al([N(t2 - sum)], msg));
         });
         add("Missing angle x", A["Missing angle"], alts);
       } else if (id === "vert") {
         var va = f("a"),
           vy = 180 - va;
-        add("∠2", { c: vy, pow: 0 }, [al([N(va)], "∠2 is next to ∠1 on a straight line, so they add up to 180°: ∠2 = 180° − ∠1."), al([N(90 - va)], "A straight line is 180°, not 90°.")]);
-        add("∠3", { c: va, pow: 0 }, [al([N(vy)], "∠3 is opposite ∠1 — they’re vertical angles, so they’re equal.")]);
-        add("∠4", { c: vy, pow: 0 }, [al([N(va)], "∠4 is next to ∠1 on a straight line, so they add up to 180°: ∠4 = 180° − ∠1."), al([N(90 - va)], "A straight line is 180°, not 90°.")]);
+        add("∠2", { c: vy, pow: 0 }, [al([N(va)], tx("geometry.ck.vert2")), al([N(90 - va)], tx("geometry.ck.line90"))]);
+        add("∠3", { c: va, pow: 0 }, [al([N(vy)], tx("geometry.ck.vert3"))]);
+        add("∠4", { c: vy, pow: 0 }, [al([N(va)], tx("geometry.ck.vert4")), al([N(90 - va)], tx("geometry.ck.line90"))]);
       } else if (id === "par") {
         var pa = f("a"),
           py = 180 - pa,
@@ -6202,22 +6240,23 @@
         parPicks(pos).forEach(function(q) {
           var rel = parRel(pos, q),
             eq = eqSet.indexOf(q) >= 0;
-          var why = rel.name === "a straight line" ? "are on a straight line" : "are " + rel.name + " (" + rel.why + ")";
-          var msg = eq ? "∠" + q + " and ∠" + pos + " " + why + ", so they’re equal." :
-            "∠" + q + " and ∠" + pos + " " + why + ", so they add up to 180°: ∠" + q + " = 180° − " + fmtF(pa, 4) + "°.";
+          var line = rel.name === "a straight line",
+            V2 = { q: q, p: pos, name: rel.nm, why: rel.wy, a: fmtF(pa, 4) };
+          var msg = eq ? tx(line ? "geometry.ck.parLineEq" : "geometry.ck.parEq", V2) :
+            tx(line ? "geometry.ck.parLine" : "geometry.ck.parSum", V2);
           add("∠" + q, { c: eq ? pa : py, pow: 0 }, [al([N(eq ? py : pa)], msg)]);
         });
       } else if (id === "poly") {
         var pn2 = f("n"),
           sm = (pn2 - 2) * 180;
-        add("Sum of the interior angles", A["Interior angles add to"], [al([N(pn2 * 180)], "That’s n × 180°. From one corner you get n − 2 triangles, so it’s (n − 2) × 180°."),
-          al([N(360)], "360° is what the exterior angles add up to. The interior angles add up to (n − 2) × 180°.")
+        add("Sum of the interior angles", A["Interior angles add to"], [al([N(pn2 * 180)], tx("geometry.ck.polyN")),
+          al([N(360)], tx("geometry.ck.poly360"))
         ]);
-        add("Each interior angle", A["Each interior angle"], [al([N(360 / pn2)], "That’s the exterior angle — the turn at each corner. The interior angle is 180° minus that."),
-          al([N(sm)], "That’s all the interior angles together — share it out equally: ÷ n.")
+        add("Each interior angle", A["Each interior angle"], [al([N(360 / pn2)], tx("geometry.ck.polyExt")),
+          al([N(sm)], tx("geometry.ck.polyAll"))
         ]);
-        add("Each exterior angle", A["Each exterior angle"], [al([N(sm / pn2)], "That’s the interior angle. The exterior angle is the turn at each corner: 360° ÷ n."),
-          al([N(360)], "All the turns together make 360° — each one is 360° ÷ n.")
+        add("Each exterior angle", A["Each exterior angle"], [al([N(sm / pn2)], tx("geometry.ck.polyInt")),
+          al([N(360)], tx("geometry.ck.poly360b"))
         ]);
       }
       return T;
@@ -6322,15 +6361,14 @@
       return near(u.f, u.dp, c.c);
     }
 
-    function unitWant(pow) { return S.unit === "none" ? (pow === 2 ? "square units" : pow === 3 ? "cubic units" : "units") : S.unit + (pow === 2 ? "²" : pow === 3 ? "³" : ""); }
+    function unitWant(pow) { return S.unit === "none" ? (pow === 2 ? tx("geometry.u.sq") : pow === 3 ? tx("geometry.u.cu") : tx("geometry.u.one")) : S.unit + (pow === 2 ? "²" : pow === 3 ? "³" : ""); }
 
     function unitNote(t, u) {
       if (!u.unitPow || !t.pow) return "";
       if (u.unitPow !== t.pow)
-        return "Small thing about units: " + (t.pow === 1 ? "this is a length, so it’s in plain units" : "this is " + (t.pow === 2 ? "an area, so it’s in square" : "a volume, so it’s in cubic") + " units") +
-          " — write <b>" + esc(unitWant(t.pow)) + "</b>, not " + esc(u.unitRaw) + ".";
+        return tx(t.pow === 1 ? "geometry.unitNote.len" : t.pow === 2 ? "geometry.unitNote.area" : "geometry.unitNote.vol", { w: esc(unitWant(t.pow)), raw: esc(u.unitRaw) });
       if (S.unit !== "none" && u.unit && u.unit !== "units" && u.unit !== S.unit)
-        return "Small thing: the measurements are in " + esc(S.unit) + ", so the answer is in <b>" + esc(unitWant(t.pow)) + "</b>.";
+        return tx("geometry.unitNote.in", { u: esc(S.unit), w: esc(unitWant(t.pow)) });
       return "";
     }
 
@@ -6339,35 +6377,40 @@
       if (!s) return { st: "empty" };
       if (t.yn != null) {
         var yn = /^(?:y|yes|yep|yeah|yup|true|it is|right)\b/i.test(s) ? true : /^(?:n|no|nope|not|false|it isn|isn)/i.test(s) ? false : null;
-        if (yn === null) return { st: "no", unread: true, msg: "Type <b>yes</b> or <b>no</b>." };
+        var yW = own("geometry.ck.yesWords"),
+          nW = own("geometry.ck.noWords");
+        if (yn === null && yW && new RegExp(yW, "i").test(fold(s))) yn = true;
+        if (yn === null && nW && new RegExp(nW, "i").test(fold(s))) yn = false;
+        if (yn === null) return { st: "no", unread: true, msg: tx("geometry.ck.yn") };
         if (yn === t.yn) return { st: "ok" };
         return {
           st: "no",
-          msg: t.yn ? "Compare again: a² + b² for the two shorter sides, and c² for the longest side. Do they match?" : "Compare again: work out a² + b² for the two shorter sides and c² for the longest side — are they really equal?"
+          msg: t.yn ? tx("geometry.ck.ynYes") : tx("geometry.ck.ynNo")
         };
       }
-      var u = readMine(s);
-      if (!u) return { st: "no", unread: true, msg: "I couldn’t read <b>" + esc(s.slice(0, 40)) + "</b> as a number. Try something like <b>40</b>, <b>12.5</b>, <b>3/4</b>, <b>25π</b> or <b>5√2</b>." };
+      var s2 = readAnswerWords(s),
+        u = readMine(s2);
+      if (!u) return { st: "no", unread: true, msg: tx("geometry.ck.unread", { s: esc(s.slice(0, 40)) }) };
       var note = unitNote(t, u),
         best = null,
         i;
       t.cands.forEach(function(c) { best = bestOf(best, matchV(u, c)); });
       // the right value as a root that still has a square inside (√216 for 6√6)
-      var ur = t.simp && /√|sqrt|root/.test(s) ? /(?:√|sqrt|square root of|root)\s*\(?\s*(\d+)/.exec(s) : null;
+      var ur = t.simp && /√|sqrt|root/.test(s2) ? /(?:√|sqrt|square root of|root)\s*\(?\s*(\d+)/.exec(s2) : null;
       if (ur && best === "exact") {
         var un = Number(ur[1]),
           sqf = false;
         for (var dd = 2; dd * dd <= un; dd++)
           if (un % (dd * dd) === 0) sqf = true;
-        if (sqf) return { st: "no", unread: true, msg: "Right value — now simplify the square root: it’s <b>" + esc(t.simp) + "</b>.", note: note };
+        if (sqf) return { st: "no", unread: true, msg: tx("geometry.ck.simp", { t: esc(t.simp) }), note: note };
       }
       if (best === "exact" || best === "round") return { st: "ok", note: note };
       for (i = 0; i < t.alts.length; i++) {
         if (t.alts[i].cands.some(function(c) { var r = matchV(u, c); return r === "exact" || r === "round"; })) return { st: "no", msg: t.alts[i].msg, note: note };
       }
-      if (best === "close") return { st: "no", msg: "Very close — check your rounding (round to the nearest, and keep every digit until the end).", note: note };
+      if (best === "close") return { st: "no", msg: tx("geometry.ck.close"), note: note };
       if (t.pi && !u.isPi && t.cands.some(function(c) { return c.pi && near(u.f, u.dp, c.c) === "exact"; }))
-        return { st: "no", msg: "Don’t forget the π! Write it as a number of π’s (like 25π), or multiply by 3.14.", note: note };
+        return { st: "no", msg: tx("geometry.ck.pi"), note: note };
       return { st: "no", note: note };
     }
 
@@ -6420,18 +6463,18 @@
         if (r.st === "ok") ok++;
         if (r.st === "no" && !r.unread) wrong++;
       });
-      if (!filled) { $("mineFb").innerHTML = '<div><span class="why">Type your answer first, then press <b>Check</b> (or Enter).</span></div>'; return; }
+      if (!filled) { $("mineFb").innerHTML = '<div><span class="why">' + tx("geometry.ck.first") + "</span></div>"; return; }
       T.forEach(function(t, i) {
         var r = res[i],
-          lab = many ? "<b>" + esc(t.label.replace(/ \(yes or no\)$/, "")) + ":</b> " : "",
+          lab = many ? "<b>" + esc(t.lab2 || t.label.replace(/ \(yes or no\)$/, "")) + ":</b> " : "",
           note = r.note ? ' <span class="why">' + r.note + "</span>" : "";
-        if (r.st === "ok") lines.push(lab + '<span class="ok">✓ Correct!</span>' + note);
-        else if (r.st === "no") lines.push(lab + (r.unread ? "" : '<span class="no">Not quite — try again.</span> ') + (r.msg ? '<span class="why">' + r.msg + "</span>" : "") + note);
-        else lines.push(lab + '<span class="why">Type your answer for this one too.</span>');
+        if (r.st === "ok") lines.push(lab + '<span class="ok">' + tx("common.correct") + "</span>" + note);
+        else if (r.st === "no") lines.push(lab + (r.unread ? "" : '<span class="no">' + tx("common.notQuite") + "</span> ") + (r.msg ? '<span class="why">' + r.msg + "</span>" : "") + note);
+        else lines.push(lab + '<span class="why">' + tx("geometry.ck.tooThis") + "</span>");
       });
       if (wrong) MINE.tried = true;
       if (ok === T.length) {
-        lines.push('<span class="why">' + (many ? "All " + T.length + " are right" : "That’s it") + " — here’s the full work so you can compare.</span>");
+        lines.push('<span class="why">' + (many ? tx("geometry.ck.allRight", { n: T.length }) : tx("geometry.ck.thatsIt")) + "</span>");
         S.revealed = true;
         if (EMBED) {
           S.practice = "all";
@@ -6454,9 +6497,9 @@
         btn = $("copyBtn");
 
       function done(ok) {
-        btn.textContent = ok ? "Link copied ✓" : "Couldn’t copy — use the address bar";
+        btn.textContent = ok ? tx("common.linkCopied") + " ✓" : tx("geometry.copyFailed");
         clearTimeout(copyT);
-        copyT = setTimeout(function() { btn.textContent = "Copy link"; }, 2000);
+        copyT = setTimeout(function() { btn.textContent = tx("common.copyLink"); }, 2000);
       }
 
       function legacy() {
@@ -6482,28 +6525,28 @@
     }
 
     /* ===================== worksheet API (postMessage) ===================== */
-    var MODE_NAME = { area: "Area", vol: "Volume", right: "Right triangles", angle: "Angles" };
+    var MODE_NAME = { area: tx("geometry.sch.m.area"), vol: tx("geometry.sch.m.vol"), right: tx("geometry.sch.m.right"), angle: tx("geometry.sch.m.angle") };
 
     function optionsSchema() {
       function V2(list) { return list.map(function(x) { return { v: x[0], label: x[1] }; }); }
-      var shapes = [{ v: "any", label: "Any shape" }];
+      var shapes = [{ v: "any", label: tx("geometry.sch.anyShape") }];
       ["area", "vol", "right", "angle"].forEach(function(m) { SH[m].forEach(function(d) { shapes.push({ v: m + ":" + d.id, label: MODE_NAME[m] + ": " + d.name, mode: m }); }); });
       return [{
           key: "mode",
-          label: "Topic",
+          label: tx("geometry.sch.topic"),
           type: "choice",
           values: V2([
-            ["area", "Area & perimeter"],
-            ["vol", "Volume & surface area"],
-            ["right", "Right triangles"],
-            ["angle", "Angles"],
-            ["any", "A mix of all four"]
+            ["area", tx("geometry.sch.areaP")],
+            ["vol", tx("geometry.sch.volS")],
+            ["right", tx("geometry.sch.m.right")],
+            ["angle", tx("geometry.sch.m.angle")],
+            ["any", tx("geometry.sch.mix4")]
           ]),
           default: "area"
         },
-        { key: "shape", label: "Shape", type: "choice", values: shapes, default: "any" }, {
+        { key: "shape", label: tx("geometry.sch.shape"), type: "choice", values: shapes, default: "any" }, {
           key: "max",
-          label: "Biggest measurement",
+          label: tx("geometry.mk.max"),
           type: "choice",
           values: V2([
             ["10", "10"],
@@ -6514,25 +6557,25 @@
           default: "20"
         }, {
           key: "dec",
-          label: "Kind of numbers",
+          label: tx("geometry.mk.kind"),
           type: "choice",
           values: V2([
-            ["whole", "Whole numbers"],
-            ["dec", "Decimals (halves for angles)"]
+            ["whole", tx("geometry.mk.whole")],
+            ["dec", tx("geometry.sch.decHalves")]
           ]),
           default: "whole"
         }, {
           key: "nice",
-          label: "Right-triangle answers",
+          label: tx("geometry.sch.rtAns"),
           type: "choice",
           values: V2([
-            ["nice", "Whole numbers"],
-            ["any", "Any (some are square roots like √50)"]
+            ["nice", tx("geometry.mk.whole")],
+            ["any", tx("geometry.mk.anyRoots")]
           ]),
           default: "nice"
         }, {
           key: "unit",
-          label: "Units",
+          label: tx("geometry.units"),
           type: "choice",
           values: V2([
             ["cm", "cm"],
@@ -6541,22 +6584,22 @@
             ["in", "in"],
             ["ft", "ft"],
             ["yd", "yd"],
-            ["none", "No units"],
-            ["mix", "Mix them up"]
+            ["none", tx("geometry.sch.noUnits")],
+            ["mix", tx("geometry.mk.mix")]
           ]),
           default: "cm"
         }, {
           key: "pi",
-          label: "π as",
+          label: tx("geometry.sch.piAs"),
           type: "choice",
           values: V2([
-            ["exact", "Exact (25π)"],
+            ["exact", tx("geometry.sch.exact")],
             ["314", "3.14"],
-            ["calc", "Calculator π"]
+            ["calc", tx("geometry.sch.calc")]
           ]),
           default: "exact"
         },
-        { key: "sketch", label: "Draw each shape", type: "toggle", values: [{ v: true, label: "Yes" }, { v: false, label: "No" }], default: true }
+        { key: "sketch", label: tx("geometry.sch.sketch"), type: "toggle", values: [{ v: true, label: tx("geometry.yes") }, { v: false, label: tx("geometry.no") }], default: true }
       ];
     }
 
@@ -6572,7 +6615,7 @@
         var v = a.mainT || h2t(a.main),
           u = a.ck && a.ck.pow ? unitT(a.ck.pow) : "";
         if (a.ck && a.ck.pi && pi === "exact") v += " (≈ " + fmtF(a.ck.c * Math.PI, 2) + (u ? " " + u : "") + ")";
-        return { k: h2t(a.k), v: v, eq: /class="sym"|∠/.test(a.k) };
+        return { k: h2t(ansK(a.k)), v: v, eq: /class="sym"|∠/.test(a.k) };
       });
     }
 
@@ -6580,7 +6623,7 @@
       var sep = parts.some(function(p) { return /,/.test(p.k) || /,/.test(p.v); }) ? "; " : ", ";
       return parts.map(function(p, i) {
         var k = p.k;
-        if (i && /^[A-Z][a-z]/.test(k)) k = k.charAt(0).toLowerCase() + k.slice(1);
+        if (i && /^[A-ZÁÉÍÓÚÑ][a-záéíóúñ]/.test(k)) k = k.charAt(0).toLowerCase() + k.slice(1);
         return html ? "<b>" + esc(k) + "</b> " + (p.eq ? "= " : "") + esc(p.v) : k + (p.eq ? " = " : " ") + p.v;
       }).join(sep);
     }
@@ -6611,66 +6654,66 @@
 
       function an(x) { return /^8|^1[18](\.|$)/.test(String(x)) ? "an " : "a "; }
 
-      function and(list) { return list.length < 2 ? list.join("") : list.slice(0, -1).join(", ") + " and " + list[list.length - 1]; }
-      var R = (v.rd === "d" ? "a diameter of " : "a radius of ") + L(v.r),
+      function and(list) { return list.length < 2 ? list.join("") : list.slice(0, -1).join(", ") + tx("geometry.and") + list[list.length - 1]; }
+      var R = tx(v.rd === "d" ? "geometry.pt.diam" : "geometry.pt.rad", { r: L(v.r) }),
         angs = String(v.a || "").split(/[\s,;]+/).filter(function(x) { return x; }).map(D);
       switch (m + ":" + id) {
         case "area:rect":
-          return "Find the area and perimeter of a rectangle " + L(v.l) + " by " + L(v.w) + ".";
+          return tx("geometry.pt.rect", { l: L(v.l), w: L(v.w) });
         case "area:square":
-          return "Find the area and perimeter of a square with sides of " + L(v.s) + ".";
+          return tx("geometry.pt.square", { s: L(v.s) });
         case "area:tri":
-          return v.s1 && v.s2 ? "Find the area and perimeter of a triangle with base " + L(v.b) + ", height " + L(v.h) + " and slanted sides of " + L(v.s1) + " and " + L(v.s2) + "." :
-            "Find the area of a triangle with base " + L(v.b) + " and height " + L(v.h) + ".";
+          return v.s1 && v.s2 ? tx("geometry.pt.tri4", { b: L(v.b), h: L(v.h), s1: L(v.s1), s2: L(v.s2) }) :
+            tx("geometry.pt.tri2", { b: L(v.b), h: L(v.h) });
         case "area:heron":
-          return "Find the area and perimeter of a triangle with sides of " + and([L(v.a), L(v.b), L(v.c)]) + ".";
+          return tx("geometry.pt.heron", { list: and([L(v.a), L(v.b), L(v.c)]) });
         case "area:para":
-          return v.s ? "Find the area and perimeter of a parallelogram with base " + L(v.b) + ", height " + L(v.h) + " and slanted sides of " + L(v.s) + "." :
-            "Find the area of a parallelogram with base " + L(v.b) + " and height " + L(v.h) + ".";
+          return v.s ? tx("geometry.pt.para3", { b: L(v.b), h: L(v.h), s: L(v.s) }) :
+            tx("geometry.pt.para2", { b: L(v.b), h: L(v.h) });
         case "area:trap":
-          return v.c && v.d ? "Find the area and perimeter of a trapezoid with parallel sides of " + L(v.a) + " and " + L(v.b) + ", height " + L(v.h) + " and slanted sides of " + L(v.c) + " and " + L(v.d) + "." :
-            "Find the area of a trapezoid with parallel sides of " + L(v.a) + " and " + L(v.b) + " and height " + L(v.h) + ".";
+          return v.c && v.d ? tx("geometry.pt.trap5", { a: L(v.a), b: L(v.b), h: L(v.h), c: L(v.c), d: L(v.d) }) :
+            tx("geometry.pt.trap3", { a: L(v.a), b: L(v.b), h: L(v.h) });
         case "area:circle":
-          return "Find the area and circumference of a circle with " + R + ".";
+          return tx("geometry.pt.circle", { R: R });
         case "area:lshape":
-          return "Find the area and perimeter of an L-shape: " + an(v.W) + L(v.W) + " by " + L(v.H) + " rectangle with " + an(v.w) + L(v.w) + " by " + L(v.h) + " piece cut out of one corner.";
+          return tx("geometry.pt.lshape", { an1: an(v.W), W: L(v.W), H: L(v.H), an2: an(v.w), w: L(v.w), h: L(v.h) });
         case "vol:box":
-          return "Find the volume and surface area of a box " + L(v.l) + " long, " + L(v.w) + " wide and " + L(v.h) + " high.";
+          return tx("geometry.pt.box", { l: L(v.l), w: L(v.w), h: L(v.h) });
         case "vol:cube":
-          return "Find the volume and surface area of a cube with edges of " + L(v.s) + ".";
+          return tx("geometry.pt.cube", { s: L(v.s) });
         case "vol:cyl":
-          return "Find the volume and surface area of a cylinder with " + R + " and a height of " + L(v.h) + ".";
+          return tx("geometry.pt.cyl", { R: R, h: L(v.h) });
         case "vol:cone":
-          return "Find the volume, surface area and slant height of a cone with " + R + " and a height of " + L(v.h) + ".";
+          return tx("geometry.pt.cone", { R: R, h: L(v.h) });
         case "vol:sphere":
-          return "Find the volume and surface area of a sphere with " + R + ".";
+          return tx("geometry.pt.sphere", { R: R });
         case "vol:tprism":
-          return v.s1 && v.s2 ? "Find the volume and surface area of a triangular prism " + L(v.l) + " long. Its triangle ends have base " + L(v.b) + ", height " + L(v.h) + " and slanted sides of " + L(v.s1) + " and " + L(v.s2) + "." :
-            "Find the volume of a triangular prism " + L(v.l) + " long whose triangle ends have base " + L(v.b) + " and height " + L(v.h) + ".";
+          return v.s1 && v.s2 ? tx("geometry.pt.tprism5", { l: L(v.l), b: L(v.b), h: L(v.h), s1: L(v.s1), s2: L(v.s2) }) :
+            tx("geometry.pt.tprism3", { l: L(v.l), b: L(v.b), h: L(v.h) });
         case "vol:pyr":
-          return "Find the volume, surface area and slant height of a square pyramid with a base edge of " + L(v.s) + " and a height of " + L(v.h) + ".";
+          return tx("geometry.pt.pyr", { s: L(v.s), h: L(v.h) });
         case "right:hyp":
-          return "A right triangle has legs of " + L(v.a) + " and " + L(v.b) + ". Find the hypotenuse.";
+          return tx("geometry.pt.hyp", { a: L(v.a), b: L(v.b) });
         case "right:leg":
-          return "A right triangle has a leg of " + L(v.a) + " and a hypotenuse of " + L(v.c) + ". Find the other leg.";
+          return tx("geometry.pt.leg", { a: L(v.a), c: L(v.c) });
         case "right:check":
-          return "Is a triangle with sides of " + and([L(v.a), L(v.b), L(v.c)]) + " a right triangle?";
+          return tx("geometry.pt.check", { list: and([L(v.a), L(v.b), L(v.c)]) });
         case "angle:tri":
-          return "Two angles of a triangle are " + D(v.a) + " and " + D(v.b) + ". Find the third angle.";
+          return tx("geometry.pt.angTri", { a: D(v.a), b: D(v.b) });
         case "angle:line":
-          return angs.length === 1 ? "Two angles sit side by side on a straight line. One is " + angs[0] + ". Find the other one." :
-            "Angles of " + and(angs.concat(["x"])) + " sit side by side on a straight line. Find x.";
+          return angs.length === 1 ? tx("geometry.pt.line1", { a: angs[0] }) :
+            tx("geometry.pt.lineN", { list: and(angs.concat(["x"])) });
         case "angle:comp":
-          return "Two angles are complementary (together they make a right angle). One is " + D(v.a) + ". Find the other one.";
+          return tx("geometry.pt.comp", { a: D(v.a) });
         case "angle:point":
-          return "Angles of " + and(angs.concat(["x"])) + " fit together all the way around a point. Find x.";
+          return tx("geometry.pt.point", { list: and(angs.concat(["x"])) });
         case "angle:vert":
-          return "Two straight lines cross. One of the four angles, ∠1, is " + D(v.a) + ". Find ∠2, ∠3 and ∠4 (going round from ∠1).";
+          return tx("geometry.pt.vert", { a: D(v.a) });
         case "angle:par":
-          return "Two parallel lines are cut by a transversal, and ∠" + (v.pos || 1) + " = " + D(v.a) + ". Find the other seven angles. (∠1–∠4 are at the top crossing and ∠5–∠8 at the bottom one: top left, top right, bottom left, bottom right.)";
+          return tx("geometry.pt.par", { p: (v.pos || 1), a: D(v.a) });
         case "angle:poly":
           var n = Number(v.n);
-          return "Find the sum of the interior angles, each interior angle and each exterior angle of a regular " + (PNAME[n] || n + "-gon") + " (" + n + " sides).";
+          return tx("geometry.pt.poly", { nm: (PNAME[n] || tx("geometry.poly.ngon", { n: n })), n: n });
       }
       return "";
     }
@@ -6872,7 +6915,7 @@
       render();
       var fb = $("mineFb"),
         line = document.createElement("div");
-      line.innerHTML = '<span class="why">Here’s the full work — compare it with yours, step by step.</span>';
+      line.innerHTML = '<span class="why">' + tx("geometry.fullWork") + "</span>";
       fb.appendChild(line);
     });
     $("prevBtn").addEventListener("click", function() {
@@ -6903,7 +6946,7 @@
       return t ? t === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
     }
 
-    function paint() { themeBtn.textContent = isDark() ? "Light mode" : "Dark mode"; }
+    function paint() { themeBtn.textContent = isDark() ? tx("common.lightMode") : tx("common.darkMode"); }
     themeBtn.addEventListener("click", function() {
       document.documentElement.setAttribute("data-theme", isDark() ? "light" : "dark");
       paint();
@@ -7041,7 +7084,7 @@
 
     if (!EMBED) load();
     var urlMsg = "";
-    try { urlMsg = readURL(); } catch (e) { urlMsg = "That link didn’t quite make sense to me, so here’s the last problem you had instead."; }
+    try { urlMsg = readURL(); } catch (e) { urlMsg = tx("geometry.urlOdd"); }
     if (urlMsg) {
       $("urlNote").innerHTML = urlMsg;
       $("urlNote").hidden = false;

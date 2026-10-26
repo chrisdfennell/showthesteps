@@ -16,6 +16,7 @@
 <link rel="canonical" href="https://showthesteps.org/helpers/lines-and-slope">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","name":"Slope and linear equations, step by step – The Slope Grid","description":"Straight lines on the coordinate grid, one step at a time: find the slope (rise over run), write the equation of a line, switch between its forms, graph it, and build lines that are parallel or…","url":"https://showthesteps.org/helpers/lines-and-slope","inLanguage":"en-US","isAccessibleForFree":true,"learningResourceType":["Interactive worked examples","Practice problems"],"interactivityType":"active","educationalUse":["Practice","Self-assessment"],"teaches":"Slope and linear equations","educationalLevel":["Middle school (grades 6–8)","High school (grades 9–12)"],"audience":{"@type":"EducationalAudience","educationalRole":"student"},"publisher":{"@type":"Organization","name":"Show The Steps","url":"https://showthesteps.org/"},"isPartOf":{"@type":"WebSite","name":"Show The Steps","url":"https://showthesteps.org/"}}</script>
 <script src="../assets/site.js"></script>
+<script src="../assets/i18n.js" data-strings="lines-and-slope"></script>
 <script src="../assets/nav.js" defer></script>
 <script src="../assets/progress.js" defer></script>
 <link rel="stylesheet" href="../assets/fonts/fonts.css">
@@ -1763,9 +1764,9 @@
 <div class="page" id="page">
   <header class="masthead">
     <div>
-      <div class="eyebrow">Lines and slope, worked out</div>
+      <div class="eyebrow" data-i18n="lines-and-slope.eyebrow">Lines and slope, worked out</div>
       <h1>The Slope <em>Grid</em></h1>
-      <p class="tagline">Straight lines on the coordinate grid, one step at a time: find the slope (rise over run),
+      <p class="tagline" data-i18n="lines-and-slope.tagline">Straight lines on the coordinate grid, one step at a time: find the slope (rise over run),
         write the equation of a line, switch between its forms, graph it, and build lines that are parallel or
         perpendicular &mdash; with the staircase drawn on the grid and the reason for every move. Solving for
         <i>x</i>, or two equations at once? That&rsquo;s on <a href="algebra.html">the Balance Scale</a>.</p>
@@ -1774,24 +1775,24 @@
   </header>
 
   <section class="problem">
-    <div class="modes" id="modeTabs" role="group" aria-label="What kind of problem">
-      <button type="button" data-mode="slope" aria-pressed="true">Slope</button>
-      <button type="button" data-mode="equation" aria-pressed="false">Equation of a line</button>
-      <button type="button" data-mode="convert" aria-pressed="false">Convert forms</button>
-      <button type="button" data-mode="graph" aria-pressed="false">Graph it</button>
-      <button type="button" data-mode="parallel" aria-pressed="false">Parallel &amp; perpendicular</button>
+    <div class="modes" id="modeTabs" role="group" aria-label="What kind of problem" data-i18n-attr="aria-label=lines-and-slope.modesAria">
+      <button type="button" data-mode="slope" aria-pressed="true" data-i18n="lines-and-slope.tab.slope">Slope</button>
+      <button type="button" data-mode="equation" aria-pressed="false" data-i18n="lines-and-slope.tab.equation">Equation of a line</button>
+      <button type="button" data-mode="convert" aria-pressed="false" data-i18n="lines-and-slope.tab.convert">Convert forms</button>
+      <button type="button" data-mode="graph" aria-pressed="false" data-i18n="lines-and-slope.tab.graph">Graph it</button>
+      <button type="button" data-mode="parallel" aria-pressed="false" data-i18n="lines-and-slope.tab.parallel">Parallel &amp; perpendicular</button>
     </div>
     <div class="entry">
       <div class="numfield">
-        <label for="in1" id="lab1">Your points</label>
+        <label for="in1" id="lab1" data-i18n="lines-and-slope.lab1">Your points</label>
         <input class="expr-in" id="in1" type="text" inputmode="text" autocomplete="off" spellcheck="false" value="">
       </div>
-      <div class="keys" id="keys" aria-label="Insert a symbol">
+      <div class="keys" id="keys" aria-label="Insert a symbol" data-i18n-attr="aria-label=lines-and-slope.keys.aria">
         <button type="button" data-k="(">(</button>
-        <button type="button" data-k=", " aria-label="Comma">,</button>
+        <button type="button" data-k=", " aria-label="Comma" data-i18n-attr="aria-label=lines-and-slope.keys.comma">,</button>
         <button type="button" data-k=")">)</button>
-        <button type="button" data-k="−" aria-label="Minus sign">&minus;</button>
-        <button type="button" data-k="/" aria-label="Fraction bar">/</button>
+        <button type="button" data-k="−" aria-label="Minus sign" data-i18n-attr="aria-label=lines-and-slope.keys.minus">&minus;</button>
+        <button type="button" data-k="/" aria-label="Fraction bar" data-i18n-attr="aria-label=lines-and-slope.keys.bar">/</button>
         <button type="button" data-k=" = ">=</button>
         <button type="button" class="vk" data-k="x">x</button>
         <button type="button" class="vk" data-k="y">y</button>
@@ -1800,27 +1801,27 @@
     <p class="hint" id="hint"></p>
     <p class="ask" id="ask" hidden></p>
     <div class="methodrow" id="toRow" hidden>
-      <span class="lbl2">Convert to</span>
-      <div class="modes small" id="toBtns" role="group" aria-label="Which form to write it in">
-        <button type="button" data-to="slope" aria-pressed="true">Slope-intercept</button>
-        <button type="button" data-to="point" aria-pressed="false">Point-slope</button>
-        <button type="button" data-to="standard" aria-pressed="false">Standard</button>
+      <span class="lbl2" data-i18n="lines-and-slope.convertTo">Convert to</span>
+      <div class="modes small" id="toBtns" role="group" aria-label="Which form to write it in" data-i18n-attr="aria-label=lines-and-slope.toAria">
+        <button type="button" data-to="slope" aria-pressed="true" data-i18n="lines-and-slope.to.slope">Slope-intercept</button>
+        <button type="button" data-to="point" aria-pressed="false" data-i18n="lines-and-slope.to.point">Point-slope</button>
+        <button type="button" data-to="standard" aria-pressed="false" data-i18n="lines-and-slope.to.standard">Standard</button>
       </div>
     </div>
 
     <details class="maker" id="maker">
-      <summary>Make a problem for me <span>&mdash; pick what goes in it</span></summary>
+      <summary data-i18n="common.maker">Make a problem for me <span>&mdash; pick what goes in it</span></summary>
       <div class="maker-body" id="makerBody"></div>
     </details>
 
     <div class="examples">
-      <span class="lbl">Try</span>
+      <span class="lbl" data-i18n="common.try">Try</span>
       <span id="chips"></span>
       <span class="practice">
-        <div class="modes" role="group" aria-label="Practice mode">
-          <button type="button" id="pAll" aria-pressed="true">Show all work</button>
-          <button type="button" id="pStep" aria-pressed="false">One step at a time</button>
-          <button type="button" id="pCheck" aria-pressed="false">Check my answer</button>
+        <div class="modes" role="group" aria-label="Practice mode" data-i18n-attr="aria-label=common.practiceMode">
+          <button type="button" id="pAll" aria-pressed="true" data-i18n="common.showAll">Show all work</button>
+          <button type="button" id="pStep" aria-pressed="false" data-i18n="common.oneStep">One step at a time</button>
+          <button type="button" id="pCheck" aria-pressed="false" data-i18n="common.checkMine">Check my answer</button>
         </div>
       </span>
     </div>
@@ -1829,14 +1830,14 @@
   <div id="statusLine" role="status" aria-live="polite"></div>
 
   <section class="check" id="checkBox" hidden aria-labelledby="ckTitle">
-    <h2 id="ckTitle">Your answer</h2>
-    <p class="sub" id="ckSub">Work it out on paper, then type what you got. The work stays hidden until you check.</p>
+    <h2 id="ckTitle" data-i18n="common.yourAnswer">Your answer</h2>
+    <p class="sub" id="ckSub" data-i18n="lines-and-slope.ckSub1">Work it out on paper, then type what you got. The work stays hidden until you check.</p>
     <div class="ck-fields" id="ckFields"></div>
     <div class="ck-go">
-      <button type="button" class="go" id="ckBtn">Check</button>
+      <button type="button" class="go" id="ckBtn" data-i18n="common.check">Check</button>
       <div class="ck-more" id="ckMore" hidden>
-        <button type="button" class="ghost" id="hintBtn">Show a hint</button>
-        <button type="button" class="ghost" id="showBtn">Show me the work</button>
+        <button type="button" class="ghost" id="hintBtn" data-i18n="common.hint">Show a hint</button>
+        <button type="button" class="ghost" id="showBtn" data-i18n="common.showWork">Show me the work</button>
       </div>
     </div>
     <div class="ck-fb" id="ckFb" aria-live="polite"></div>
@@ -1845,33 +1846,33 @@
   <div class="board" id="board">
     <section class="panel">
       <div class="panel-head">
-        <h2>The work</h2>
+        <h2 data-i18n="common.theWork">The work</h2>
         <div class="stepper" id="stepper" hidden>
-          <button type="button" id="prevBtn" aria-label="Previous step">&larr;</button>
+          <button type="button" id="prevBtn" aria-label="Previous step" data-i18n-attr="aria-label=common.prevStep">&larr;</button>
           <span class="count" id="stepCount"></span>
-          <button type="button" id="nextBtn" aria-label="Next step">&rarr;</button>
+          <button type="button" id="nextBtn" aria-label="Next step" data-i18n-attr="aria-label=common.nextStep">&rarr;</button>
         </div>
       </div>
       <div id="workHost"></div>
       <div class="legend" id="legend">
-        <div><span class="badge c-p">m</span> Slope and the line&rsquo;s forms</div>
-        <div><span class="badge c-e">rise</span> Up and down, plugging in</div>
-        <div><span class="badge c-m">run</span> Left and right, &times; &divide; both sides</div>
-        <div><span class="badge c-a">+ &minus;</span> Add or subtract both sides</div>
+        <div data-i18n="lines-and-slope.legend.p"><span class="badge c-p">m</span> Slope and the line&rsquo;s forms</div>
+        <div data-i18n="lines-and-slope.legend.e"><span class="badge c-e">rise</span> Up and down, plugging in</div>
+        <div data-i18n="lines-and-slope.legend.m"><span class="badge c-m">run</span> Left and right, &times; &divide; both sides</div>
+        <div data-i18n="lines-and-slope.legend.a"><span class="badge c-a">+ &minus;</span> Add or subtract both sides</div>
       </div>
     </section>
 
     <section class="panel">
-      <div class="panel-head"><h2>Say it out loud</h2></div>
+      <div class="panel-head"><h2 data-i18n="common.sayIt">Say it out loud</h2></div>
       <ol class="log" id="log"></ol>
       <div class="closer" id="closer"></div>
     </section>
   </div>
 
   <div class="footnote">
-    <button class="print" type="button" id="printBtn">Print this work</button>
-    <button class="print" type="button" id="copyBtn">Copy link</button>
-    <span>One move per step, nothing skipped. Stuck on the fraction arithmetic inside a step? Work it on
+    <button class="print" type="button" id="printBtn" data-i18n="common.print">Print this work</button>
+    <button class="print" type="button" id="copyBtn" data-i18n="common.copyLink">Copy link</button>
+    <span data-i18n="lines-and-slope.footnote">One move per step, nothing skipped. Stuck on the fraction arithmetic inside a step? Work it on
       <a href="fractions.html">the Fraction Bar</a> or <a href="negative-numbers.html">the Number Line</a>; solving for
       <i>x</i> is on <a href="algebra.html">the Balance Scale</a>. Two lines crossing, curves, inequalities or moving shapes?
       Those are on <a href="graphing.html">the Graph Paper</a>.</span>
@@ -1938,6 +1939,35 @@
      Making problems never changes this page: not its inputs, its maker settings or what it saved. */
   (function() {
     "use strict";
+    if (window.HelperI18n) HelperI18n.apply();
+    // the page's words are in assets/i18n/<lang>/lines-and-slope.js ("T" is a term here, so the strings are tr)
+    var tr = function(k, v) { return window.HelperI18n ? HelperI18n.t(k, v) : k; };
+    var traw = function(k) { return window.HelperI18n ? HelperI18n.raw(k) : undefined; };
+    var LANG = window.HelperI18n ? HelperI18n.lang : "en";
+
+    function fold(s) { return String(s).normalize ? String(s).normalize("NFD").replace(/[\u0300-\u036f]/g, "") : String(s); }
+
+    function rewrite(s, list) { // [[pattern, replacement], …] from the locale file, in order
+      (list || []).forEach(function(r) { s = s.replace(new RegExp(r[0], "g"), r[1]); });
+      return s;
+    }
+    // a problem typed (or said) in the language in use → the words the readers below know; English stays as it is
+    function norm(s) {
+      if (LANG === "en" || s === null || s === undefined || !window.HelperI18n) return s;
+      var orig = String(s),
+        low = fold(orig).toLowerCase(),
+        t = rewrite(low, traw("lines-and-slope.re.typed"));
+      return HelperI18n.normalize(t); // read without accents: área, línea
+    }
+    // a problem the page writes (examples, the problem maker) → the way it reads in the language in use
+    function show(q) { return LANG === "en" || q === null || q === undefined ? q : rewrite(String(q), traw("lines-and-slope.re.show")); }
+    // an answer typed in Check my answer: its words (indefinida, ninguna, paralelas …) → the ones the checks know
+    function normAns(s) {
+      if (LANG === "en" || s === null || s === undefined || !window.HelperI18n) return s;
+      var low = fold(String(s)).toLowerCase(),
+        t = rewrite(low, traw("lines-and-slope.re.answer"));
+      return HelperI18n.normalize(t === low ? String(s) : t);
+    }
     var $ = function(id) { return document.getElementById(id); };
     var MODES = ["slope", "equation", "convert", "graph", "parallel"];
     var TOS = ["slope", "point", "standard"];
@@ -1954,6 +1984,7 @@
         graph: "y = −1/2x + 4",
         parallel: "perpendicular to 2x + 3y = 6 through (0, 0)"
       },
+      // (in another language they are shown in it: see show(), at the end of S)
       gen: {
         slope: { from: "points", frac: true, special: false, max: 10 },
         equation: { given: "any", frac: false, special: false, max: 10 },
@@ -1962,6 +1993,7 @@
         parallel: { kind: "any", form: "slope", frac: false, special: false, max: 10 }
       }
     };
+    MODES.forEach(function(m) { S.inputs[m] = show(S.inputs[m]); });
     var EMBED = false;
 
     /* ===================== helpers ===================== */
@@ -2108,7 +2140,7 @@
 
     function ex(h, cls) { return '<span class="expr' + (cls ? " " + cls : "") + '">' + h + "</span>"; }
 
-    function andList(a) { return a.length < 2 ? (a[0] || "") : a.slice(0, -1).join(", ") + " and " + a[a.length - 1]; }
+    function andList(a) { return a.length < 2 ? (a[0] || "") : a.slice(0, -1).join(", ") + tr("lines-and-slope.and") + a[a.length - 1]; }
     var X1 = subH("x", 1),
       Y1 = subH("y", 1),
       X2 = subH("x", 2),
@@ -2384,7 +2416,7 @@
           i++;
           continue;
         }
-        if (/[A-Za-z]/.test(c)) throw new UserErr("A line’s equation uses just " + vH("x") + " and " + vH("y") + " — I don’t know what <b>" + esc(c) + "</b> is here.");
+        if (/[A-Za-z]/.test(c)) throw new UserErr(tr("lines-and-slope.err.letter", { c: esc(c) }));
         if (c === "=") {
           out.push({ k: "=" });
           i += rest.charAt(1) === "=" ? 2 : 1;
@@ -2405,9 +2437,9 @@
           i++;
           continue;
         }
-        if ("<>≤≥≠".indexOf(c) >= 0) throw new UserErr("<b>" + esc(c) + "</b> makes that an inequality. A line is an equation — use <b>=</b>.");
-        if ("^²³".indexOf(c) >= 0) throw new UserErr("A power makes a curve, not a straight line. This page works with " + vH("x") + " and " + vH("y") + " to the first power only.");
-        throw new UserErr("I don’t know the symbol <b>" + esc(c) + "</b>. Use digits, " + vH("x") + ", " + vH("y") + ", + − · / and parentheses.");
+        if ("<>≤≥≠".indexOf(c) >= 0) throw new UserErr(tr("lines-and-slope.err.ineq", { c: esc(c) }));
+        if ("^²³".indexOf(c) >= 0) throw new UserErr(tr("lines-and-slope.err.power"));
+        throw new UserErr(tr("lines-and-slope.err.symbol", { c: esc(c) }));
       }
       return out;
     }
@@ -2419,7 +2451,7 @@
       var q = t.s.split("."),
         ip = (q[0] || "").replace(/^0+(?=\d)/, "") || "0",
         fp = (q[1] || "").replace(/0+$/, "");
-      if ((ip + fp).length > 9) throw new UserErr("<b>" + esc(t.s) + "</b> is a lot of digits. Keep each number under 10 digits.");
+      if ((ip + fp).length > 9) throw new UserErr(tr("lines-and-slope.err.digits", { s: esc(t.s) }));
       var node = { t: "num", v: R(BigInt(ip + fp), 10n ** BigInt(fp.length)), lit: true };
       if (fp) {
         node.dec = true;
@@ -2446,7 +2478,7 @@
         if (t.k === "(" || t.k === "var") return true;
         if (t.k === "num" && pr && pr.k === ")") return true;
         if (t.k === "num" && pr && pr.k === "var")
-          throw new UserErr("Write the number in front of the letter — <b>" + esc(t.s + pr.s) + "</b>, not <b>" + esc(pr.s + t.s) + "</b>.");
+          throw new UserErr(tr("lines-and-slope.err.numFirst", { a: esc(t.s + pr.s), b: esc(pr.s + t.s) }));
         return false;
       }
 
@@ -2470,7 +2502,7 @@
             if (t.s === "÷" && t.slash && left.t === "num" && left.lit && !left.fr && !left.dec && nx && nx.k === "num" && !nx.den && nx.s.indexOf(".") < 0) {
               var dn = BigInt(nx.s);
               p++;
-              if (dn === 0n) throw new UserErr("<b>" + esc(numT(left.v)) + "/0</b> divides by zero — that can’t be done.");
+              if (dn === 0n) throw new UserErr(tr("lines-and-slope.err.div0", { a: esc(numT(left.v)) }));
               left = { t: "num", v: R(left.v.n, dn), fr: [babs(left.v.n), dn], neg: left.v.n < 0n, lit: true };
               continue;
             }
@@ -2498,7 +2530,7 @@
         var t = peek(),
           pr = tk[p - 1],
           node;
-        if (!t) throw new UserErr(pr ? "It ends with <b>" + esc(tokText(pr)) + "</b> — what comes after it?" : emptyMsg);
+        if (!t) throw new UserErr(pr ? tr("lines-and-slope.err.endsWith", { t: esc(tokText(pr)) }) : emptyMsg);
         if (t.k === "num") {
           p++;
           node = numNode(t);
@@ -2507,9 +2539,9 @@
           node = { t: "var", name: t.s };
         } else if (t.k === "(") {
           p++;
-          if (peek() && peek().k === ")") throw new UserErr("There’s an empty pair of parentheses <b>( )</b> — put something inside.");
+          if (peek() && peek().k === ")") throw new UserErr(tr("lines-and-slope.err.emptyPar"));
           var inner = expr();
-          if (!peek() || peek().k !== ")") throw new UserErr(peek() ? "Something’s missing before <b>" + esc(tokText(peek())) + "</b>." : "A <b>(</b> is never closed — add a <b>)</b>.");
+          if (!peek() || peek().k !== ")") throw new UserErr(peek() ? tr("lines-and-slope.err.missingBefore", { t: esc(tokText(peek())) }) : tr("lines-and-slope.err.notClosed"));
           p++;
           if ((inner.t === "num" && !inner.neg) || inner.t === "var" || inner.t === "par") {
             node = {};
@@ -2522,20 +2554,20 @@
             node.wrapped = true;
           } else node = { t: "par", a: inner };
         } else if (t.k === ")") {
-          throw new UserErr("There’s a <b>)</b> with no <b>(</b> to match it.");
+          throw new UserErr(tr("lines-and-slope.err.noOpen"));
         } else if (t.k === "=") {
-          throw new UserErr("There’s more than one <b>=</b>. A line’s equation has just one.");
+          throw new UserErr(tr("lines-and-slope.err.twoEq"));
         } else {
-          throw new UserErr(pr ? "<b>" + esc(tokText(t)) + "</b> right after <b>" + esc(tokText(pr)) + "</b> — there’s a number or letter missing between them." :
-            "It starts with <b>" + esc(tokText(t)) + "</b> — what comes before it?");
+          throw new UserErr(pr ? tr("lines-and-slope.err.between", { t: esc(tokText(t)), p: esc(tokText(pr)) }) :
+            tr("lines-and-slope.err.startsWith", { t: esc(tokText(t)) }));
         }
         return node;
       }
       var root = expr();
       if (p < tk.length) {
         var t2 = tk[p];
-        if (t2.k === ")") throw new UserErr("There’s a <b>)</b> with no <b>(</b> to match it.");
-        throw new UserErr("Two things in a row — <b>" + esc(tokText(tk[p - 1])) + " " + esc(tokText(t2)) + "</b> — with nothing between them. Is there a sign missing?");
+        if (t2.k === ")") throw new UserErr(tr("lines-and-slope.err.noOpen"));
+        throw new UserErr(tr("lines-and-slope.err.twoInRow", { a: esc(tokText(tk[p - 1])), b: esc(tokText(t2)) }));
       }
       return root;
     }
@@ -2571,12 +2603,11 @@
       if (n.op === "+") return lAdd(a, b, 1);
       if (n.op === "−") return lAdd(a, b, -1);
       if (n.op === "×") {
-        if (!lConst(a) && !lConst(b)) throw new UserErr("<b>" + astH(n) + "</b> multiplies a letter by a letter. That makes a curve, not a straight line — " +
-          "a line has " + vH("x") + " and " + vH("y") + " only to the first power, never multiplied together.");
+        if (!lConst(a) && !lConst(b)) throw new UserErr(tr("lines-and-slope.err.letterTimes", { e: astH(n) }));
         return lConst(a) ? lScale(b, a.k) : lScale(a, b.k);
       }
-      if (!lConst(b)) throw new UserErr("<b>" + astH(n) + "</b> divides by something with a letter in it, so it isn’t a straight line.");
-      if (isZ(b.k)) throw new UserErr("<b>" + astH(n) + "</b> divides by zero — that can’t be done.");
+      if (!lConst(b)) throw new UserErr(tr("lines-and-slope.err.divLetter", { e: astH(n) }));
+      if (isZ(b.k)) throw new UserErr(tr("lines-and-slope.err.divZero", { e: astH(n) }));
       return lScale(a, dvd(ONE, b.k));
     }
 
@@ -2743,19 +2774,17 @@
       var tk = lexL(s),
         at = [];
       tk.forEach(function(t, i) { if (t.k === "=") at.push(i); });
-      if (!at.length) throw new UserErr((name || "That") + " needs an <b>=</b> sign, like <b>y = 2x − 3</b> or <b>2x + 3y = 6</b>.");
-      if (at.length > 1) throw new UserErr("There’s more than one <b>=</b>" + (name ? " in " + name.toLowerCase() : "") + ". A line’s equation has just one: something on the left, something on the right.");
-      var L = parseSide(tk.slice(0, at[0]), "There’s nothing on the left of the <b>=</b>.");
-      var Rr = parseSide(tk.slice(at[0] + 1), "There’s nothing on the right of the <b>=</b>.");
+      if (!at.length) throw new UserErr(tr(name ? "lines-and-slope.err.noEqNamed" : "lines-and-slope.err.noEq", { name: name }));
+      if (at.length > 1) throw new UserErr(tr(name ? "lines-and-slope.err.twoEqNamed" : "lines-and-slope.err.twoEqLine", { name: name ? name.toLowerCase() : "" }));
+      var L = parseSide(tk.slice(0, at[0]), tr("lines-and-slope.err.noLeft"));
+      var Rr = parseSide(tk.slice(at[0] + 1), tr("lines-and-slope.err.noRight"));
       var lL = evalLin(L),
         lR = evalLin(Rr);
       var A = sub(lL.x, lR.x),
         B = sub(lL.y, lR.y),
         C = sub(lR.k, lL.k);
-      if (isZ(A) && isZ(B)) throw new UserErr(isZ(C) ?
-        "Everything cancels (it comes to <b>0 = 0</b>) — that’s true for every point, so it isn’t one line. Check the equation." :
-        "The " + vH("x") + "’s and " + vH("y") + "’s all cancel, leaving <b>0 = " + nH(C) + "</b>, which is never true — so there’s no line. Check the equation.");
-      if (tooBig(A) || tooBig(B) || tooBig(C)) throw new UserErr("Those numbers are too big to draw on a grid. Try smaller ones.");
+      if (isZ(A) && isZ(B)) throw new UserErr(isZ(C) ? tr("lines-and-slope.err.allCancel") : tr("lines-and-slope.err.noLine", { c: nH(C) }));
+      if (tooBig(A) || tooBig(B) || tooBig(C)) throw new UserErr(tr("lines-and-slope.err.tooBig"));
       var line = { L: L, R: Rr, E: { A: A, B: B, C: C } };
       line.form = formOf(line);
       line.html = astH(L) + opS("=") + astH(Rr);
@@ -2800,7 +2829,7 @@
     };
 
     /* ===================== one move per step: an equation as {L:[terms], R:[terms]} ===================== */
-    var SIDEW = { L: "left", R: "right" };
+    var SIDEW = { L: tr("lines-and-slope.side.L"), R: tr("lines-and-slope.side.R") };
     var ORD_Y = ["y", "x", null],
       ORD_X = ["x", "y", null];
 
@@ -2855,12 +2884,15 @@
       var ns = from === "L" ? { L: nFrom, R: nTo } : { L: nTo, R: nFrom };
       var mv = mvH(sym, amH);
       var row = ex(termsH(st.L) + mv + opS("=") + termsH(st.R) + mv, "mvline") + ex(eqH(ns.L, ns.R));
-      var txt = why + " On the " + SIDEW[from] + " it’s <b>" + (sgn(c) > 0 ? "+" : "−") + amH + "</b>, so " +
-        (sym === "−" ? "subtract <b>" + amH + "</b> from" : "add <b>" + amH + "</b> to") + " both sides — the same on both sides keeps them equal. " +
-        "It cancels on the " + SIDEW[from] +
-        (had ? "; on the " + SIDEW[to] + ", <b>" + termsH([had]) + " " + sym + " " + amH + " = " + termsH([T(add(had.c, neg(c)), v)]) + "</b>" : "") + ".";
+      var txt = tr(sym === "−" ? "lines-and-slope.shift.sub" : "lines-and-slope.shift.add", {
+        why: why,
+        side: SIDEW[from],
+        sg: sgn(c) > 0 ? "+" : "−",
+        amt: amH,
+        rest: had ? tr("lines-and-slope.shift.rest", { side: SIDEW[to], had: termsH([had]), sym: sym, amt: amH, res: termsH([T(add(had.c, neg(c)), v)]) }) : ""
+      });
       ctx.add([
-        ["a", sym === "−" ? "Subtract" : "Add", txt]
+        ["a", sym === "−" ? tr("lines-and-slope.tag.subtract") : tr("lines-and-slope.tag.add"), txt]
       ], null, [
         [sym + amT, "a", row]
       ]);
@@ -2882,20 +2914,17 @@
       if (isInt(a)) {
         var dl = '<span class="mv c-m">' + nH(a) + "</span>";
         row = ex(frH(termsH(st.L), dl) + opS("=") + frH(termsH(st.R), dl), "mvline") + ex(eqH(ns.L, ns.R));
-        txt = eqR(a, NEG1) ?
-          "There’s a hidden −1 here: <b>−" + vH(v) + "</b> means <b>−1 · " + vH(v) + "</b>. Divide every term on both sides by <b>−1</b> — that just flips every sign: " :
-          vH(v) + " is multiplied by <b>" + nH(a) + "</b>. To undo that, divide <i>every</i> term on both sides by <b>" + nH(a) + "</b>: ";
+        txt = eqR(a, NEG1) ? tr("lines-and-slope.div.neg1", { v: vH(v) }) : tr("lines-and-slope.div.by", { v: vH(v), a: nH(a) });
         badge = "÷ " + numT(a);
       } else {
         var ml = '<span class="mv c-m">' + nP(r) + "</span>";
         row = ex(ml + wrapP(termsH(st.L)) + opS("=") + ml + wrapP(termsH(st.R)), "mvline") + ex(eqH(ns.L, ns.R));
-        txt = vH(v) + " is multiplied by <b>" + nH(a) + "</b>. Undo it by multiplying every term on both sides by the reciprocal, <b>" + nH(r) +
-          "</b> (because " + nH(a) + " · " + nP(r) + " = 1): ";
+        txt = tr("lines-and-slope.div.recip", { v: vH(v), a: nH(a), r: nH(r), rp: nP(r) });
         badge = "× " + numT(r);
       }
       txt += andList(each) + ".";
       ctx.add([
-        ["m", isInt(a) ? "Divide" : "Multiply", txt]
+        ["m", isInt(a) ? tr("lines-and-slope.tag.divide") : tr("lines-and-slope.tag.multiply"), txt]
       ], null, [
         [badge, "m", row]
       ]);
@@ -2911,8 +2940,8 @@
           dl = '<span class="mv c-m">' + nH(g) + "</span>";
         var nums = live(st.L).concat(live(st.R)).map(function(t) { return "<b>" + magH(absR(t.c)) + "</b>"; });
         row = ex(frH(termsH(st.L), dl) + opS("=") + frH(termsH(st.R), dl), "mvline") + ex(eqH(ns.L, ns.R));
-        txt = "Every number here — " + andList(nums) + " — can be divided by <b>" + nH(g) + "</b>. Standard form uses the smallest whole numbers it can, so divide every term on both sides by " + nH(g) + ".";
-        tag = "Divide";
+        txt = tr("lines-and-slope.scale.gcd", { nums: andList(nums), g: nH(g) });
+        tag = tr("lines-and-slope.tag.divide");
         badge = "÷ " + numT(g);
       } else {
         var ml = '<span class="mv c-m">' + nP(k) + "</span>";
@@ -2921,11 +2950,10 @@
           var dens = [];
           live(st.L).concat(live(st.R)).forEach(function(t) { if (t.c.d !== 1n && dens.indexOf(String(t.c.d)) < 0) dens.push(String(t.c.d)); });
           var each = live(st.L).concat(live(st.R)).map(function(t) { return "<b>" + nH(k) + " · " + (sgn(t.c) < 0 ? wrapP(termsH([t])) : termsH([t])) + " = " + termsH([T(mul(t.c, k), t.v)]) + "</b>"; });
-          txt = "Standard form uses whole numbers, so clear the fractions. The bottom number" + (dens.length > 1 ? "s are " + andList(dens) + "; the smallest number they all go into is <b>" + nH(k) + "</b>" :
-            " is <b>" + dens[0] + "</b>") + ". Multiply every term on both sides by " + nH(k) + ": " + andList(each) + ".";
-          if (ctx.once("lcdWhy")) aside = "Multiplying both sides by the same number keeps the equation balanced — and it doesn’t move the line: every point that worked before still works.";
-        } else txt = "Standard form starts with a positive " + vH("x") + "-term (or a positive " + vH("y") + "-term when there’s no " + vH("x") + "). Multiply every term on both sides by <b>−1</b> — every sign flips.";
-        tag = "Multiply";
+          txt = dens.length > 1 ? tr("lines-and-slope.scale.lcdN", { dens: andList(dens), k: nH(k), each: andList(each) }) : tr("lines-and-slope.scale.lcd1", { d: dens[0], k: nH(k), each: andList(each) });
+          if (ctx.once("lcdWhy")) aside = tr("lines-and-slope.scale.lcdWhy");
+        } else txt = tr("lines-and-slope.scale.neg");
+        tag = tr("lines-and-slope.tag.multiply");
         badge = "× " + numT(k);
       }
       ctx.add([
@@ -2939,7 +2967,7 @@
     function swapSides(ctx, st) {
       var ns = { L: st.R, R: st.L };
       ctx.add([
-          ["e", "Swap", "Swap the two sides: <b>" + eqH(st.L, st.R) + "</b> says exactly the same thing as <b>" + eqH(ns.L, ns.R) + "</b>."]
+          ["e", tr("lines-and-slope.tag.swap"), tr("lines-and-slope.swap", { a: eqH(st.L, st.R), b: eqH(ns.L, ns.R) })]
         ], null,
         [
           ["⇄", "e", ex(eqH(ns.L, ns.R))]
@@ -2951,7 +2979,7 @@
       var o = live(st[side]).slice().sort(function(a, b) { return kIdx(order, a.v) - kIdx(order, b.v); });
       var ns = side === "L" ? { L: o, R: st.R } : { L: st.L, R: o };
       ctx.add([
-          ["e", "Reorder", "Write " + what + " first — the same terms, just in the usual order: <b>" + eqH(ns.L, ns.R) + "</b>."]
+          ["e", tr("lines-and-slope.tag.reorder"), tr("lines-and-slope.reorder", { what: what, e: eqH(ns.L, ns.R) })]
         ], null,
         [
           ["⇄", "e", ex(eqH(ns.L, ns.R))]
@@ -2989,7 +3017,7 @@
             notes.push(inner.map(function(q) {
               var r = T(mul(q.c, m), q.v);
               return "<b>" + nP(m) + " · " + (sgn(q.c) < 0 ? wrapP(termsH([q])) : termsH([q])) + " = " + termsH([r]) + "</b>";
-            }).join(" and "));
+            }).join(tr("lines-and-slope.and")));
           } else if (!simpleTerm(t.n)) {
             var q2 = combine(linTerms(lScale(evalLin(t.n), R(t.sg)), ORD_X));
             notes.push("<b>" + (t.sg < 0 ? "−" : "") + astH(t.n) + " = " + termsH(q2) + "</b>");
@@ -2999,10 +3027,10 @@
       });
       var ps = line.form === "point",
         txt;
-      if (ps) txt = "Distribute: multiply the slope by each term inside the parentheses — " + notes.join("; ") + ".";
-      else txt = "First tidy up each side" + (notes.length ? ": multiply out — " + notes.join("; ") : "") + (comb ? (notes.length ? " — then " : ": ") + "combine like terms" : "") + ".";
+      if (ps) txt = tr("lines-and-slope.tidy.dist", { notes: notes.join("; ") });
+      else txt = notes.length ? tr(comb ? "lines-and-slope.tidy.outComb" : "lines-and-slope.tidy.out", { notes: notes.join("; ") }) : tr(comb ? "lines-and-slope.tidy.comb" : "lines-and-slope.tidy.plain");
       ctx.add([
-        ["p", ps ? "Distribute" : "Tidy", txt]
+        ["p", ps ? tr("lines-and-slope.tag.distribute") : tr("lines-and-slope.tag.tidy"), txt]
       ], null, [
         ["( )", "p", ex(line.html, "mvline") + ex(eqH(st.L, st.R))]
       ]);
@@ -3013,19 +3041,19 @@
     function chainSlope(ctx, st) {
       if (!hasK(st.L, "y") && !hasK(st.R, "y")) return chainVertical(ctx, st);
       if (!hasK(st.L, "y") && hasK(st.R, "y")) st = swapSides(ctx, st);
-      if (hasK(st.R, "y")) st = shift(ctx, st, "R", "y", ORD_Y, "Gather the " + vH("y") + "-terms on the left.");
+      if (hasK(st.R, "y")) st = shift(ctx, st, "R", "y", ORD_Y, tr("lines-and-slope.why.gatherY"));
       var moved = hasK(st.L, "x");
-      if (moved) st = shift(ctx, st, "L", "x", ORD_X, "Move the " + vH("x") + "-term to the right side, so " + vH("y") + " can be by itself.");
-      if (hasK(st.L, null)) st = shift(ctx, st, "L", null, ORD_X, moved ? "Now move the plain number to the right side too." : "Get " + vH("y") + " by itself: move the plain number to the right side.");
+      if (moved) st = shift(ctx, st, "L", "x", ORD_X, tr("lines-and-slope.why.moveX"));
+      if (hasK(st.L, null)) st = shift(ctx, st, "L", null, ORD_X, moved ? tr("lines-and-slope.why.numToo") : tr("lines-and-slope.why.numYAlone"));
       if (!isOne(cof(st.L, "y"))) st = divide(ctx, st, "y");
-      if (!inOrder(st.R, ORD_X)) st = reorder(ctx, st, "R", ORD_X, "the " + vH("x") + "-term");
+      if (!inOrder(st.R, ORD_X)) st = reorder(ctx, st, "R", ORD_X, tr("lines-and-slope.theXTerm"));
       return { st: st, m: cof(st.R, "x"), b: cof(st.R, null) };
     }
     // no y at all: → x = c
     function chainVertical(ctx, st) {
       if (!hasK(st.L, "x") && hasK(st.R, "x")) st = swapSides(ctx, st);
-      if (hasK(st.R, "x")) st = shift(ctx, st, "R", "x", ORD_X, "Gather the " + vH("x") + "-terms on the left.");
-      if (hasK(st.L, null)) st = shift(ctx, st, "L", null, ORD_X, "Move the plain number to the right side.");
+      if (hasK(st.R, "x")) st = shift(ctx, st, "R", "x", ORD_X, tr("lines-and-slope.why.gatherX"));
+      if (hasK(st.L, null)) st = shift(ctx, st, "L", null, ORD_X, tr("lines-and-slope.why.num"));
       if (!isOne(cof(st.L, "x"))) st = divide(ctx, st, "x");
       return { st: st, vertical: cof(st.R, null) };
     }
@@ -3034,12 +3062,12 @@
       var mx = false;
       if (!hasVarK(st.L) && hasVarK(st.R)) st = swapSides(ctx, st);
       if (hasK(st.R, "x")) {
-        st = shift(ctx, st, "R", "x", ORD_X, "Bring the " + vH("x") + "-term over to the left.");
+        st = shift(ctx, st, "R", "x", ORD_X, tr("lines-and-slope.why.bringX"));
         mx = true;
       }
-      if (hasK(st.R, "y")) st = shift(ctx, st, "R", "y", ORD_X, mx ? "Same for the " + vH("y") + "-term." : "Bring the " + vH("y") + "-term over to the left.");
-      if (hasK(st.L, null)) st = shift(ctx, st, "L", null, ORD_X, "Move the plain number to the right side.");
-      if (!inOrder(st.L, ORD_X)) st = reorder(ctx, st, "L", ORD_X, "the " + vH("x") + "-term");
+      if (hasK(st.R, "y")) st = shift(ctx, st, "R", "y", ORD_X, mx ? tr("lines-and-slope.why.sameY") : tr("lines-and-slope.why.bringY"));
+      if (hasK(st.L, null)) st = shift(ctx, st, "L", null, ORD_X, tr("lines-and-slope.why.num"));
+      if (!inOrder(st.L, ORD_X)) st = reorder(ctx, st, "L", ORD_X, tr("lines-and-slope.theXTerm"));
       var all = live(st.L).concat(live(st.R)),
         D = 1n;
       all.forEach(function(t) { D = blcm(D, t.c.d); });
@@ -3072,10 +3100,10 @@
     }
 
     function slopeWords(m) {
-      if (isZ(m)) return "There’s no " + vH("x") + "-term at all, so <b>m = 0</b> — " + vH("y") + " is the same everywhere: a flat, horizontal line.";
-      if (isOne(m)) return vH("x") + " on its own means <b>1" + vH("x") + "</b>, so <b>m = 1</b>.";
-      if (eqR(m, NEG1)) return "<b>−" + vH("x") + "</b> means <b>−1" + vH("x") + "</b>, so <b>m = −1</b>.";
-      return "Here that’s <b>m = " + nH(m) + "</b>.";
+      if (isZ(m)) return tr("lines-and-slope.sw.zero");
+      if (isOne(m)) return tr("lines-and-slope.sw.one");
+      if (eqR(m, NEG1)) return tr("lines-and-slope.sw.neg1");
+      return tr("lines-and-slope.sw.m", { m: nH(m) });
     }
 
     function slopeSteps(ctx, line, label) {
@@ -3085,17 +3113,15 @@
         var c = dvd(E.C, E.A),
           plain = line.L.t === "var" && line.L.name === "x" && !hasVar(line.R);
         if (!plain) {
-          ctx.lead(lead + "There’s no " + vH("y") + " in it, so get " + vH("x") + " by itself.");
+          ctx.lead(lead + tr("lines-and-slope.ss.noYin"));
           chainVertical(ctx, tidyStep(ctx, line));
           lead = label ? "<strong>" + label + ":</strong> " : "";
         }
         ctx.add([
-            ["p", "Vertical", lead + "<b>" + vH("x") + " = " + nH(c) + "</b> has no " + vH("y") + ": every point on it has " + vH("x") + " = " + nH(c) +
-              ", whatever " + vH("y") + " is, so it’s a <strong>vertical</strong> line. Between any two of its points the run is 0, and you can’t divide by 0 — the slope is <strong>undefined</strong>."
-            ]
+            ["p", tr("lines-and-slope.tag.vertical"), lead + tr("lines-and-slope.ss.vert", { c: nH(c) })]
           ],
           null, [
-            ["m ?", "p", ex(vH("x") + opS("=") + nH(c)) + ex(vH("m") + opS(":") + wd("undefined"), "res")]
+            ["m ?", "p", ex(vH("x") + opS("=") + nH(c)) + ex(vH("m") + opS(":") + wd(tr("lines-and-slope.w.undefined")), "res")]
           ]);
         return { m: null, c: c };
       }
@@ -3103,9 +3129,7 @@
         b = yintOf(E);
       if (line.form === "slope") {
         ctx.add([
-          ["p", "Read it", lead + "<b>" + line.html + "</b> is already in slope-intercept form, <b>" + vH("y") + " = " + vH("m") + vH("x") + " + " + vH("b") + "</b>. " +
-            "The slope m is the number multiplying " + vH("x") + ". " + slopeWords(m)
-          ]
+          ["p", tr("lines-and-slope.tag.readIt"), lead + tr("lines-and-slope.ss.si", { e: line.html, words: slopeWords(m) })]
         ], null, [
           ["m = " + numT(m), "p", ex(hlSI(m, b), "res")]
         ]);
@@ -3114,22 +3138,19 @@
       if (line.form === "point") {
         var P = line.ps.P;
         ctx.add([
-            ["p", "Read it", lead + "<b>" + line.html + "</b> is in point-slope form, <b>" + vH("y") + " − " + Y1 + " = " + vH("m") + "(" + vH("x") + " − " + X1 + ")</b>. " +
-              "The slope m is the number in front of the parentheses: <b>m = " + nH(m) + "</b>. (And the point it was built from is " + ptH(P) + ".)"
-            ]
+            ["p", tr("lines-and-slope.tag.readIt"), lead + tr("lines-and-slope.ss.ps", { e: line.html, m: nH(m), p: ptH(P) })]
           ], null,
           [
             ["m = " + numT(m), "p", ex(psLeftH(P) + opS("=") + '<span class="hl c-p">' + nH(m) + "</span>" + wrapP(vH("x") + opS(sgn(P.x) >= 0 ? "−" : "+") + magH(absR(P.x))), "res")]
           ]);
         return { m: m, b: b };
       }
-      ctx.lead(lead + "To see the slope, get " + vH("y") + " by itself (slope-intercept form).");
+      ctx.lead(lead + tr("lines-and-slope.ss.toSee"));
       var r = chainSlope(ctx, tidyStep(ctx, line));
       ctx.add([
-          ["p", "Read it", "Now it’s in <b>" + vH("y") + " = " + vH("m") + vH("x") + " + " + vH("b") + "</b> form, and the slope is the number multiplying " + vH("x") + ". " + slopeWords(m)]
+          ["p", tr("lines-and-slope.tag.readIt"), tr("lines-and-slope.ss.now", { words: slopeWords(m) })]
         ],
-        line.form === "standard" && ctx.once("ab") ? "<strong>Shortcut</strong> for standard form <b>A" + vH("x") + " + B" + vH("y") + " = C</b>: the slope is always <b>m = −A/B</b>. Here that’s −(" +
-        numT(E.A) + ")/(" + numT(E.B) + ") = <b>" + nH(m) + "</b> — the same answer." : null,
+        line.form === "standard" && ctx.once("ab") ? tr("lines-and-slope.ss.shortcut", { a: numT(E.A), b: numT(E.B), m: nH(m) }) : null,
         [
           ["m = " + numT(m), "p", ex(hlSI(r.m, r.b), "res")]
         ]);
@@ -3330,12 +3351,12 @@
         if (!isZ(st.rise)) {
           s += G(st.stepRise) + '<line ' + C("gr-rise") + ' x1="' + f1(x0) + '" y1="' + f1(y0) + '" x2="' + f1(xc) + '" y2="' + f1(yc + (up ? 6 : -6)) + '"/>' +
             head(x0, y0, xc, yc, "gr-riseh", 11) +
-            tag(right ? x0 - 9 : x0 + 9, (y0 + yc) / 2 + 5, "rise " + numT(st.rise), right ? "end" : "start", "gr-riset") + "</g>";
+            tag(right ? x0 - 9 : x0 + 9, (y0 + yc) / 2 + 5, tr("lines-and-slope.g.rise", { n: numT(st.rise) }), right ? "end" : "start", "gr-riset") + "</g>";
         }
         if (!isZ(st.run)) {
           s += G(st.stepRun) + '<line ' + C("gr-run") + ' x1="' + f1(xc) + '" y1="' + f1(yc) + '" x2="' + f1(x1 + (right ? -6 : 6)) + '" y2="' + f1(yc) + '"/>' +
             head(xc, yc, x1, yc, "gr-runh", 11) +
-            tag((xc + x1) / 2, up || isZ(st.rise) ? yc - 9 : yc + 22, "run " + numT(st.run), "middle", "gr-runt") + "</g>";
+            tag((xc + x1) / 2, up || isZ(st.rise) ? yc - 9 : yc + 22, tr("lines-and-slope.g.run", { n: numT(st.run) }), "middle", "gr-runt") + "</g>";
         }
       });
       if (spec.right) {
@@ -3394,7 +3415,7 @@
         s += G(p.step) + lab + '<circle ' + C("gr-pt" + (p.cls ? " " + p.cls : "")) + ' cx="' + f1(px) + '" cy="' + f1(py) + '" r="' + (p.cls === "sm" ? 4.5 : 6.5) + '"/></g>';
       });
       var size = inline ? ' width="' + (spec.size || 180) + '" height="' + (spec.size || 180) + '" style="display:block;max-width:100%;height:auto"' : ' class="grid-svg"';
-      return "<svg" + size + ' viewBox="0 0 ' + Sz + " " + Sz + '" role="img" aria-label="' + esc(spec.aria || "Coordinate grid") + '">' + s + "</svg>";
+      return "<svg" + size + ' viewBox="0 0 ' + Sz + " " + Sz + '" role="img" aria-label="' + esc(spec.aria || tr("lines-and-slope.g.aria")) + '">' + s + "</svg>";
     }
 
     function gkey(items) {
@@ -3407,9 +3428,9 @@
     var OK = ' <span class="ok">✓</span>',
       BAD = ' <span class="bad">✗</span>';
 
-    function slopeVH(m) { return vH("m") + opS("=") + (m === null ? '<span class="word">undefined</span>' : nH(m)); }
+    function slopeVH(m) { return vH("m") + opS("=") + (m === null ? '<span class="word">' + tr("lines-and-slope.w.undefined") + "</span>" : nH(m)); }
 
-    function slopeVT(m) { return m === null ? "undefined (vertical line)" : "m = " + numT(m); }
+    function slopeVT(m) { return m === null ? tr("lines-and-slope.w.undefVert") : "m = " + numT(m); }
     // rise ÷ run, simplified one bit at a time
     function simpSlope(dy, dx) {
       var m = dvd(dy, dx),
@@ -3417,12 +3438,12 @@
         why = [];
       if (isZ(dy)) {
         parts.push("0");
-        why.push("0 divided by any number (except 0) is 0");
+        why.push(tr("lines-and-slope.simp.zero"));
         return { m: m, parts: parts, why: why };
       }
       if (!isInt(dy) || !isInt(dx)) {
         parts.push(nH(m));
-        why.push("the rise and run aren’t whole numbers, so divide: <b>" + nP(dy) + " ÷ " + nP(dx) + " = " + nH(m) + "</b>");
+        why.push(tr("lines-and-slope.simp.divide", { a: nP(dy), b: nP(dx), m: nH(m) }));
         return { m: m, parts: parts, why: why };
       }
       var t = dy.n,
@@ -3432,9 +3453,9 @@
           t = -t;
           b = -b;
           parts.push(frH(String(t), String(b)));
-          why.push("a negative divided by a negative is positive");
+          why.push(tr("lines-and-slope.simp.negneg"));
         } else {
-          why.push("a positive divided by a negative is negative, so the minus sign goes out in front");
+          why.push(tr("lines-and-slope.simp.posneg"));
           parts.push(SG + frH(String(t), String(-b)));
           t = -t;
           b = -b;
@@ -3442,25 +3463,24 @@
       }
       var g = bgcd(t, b);
       if (g > 1n) {
-        why.push("the top and bottom share the factor <b>" + g + "</b>, so divide both by " + g);
+        why.push(tr("lines-and-slope.simp.factor", { g: g }));
         parts.push(nH(m));
       } else if (b === 1n) {
-        why.push("a number over 1 is just that number");
+        why.push(tr("lines-and-slope.simp.over1"));
         parts.push(nH(m));
       }
       return { m: m, parts: parts, why: why };
     }
 
     function dirFact(m) {
-      if (m === null) return "<strong>Undefined</strong> slope: a vertical line, straight up and down.";
-      if (isZ(m)) return "<strong>Zero</strong> slope: a flat, horizontal line.";
+      if (m === null) return tr("lines-and-slope.dir.undef");
+      if (isZ(m)) return tr("lines-and-slope.dir.zero");
       var p = pq(m),
         up = sgn(m) > 0;
-      return "<strong>" + (up ? "Positive" : "Negative") + "</strong> slope: the line goes " + (up ? "up" : "down") + " from left to right — " +
-        (up ? "up" : "down") + " <b>" + babs(p.p) + "</b> for every <b>" + p.q + "</b> to the right.";
+      return tr(up ? "lines-and-slope.dir.pos" : "lines-and-slope.dir.neg", { p: babs(p.p), q: p.q });
     }
 
-    function decFact(m) { return m !== null && !isInt(m) ? "As a decimal: <b>" + decOf(m) + "</b>" : null; }
+    function decFact(m) { return m !== null && !isInt(m) ? tr("lines-and-slope.asDecimal", { d: decOf(m) }) : null; }
 
     function substH(list, P) {
       var l = live(list),
@@ -3503,7 +3523,7 @@
     function plugLine(line, P) {
       var a = linAt(evalLin(line.L), P),
         b = linAt(evalLin(line.R), P);
-      return "<b>" + sideCk(line.L, P) + "</b> and <b>" + sideCk(line.R, P) + "</b>" + (eqR(a, b) ? OK : BAD);
+      return tr("lines-and-slope.plug", { a: sideCk(line.L, P), b: sideCk(line.R, P) }) + (eqR(a, b) ? OK : BAD);
     }
 
     function intPoint(E, avoid) { // an easy point with whole numbers, not the one to avoid
@@ -3532,18 +3552,16 @@
       return xs.map(function(x) { return R(x); });
     }
 
-    function eqField(E, target, ctx) { return { key: "eq", label: target === "any" ? "The equation" : "In " + TO_LBL[target] + " form", kind: "eq", wide: true, target: target, E: E, ctx: ctx || {} }; }
+    function eqField(E, target, ctx) { return { key: "eq", label: target === "any" ? tr("lines-and-slope.f.equation") : tr("lines-and-slope.f.in." + target), kind: "eq", wide: true, target: target, E: E, ctx: ctx || {} }; }
     var TO_LBL = { slope: "slope-intercept", point: "point-slope", standard: "standard" };
-    var TO_NAME = { slope: "Slope-intercept form", point: "Point-slope form", standard: "Standard form" };
+    var TO_NAME = { slope: tr("lines-and-slope.form.slope"), point: tr("lines-and-slope.form.point"), standard: tr("lines-and-slope.form.standard") };
 
     function stdFrom(ctx, st) {
       var n0 = ctx.steps.length;
-      ctx.lead("Now <strong>standard form</strong>, <b>A" + vH("x") + " + B" + vH("y") + " = C</b>: whole numbers, " + vH("x") + "- and " + vH("y") + "-terms on the left, the " + vH("x") + "-term first and positive.");
+      ctx.lead(tr("lines-and-slope.std.lead"));
       var out = chainStd(ctx, st);
       if (ctx.steps.length === n0) ctx.add([
-        ["p", "Standard", "<b>" + eqH(out.L, out.R) + "</b> already fits: whole numbers, letters on the left, the number on the right" +
-          (hasK(out.L, "x") ? "." : " (it’s 0" + vH("x") + " + " + eqH(out.L, out.R) + ").")
-        ]
+        ["p", tr("lines-and-slope.tag.standard"), tr(hasK(out.L, "x") ? "lines-and-slope.std.fits" : "lines-and-slope.std.fits0", { e: eqH(out.L, out.R) })]
       ], null, [
         ["Ax+By=C", "p", ex(eqH(out.L, out.R), "res")]
       ]);
@@ -3555,15 +3573,12 @@
       var raw = vH("y") + opS("−") + nP(P.y) + opS("=") + nH(m) + wrapP(vH("x") + opS("−") + nP(P.x));
       var rows = ex(vH("y") + opS("−") + Y1 + opS("=") + vH("m") + wrapP(vH("x") + opS("−") + X1), "mvline") + ex(raw) + (negs ? ex(psH(m, P)) : "");
       var bits = [];
-      if (sgn(P.y) < 0) bits.push("<b>" + vH("y") + " − " + nP(P.y) + "</b> becomes <b>" + psLeftH(P) + "</b>");
-      if (sgn(P.x) < 0) bits.push("<b>" + vH("x") + " − " + nP(P.x) + "</b> becomes <b>" + vH("x") + " + " + magH(absR(P.x)) + "</b>");
-      var txt = (why ? why + " " : "") + "Use <strong>point-slope form</strong>, <b>" + vH("y") + " − " + Y1 + " = " + vH("m") + "(" + vH("x") + " − " + X1 + ")</b> — it’s made for exactly this. " +
-        "Put in the slope <b>m = " + nH(m) + "</b> and the point <b>(" + X1 + ", " + Y1 + ") = " + ptH(P) + "</b>." +
-        (bits.length ? " Subtracting a negative is the same as adding, so " + andList(bits) + "." : "");
-      var aside = ctx.once("psWhy") ? "<strong>Why it works:</strong> for any point (" + vH("x") + ", " + vH("y") + ") on the line, the slope from " + ptH(P) + " to it is <b>" +
-        frH(vH("y") + opS("−") + nP(P.y), vH("x") + opS("−") + nP(P.x)) + " = " + nH(m) + "</b>. Multiply both sides by the bottom and you get point-slope form." : null;
+      if (sgn(P.y) < 0) bits.push(tr("lines-and-slope.ps.becomes", { a: vH("y") + " − " + nP(P.y), b: psLeftH(P) }));
+      if (sgn(P.x) < 0) bits.push(tr("lines-and-slope.ps.becomes", { a: vH("x") + " − " + nP(P.x), b: vH("x") + " + " + magH(absR(P.x)) }));
+      var txt = (why ? why + " " : "") + tr("lines-and-slope.ps.use", { m: nH(m), p: ptH(P) }) + (bits.length ? tr("lines-and-slope.ps.negs", { bits: andList(bits) }) : "");
+      var aside = ctx.once("psWhy") ? tr("lines-and-slope.ps.why", { p: ptH(P), f: frH(vH("y") + opS("−") + nP(P.y), vH("x") + opS("−") + nP(P.x)), m: nH(m) }) : null;
       ctx.add([
-        ["p", "Point-slope", txt]
+        ["p", tr("lines-and-slope.tag.pointSlope"), txt]
       ], aside, [
         ["y − y₁", "p", rows]
       ]);
@@ -3572,9 +3587,7 @@
     function finishLine(ctx, m, P) {
       if (m === null) {
         ctx.add([
-            ["p", "Vertical", "An undefined slope means a <strong>vertical</strong> line — straight up and down. Every point on it has the same " + vH("x") + " as " + ptH(P) +
-              ", so its equation is <b>" + vH("x") + " = " + nH(P.x) + "</b>. (There’s no " + vH("y") + " = " + vH("m") + vH("x") + " + " + vH("b") + " form — there’s no slope number to put in for m.)"
-            ]
+            ["p", tr("lines-and-slope.tag.vertical"), tr("lines-and-slope.fin.vert", { p: ptH(P), x: nH(P.x) })]
           ],
           null, [
             ["x =", "p", ex(vH("x") + opS("=") + nH(P.x), "res")]
@@ -3585,9 +3598,7 @@
       }
       if (isZ(m)) {
         ctx.add([
-            ["p", "Horizontal", "A slope of 0 means a flat, <strong>horizontal</strong> line — " + vH("y") + " never changes. Every point has the same " + vH("y") + " as " + ptH(P) +
-              ", so the equation is <b>" + vH("y") + " = " + nH(P.y) + "</b>. (Point-slope form says the same thing: <b>" + psH(ZERO, P) + "</b>, and 0 times anything is 0.)"
-            ]
+            ["p", tr("lines-and-slope.tag.horizontal"), tr("lines-and-slope.fin.horiz", { p: ptH(P), y: nH(P.y), ps: psH(ZERO, P) })]
           ],
           null, [
             ["y =", "p", ex(psH(ZERO, P), "mvline") + ex(vH("y") + opS("=") + nH(P.y), "res")]
@@ -3603,102 +3614,95 @@
 
     function lineFacts(E, P) {
       var f = [];
-      if (!isVert(E)) f.push("Slope <b>" + nH(slopeOf(E)) + "</b>, " + vH("y") + "-intercept <b>" + ptH({ x: ZERO, y: yintOf(E) }) + "</b>");
-      if (!isVert(E) && P) f.push("Point-slope form: <b>" + psH(slopeOf(E), P) + "</b>");
-      f.push("Standard form: <b>" + stdH(E) + "</b>");
+      if (!isVert(E)) f.push(tr("lines-and-slope.fact.slopeInt", { m: nH(slopeOf(E)), p: ptH({ x: ZERO, y: yintOf(E) }) }));
+      if (!isVert(E) && P) f.push(tr("lines-and-slope.fact.ps", { e: psH(slopeOf(E), P) }));
+      f.push(tr("lines-and-slope.fact.std", { e: stdH(E) }));
       return f;
     }
 
-    function lineAnsT(E) { return lineT(E) + (isVert(E) ? "" : " (standard form: " + stdT(E) + ")"); }
+    function lineAnsT(E) { return lineT(E) + (isVert(E) ? "" : tr("lines-and-slope.ans.std", { e: stdT(E) })); }
 
     function stairFrom(P, m, stepRise, stepRun) {
       if (m === null || isZ(m)) return [];
       var p = pq(m);
       return [{ x0: P.x, y0: P.y, rise: R(p.p), run: R(p.q), stepRise: stepRise, stepRun: stepRun === undefined ? stepRise : stepRun }];
     }
-    var CAP_LINE = '<b class="lead">On the grid.</b> ';
+    var CAP_LINE = tr("lines-and-slope.capLine");
 
     /* ===================== Slope ===================== */
     function solveSlope2(P1, P2) {
       var dy = sub(P2.y, P1.y),
         dx = sub(P2.x, P1.x);
-      if (isZ(dx) && isZ(dy)) throw new UserErr("Those are the same point twice, " + ptH(P1) + ". A slope needs two <i>different</i> points.");
+      if (isZ(dx) && isZ(dy)) throw new UserErr(tr("lines-and-slope.err.samePt", { p: ptH(P1) }));
       var ctx = new Ctx(),
         E = fromPP(P1, P2),
         m = null;
       var s0 = ctx.add([
-          ["p", "Label", "Name the points: call " + ptH(P1) + " the first point, (" + X1 + ", " + Y1 + "), and " + ptH(P2) + " the second, (" + X2 + ", " + Y2 + "). " +
-            "It doesn’t matter which one you call first — the check at the end shows why."
-          ]
+          ["p", tr("lines-and-slope.tag.label"), tr("lines-and-slope.s2.label", { p1: ptH(P1), p2: ptH(P2) })]
         ], null,
         [
-          ["points", "p", ex("(" + X1 + ",&nbsp;" + Y1 + ")" + opS("=") + ptH(P1)) + ex("(" + X2 + ",&nbsp;" + Y2 + ")" + opS("=") + ptH(P2))]
+          [tr("lines-and-slope.b.points"), "p", ex("(" + X1 + ",&nbsp;" + Y1 + ")" + opS("=") + ptH(P1)) + ex("(" + X2 + ",&nbsp;" + Y2 + ")" + opS("=") + ptH(P2))]
         ]);
       var s1 = ctx.add([
-          ["e", "Rise", "The <strong>rise</strong> is the change in " + vH("y") + " — how far up or down you go from the first point to the second: <b>" +
-            nH(P2.y) + " − " + nP(P1.y) + " = " + nH(dy) + "</b>. " + (sgn(dy) > 0 ? "Positive means up." : sgn(dy) < 0 ? "Negative means <i>down</i>." : "Zero: the two points are at the same height.")
-          ]
+          ["e", tr("lines-and-slope.tag.rise"), tr("lines-and-slope.s2.rise", { a: nH(P2.y), b: nP(P1.y), d: nH(dy) }) + (sgn(dy) > 0 ? tr("lines-and-slope.s2.up") : sgn(dy) < 0 ? tr("lines-and-slope.s2.down") : tr("lines-and-slope.s2.level"))]
         ], null,
         [
-          ["rise", "e", ex(wd("rise") + opS("=") + Y2 + opS("−") + Y1 + opS("=") + nH(P2.y) + opS("−") + nP(P1.y) + opS("=") + nH(dy), "res")]
+          [tr("lines-and-slope.b.rise"), "e", ex(wd(tr("lines-and-slope.b.rise")) + opS("=") + Y2 + opS("−") + Y1 + opS("=") + nH(P2.y) + opS("−") + nP(P1.y) + opS("=") + nH(dy), "res")]
         ]);
       var s2 = ctx.add([
-          ["m", "Run", "The <strong>run</strong> is the change in " + vH("x") + " — how far sideways: <b>" + nH(P2.x) + " − " + nP(P1.x) + " = " + nH(dx) + "</b>. " +
-            (sgn(dx) > 0 ? "Positive means to the right." : sgn(dx) < 0 ? "Negative means to the <i>left</i>." : "Zero: one point is straight above the other.")
-          ]
+          ["m", tr("lines-and-slope.tag.run"), tr("lines-and-slope.s2.run", { a: nH(P2.x), b: nP(P1.x), d: nH(dx) }) + (sgn(dx) > 0 ? tr("lines-and-slope.s2.right") : sgn(dx) < 0 ? tr("lines-and-slope.s2.left") : tr("lines-and-slope.s2.above"))]
         ], null,
         [
-          ["run", "m", ex(wd("run") + opS("=") + X2 + opS("−") + X1 + opS("=") + nH(P2.x) + opS("−") + nP(P1.x) + opS("=") + nH(dx), "res")]
+          [tr("lines-and-slope.b.run"), "m", ex(wd(tr("lines-and-slope.b.run")) + opS("=") + X2 + opS("−") + X1 + opS("=") + nH(P2.x) + opS("−") + nP(P1.x) + opS("=") + nH(dx), "res")]
         ]);
       var s3;
       if (isZ(dx)) {
         s3 = ctx.add([
-            ["p", "Slope", "Slope is rise over run: <b>m = " + frH(nH(dy), "0") + "</b>. But you can’t divide by 0 — so the slope is <strong>undefined</strong>. " +
-              "A run of 0 means the line goes straight up and down: it’s the vertical line <b>" + vH("x") + " = " + nH(P1.x) + "</b>."
-            ]
+            ["p", tr("lines-and-slope.tag.slope"), tr("lines-and-slope.s2.undef", { f: frH(nH(dy), "0"), x: nH(P1.x) })]
           ],
-          "<strong>Why can’t you divide by 0?</strong> Division asks “how many 0’s make " + numT(dy) + "?” — no number of zeros ever adds up to it. So a vertical line has no slope number at all.",
+          tr("lines-and-slope.s2.why0", { d: numT(dy) }),
           [
-            ["m", "p", ex(vH("m") + opS("=") + frH(wd("rise"), wd("run")) + opS("=") + frH(nH(dy), "0")) + ex(vH("m") + opS(":") + wd("undefined"), "res")]
+            ["m", "p", ex(vH("m") + opS("=") + frH(wd(tr("lines-and-slope.b.rise")), wd(tr("lines-and-slope.b.run"))) + opS("=") + frH(nH(dy), "0")) + ex(vH("m") + opS(":") + wd(tr("lines-and-slope.w.undefined")), "res")]
           ]);
       } else {
         var sp = simpSlope(dy, dx);
         m = sp.m;
         s3 = ctx.add([
-            ["p", "Slope", "Slope is <strong>rise over run</strong>: <b>m = " + frH(nH(dy), nH(dx)) + "</b>" +
-              (sp.why.length ? " — " + sp.why.join("; then ") + " — so <b>m = " + nH(m) + "</b>." : ". That fraction is already as simple as it gets.")
-            ]
+            ["p", tr("lines-and-slope.tag.slope"), sp.why.length ? tr("lines-and-slope.s2.slopeWhy", { f: frH(nH(dy), nH(dx)), why: sp.why.join(tr("lines-and-slope.then")), m: nH(m) }) : tr("lines-and-slope.s2.slopeSimple", { f: frH(nH(dy), nH(dx)) })]
           ],
-          "<strong>Why rise over run?</strong> Slope measures steepness: how far the line goes up for every 1 step to the right. Dividing the rise by the run gives exactly that.",
+          tr("lines-and-slope.s2.whyRR"),
           [
-            ["m", "p", ex(vH("m") + opS("=") + frH(wd("rise"), wd("run")) + opS("=") + sp.parts.join(opS("=")), "res")]
+            ["m", "p", ex(vH("m") + opS("=") + frH(wd(tr("lines-and-slope.b.rise")), wd(tr("lines-and-slope.b.run"))) + opS("=") + sp.parts.join(opS("=")), "res")]
           ]);
       }
-      gridFig(ctx, CAP_LINE + 'From the first point, the <span class="kw c-e">rise</span> goes up or down and the <span class="kw c-m">run</span> goes across to the second point — a staircase step along the line.', {
+      gridFig(ctx, CAP_LINE + tr("lines-and-slope.s2.cap"), {
         lines: [{ E: E, cls: "l1", step: s3 }],
         pts: [{ x: P1.x, y: P1.y, lbl: ptT(P1), step: s0 }, { x: P2.x, y: P2.y, lbl: ptT(P2), cls: "p2", step: s0 }],
         stairs: [{ x0: P1.x, y0: P1.y, rise: dy, run: dx, stepRise: s1, stepRun: s2 }],
-        aria: "Grid with the points " + ptT(P1) + " and " + ptT(P2) + ", the rise and run between them, and the line through them"
+        aria: tr("lines-and-slope.s2.aria", { p1: ptT(P1), p2: ptT(P2) })
       });
       var ry = sub(P1.y, P2.y),
         rx = sub(P1.x, P2.x);
-      var closer = "<b>Check</b> the other way round — from " + ptH(P2) + " back to " + ptH(P1) + ": rise <b>" + nH(P1.y) + " − " + nP(P2.y) + " = " + nH(ry) + "</b>, run <b>" +
-        nH(P1.x) + " − " + nP(P2.x) + " = " + nH(rx) + "</b>, so " +
-        (isZ(rx) ? "the run is 0 again — still undefined" + OK + "." : "<b>m = " + frH(nH(ry), nH(rx)) + " = " + nH(dvd(ry, rx)) + "</b>" + OK + " the same slope.") +
-        " Both the rise and the run flip their signs, and a negative over a negative is positive — so it never matters which point you call first. Just subtract in the same order on the top and the bottom.";
+      var closer = tr("lines-and-slope.s2.check", {
+        p2: ptH(P2),
+        p1: ptH(P1),
+        ry: nH(P1.y) + " − " + nP(P2.y) + " = " + nH(ry),
+        rx: nH(P1.x) + " − " + nP(P2.x) + " = " + nH(rx),
+        so: isZ(rx) ? tr("lines-and-slope.s2.checkUndef", { ok: OK }) : tr("lines-and-slope.s2.checkSame", { f: frH(nH(ry), nH(rx)), m: nH(dvd(ry, rx)), ok: OK })
+      });
       var facts = [dirFact(m)],
         d = decFact(m);
       if (d) facts.push(d);
-      facts.push("The line itself: <b>" + lineH(E) + "</b>");
-      var ask = "Find the slope of the line through " + ptH(P1) + " and " + ptH(P2) + ".";
+      facts.push(tr("lines-and-slope.s2.lineItself", { e: lineH(E) }));
+      var ask = tr("lines-and-slope.s2.ask", { p1: ptH(P1), p2: ptH(P2) });
       return {
         ctx: ctx,
-        band: { k: "Slope", v: slopeVH(m), facts: facts },
+        band: { k: tr("lines-and-slope.band.slope"), v: slopeVH(m), facts: facts },
         closer: closer,
-        fields: [{ key: "m", label: "Slope m", kind: "slope", v: m, ctx: { src: "two", P1: P1, P2: P2, dx: dx, dy: dy } }],
+        fields: [{ key: "m", label: tr("lines-and-slope.f.slopeM"), kind: "slope", v: m, ctx: { src: "two", P1: P1, P2: P2, dx: dx, dy: dy } }],
         ask: ask,
-        askText: "Slope through " + ptT(P1) + " and " + ptT(P2),
-        api: { text: "Find the slope of the line through " + ptT(P1) + " and " + ptT(P2) + ".", html: ask, answer: slopeVT(m), answerHtml: slopeVH(m) }
+        askText: tr("lines-and-slope.s2.askText", { p1: ptT(P1), p2: ptT(P2) }),
+        api: { text: tr("lines-and-slope.s2.ask", { p1: ptT(P1), p2: ptT(P2) }), html: ask, answer: slopeVT(m), answerHtml: slopeVH(m) }
       };
     }
 
@@ -3713,7 +3717,7 @@
         var A1 = { x: r.c, y: ZERO },
           A2 = { x: r.c, y: R(3) };
         spec = { lines: [{ E: E, cls: "l1" }], pts: [{ x: r.c, y: ZERO, lbl: ptT(A1) }, { x: r.c, y: R(3), lbl: ptT(A2), cls: "p2" }], stairs: [{ x0: r.c, y0: ZERO, rise: R(3), run: ZERO, stepRise: last }] };
-        closer = "<b>Check</b> with two points on it, " + ptH(A1) + " and " + ptH(A2) + ": rise <b>3 − 0 = 3</b>, run <b>" + nH(r.c) + " − " + nP(r.c) + " = 0</b>. 3 ÷ 0 can’t be done — undefined" + OK;
+        closer = tr("lines-and-slope.se.checkVert", { a1: ptH(A1), a2: ptH(A2), run: nH(r.c) + " − " + nP(r.c), ok: OK });
       } else {
         var b = r.b,
           p = pq(m),
@@ -3728,93 +3732,93 @@
           Q = { x: R(3), y: b };
           spec.pts.push({ x: Q.x, y: Q.y, lbl: ptT(Q), cls: "p2", step: last });
         }
-        closer = "<b>Check</b> with two points on the line. " + ptH(Y0) + " fits the original: " + plugLine(line, Y0) + ". So does " + ptH(Q) + ": " + plugLine(line, Q) +
-          ". Between them: rise <b>" + nH(Q.y) + " − " + nP(b) + " = " + nH(sub(Q.y, b)) + "</b>, run <b>" + nH(Q.x) + " − 0 = " + nH(Q.x) + "</b>, so <b>m = " + nH(dvd(sub(Q.y, b), Q.x)) + "</b>" + OK;
+        closer = tr("lines-and-slope.se.check", {
+          y0: ptH(Y0),
+          plug0: plugLine(line, Y0),
+          q: ptH(Q),
+          plugQ: plugLine(line, Q),
+          rise: nH(Q.y) + " − " + nP(b) + " = " + nH(sub(Q.y, b)),
+          run: nH(Q.x) + " − 0 = " + nH(Q.x),
+          m: nH(dvd(sub(Q.y, b), Q.x)),
+          ok: OK
+        });
       }
-      spec.aria = "Grid showing the line " + lineT(E);
-      gridFig(ctx, CAP_LINE + (m === null ? "A vertical line: any two points on it are straight above each other, so the run is always 0." :
-        isZ(m) ? "A flat line: walking along it, the height never changes — the rise is always 0." :
-        'The slope as a staircase: from the ' + vH("y") + '-intercept, a <span class="kw c-e">rise</span> of ' + numT(R(pq(m).p)) + ' and a <span class="kw c-m">run</span> of ' + pq(m).q + " lands back on the line."), spec);
+      spec.aria = tr("lines-and-slope.se.aria", { e: lineT(E) });
+      gridFig(ctx, CAP_LINE + (m === null ? tr("lines-and-slope.se.capVert") : isZ(m) ? tr("lines-and-slope.se.capFlat") : tr("lines-and-slope.se.capStairs", { p: numT(R(pq(m).p)), q: pq(m).q })), spec);
       var facts = [dirFact(m)],
         d = decFact(m);
       if (d) facts.push(d);
-      if (m !== null) facts.push(vH("y") + "-intercept: <b>" + ptH({ x: ZERO, y: r.b }) + "</b>");
-      var ask = "Find the slope of <b>" + line.html + "</b>.";
+      if (m !== null) facts.push(tr("lines-and-slope.fact.yint", { p: ptH({ x: ZERO, y: r.b }) }));
+      var ask = tr("lines-and-slope.se.ask", { e: "<b>" + line.html + "</b>" });
       return {
         ctx: ctx,
-        band: { k: "Slope", v: slopeVH(m), facts: facts },
+        band: { k: tr("lines-and-slope.band.slope"), v: slopeVH(m), facts: facts },
         closer: closer,
-        fields: [{ key: "m", label: "Slope m", kind: "slope", v: m, ctx: { src: "eq", E: E, form: line.form, line: line } }],
+        fields: [{ key: "m", label: tr("lines-and-slope.f.slopeM"), kind: "slope", v: m, ctx: { src: "eq", E: E, form: line.form, line: line } }],
         ask: ask,
-        askText: "Slope of " + line.text,
-        api: { text: "Find the slope of " + line.text + ".", html: ask, answer: slopeVT(m), answerHtml: slopeVH(m) }
+        askText: tr("lines-and-slope.se.askText", { e: line.text }),
+        api: { text: tr("lines-and-slope.se.ask", { e: line.text }), html: ask, answer: slopeVT(m), answerHtml: slopeVH(m) }
       };
     }
 
     function solveSlopeRR(rise, run, from) {
-      if (isZ(rise) && isZ(run)) throw new UserErr("A rise of 0 and a run of 0 don’t go anywhere — give a rise or a run that isn’t 0.");
+      if (isZ(rise) && isZ(run)) throw new UserErr(tr("lines-and-slope.err.rr00"));
       var ctx = new Ctx(),
         P0 = from || { x: ZERO, y: ZERO },
         m = isZ(run) ? null : dvd(rise, run);
       var s0 = ctx.add([
-        ["e", "Rise", "Going " + (sgn(rise) >= 0 ? "up " : "down ") + "<b>" + magH(absR(rise)) + "</b> is a rise of <b>" + nH(rise) + "</b>" +
-          (sgn(rise) < 0 ? " — down counts as negative." : isZ(rise) ? " — no climb at all." : ".")
-        ]
+        ["e", tr("lines-and-slope.tag.rise"), tr(sgn(rise) >= 0 ? "lines-and-slope.rr.up" : "lines-and-slope.rr.down", { a: magH(absR(rise)), r: nH(rise) }) + (sgn(rise) < 0 ? tr("lines-and-slope.rr.downNeg") : isZ(rise) ? tr("lines-and-slope.rr.noClimb") : ".")]
       ], null, [
-        ["rise", "e", ex(wd("rise") + opS("=") + nH(rise), "res")]
+        [tr("lines-and-slope.b.rise"), "e", ex(wd(tr("lines-and-slope.b.rise")) + opS("=") + nH(rise), "res")]
       ]);
       var s1 = ctx.add([
-        ["m", "Run", "Going " + (sgn(run) >= 0 ? "right " : "left ") + "<b>" + magH(absR(run)) + "</b> is a run of <b>" + nH(run) + "</b>" +
-          (sgn(run) < 0 ? " — left counts as negative." : isZ(run) ? " — no sideways move at all." : ".")
-        ]
+        ["m", tr("lines-and-slope.tag.run"), tr(sgn(run) >= 0 ? "lines-and-slope.rr.right" : "lines-and-slope.rr.left", { a: magH(absR(run)), r: nH(run) }) + (sgn(run) < 0 ? tr("lines-and-slope.rr.leftNeg") : isZ(run) ? tr("lines-and-slope.rr.noSide") : ".")]
       ], null, [
-        ["run", "m", ex(wd("run") + opS("=") + nH(run), "res")]
+        [tr("lines-and-slope.b.run"), "m", ex(wd(tr("lines-and-slope.b.run")) + opS("=") + nH(run), "res")]
       ]);
       var s2;
       if (m === null) {
         s2 = ctx.add([
-            ["p", "Slope", "Slope is rise over run, <b>" + frH(nH(rise), "0") + "</b> — but you can’t divide by 0, so the slope is <strong>undefined</strong>. No sideways move at all means a vertical line."]
+            ["p", tr("lines-and-slope.tag.slope"), tr("lines-and-slope.rr.undef", { f: frH(nH(rise), "0") })]
           ], null,
           [
-            ["m", "p", ex(vH("m") + opS("=") + frH(nH(rise), "0")) + ex(vH("m") + opS(":") + wd("undefined"), "res")]
+            ["m", "p", ex(vH("m") + opS("=") + frH(nH(rise), "0")) + ex(vH("m") + opS(":") + wd(tr("lines-and-slope.w.undefined")), "res")]
           ]);
       } else {
         var sp = simpSlope(rise, run);
         s2 = ctx.add([
-            ["p", "Slope", "Slope is <strong>rise over run</strong>: <b>m = " + frH(nH(rise), nH(run)) + "</b>" +
-              (sp.why.length ? " — " + sp.why.join("; then ") + " — so <b>m = " + nH(m) + "</b>." : ".")
-            ]
+            ["p", tr("lines-and-slope.tag.slope"), sp.why.length ? tr("lines-and-slope.s2.slopeWhy", { f: frH(nH(rise), nH(run)), why: sp.why.join(tr("lines-and-slope.then")), m: nH(m) }) : tr("lines-and-slope.rr.slope", { f: frH(nH(rise), nH(run)) })]
           ],
-          "<strong>Why rise over run?</strong> Slope is how far the line climbs for every 1 step to the right — the rise divided by the run.",
+          tr("lines-and-slope.rr.whyRR"),
           [
-            ["m", "p", ex(vH("m") + opS("=") + frH(wd("rise"), wd("run")) + opS("=") + sp.parts.join(opS("=")), "res")]
+            ["m", "p", ex(vH("m") + opS("=") + frH(wd(tr("lines-and-slope.b.rise")), wd(tr("lines-and-slope.b.run"))) + opS("=") + sp.parts.join(opS("=")), "res")]
           ]);
       }
       var P1 = { x: add(P0.x, run), y: add(P0.y, rise) },
         E = fromPP(P0, P1);
-      gridFig(ctx, CAP_LINE + 'Start at ' + ptH(P0) + ', go the <span class="kw c-e">rise</span>, then the <span class="kw c-m">run</span>, and you land on another point of the line.', {
+      gridFig(ctx, CAP_LINE + tr("lines-and-slope.rr.cap", { p: ptH(P0) }), {
         lines: [{ E: E, cls: "l1", step: s2 }],
         pts: [{ x: P0.x, y: P0.y, lbl: ptT(P0) }, { x: P1.x, y: P1.y, lbl: ptT(P1), cls: "p2", step: s1 }],
         stairs: [{ x0: P0.x, y0: P0.y, rise: rise, run: run, stepRise: s0, stepRun: s1 }],
-        aria: "Grid with a rise of " + numT(rise) + " and a run of " + numT(run)
+        aria: tr("lines-and-slope.rr.aria", { r: numT(rise), u: numT(run) })
       });
-      var closer = m === null ? "<b>Check:</b> going straight up, the run stays 0 however far you climb — undefined every time" + OK :
-        "<b>Check:</b> a bigger staircase on the same line gives the same slope. Twice as far — rise <b>" + nH(mul(rise, R(2))) + "</b>, run <b>" + nH(mul(run, R(2))) + "</b> — gives <b>" +
-        frH(nH(mul(rise, R(2))), nH(mul(run, R(2)))) + " = " + nH(m) + "</b>" + OK + " That’s why any two points on a line give the same slope.";
+      var closer = m === null ? tr("lines-and-slope.rr.checkUndef", { ok: OK }) :
+        tr("lines-and-slope.rr.check", { r2: nH(mul(rise, R(2))), u2: nH(mul(run, R(2))), f: frH(nH(mul(rise, R(2))), nH(mul(run, R(2)))), m: nH(m), ok: OK });
       var facts = [dirFact(m)],
         d = decFact(m);
       if (d) facts.push(d);
-      var word = (sgn(rise) >= 0 ? "up " : "down ") + numT(absR(rise)) + ", " + (sgn(run) >= 0 ? "right " : "left ") + numT(absR(run));
-      var ask = "A line goes " + (sgn(rise) >= 0 ? "up" : "down") + " <b>" + magH(absR(rise)) + "</b> and " + (sgn(run) >= 0 ? "right" : "left") + " <b>" + magH(absR(run)) + "</b>" +
-        (from ? " from " + ptH(from) : "") + ". What is its slope?";
+      var ud = sgn(rise) >= 0 ? "up" : "down",
+        lr = sgn(run) >= 0 ? "right" : "left";
+      var word = tr("lines-and-slope.rr.word." + ud + "." + lr, { r: numT(absR(rise)), u: numT(absR(run)) });
+      var ask = tr(from ? "lines-and-slope.rr.askFrom." + ud + "." + lr : "lines-and-slope.rr.ask." + ud + "." + lr, { r: "<b>" + magH(absR(rise)) + "</b>", u: "<b>" + magH(absR(run)) + "</b>", p: from ? ptH(from) : "" });
       return {
         ctx: ctx,
-        band: { k: "Slope", v: slopeVH(m), facts: facts },
+        band: { k: tr("lines-and-slope.band.slope"), v: slopeVH(m), facts: facts },
         closer: closer,
-        fields: [{ key: "m", label: "Slope m", kind: "slope", v: m, ctx: { src: "rr", dy: rise, dx: run } }],
+        fields: [{ key: "m", label: tr("lines-and-slope.f.slopeM"), kind: "slope", v: m, ctx: { src: "rr", dy: rise, dx: run } }],
         ask: ask,
-        askText: "Slope: " + word,
-        api: { text: "A line goes " + word.replace(", ", " and ") + ". What is its slope?", html: ask, answer: slopeVT(m), answerHtml: slopeVH(m) }
+        askText: tr("lines-and-slope.rr.askText", { w: word }),
+        api: { text: tr("lines-and-slope.rr.ask." + ud + "." + lr, { r: numT(absR(rise)), u: numT(absR(run)) }), html: ask, answer: slopeVT(m), answerHtml: slopeVH(m) }
       };
     }
 
@@ -3823,7 +3827,7 @@
       var facts = lineFacts(E, P);
       return {
         ctx: ctx,
-        band: { k: isVert(E) ? "Equation" : "Slope-intercept form", v: lineH(E), facts: facts },
+        band: { k: isVert(E) ? tr("lines-and-slope.band.equation") : tr("lines-and-slope.form.slope"), v: lineH(E), facts: facts },
         closer: closer,
         fields: [eqField(E, "any", fieldCtx)],
         ask: ask,
@@ -3836,57 +3840,54 @@
       var ctx = new Ctx(),
         E = finishLine(ctx, m, P),
         last = ctx.steps.length - 1;
-      gridFig(ctx, CAP_LINE + "The line goes through " + ptH(P) + (m !== null && !isZ(m) ? ' with a slope of ' + nH(m) + ': from the point, a <span class="kw c-e">rise</span> of ' + numT(R(pq(m).p)) + ' and a <span class="kw c-m">run</span> of ' + pq(m).q + " lands on it again." : "."), {
+      gridFig(ctx, CAP_LINE + (m !== null && !isZ(m) ? tr("lines-and-slope.ep.capStairs", { p: ptH(P), m: nH(m), r: numT(R(pq(m).p)), u: pq(m).q }) : tr("lines-and-slope.ep.cap", { p: ptH(P) })), {
         lines: [{ E: E, cls: "l1", step: last }],
         pts: [{ x: P.x, y: P.y, lbl: ptT(P) }],
         stairs: stairFrom(P, m, 0),
-        aria: "Grid with the point " + ptT(P) + " and the line " + lineT(E)
+        aria: tr("lines-and-slope.ep.aria", { p: ptT(P), e: lineT(E) })
       });
-      var closer = "<b>Check:</b> the line has to go through " + ptH(P) + ". " + (isVert(E) ? siCheck(E, P) : "Put " + vH("x") + " = " + nH(P.x) + " into the answer: " + siCheck(E, P) +
-        " — that’s the point’s " + vH("y") + ". In standard form: " + stdCheck(E, P) + ".");
-      var ask = "Write the equation of the line with " + (m === null ? "an undefined slope" : "slope <b>" + nH(m) + "</b>") + " through " + ptH(P) + ".";
-      var st = (m === null ? "undefined slope" : "slope " + numT(m)) + " through " + ptT(P);
-      return eqResult(ctx, E, m === null ? null : P, ask, "Line with " + st, "Write the equation of the line with " + st + ".", closer, { P: P, pts: [P], m: m });
+      var closer = tr("lines-and-slope.ep.check", { p: ptH(P) }) + (isVert(E) ? siCheck(E, P) : tr("lines-and-slope.ep.checkPut", { x: nH(P.x), si: siCheck(E, P), std: stdCheck(E, P) }));
+      var ask = m === null ? tr("lines-and-slope.ep.askUndef", { p: ptH(P) }) : tr("lines-and-slope.ep.ask", { m: "<b>" + nH(m) + "</b>", p: ptH(P) });
+      var st = m === null ? tr("lines-and-slope.ep.stUndef", { p: ptT(P) }) : tr("lines-and-slope.ep.st", { m: numT(m), p: ptT(P) });
+      return eqResult(ctx, E, m === null ? null : P, ask, tr("lines-and-slope.ep.askText", { st: st }), tr("lines-and-slope.ep.api", { st: st }), closer, { P: P, pts: [P], m: m });
     }
 
     function solveEq2(P1, P2) {
       var dy = sub(P2.y, P1.y),
         dx = sub(P2.x, P1.x);
-      if (isZ(dx) && isZ(dy)) throw new UserErr("Those are the same point twice, " + ptH(P1) + ". A line needs two <i>different</i> points (or one point and a slope).");
+      if (isZ(dx) && isZ(dy)) throw new UserErr(tr("lines-and-slope.err.samePtLine", { p: ptH(P1) }));
       var ctx = new Ctx(),
         m = null;
       var fracRow = vH("m") + opS("=") + frH(Y2 + opS("−") + Y1, X2 + opS("−") + X1) + opS("=") + frH(nH(P2.y) + opS("−") + nP(P1.y), nH(P2.x) + opS("−") + nP(P1.x));
       if (isZ(dx)) {
         ctx.add([
-            ["p", "Slope", "First the slope, rise over run. The run is <b>" + nH(P2.x) + " − " + nP(P1.x) + " = 0</b> — one point is straight above the other — so the slope is <strong>undefined</strong>: a vertical line."]
+            ["p", tr("lines-and-slope.tag.slope"), tr("lines-and-slope.e2.undef", { run: nH(P2.x) + " − " + nP(P1.x) })]
           ], null,
           [
-            ["m", "p", ex(fracRow + opS("=") + frH(nH(dy), "0")) + ex(vH("m") + opS(":") + wd("undefined"), "res")]
+            ["m", "p", ex(fracRow + opS("=") + frH(nH(dy), "0")) + ex(vH("m") + opS(":") + wd(tr("lines-and-slope.w.undefined")), "res")]
           ]);
       } else {
         var sp = simpSlope(dy, dx);
         m = sp.m;
         ctx.add([
-            ["p", "Slope", "First the slope, <strong>rise over run</strong>: <b>m = " + frH(Y2 + opS("−") + Y1, X2 + opS("−") + X1) + " = " + frH(nH(dy), nH(dx)) + "</b>" +
-              (sp.why.length ? " — " + sp.why.join("; then ") + " — so <b>m = " + nH(m) + "</b>." : ".")
-            ]
+            ["p", tr("lines-and-slope.tag.slope"), tr(sp.why.length ? "lines-and-slope.e2.slopeWhy" : "lines-and-slope.e2.slope", { f0: frH(Y2 + opS("−") + Y1, X2 + opS("−") + X1), f: frH(nH(dy), nH(dx)), why: sp.why.join(tr("lines-and-slope.then")), m: nH(m) })]
           ], null,
           [
             ["m", "p", ex(fracRow + opS("=") + sp.parts.join(opS("=")), "res")]
           ]);
       }
-      ctx.lead("Either point works now — use the first one, " + ptH(P1) + ".");
+      ctx.lead(tr("lines-and-slope.e2.either", { p: ptH(P1) }));
       var E = finishLine(ctx, m, P1),
         last = ctx.steps.length - 1;
-      gridFig(ctx, CAP_LINE + "Both points sit on the line; the staircase between them is the rise and the run.", {
+      gridFig(ctx, CAP_LINE + tr("lines-and-slope.e2.cap"), {
         lines: [{ E: E, cls: "l1", step: last }],
         pts: [{ x: P1.x, y: P1.y, lbl: ptT(P1) }, { x: P2.x, y: P2.y, lbl: ptT(P2), cls: "p2" }],
         stairs: [{ x0: P1.x, y0: P1.y, rise: dy, run: dx, stepRise: 0, stepRun: 0 }],
-        aria: "Grid with " + ptT(P1) + ", " + ptT(P2) + " and the line through them"
+        aria: tr("lines-and-slope.e2.aria", { p1: ptT(P1), p2: ptT(P2) })
       });
-      var closer = '<div class="ck"><b>Check</b> that both points fit the answer.</div><div class="ck">' + ptH(P1) + ": " + siCheck(E, P1) + '</div><div class="ck">' + ptH(P2) + ": " + siCheck(E, P2) + "</div>";
-      var ask = "Write the equation of the line through " + ptH(P1) + " and " + ptH(P2) + ".";
-      return eqResult(ctx, E, m === null ? null : P1, ask, "Line through " + ptT(P1) + " and " + ptT(P2), "Write the equation of the line through " + ptT(P1) + " and " + ptT(P2) + ".",
+      var closer = '<div class="ck">' + tr("lines-and-slope.e2.check") + '</div><div class="ck">' + ptH(P1) + ": " + siCheck(E, P1) + '</div><div class="ck">' + ptH(P2) + ": " + siCheck(E, P2) + "</div>";
+      var ask = tr("lines-and-slope.e2.ask", { p1: ptH(P1), p2: ptH(P2) });
+      return eqResult(ctx, E, m === null ? null : P1, ask, tr("lines-and-slope.e2.askText", { p1: ptT(P1), p2: ptT(P2) }), tr("lines-and-slope.e2.ask", { p1: ptT(P1), p2: ptT(P2) }),
         closer, { P: P1, pts: [P1, P2], m: m });
     }
 
@@ -3896,15 +3897,13 @@
         E = fromMB(m, b),
         si = siLR(m, b);
       ctx.add([
-          ["p", "Slope-int.", "Slope-intercept form is <b>" + vH("y") + " = " + vH("m") + vH("x") + " + " + vH("b") + "</b>: m is the slope and b is the " + vH("y") + "-intercept. " +
-            "Put them straight in — <b>m = " + nH(m) + "</b> and <b>b = " + nH(b) + "</b> give <b>" + siH(m, b) + "</b>." + (isZ(m) ? " (0" + vH("x") + " is just 0.)" : "")
-          ]
+          ["p", tr("lines-and-slope.tag.slopeInt"), tr("lines-and-slope.mb.put", { m: nH(m), b: nH(b), e: siH(m, b) }) + (isZ(m) ? tr("lines-and-slope.mb.zero") : "")]
         ], null,
         [
           ["y = mx+b", "p", ex(vH("y") + opS("=") + vH("m") + vH("x") + opS("+") + vH("b"), "mvline") + ex(siH(m, b), "res")]
         ]);
       if (!isZ(m)) ctx.add([
-          ["p", "Point-slope", "The " + vH("y") + "-intercept is a point on the line too: " + ptH(Y0) + ". With it, point-slope form reads <b>" + psH(m, Y0) + "</b> — the same line, written another way."]
+          ["p", tr("lines-and-slope.tag.pointSlope"), tr("lines-and-slope.mb.ps", { p: ptH(Y0), e: psH(m, Y0) })]
         ], null,
         [
           ["y − y₁", "p", ex(psH(m, Y0))]
@@ -3912,17 +3911,20 @@
       stdFrom(ctx, si);
       var last = ctx.steps.length - 1,
         Q = { x: ONE, y: add(m, b) };
-      gridFig(ctx, CAP_LINE + "Start at the " + vH("y") + "-intercept " + ptH(Y0) + (isZ(m) ? " and stay level." : '; the slope ' + nH(m) + ' is a <span class="kw c-e">rise</span> of ' + numT(R(pq(m).p)) + ' and a <span class="kw c-m">run</span> of ' + pq(m).q + "."), {
+      gridFig(ctx, CAP_LINE + (isZ(m) ? tr("lines-and-slope.mb.capFlat", { p: ptH(Y0) }) : tr("lines-and-slope.mb.cap", { p: ptH(Y0), m: nH(m), r: numT(R(pq(m).p)), u: pq(m).q })), {
         lines: [{ E: E, cls: "l1", step: last }],
         pts: [{ x: ZERO, y: b, lbl: ptT(Y0) }],
         stairs: stairFrom(Y0, m, 0),
-        aria: "Grid with the line " + lineT(E)
+        aria: tr("lines-and-slope.aria.line", { e: lineT(E) })
       });
-      var closer = "<b>Check:</b> at " + vH("x") + " = 0 the answer gives " + siCheck(E, Y0) + " — the " + vH("y") + "-intercept. One step right, at " + vH("x") + " = 1: " + siCheck(E, Q) +
-        ", which is " + (isZ(m) ? "the same height — slope 0" : (sgn(m) > 0 ? "up " : "down ") + "<b>" + nH(absR(m)) + "</b> from " + nH(b) + " — exactly what slope " + nH(m) + " means") + ".";
-      var ask = "Write the equation of the line with slope <b>" + nH(m) + "</b> and " + vH("y") + "-intercept <b>" + nH(b) + "</b>.";
-      return eqResult(ctx, E, Y0, ask, "Line with slope " + numT(m) + " and y-intercept " + numT(b),
-        "Write the equation of the line with slope " + numT(m) + " and y-intercept " + numT(b) + ".", closer, { P: Y0, pts: [Y0], m: m, b: b });
+      var closer = tr("lines-and-slope.mb.check", {
+        si0: siCheck(E, Y0),
+        siQ: siCheck(E, Q),
+        what: isZ(m) ? tr("lines-and-slope.mb.same") : tr(sgn(m) > 0 ? "lines-and-slope.mb.up" : "lines-and-slope.mb.down", { d: nH(absR(m)), b: nH(b), m: nH(m) })
+      });
+      var ask = tr("lines-and-slope.mb.ask", { m: "<b>" + nH(m) + "</b>", b: "<b>" + nH(b) + "</b>" });
+      return eqResult(ctx, E, Y0, ask, tr("lines-and-slope.mb.askText", { m: numT(m), b: numT(b) }),
+        tr("lines-and-slope.mb.apiText", { m: numT(m), b: numT(b) }), closer, { P: Y0, pts: [Y0], m: m, b: b });
     }
 
     /* ===================== Convert forms ===================== */
@@ -3939,33 +3941,28 @@
         if (vert) {
           var plain = line.L.t === "var" && line.L.name === "x" && !hasVar(line.R);
           if (!plain) {
-            ctx.lead("There’s no " + vH("y") + " at all, so get " + vH("x") + " by itself.");
+            ctx.lead(tr("lines-and-slope.noYAll"));
             chainVertical(ctx, tidyStep(ctx, line));
           }
           ctx.add([
-            ["p", "Vertical", "<b>" + lineH(E) + "</b> is a <strong>vertical</strong> line, and its slope is undefined. " + (to === "slope" ?
-                "So there’s no " + vH("y") + " = " + vH("m") + vH("x") + " + " + vH("b") : "Point-slope form needs a slope, so it can’t be written that way either") +
-              " — <b>" + lineH(E) + "</b> is already the simplest way to write it."
-            ]
+            ["p", tr("lines-and-slope.tag.vertical"), tr(to === "slope" ? "lines-and-slope.cv.vertSI" : "lines-and-slope.cv.vertPS", { e: lineH(E) })]
           ], null, [
             ["x =", "p", ex(lineH(E), "res")]
           ]);
           ans = lineH(E);
-          kword = "Equation";
+          kword = tr("lines-and-slope.band.equation");
         } else if (from === "slope" && inOrder(sideInfo(line.R).list, ORD_X)) {
           ctx.add([
-            ["p", "Already", "<b>" + line.html + "</b> already has " + vH("y") + " by itself, with <b>" + vH("m") + vH("x") + " + " + vH("b") + "</b> on the other side — it’s in slope-intercept form. " +
-              "Slope <b>m = " + nH(m) + "</b>, " + vH("y") + "-intercept <b>b = " + nH(b) + "</b>."
-            ]
+            ["p", tr("lines-and-slope.tag.already"), tr("lines-and-slope.cv.alreadySI", { e: line.html, m: nH(m), b: nH(b) })]
           ], null, [
             ["y = mx+b", "p", ex(hlSI(m, b), "res")]
           ]);
           ans = siH(m, b);
         } else {
-          ctx.lead("For slope-intercept form, <b>" + vH("y") + " = " + vH("m") + vH("x") + " + " + vH("b") + "</b>, get " + vH("y") + " by itself.");
+          ctx.lead(tr("lines-and-slope.cv.leadSI"));
           var r = chainSlope(ctx, tidyStep(ctx, line));
           ctx.add([
-              ["p", "Read it", "That’s slope-intercept form: the slope is <b>m = " + nH(r.m) + "</b> and the " + vH("y") + "-intercept is <b>b = " + nH(r.b) + "</b>."]
+              ["p", tr("lines-and-slope.tag.readIt"), tr("lines-and-slope.cv.thatsSI", { m: nH(r.m), b: nH(r.b) })]
             ], null,
             [
               ["y = mx+b", "p", ex(hlSI(r.m, r.b), "res")]
@@ -3976,13 +3973,13 @@
         var st = tidyStep(ctx, line),
           n0 = ctx.steps.length;
         if (!(from === "standard" && isStdCanon(st))) {
-          ctx.lead("For <strong>standard form</strong>, <b>A" + vH("x") + " + B" + vH("y") + " = C</b>: whole numbers, the " + vH("x") + "- and " + vH("y") + "-terms on the left with the " + vH("x") + "-term first and positive, the number on the right.");
+          ctx.lead(tr("lines-and-slope.cv.leadStd"));
           chainStd(ctx, st);
         }
         if (ctx.steps.length === n0) {
           ctx.pre = "";
           ctx.add([
-              ["p", "Already", "<b>" + line.html + "</b> is already in standard form: whole numbers with no common factor, the letters on the left (" + vH("x") + " first, positive) and the number on the right."]
+              ["p", tr("lines-and-slope.tag.already"), tr("lines-and-slope.cv.alreadyStd", { e: line.html })]
             ], null,
             [
               ["Ax+By=C", "p", ex(stdH(E), "res")]
@@ -3993,59 +3990,55 @@
         if (from === "point") {
           used = line.ps.P;
           ctx.add([
-              ["p", "Already", "<b>" + line.html + "</b> is already in point-slope form, <b>" + vH("y") + " − " + Y1 + " = " + vH("m") + "(" + vH("x") + " − " + X1 + ")</b>: slope <b>" + nH(m) + "</b> through " + ptH(used) + "."]
+              ["p", tr("lines-and-slope.tag.already"), tr("lines-and-slope.cv.alreadyPS", { e: line.html, m: nH(m), p: ptH(used) })]
             ], null,
             [
               ["y − y₁", "p", ex(line.html, "res")]
             ]);
         } else {
           if (from !== "slope") {
-            ctx.lead("First get " + vH("y") + " by itself, to see the slope.");
+            ctx.lead(tr("lines-and-slope.cv.firstY"));
             chainSlope(ctx, tidyStep(ctx, line));
           }
           used = intPoint(E);
           var lr = siLR(m, b);
           ctx.add([
-              ["e", "Pick a point", "Point-slope form needs the slope, <b>m = " + nH(m) + "</b>, and any one point on the line. Pick an easy " + vH("x") + ": <b>" + vH("x") + " = " + nH(used.x) + "</b> gives <b>" +
-                vH("y") + " = " + substH(lr.R, used) + " = " + nH(used.y) + "</b>, so " + ptH(used) + " is on the line."
-              ]
+              ["e", tr("lines-and-slope.tag.pickPoint"), tr("lines-and-slope.cv.pick", { m: nH(m), x: nH(used.x), sub: substH(lr.R, used), y: nH(used.y), p: ptH(used) })]
             ], null,
             [
               ["x = " + numT(used.x), "e", ex(vH("y") + opS("=") + substH(lr.R, used) + opS("=") + nH(used.y)) + ex(ptH(used), "res")]
             ]);
           psStep(ctx, m, used);
           var last0 = ctx.steps[ctx.steps.length - 1];
-          last0.aside = "<strong>Any point on the line works</strong> — each one gives a different-looking equation for the same line. With the " + vH("y") + "-intercept " + ptH({ x: ZERO, y: b }) +
-            " it would be <b>" + psH(m, { x: ZERO, y: b }) + "</b>.";
+          last0.aside = tr("lines-and-slope.cv.anyPoint", { p: ptH({ x: ZERO, y: b }), e: psH(m, { x: ZERO, y: b }) });
         }
         ans = psH(m, used);
       }
       var Q = intPoint(E, used),
         last = ctx.steps.length - 1;
-      gridFig(ctx, CAP_LINE + "Every form draws the same line — only the way it’s written changes.", {
+      gridFig(ctx, CAP_LINE + tr("lines-and-slope.cv.cap"), {
         lines: [{ E: E, cls: "l1", step: last }],
         pts: used ? [{ x: used.x, y: used.y, lbl: ptT(used) }] : [],
         stairs: used ? stairFrom(used, m, last) : [],
-        aria: "Grid with the line " + lineT(E)
+        aria: tr("lines-and-slope.aria.line", { e: lineT(E) })
       });
       var ansLine = parseLine(htmlToTextSafe(ans));
-      var closer = "<b>Check</b> with a point. " + ptH(Q) + " is on the original line: " + plugLine(line, Q) + ". It fits the answer too: " + plugLine(ansLine, Q) +
-        ". Two different-looking equations that share every point are the same line.";
+      var closer = tr("lines-and-slope.cv.check", { q: ptH(Q), a: plugLine(line, Q), b: plugLine(ansLine, Q) });
       var facts = [];
-      if (to !== "slope" && !vert) facts.push("Slope-intercept form: <b>" + siH(m, b) + "</b>");
-      if (to !== "point" && !vert) facts.push("Point-slope form: <b>" + psH(m, intPoint(E)) + "</b>");
-      if (to !== "standard") facts.push("Standard form: <b>" + stdH(E) + "</b>");
-      if (!vert) facts.push("Slope <b>" + nH(m) + "</b>, " + vH("y") + "-intercept <b>" + ptH({ x: ZERO, y: b }) + "</b>");
+      if (to !== "slope" && !vert) facts.push(tr("lines-and-slope.fact.si", { e: siH(m, b) }));
+      if (to !== "point" && !vert) facts.push(tr("lines-and-slope.fact.ps", { e: psH(m, intPoint(E)) }));
+      if (to !== "standard") facts.push(tr("lines-and-slope.fact.std", { e: stdH(E) }));
+      if (!vert) facts.push(tr("lines-and-slope.fact.slopeInt", { m: nH(m), p: ptH({ x: ZERO, y: b }) }));
       var target = vert && to !== "standard" ? "any" : to;
-      var ask = "Write <b>" + line.html + "</b> in " + TO_LBL[to] + " form.";
+      var ask = tr("lines-and-slope.cv.ask." + to, { e: "<b>" + line.html + "</b>" });
       return {
         ctx: ctx,
         band: { k: kword, v: ans, facts: facts },
         closer: closer,
         fields: [eqField(E, target, { from: from, line: line })],
         ask: ask,
-        askText: "Write " + line.text + " in " + TO_LBL[to] + " form",
-        api: { text: "Write " + line.text + " in " + TO_LBL[to] + " form.", html: ask, answer: htmlToTextSafe(ans), answerHtml: ans }
+        askText: tr("lines-and-slope.cv.askText." + to, { e: line.text }),
+        api: { text: tr("lines-and-slope.cv.ask." + to, { e: line.text }), html: ask, answer: htmlToTextSafe(ans), answerHtml: ans }
       };
     }
 
@@ -4061,15 +4054,12 @@
         var c = dvd(E.C, E.A),
           plain = line.L.t === "var" && line.L.name === "x" && !hasVar(line.R);
         if (!plain) {
-          ctx.lead("There’s no " + vH("y") + " at all, so get " + vH("x") + " by itself.");
+          ctx.lead(tr("lines-and-slope.noYAll"));
           chainVertical(ctx, tidyStep(ctx, line));
         }
         var XI = { x: c, y: ZERO };
         var s0 = ctx.add([
-          ["p", "Vertical", "<b>" + vH("x") + " = " + nH(c) + "</b> means " + vH("x") + " is " + nH(c) + " whatever " + vH("y") + " is — every point lines up straight above and below " + ptH(XI) +
-            ": a <strong>vertical</strong> line. It crosses the " + vH("x") + "-axis at " + ptH(XI) + (isZ(c) ? " — in fact it <i>is</i> the " + vH("y") + "-axis." : " and never crosses the " + vH("y") + "-axis.") +
-            " Its slope is undefined."
-          ]
+          ["p", tr("lines-and-slope.tag.vertical"), tr(isZ(c) ? "lines-and-slope.gr.vertAxis" : "lines-and-slope.gr.vert", { c: nH(c), p: ptH(XI) })]
         ], null, [
           ["x =", "p", ex(vH("x") + opS("=") + nH(c), "res")]
         ]);
@@ -4079,24 +4069,24 @@
           tbl += "<tr><td>" + nH(c) + "</td><td>" + nH(P.y) + '</td><td class="pt">' + ptH(P) + "</td></tr>";
         });
         var s1 = ctx.add([
-          ["e", "Table", "A table of values: " + vH("y") + " can be anything, and " + vH("x") + " is always " + nH(c) + "."]
+          ["e", tr("lines-and-slope.tag.table"), tr("lines-and-slope.gr.tableVert", { c: nH(c) })]
         ], null, [
-          ["table", "e", tbl + "</table>"]
+          [tr("lines-and-slope.b.table"), "e", tbl + "</table>"]
         ]);
         var s2 = ctx.add([
-          ["p", "Draw", "Plot the points and draw a straight line through them, up and down, with arrows on both ends — it keeps going forever."]
+          ["p", tr("lines-and-slope.tag.draw"), tr("lines-and-slope.gr.drawVert")]
         ], null, [
-          ["draw", "p", ex(vH("x") + opS("=") + nH(c), "res")]
+          [tr("lines-and-slope.b.draw"), "p", ex(vH("x") + opS("=") + nH(c), "res")]
         ]);
         spec.lines.push({ E: E, cls: "l1", step: s2 });
         spec.pts.push({ x: c, y: ZERO, lbl: ptT(XI), step: s0 });
         [-2, -1, 1, 2].forEach(function(yv) { spec.pts.push({ x: c, y: R(yv), cls: "sm", step: s1 }); });
-        facts = ["Slope: <b>undefined</b> (vertical)", vH("x") + "-intercept: <b>" + ptH(XI) + "</b>", vH("y") + "-intercept: <b>" + (isZ(c) ? "every point (it’s the y-axis)" : "none") + "</b>"];
-        fields = [{ key: "m", label: "Slope", kind: "slope", v: null, ctx: { src: "eq", E: E, form: line.form, line: line } },
-          { key: "yi", label: "y-intercept", kind: "yint", v: isZ(c) ? "all" : null, E: E },
-          { key: "xi", label: "x-intercept", kind: "xint", v: c, E: E }
+        facts = [tr("lines-and-slope.fact.slopeUndef"), tr("lines-and-slope.fact.xint", { p: ptH(XI) }), tr("lines-and-slope.fact.yint", { p: isZ(c) ? tr("lines-and-slope.everyY") : tr("lines-and-slope.none") })];
+        fields = [{ key: "m", label: tr("lines-and-slope.f.slope"), kind: "slope", v: null, ctx: { src: "eq", E: E, form: line.form, line: line } },
+          { key: "yi", label: tr("lines-and-slope.f.yint"), kind: "yint", v: isZ(c) ? "all" : null, E: E },
+          { key: "xi", label: tr("lines-and-slope.f.xint"), kind: "xint", v: c, E: E }
         ];
-        closer = "<b>Check:</b> " + ptH({ x: c, y: R(2) }) + " fits the original: " + plugLine(line, { x: c, y: R(2) }) + ". Any " + vH("y") + " works, as long as " + vH("x") + " = " + nH(c) + ".";
+        closer = tr("lines-and-slope.gr.checkVert", { p: ptH({ x: c, y: R(2) }), plug: plugLine(line, { x: c, y: R(2) }), c: nH(c) });
       } else {
         var m = slopeOf(E),
           b = yintOf(E),
@@ -4104,26 +4094,22 @@
           Y0 = { x: ZERO, y: b };
         if (line.form === "slope" && inOrder(sideInfo(line.R).list, ORD_X)) {
           ctx.add([
-            ["p", "Read it", "<b>" + line.html + "</b> is in slope-intercept form, <b>" + vH("y") + " = " + vH("m") + vH("x") + " + " + vH("b") + "</b>, which is the easiest form to graph: " +
-              "slope <b>m = " + nH(m) + "</b>, " + vH("y") + "-intercept <b>b = " + nH(b) + "</b>."
-            ]
+            ["p", tr("lines-and-slope.tag.readIt"), tr("lines-and-slope.gr.readSI", { e: line.html, m: nH(m), b: nH(b) })]
           ], null, [
             ["y = mx+b", "p", ex(hlSI(m, b), "res")]
           ]);
         } else {
-          ctx.lead("Start by getting " + vH("y") + " by itself — slope-intercept form shows the slope and where the line crosses the " + vH("y") + "-axis.");
+          ctx.lead(tr("lines-and-slope.gr.leadY"));
           chainSlope(ctx, tidyStep(ctx, line));
           ctx.add([
-              ["p", "Read it", "Now it’s <b>" + vH("y") + " = " + vH("m") + vH("x") + " + " + vH("b") + "</b>: slope <b>m = " + nH(m) + "</b>, " + vH("y") + "-intercept <b>b = " + nH(b) + "</b>."]
+              ["p", tr("lines-and-slope.tag.readIt"), tr("lines-and-slope.gr.nowSI", { m: nH(m), b: nH(b) })]
             ], null,
             [
               ["y = mx+b", "p", ex(hlSI(m, b), "res")]
             ]);
         }
         var sY = ctx.add([
-            ["e", "y-intercept", "The <strong>" + vH("y") + "-intercept</strong> is where the line crosses the " + vH("y") + "-axis. Every point on that axis has " + vH("x") + " = 0, so put " +
-              vH("x") + " = 0 in: <b>" + vH("y") + " = " + substH(lr.R, Y0) + " = " + nH(b) + "</b>. The point is " + ptH(Y0) + " — b itself."
-            ]
+            ["e", tr("lines-and-slope.tag.yint"), tr("lines-and-slope.gr.yint", { sub: substH(lr.R, Y0), b: nH(b), p: ptH(Y0) })]
           ], null,
           [
             ["x = 0", "e", ex(vH("y") + opS("=") + substH(lr.R, Y0) + opS("=") + nH(b)) + ex(ptH(Y0), "res")]
@@ -4133,17 +4119,15 @@
           sX;
         if (isZ(m)) {
           sX = ctx.add([
-              ["e", "x-intercept", isZ(b) ? "<b>" + vH("y") + " = 0</b> is the " + vH("x") + "-axis itself — every point on it is on the axis." :
-                "The line is flat at " + vH("y") + " = " + nH(b) + ", so it never gets down (or up) to " + vH("y") + " = 0: there’s <strong>no " + vH("x") + "-intercept</strong>."
-              ]
+              ["e", tr("lines-and-slope.tag.xint"), isZ(b) ? tr("lines-and-slope.gr.xAxis") : tr("lines-and-slope.gr.noXint", { b: nH(b) })]
             ], null,
             [
-              ["y = 0?", "e", ex(isZ(b) ? wd("every point") : wd("none"), "res")]
+              ["y = 0?", "e", ex(isZ(b) ? wd(tr("lines-and-slope.w.everyPoint")) : wd(tr("lines-and-slope.none")), "res")]
             ]);
         } else if (isZ(b)) {
           xi = ZERO;
           sX = ctx.add([
-            ["e", "x-intercept", "The line goes through the origin, " + ptH(Y0) + ", which is on both axes — so the " + vH("x") + "-intercept is " + ptH(Y0) + " too."]
+            ["e", tr("lines-and-slope.tag.xint"), tr("lines-and-slope.gr.origin", { p: ptH(Y0) })]
           ], null, [
             ["y = 0", "e", ex(ptH(Y0), "res")]
           ]);
@@ -4151,10 +4135,15 @@
           xi = dvd(neg(b), m);
           var XI2 = { x: xi, y: ZERO };
           sX = ctx.add([
-              ["e", "x-intercept", "The <strong>" + vH("x") + "-intercept</strong> is where it crosses the " + vH("x") + "-axis, where " + vH("y") + " = 0. Put " + vH("y") + " = 0 in and solve: <b>0 = " +
-                termsH(lr.R) + "</b>. " + (sgn(b) > 0 ? "Subtract <b>" + nH(b) + "</b> from" : "Add <b>" + nH(absR(b)) + "</b> to") + " both sides: <b>" + nH(neg(b)) + " = " + termsH([T(m, "x")]) + "</b>. " +
-                (isOne(m) ? "" : "Divide both sides by <b>" + nH(m) + "</b>: ") + "<b>" + vH("x") + " = " + nH(xi) + "</b>. The point is " + ptH(XI2) + "."
-              ]
+              ["e", tr("lines-and-slope.tag.xint"), tr("lines-and-slope.gr.xint", {
+                rhs: termsH(lr.R),
+                move: sgn(b) > 0 ? tr("lines-and-slope.gr.xintSub", { b: nH(b) }) : tr("lines-and-slope.gr.xintAdd", { b: nH(absR(b)) }),
+                nb: nH(neg(b)),
+                mx: termsH([T(m, "x")]),
+                div: isOne(m) ? "" : tr("lines-and-slope.gr.xintDiv", { m: nH(m) }),
+                xi: nH(xi),
+                p: ptH(XI2)
+              })]
             ], null,
             [
               ["y = 0", "e", ex("0" + opS("=") + termsH(lr.R)) + ex(nH(neg(b)) + opS("=") + termsH([T(m, "x")]), "mvline") + ex(vH("x") + opS("=") + (isOne(m) ? "" : nH(neg(b)) + opS("÷") + nP(m) + opS("=")) + nH(xi)) + ex(ptH(XI2), "res")]
@@ -4171,11 +4160,9 @@
         });
         var q = Number(m.d);
         var sT = ctx.add([
-          ["e", "Table", "Make a table: pick a few " + vH("x") + "-values and work out " + vH("y") + " for each" +
-            (q > 1 ? ". Using multiples of <b>" + q + "</b> (the bottom of the slope) keeps the " + vH("y") + "-values whole." : ".")
-          ]
+          ["e", tr("lines-and-slope.tag.table"), q > 1 ? tr("lines-and-slope.gr.tableQ", { q: q }) : tr("lines-and-slope.gr.table")]
         ], null, [
-          ["table", "e", tbl + "</table>"]
+          [tr("lines-and-slope.b.table"), "e", tbl + "</table>"]
         ]);
         tpts.forEach(function(P) {
           if (isZ(P.x) || (xi !== null && isZ(P.y) && eqR(P.x, xi))) return;
@@ -4186,50 +4173,47 @@
           var p = pq(m),
             End = { x: R(p.q), y: add(b, R(p.p)) };
           sR = ctx.add([
-              ["m", "Rise / run", "Or skip the table and use the slope as a staircase: <b>m = " + (isInt(m) ? nH(m) + " = " + frH(nH(m), "1") : nH(m)) + "</b> means a rise of <b>" + p.p + "</b> and a run of <b>" + p.q + "</b>. " +
-                "Start at the " + vH("y") + "-intercept " + ptH(Y0) + ", go " + (p.p > 0n ? "up " : "down ") + babs(p.p) + " and right " + p.q + ", and you land on " + ptH(End) + " — another point on the line."
-              ]
+              ["m", tr("lines-and-slope.tag.riseRun"), tr(p.p > 0n ? "lines-and-slope.gr.stairsUp" : "lines-and-slope.gr.stairsDown", { m: isInt(m) ? nH(m) + " = " + frH(nH(m), "1") : nH(m), p: p.p, q: p.q, y0: ptH(Y0), a: babs(p.p), end: ptH(End) })]
             ],
-            sgn(m) < 0 && ctx.once("negRun") ? "A negative slope has a negative rise: go <i>down</i> instead of up. The run still goes to the right." : null,
+            sgn(m) < 0 && ctx.once("negRun") ? tr("lines-and-slope.gr.negRun") : null,
             [
-              ["rise/run", "m", ex(vH("m") + opS("=") + frH(wd("rise"), wd("run")) + opS("=") + frH(nH(R(p.p)), String(p.q))) + ex(ptH(Y0) + opS("→") + ptH(End), "res")]
+              [tr("lines-and-slope.b.riseRun"), "m", ex(vH("m") + opS("=") + frH(wd(tr("lines-and-slope.b.rise")), wd(tr("lines-and-slope.b.run"))) + opS("=") + frH(nH(R(p.p)), String(p.q))) + ex(ptH(Y0) + opS("→") + ptH(End), "res")]
             ]);
           spec.stairs = stairFrom(Y0, m, sR);
         }
         var sD = ctx.add([
-            ["p", "Draw", "Plot the points and draw one straight line through them all, with arrows on both ends — the line keeps going forever. If a point doesn’t line up, recheck its arithmetic."]
+            ["p", tr("lines-and-slope.tag.draw"), tr("lines-and-slope.gr.draw")]
           ], null,
           [
-            ["draw", "p", ex(siH(m, b), "res")]
+            [tr("lines-and-slope.b.draw"), "p", ex(siH(m, b), "res")]
           ]);
         spec.lines.push({ E: E, cls: "l1", step: sD });
-        facts = ["Slope: <b>" + nH(m) + "</b>", vH("y") + "-intercept: <b>" + ptH(Y0) + "</b>",
-          vH("x") + "-intercept: <b>" + (xi !== null ? ptH({ x: xi, y: ZERO }) : isZ(b) ? "every point (it’s the x-axis)" : "none") + "</b>"
+        facts = [tr("lines-and-slope.fact.slope", { m: nH(m) }), tr("lines-and-slope.fact.yint", { p: ptH(Y0) }),
+          tr("lines-and-slope.fact.xint", { p: xi !== null ? ptH({ x: xi, y: ZERO }) : isZ(b) ? tr("lines-and-slope.everyX") : tr("lines-and-slope.none") })
         ];
-        fields = [{ key: "m", label: "Slope", kind: "slope", v: m, ctx: { src: "eq", E: E, form: line.form, line: line } },
-          { key: "yi", label: "y-intercept", kind: "yint", v: b, E: E },
-          { key: "xi", label: "x-intercept", kind: "xint", v: xi !== null ? xi : isZ(b) ? "all" : null, E: E }
+        fields = [{ key: "m", label: tr("lines-and-slope.f.slope"), kind: "slope", v: m, ctx: { src: "eq", E: E, form: line.form, line: line } },
+          { key: "yi", label: tr("lines-and-slope.f.yint"), kind: "yint", v: b, E: E },
+          { key: "xi", label: tr("lines-and-slope.f.xint"), kind: "xint", v: xi !== null ? xi : isZ(b) ? "all" : null, E: E }
         ];
         var QQ = tpts[tpts.length - 1];
-        closer = "<b>Check</b> a point from the table in the original equation — " + ptH(QQ) + ": " + plugLine(line, QQ) + ". " +
-          (xi !== null && !isZ(xi) ? "And the " + vH("x") + "-intercept " + ptH({ x: xi, y: ZERO }) + ": " + plugLine(line, { x: xi, y: ZERO }) + "." : "Every point on the line works the same way.");
+        closer = tr("lines-and-slope.gr.check", { p: ptH(QQ), plug: plugLine(line, QQ) }) +
+          (xi !== null && !isZ(xi) ? tr("lines-and-slope.gr.checkX", { p: ptH({ x: xi, y: ZERO }), plug: plugLine(line, { x: xi, y: ZERO }) }) : tr("lines-and-slope.gr.checkEvery"));
       }
-      spec.aria = "Graph of " + lineT(E);
-      gridFig(ctx, CAP_LINE + (isVert(E) ? "A vertical line through " + ptH({ x: dvd(E.C, E.A), y: ZERO }) + "." :
-        "The intercepts, the table’s points and the slope’s staircase all land on one straight line."), spec);
-      var ask = "Graph <b>" + line.html + "</b>.";
+      spec.aria = tr("lines-and-slope.gr.aria", { e: lineT(E) });
+      gridFig(ctx, CAP_LINE + (isVert(E) ? tr("lines-and-slope.gr.capVert", { p: ptH({ x: dvd(E.C, E.A), y: ZERO }) }) : tr("lines-and-slope.gr.cap")), spec);
+      var ask = tr("lines-and-slope.gr.ask", { e: "<b>" + line.html + "</b>" });
       return {
         ctx: ctx,
-        band: { k: "Graph of", v: lineH(E), facts: facts },
+        band: { k: tr("lines-and-slope.band.graphOf"), v: lineH(E), facts: facts },
         closer: closer,
         fields: fields,
         ask: ask,
-        askText: "Graph " + line.text,
+        askText: tr("lines-and-slope.gr.askText", { e: line.text }),
         api: {
-          text: "Graph " + line.text + ". Give the slope and both intercepts.",
+          text: tr("lines-and-slope.gr.apiText", { e: line.text }),
           html: ask,
-          answer: (isVert(E) ? "x = " + numT(dvd(E.C, E.A)) + "; slope undefined; x-intercept (" + numT(dvd(E.C, E.A)) + ", 0)" :
-            siT(slopeOf(E), yintOf(E)) + "; slope " + numT(slopeOf(E)) + "; y-intercept (0, " + numT(yintOf(E)) + "); x-intercept " + (xintOf(E) ? "(" + numT(xintOf(E)) + ", 0)" : isZ(yintOf(E)) ? "every point" : "none")),
+          answer: (isVert(E) ? tr("lines-and-slope.gr.ansVert", { c: numT(dvd(E.C, E.A)) }) :
+            tr("lines-and-slope.gr.ans", { e: siT(slopeOf(E), yintOf(E)), m: numT(slopeOf(E)), b: numT(yintOf(E)), xi: xintOf(E) ? "(" + numT(xintOf(E)) + ", 0)" : isZ(yintOf(E)) ? tr("lines-and-slope.w.everyPoint") : tr("lines-and-slope.none") })),
           answerHtml: lineH(E) + "<br>" + gridSVG(apiSpec(E), true)
         }
       };
@@ -4239,30 +4223,28 @@
       var pts = [];
       if (!isVert(E)) pts.push({ x: ZERO, y: yintOf(E), lbl: ptT({ x: ZERO, y: yintOf(E) }) });
       if (!isZ(E.A) && (isVert(E) || !isZ(yintOf(E)))) pts.push({ x: xintOf(E), y: ZERO, lbl: ptT({ x: xintOf(E), y: ZERO }) });
-      return { lines: [{ E: E, cls: "l1" }], pts: pts, aria: "Graph of " + lineT(E), size: 170 };
+      return { lines: [{ E: E, cls: "l1" }], pts: pts, aria: tr("lines-and-slope.gr.aria", { e: lineT(E) }), size: 170 };
     }
 
     /* ===================== Parallel & perpendicular ===================== */
     function solvePar(rel, line, P) {
       var ctx = new Ctx(),
         E0 = line.E,
-        r = slopeSteps(ctx, line, "The given line"),
+        r = slopeSteps(ctx, line, tr("lines-and-slope.par.given")),
         m0 = r.m,
         m;
       if (rel === "parallel") {
         m = m0;
         ctx.add([
-            ["p", "Parallel", "Parallel lines never meet: they go in exactly the same direction, so they have the <strong>same slope</strong>. " +
-              (m0 === null ? "The given line is vertical, so the new one is vertical too." : "The new line’s slope is <b>m = " + nH(m) + "</b> too.")
-            ]
+            ["p", tr("lines-and-slope.tag.parallel"), tr("lines-and-slope.par.same") + (m0 === null ? tr("lines-and-slope.par.sameVert") : tr("lines-and-slope.par.sameM", { m: nH(m) }))]
           ], null,
           [
-            ["same m", "p", ex(vH("m") + opS("=") + (m === null ? wd("undefined") : nH(m)), "res")]
+            [tr("lines-and-slope.b.sameM"), "p", ex(vH("m") + opS("=") + (m === null ? wd(tr("lines-and-slope.w.undefined")) : nH(m)), "res")]
           ]);
       } else if (m0 === null) {
         m = ZERO;
         ctx.add([
-            ["p", "Perpendicular", "Perpendicular lines meet at a right angle. The given line is vertical, so a line at a right angle to it is flat — <strong>horizontal</strong>, slope <b>0</b>."]
+            ["p", tr("lines-and-slope.tag.perp"), tr("lines-and-slope.par.perpVert")]
           ], null,
           [
             ["⊥", "p", ex(vH("m") + opS("=") + "0", "res")]
@@ -4270,105 +4252,100 @@
       } else if (isZ(m0)) {
         m = null;
         ctx.add([
-            ["p", "Perpendicular", "Perpendicular lines meet at a right angle. The given line is flat, so a line at a right angle to it goes straight up and down — <strong>vertical</strong>, undefined slope."]
+            ["p", tr("lines-and-slope.tag.perp"), tr("lines-and-slope.par.perpFlat")]
           ], null,
           [
-            ["⊥", "p", ex(vH("m") + opS(":") + wd("undefined"), "res")]
+            ["⊥", "p", ex(vH("m") + opS(":") + wd(tr("lines-and-slope.w.undefined")), "res")]
           ]);
       } else {
         m = neg(recip(m0));
         var flip = recip(m0),
-          asFrac = isInt(m0) ? " (" + nH(m0) + " is " + frH(nH(m0), "1") + ")" : "";
+          asFrac = isInt(m0) ? tr("lines-and-slope.par.asFrac", { m: nH(m0), f: frH(nH(m0), "1") }) : "";
         ctx.add([
-            ["p", "Perpendicular", "Perpendicular lines meet at a right angle, and their slopes are <strong>negative reciprocals</strong>: flip the fraction upside down and change its sign. " +
-              "<b>" + nH(m0) + "</b>" + asFrac + " → flip it: <b>" + nH(flip) + "</b> → change the sign: <b>" + nH(m) + "</b>. " +
-              "Check: <b>" + nH(m0) + " · " + nP(m) + " = −1</b> — perpendicular slopes always multiply to −1."
-            ]
+            ["p", tr("lines-and-slope.tag.perp"), tr("lines-and-slope.par.recip", { m0: nH(m0), asFrac: asFrac, flip: nH(flip), m: nH(m), mp: nP(m) })]
           ],
-          ctx.once("perpWhy") ? "<strong>Why?</strong> Turn a staircase a quarter-turn and its rise and run swap places — and one of them changes direction. So rise/run becomes −run/rise." : null,
+          ctx.once("perpWhy") ? tr("lines-and-slope.par.why") : null,
           [
             ["⊥ m", "p", ex(nH(m0) + opS("→") + nH(flip) + opS("→") + nH(m), "mvline") + ex(vH("m") + opS("=") + nH(m), "res")]
           ]);
       }
-      ctx.lead("Now build the new line through " + ptH(P) + ".");
+      ctx.lead(tr("lines-and-slope.par.build", { p: ptH(P) }));
       var E = finishLine(ctx, m, P),
         last = ctx.steps.length - 1,
         I = meet(E0, E);
       var spec = {
         lines: [{ E: E0, cls: "l2", dash: true }, { E: E, cls: "l1", step: last }],
         pts: [{ x: P.x, y: P.y, lbl: ptT(P) }],
-        aria: "Grid with the given line " + line.text + " and the new line " + lineT(E) + " through " + ptT(P)
+        aria: tr("lines-and-slope.par.aria", { a: line.text, b: lineT(E), p: ptT(P) })
       };
       if (rel === "perpendicular" && I) { spec.right = { P: I, E1: E0, E2: E, step: last }; if (!eqR(I.x, P.x) || !eqR(I.y, P.y)) spec.pts.push({ x: I.x, y: I.y, cls: "sm", step: last }); }
-      gridFig(ctx, CAP_LINE + (rel === "parallel" ? "Same steepness, never touching." : "The two lines cross at a right angle."), spec,
-        gkey([{ c: "a", dash: true, h: "given: " + line.html }, { c: "p", h: "new: " + lineH(E) }]));
-      var closer = "<b>Check:</b> the new line goes through " + ptH(P) + ": " + siCheck(E, P) + ". " +
-        (rel === "parallel" ? (m === null ? "Both lines are vertical" + OK : "Both slopes are <b>" + nH(m) + "</b>" + OK) :
-          (m0 === null || m === null ? "One line is vertical and the other horizontal — a right angle" + OK : "The slopes multiply to <b>" + nH(m0) + " · " + nP(m) + " = " + nH(mul(m0, m)) + "</b>" + OK));
+      gridFig(ctx, CAP_LINE + (rel === "parallel" ? tr("lines-and-slope.par.capPar") : tr("lines-and-slope.par.capPerp")), spec,
+        gkey([{ c: "a", dash: true, h: tr("lines-and-slope.par.keyGiven", { e: line.html }) }, { c: "p", h: tr("lines-and-slope.par.keyNew", { e: lineH(E) }) }]));
+      var closer = tr("lines-and-slope.par.check", { p: ptH(P), si: siCheck(E, P) }) +
+        (rel === "parallel" ? (m === null ? tr("lines-and-slope.par.bothVert", { ok: OK }) : tr("lines-and-slope.par.bothM", { m: nH(m), ok: OK })) :
+          (m0 === null || m === null ? tr("lines-and-slope.par.vertHoriz", { ok: OK }) : tr("lines-and-slope.par.multiply", { e: nH(m0) + " · " + nP(m) + " = " + nH(mul(m0, m)), ok: OK })));
       var res = eqResult(ctx, E, m === null ? null : P, "", "", "", closer, { P: P, pts: [P], m: m, m0: m0, rel: rel, E0: E0 });
-      var ask = "Write the equation of the line " + rel + " to <b>" + line.html + "</b> through " + ptH(P) + ".";
+      var ask = tr("lines-and-slope.par.ask." + rel, { e: "<b>" + line.html + "</b>", p: ptH(P) });
       res.ask = ask;
-      res.askText = "Line " + rel + " to " + line.text + " through " + ptT(P);
-      res.api.text = "Write the equation of the line " + rel + " to " + line.text + " through " + ptT(P) + ".";
+      res.askText = tr("lines-and-slope.par.askText." + rel, { e: line.text, p: ptT(P) });
+      res.api.text = tr("lines-and-slope.par.ask." + rel, { e: line.text, p: ptT(P) });
       res.api.html = ask;
-      if (m !== null) res.band.facts[0] = "Slope <b>" + nH(m) + "</b> — " + (rel === "parallel" ? "the same as" : "the negative reciprocal of") + " the given line’s " + (m0 === null ? "undefined slope" : "<b>" + nH(m0) + "</b>") +
-        "; " + vH("y") + "-intercept <b>" + ptH({ x: ZERO, y: yintOf(E) }) + "</b>";
+      if (m !== null) res.band.facts[0] = tr(rel === "parallel" ? "lines-and-slope.par.factPar" : "lines-and-slope.par.factPerp", { m: nH(m), m0: m0 === null ? tr("lines-and-slope.par.undefSlope") : "<b>" + nH(m0) + "</b>", p: ptH({ x: ZERO, y: yintOf(E) }) });
       return res;
     }
 
     function solveWhich(l1, l2) {
       var ctx = new Ctx(),
-        r1 = slopeSteps(ctx, l1, "Line 1"),
-        r2 = slopeSteps(ctx, l2, "Line 2"),
+        r1 = slopeSteps(ctx, l1, tr("lines-and-slope.line1")),
+        r2 = slopeSteps(ctx, l2, tr("lines-and-slope.line2")),
         m1 = r1.m,
         m2 = r2.m,
         E1 = l1.E,
         E2 = l2.E,
         kind, txt;
 
-      function sH(mm) { return mm === null ? "undefined" : nH(mm); }
+      function sH(mm) { return mm === null ? tr("lines-and-slope.w.undefined") : nH(mm); }
       if (sameLine(E1, E2)) {
         kind = "same";
-        txt = "The slopes are equal (" + sH(m1) + " and " + sH(m2) + "), and so are the intercepts: these are two ways of writing the <strong>same line</strong> — every point on one is on the other. (Some books count that as parallel; it’s really one line.)";
+        txt = tr("lines-and-slope.wh.same", { a: sH(m1), b: sH(m2) });
       } else if ((m1 === null && m2 === null) || (m1 !== null && m2 !== null && eqR(m1, m2))) {
         kind = "parallel";
-        txt = m1 === null ? "Both lines are vertical, side by side: <strong>parallel</strong>." : "The slopes are equal — <b>" + nH(m1) + "</b> and <b>" + nH(m2) + "</b> — but the lines are in different places (different " + vH("y") + "-intercepts), so they never meet: <strong>parallel</strong>.";
+        txt = m1 === null ? tr("lines-and-slope.wh.bothVert") : tr("lines-and-slope.wh.par", { a: nH(m1), b: nH(m2) });
       } else if ((m1 === null && isZ(m2)) || (m2 === null && m1 !== null && isZ(m1))) {
         kind = "perpendicular";
-        txt = "One line is vertical and the other horizontal, so they cross at a right angle: <strong>perpendicular</strong>.";
+        txt = tr("lines-and-slope.wh.vertHoriz");
       } else if (m1 !== null && m2 !== null && eqR(mul(m1, m2), NEG1)) {
         kind = "perpendicular";
-        txt = "Multiply the slopes: <b>" + nH(m1) + " · " + nP(m2) + " = −1</b>. Slopes that multiply to −1 are negative reciprocals (flip one and change its sign to get the other), so the lines cross at a right angle: <strong>perpendicular</strong>.";
+        txt = tr("lines-and-slope.wh.perp", { a: nH(m1), b: nP(m2) });
       } else {
         kind = "neither";
-        txt = "The slopes, <b>" + sH(m1) + "</b> and <b>" + sH(m2) + "</b>, aren’t equal" + (m1 !== null && m2 !== null ? ", and they multiply to <b>" + nH(mul(m1, m2)) + "</b>, not −1" : "") +
-          ". So the lines cross, but not at a right angle: <strong>neither</strong>.";
+        txt = m1 !== null && m2 !== null ? tr("lines-and-slope.wh.neitherProd", { a: sH(m1), b: sH(m2), p: nH(mul(m1, m2)) }) : tr("lines-and-slope.wh.neither", { a: sH(m1), b: sH(m2) });
       }
-      var WORD = { same: "Same line", parallel: "Parallel", perpendicular: "Perpendicular", neither: "Neither" };
+      var WORD = { same: tr("lines-and-slope.rel.same"), parallel: tr("lines-and-slope.rel.parallel"), perpendicular: tr("lines-and-slope.rel.perpendicular"), neither: tr("lines-and-slope.rel.neither") };
       var sC = ctx.add([
-          ["p", "Compare", txt]
+          ["p", tr("lines-and-slope.tag.compare"), txt]
         ],
-        ctx.once("rules") ? "<strong>The rules:</strong> parallel lines have equal slopes; perpendicular lines have slopes that multiply to −1 (or one is vertical and the other horizontal). Anything else is neither." : null,
+        ctx.once("rules") ? tr("lines-and-slope.wh.rules") : null,
         [
           ["m₁ · m₂", "p", ex(subH("m", 1) + opS("=") + sH(m1) + opS(",") + subH("m", 2) + opS("=") + sH(m2)) + ex('<span class="word">' + WORD[kind] + "</span>", "res")]
         ]);
       var I = meet(E1, E2),
-        spec = { lines: [{ E: E1, cls: "l1" }, { E: E2, cls: "l2", dash: kind === "same" }], pts: [], aria: "Grid with " + l1.text + " and " + l2.text };
+        spec = { lines: [{ E: E1, cls: "l1" }, { E: E2, cls: "l2", dash: kind === "same" }], pts: [], aria: tr("lines-and-slope.wh.aria", { a: l1.text, b: l2.text }) };
       if (I) { spec.pts.push({ x: I.x, y: I.y, lbl: ptT(I), cls: "sm", step: sC }); if (kind === "perpendicular") spec.right = { P: I, E1: E1, E2: E2, step: sC }; }
-      gridFig(ctx, CAP_LINE + (kind === "parallel" ? "Side by side, never meeting." : kind === "same" ? "One line drawn on top of the other." : kind === "perpendicular" ? "They cross at a right angle." : "They cross, but not square."), spec,
+      gridFig(ctx, CAP_LINE + tr("lines-and-slope.wh.cap." + kind), spec,
         gkey([{ c: "p", h: "1: " + l1.html }, { c: "a", dash: kind === "same", h: "2: " + l2.html }]));
-      var closer = I ? "<b>Check</b> on the grid: the lines cross at " + ptH(I) + " — it fits both: " + plugLine(l1, I) + "; " + plugLine(l2, I) + "." :
-        kind === "same" ? "<b>Check:</b> one point, " + ptH(intPoint(E1)) + ", fits both: " + plugLine(l1, intPoint(E1)) + "; " + plugLine(l2, intPoint(E1)) + "." :
-        "<b>Check:</b> parallel lines never meet, so no point fits both equations — try solving them together and the letters cancel to something false.";
-      var ask = "Are <b>" + l1.html + "</b> and <b>" + l2.html + "</b> parallel, perpendicular or neither?";
+      var closer = I ? tr("lines-and-slope.wh.checkCross", { p: ptH(I), a: plugLine(l1, I), b: plugLine(l2, I) }) :
+        kind === "same" ? tr("lines-and-slope.wh.checkSame", { p: ptH(intPoint(E1)), a: plugLine(l1, intPoint(E1)), b: plugLine(l2, intPoint(E1)) }) :
+        tr("lines-and-slope.wh.checkPar");
+      var ask = tr("lines-and-slope.wh.ask", { a: "<b>" + l1.html + "</b>", b: "<b>" + l2.html + "</b>" });
       return {
         ctx: ctx,
-        band: { k: "The lines are", v: '<span class="word">' + WORD[kind] + "</span>", facts: ["Slopes: <b>" + sH(m1) + "</b> and <b>" + sH(m2) + "</b>"] },
+        band: { k: tr("lines-and-slope.band.linesAre"), v: '<span class="word">' + WORD[kind] + "</span>", facts: [tr("lines-and-slope.wh.slopes", { a: sH(m1), b: sH(m2) })] },
         closer: closer,
-        fields: [{ key: "rel", label: "Parallel, perpendicular or neither", kind: "rel", v: kind, ctx: { m1: m1, m2: m2 }, wide: true }],
+        fields: [{ key: "rel", label: tr("lines-and-slope.f.rel"), kind: "rel", v: kind, ctx: { m1: m1, m2: m2 }, wide: true }],
         ask: ask,
-        askText: "Are " + l1.text + " and " + l2.text + " parallel, perpendicular or neither?",
-        api: { text: "Are " + l1.text + " and " + l2.text + " parallel, perpendicular or neither?", html: ask, answer: WORD[kind], answerHtml: WORD[kind] }
+        askText: tr("lines-and-slope.wh.ask", { a: l1.text, b: l2.text }),
+        api: { text: tr("lines-and-slope.wh.ask", { a: l1.text, b: l2.text }), html: ask, answer: WORD[kind], answerHtml: WORD[kind] }
       };
     }
 
@@ -4448,7 +4425,7 @@
       return s;
     }
 
-    function cleanQ(q) { return typedWords(String(q === null || q === undefined ? "" : q)).replace(/[−–—]/g, "−").replace(/\s+/g, " ").trim(); }
+    function cleanQ(q) { return typedWords(String(norm(q === null || q === undefined ? "" : q))).replace(/[−–—]/g, "−").replace(/\s+/g, " ").trim(); }
 
     function slopeNum(low) { // → R, "undef" or undefined
       if (/(undefined|infinite|no)\s+slope|slope\s*(?:is|of|=|:)?\s*(?:undefined|infinite|none|∞)|\bvertical\b/.test(low)) return "undef";
@@ -4463,7 +4440,7 @@
       if (!m) return undefined;
       if (m[1]) { var v = readNumber(m[1]); return v ? { v: v, pi: -1 } : undefined; }
       var P = pts[Number(m[2])];
-      if (!isZ(P.x)) throw new UserErr("A " + vH("y") + "-intercept is on the " + vH("y") + "-axis, where " + vH("x") + " = 0 — so it looks like <b>(0, b)</b>, not " + ptH(P) + ".");
+      if (!isZ(P.x)) throw new UserErr(tr("lines-and-slope.err.yintPt", { p: ptH(P) }));
       return { v: P.y, pi: Number(m[2]) };
     }
 
@@ -4496,36 +4473,38 @@
         .filter(function(c) { return c.indexOf("=") >= 0 && /[xyXY]/.test(c); });
     }
     var EMPTY = {
-      slope: "Type two points like <b>(1, 2) and (5, 4)</b>, an equation like <b>y = 2x − 3</b>, or a rise and run like <b>rise 3, run 4</b>.",
-      equation: "Give a slope and a point (<b>slope 2 through (1, 3)</b>), two points (<b>(1, 2) and (5, 4)</b>), or the slope and y-intercept (<b>m = 2, b = −3</b>).",
-      convert: "Type the equation of a line, like <b>2x + 3y = 6</b> or <b>y − 2 = 3(x − 1)</b>.",
-      graph: "Type the equation of a line to graph, like <b>y = −1/2x + 4</b> or <b>2x + 3y = 6</b>.",
-      parallel: "Type a line and a point, like <b>parallel to y = 2x + 1 through (3, 4)</b>, or two lines to compare, like <b>y = 2x + 1 and y = −1/2x + 3</b>."
+      slope: tr("lines-and-slope.empty.slope"),
+      equation: tr("lines-and-slope.empty.equation"),
+      convert: tr("lines-and-slope.empty.convert"),
+      graph: tr("lines-and-slope.empty.graph"),
+      parallel: tr("lines-and-slope.empty.parallel")
     };
 
     function parseProblem(mode, q, to) {
       var src = cleanQ(q);
       if (!src) throw new UserErr(EMPTY[mode]);
-      if (src.length > 300) throw new UserErr("That’s a long problem! Keep it under 300 characters.");
+      if (src.length > 300) throw new UserErr(tr("lines-and-slope.err.long"));
       var g = grabPoints(src),
         low = g.rest.toLowerCase(),
         eqs = findEqs(g.rest);
       // problems that belong on another page
       if (/\b(?:distance|midpoint|mid-point|how\s+far)\b/.test(low) && g.pts.length === 2)
-        throw new UserErr("For the " + (/mid/.test(low) ? "midpoint" : "distance") + " between two points, try <a href=\"graphing.html?mode=points&amp;task=" + (/mid/.test(low) ? "midpoint" : "distance") +
-          "&amp;pts=" + esc(encodeURIComponent((numT(g.pts[0].x) + "," + numT(g.pts[0].y) + ";" + numT(g.pts[1].x) + "," + numT(g.pts[1].y)).replace(/−/g, "-"))) + "\">The Graph Paper</a>.");
+        throw new UserErr(tr(/mid/.test(low) ? "lines-and-slope.err.midpoint" : "lines-and-slope.err.distance", {
+          href: "graphing.html?mode=points&amp;task=" + (/mid/.test(low) ? "midpoint" : "distance") +
+            "&amp;pts=" + esc(encodeURIComponent((numT(g.pts[0].x) + "," + numT(g.pts[0].y) + ";" + numT(g.pts[1].x) + "," + numT(g.pts[1].y)).replace(/−/g, "-")))
+        }));
       if (/^\s*(?:solve|find\s+x)\b/.test(low) && eqs.length === 1 && !/y/i.test(eqs[0]))
-        throw new UserErr("That’s an equation to solve, not a line. Try <a href=\"algebra.html?q=" + esc(encodeURIComponent(src.replace(/−/g, "-"))) + "\">The Balance Scale</a>.");
+        throw new UserErr(tr("lines-and-slope.err.solve", { href: "algebra.html?q=" + esc(encodeURIComponent(src.replace(/−/g, "-"))) }));
       if (mode === "slope") {
         if (g.pts.length >= 2) {
-          if (g.pts.length > 2) throw new UserErr("I see " + g.pts.length + " points — a slope needs exactly two.");
+          if (g.pts.length > 2) throw new UserErr(tr("lines-and-slope.err.manyPtsSlope", { n: g.pts.length }));
           return { kind: "slope2", P1: g.pts[0], P2: g.pts[1] };
         }
         var rr = riseRun(low);
         if (rr) return { kind: "slopeRR", rise: rr.rise, run: rr.run, from: g.pts[0] || null };
         if (eqs.length === 1) return { kind: "slopeEq", line: parseLine(eqs[0]) };
-        if (eqs.length > 1) throw new UserErr("That has two equations. Find one slope at a time — or compare two lines on the <b>Parallel &amp; perpendicular</b> tab.");
-        if (g.pts.length === 1) throw new UserErr("That’s one point, " + ptH(g.pts[0]) + ". A slope needs two points — or a rise and a run.");
+        if (eqs.length > 1) throw new UserErr(tr("lines-and-slope.err.twoEqsSlope"));
+        if (g.pts.length === 1) throw new UserErr(tr("lines-and-slope.err.onePt", { p: ptH(g.pts[0]) }));
         throw new UserErr(EMPTY.slope);
       }
       if (mode === "equation") {
@@ -4534,16 +4513,16 @@
           rr2 = riseRun(low);
         var pts = g.pts.filter(function(p, i) { return !(bI && bI.pi === i); });
         if (pts.length >= 2) {
-          if (pts.length > 2) throw new UserErr("I see " + pts.length + " points — two are enough to pin down a line.");
+          if (pts.length > 2) throw new UserErr(tr("lines-and-slope.err.manyPtsLine", { n: pts.length }));
           return { kind: "eq2", P1: pts[0], P2: pts[1] };
         }
         if (bI !== undefined && sm !== undefined) {
-          if (sm === "undef") throw new UserErr("A vertical line (undefined slope) doesn’t cross the " + vH("y") + "-axis at one point, so it has no b. Give a point instead, like <b>undefined slope through (2, −1)</b>.");
+          if (sm === "undef") throw new UserErr(tr("lines-and-slope.err.vertNoB"));
           return { kind: "eqMB", m: sm, b: bI.v };
         }
         if (sm !== undefined && pts.length === 1) return { kind: "eqPoint", m: sm === "undef" ? null : sm, P: pts[0] };
         if (bI !== undefined && pts.length === 1) {
-          if (isZ(pts[0].x)) throw new UserErr("Both of those are on the " + vH("y") + "-axis. Give the slope, or a point that isn’t on the axis.");
+          if (isZ(pts[0].x)) throw new UserErr(tr("lines-and-slope.err.bothOnY"));
           return { kind: "eq2", P1: { x: ZERO, y: bI.v }, P2: pts[0] };
         }
         if (rr2 && pts.length === 1) return { kind: "eqPoint", m: isZ(rr2.run) ? null : dvd(rr2.rise, rr2.run), P: pts[0] };
@@ -4551,31 +4530,30 @@
           var ln = parseLine(eqs[0]);
           if (ln.form === "point") return { kind: "eqPoint", m: ln.ps.m, P: ln.ps.P };
           if (ln.form === "slope") return { kind: "eqMB", m: slopeOf(ln.E), b: yintOf(ln.E) };
-          throw new UserErr("<b>" + ln.html + "</b> is already the equation of a line. To rewrite it in another form, use <b>Convert forms</b>; to draw it, use <b>Graph it</b>.");
+          throw new UserErr(tr("lines-and-slope.err.already", { e: ln.html }));
         }
-        if (sm !== undefined) throw new UserErr("Which point does it go through? Add one, like <b>slope 2 through (1, 3)</b> — or the y-intercept, like <b>m = 2, b = −3</b>.");
-        if (bI !== undefined) throw new UserErr("What’s the slope? Add it, like <b>m = 2, b = −3</b>.");
-        if (pts.length === 1) throw new UserErr("One point isn’t enough to pin down a line. Add the slope (<b>slope 2 through " + ptT(pts[0]) + "</b>) or a second point.");
+        if (sm !== undefined) throw new UserErr(tr("lines-and-slope.err.whichPt"));
+        if (bI !== undefined) throw new UserErr(tr("lines-and-slope.err.whatSlope"));
+        if (pts.length === 1) throw new UserErr(tr("lines-and-slope.err.onePtLine", { p: ptT(pts[0]) }));
         throw new UserErr(EMPTY.equation);
       }
       if (mode === "convert" || mode === "graph") {
         if (!eqs.length) {
-          if (g.pts.length) throw new UserErr((mode === "graph" ? "Graph it" : "Convert forms") + " starts from an equation, like <b>y = 2x − 3</b>. To find the line through points first, use the <b>Equation of a line</b> tab.");
+          if (g.pts.length) throw new UserErr(tr(mode === "graph" ? "lines-and-slope.err.ptsGraph" : "lines-and-slope.err.ptsConvert"));
           throw new UserErr(EMPTY[mode]);
         }
-        if (eqs.length > 1) throw new UserErr("That has more than one equation. One line at a time here — or compare two lines on the <b>Parallel &amp; perpendicular</b> tab.");
+        if (eqs.length > 1) throw new UserErr(tr("lines-and-slope.err.manyEqs"));
         return { kind: mode, line: parseLine(eqs[0]), to: to };
       }
       var rel = /perp|⊥|right angle/.test(low) ? "perpendicular" : /parallel|∥/.test(low) ? "parallel" : null;
       if (eqs.length >= 2) {
-        if (eqs.length > 2) throw new UserErr("Compare two lines at a time.");
-        return { kind: "which", l1: parseLine(eqs[0], "Line 1"), l2: parseLine(eqs[1], "Line 2") };
+        if (eqs.length > 2) throw new UserErr(tr("lines-and-slope.err.twoAtATime"));
+        return { kind: "which", l1: parseLine(eqs[0], tr("lines-and-slope.line1")), l2: parseLine(eqs[1], tr("lines-and-slope.line2")) };
       }
       if (eqs.length === 1) {
         var ln2 = parseLine(eqs[0]);
-        if (!g.pts.length) throw new UserErr(rel ? "Which point should the new line go through? Add one, like <b>" + rel + " to " + ln2.text + " through (3, 4)</b>." :
-          "Give a second line to compare (<b>" + ln2.text + " and y = −1/2x + 3</b>), or ask for a line through a point: <b>parallel to " + ln2.text + " through (3, 4)</b>.");
-        if (!rel) throw new UserErr("Parallel or perpendicular? Say which, like <b>perpendicular to " + ln2.text + " through " + ptT(g.pts[0]) + "</b>.");
+        if (!g.pts.length) throw new UserErr(rel ? tr("lines-and-slope.err.newPt." + rel, { e: ln2.text }) : tr("lines-and-slope.err.second", { e: ln2.text }));
+        if (!rel) throw new UserErr(tr("lines-and-slope.err.parOrPerp", { e: ln2.text, p: ptT(g.pts[0]) }));
         return { kind: "par", rel: rel, line: ln2, P: g.pts[0] };
       }
       throw new UserErr(EMPTY.parallel);
@@ -4671,43 +4649,43 @@
       if (/^zero$/i.test(s)) s = "0";
       if (UNDEF_RE.test(s) || /undefined|vertical|no slope/i.test(s)) {
         if (v === null) return { st: "ok" };
-        if (isZ(v)) return { st: "bad", msg: "The rise is 0, and 0 divided by a number is just 0 — a flat line has slope <b>0</b>. “Undefined” is for a vertical line, where the <i>run</i> is 0." };
-        return { st: "bad", msg: "This line isn’t vertical — the run isn’t 0 — so its slope is a number. Work out rise ÷ run." };
+        if (isZ(v)) return { st: "bad", msg: tr("lines-and-slope.ck.flatNotUndef") };
+        return { st: "bad", msg: tr("lines-and-slope.ck.notVert") };
       }
       var U = readNumU(s);
-      if (!U) return { st: "unread", msg: "I can’t read <b>" + esc(s) + "</b> as a slope. Type a number like <b>2</b>, <b>−3/4</b> or <b>0.5</b> — or <b>undefined</b> for a vertical line." };
+      if (!U) return { st: "unread", msg: tr("lines-and-slope.ck.unreadSlope", { s: esc(s) }) };
       var u = U.v;
       if (v === null) {
-        if (isZ(u)) return { st: "bad", msg: "Careful — 0 and undefined are different. A vertical line has a <i>run</i> of 0, and you can’t divide by 0, so its slope is <b>undefined</b>, not 0. (Slope 0 is a flat line.)" };
-        return { st: "bad", msg: "Look at the run: the " + vH("x") + "-values don’t change, so the run is 0 — and you can’t divide by 0." };
+        if (isZ(u)) return { st: "bad", msg: tr("lines-and-slope.ck.zeroNotUndef") };
+        return { st: "bad", msg: tr("lines-and-slope.ck.lookRun") };
       }
       if (eqR(u, v)) {
-        if (unsimp(U)) return { st: "part", msg: "Right value — now simplify it: <b>" + (U.neg ? "−" : "") + frH(String(U.tn), (U.dneg ? "−" : "") + String(U.td)) + " = " + nH(v) + "</b>." };
+        if (unsimp(U)) return { st: "part", msg: tr("lines-and-slope.ck.simplifyIt", { e: (U.neg ? "−" : "") + frH(String(U.tn), (U.dneg ? "−" : "") + String(U.td)) + " = " + nH(v) }) };
         return { st: "ok" };
       }
-      if (closeDec(U, v)) return { st: "ok", note: "Rounded is fine — exactly, it’s <b>" + nH(v) + "</b>." };
+      if (closeDec(U, v)) return { st: "ok", note: tr("lines-and-slope.ck.rounded", { v: nH(v) }) };
       var dx = c.dx,
         dy = c.dy;
-      if (dx && dy && !isZ(dy) && !isZ(dx) && eqR(u, dvd(dx, dy))) return { st: "bad", msg: "That’s run over rise — upside down. Slope is <b>rise</b> (the change in " + vH("y") + ") over <b>run</b> (the change in " + vH("x") + ")." };
-      if (dx && dy && !isZ(dy) && !isZ(dx) && eqR(u, neg(dvd(dx, dy)))) return { st: "bad", msg: "That’s upside down, and the sign is off too. Slope is rise (change in " + vH("y") + ") over run (change in " + vH("x") + ")." };
+      if (dx && dy && !isZ(dy) && !isZ(dx) && eqR(u, dvd(dx, dy))) return { st: "bad", msg: tr("lines-and-slope.ck.runOverRise") };
+      if (dx && dy && !isZ(dy) && !isZ(dx) && eqR(u, neg(dvd(dx, dy)))) return { st: "bad", msg: tr("lines-and-slope.ck.upsideSign") };
       if (eqR(u, neg(v))) return {
         st: "bad",
-        msg: c.src === "two" ? "The size is right, but check the sign. Subtract in the same order on the top and the bottom: " + Y2 + " − " + Y1 + " over " + X2 + " − " + X1 + " — both start with the second point." : c.src === "eq" && c.form === "standard" ? "Check the sign. Moving the " + vH("x") + "-term across the = changes its sign — for A" + vH("x") + " + B" + vH("y") + " = C the slope is <b>−A/B</b>." : "The size is right, but check the sign: does the line go up or down from left to right?"
+        msg: c.src === "two" ? tr("lines-and-slope.ck.signTwo") : c.src === "eq" && c.form === "standard" ? tr("lines-and-slope.ck.signStd") : tr("lines-and-slope.ck.sign")
       };
-      if (!isZ(v) && eqR(u, recip(v))) return { st: "bad", msg: "That’s upside down. Slope is rise over run — the change in " + vH("y") + " goes on top." };
-      if (!isZ(v) && eqR(u, neg(recip(v)))) return { st: "bad", msg: "That’s the <i>negative reciprocal</i> — the slope of a line perpendicular to this one." };
+      if (!isZ(v) && eqR(u, recip(v))) return { st: "bad", msg: tr("lines-and-slope.ck.upside") };
+      if (!isZ(v) && eqR(u, neg(recip(v)))) return { st: "bad", msg: tr("lines-and-slope.ck.negRecip") };
       if (c.src === "two") {
         var sx = add(c.P1.x, c.P2.x),
           sy = add(c.P1.y, c.P2.y);
-        if (!isZ(sx) && eqR(u, dvd(sy, sx))) return { st: "bad", msg: "Slope uses <i>differences</i> — subtract the coordinates, don’t add them." };
+        if (!isZ(sx) && eqR(u, dvd(sy, sx))) return { st: "bad", msg: tr("lines-and-slope.ck.differences") };
         if ((!isZ(c.P2.x) && eqR(u, dvd(c.P2.y, c.P2.x))) || (!isZ(c.P1.x) && eqR(u, dvd(c.P1.y, c.P1.x))))
-          return { st: "bad", msg: "Slope compares the two points: the <i>change</i> in " + vH("y") + " over the <i>change</i> in " + vH("x") + " — not one point’s " + vH("y") + " ÷ " + vH("x") + "." };
+          return { st: "bad", msg: tr("lines-and-slope.ck.onePoint") };
       }
       if (c.src === "eq") {
         var b = yintOf(c.E);
-        if (b !== null && eqR(u, b)) return { st: "bad", msg: "That’s <b>b</b>, the " + vH("y") + "-intercept. The slope is the number multiplying " + vH("x") + " once " + vH("y") + " is by itself." };
-        if (c.form === "standard" && eqR(u, c.E.A)) return { st: "bad", msg: "That’s A, the number in front of " + vH("x") + " — but " + vH("y") + " isn’t by itself yet. Get " + vH("y") + " alone first (or use m = −A/B)." };
-        if (c.form === "point" && (eqR(u, c.line.ps.P.x) || eqR(u, c.line.ps.P.y))) return { st: "bad", msg: "That’s a coordinate of the point. In point-slope form the slope is the number in front of the parentheses." };
+        if (b !== null && eqR(u, b)) return { st: "bad", msg: tr("lines-and-slope.ck.thatsB") };
+        if (c.form === "standard" && eqR(u, c.E.A)) return { st: "bad", msg: tr("lines-and-slope.ck.thatsA") };
+        if (c.form === "point" && (eqR(u, c.line.ps.P.x) || eqR(u, c.line.ps.P.y))) return { st: "bad", msg: tr("lines-and-slope.ck.coord") };
       }
       return { st: "bad" };
     }
@@ -4741,10 +4719,10 @@
 
     function notSimple(ln, E) { // why a right equation still needs simplifying ("" if it doesn't)
       var lf = litFracs(ln.L, []).concat(litFracs(ln.R, []));
-      if (lf.length) { var n0 = lf[0]; return "the fraction <b>" + frH(String(n0.fr[0]), String(n0.fr[1])) + "</b> is <b>" + nH(absR(n0.v)) + "</b>."; }
+      if (lf.length) { var n0 = lf[0]; return tr("lines-and-slope.ns.frac", { f: frH(String(n0.fr[0]), String(n0.fr[1])), v: nH(absR(n0.v)) }); }
       if ((yAlone(ln.L) && !sideInfo(ln.R).simple) || (yAlone(ln.R) && !sideInfo(ln.L).simple))
-        return "multiply out and combine like terms, to get <b>" + lineH(E) + "</b>.";
-      if (ln.form === "standard") { var si = stdInfo(ln); if (!si.frac && si.g > 1n) return "every number can be divided by <b>" + si.g + "</b>."; }
+        return tr("lines-and-slope.ns.combine", { e: lineH(E) });
+      if (ln.form === "standard") { var si = stdInfo(ln); if (!si.frac && si.g > 1n) return tr("lines-and-slope.ns.divide", { g: si.g }); }
       return "";
     }
 
@@ -4752,31 +4730,31 @@
       var s = String(raw).replace(/^\s*(the\s+)?(equation|answer|line)\s*(is|:)?\s*/i, "").trim();
       if (!s) return { st: "empty" };
       var ln;
-      try { ln = parseLine(s); } catch (e) { return { st: "unread", msg: (e && e.user && e.user !== "zero" ? e.user : "I can’t read that as an equation.") + " Type it like <b>y = 2x + 1</b>." }; }
+      try { ln = parseLine(s); } catch (e) { return { st: "unread", msg: (e && e.user && e.user !== "zero" ? e.user : tr("lines-and-slope.ck.notEq")) + tr("lines-and-slope.ck.typeLike") }; }
       var E = f.E,
         simp;
       if (sameLine(ln.E, E)) {
         simp = notSimple(ln, E);
         if (f.target === "any") {
-          if (simp) return { st: "part", msg: "Right line — now simplify it: " + simp };
-          return { st: "ok", note: ln.form !== "slope" && !isVert(E) ? "In slope-intercept form that’s <b>" + lineH(E) + "</b>." : null };
+          if (simp) return { st: "part", msg: tr("lines-and-slope.ck.rightSimp", { s: simp }) };
+          return { st: "ok", note: ln.form !== "slope" && !isVert(E) ? tr("lines-and-slope.ck.inSI", { e: lineH(E) }) : null };
         }
         if (f.target === "slope") {
-          if (ln.form !== "slope") return { st: "part", msg: "Right line — now simplify it into slope-intercept form: get " + vH("y") + " by itself, <b>" + vH("y") + " = " + vH("m") + vH("x") + " + " + vH("b") + "</b>." };
-          if (simp) return { st: "part", msg: "Right line — now simplify it: " + simp };
-          return { st: "ok", note: inOrder(sideInfo(ln.R).list, ORD_X) ? null : "(It’s usually written with the " + vH("x") + "-term first: <b>" + lineH(E) + "</b>.)" };
+          if (ln.form !== "slope") return { st: "part", msg: tr("lines-and-slope.ck.toSI") };
+          if (simp) return { st: "part", msg: tr("lines-and-slope.ck.rightSimp", { s: simp }) };
+          return { st: "ok", note: inOrder(sideInfo(ln.R).list, ORD_X) ? null : tr("lines-and-slope.ck.xFirst", { e: lineH(E) }) };
         }
         if (f.target === "standard") {
           var info = stdInfo(ln);
-          if (!info.shape) return { st: "part", msg: "Right line — now simplify it into standard form: the " + vH("x") + "- and " + vH("y") + "-terms on the left, the plain number on the right (A" + vH("x") + " + B" + vH("y") + " = C)." };
-          if (info.frac) return { st: "part", msg: "Right line — now simplify it: standard form uses whole numbers. Multiply every term by <b>" + info.D + "</b> to clear the fractions." };
-          if (info.g > 1n) return { st: "part", msg: "Right value — now simplify it: every number can be divided by <b>" + info.g + "</b>." };
-          if (info.neg) return { st: "part", msg: "Right line — now simplify the signs: standard form starts with a positive " + vH("x") + "-term, so multiply every term by −1." };
-          return { st: "ok", note: info.order ? null : "(It’s usually written with the " + vH("x") + "-term first: <b>" + stdH(E) + "</b>.)" };
+          if (!info.shape) return { st: "part", msg: tr("lines-and-slope.ck.toStd") };
+          if (info.frac) return { st: "part", msg: tr("lines-and-slope.ck.stdFrac", { d: info.D }) };
+          if (info.g > 1n) return { st: "part", msg: tr("lines-and-slope.ck.stdGcd", { g: info.g }) };
+          if (info.neg) return { st: "part", msg: tr("lines-and-slope.ck.stdNeg") };
+          return { st: "ok", note: info.order ? null : tr("lines-and-slope.ck.xFirst", { e: stdH(E) }) };
         }
-        if (ln.form !== "point") return { st: "part", msg: "Right line — but not simplified into point-slope form yet. Write it as <b>" + vH("y") + " − " + Y1 + " = " + vH("m") + "(" + vH("x") + " − " + X1 + ")</b>, using the slope and one point on the line." };
-        if (simp) return { st: "part", msg: "Right line — now simplify it: " + simp };
-        return { st: "ok", note: "(Any point on the line works in point-slope form.)" };
+        if (ln.form !== "point") return { st: "part", msg: tr("lines-and-slope.ck.toPS") };
+        if (simp) return { st: "part", msg: tr("lines-and-slope.ck.rightSimp", { s: simp }) };
+        return { st: "ok", note: tr("lines-and-slope.ck.anyPoint") };
       }
       var d = eqDiag(ln, f);
       return { st: "bad", msg: d };
@@ -4790,36 +4768,36 @@
         m = slopeOf(E),
         P = c.P,
         thru = P ? onLine(U, P) : null;
-      if (c.E0 && sameLine(U, c.E0)) return "That’s the given line itself. The new line has to go through " + ptH(P) + ".";
+      if (c.E0 && sameLine(U, c.E0)) return tr("lines-and-slope.dg.given", { p: ptH(P) });
       if (c.rel === "perpendicular" && thru && c.m0 !== null && c.m0 !== undefined && mu !== null) {
-        if (eqR(mu, c.m0)) return "That line is <i>parallel</i> to the given one (same slope). Perpendicular needs the negative reciprocal: flip the fraction and change its sign.";
-        if (!isZ(c.m0) && eqR(mu, recip(c.m0))) return "You flipped the slope — now change its sign too. Perpendicular slopes multiply to −1.";
-        if (eqR(mu, neg(c.m0))) return "You changed the sign — now flip the fraction too. Perpendicular slopes are negative <i>reciprocals</i>.";
+        if (eqR(mu, c.m0)) return tr("lines-and-slope.dg.isPar");
+        if (!isZ(c.m0) && eqR(mu, recip(c.m0))) return tr("lines-and-slope.dg.flipped");
+        if (eqR(mu, neg(c.m0))) return tr("lines-and-slope.dg.signed");
       }
-      if (c.rel === "parallel" && thru && mu !== null && c.m0 && !isZ(c.m0) && eqR(mu, neg(recip(c.m0)))) return "That one is perpendicular. Parallel lines have the <b>same</b> slope.";
+      if (c.rel === "parallel" && thru && mu !== null && c.m0 && !isZ(c.m0) && eqR(mu, neg(recip(c.m0)))) return tr("lines-and-slope.dg.isPerp");
       if (m !== null && mu !== null && eqR(mu, m)) {
-        if (c.pts && c.pts.length > 1) return "The slope is right, but the line doesn’t go through both points. Put one of them into " + vH("y") + " = " + vH("m") + vH("x") + " + " + vH("b") + " to find b.";
+        if (c.pts && c.pts.length > 1) return tr("lines-and-slope.dg.bothPts");
         if (P) {
           var sw = [{ x: neg(P.x), y: P.y }, { x: P.x, y: neg(P.y) }, { x: neg(P.x), y: neg(P.y) }];
           if (sw.some(function(Q) { return !(eqR(Q.x, P.x) && eqR(Q.y, P.y)) && sameLine(U, fromMP(m, Q)); }))
-            return "The slope is right, but watch the signs in <b>" + vH("y") + " − " + Y1 + " = " + vH("m") + "(" + vH("x") + " − " + X1 + ")</b>: the point’s coordinates are <i>subtracted</i>, so a negative coordinate turns into a +.";
+            return tr("lines-and-slope.dg.psSigns");
           var b = yintOf(E),
             bu = yintOf(U);
-          if (bu !== null && b !== null && eqR(bu, neg(b))) return "The slope is right, but check the sign of b, the plain number.";
-          if (bu !== null && !isOne(m) && eqR(bu, sub(P.y, P.x))) return "The slope is right — but did it multiply <i>both</i> terms inside the parentheses? The slope times " + X1 + " too.";
-          if (eqR(P.x, ZERO) || c.b !== undefined) return "The slope is right — now check b, the " + vH("y") + "-intercept.";
-          return "The slope is right, but the line doesn’t go through " + ptH(P) + ". Put the point in to find b.";
+          if (bu !== null && b !== null && eqR(bu, neg(b))) return tr("lines-and-slope.dg.signB");
+          if (bu !== null && !isOne(m) && eqR(bu, sub(P.y, P.x))) return tr("lines-and-slope.dg.distBoth");
+          if (eqR(P.x, ZERO) || c.b !== undefined) return tr("lines-and-slope.dg.checkB");
+          return tr("lines-and-slope.dg.notThru", { p: ptH(P) });
         }
-        return "The slope is right, but the line has moved — check the plain number. Do the same thing to both sides at every step.";
+        return tr("lines-and-slope.dg.moved");
       }
       if (thru === true) {
-        if (m !== null && mu !== null && !isZ(m) && eqR(mu, neg(m))) return "It goes through " + ptH(P) + ", but the slope’s sign is off.";
-        if (m !== null && mu !== null && !isZ(m) && eqR(mu, recip(m))) return "It goes through " + ptH(P) + ", but the slope is upside down — rise over run, the change in " + vH("y") + " on top.";
-        return "That line does go through " + ptH(P) + ", but its slope isn’t " + (m === null ? "undefined" : nH(m)) + ".";
+        if (m !== null && mu !== null && !isZ(m) && eqR(mu, neg(m))) return tr("lines-and-slope.dg.thruSign", { p: ptH(P) });
+        if (m !== null && mu !== null && !isZ(m) && eqR(mu, recip(m))) return tr("lines-and-slope.dg.thruUpside", { p: ptH(P) });
+        return tr("lines-and-slope.dg.thruNot", { p: ptH(P), m: m === null ? tr("lines-and-slope.w.undefined") : nH(m) });
       }
-      if (mu !== null && m !== null && !isZ(m) && eqR(mu, neg(m))) return "Check the signs: when a term moves to the other side of the =, its sign changes.";
-      if (mu !== null && m !== null && !isZ(m) && eqR(mu, recip(m)) && !eqR(absR(m), ONE)) return "The slope looks upside down — rise over run.";
-      if (c.pts && c.pts.length > 1 && c.pts.every(function(Q) { return onLine(U, { x: Q.y, y: Q.x }); })) return "It looks like " + vH("x") + " and " + vH("y") + " got swapped — a point is (" + vH("x") + ", " + vH("y") + "), " + vH("x") + " first.";
+      if (mu !== null && m !== null && !isZ(m) && eqR(mu, neg(m))) return tr("lines-and-slope.dg.signs");
+      if (mu !== null && m !== null && !isZ(m) && eqR(mu, recip(m)) && !eqR(absR(m), ONE)) return tr("lines-and-slope.dg.upside");
+      if (c.pts && c.pts.length > 1 && c.pts.every(function(Q) { return onLine(U, { x: Q.y, y: Q.x }); })) return tr("lines-and-slope.dg.swapped");
       return "";
     }
 
@@ -4835,36 +4813,36 @@
       var flat = ax === "y" ? "vertical" : "flat";
       if (none) {
         if (v === null) return { st: "ok" };
-        return { st: "bad", msg: v === "all" ? "This line lies right along the " + ax + "-axis — every point on it is on the axis." : "This line does cross the " + ax + "-axis — put " + vH(ot) + " = 0 in and solve." };
+        return { st: "bad", msg: v === "all" ? tr("lines-and-slope.ci.along", { ax: ax }) : tr("lines-and-slope.ci.doesCross", { ax: ax, ot: vH(ot) }) };
       }
-      if (all) return v === "all" ? { st: "ok" } : { st: "bad", msg: "Only a line lying right along the axis touches it everywhere. This one " + (v === null ? "never touches it" : "crosses it once") + "." };
+      if (all) return v === "all" ? { st: "ok" } : { st: "bad", msg: tr(v === null ? "lines-and-slope.ci.onlyNever" : "lines-and-slope.ci.onlyOnce") };
       var g = grabPoints(s),
         val, U = null;
       if (g.pts.length === 1 && !g.rest.replace(/@0@/, "").trim()) {
         var P = g.pts[0],
           zero = ax === "y" ? P.x : P.y;
-        if (!isZ(zero)) return { st: "bad", msg: "The " + ax + "-intercept is on the " + ax + "-axis, where " + vH(ot) + " = 0 — so the point looks like <b>" + (ax === "y" ? "(0, b)" : "(a, 0)") + "</b>." };
+        if (!isZ(zero)) return { st: "bad", msg: tr("lines-and-slope.ci.onAxis", { ax: ax, ot: vH(ot), pt: ax === "y" ? "(0, b)" : "(a, 0)" }) };
         val = ax === "y" ? P.y : P.x;
       } else {
         U = readNumU(s);
-        if (!U) return { st: "unread", msg: "Type the " + ax + "-intercept as a number like <b>4</b> or <b>−3/2</b>, a point like <b>" + (ax === "y" ? "(0, 4)" : "(4, 0)") + "</b>, or <b>none</b>." };
+        if (!U) return { st: "unread", msg: tr("lines-and-slope.ci.unread", { ax: ax, pt: ax === "y" ? "(0, 4)" : "(4, 0)" }) };
         val = U.v;
       }
-      if (v === null) return { st: "bad", msg: "This line never crosses the " + ax + "-axis — it’s " + flat + ". Type <b>none</b>." };
-      if (v === "all") return { st: "bad", msg: "This line lies right along the " + ax + "-axis, so every point is on it. Type <b>all</b>." };
+      if (v === null) return { st: "bad", msg: tr(ax === "y" ? "lines-and-slope.ci.neverV" : "lines-and-slope.ci.neverF", { ax: ax }) };
+      if (v === "all") return { st: "bad", msg: tr("lines-and-slope.ci.typeAll", { ax: ax }) };
       if (eqR(val, v)) {
-        if (U && unsimp(U)) return { st: "part", msg: "Right value — now simplify it: <b>" + nH(v) + "</b>." };
+        if (U && unsimp(U)) return { st: "part", msg: tr("lines-and-slope.ck.simplifyIt", { e: nH(v) }) };
         return { st: "ok" };
       }
-      if (U && closeDec(U, v)) return { st: "ok", note: "Rounded is fine — exactly, it’s <b>" + nH(v) + "</b>." };
+      if (U && closeDec(U, v)) return { st: "ok", note: tr("lines-and-slope.ck.rounded", { v: nH(v) }) };
       var o = ax === "y" ? xintOf(E) : yintOf(E);
-      if (o !== null && eqR(val, o) && !eqR(o, v)) return { st: "bad", msg: "That’s the " + ot + "-intercept. The " + ax + "-intercept is where the line crosses the " + ax + "-axis, where " + vH(ot) + " = 0." };
-      if (eqR(val, neg(v))) return { st: "bad", msg: "The size is right — check the sign." };
+      if (o !== null && eqR(val, o) && !eqR(o, v)) return { st: "bad", msg: tr("lines-and-slope.ci.other", { ot: ot, ax: ax, otv: vH(ot) }) };
+      if (eqR(val, neg(v))) return { st: "bad", msg: tr("lines-and-slope.ci.sign") };
       if (ax === "x" && !isZ(E.B)) {
         var m = slopeOf(E),
           b = yintOf(E);
-        if (!isZ(m) && eqR(val, dvd(b, m))) return { st: "bad", msg: "Check the sign: from 0 = " + vH("m") + vH("x") + " + " + vH("b") + ", move b across first (its sign changes), then divide by m." };
-        if (eqR(val, mul(neg(b), m))) return { st: "bad", msg: "Divide by the slope, don’t multiply." };
+        if (!isZ(m) && eqR(val, dvd(b, m))) return { st: "bad", msg: tr("lines-and-slope.ci.moveB") };
+        if (eqR(val, mul(neg(b), m))) return { st: "bad", msg: tr("lines-and-slope.ci.divide") };
       }
       return { st: "bad" };
     }
@@ -4876,22 +4854,23 @@
       if (!s) return { st: "empty" };
       var w = /perp|⊥|right angle/.test(s) ? "perpendicular" : /same|coincid|identical|one line|equivalent/.test(s) ? "same" : /parallel|∥|\|\|/.test(s) ? "parallel" :
         /neither|none|^no\b|intersect|cross|nothing/.test(s) ? "neither" : null;
-      if (!w) return { st: "unread", msg: "Type <b>parallel</b>, <b>perpendicular</b> or <b>neither</b>." };
+      if (!w) return { st: "unread", msg: tr("lines-and-slope.cr.unread") };
       if (w === v) return { st: "ok" };
-      if (v === "same" && w === "parallel") return { st: "ok", note: "In fact they’re the <i>same</i> line — same slope and same intercept." };
+      if (v === "same" && w === "parallel") return { st: "ok", note: tr("lines-and-slope.cr.same") };
       var m1 = c.m1,
         m2 = c.m2;
-      if (v === "perpendicular" && w === "parallel") return { st: "bad", msg: "Parallel lines have <i>equal</i> slopes. Multiply these two slopes and see what you get." };
-      if (v === "parallel" && w === "perpendicular") return { st: "bad", msg: "Perpendicular slopes multiply to −1. Compare these two slopes — are they equal?" };
-      if (v === "neither" && w === "perpendicular" && m1 && m2 && eqR(m1, neg(m2))) return { st: "bad", msg: "Opposite signs aren’t enough: perpendicular slopes are negative <i>reciprocals</i> — they multiply to −1. Here they multiply to <b>" + nH(mul(m1, m2)) + "</b>." };
-      if (v === "neither" && w === "parallel" && m1 && m2 && eqR(m1, recip(m2))) return { st: "bad", msg: "Those slopes are reciprocals, not equal. Parallel lines need the <i>same</i> slope." };
-      if (v === "parallel") return { st: "bad", msg: "Compare the slopes once each line is in " + vH("y") + " = " + vH("m") + vH("x") + " + " + vH("b") + " form." };
-      if (v === "perpendicular") return { st: "bad", msg: "Multiply the two slopes." };
-      if (v === "same") return { st: "bad", msg: "Put both in " + vH("y") + " = " + vH("m") + vH("x") + " + " + vH("b") + " form and compare the slopes <i>and</i> the intercepts." };
+      if (v === "perpendicular" && w === "parallel") return { st: "bad", msg: tr("lines-and-slope.cr.notPar") };
+      if (v === "parallel" && w === "perpendicular") return { st: "bad", msg: tr("lines-and-slope.cr.notPerp") };
+      if (v === "neither" && w === "perpendicular" && m1 && m2 && eqR(m1, neg(m2))) return { st: "bad", msg: tr("lines-and-slope.cr.opposite", { p: nH(mul(m1, m2)) }) };
+      if (v === "neither" && w === "parallel" && m1 && m2 && eqR(m1, recip(m2))) return { st: "bad", msg: tr("lines-and-slope.cr.recips") };
+      if (v === "parallel") return { st: "bad", msg: tr("lines-and-slope.cr.compare") };
+      if (v === "perpendicular") return { st: "bad", msg: tr("lines-and-slope.cr.multiply") };
+      if (v === "same") return { st: "bad", msg: tr("lines-and-slope.cr.both") };
       return { st: "bad" };
     }
 
     function judge(f, raw) {
+      raw = normAns(raw);
       if (f.kind === "slope") return judgeSlope(f, raw);
       if (f.kind === "eq") return judgeEq(f, raw);
       if (f.kind === "rel") return judgeRel(f, raw);
@@ -5077,84 +5056,84 @@
 
     /* ===================== the worksheet API ===================== */
     // plain words first; the math word in brackets only where students are learning it (the API labels say the same)
-    var L_FROM = { points: "Two points, like (1, 2) and (5, 4)", equation: "An equation, like y = 2x − 3", graph: "Steps up and across (rise and run)", any: "A mix of all three" };
+    var L_FROM = { points: tr("lines-and-slope.mk.from.points"), equation: tr("lines-and-slope.mk.from.equation"), graph: tr("lines-and-slope.mk.from.graph"), any: tr("lines-and-slope.mk.mix3") };
     var L_GIVEN = {
-      slopePoint: "Steepness and one point, like slope 2 through (1, 3)",
-      twoPoints: "Two points on the line",
-      slopeIntercept: "Steepness and where it crosses the y-axis (m and b)",
-      any: "A mix of all three"
+      slopePoint: tr("lines-and-slope.mk.given.slopePoint"),
+      twoPoints: tr("lines-and-slope.mk.given.twoPoints"),
+      slopeIntercept: tr("lines-and-slope.mk.given.slopeIntercept"),
+      any: tr("lines-and-slope.mk.mix3")
     };
-    var L_FORM = { standard: "Standard form, like 2x + 3y = 6", slope: "Slope-intercept form, like y = 2x − 3", point: "Point-slope form, like y − 3 = 2(x − 1)", any: "A mix of forms" };
+    var L_FORM = { standard: tr("lines-and-slope.mk.form.standard"), slope: tr("lines-and-slope.mk.form.slope"), point: tr("lines-and-slope.mk.form.point"), any: tr("lines-and-slope.mk.form.any") };
     var L_KIND = {
-      parallel: "A line that never meets it (parallel)",
-      perpendicular: "A line that crosses it square (perpendicular)",
-      which: "Two lines: parallel, perpendicular or neither?",
-      any: "A mix of all three"
+      parallel: tr("lines-and-slope.mk.kind.parallel"),
+      perpendicular: tr("lines-and-slope.mk.kind.perpendicular"),
+      which: tr("lines-and-slope.mk.kind.which"),
+      any: tr("lines-and-slope.mk.mix3")
     };
-    var W_FRAC = "Fraction steepness (slopes like 2/3)",
-      W_SPECIAL = "Flat and straight-up-and-down lines (slope 0 or undefined)",
-      W_MAX = "Biggest number in a point";
+    var W_FRAC = tr("lines-and-slope.mk.frac"),
+      W_SPECIAL = tr("lines-and-slope.mk.special"),
+      W_MAX = tr("lines-and-slope.mk.max");
 
-    function upTo(v) { return "up to " + v + " (like (−" + v + ", " + v + "))"; }
-    var TOG = [{ v: true, label: "On" }, { v: false, label: "Off" }];
+    function upTo(v) { return tr("lines-and-slope.mk.upTo", { v: v }); }
+    var TOG = [{ v: true, label: tr("common.on") }, { v: false, label: tr("common.off") }];
     var SCHEMA = [{
         key: "mode",
-        label: "Kind of problem",
+        label: tr("lines-and-slope.api.kind"),
         type: "choice",
         default: "slope",
         modes: MODES.slice(),
-        values: [{ v: "slope", label: "Find the steepness (slope)" }, { v: "equation", label: "Write the equation of a line" }, { v: "convert", label: "Change an equation to another form" },
-          { v: "graph", label: "Graph a line" }, { v: "parallel", label: "Parallel and perpendicular lines" }
+        values: [{ v: "slope", label: tr("lines-and-slope.api.kind.slope") }, { v: "equation", label: tr("lines-and-slope.api.kind.equation") }, { v: "convert", label: tr("lines-and-slope.api.kind.convert") },
+          { v: "graph", label: tr("lines-and-slope.api.kind.graph") }, { v: "parallel", label: tr("lines-and-slope.api.kind.parallel") }
         ]
       }, {
         key: "slopeFrom",
-        label: "Find the steepness (slope) from",
+        label: tr("lines-and-slope.mk.slopeFrom"),
         type: "choice",
         default: "points",
         modes: ["slope"],
         values: ["points", "equation", "graph", "any"].map(function(v) { return { v: v, label: L_FROM[v] }; })
       }, {
         key: "given",
-        label: "What you are given",
+        label: tr("lines-and-slope.mk.given"),
         type: "choice",
         default: "any",
         modes: ["equation"],
         values: ["slopePoint", "twoPoints", "slopeIntercept", "any"].map(function(v) { return { v: v, label: L_GIVEN[v] }; })
       }, {
         key: "convFrom",
-        label: "Start with",
+        label: tr("lines-and-slope.mk.startWith"),
         type: "choice",
         default: "any",
         modes: ["convert"],
         values: ["standard", "slope", "point", "any"].map(function(v) { return { v: v, label: L_FORM[v] }; })
       }, {
         key: "convTo",
-        label: "Change it to",
+        label: tr("lines-and-slope.mk.changeTo"),
         type: "choice",
         default: "slope",
         modes: ["convert"],
         values: ["slope", "standard", "point"].map(function(v) { return { v: v, label: L_FORM[v] }; })
       }, {
         key: "graphForm",
-        label: "The equation is written in",
+        label: tr("lines-and-slope.mk.writtenIn"),
         type: "choice",
         default: "slope",
         modes: ["graph"],
         values: ["slope", "standard", "point", "any"].map(function(v) { return { v: v, label: L_FORM[v] }; })
       }, {
         key: "pairKind",
-        label: "What to do",
+        label: tr("lines-and-slope.mk.whatToDo"),
         type: "choice",
         default: "any",
         modes: ["parallel"],
         values: ["parallel", "perpendicular", "which", "any"].map(function(v) { return { v: v, label: L_KIND[v] }; })
       }, {
         key: "lineForm",
-        label: "The given line is written in",
+        label: tr("lines-and-slope.mk.givenIn"),
         type: "choice",
         default: "slope",
         modes: ["parallel"],
-        values: [{ v: "slope", label: L_FORM.slope }, { v: "standard", label: L_FORM.standard }, { v: "any", label: "Either form" }]
+        values: [{ v: "slope", label: L_FORM.slope }, { v: "standard", label: L_FORM.standard }, { v: "any", label: tr("lines-and-slope.mk.either") }]
       }, {
         key: "fracSlope",
         label: W_FRAC,
@@ -5291,7 +5270,7 @@
     function writeLog(steps) {
       var html = "";
       steps.forEach(function(st, i) {
-        html += '<li data-step="' + i + '"><span class="n">Step&nbsp;' + (i + 1) + "</span>";
+        html += '<li data-step="' + i + '"><span class="n">' + tr("common.step") + "&nbsp;" + (i + 1) + "</span>";
         st.lines.forEach(function(l) { html += '<div class="line"><span class="tag c-' + l[0] + '">' + l[1] + '</span><span class="txt">' + l[2] + "</span></div>"; });
         if (st.aside) html += '<div class="aside">' + st.aside + "</div>";
         html += "</li>";
@@ -5333,7 +5312,7 @@
         sol = null,
         msg = "";
       try { sol = solveAny(mode, S.inputs[mode], S.to); } catch (e) {
-        if (e && e.user) msg = e.user === "zero" ? "Something in there divides by zero — that can’t be done." : e.user;
+        if (e && e.user) msg = e.user === "zero" ? tr("lines-and-slope.err.zero") : e.user;
         else throw e;
       }
       CUR = sol;
@@ -5349,7 +5328,7 @@
         writeLog(sol.ctx.steps);
         band('<span class="k">' + sol.band.k + '</span><span class="v">' + sol.band.v + "</span>", sol.band.facts, "answer");
         $("closer").innerHTML = sol.closer;
-        $("ask").innerHTML = '<span class="k">The problem</span><span class="q">' + sol.ask + "</span>";
+        $("ask").innerHTML = '<span class="k">' + tr("lines-and-slope.theProblem") + '</span><span class="q">' + sol.ask + "</span>";
         $("ask").hidden = false;
         total = sol.ctx.steps.length;
         if (S.step > total) S.step = total;
@@ -5362,7 +5341,7 @@
       var on = !!sol && stepMode();
       $("stepper").hidden = !on;
       if (on) {
-        $("stepCount").textContent = S.step + " of " + total;
+        $("stepCount").textContent = tr("lines-and-slope.stepOf", { n: S.step, total: total });
         $("prevBtn").disabled = S.step <= 1;
         $("nextBtn").disabled = S.step >= total;
       }
@@ -5384,7 +5363,7 @@
       if (checking && CK.reveal === "none") b.setAttribute("aria-hidden", "true");
       else b.removeAttribute("aria-hidden");
     }
-    var PH = { slope: "e.g. −3/4, 2 or undefined", eq: "e.g. y = 2x + 1", yint: "e.g. 4 or (0, 4)", xint: "e.g. 3 or (3, 0), or none", rel: "parallel, perpendicular or neither" };
+    var PH = { slope: tr("lines-and-slope.ph.slope"), eq: tr("lines-and-slope.ph.eq"), yint: tr("lines-and-slope.ph.yint"), xint: tr("lines-and-slope.ph.xint"), rel: tr("lines-and-slope.ph.rel") };
 
     function buildCheck(fields) {
       var host = $("ckFields");
@@ -5394,7 +5373,7 @@
         var id = "ck_" + f.key,
           div = document.createElement("div");
         div.className = "ck-field" + (f.wide ? " wide" : "");
-        var ph = f.kind === "eq" && f.target === "standard" ? "e.g. 2x + 3y = 6" : f.kind === "eq" && f.target === "point" ? "e.g. y − 3 = 2(x − 1)" : PH[f.kind];
+        var ph = f.kind === "eq" && f.target === "standard" ? tr("lines-and-slope.ph.std") : f.kind === "eq" && f.target === "point" ? tr("lines-and-slope.ph.ps") : PH[f.kind];
         div.innerHTML = '<label for="' + id + '">' + esc(f.label) + '</label><div class="ck-row"><input class="ck-in" id="' + id +
           '" type="text" autocomplete="off" spellcheck="false" inputmode="text" placeholder="' + esc(ph) + '"><span class="ck-mark" aria-hidden="true"></span></div>';
         host.appendChild(div);
@@ -5411,8 +5390,7 @@
           mk.className = "ck-mark";
         });
       });
-      $("ckSub").textContent = fields && fields.length > 1 ? "Work it out on paper, then fill in each box. The work stays hidden until you check." :
-        "Work it out on paper, then type what you got. The work stays hidden until you check.";
+      $("ckSub").textContent = fields && fields.length > 1 ? tr("lines-and-slope.ckSubN") : tr("lines-and-slope.ckSub1");
     }
 
     function report(verdict) {
@@ -5420,7 +5398,7 @@
       if (verdict !== "shown") CK.graded++;
       var detail = {
         page: "lines.html",
-        params: paramsFor(S.mode, S.inputs[S.mode], S.to),
+        params: paramsFor(S.mode, norm(S.inputs[S.mode]), S.to),
         verdict: verdict,
         firstTry: verdict !== "shown" && first,
         hinted: !!CK.hinted,
@@ -5438,7 +5416,7 @@
       fields.forEach(function(f) {
         var inp = $("ck_" + f.key),
           r;
-        try { r = judge(f, inp ? inp.value : ""); } catch (e) { r = { st: "unread", msg: e && e.user && e.user !== "zero" ? e.user : "I can’t read that." }; }
+        try { r = judge(f, inp ? inp.value : ""); } catch (e) { r = { st: "unread", msg: e && e.user && e.user !== "zero" ? e.user : tr("lines-and-slope.ck.cantRead") }; }
         results.push(r);
         var mk = inp ? inp.parentNode.querySelector(".ck-mark") : null;
         if (mk) {
@@ -5449,11 +5427,11 @@
       });
 
       function label(r) { var i = results.indexOf(r); return fields.length > 1 ? "<b>" + esc(fields[i].label) + ":</b> " : ""; }
-      if (results.every(function(r) { return r.st === "empty"; })) { fb.innerHTML = "Type your answer first" + (fields.length > 1 ? " — fill in every box." : "."); return; }
+      if (results.every(function(r) { return r.st === "empty"; })) { fb.innerHTML = fields.length > 1 ? tr("lines-and-slope.ck.firstAll") : tr("lines-and-slope.ck.first"); return; }
       var unread = results.filter(function(r) { return r.st === "unread"; })[0];
-      if (unread) { fb.innerHTML = '<span class="bad">I can’t read that.</span><span class="tip">' + label(unread) + unread.msg + "</span>"; return; }
+      if (unread) { fb.innerHTML = '<span class="bad">' + tr("lines-and-slope.ck.cantRead") + '</span><span class="tip">' + label(unread) + unread.msg + "</span>"; return; }
       var empty = results.filter(function(r) { return r.st === "empty"; }).length;
-      if (empty) { fb.innerHTML = "Fill in every box — " + empty + " still empty."; return; }
+      if (empty) { fb.innerHTML = tr("lines-and-slope.ck.empty", { n: empty }); return; }
       var bad = results.filter(function(r) { return r.st === "bad"; }),
         part = results.filter(function(r) { return r.st === "part"; }),
         verdict;
@@ -5462,12 +5440,12 @@
         CK.done = true;
         CK.reveal = "all";
         var notes = results.map(function(r) { return r.note; }).filter(Boolean);
-        fb.innerHTML = '<span class="ok">✓ Correct!</span> Compare your work with the steps below.' + (notes.length ? '<span class="tip">' + notes.join(" ") + "</span>" : "");
+        fb.innerHTML = '<span class="ok">' + tr("common.correct") + "</span> " + tr("lines-and-slope.ck.compare") + (notes.length ? '<span class="tip">' + notes.join(" ") + "</span>" : "");
       } else if (bad.length) {
         verdict = "wrong";
         CK.tries++;
         var diag = bad.filter(function(r) { return r.msg; })[0];
-        fb.innerHTML = '<span class="bad">Not quite — try again.</span>' + (diag ? '<span class="tip">' + label(diag) + diag.msg + "</span>" : "") +
+        fb.innerHTML = '<span class="bad">' + tr("common.notQuite") + "</span>" + (diag ? '<span class="tip">' + label(diag) + diag.msg + "</span>" : "") +
           (part.length ? '<span class="tip">' + label(part[0]) + part[0].msg + "</span>" : "");
       } else {
         verdict = "simplify";
@@ -5578,13 +5556,13 @@
     /* ===================== wiring ===================== */
     var in1 = $("in1");
     var HINTS = {
-      slope: "Two points like <code>(1, 2) and (5, 4)</code>, an equation like <code>y = 2x − 3</code> or <code>2x + 3y = 6</code>, or a rise and run like <code>rise 3, run 4</code> or <code>down 2, right 5</code>.",
-      equation: "A slope and a point: <code>slope 2 through (1, 3)</code>. Two points: <code>(1, 2) and (5, 4)</code>. Slope and y-intercept: <code>m = 2, b = −3</code>. Fractions like <code>−1/2</code>; <code>undefined slope</code> for a vertical line.",
-      convert: "A line in any form: <code>y = 2x − 3</code>, <code>y − 2 = 3(x − 1)</code>, <code>2x + 3y = 6</code>. Pick the form to write it in below. <code>1/2x</code> means ½ times <i>x</i>.",
-      graph: "An equation in any form: <code>y = −1/2x + 4</code>, <code>2x + 3y = 6</code>, <code>y − 1 = 3/2(x + 2)</code>, <code>x = −2</code>.",
-      parallel: "<code>parallel to y = 2x + 1 through (3, 4)</code> or <code>perpendicular to 2x + 3y = 6 through (0, 0)</code> — or two lines to compare: <code>y = 2x + 1 and y = −1/2x + 3</code>."
+      slope: tr("lines-and-slope.hint.slope"),
+      equation: tr("lines-and-slope.hint.equation"),
+      convert: tr("lines-and-slope.hint.convert"),
+      graph: tr("lines-and-slope.hint.graph"),
+      parallel: tr("lines-and-slope.hint.parallel")
     };
-    var LABELS = { slope: "Two points, an equation, or a rise and run", equation: "Slope and a point, two points, or m and b", convert: "Your equation", graph: "Your equation", parallel: "A line and a point — or two lines" };
+    var LABELS = { slope: tr("lines-and-slope.lab.slope"), equation: tr("lines-and-slope.lab.equation"), convert: tr("lines-and-slope.lab.eq"), graph: tr("lines-and-slope.lab.eq"), parallel: tr("lines-and-slope.lab.parallel") };
     var EX = {
       slope: ["(1, 2) and (5, 4)", "(−3, 4) and (2, −1)", "(2, 5) and (6, 5)", "(3, −1) and (3, 4)", "y = −3/4x + 2", "2x + 3y = 6", "rise 3, run 4", "down 2, right 5"],
       equation: ["slope 2 through (1, 3)", "slope −1/2 through (4, 1)", "(1, 2) and (5, 4)", "(−2, 3) and (4, 0)", "m = 3, b = −4", "slope 0 through (2, 5)", "undefined slope through (−1, 2)"],
@@ -5602,7 +5580,7 @@
         "y = 2x + 1 and y = −1/2x + 3", "y = 3x − 1 and 6x − 2y = 8", "2x + y = 4 and y = 2x − 3"
       ]
     };
-    var TO_SHORT = { slope: "→ y = mx + b", point: "→ point-slope", standard: "→ standard" };
+    var TO_SHORT = { slope: "→ y = mx + b", point: tr("lines-and-slope.toShort.point"), standard: tr("lines-and-slope.toShort.standard") };
 
     function buildChips() {
       var host = $("chips");
@@ -5611,9 +5589,9 @@
         var b = document.createElement("button");
         b.className = "chip";
         b.type = "button";
-        if (typeof e === "string") b.textContent = e;
-        else b.innerHTML = esc(e[0]) + '<span class="to">' + esc(TO_SHORT[e[1]]) + "</span>";
-        b.addEventListener("click", function() { typeof e === "string" ? setProblem(e) : setProblem(e[0], e[1]); });
+        if (typeof e === "string") b.textContent = show(e);
+        else b.innerHTML = esc(show(e[0])) + '<span class="to">' + esc(TO_SHORT[e[1]]) + "</span>";
+        b.addEventListener("click", function() { typeof e === "string" ? setProblem(show(e)) : setProblem(show(e[0]), e[1]); });
         host.appendChild(b);
       });
     }
@@ -5687,8 +5665,8 @@
 
     /* the maker's controls, per mode */
     var MAKER = {
-      slope: [{ lbl: "Find the steepness (slope) from", seg: "from", vals: ["points", "equation", "graph", "any"], fmt: function(v) { return L_FROM[v]; } }, {
-          lbl: "Also include",
+      slope: [{ lbl: tr("lines-and-slope.mk.slopeFrom"), seg: "from", vals: ["points", "equation", "graph", "any"], fmt: function(v) { return L_FROM[v]; } }, {
+          lbl: tr("lines-and-slope.mk.include"),
           togs: [
             ["frac", "½", W_FRAC],
             ["special", "0", W_SPECIAL]
@@ -5696,8 +5674,8 @@
         },
         { lbl: W_MAX, seg: "max", vals: [5, 10], fmt: upTo }
       ],
-      equation: [{ lbl: "What you are given", seg: "given", vals: ["slopePoint", "twoPoints", "slopeIntercept", "any"], fmt: function(v) { return L_GIVEN[v]; } }, {
-          lbl: "Also include",
+      equation: [{ lbl: tr("lines-and-slope.mk.given"), seg: "given", vals: ["slopePoint", "twoPoints", "slopeIntercept", "any"], fmt: function(v) { return L_GIVEN[v]; } }, {
+          lbl: tr("lines-and-slope.mk.include"),
           togs: [
             ["frac", "½", W_FRAC],
             ["special", "0", W_SPECIAL]
@@ -5705,23 +5683,23 @@
         },
         { lbl: W_MAX, seg: "max", vals: [5, 10], fmt: upTo }
       ],
-      convert: [{ lbl: "Start with", seg: "from", vals: ["standard", "slope", "point", "any"], fmt: function(v) { return L_FORM[v]; } },
-        { lbl: "Change it to", seg: "to", vals: ["slope", "standard", "point"], fmt: function(v) { return L_FORM[v]; } }, {
-          lbl: "Also include",
+      convert: [{ lbl: tr("lines-and-slope.mk.startWith"), seg: "from", vals: ["standard", "slope", "point", "any"], fmt: function(v) { return L_FORM[v]; } },
+        { lbl: tr("lines-and-slope.mk.changeTo"), seg: "to", vals: ["slope", "standard", "point"], fmt: function(v) { return L_FORM[v]; } }, {
+          lbl: tr("lines-and-slope.mk.include"),
           togs: [
             ["frac", "½", W_FRAC]
           ]
         }
       ],
-      graph: [{ lbl: "The equation is written in", seg: "form", vals: ["slope", "standard", "point", "any"], fmt: function(v) { return L_FORM[v]; } }, {
-        lbl: "Also include",
+      graph: [{ lbl: tr("lines-and-slope.mk.writtenIn"), seg: "form", vals: ["slope", "standard", "point", "any"], fmt: function(v) { return L_FORM[v]; } }, {
+        lbl: tr("lines-and-slope.mk.include"),
         togs: [
           ["frac", "½", W_FRAC]
         ]
       }],
-      parallel: [{ lbl: "What to do", seg: "kind", vals: ["parallel", "perpendicular", "which", "any"], fmt: function(v) { return L_KIND[v]; } },
-        { lbl: "The given line is written in", seg: "form", vals: ["slope", "standard", "any"], fmt: function(v) { return v === "any" ? "Either form" : L_FORM[v]; } }, {
-          lbl: "Also include",
+      parallel: [{ lbl: tr("lines-and-slope.mk.whatToDo"), seg: "kind", vals: ["parallel", "perpendicular", "which", "any"], fmt: function(v) { return L_KIND[v]; } },
+        { lbl: tr("lines-and-slope.mk.givenIn"), seg: "form", vals: ["slope", "standard", "any"], fmt: function(v) { return v === "any" ? tr("lines-and-slope.mk.either") : L_FORM[v]; } }, {
+          lbl: tr("lines-and-slope.mk.include"),
           togs: [
             ["frac", "½", W_FRAC],
             ["special", "0", W_SPECIAL]
@@ -5740,7 +5718,7 @@
         r = genOne(S.mode, S.gen[S.mode]);
         sol = solveAny(S.mode, r.q, r.to || "slope");
       } catch (e) { r = null; }
-      el.innerHTML = r && sol ? "Makes problems like: <b>" + esc(sol.api.text) + "</b>" : "Those choices don’t make a problem — try different ones.";
+      el.innerHTML = r && sol ? tr("lines-and-slope.mk.sample", { p: esc(sol.api.text) }) : tr("lines-and-slope.mk.none");
     }
 
     function esc2(s) { return esc(s); }
@@ -5795,7 +5773,7 @@
       host.appendChild(sample);
       var go = document.createElement("div");
       go.className = "maker-go";
-      go.innerHTML = '<button type="button" class="go" id="genBtn">New problem</button><span class="msg" id="genMsg"></span>';
+      go.innerHTML = '<button type="button" class="go" id="genBtn">' + tr("common.newProblem") + '</button><span class="msg" id="genMsg"></span>';
       host.appendChild(go);
       $("genBtn").addEventListener("click", generate);
       paintSample();
@@ -5803,8 +5781,8 @@
 
     function generate() {
       var r = genOne(S.mode, S.gen[S.mode]);
-      $("genMsg").textContent = S.mode === "convert" && r.to !== S.gen.convert.to ? "That one was already in that form, so it converts to " + L_FORM[r.to].toLowerCase() + " instead." : "";
-      setProblem(r.q, S.mode === "convert" ? r.to : null);
+      $("genMsg").textContent = S.mode === "convert" && r.to !== S.gen.convert.to ? tr("lines-and-slope.mk.already", { form: L_FORM[r.to].toLowerCase() }) : "";
+      setProblem(show(r.q), S.mode === "convert" ? r.to : null);
     }
 
     function paintPractice() {
@@ -5849,9 +5827,9 @@
 
     function copied(ok) {
       var b = $("copyBtn");
-      b.textContent = ok ? "Link copied ✓" : "Couldn’t copy — use the address bar";
+      b.textContent = ok ? tr("common.linkCopied") + " ✓" : tr("lines-and-slope.copyFailed");
       clearTimeout(copyTimer);
-      copyTimer = setTimeout(function() { b.textContent = "Copy link"; }, 2000);
+      copyTimer = setTimeout(function() { b.textContent = tr("common.copyLink"); }, 2000);
     }
 
     function copyFallback(text) {
@@ -5898,7 +5876,7 @@
       return t ? t === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
     }
 
-    function paint() { themeBtn.textContent = isDark() ? "Light mode" : "Dark mode"; }
+    function paint() { themeBtn.textContent = isDark() ? tr("common.lightMode") : tr("common.darkMode"); }
     themeBtn.addEventListener("click", function() {
       document.documentElement.setAttribute("data-theme", isDark() ? "light" : "dark");
       paint();

@@ -16,6 +16,7 @@
 <link rel="canonical" href="https://showthesteps.org/helpers/order-of-operations">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","name":"Order of operations (PEMDAS), step by step – The Order Stack","description":"Long problems, one operation at a time. Parentheses first, then exponents, then × and ÷ left to right, then + and − left to right. Same rule as BODMAS and BEDMAS.","url":"https://showthesteps.org/helpers/order-of-operations","inLanguage":"en-US","isAccessibleForFree":true,"learningResourceType":["Interactive worked examples","Practice problems"],"interactivityType":"active","educationalUse":["Practice","Self-assessment"],"teaches":"Order of operations (PEMDAS)","educationalLevel":["Elementary school (grades K–5)","Middle school (grades 6–8)"],"audience":{"@type":"EducationalAudience","educationalRole":"student"},"publisher":{"@type":"Organization","name":"Show The Steps","url":"https://showthesteps.org/"},"isPartOf":{"@type":"WebSite","name":"Show The Steps","url":"https://showthesteps.org/"}}</script>
 <script src="../assets/site.js"></script>
+<script src="../assets/i18n.js" data-strings="order-of-operations"></script>
 <script src="../assets/nav.js" defer></script>
 <script src="../assets/progress.js" defer></script>
 <link rel="stylesheet" href="../assets/fonts/fonts.css">
@@ -1321,9 +1322,9 @@
 <div class="page">
   <header class="masthead">
     <div>
-      <div class="eyebrow">Order of operations, worked out</div>
+      <div class="eyebrow" data-i18n="order-of-operations.eyebrow">Order of operations, worked out</div>
       <h1>The Order <em>Stack</em></h1>
-      <p class="tagline">Long problems, one operation at a time. Parentheses first, then exponents, then
+      <p class="tagline" data-i18n="order-of-operations.tagline">Long problems, one operation at a time. Parentheses first, then exponents, then
         &times; and &divide; left to right, then + and &minus; left to right. Same rule as BODMAS and BEDMAS.</p>
     </div>
     <button class="theme-btn" id="themeBtn" type="button">Dark mode</button>
@@ -1332,67 +1333,67 @@
   <section class="problem">
     <div class="entry">
       <div class="numfield">
-        <label for="exprIn">Your problem</label>
+        <label for="exprIn" data-i18n="order-of-operations.yourProblem">Your problem</label>
         <input class="expr-in" id="exprIn" type="text" inputmode="text" autocomplete="off" spellcheck="false"
                value="20 − 12 ÷ 4 × 2 + 1">
       </div>
-      <div class="keys" id="keys" aria-label="Insert a symbol">
+      <div class="keys" id="keys" aria-label="Insert a symbol" data-i18n-attr="aria-label=order-of-operations.keysAria">
         <button type="button" data-k=" + ">+</button>
         <button type="button" data-k=" − ">&minus;</button>
         <button type="button" data-k=" × ">&times;</button>
         <button type="button" data-k=" ÷ ">&divide;</button>
         <button type="button" data-k="(">(</button>
         <button type="button" data-k=")">)</button>
-        <button type="button" data-k="²" aria-label="Squared">x&sup2;</button>
-        <button type="button" data-k="^" aria-label="Power">x<sup>n</sup></button>
+        <button type="button" data-k="²" aria-label="Squared" data-i18n-attr="aria-label=order-of-operations.keySquared">x&sup2;</button>
+        <button type="button" data-k="^" aria-label="Power" data-i18n-attr="aria-label=order-of-operations.keyPower">x<sup>n</sup></button>
       </div>
     </div>
-    <p class="hint">Type <code>*</code> or <code>x</code> for &times;, <code>/</code> for &divide;,
+    <p class="hint" data-i18n="order-of-operations.hint">Type <code>*</code> or <code>x</code> for &times;, <code>/</code> for &divide;,
       <code>^</code> for a power. <code>[ ]</code> and <code>{ }</code> work as parentheses.</p>
 
     <details class="maker" id="maker">
-      <summary>Make a problem for me <span>&mdash; pick what goes in it</span></summary>
+      <summary data-i18n="common.maker">Make a problem for me <span>&mdash; pick what goes in it</span></summary>
       <div class="maker-body">
-        <span class="lbl">Signs to use</span>
+        <span class="lbl" data-i18n="order-of-operations.signsToUse">Signs to use</span>
         <div class="toggles" id="opsT">
-          <button type="button" class="tog" data-op="+"><b>+</b> Add</button>
-          <button type="button" class="tog" data-op="−"><b>&minus;</b> Subtract</button>
-          <button type="button" class="tog" data-op="×"><b>&times;</b> Multiply</button>
-          <button type="button" class="tog" data-op="÷"><b>&divide;</b> Divide</button>
+          <button type="button" class="tog" data-op="+" data-i18n="order-of-operations.tog.add"><b>+</b> Add</button>
+          <button type="button" class="tog" data-op="−" data-i18n="order-of-operations.tog.sub"><b>&minus;</b> Subtract</button>
+          <button type="button" class="tog" data-op="×" data-i18n="order-of-operations.tog.mul"><b>&times;</b> Multiply</button>
+          <button type="button" class="tog" data-op="÷" data-i18n="order-of-operations.tog.div"><b>&divide;</b> Divide</button>
         </div>
-        <span class="lbl">Also include</span>
+        <span class="lbl" data-i18n="order-of-operations.alsoInclude">Also include</span>
         <div class="toggles">
-          <button type="button" class="tog" id="parT"><b>( )</b> Parentheses</button>
-          <button type="button" class="tog" id="expT"><b>x&sup2;</b> Powers (x&sup2;)</button>
-          <button type="button" class="tog" id="decT"><b>.5</b> Decimals</button>
-          <button type="button" class="tog" id="niceT"><b>&check;</b> Keep every answer a whole number</button>
+          <button type="button" class="tog" id="parT" data-i18n="order-of-operations.tog.par"><b>( )</b> Parentheses</button>
+          <button type="button" class="tog" id="expT" data-i18n="order-of-operations.tog.exp"><b>x&sup2;</b> Powers (x&sup2;)</button>
+          <button type="button" class="tog" id="decT" data-i18n="order-of-operations.tog.dec"><b>.5</b> Decimals</button>
+          <button type="button" class="tog" id="niceT" data-i18n="order-of-operations.tog.nice"><b>&check;</b> Keep every answer a whole number</button>
         </div>
-        <span class="lbl">How long</span>
-        <div class="lenrow"><div class="modes small" id="lenT" role="group" aria-label="How long: how many steps"></div>
-          <span class="lenhint">each step is one + &minus; &times; or &divide;</span></div>
-        <span class="lbl">Biggest number</span>
-        <div class="modes small" id="maxT" role="group" aria-label="Biggest number"></div>
+        <span class="lbl" data-i18n="order-of-operations.howLong">How long</span>
+        <div class="lenrow"><div class="modes small" id="lenT" role="group" aria-label="How long: how many steps" data-i18n-attr="aria-label=order-of-operations.howLongAria"></div>
+          <span class="lenhint" data-i18n="order-of-operations.lenHint">each step is one + &minus; &times; or &divide;</span></div>
+        <span class="lbl" data-i18n="order-of-operations.biggest">Biggest number</span>
+        <div class="modes small" id="maxT" role="group" aria-label="Biggest number" data-i18n-attr="aria-label=order-of-operations.biggest"></div>
         <p class="sample" id="sample"></p>
         <div class="maker-go">
-          <button type="button" class="go" id="genBtn">New problem</button>
+          <button type="button" class="go" id="genBtn" data-i18n="common.newProblem">New problem</button>
           <span class="msg" id="genMsg"></span>
         </div>
       </div>
     </details>
 
     <div class="examples">
-      <span class="lbl">Try</span>
+      <span class="lbl" data-i18n="common.try">Try</span>
       <span id="chips"></span>
       <span class="practice">
-        <span class="lbl2">Show fractions as</span>
-        <div class="modes small" role="group" aria-label="How to show answers that aren't whole">
-          <button type="button" id="asFrac" aria-pressed="true">Fractions</button>
-          <button type="button" id="asDec" aria-pressed="false">Decimals</button>
+        <span class="lbl2" data-i18n="order-of-operations.showAs">Show fractions as</span>
+        <div class="modes small" role="group" aria-label="How to show answers that aren't whole" data-i18n-attr="aria-label=order-of-operations.showAsAria">
+          <button type="button" id="asFrac" aria-pressed="true" data-i18n="common.fractions">Fractions</button>
+          <button type="button" id="asDec" aria-pressed="false" data-i18n="common.decimals">Decimals</button>
         </div>
-        <div class="modes" role="group" aria-label="Practice mode">
-          <button type="button" id="allBtn" aria-pressed="true">Show all work</button>
-          <button type="button" id="stepBtn" aria-pressed="false">One step at a time</button>
-          <button type="button" id="checkBtn" aria-pressed="false">Check my answer</button>
+        <div class="modes" role="group" aria-label="Practice mode" data-i18n-attr="aria-label=common.practiceMode">
+          <button type="button" id="allBtn" aria-pressed="true" data-i18n="common.showAll">Show all work</button>
+          <button type="button" id="stepBtn" aria-pressed="false" data-i18n="common.oneStep">One step at a time</button>
+          <button type="button" id="checkBtn" aria-pressed="false" data-i18n="common.checkMine">Check my answer</button>
         </div>
       </span>
     </div>
@@ -1401,53 +1402,53 @@
   <div id="statusLine" role="status" aria-live="polite"></div>
 
   <section class="ckbox" id="ckBox" hidden aria-labelledby="ckHead">
-    <div class="ck-head"><h2 id="ckHead">Your answer</h2>
-      <span>Work it out on paper first, then type what you got.</span></div>
+    <div class="ck-head"><h2 id="ckHead" data-i18n="common.yourAnswer">Your answer</h2>
+      <span data-i18n="order-of-operations.ckSub">Work it out on paper first, then type what you got.</span></div>
     <form class="ck-row" id="ckForm" autocomplete="off">
       <div class="numfield">
-        <label for="ckIn">The answer is</label>
+        <label for="ckIn" data-i18n="order-of-operations.ckLabel">The answer is</label>
         <input class="expr-in" id="ckIn" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-               placeholder="15, −3, 7/6, 2.5…">
+               placeholder="15, −3, 7/6, 2.5…" data-i18n-attr="placeholder=order-of-operations.ckPlaceholder">
       </div>
-      <button type="submit" class="go" id="ckGo">Check</button>
+      <button type="submit" class="go" id="ckGo" data-i18n="common.check">Check</button>
     </form>
     <p class="ck-msg" id="ckMsg" aria-live="polite"></p>
     <div class="ck-more" id="ckMore" hidden>
-      <button type="button" id="ckHint">Show a hint</button>
-      <button type="button" id="ckShow">Show me the work</button>
+      <button type="button" id="ckHint" data-i18n="common.hint">Show a hint</button>
+      <button type="button" id="ckShow" data-i18n="common.showWork">Show me the work</button>
     </div>
   </section>
 
   <div class="board" id="board">
     <section class="panel">
       <div class="panel-head">
-        <h2>The work</h2>
+        <h2 data-i18n="common.theWork">The work</h2>
         <div class="stepper" id="stepper" hidden>
-          <button type="button" id="prevBtn" aria-label="Previous step">&larr;</button>
+          <button type="button" id="prevBtn" aria-label="Previous step" data-i18n-attr="aria-label=common.prevStep">&larr;</button>
           <span class="count" id="stepCount"></span>
-          <button type="button" id="nextBtn" aria-label="Next step">&rarr;</button>
+          <button type="button" id="nextBtn" aria-label="Next step" data-i18n-attr="aria-label=common.nextStep">&rarr;</button>
         </div>
       </div>
       <div id="workHost"></div>
       <div class="legend" id="legend">
-        <div><span class="badge c-p">P</span> Parentheses</div><span class="then">&rarr;</span>
-        <div><span class="badge c-e">E</span> Exponents</div><span class="then">&rarr;</span>
-        <div><span class="badge c-m">M D</span> &times; &divide; left to right</div><span class="then">&rarr;</span>
-        <div><span class="badge c-a">A S</span> + &minus; left to right</div>
+        <div data-i18n="order-of-operations.legend.p"><span class="badge c-p">P</span> Parentheses</div><span class="then">&rarr;</span>
+        <div data-i18n="order-of-operations.legend.e"><span class="badge c-e">E</span> Exponents</div><span class="then">&rarr;</span>
+        <div data-i18n="order-of-operations.legend.m"><span class="badge c-m">M D</span> &times; &divide; left to right</div><span class="then">&rarr;</span>
+        <div data-i18n="order-of-operations.legend.a"><span class="badge c-a">A S</span> + &minus; left to right</div>
       </div>
     </section>
 
     <section class="panel">
-      <div class="panel-head"><h2>Say it out loud</h2></div>
+      <div class="panel-head"><h2 data-i18n="common.sayIt">Say it out loud</h2></div>
       <ol class="log" id="log"></ol>
       <div class="closer" id="closer"></div>
     </section>
   </div>
 
   <div class="footnote">
-    <button class="print" type="button" id="printBtn">Print this work</button>
-    <button class="print" type="button" id="copyBtn">Copy link</button>
-    <span>One operation per line, nothing skipped. Stuck on one of the steps? Work it on
+    <button class="print" type="button" id="printBtn" data-i18n="common.print">Print this work</button>
+    <button class="print" type="button" id="copyBtn" data-i18n="common.copyLink">Copy link</button>
+    <span data-i18n="order-of-operations.footnote">One operation per line, nothing skipped. Stuck on one of the steps? Work it on
       <a href="addition.html">+</a>, <a href="subtraction.html">&minus;</a>,
       <a href="multiplication.html">&times;</a> or <a href="division.html">&divide;</a>.</span>
   </div>
@@ -1475,6 +1476,8 @@
      Making problems never changes this page: not its inputs, its maker settings or what it saved. */
   (function() {
     "use strict";
+    if (window.HelperI18n) HelperI18n.apply();
+    var tx = function(k, v) { return window.HelperI18n ? HelperI18n.t(k, v) : k; };
     var $ = function(id) { return document.getElementById(id); };
     var S = {
       expr: "20 − 12 ÷ 4 × 2 + 1",
@@ -1539,11 +1542,10 @@
           if (b.n === 0n) throw new UserErr("zero");
           return R(a.n * b.d, a.d * b.n);
         case "^":
-          if (b.d !== 1n) throw new UserErr("Powers have to be whole numbers here — <b>" +
-            numText(a) + "<sup>" + numText(b) + "</sup></b> isn’t one I can work by hand.");
+          if (b.d !== 1n) throw new UserErr(tx("order-of-operations.err.powWhole", { b: numText(a), e: numText(b) }));
           var k = b.n < 0n ? -b.n : b.n;
-          if (k > 20n) throw new UserErr("A power of <b>" + numText(b) + "</b> is too big to write out. Keep powers to 20 or less.");
-          if (a.n === 0n && b.n <= 0n) throw new UserErr("<b>0<sup>" + numText(b) + "</sup></b> isn’t defined — try a different power.");
+          if (k > 20n) throw new UserErr(tx("order-of-operations.err.powBig", { e: numText(b) }));
+          if (a.n === 0n && b.n <= 0n) throw new UserErr(tx("order-of-operations.err.zeroPow", { e: numText(b) }));
           return b.n < 0n ? R(a.d ** k, a.n ** k) : R(a.n ** k, a.d ** k);
         case "neg":
           return R(-a.n, a.d);
@@ -1961,8 +1963,7 @@
           continue;
         }
         if ((c === "x" || c === "X") && !timesX(s, i, out))
-          throw new UserErr("<b>" + esc(c) + "</b> here looks like a letter, not a times sign. Problems with letters, like <b>2x + 3</b>, " +
-            "are on the Balance Scale. For times, put <b>x</b> or <b>×</b> between two numbers, like <b>4 × 2</b>.");
+          throw new UserErr(tx("order-of-operations.err.letterX", { c: esc(c) }));
         if (OPS[c]) {
           out.push({ k: "op", s: OPS[c] });
           i++;
@@ -1979,10 +1980,9 @@
           continue;
         }
         if (/[a-z]/i.test(c) && /[a-z]{2}/i.test(s))
-          throw new UserErr("I couldn’t read all of those words. Type the problem with numbers and signs, like <b>3 + 4 × 2</b> " +
-            "(words like <b>plus</b>, <b>times</b>, <b>divided by</b> and <b>squared</b> work too)." +
-            (/\b(?:sum|difference|product|quotient|subtract|from|than|then)\b/i.test(s) ? " If it could be read two ways, add parentheses, like <b>(2 + 3) × 4</b>." : ""));
-        throw new UserErr("I don’t know the symbol <b>" + esc(c) + "</b>. Use digits, + − × ÷, ^ for powers, and parentheses.");
+          throw new UserErr(tx("order-of-operations.err.words") +
+            (/\b(?:sum|difference|product|quotient|subtract|from|than|then)\b/i.test(s) ? tx("order-of-operations.err.wordsTwoWays") : ""));
+        throw new UserErr(tx("order-of-operations.err.symbol", { c: esc(c) }));
       }
       return out;
     }
@@ -1999,9 +1999,13 @@
 
     function readable(src) {
       if (READ.src === src) return READ.out;
-      var out = null;
+      var out = null,
+        nz = window.HelperI18n ? HelperI18n.normalize(src) : src,
+        tw = window.HelperI18n && HelperI18n.lang !== "en" ? HelperI18n.raw("order-of-operations.typedWords") : null; // the page's own words, after normalize
+      if (tw && tw.length) tw.forEach(function(r) { nz = nz.replace(new RegExp(r[0], "gi"), r[1]); });
       if (works(src)) out = src;
-      else { var T = readTyped(src); if (T && works(T.q)) out = T.q; }
+      else if (nz !== src && works(nz)) out = nz;
+      else { var T = readTyped(nz); if (T && works(T.q)) out = T.q; }
       READ = { src: src, out: out };
       return out;
     }
@@ -2011,13 +2015,12 @@
     /* flat = treat × ÷ + − as one level, straight left to right (the classic mistake) */
     function parse(src, flat) {
       if (/^\s*\d{1,2}:[0-5]\d\s*$/.test(src))
-        throw new UserErr("<b>" + esc(String(src).trim()) + "</b> looks like a time. To divide, write it with ÷, like <b>" +
-          esc(String(src).trim().replace(":", " ÷ ")) + "</b>. Telling time is on the Place Value Chart.");
+        throw new UserErr(tx("order-of-operations.err.time", { s: esc(String(src).trim()), d: esc(String(src).trim().replace(":", " ÷ ")) }));
       var tk = lex(src),
         p = 0,
         uid = 0,
         dec = false;
-      if (!tk.length) throw new UserErr("Type a problem, like <b>3 + 4 × 2</b>.");
+      if (!tk.length) throw new UserErr(tx("order-of-operations.err.empty"));
 
       function peek() { return tk[p]; }
 
@@ -2074,42 +2077,34 @@
         var t = peek(),
           prev = tk[p - 1];
         if (!t) {
-          throw new UserErr(prev ? "The problem ends with <b>" + esc(tokText(prev)) + "</b> — what comes after it?" :
-            "Type a problem, like <b>3 + 4 × 2</b>.");
+          throw new UserErr(prev ? tx("order-of-operations.err.endsWith", { t: esc(tokText(prev)) }) : tx("order-of-operations.err.empty"));
         }
         if (t.k === "num") {
           p++;
           var q = t.s.split("."),
             ip = (q[0] || "").replace(/^0+(?=\d)/, "") || "0",
             fp = (q[1] || "").replace(/0+$/, "");
-          if ((ip + fp).length > 12) throw new UserErr("<b>" + esc(t.s) + "</b> is a lot of digits. Keep each number under 13 digits.");
+          if ((ip + fp).length > 12) throw new UserErr(tx("order-of-operations.err.digits", { s: esc(t.s) }));
           if (fp) dec = true;
           return { t: "num", id: ++uid, v: R(BigInt(ip + fp), 10n ** BigInt(fp.length)), raw: commas(fp ? ip + "." + fp : ip) };
         }
         if (t.k === "(") {
           p++;
-          if (peek() && peek().k === ")") throw new UserErr("There’s an empty pair of parentheses <b>( )</b> — put something inside.");
+          if (peek() && peek().k === ")") throw new UserErr(tx("order-of-operations.err.emptyParens"));
           var inner = expr();
-          if (!peek() || peek().k !== ")") throw new UserErr(peek() ?
-            "Something’s missing before <b>" + esc(tokText(peek())) + "</b>." :
-            "A <b>(</b> is never closed — add a <b>)</b>.");
+          if (!peek() || peek().k !== ")") throw new UserErr(peek() ? tx("order-of-operations.err.missingBefore", { t: esc(tokText(peek())) }) : tx("order-of-operations.err.notClosed"));
           p++;
           if (inner.t === "num" || inner.t === "par") return inner; // (5) is just 5; ((x)) is just (x)
           return { t: "par", id: ++uid, a: inner };
         }
-        if (t.k === ")") throw new UserErr(prev && prev.k !== "(" && prev.k !== "op" ?
-          "There’s a <b>)</b> with no <b>(</b> to match it." :
-          "Something’s missing before <b>)</b>.");
-        throw new UserErr(prev ?
-          "<b>" + esc(t.s) + "</b> right after <b>" + esc(tokText(prev)) + "</b> — there’s a number missing between them." :
-          "The problem starts with <b>" + esc(t.s) + "</b> — what comes before it?");
+        if (t.k === ")") throw new UserErr(prev && prev.k !== "(" && prev.k !== "op" ? tx("order-of-operations.err.noOpen") : tx("order-of-operations.err.missingBeforeClose"));
+        throw new UserErr(prev ? tx("order-of-operations.err.between", { t: esc(t.s), p: esc(tokText(prev)) }) : tx("order-of-operations.err.startsWith", { t: esc(t.s) }));
       }
       var root = expr();
       if (p < tk.length) {
         var t = tk[p];
-        if (t.k === ")") throw new UserErr("There’s a <b>)</b> with no <b>(</b> to match it.");
-        throw new UserErr("Two numbers in a row — <b>" + esc(tokText(tk[p - 1])) + " " + esc(tokText(t)) +
-          "</b> — with nothing between them. Did you mean to put an operation there?");
+        if (t.k === ")") throw new UserErr(tx("order-of-operations.err.noOpen"));
+        throw new UserErr(tx("order-of-operations.err.twoNumbers", { a: esc(tokText(tk[p - 1])), b: esc(tokText(t)) }));
       }
       var count = 0;
       (function walk(n) {
@@ -2118,7 +2113,7 @@
         walk(n.a);
         if (n.b) walk(n.b);
       })(root);
-      if (count > MAX_OPS) throw new UserErr("That’s " + count + " operations! Keep it to " + MAX_OPS + " or fewer so the work fits.");
+      if (count > MAX_OPS) throw new UserErr(tx("order-of-operations.err.tooMany", { n: count, max: MAX_OPS }));
       return { tree: root, dec: dec, ops: count };
     }
 
@@ -2174,12 +2169,10 @@
         var pick = red.filter(function(o) { return clsOf(o) === cls; })[0];
         var v;
         try { v = apply(pick.t === "neg" ? "neg" : pick.op, pick.a.v, pick.b ? pick.b.v : null); } catch (e) {
-          if (e.user === "zero") throw new UserErr("Step " + (steps.length + 1) + " asks for <b>" + opnd(pick.a) +
-            " ÷ 0</b> — and you can’t divide by zero. Change the problem so nothing divides by 0.");
+          if (e.user === "zero") throw new UserErr(tx("order-of-operations.err.divZero", { n: steps.length + 1, a: opnd(pick.a) }));
           throw e;
         }
-        if (tooBig(v)) throw new UserErr("The numbers get too big to work by hand by step " + (steps.length + 1) +
-          ". Try smaller numbers or smaller powers.");
+        if (tooBig(v)) throw new UserErr(tx("order-of-operations.err.tooBig", { n: steps.length + 1 }));
         var counts = { e: 0, m: 0, a: 0 };
         ops.forEach(function(o) { counts[clsOf(o)]++; });
         var dropped = !!g && g.a === pick;
@@ -2234,7 +2227,7 @@
 
     function plain(n) { return H(n, {}, true, false); }
     var LETTER = { "+": "A", "−": "S", "×": "M", "÷": "D", "^": "E" };
-    var VERB = { "+": "Add", "−": "Subtract", "×": "Multiply", "÷": "Divide", "^": "Exponent" };
+    var VERB = { "+": tx("order-of-operations.verb.add"), "−": tx("order-of-operations.verb.sub"), "×": tx("order-of-operations.verb.mul"), "÷": tx("order-of-operations.verb.div"), "^": tx("order-of-operations.verb.exp") };
 
     /* ===================== the expression tree ===================== */
     function treeSVG(root, info) {
@@ -2301,7 +2294,7 @@
           '<text x="' + px.toFixed(1) + '" y="' + (me.y - 29) + '" text-anchor="middle">' + esc(me.val) + "</text></g>";
       });
       return '<svg class="tree" width="' + W + '" height="' + Hh + '" viewBox="0 0 ' + W + " " + Hh +
-        '" role="img" aria-label="Expression tree: each operation above the two numbers it works on">' + out + "</svg>";
+        '" role="img" aria-label="' + tx("order-of-operations.tree.aria") + '">' + out + "</svg>";
     }
 
     /* ===================== the words for each step ===================== */
@@ -2311,43 +2304,42 @@
         base = opnd(a, true),
         pk = Math.abs(k);
       var head = "<b>" + base + "<sup>" + esc(numText(st.pick.b.v)) + "</sup></b>";
-      if (k === 0) return head + " — anything (except 0) to the power 0 is <b>1</b>.";
-      if (k === 1) return head + " — a power of 1 leaves it alone: <b>" + numParts(st.value).html + "</b>.";
-      var rep = pk <= 6 ? new Array(pk + 1).join(base + " × ").slice(0, -3) : pk + " " + base + "s multiplied together";
-      if (k < 0) return head + " — a negative power means one over: <b>1 ÷ (" + rep + ") = " + numParts(st.value).html + "</b>.";
-      return head + " means <b>" + rep + " = " + numParts(st.value).html + "</b>.";
+      if (k === 0) return tx("order-of-operations.pow.zero", { head: head });
+      if (k === 1) return tx("order-of-operations.pow.one", { head: head, v: numParts(st.value).html });
+      var rep = pk <= 6 ? new Array(pk + 1).join(base + " × ").slice(0, -3) : tx("order-of-operations.pow.many", { k: pk, b: base });
+      if (k < 0) return tx("order-of-operations.pow.neg", { head: head, rep: rep, v: numParts(st.value).html });
+      return tx("order-of-operations.pow.means", { head: head, rep: rep, v: numParts(st.value).html });
     }
 
     function doText(st) {
       var n = st.pick,
         v = numParts(st.value);
-      if (n.t === "neg") return "The minus out front means “the opposite of”: <b>−" + opnd(n.a) + " = " + v.html + "</b>.";
+      if (n.t === "neg") return tx("order-of-operations.do.neg", { a: opnd(n.a), v: v.html });
       if (n.op === "^") return powWords(st);
       var s = "<b>" + nodeParts(n.a).html + " " + n.op + " " + opnd(n.b) + " = " + v.html + "</b>.";
       if (n.op === "÷" && st.value.d !== 1n && n.a.v.d === 1n && n.b.v.d === 1n)
-        s += v.frac ? " It doesn’t come out even, so it stays a fraction." : "";
+        s += v.frac ? tx("order-of-operations.do.uneven") : "";
       return s;
     }
 
     function whyText(st, isFirstInGroup) {
       var c = st.counts,
         inPar = !!st.group,
-        here = inPar ? " in here" : "",
         s = "";
       if (st.cls === "e") {
-        if (c.m || c.a) s = "Exponents come before × ÷ + −.";
-        else if (c.e > 1) s = "Powers first.";
+        if (c.m || c.a) s = tx("order-of-operations.why.expFirst");
+        else if (c.e > 1) s = tx("order-of-operations.why.powers");
       } else if (st.cls === "m") {
-        if (st.pick.t === "neg") s = c.a ? "Taking the opposite is multiplying by −1, so it goes before + and −." : "";
+        if (st.pick.t === "neg") s = c.a ? tx("order-of-operations.why.negFirst") : "";
         else {
-          if (c.a) s = "× and ÷ come before + and −.";
-          if (c.m > 1) s += (s ? " " : "") + "Of the × and ÷" + here + ", this is the first from the left.";
+          if (c.a) s = tx("order-of-operations.why.mdFirst");
+          if (c.m > 1) s += (s ? " " : "") + (inPar ? tx("order-of-operations.why.mdLeftIn") : tx("order-of-operations.why.mdLeft"));
         }
       } else {
-        if (c.a > 1) s = "Only + and − are left" + here + ", so go left to right.";
+        if (c.a > 1) s = inPar ? tx("order-of-operations.why.asLeftIn") : tx("order-of-operations.why.asLeft");
       }
-      if (!s && !inPar && st.ops.length === 1) s = "Only one operation left.";
-      if (!s && inPar && st.ops.length === 1 && !isFirstInGroup) s = "Last one inside the parentheses.";
+      if (!s && !inPar && st.ops.length === 1) s = tx("order-of-operations.why.oneLeft");
+      if (!s && inPar && st.ops.length === 1 && !isFirstInGroup) s = tx("order-of-operations.why.lastInside");
       return s;
     }
 
@@ -2364,7 +2356,7 @@
       if (S.step < 1) S.step = 1;
       $("stepper").hidden = !S.stepMode;
       if (S.stepMode) {
-        $("stepCount").textContent = S.step + " of " + total;
+        $("stepCount").textContent = tx("order-of-operations.stepOf", { n: S.step, total: total });
         $("prevBtn").disabled = S.step <= 1;
         $("nextBtn").disabled = S.step >= total;
       }
@@ -2386,7 +2378,7 @@
         throw e;
       }
       if (!sol.steps.length)
-        return fail("That’s already just one number — nothing to work out. Try something like <b>3 + 4 × 2</b>.");
+        return fail(tx("order-of-operations.err.oneNumber"));
 
       var steps = sol.steps,
         n = steps.length,
@@ -2416,11 +2408,10 @@
       html += "</div></div>";
 
       /* --- the tree --- */
-      html += '<div class="treewrap"><div class="tapecap"><b class="lead">Expression tree.</b> Every operation sits ' +
-        "above the two things it works on. A node can only be worked out once everything under it is a plain " +
-        "number — that’s all the order of operations really is. The little number on each node is the step " +
-        "where it gets done" + (S.stepMode ? ", and its answer appears above it as you go." : "; its answer is above it.") +
-        (hasPar(parsed.tree) ? " Parentheses don’t get a node of their own: they just decide what hangs under what." : "") +
+      html += '<div class="treewrap"><div class="tapecap">' + tx("order-of-operations.cap", {
+          rest: (S.stepMode ? tx("order-of-operations.cap.step") : tx("order-of-operations.cap.all")) +
+            (hasPar(parsed.tree) ? tx("order-of-operations.cap.par") : "")
+        }) +
         '</div><div class="tree-scroll">' + treeSVG(parsed.tree, info) + "</div></div>";
       $("workHost").innerHTML = html;
 
@@ -2434,33 +2425,30 @@
           g = st.group;
         var firstInGroup = g && g.id !== lastGroup;
         if (g) {
-          lines.push(["p", "Parens", firstInGroup ?
-            "Start inside the " + (hasParAround(st.tree, g.id) ? "innermost " : "") + "parentheses: <b>" + plain(g) + "</b>." :
-            "Still inside the parentheses."
+          lines.push(["p", tx("order-of-operations.verb.par"), firstInGroup ?
+            tx(hasParAround(st.tree, g.id) ? "order-of-operations.par.startInner" : "order-of-operations.par.start", { g: plain(g) }) :
+            tx("order-of-operations.par.still")
           ]);
         }
         lastGroup = g ? g.id : null;
         var why = whyText(st, firstInGroup);
-        var tagWord = st.pick.t === "neg" ? "Opposite" : VERB[st.pick.op];
+        var tagWord = st.pick.t === "neg" ? tx("order-of-operations.verb.neg") : VERB[st.pick.op];
         lines.push([st.cls, tagWord, (why ? why + " " : "") + doText(st) +
-          (st.dropped ? " The parentheses are done, so they drop away." : "")
+          (st.dropped ? tx("order-of-operations.par.drop") : "")
         ]);
 
         var p = st.pick;
         if (!seen.md && p.op === "÷" && st.ops.some(function(o) { return o.op === "×" && !o.imp; })) {
           seen.md = true;
-          aside = "÷ before ×? Here, yes. × and ÷ are partners: whichever comes first, reading left to right, " +
-            "goes first. The M before the D in PEMDAS is just how the word is spelled.";
+          aside = tx("order-of-operations.aside.md");
         } else if (!seen.as && p.op === "−" && st.ops.some(function(o) { return o.op === "+"; })) {
           seen.as = true;
-          aside = "− before +? Here, yes. + and − are partners too, so go left to right. " +
-            "<b>10 − 3 + 2</b> is <b>9</b>, not 5.";
+          aside = tx("order-of-operations.aside.as");
         } else if (!seen.neg && p.op === "^" && st.parent && st.parent.t === "neg") {
           seen.neg = true;
-          aside = "The minus sign waits its turn: <b>−3²</b> means “the opposite of 3²”, which is <b>−9</b>. " +
-            "To square −3 you’d write <b>(−3)²</b> = 9.";
+          aside = tx("order-of-operations.aside.neg");
         }
-        items.push({ n: "Step&nbsp;" + (i + 1), step: i, lines: lines, aside: aside });
+        items.push({ n: tx("order-of-operations.stepN", { n: i + 1 }), step: i, lines: lines, aside: aside });
       });
       writeLog(items);
 
@@ -2471,26 +2459,23 @@
         inP = 0;
       steps.forEach(function(st) { by[st.cls]++; if (st.group) inP++; });
       var parts = [];
-      if (by.e) parts.push(by.e + " power" + (by.e === 1 ? "" : "s"));
-      if (by.m) parts.push(by.m + " multiply or divide");
-      if (by.a) parts.push(by.a + " add or subtract");
-      facts.push("<b>" + n + "</b> step" + (n === 1 ? "" : "s") + ": " + parts.join(", ") +
-        (inP ? " &mdash; " + inP + " of them inside parentheses" : "") + ".");
+      if (by.e) parts.push(tx("order-of-operations.fact.powers", { n: by.e }));
+      if (by.m) parts.push(tx("order-of-operations.fact.md", { n: by.m }));
+      if (by.a) parts.push(tx("order-of-operations.fact.as", { n: by.a }));
+      facts.push(tx(inP ? "order-of-operations.fact.stepsIn" : "order-of-operations.fact.steps", { n: n, parts: parts.join(", "), k: inP }));
       if (sol.value.d !== 1n) {
         var abs = sol.value.n < 0n ? -sol.value.n : sol.value.n,
           sg = sol.value.n < 0n ? "−" : "";
         if (fin.frac) {
-          facts.push("As a decimal: <b>" + sg + decStr(abs, sol.value.d) + "</b>");
-          if (abs > sol.value.d) facts.push("As a mixed number: <b>" + sg + (abs / sol.value.d) + " " + (abs % sol.value.d) +
-            "/" + sol.value.d + "</b>");
+          facts.push(tx("order-of-operations.fact.dec", { v: sg + decStr(abs, sol.value.d) }));
+          if (abs > sol.value.d) facts.push(tx("order-of-operations.fact.mixed", { v: sg + (abs / sol.value.d) + " " + (abs % sol.value.d) + "/" + sol.value.d }));
         } else {
-          facts.push("As a fraction: <b>" + sg + abs + "/" + sol.value.d + "</b>");
+          facts.push(tx("order-of-operations.fact.frac", { v: sg + abs + "/" + sol.value.d }));
         }
       }
       if (impAnywhere(parsed.tree))
-        facts.push("Heads up: a number stuck to parentheses after ÷, like <b>6 ÷ 2(1 + 2)</b>, is famously argued about. " +
-          "Here it’s read the standard way, left to right: (6 ÷ 2) × (1 + 2).");
-      band('<span class="k">Answer</span><span class="v">' + fin.html + "</span>", facts, "answer");
+        facts.push(tx("order-of-operations.fact.imp"));
+      band('<span class="k">' + tx("common.answer") + '</span><span class="v">' + fin.html + "</span>", facts, "answer");
 
       /* --- why order matters --- */
       var ltr = null;
@@ -2498,15 +2483,11 @@
       var mixed = by.m > 0 && by.a > 0;
       var closer;
       if (ltr && (ltr.n !== sol.value.n || ltr.d !== sol.value.d)) {
-        closer = "<b>Why the order matters:</b> if you just went straight left to right through the × ÷ + −, " +
-          "you’d get <b>" + esc(numText(ltr)) + "</b> instead of <b>" + esc(fin.text) + "</b>.";
+        closer = tx("order-of-operations.close.why", { ltr: esc(numText(ltr)), v: esc(fin.text) });
       } else if (mixed) {
-        closer = "<b>Lucky one:</b> going straight left to right happens to give <b>" + esc(fin.text) +
-          "</b> here too. That’s luck, not a rule — change one number and it usually breaks.";
+        closer = tx("order-of-operations.close.lucky", { v: esc(fin.text) });
       } else {
-        closer = "<b>Check:</b> the answer is <b>" + esc(fin.text) + '</b> <span class="ok">✓</span>' +
-          (by.m + by.a > 1 ? " Every operation here is the same kind, so left to right is exactly the rule." :
-            " There was only one way to go.");
+        closer = tx(by.m + by.a > 1 ? "order-of-operations.close.same" : "order-of-operations.close.one", { v: esc(fin.text) });
       }
       $("closer").innerHTML = closer;
       CUR = { value: sol.value, ltr: ltr, tree: parsed.tree, text: fin.text };
@@ -2749,13 +2730,11 @@
 
       function add(val, html) { if (val && !(val.n === v.n && val.d === v.d)) out.push({ v: val, html: html }); }
       var ns = negSqText(CUR.tree);
-      if (ns) add(misEval(exprOf(), "negSq"), "Careful: <b>" + ns.a + "</b> means <b>" + ns.b + "</b> — the power goes first, " +
-        "then the minus. Only <b>" + ns.c + "</b> raises the negative number to the power.");
-      add(CUR.ltr, "That’s what you get going straight left to right. × and ÷ come before + and −, wherever they are in the line.");
-      add(misEval(exprOf(), "addFirst"), "It looks like a + or − was done before a × or ÷. × and ÷ go first; + and − wait until the end.");
-      add(misEval(exprOf(), "mulFirst"), "It looks like the × was done before the ÷. They’re partners: whichever comes first, " +
-        "reading left to right, goes first — the M before the D in PEMDAS is just spelling.");
-      if (v.n !== 0n) add(R(-v.n, v.d), "The size is right but the sign isn’t — check how the minus signs work out.");
+      if (ns) add(misEval(exprOf(), "negSq"), tx("order-of-operations.ck.negSq", { a: ns.a, b: ns.b, c: ns.c }));
+      add(CUR.ltr, tx("order-of-operations.ck.ltr"));
+      add(misEval(exprOf(), "addFirst"), tx("order-of-operations.ck.addFirst"));
+      add(misEval(exprOf(), "mulFirst"), tx("order-of-operations.ck.mulFirst"));
+      if (v.n !== 0n) add(R(-v.n, v.d), tx("order-of-operations.ck.sign"));
       return out;
     }
 
@@ -2764,19 +2743,17 @@
       var raw = $("ckIn").value,
         msg = $("ckMsg"),
         t;
-      if (!raw.trim()) { msg.innerHTML = "Type your answer in the box first."; return; }
+      if (!raw.trim()) { msg.innerHTML = tx("order-of-operations.ck.empty"); return; }
       try { t = readNum(raw); } catch (e) { t = null; }
       if (!t) {
-        msg.innerHTML = '<span class="no">I can’t read that as a number.</span><span class="why">Type it like ' +
-          "<b>15</b>, <b>−3</b>, <b>7/6</b>, <b>1 1/6</b> or <b>2.5</b>.</span>";
+        msg.innerHTML = tx("order-of-operations.ck.unreadable");
         return;
       }
       var m = numMatch(t, CUR.value);
       if (m) {
         CK.done = true;
         CK.reveal = "all";
-        msg.innerHTML = '<span class="yes">✓ Correct!</span>' + (m === "round" ?
-          '<span class="why">Rounding is fine — exactly, it’s <b>' + exactText(CUR.value) + "</b>.</span>" : "");
+        msg.innerHTML = '<span class="yes">' + tx("common.correct") + "</span>" + (m === "round" ? tx("order-of-operations.ck.round", { v: exactText(CUR.value) }) : "");
         report("right");
         render();
         return;
@@ -2786,7 +2763,7 @@
         ms = mistakes();
       for (var i = 0; i < ms.length; i++)
         if (numMatch(t, ms[i].v)) { why = ms[i].html; break; }
-      msg.innerHTML = '<span class="no">Not quite — try again.</span>' + (why ? '<span class="why">' + why + "</span>" : "");
+      msg.innerHTML = '<span class="no">' + tx("common.notQuite") + "</span>" + (why ? '<span class="why">' + why + "</span>" : "");
       report("wrong");
       applyCheck(lastSteps);
     }
@@ -2979,7 +2956,7 @@
         r = null;
       if (!el) return;
       try { r = makeProblem(S.gen); } catch (e) { r = null; }
-      el.innerHTML = r ? "Makes problems like: <b>" + esc(r.str) + "</b>" : "Those choices don’t make a problem — try different ones.";
+      el.innerHTML = r ? tx("order-of-operations.mk.like", { p: esc(r.str) }) : tx("order-of-operations.mk.none");
     }
     Array.prototype.forEach.call(document.querySelectorAll("#opsT .tog"), function(b) {
       b.addEventListener("click", function() {
@@ -3018,13 +2995,12 @@
         $(host).appendChild(b);
       });
     }
-    segs("lenT", [3, 4, 5, 6, 8, 10], function(v) { return v + " steps"; }, "len");
+    segs("lenT", [3, 4, 5, 6, 8, 10], function(v) { return tx("order-of-operations.mk.steps", { n: v }); }, "len");
     segs("maxT", [10, 20, 50, 100], function(v) { return String(v); }, "max");
     $("genBtn").addEventListener("click", function() {
       var r = makeProblem(S.gen);
-      if (!r) { $("genMsg").textContent = "Couldn’t make one with those settings — try different choices."; return; }
-      $("genMsg").textContent = r.exact ? "" : "Couldn’t keep everything whole with those settings, so this one has a " +
-        "fraction or a negative in it. Fewer ÷ makes it easier.";
+      if (!r) { $("genMsg").textContent = tx("order-of-operations.mk.fail"); return; }
+      $("genMsg").textContent = r.exact ? "" : tx("order-of-operations.mk.notWhole");
       setExpr(r.str);
     });
 
@@ -3089,7 +3065,7 @@
       function show(t) {
         btn.textContent = t;
         clearTimeout(copyT);
-        copyT = setTimeout(function() { btn.textContent = "Copy link"; }, 2000);
+        copyT = setTimeout(function() { btn.textContent = tx("common.copyLink"); }, 2000);
       }
 
       function old() {
@@ -3104,10 +3080,10 @@
         ta.select();
         try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
         document.body.removeChild(ta);
-        show(ok ? "Link copied ✓" : "Couldn’t copy — use the address bar");
+        show(ok ? tx("common.linkCopied") + " ✓" : tx("order-of-operations.copyFailed"));
       }
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(url).then(function() { show("Link copied ✓"); }, old);
+        navigator.clipboard.writeText(url).then(function() { show(tx("common.linkCopied") + " ✓"); }, old);
       } else old();
     });
     document.addEventListener("keydown", function(e) {
@@ -3129,7 +3105,7 @@
       return t ? t === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
     }
 
-    function paint() { themeBtn.textContent = isDark() ? "Light mode" : "Dark mode"; }
+    function paint() { themeBtn.textContent = isDark() ? tx("common.lightMode") : tx("common.darkMode"); }
     themeBtn.addEventListener("click", function() {
       document.documentElement.setAttribute("data-theme", isDark() ? "light" : "dark");
       paint();
@@ -3208,33 +3184,33 @@
     }
 
     /* ===================== worksheet API (postMessage) ===================== */
-    var YN = [{ v: true, label: "Yes" }, { v: false, label: "No" }];
+    var YN = [{ v: true, label: tx("order-of-operations.api.yes") }, { v: false, label: tx("order-of-operations.api.no") }];
     var API_OPTS = [
-      { key: "add", label: "+ Add", type: "toggle", values: YN, default: true },
-      { key: "sub", label: "− Subtract", type: "toggle", values: YN, default: true },
-      { key: "mul", label: "× Multiply", type: "toggle", values: YN, default: true },
-      { key: "div", label: "÷ Divide", type: "toggle", values: YN, default: true },
-      { key: "par", label: "( ) Parentheses", type: "toggle", values: YN, default: true },
-      { key: "exp", label: "Powers (x²)", type: "toggle", values: YN, default: false },
-      { key: "dec", label: ".5 Decimals", type: "toggle", values: YN, default: false },
-      { key: "nice", label: "Keep every answer a whole number", type: "toggle", values: YN, default: true }, {
+      { key: "add", label: tx("order-of-operations.api.add"), type: "toggle", values: YN, default: true },
+      { key: "sub", label: tx("order-of-operations.api.sub"), type: "toggle", values: YN, default: true },
+      { key: "mul", label: tx("order-of-operations.api.mul"), type: "toggle", values: YN, default: true },
+      { key: "div", label: tx("order-of-operations.api.div"), type: "toggle", values: YN, default: true },
+      { key: "par", label: tx("order-of-operations.api.par"), type: "toggle", values: YN, default: true },
+      { key: "exp", label: tx("order-of-operations.api.exp"), type: "toggle", values: YN, default: false },
+      { key: "dec", label: tx("order-of-operations.api.dec"), type: "toggle", values: YN, default: false },
+      { key: "nice", label: tx("order-of-operations.api.nice"), type: "toggle", values: YN, default: true }, {
         key: "len",
-        label: "How long",
+        label: tx("order-of-operations.howLong"),
         type: "choice",
         default: 5,
-        values: [3, 4, 5, 6, 8, 10].map(function(v) { return { v: v, label: v + " steps" }; })
+        values: [3, 4, 5, 6, 8, 10].map(function(v) { return { v: v, label: tx("order-of-operations.mk.steps", { n: v }) }; })
       }, {
         key: "max",
-        label: "Biggest number",
+        label: tx("order-of-operations.biggest"),
         type: "choice",
         default: 20,
         values: [10, 20, 50, 100].map(function(v) { return { v: v, label: String(v) }; })
       }, {
         key: "as",
-        label: "Show fractions as",
+        label: tx("order-of-operations.showAs"),
         type: "choice",
         default: "frac",
-        values: [{ v: "frac", label: "Fractions" }, { v: "dec", label: "Decimals" }]
+        values: [{ v: "frac", label: tx("common.fractions") }, { v: "dec", label: tx("common.decimals") }]
       }
     ];
 
@@ -3426,7 +3402,7 @@
       S.practice = "check";
       embedSetup("html.embed .keys,html.embed .hint,html.embed .maker,html.embed .examples,html.embed .board.ck-veil{display:none !important}");
       inp.readOnly = true;
-      document.querySelector('label[for="exprIn"]').textContent = "The problem";
+      document.querySelector('label[for="exprIn"]').textContent = tx("order-of-operations.theProblem");
     }
     inp.value = S.expr;
     paintPractice();
