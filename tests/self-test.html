@@ -2073,7 +2073,21 @@
         ["q=" + encodeURIComponent("A bus had 42 passengers. At the first stop 15 got off and 9 got on. How many passengers are on the bus now?"), ["36"]],
         ["q=" + encodeURIComponent("leo has 3 times as many stamps as isabella. leo has 9 stamps. how many stamps does isabella have?"), ["3"]],
         ["q=" + encodeURIComponent("A coach puts 83 players into teams of 8. How many players are left without a team?"), ["3"]],
-        ["q=" + encodeURIComponent("A bakery sold 48 muffins and 36 bagels. How many items did the bakery sell in all?"), ["84"]]
+        ["q=" + encodeURIComponent("A bakery sold 48 muffins and 36 bagels. How many items did the bakery sell in all?"), ["84"]],
+        // read wrong before (2026-10-26): "he" in a comparison, packs with so many each then some eaten, the price of one,
+        // groups and the leftover, a part of the rows that is empty, "2 numbers", and which way a donation goes
+        ["q=" + encodeURIComponent("Mateo has 18 marbles. He has 7 fewer marbles than Aisha. How many marbles does Aisha have?"), ["25"]],
+        ["q=" + encodeURIComponent("Sara bought 4 packs of cookies with 10 cookies each. Sara ate 6 cookies. How many cookies does she have left?"), ["34"]],
+        ["q=" + encodeURIComponent("A notebook costs $2.75. Andres buys 4 notebooks. How much does he pay in all?"), ["11"]],
+        ["q=" + encodeURIComponent("Rita has 45 cookies and puts them into bags of 6. How many bags does she fill and how many cookies are left over?"), ["7", "3"]],
+        ["q=" + encodeURIComponent("A movie theater has 12 rows with 15 chairs in each row. There are 47 empty chairs. How many chairs are taken?"), ["133"]],
+        ["q=" + encodeURIComponent("2 numbers add up to 50. Their difference is 12. What are the numbers?"), ["31", "19"]],
+        ["q=" + encodeURIComponent("There were 10 books on the new shelf. Then they donated 18 books to the shelf. How many books are on the shelf now?"), ["28"]],
+        ["q=" + encodeURIComponent("There were 30 books on the shelf. Then they donated 18 books to the library. How many books are on the shelf now?"), ["12"]],
+        // a comparison with no subject, and the Spanish "él" (he), which isn't "el" (the)
+        ["q=" + encodeURIComponent("Mateo has 18 marbles. Has 7 fewer marbles than Aisha. How many marbles does Aisha have?"), ["25"]],
+        ["q=" + encodeURIComponent("Mateo tiene 18 canicas. Él tiene 7 canicas menos que Aisha. ¿Cuántas canicas tiene Aisha?") + "&lang=es", ["25"]],
+        ["q=" + encodeURIComponent("Una libreta cuesta $2.75. Andrés compra 4 libretas. ¿Cuánto paga en total?") + "&lang=es", ["11"]]
       ]
     };
 
