@@ -802,7 +802,20 @@ HelperI18n.add("es", {
   "probability.chips.space": ["dos dados, suma de 7", "tres monedas, exactamente 2 caras", "una moneda y un dado, cara y un número par", "dos dados, dobles", "dos dados, al menos un 6", "tres monedas, al menos 1 cara, árbol"],
   "probability.chips.expected": ["lanza un dado 60 veces, cuántos 3", "lanza una moneda 100 veces, cuántas caras", "salió cara 27 veces en 50 lanzamientos", "salió un 6 14 veces en 60 tiradas", "una ruleta con 4 partes iguales, 1 azul, gírala 80 veces, cuántas veces azul"],
   // ---- this language's own data (not in English): its grammar, and the words of a problem typed in Spanish ----
-  "probability.gramWords": { "gender": { "die": "m", "coin": "f", "deck": "f", "nums": "m", "bag": "f", "spin": "f", "spinAct": "m", "pick": "f", "side": "f", "marble": "f" }, "art": { "m": ["un", "el"], "f": ["una", "la"] }, "labels": { "red": ["rojo", "roja", "rojos", "rojas"], "blue": ["azul", "azul", "azules", "azules"], "green": ["verde", "verde", "verdes", "verdes"], "yellow": ["amarillo", "amarilla", "amarillos", "amarillas"], "orange": ["naranja", "naranja", "naranjas", "naranjas"], "purple": ["morado", "morada", "morados", "moradas"], "pink": ["rosado", "rosada", "rosados", "rosadas"], "white": ["blanco", "blanca", "blancos", "blancas"], "black": ["negro", "negra", "negros", "negras"], "gray": ["gris", "gris", "grises", "grises"], "grey": ["gris", "gris", "grises", "grises"], "brown": ["café", "café", "cafés", "cafés"], "gold": ["dorado", "dorada", "dorados", "doradas"], "silver": ["plateado", "plateada", "plateados", "plateadas"], "teal": ["turquesa", "turquesa", "turquesas", "turquesas"], "violet": ["violeta", "violeta", "violetas", "violetas"], "other": ["otro", "otra", "otros", "otras"], "H": "C", "T": "X" }, "suits": { "hearts": "corazones", "diamonds": "diamantes", "clubs": "tréboles", "spades": "picas" }, "rankG": { "A": "m", "J": "f", "Q": "f", "K": "m", "face": "f", "num": "f", "n": "m" }, "expPl": { "die": "dados", "dieN": "dados de {n} caras", "coin": "monedas", "spin": "ruletas" }, "none": { "m": "ningún", "f": "ninguna" }, "bare": { "even": "número par", "odd": "número impar", "prime": "número primo", "square": "cuadrado perfecto" } },
+  "probability.gramWords": {
+    "contract": [
+      ["\\bde el\\b", "del"],
+      ["\\ba el\\b", "al"]
+    ],
+    "gender": { "die": "m", "coin": "f", "deck": "f", "nums": "m", "bag": "f", "spin": "f", "spinAct": "m", "pick": "f", "side": "f", "marble": "f" },
+    "art": { "m": ["un", "el"], "f": ["una", "la"] },
+    "labels": { "red": ["rojo", "roja", "rojos", "rojas"], "blue": ["azul", "azul", "azules", "azules"], "green": ["verde", "verde", "verdes", "verdes"], "yellow": ["amarillo", "amarilla", "amarillos", "amarillas"], "orange": ["naranja", "naranja", "naranjas", "naranjas"], "purple": ["morado", "morada", "morados", "moradas"], "pink": ["rosado", "rosada", "rosados", "rosadas"], "white": ["blanco", "blanca", "blancos", "blancas"], "black": ["negro", "negra", "negros", "negras"], "gray": ["gris", "gris", "grises", "grises"], "grey": ["gris", "gris", "grises", "grises"], "brown": ["café", "café", "cafés", "cafés"], "gold": ["dorado", "dorada", "dorados", "doradas"], "silver": ["plateado", "plateada", "plateados", "plateadas"], "teal": ["turquesa", "turquesa", "turquesas", "turquesas"], "violet": ["violeta", "violeta", "violetas", "violetas"], "other": ["otro", "otra", "otros", "otras"], "H": "C", "T": "X" },
+    "suits": { "hearts": "corazones", "diamonds": "diamantes", "clubs": "tréboles", "spades": "picas" },
+    "rankG": { "A": "m", "J": "f", "Q": "f", "K": "m", "face": "f", "num": "f", "n": "m" },
+    "expPl": { "die": "dados", "dieN": "dados de {n} caras", "coin": "monedas", "spin": "ruletas" },
+    "none": { "m": "ningún", "f": "ninguna" },
+    "bare": { "even": "número par", "odd": "número impar", "prime": "número primo", "square": "cuadrado perfecto" }
+  },
   "probability.re.typed": [
     ["\\b(?:justo|justa|justos|justas|normales|normal|estandar)\\b", ""],
     ["\\(\\s*jota,? reina,? (?:o|y) rey\\s*\\)", " "],

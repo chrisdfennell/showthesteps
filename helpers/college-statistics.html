@@ -4588,7 +4588,7 @@
       W.add(P.at !== null ? tx(R.idx >= 0 ? "college-statistics.reg.predRes" : "college-statistics.reg.pred", { x: B(nv(P.at)) }) : tx("college-statistics.reg.scatter"),
         steps + xs(scatterSVG({ W: pw, xs: P.xs, ys: P.ys, a: R.a, b: R.b, at: P.at, yhat: R.yhat, hit: R.idx })) + '<div class="tapecap">' + tx("college-statistics.reg.openGP", { href: esc(graphLink(P)) }) + "</div>",
         [
-          ["a", P.at !== null ? tx("college-statistics.w.tag.predict") : tx("college-statistics.w.tag.picture"), P.at !== null ? tx("college-statistics.reg.atX", { x: nv(P.at), y: B(fx(R.yhat, 2)) }) + (R.idx >= 0 ? tx("college-statistics.reg.resPart", { o: nv(R.obs), y: fx(R.yhat, 2), r: B(fx(R.resid, 2)) }) : "") + "." : tx("college-statistics.reg.pointsLine")]
+          ["a", P.at !== null ? tx("college-statistics.w.tag.predict") : tx("college-statistics.w.tag.picture"), P.at !== null ? tx("college-statistics.reg.atX", { x: nv(P.at), y: B(fx(R.yhat, 2)) }) + (R.idx >= 0 ? tx("college-statistics.reg.resPart", { o: nv(R.obs), y: par(fx(R.yhat, 2)), r: B(fx(R.resid, 2)) }) : "") + "." : tx("college-statistics.reg.pointsLine")]
         ]);
       var cells = [{ k: "r", v: fx(R.r, 4) }, { k: tx("college-statistics.reg.k.line"), v: lineT(R.a, R.b, 4), long: true }, { k: "r²", v: fx(R.r2, 4) }];
       if (P.at !== null) cells.push({ k: tx("college-statistics.reg.k.yhat", { x: nv(P.at) }), v: fx(R.yhat, 2) });

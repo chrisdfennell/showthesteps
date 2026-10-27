@@ -2287,6 +2287,26 @@
       }).join(" ");
     }
 
+    var ACC = { a: "á", e: "é", i: "í", o: "ó", u: "ú" },
+      UNACC = { "á": "a", "é": "e", "í": "i", "ó": "o", "ú": "u" };
+
+    function unaccent(x) { return x.replace(/[áéíóú]/g, function(c) { return UNACC[c]; }).replace(/[ÁÉÍÓÚ]/g, function(c) { return UNACC[c.toLowerCase()].toUpperCase(); }); }
+
+    function vowelGroups(x) { return x.toLowerCase().match(/[aeiouáéíóúü]+/g) || []; } // about one per syllable
+    // the accent on the last syllable of a word written without one: autobus → autobús, raton → ratón (a
+    // diphthong's strong vowel takes it)
+    function accentLast(x) {
+      var re = /[aeiouü]+/gi,
+        m, g = null;
+      while ((m = re.exec(x))) g = m;
+      if (!g) return x;
+      var k = g[0].search(/[aeo][^aeo]*$/i),
+        at = g.index + (k < 0 ? g[0].length - 1 : k),
+        c = x.charAt(at),
+        a = ACC[c.toLowerCase()];
+      return a ? x.slice(0, at) + (c === c.toLowerCase() ? a : a.toUpperCase()) + x.slice(at + 1) : x;
+    }
+
     function sing1(x) {
       var t = nounTab(),
         lo = x.toLowerCase();
@@ -2294,8 +2314,15 @@
       if (NOUN1[lo] || !/s$/.test(lo) || HelperI18n.lang !== "es") return x;
       if (/ces$/.test(lo)) return x.slice(0, -3) + "z";
       if (/iones$/.test(lo)) return x.slice(0, -5) + "ión";
+      var st = x.slice(0, -2);
+      // a word that ends in n or s and has more than one syllable: autobuses → autobús, ratones → ratón; with an
+      // accent in the plural: países → país, jóvenes → joven
+      if (/[aeiouáéíóú][ns]es$/.test(lo) && (/[áéíóú]/i.test(st) || vowelGroups(st).length > 1)) {
+        if (/[áéíóú]/i.test(st)) return /[áéíóú][ns]$/i.test(st) ? st : unaccent(st);
+        return accentLast(st);
+      }
+      if (/[aeiouáéíóú][lry]es$|[aeuáéú]des$/.test(lo)) return st; // flores → flor, papeles → papel, reyes → rey, ciudades → ciudad
       if (/[aeiouáéó]s$/.test(lo)) return x.slice(0, -1);
-      if (/[lrndjy]es$/.test(lo)) return x.slice(0, -2);
       return x;
     }
 
@@ -2307,7 +2334,8 @@
       if (/[aeiouéó]$/.test(lo)) return x + "s";
       if (/z$/.test(lo)) return x.slice(0, -1) + "ces";
       if (/ión$/.test(lo)) return x.slice(0, -3) + "iones";
-      if (/s$/.test(lo)) return x;
+      if (/[áéíóú][ns]$/.test(lo)) return (/[aeiou][íú][ns]$/.test(lo) ? x : unaccent(x)) + "es"; // ratón → ratones, autobús → autobuses, país → países
+      if (/s$/.test(lo)) return vowelGroups(lo).length === 1 ? x + "es" : x; // mes → meses; lunes, crisis stay
       return x + "es";
     }
 
@@ -10281,7 +10309,7 @@
       for (k in src)
         if (has(src, k)) W[k] = src[k];
       W.N = P.name || (P.text ? "they" : "Maya");
-      if (LOC && P.text) locTyped(W, P.rd && P.rd.back);
+      if (LOC && P.text) locTyped(W, P.rd && P.rd.back, T.typed);
       if (LOC && !has(W, "years")) W.years = tr("story-problems.setting.yearsLoc");
       W.N2 = P.name2 || (P.text ? (P.name ? tr("story-problems.setting.theOther") : tr("story-problems.setting.theOthers")) : (W.N === "Leo" ? tr("story-problems.setting.maya") : tr("story-problems.setting.leo")));
       if (P.item) W.it = P.item;
@@ -10303,14 +10331,21 @@
     // a typed story read in English, shown in another language: the words it counts, said in that language when the
     // page knows them (story-problems.itemWords: "shells": "conchas"); "they" when the story names no one
     // (a story typed in the language itself: its own words back, "found" → "encontró", from what locStory read)
-    function locTyped(W, back) {
-      var D = HelperI18n.raw("story-problems.itemWords") || {};
+    // the story's own words (W) in the language: the words of the language's story (back), else the language's
+    // story-problems.verbWords (the verbs the reader picks out, V, Vp, Vm) and itemWords; a verb it has no word for
+    // becomes the story kind's own (typed: "regaló"), never English inside the language's sentence
+    function locTyped(W, back, typed) {
+      var D = HelperI18n.raw("story-problems.itemWords") || {},
+        VB = HelperI18n.raw("story-problems.verbWords") || {};
       for (var k in W)
         if (Object.prototype.hasOwnProperty.call(W, k) && typeof W[k] === "string") {
           var lo = W[k].toLowerCase(),
-            ws = lo.split(" ");
+            ws = lo.split(" "),
+            verb = /^V[pm0]?$/.test(k);
           if (back && ws.every(function(x) { return has(back, x); })) W[k] = ws.map(function(x) { return back[x]; }).join(" ");
+          else if (verb && Object.prototype.hasOwnProperty.call(VB, lo)) W[k] = VB[lo];
           else if (Object.prototype.hasOwnProperty.call(D, lo)) W[k] = D[lo];
+          else if (verb && typed && Object.prototype.hasOwnProperty.call(typed, k)) W[k] = typed[k];
         }
       if (W.N === "they") W.N = tr("story-problems.setting.theyLoc");
     }

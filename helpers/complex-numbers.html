@@ -3361,6 +3361,7 @@
       var many = reals.length > 1 || ims.length > 1;
       var rH2 = reals.length ? (reals.length > 1 ? "(" + sumS(reals, "html") + ")" : qH(reals[0])) : "",
         iH2 = ims.length ? (ims.length > 1 ? "(" + sumS(ims, "html") + ")" + II : partS({ c: ims[0], k: 1 }, "html", true)) : "";
+      if (rH2 && ims.length === 1 && qSgn(ims[0]) < 0) iH2 = "(" + iH2 + ")"; // a negative after + gets brackets
       if (many || opt.always) {
         W.add(ims.length > 1 && qIsZero(prod.im) ? tr("complex-numbers.foil.combineCancel") : tr("complex-numbers.foil.combine"),
           eqL((rH2 ? tmH("c-m", rH2) : "") + (rH2 && iH2 ? " + " : "") + (iH2 ? tmH("c-v", iH2) : "") + " = " + B(zH(prod)), cA(prod)),
@@ -3646,6 +3647,7 @@
         ims = vals.filter(function(v) { return !qIsZero(v.im); }).map(function(v) { return v.im; });
       var rH2 = reals.length ? (reals.length > 1 ? "(" + sumS(reals, "html") + ")" : qH(reals[0])) : "0",
         iH2 = ims.length ? (ims.length > 1 ? "(" + sumS(ims, "html") + ")" + II : partS({ c: ims[0], k: 1 }, "html", true)) : "0" + II;
+      if (ims.length === 1 && qSgn(ims[0]) < 0) iH2 = "(" + iH2 + ")"; // a negative after + gets brackets
       W.add(tr("complex-numbers.isum.group"),
         eqL(tmH("c-m", rH2) + " + " + tmH("c-v", iH2) + " = " + B(zH(val)), sumT(terms, "ans") + "=" + cA(val)),
         [

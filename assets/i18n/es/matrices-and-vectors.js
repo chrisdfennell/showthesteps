@@ -352,6 +352,11 @@ HelperI18n.add("es", {
   "matrices-and-vectors.sy.closerMany": "<div class='ck'>Prueba {t}: {p} cumple todas las ecuaciones{ok}</div>",
   "matrices-and-vectors.sy.closerBalance": "<div class='ck'>¿Dos ecuaciones con dos incógnitas? <a href=\"{href}\">The Balance Scale</a> las resuelve por eliminación y sustitución.</div>",
   "matrices-and-vectors.svg.grid": "Vectores en una cuadrícula",
+  // a matrix's name for screen readers (only a translation uses these; tools.js says the English itself)
+  "matrices-and-vectors.sr.matrix": "la matriz de {r} por {c}: {rows}",
+  "matrices-and-vectors.sr.row": "fila {i}: {cells}",
+  "matrices-and-vectors.sr.column": "la columna {cells}",
+  "matrices-and-vectors.sr.blank": "en blanco",
 
   // ---- vectors ----
   "matrices-and-vectors.tag.endStart": "final − inicio",

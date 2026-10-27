@@ -1940,6 +1940,12 @@
     var EN = !window.HelperI18n || HelperI18n.lang === "en";
     // a language's own data from its locale file (word lists, patterns), or null in English
     function own(k) { return EN ? null : HelperI18n.raw(k) || null; }
+    // "a" or "an" before a number as it is read: an 8, an 11, an 18, an 80, an 11,000 (only English uses it)
+    function aAn(t) {
+      var d = String(t).replace(/^[^0-9]+/, "").split(".")[0].replace(/,/g, "");
+      var g = d.length % 3 || 3;
+      return /^8/.test(d) || /^1[18]$/.test(d.slice(0, g)) ? "an" : "a";
+    }
 
     function fold(s) { return String(s).normalize ? String(s).normalize("NFD").replace(/[\u0300-\u036f]/g, "") : String(s); }
     // a typed problem in the language in use, as the reader knows it: this page's own phrases (geometry.re.typed in the
@@ -4013,12 +4019,12 @@
       if (s) P = chain(C, block(C, tx("geometry.b.perimeter"), tx("geometry.bn.paraP")), { lhs: lhsH("P"), f: "2 × (b + s)", vars: { b: b, s: s }, pow: 1, why: WHY.paraP });
       else note(C, tx("geometry.b.perimeter"), tx("geometry.note.paraP"));
       var grid = gridOK([b, h]);
-      addFig(C, figPara(b, h, off, s, grid), tx("geometry.cap.scale") + (off > 0 && off <= b.f ? tx("geometry.cap.paraSlide", { b: b.t, h: h.t }) : "") +
+      addFig(C, figPara(b, h, off, s, grid), tx("geometry.cap.scale") + (off > 0 && off <= b.f ? tx("geometry.cap.paraSlide", { an: aAn(b.t), b: b.t, h: h.t }) : "") +
         (grid ? gridCap() : "") + (s ? "" : tx("geometry.cap.paraGuess")));
       answer(C, "Area", A, 2);
       if (P) answer(C, "Perimeter", P, 1);
       C.closer = P ? tx("geometry.close.walk", { sum: [b.t, s.t, b.t, s.t].join(" + "), p: vT(P.v) }) :
-        tx("geometry.close.paraArea", { b: b.t, h: h.t, a: vT(A.v) });
+        tx("geometry.close.paraArea", { an: aAn(b.t), b: b.t, h: h.t, a: vT(A.v) });
     }
 
     function runTrap(C, g) {

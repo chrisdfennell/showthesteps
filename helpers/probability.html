@@ -2005,8 +2005,13 @@
        from its own locale file (probability.gramWords: the genders of the things, articles, ordinals, color words
        that agree, the card words); in English it is null and the English templates need none of it. ---- */
     if (window.HelperI18n) HelperI18n.apply();
-    var tx = function(k, v) { return window.HelperI18n ? HelperI18n.t(k, v) : k; };
     var GW = window.HelperI18n && HelperI18n.lang !== "en" ? HelperI18n.raw("probability.gramWords") || null : null;
+    // a string in the language in use, with the language's contractions made (gramWords.contract: "de el" → "del")
+    var tx = function(k, v) {
+      var s = window.HelperI18n ? HelperI18n.t(k, v) : k;
+      if (GW && GW.contract && typeof s === "string") GW.contract.forEach(function(c) { s = s.replace(new RegExp(c[0], "g"), c[1]); });
+      return s;
+    };
 
     function gw(k, d) { return GW && GW[k] !== undefined ? GW[k] : d; }
 

@@ -814,7 +814,7 @@ HelperI18n.add("es", {
   "trigonometry.identFields.thatTakeTheSquare": "Eso es {g}²θ — saca la raíz cuadrada.",
   "trigonometry.identFields.thatWithASign": "Eso es {g}²θ (con un signo) — saca la raíz cuadrada.",
   "trigonometry.identFields.thatUpsideDown": "Eso está al revés: {v}.",
-  "trigonometry.identFields.squareFirstNot": "Primero eleva {f} θ al cuadrado: {g}²θ = 1 − ({v})², no 1 − {v}.",
+  "trigonometry.identFields.squareFirstNot": "Primero eleva {f} θ al cuadrado: {g}²θ = 1 − ({v})², no 1 − {pv}.",
   "trigonometry.identFields.squareFirst": "Primero eleva {f} θ al cuadrado: {g}²θ = 1 − ({v})².",
   "trigonometry.identFields.exactlyIt2": "(Exactamente, es {val}).",
   "trigonometry.identFields.aIsnAUse": "{g}(A {x} B) no es {g} A {x} {g} B. Usa la fórmula.",

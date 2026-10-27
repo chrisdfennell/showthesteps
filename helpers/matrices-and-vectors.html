@@ -2166,6 +2166,43 @@
     var HOWS = { det: ["auto", "cofactor", "sarrus", "rows"], inv: ["auto", "formula", "rows"], sys: ["gauss", "gj", "cramer", "inverse"] };
     var EMBED = /(?:^|[?&])embed=1(?:&|$)/.test(location.search);
 
+    /* The matrices' names for screen readers in a language other than English. a11y.js names the math with
+       HelperTools.spoken (tools.js), which says a matrix only in English ("the 2 by 2 matrix: row 1: …"). Here each
+       matrix (.mx) is put in the page's own words first (matrices-and-vectors.sr.*), and tools.js says the numbers in
+       it. A legend's sample ("row", "col") is just its words. English never comes here. */
+    function srWords(el) {
+      var hold = document.createElement("span");
+      hold.appendChild(el.cloneNode(true));
+      [].slice.call(hold.querySelectorAll(".mx")).reverse().forEach(function(mx) {
+        var cells = [].slice.call(mx.children),
+          m = /repeat\(\s?(\d+)/.exec(mx.getAttribute("style") || ""),
+          n = m ? Number(m[1]) : Math.round(Math.sqrt(cells.length)) || 1,
+          out = document.createElement("span"),
+          rows = [];
+        if (!cells.length) return;
+        var html = cells.map(function(e) { return /^[\s·•?…]*$/.test(e.textContent) ? tx("matrices-and-vectors.sr.blank") : e.innerHTML; });
+        if (cells.length === 1 && /[^\s\d·•?…]/.test(cells[0].textContent) && !/\d/.test(cells[0].textContent)) out.innerHTML = " " + html[0] + " ";
+        else {
+          for (var i = 0; i < html.length; i += n) rows.push(html.slice(i, i + n).join(", "));
+          out.innerHTML = " " + (n === 1 ? tx("matrices-and-vectors.sr.column", { cells: rows.join(", ") }) :
+            tx("matrices-and-vectors.sr.matrix", { r: rows.length, c: n, rows: rows.map(function(r, k) { return tx("matrices-and-vectors.sr.row", { i: k + 1, cells: r }); }).join("; ") })) + ", ";
+        }
+        mx.parentNode.replaceChild(out, mx);
+      });
+      return hold;
+    }
+
+    function srInstall() {
+      var H = window.HelperTools;
+      if (!H || !H.spoken) return false;
+      if (H.spoken.mxWords) return true;
+      var said = H.spoken;
+      H.spoken = function(el) { return said.call(H, el && el.querySelector && (el.matches(".mx") || el.querySelector(".mx")) ? srWords(el) : el); };
+      H.spoken.mxWords = true;
+      return true;
+    }
+    if (!EN)(function wait(k) { if (!srInstall() && k < 400) setTimeout(function() { wait(k + 1); }, 25); })(0);
+
     function siteUrl(name, params) {
       var HS = window.HelperSite;
       if (HS && HS.url) return HS.url(name, params);

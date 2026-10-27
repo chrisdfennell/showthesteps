@@ -2093,6 +2093,7 @@
       return mn(s);
     }
 
+    function par(s) { return /^[−-]/.test(s) ? "(" + s + ")" : s; } // a negative after an operator gets brackets
     function fxs(x, dp) { var s = fx(x, dp); return s.indexOf(".") >= 0 ? s.replace(/0+$/, "").replace(/\.$/, "") : s; } // without trailing zeros
     function placesW(dp) { return dp === 0 ? tr("trigonometry.placesW.theNearestWholeNumber") : tr("trigonometry.placesW.decimalPlaces", { n: dp }); }
     var OK = ' <span class="ok">✓</span>';
@@ -4315,7 +4316,7 @@
           v = S1 * S1 + S2 * S2 - 2 * S1 * S2 * Math.cos(d2r(Xd));
         html += sect(tr("trigonometry.drawLaws.twoSidesAndThe", { lead: lead(tr("trigonometry.drawLaws.lawOfCosinesFor", { x: x })) }),
           bl(x + "² = " + s1 + "² + " + s2 + "² − 2" + s1 + s2 + " cos " + X) + bl(x + "² = " + numT(g[s1]) + "² + " + numT(g[s2]) + "² − 2 × " + numT(g[s1]) + " × " + numT(g[s2]) + " × cos " + numT(g[X]) + "°") +
-          bl(x + "² ≈ " + fx(S1 * S1 + S2 * S2, 4) + " − " + fx(2 * S1 * S2 * Math.cos(d2r(Xd)), 4) + " ≈ " + fx(v, 4)) + bl(x + " = √" + fx(v, 4) + " ≈ " + '<span class="eqa">' + fx(Math.sqrt(v), dpS) + "</span>"), st);
+          bl(x + "² ≈ " + fx(S1 * S1 + S2 * S2, 4) + " − " + par(fx(2 * S1 * S2 * Math.cos(d2r(Xd)), 4)) + " ≈ " + fx(v, 4)) + bl(x + " = √" + fx(v, 4) + " ≈ " + '<span class="eqa">' + fx(Math.sqrt(v), dpS) + "</span>"), st);
         items.push({
           step: st++,
           lines: [
@@ -4873,7 +4874,7 @@
       if (P.task === "write") facts.unshift("a = " + B(numT(P.a)) + ", b = " + B(numT(P.b)) + ", h = " + B(esc(gUnitX(P, P.h))) + ", k = " + B(numT(P.k)));
       bandCells(cells, facts);
       var p0 = keys[0];
-      $("closer").innerHTML = tr("trigonometry.drawGraph.checkAtTheStart", { P: esc(gUnitX(P, p0.x)), a: numT(P.a), f: f, k: numT(P.k), y: numT(p0.y), w: p0.w, OK: OK });
+      $("closer").innerHTML = tr("trigonometry.drawGraph.checkAtTheStart", { P: esc(gUnitX(P, p0.x)), a: numT(P.a), f: f, k: par(numT(P.k)), y: numT(p0.y), w: p0.w, OK: OK });
       return items.length;
     }
 
@@ -5752,7 +5753,7 @@
           if (g === "tan") { f.mist.push({ v: 1 / qF(v), msg: tr("trigonometry.identFields.thatUpsideDown", { v: B("tan θ = sin θ / cos θ") }) }); }
           if (P.f !== "tan" && g !== "tan") {
             var w = Math.sqrt(Math.abs(1 - qF(P.v)));
-            f.mist.push({ v: w, msg: tr("trigonometry.identFields.squareFirstNot", { f: P.f, g: g, v: qT(P.v) }) });
+            f.mist.push({ v: w, msg: tr("trigonometry.identFields.squareFirstNot", { f: P.f, g: g, v: qT(P.v), pv: par(qT(P.v)) }) });
             f.mist.push({ v: -w, msg: tr("trigonometry.identFields.squareFirst", { f: P.f, g: g, v: qT(P.v) }) });
           }
           return f;

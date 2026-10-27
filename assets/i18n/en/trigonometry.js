@@ -809,7 +809,7 @@ HelperI18n.add("en", {
   "trigonometry.identFields.thatTakeTheSquare": "That’s {g}²θ — take the square root.",
   "trigonometry.identFields.thatWithASign": "That’s {g}²θ (with a sign) — take the square root.",
   "trigonometry.identFields.thatUpsideDown": "That’s upside down: {v}.",
-  "trigonometry.identFields.squareFirstNot": "Square {f} θ first: {g}²θ = 1 − ({v})², not 1 − {v}.",
+  "trigonometry.identFields.squareFirstNot": "Square {f} θ first: {g}²θ = 1 − ({v})², not 1 − {pv}.",
   "trigonometry.identFields.squareFirst": "Square {f} θ first: {g}²θ = 1 − ({v})².",
   "trigonometry.identFields.exactlyIt2": "(Exactly, it’s {val}.)",
   "trigonometry.identFields.aIsnAUse": "{g}(A {x} B) isn’t {g} A {x} {g} B. Use the formula.",

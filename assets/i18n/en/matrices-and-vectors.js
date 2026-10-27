@@ -353,6 +353,11 @@ HelperI18n.add("en", {
   "matrices-and-vectors.sy.closerMany": "<div class='ck'>Try {t}: {p} works in every equation{ok}</div>",
   "matrices-and-vectors.sy.closerBalance": "<div class='ck'>Two equations in two unknowns? <a href=\"{href}\">The Balance Scale</a> solves them by elimination and substitution.</div>",
   "matrices-and-vectors.svg.grid": "Vectors on a grid",
+  // a matrix's name for screen readers (only a translation uses these; tools.js says the English itself)
+  "matrices-and-vectors.sr.matrix": "the {r} by {c} matrix: {rows}",
+  "matrices-and-vectors.sr.row": "row {i}: {cells}",
+  "matrices-and-vectors.sr.column": "the column {cells}",
+  "matrices-and-vectors.sr.blank": "blank",
 
   // ---- vectors ----
   "matrices-and-vectors.tag.endStart": "end − start",
