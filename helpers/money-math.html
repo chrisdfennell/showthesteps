@@ -1761,7 +1761,7 @@
         $5,000 at 4% for 10 years grows to $7,000.00 with simple interest, but to $7,454.16 compounded monthly: $454.16 more.</p>
       <p class="ht-q">How is a monthly car payment worked out?</p>
       <p>The payment formula spreads the loan and its interest over equal monthly payments. A $20,000 loan at 6% for 5 years costs
-        $386.66 a month; 60 payments come to $23,199.60, so $3,199.60 of that is interest.</p>
+        $386.66 a month; 59 payments of $386.66 and a last one of $386.41 come to $23,199.35, so $3,199.35 of that is interest.</p>
       <p class="ht-q">Is 20% off and then 15% off the same as 35% off?</p>
       <p>No. The second discount is taken from the lower price: $80 becomes $64, then $54.40. That is 32% off in all, not 35%.</p>
     </div>
@@ -1866,7 +1866,22 @@
     "use strict";
     if (window.HelperI18n) HelperI18n.apply();
     // the page's strings (assets/i18n/<lang>/money-math.js): tr(key, vars) fills {name}s; trw(key) is a table as given
-    var tr = function(k, v) { return window.HelperI18n ? HelperI18n.t(k, v) : k; };
+    var tr = function(k, v) { return window.HelperI18n ? anFix(HelperI18n.t(k, v), k) : k; };
+
+    // English "an" before a number or word said with a vowel sound, when a {placeholder} put it after "a": an 8, an 11,
+    // an 18, an 80, an 800, an 8,000, an 11,000, an inch, an hour. An amp after a number ("16 A 80%") is left alone.
+    function anFix(s, k) {
+      if (HelperI18n.lang !== "en" && HelperI18n.has(k)) return s;
+      return String(s).replace(/(^|[^\w])([Aa]) ((?:<[^>]+>)*\$?)(\d[\d,]*|(?:inch|hour|ounce|acre|ohm|eighth|electric)(?![a-z]))/g, function(all, pre, a, mid, n, at, str) {
+        var g = n.split(",")[0];
+        if (/^\d/.test(n)) {
+          if (n.indexOf(",") < 0 && g.length > 3) g = g.slice(0, (g.length - 1) % 3 + 1); // 18000 → eighteen thousand
+          if (!/^8/.test(g) && g !== "11" && g !== "18") return all;
+        }
+        if (pre === " " && /\d/.test(str.charAt(at - 1))) return all;
+        return pre + a + "n " + mid + n;
+      });
+    }
     var trw = function(k) { return window.HelperI18n ? HelperI18n.raw(k) : undefined; };
     var ES = !!window.HelperI18n && HelperI18n.lang !== "en";
     var $ = function(id) { return document.getElementById(id); };
@@ -2093,6 +2108,8 @@
     function approxS(r, k) { var t = decT(r); return t !== null && (t.split(".")[1] || "").length <= k ? t : "≈ " + dec(r, k); }
     // an amount someone typed: $5,000 or $5,000.50 (whole dollars without the .00)
     function usdN(r) { var c = cents(r); return c % 100n === 0n ? (c < 0n ? "−" : "") + "$" + grp(babs(c / 100n).toString()) : usd(c); }
+
+    function usdX(r, k) { var s = numS(r, k); return "$" + (/\.\d$/.test(s) ? s + "0" : s); } // worked out exactly, to the cent at least: $54.40, $64, $8.8125
 
     function usdNA(r) { var c = cents(r); return c % 100n === 0n ? (c / 100n).toString() : usdA(c); }
 
@@ -3087,22 +3104,23 @@
       X.F = powR(add(ONE, X.i), X.N);
       X.M = X.zero ? dvd(X.L, R(X.N)) : dvd(mul(mul(X.L, X.i), X.F), sub(X.F, ONE));
       X.Mc = cents(X.M);
-      X.paid = X.Mc * BigInt(X.N);
-      X.int = X.paid - X.Lc;
-      if (X.zero) {
-        X.paid = X.Lc;
-        X.int = 0n;
-      } // 0%: you pay back exactly what you borrowed (the last payment absorbs the rounding)
       X.sch = loanSim(X.Lc, X.i, X.Mc, X.N + 1, X.N);
       if (!X.sch || X.Mc <= 0n) throw new UserErr(tr("money-math.err.lSmall", { n: X.N }));
       X.realInt = X.sch.int;
       X.lastPay = X.sch.rows[X.sch.rows.length - 1].pay;
+      // the interest is what the schedule charges: M is rounded to the cent (and so is each month's interest), so the
+      // last payment is adjusted to land the balance on exactly $0, and M × N − L is off by that adjustment
+      X.adj = X.lastPay !== X.Mc;
+      X.flat = X.Mc * BigInt(X.N) - X.Lc; // as if the last payment were M too
+      X.paid = X.Lc + X.realInt; // M × (N − 1) + the last payment; at 0%, exactly what was borrowed
+      X.int = X.realInt;
       // a shorter (or, for short loans, longer) term to compare with
       X.altN = X.N >= 24 ? Math.max(12, Math.round(X.N / 24) * 12) : X.N * 2;
       if (X.altN === X.N) X.altN = X.N + 12;
       var Fa = powR(add(ONE, X.i), X.altN);
       X.altMc = cents(X.zero ? dvd(X.L, R(X.altN)) : dvd(mul(mul(X.L, X.i), Fa), sub(Fa, ONE)));
-      X.altInt = X.altMc * BigInt(X.altN) - X.Lc;
+      var altS = loanSim(X.Lc, X.i, X.altMc, X.altN + 1, X.altN); // its schedule's interest, like the loan's own
+      X.altInt = altS ? altS.int : X.altMc * BigInt(X.altN) - X.Lc;
       if (P.extra) {
         posAmt(P.extra, tr("money-math.what.extra"), 1000000);
         X.ec = cents(P.extra);
@@ -3175,13 +3193,15 @@
         [
           ["p", tr("money-math.tag.payment"), tr("money-math.l.l.payment", { v: B(usd(X.Mc)) })]
         ]);
-      W.add(tr("money-math.l.total"),
-        (X.zero ? eqL(tr("money-math.l.zeroBack", { v: B(usd(X.paid)) })) : eqL(tr("money-math.l.totalEq", { eq: usd(X.Mc) + " × " + X.N + " = " + B(usd(X.paid)) }))) + eqL(tr("money-math.l.intEq", { eq: usd(X.paid) + " − " + usd(X.Lc) + " = " + B(usd(X.int)) })) + meter([
+      var paidEq = X.adj ? usd(X.Mc) + " × " + (X.N - 1) + " + " + usd(X.lastPay) : usd(X.Mc) + " × " + X.N; // every payment, the adjusted last one too
+      W.add(X.adj ? tr("money-math.l.totalAdj", { n: X.N - 1, m: usd(X.Mc), v: usd(X.lastPay) }) : tr("money-math.l.total"),
+        (X.zero ? eqL(tr("money-math.l.zeroBack", { v: B(usd(X.paid)) })) : eqL(tr("money-math.l.totalEq", { eq: paidEq + " = " + B(usd(X.paid)) }))) + eqL(tr("money-math.l.intEq", { eq: usd(X.paid) + " − " + usd(X.Lc) + " = " + B(usd(X.int)) })) +
+        (X.adj && !X.zero ? whyH(tr("money-math.l.lastWhy", { x: "$" + dec(X.M, 4), m: usd(X.Mc), v: usd(X.lastPay), i: usd(X.int), N: X.N, L: usd(X.Lc), t: usd(X.flat) })) : "") + meter([
           ["in", X.Lc, tr("money-math.l.mPrin")],
           ["out", X.int, tr("money-math.l.mInt")]
         ]),
         [
-          ["m", tr("money-math.tag.total"), tr("money-math.l.l.total", { eq: B(usd(X.Mc) + " × " + X.N + " = " + usd(X.paid)) })],
+          ["m", tr("money-math.tag.total"), tr("money-math.l.l.total", { eq: B(paidEq + " = " + usd(X.paid)) })],
           ["r", tr("money-math.tag.interest"), tr("money-math.l.l.interest", { eq: B(usd(X.paid) + " − " + usd(X.Lc) + " = " + usd(X.int)) })]
         ]);
       var r1 = X.sch.rows[0];
@@ -3204,7 +3224,7 @@
       var cells = [{ k: tr("money-math.k.monthly"), v: usd(X.Mc), s: usdA(X.Mc) }, { k: tr("money-math.k.totalInt"), v: usd(X.int), s: usdA(X.int) }];
       if (P.extra) cells.push({ k: tr("money-math.l.k.extra"), v: tr("money-math.nMonths", { n: X.ex.n }), s: String(X.ex.n) });
       bandCells(cells, [tr("money-math.l.f.paid", { p: B(usd(X.paid)), L: B(usdN(X.L)) }), tr("money-math.l.f.last", { v: B(usd(X.lastPay)) })]);
-      return finish(W, '<div class="ck">' + tr("money-math.l.ck", { m: B(usd(X.Mc)), N: X.N, L: B(usd(X.Lc)), i: B(usd(X.int)) }) + OK + "</div>", "loan");
+      return finish(W, '<div class="ck">' + (X.adj ? tr("money-math.l.ckAdj", { m: B(usd(X.Mc)), n: X.N - 1, v: B(usd(X.lastPay)), L: B(usd(X.Lc)), i: B(usd(X.int)) }) : tr("money-math.l.ck", { m: B(usd(X.Mc)), N: X.N, L: B(usd(X.Lc)), i: B(usd(X.int)) })) + OK + "</div>", "loan");
     }
 
     function fieldsLoan(P) {
@@ -3214,8 +3234,8 @@
           label: tr("money-math.k.totalInt"),
           type: "money",
           c: X.int,
-          alts: X.realInt !== X.int ? [{ c: X.realInt, note: tr("money-math.l.n.sched") }] : [],
-          mists: [mist(X.paid, tr("money-math.l.m.paid", { L: usd(X.Lc) })), mist(cents(mul(mul(X.L, pct(P.r)), P.t)), tr("money-math.l.m.simple2"))].concat(X.m.map(function(m) { return mist(m.c * BigInt(X.N) - X.Lc, m.msg); })),
+          alts: X.flat !== X.int && !X.zero ? [{ c: X.flat, note: tr("money-math.l.n.flat", { m: usd(X.Mc), N: X.N, L: usd(X.Lc) }) }] : [],
+          mists: [mist(X.paid, tr("money-math.l.m.paid", { L: usd(X.Lc) }))].concat(X.adj ? [mist(X.Mc * BigInt(X.N), tr("money-math.l.m.paid", { L: usd(X.Lc) }))] : [], [mist(cents(mul(mul(X.L, pct(P.r)), P.t)), tr("money-math.l.m.simple2"))], X.m.map(function(m) { return mist(m.c * BigInt(X.N) - X.Lc, m.msg); })),
           generic: tr("money-math.l.g.i")
         }];
       if (P.extra) f.push({ k: "n", label: tr("money-math.l.k.months"), type: "int", want: X.ex.n, mists: [{ n: X.N, msg: tr("money-math.l.m.sooner", { N: X.N }) }, { n: Number((X.Lc + X.Mc + X.ec - 1n) / (X.Mc + X.ec)), msg: tr("money-math.l.m.divide") }], generic: tr("money-math.l.g.n") });
@@ -3549,9 +3569,9 @@
         if (X.ot) {
           var half = !isInt(mul(X.otRate, H100));
           W.add(half ? tr("money-math.p.otRateHalf") : tr("money-math.p.otRate"),
-            eqL(tr("money-math.p.otRateEq", { r: usdN(P.rate), o: B("$" + numS(X.otRate)) })) + eqL(numS(X.otH) + " × $" + numS(X.otRate) + " = " + B(usdR(X.otPay)), tr("money-math.p.otPay")),
+            eqL(tr("money-math.p.otRateEq", { r: usdN(P.rate), o: B(usdX(X.otRate)) })) + eqL(numS(X.otH) + " × " + usdX(X.otRate) + " = " + B(usdR(X.otPay)), tr("money-math.p.otPay")),
             [
-              ["e", tr("money-math.p.overtime"), tr("money-math.p.l.ot", { o: B("$" + numS(X.otRate)), eq: B(numS(X.otH) + " × $" + numS(X.otRate) + " = " + usdR(X.otPay)) })]
+              ["e", tr("money-math.p.overtime"), tr("money-math.p.l.ot", { o: B(usdX(X.otRate)), eq: B(numS(X.otH) + " × " + usdX(X.otRate) + " = " + usdR(X.otPay)) })]
             ]);
         }
         W.add(tr("money-math.p.gross"), eqL((X.ot ? usdR(X.regPay) + " + " + usdR(X.otPay) + " = " : "") + B(usd(X.gross)), tr("money-math.p.grossWeek")),
@@ -3562,7 +3582,7 @@
           [
             ["n", tr("money-math.tag.aYear"), tr("money-math.p.l.year", { v: B(usd(X.gross * 52n)) })]
           ], X.ot ? tr("money-math.p.noPremium", { h: numS(P.hrs), r: usdN(P.rate), v: usdR(mul(P.hrs, P.rate)) }) : "");
-        bandCells([{ k: tr("money-math.k.gross"), v: usd(X.gross), s: usdA(X.gross) }], [X.ot ? tr("money-math.p.f.ot", { h: B(numS(X.otH)), r: B("$" + numS(X.otRate)) }) : tr("money-math.p.f.noOt"), tr("money-math.p.f.before")]);
+        bandCells([{ k: tr("money-math.k.gross"), v: usd(X.gross), s: usdA(X.gross) }], [X.ot ? tr("money-math.p.f.ot", { h: B(numS(X.otH)), r: B(usdX(X.otRate)) }) : tr("money-math.p.f.noOt"), tr("money-math.p.f.before")]);
         return finish(W, '<div class="ck">' + (X.ot ? tr("money-math.p.ckOt", { a: B(numS(P.hrs) + " × " + usdN(P.rate)), b: B(usdR(mul(P.hrs, P.rate))), h: numS(X.otH), x: B(usdR(mul(X.otH, mul(P.rate, R(1, 2))))), g: B(usd(X.gross)) }) : tr("money-math.p.ck", { a: B(numS(P.hrs) + " × " + usdN(P.rate)), b: B(usdR(mul(P.hrs, P.rate))), g: B(usd(X.gross)) })) + OK + "</div>", "pay");
       }
       if (t === "salary") {
@@ -4063,12 +4083,12 @@
         var prev = P.price;
         W.add(tr("money-math.h.oneAtTime"),
           X.steps.map(function(s, i) {
-            var h = eqL((i ? "$" + numS(prev, 6) : usdN(P.price)) + " × " + numS(sub(ONE, pct(s.d))) + " = " + B("$" + numS(s.v, 6)));
+            var h = eqL((i ? usdX(prev, 6) : usdN(P.price)) + " × " + numS(sub(ONE, pct(s.d))) + " = " + B(usdX(s.v, 6)));
             prev = s.v;
             return h;
           }).join(""),
           [
-            ["m", tr("money-math.tag.price"), tr("money-math.h.l.after", { v: B("$" + numS(X.ex, 6)) })]
+            ["m", tr("money-math.tag.price"), tr("money-math.h.l.after", { v: B(usdX(X.ex, 6)) })]
           ]);
         W.add(tr("money-math.h.round"), eqL(tr("money-math.h.saleEq", { v: B(usd(X.v)) }), X.stepC !== X.v ? tr("money-math.h.eachStep", { v: usd(X.stepC) }) : tr("money-math.h.once")),
           [

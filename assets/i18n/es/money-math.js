@@ -284,6 +284,8 @@ HelperI18n.add("es", {
   "money-math.tag.payment": "pago",
   "money-math.l.l.payment": "El pago es de {v} al mes.",
   "money-math.l.total": "El total pagado es el pago por el número de pagos. El <b>interés</b> es ese total menos lo que se pidió prestado — no olvides restar el capital.",
+  "money-math.l.totalAdj": "El total pagado es la suma de todos los pagos: {n} pagos de {m} y el último, ajustado a {v} (mira la tabla). El <b>interés</b> es ese total menos lo que se pidió prestado — no olvides restar el capital.",
+  "money-math.l.lastWhy": "Por qué el último pago es de {v} y no de {m}: el pago se redondeó al centavo ({x}… → {m}), y también el interés de cada mes, así que el último pago se ajusta para que el saldo quede justo en $0. Por eso el interés es {i} y no {m} × {N} − {L} = {t}.",
   "money-math.l.zeroBack": "al 0% pagas exactamente {v} (el último pago absorbe el redondeo)",
   "money-math.l.totalEq": "total pagado = {eq}",
   "money-math.l.intEq": "interés = {eq}",
@@ -320,8 +322,9 @@ HelperI18n.add("es", {
   "money-math.l.f.paid": "Total pagado {p} por {L} prestados",
   "money-math.l.f.last": "El último pago de la tabla es de {v}",
   "money-math.l.ck": "Comprueba: {m} × {N} − {L} = {i} de interés",
+  "money-math.l.ckAdj": "Comprueba: {m} × {n} + {v} − {L} = {i} de interés",
   "money-math.l.g.m": "M = L · i(1 + i)<sup>N</sup> ÷ ((1 + i)<sup>N</sup> − 1), con i = APR ÷ 12 y N = 12t.",
-  "money-math.l.n.sched": "(Ese es el total de la tabla, con el último pago ajustado — también está bien.)",
+  "money-math.l.n.flat": "(Eso es {m} × {N} − {L}, contando el último pago como {m} también — también está bien.)",
   "money-math.l.m.paid": "Eso es todo lo que pagas. El interés es eso menos los {L} que pediste prestados.",
   "money-math.l.m.simple2": "Eso es interés simple sobre todo el préstamo durante todo el tiempo — pero el saldo baja cada mes.",
   "money-math.l.g.i": "Interés total = M × N − L.",
@@ -1189,5 +1192,5 @@ HelperI18n.add("es", {
   "money-math.about.canTitle": "Problemas que puedes escribir",
   "money-math.about.can": "<li><a href=\"money-math.html?q=%245%2C000%20al%204%25%20compuesto%20mensualmente%20por%2010%20a%C3%B1os\">$5,000 al 4% compuesto mensualmente por 10 años</a> o <a href=\"money-math.html?q=ahorra%20%24200%20al%20mes%20al%205%25%20por%2020%20a%C3%B1os\">ahorra $200 al mes al 5% por 20 años</a></li> <li><a href=\"money-math.html?q=pr%C3%A9stamo%20para%20auto%20de%20%2420%2C000%20al%206%25%20por%205%20a%C3%B1os\">préstamo para auto de $20,000 al 6% por 5 años</a> o <a href=\"money-math.html?q=tarjeta%20de%20cr%C3%A9dito%20de%20%243%2C000%20al%2022%25%20APR%20pagando%20%24100%20al%20mes\">tarjeta de crédito de $3,000 al 22% APR pagando $100 al mes</a></li> <li><a href=\"money-math.html?q=45%20horas%20a%20%2418%20la%20hora\">45 horas a $18 la hora</a> (un cheque de pago) o <a href=\"money-math.html?q=presupuesto%2050%2F30%2F20%20con%20%244%2C000%20al%20mes\">presupuesto 50/30/20 con $4,000 al mes</a></li> <li><a href=\"money-math.html?q=20%25%20de%20descuento%20y%20luego%2015%25%20de%20descuento%20sobre%20%2480\">20% de descuento y luego 15% de descuento sobre $80</a> o <a href=\"money-math.html?q=12%20oz%20por%20%243.99%20contra%2018%20oz%20por%20%245.49\">12 oz por $3.99 contra 18 oz por $5.49</a> (compras)</li>",
   "money-math.about.qTitle": "Preguntas frecuentes",
-  "money-math.about.qs": "<p class=\"ht-q\">¿Cuál es la diferencia entre el interés simple y el compuesto?</p> <p>El interés simple se paga solo sobre el dinero que pones; el compuesto también se paga sobre el interés que ya ganaste. $5,000 al 4% por 10 años llegan a $7,000.00 con interés simple, pero a $7,454.16 compuesto mensualmente: $454.16 más.</p> <p class=\"ht-q\">¿Cómo se calcula el pago mensual de un auto?</p> <p>La fórmula del pago reparte el préstamo y su interés en pagos mensuales iguales. Un préstamo de $20,000 al 6% por 5 años cuesta $386.66 al mes; 60 pagos suman $23,199.60, así que $3,199.60 de eso es interés.</p> <p class=\"ht-q\">¿Un 20% de descuento y luego un 15% es lo mismo que un 35%?</p> <p>No. El segundo descuento se calcula sobre el precio más bajo: $80 queda en $64 y luego en $54.40. En total es un 32% de descuento, no un 35%.</p>"
+  "money-math.about.qs": "<p class=\"ht-q\">¿Cuál es la diferencia entre el interés simple y el compuesto?</p> <p>El interés simple se paga solo sobre el dinero que pones; el compuesto también se paga sobre el interés que ya ganaste. $5,000 al 4% por 10 años llegan a $7,000.00 con interés simple, pero a $7,454.16 compuesto mensualmente: $454.16 más.</p> <p class=\"ht-q\">¿Cómo se calcula el pago mensual de un auto?</p> <p>La fórmula del pago reparte el préstamo y su interés en pagos mensuales iguales. Un préstamo de $20,000 al 6% por 5 años cuesta $386.66 al mes; 59 pagos de $386.66 y un último de $386.41 suman $23,199.35, así que $3,199.35 de eso es interés.</p> <p class=\"ht-q\">¿Un 20% de descuento y luego un 15% es lo mismo que un 35%?</p> <p>No. El segundo descuento se calcula sobre el precio más bajo: $80 queda en $64 y luego en $54.40. En total es un 32% de descuento, no un 35%.</p>"
 });

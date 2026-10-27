@@ -1156,8 +1156,8 @@
         ["mode=compound&task=apy&r=4&n=12", ["4.07"]],
         ["mode=save&task=fv&pmt=200&r=5&t=20", ["82206.73", "34206.73"]],
         ["mode=save&task=goal&goal=10000&r=4&t=5", ["150.84"]],
-        ["q=" + encodeURIComponent("$20000 car loan 6% 5 years monthly payment"), ["386.66", "3199.60"]],
-        ["mode=loan&amt=250000&r=6.5&t=30&kind=home", ["1580.17", "318861.20"]],
+        ["q=" + encodeURIComponent("$20000 car loan 6% 5 years monthly payment"), ["386.66", "3199.35"]],
+        ["mode=loan&amt=250000&r=6.5&t=30&kind=home", ["1580.17", "318861.58"]],
         ["q=" + encodeURIComponent("credit card $3000 at 22% APR paying $100 a month"), ["44", "1395.37"]],
         ["mode=card&task=month&bal=3000&apr=22", ["55.00"]],
         ["q=" + encodeURIComponent("45 hours at $18 an hour"), ["855.00"]],
@@ -5905,7 +5905,14 @@
           M = i.n === 0n ? monD(L, monI(N)) : monD(monM(monM(L, i), F), monS(F, monI(1))),
           Mc = monRound(M, 2),
           Lc = monRound(L, 2);
-        out = [monStr(Mc), monStr(i.n === 0n ? 0n : Mc * BigInt(N) - Lc)];
+        var sb = Lc,
+          si = 0n;
+        for (var sk = 1; sb > 0n && sk <= N; sk++) { // the schedule: each month's interest to the cent, the last payment adjusted
+          var sit = monRc(sb, i);
+          si += sit;
+          sb = sb + sit - (sk === N || sb + sit <= Mc ? sb + sit : Mc);
+        }
+        out = [monStr(Mc), monStr(si)];
         if (o.extra !== undefined) {
           var pay = Mc + monRound(monQ(o.extra), 2),
             bal = Lc,

@@ -733,6 +733,7 @@ HelperI18n.add("es", {
   "real-estate.tax.howPct": "Un porcentaje: {rt} = {f}.",
   "real-estate.tax.rateCap": "<b>La tasa.</b>",
   "real-estate.tax.sayRate": "{rt} es {m}, {p}, o {h}.",
+  "real-estate.tax.sayRate2": "{rt} es {a} o {b}.",
   "real-estate.tax.taxCap": "<b>El impuesto</b> = valor gravable × tasa.",
   "real-estate.tax.aYear": " al año",
   "real-estate.tax.sayTax": "{x} = <b>{v}</b> al año.",

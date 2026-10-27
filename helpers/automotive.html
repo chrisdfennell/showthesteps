@@ -2073,7 +2073,22 @@
   (function() {
     "use strict";
     if (window.HelperI18n) HelperI18n.apply();
-    var tx = function(k, v) { return window.HelperI18n ? HelperI18n.t(k, v) : k; };
+    var tx = function(k, v) { return window.HelperI18n ? anFix(HelperI18n.t(k, v), k) : k; };
+
+    // English "an" before a number or word said with a vowel sound, when a {placeholder} put it after "a": an 8, an 11,
+    // an 18, an 80, an 800, an 8,000, an 11,000, an inch, an hour. An amp after a number ("16 A 80%") is left alone.
+    function anFix(s, k) {
+      if (HelperI18n.lang !== "en" && HelperI18n.has(k)) return s;
+      return String(s).replace(/(^|[^\w])([Aa]) ((?:<[^>]+>)*\$?)(\d[\d,]*|(?:inch|hour|ounce|acre|ohm|eighth|electric)(?![a-z]))/g, function(all, pre, a, mid, n, at, str) {
+        var g = n.split(",")[0];
+        if (/^\d/.test(n)) {
+          if (n.indexOf(",") < 0 && g.length > 3) g = g.slice(0, (g.length - 1) % 3 + 1); // 18000 → eighteen thousand
+          if (!/^8/.test(g) && g !== "11" && g !== "18") return all;
+        }
+        if (pre === " " && /\d/.test(str.charAt(at - 1))) return all;
+        return pre + a + "n " + mid + n;
+      });
+    }
     var txr = function(k) { return window.HelperI18n ? HelperI18n.raw(k) : undefined; };
     var ES = !!(window.HelperI18n && HelperI18n.lang !== "en");
     var $ = function(id) { return document.getElementById(id); };
@@ -2154,6 +2169,10 @@
     function isWhole(x) { return Math.abs(x - Math.round(x)) < 1e-9; }
 
     function money(x) { return "$" + nf(x, 2, true); }
+
+    function usdK(x, k) { return "$" + c2(nf(x, k)); } // worked out to k places, but never just one: $627.60, $1.2345
+
+    function c2(s) { s = String(s); if (s.charAt(0) === ".") s = "0" + s; return /\.\d$/.test(s) ? s + "0" : s; } // money as typed, with its cents: 3.5 → 3.50
 
     function toNum(s) { return Number(String(s).replace(/,/g, "").replace(/[−–]/g, "-")); }
 
@@ -4018,14 +4037,14 @@
         if (P.task === "mpg") return tx("automotive.fuel.tMpg", { d: P.od1 ? tx("automotive.fuel.tOdo", { a: P.od1, b: P.od2 }) : tx("automotive.fuel.tMiles", { v: P.mi }), gal: P.gal });
         if (P.task === "l100") return tx("automotive.fuel.tL100", { km: P.km, l: P.l });
         if (P.task === "conv") return P.mpg ? tx("automotive.fuel.tConvMpg", { v: P.mpg }) : tx("automotive.fuel.tConvL", { v: P.l100 });
-        return P.km ? tx("automotive.fuel.tTripKm", { km: P.km, l: P.l100, p: P.price, rt: P.rt ? tx("automotive.fuel.eachWay") : "" }) : tx("automotive.fuel.tTripMi", { mi: P.mi, rt: P.rt ? tx("automotive.fuel.eachWay") : "", mpg: P.mpg, p: P.price });
+        return P.km ? tx("automotive.fuel.tTripKm", { km: P.km, l: P.l100, p: c2(P.price), rt: P.rt ? tx("automotive.fuel.eachWay") : "" }) : tx("automotive.fuel.tTripMi", { mi: P.mi, rt: P.rt ? tx("automotive.fuel.eachWay") : "", mpg: P.mpg, p: c2(P.price) });
       },
       reads: function(P) {
         var dot = ' <span class="nm">·</span> ';
         if (P.task === "mpg") return (P.od1 ? tx("automotive.fuel.rdOdo", { a: esc(gT(P.od1)), b: esc(gT(P.od2)) }) : esc(gT(P.mi)) + " " + tx("automotive.fuel.w.miles")) + dot + esc(gT(P.gal)) + " " + tx("automotive.fuel.w.gallons");
         if (P.task === "l100") return esc(gT(P.km)) + " km" + dot + esc(gT(P.l)) + " " + tx("automotive.disp.un.l");
         if (P.task === "conv") return P.mpg ? esc(gT(P.mpg)) + " mpg" + dot + tx("automotive.fuel.rdToL") : esc(gT(P.l100)) + " L/100 km" + dot + tx("automotive.fuel.rdToMpg");
-        return (P.km ? esc(gT(P.km)) + " km" : esc(gT(P.mi)) + " " + tx("automotive.fuel.w.miles")) + (P.rt ? tx("automotive.fuel.eachWay") : "") + dot + (P.km ? esc(gT(P.l100)) + " L/100 km" : esc(gT(P.mpg)) + " mpg") + dot + tx(P.km ? "automotive.fuel.aLiter" : "automotive.fuel.aGallon", { p: "$" + esc(P.price) });
+        return (P.km ? esc(gT(P.km)) + " km" : esc(gT(P.mi)) + " " + tx("automotive.fuel.w.miles")) + (P.rt ? tx("automotive.fuel.eachWay") : "") + dot + (P.km ? esc(gT(P.l100)) + " L/100 km" : esc(gT(P.mpg)) + " mpg") + dot + tx(P.km ? "automotive.fuel.aLiter" : "automotive.fuel.aGallon", { p: "$" + esc(c2(P.price)) });
       },
       compute: function(P) {
         var R = {};
@@ -4155,7 +4174,7 @@
         W.add(tx("automotive.fuel.haveTrip") + (P.rt ? tx("automotive.fuel.haveRt") : ""),
           P.rt ? eqL(dist + " × 2 = " + res(frT(R.dq) + (met ? " km" : " " + MI2))) : "",
           [
-            ["p", tx("automotive.tag.read"), B(dist) + (P.rt ? tx("automotive.fuel.sayRt", { x: frT(R.dq) }) : "") + ", " + B(met ? gT(P.l100) + " L/100 km" : gT(P.mpg) + " mpg") + ", " + B(tx(met ? "automotive.fuel.aLiter" : "automotive.fuel.aGallon", { p: "$" + P.price })) + "."]
+            ["p", tx("automotive.tag.read"), B(dist) + (P.rt ? tx("automotive.fuel.sayRt", { x: frT(R.dq) }) : "") + ", " + B(met ? gT(P.l100) + " L/100 km" : gT(P.mpg) + " mpg") + ", " + B(tx(met ? "automotive.fuel.aLiter" : "automotive.fuel.aGallon", { p: "$" + c2(P.price) })) + "."]
           ]);
         W.add(tx(met ? "automotive.fuel.fuelCapKm" : "automotive.fuel.fuelCapMi"),
           eqL((met ? frT(R.dq) + " × " + gT(P.l100) + " ÷ 100" : frT(R.dq) + " ÷ " + gT(P.mpg)) + " = " + (exactDec(R.fq) === null ? frT(R.fq) + opS("≈") + nf(R.fuel, 4) : nf(R.fuel, 4)) + opS(rnd(R.fuel, 2) === R.fuel ? "=" : "≈") + res(d2(R.fuel) + " " + fu)),
@@ -4166,16 +4185,16 @@
           ["a", tx("automotive.tag.picture"), tx("automotive.fuel.sayGal", { g: d2(R.fuel) })]
         ]);
         W.add(tx("automotive.fuel.costCap", { fu: fu }),
-          eqL(nf(R.fuel, 4) + " × $" + P.price + " = " + (rnd(qv(R.costq), 6) === R.cost ? "" : "$" + nf(qv(R.costq), 4) + opS("≈")) + res(money(R.cost))),
+          eqL(nf(R.fuel, 4) + " × $" + c2(P.price) + " = " + (rnd(qv(R.costq), 6) === R.cost ? "" : usdK(qv(R.costq), 4) + opS("≈")) + res(money(R.cost))),
           [
-            ["m", "×", B(nf(R.fuel, 4) + " × $" + P.price) + " = " + B(money(R.cost)) + "."]
+            ["m", "×", B(nf(R.fuel, 4) + " × $" + c2(P.price)) + " = " + B(money(R.cost)) + "."]
           ]);
         W.add(tx(met ? "automotive.fuel.perCapKm" : "automotive.fuel.perCapMi"),
-          eqL(met ? "$" + P.price + " × " + gT(P.l100) + " ÷ 100 = $" + nf(R.per, 4) + opS("≈") + res(tx("automotive.fuel.aKm", { m: money(R.per) })) : "$" + P.price + " ÷ " + gT(P.mpg) + " = $" + nf(R.per, 4) + opS("≈") + res(tx("automotive.fuel.aMile", { m: money(R.per) }))),
+          eqL(met ? "$" + c2(P.price) + " × " + gT(P.l100) + " ÷ 100 = " + usdK(R.per, 4) + opS("≈") + res(tx("automotive.fuel.aKm", { m: money(R.per) })) : "$" + c2(P.price) + " ÷ " + gT(P.mpg) + " = " + usdK(R.per, 4) + opS("≈") + res(tx("automotive.fuel.aMile", { m: money(R.per) }))),
           [
             ["v", "÷", tx(met ? "automotive.fuel.sayCentsKm" : "automotive.fuel.sayCentsMi", { c: nf(R.per * 100, 1) })]
           ]);
-        W.add(tx(met ? "automotive.fuel.chkPerKm" : "automotive.fuel.chkPerMi"), eqL("$" + nf(R.per, 4) + " × " + frT(R.dq) + " = $" + nf(R.per * qv(R.dq), 2) + OKM), [
+        W.add(tx(met ? "automotive.fuel.chkPerKm" : "automotive.fuel.chkPerMi"), eqL(usdK(R.per, 4) + " × " + frT(R.dq) + " = " + usdK(R.per * qv(R.dq), 2) + OKM), [
           ["a", tx("automotive.tag.check"), tx("automotive.fuel.sayAgain", { m: money(R.cost) })]
         ]);
         bandCells([{ k: tx("automotive.fuel.lblFuel"), v: d2(R.fuel) + ' <span class="sm">' + (met ? "L" : "gal") + "</span>", s: d2(R.fuel) }, { k: tx("automotive.fuel.lblCost"), v: money(R.cost) }, { k: met ? tx("automotive.fuel.lblPerKm") : tx("automotive.fuel.lblPerMi"), v: money(R.per), s: nf(R.per, 2) }],
@@ -4194,7 +4213,7 @@
           q = P.mpg ? tx("automotive.fuel.recConvMpg", { v: gT(P.mpg) }) : tx("automotive.fuel.recConvL", { v: gT(P.l100) });
           a = P.mpg ? d1(R.l100) + " L/100 km" : d1(R.mpg) + " mpg";
         } else {
-          q = P.km ? tx("automotive.fuel.recTripKm", { km: gT(P.km), rt: P.rt ? tx("automotive.fuel.eachWay") : "", l: gT(P.l100), p: P.price }) : tx("automotive.fuel.recTripMi", { mi: gT(P.mi), rt: P.rt ? tx("automotive.fuel.eachWay") : "", mpg: gT(P.mpg), p: P.price });
+          q = P.km ? tx("automotive.fuel.recTripKm", { km: gT(P.km), rt: P.rt ? tx("automotive.fuel.eachWay") : "", l: gT(P.l100), p: c2(P.price) }) : tx("automotive.fuel.recTripMi", { mi: gT(P.mi), rt: P.rt ? tx("automotive.fuel.eachWay") : "", mpg: gT(P.mpg), p: c2(P.price) });
           a = d2(R.fuel) + (P.km ? " L, " : " gal, ") + money(R.cost);
         }
         return { text: q, html: esc(q), short: M.fuel.text(P), answer: a, answerHtml: "<b>" + esc(a) + "</b>" };
@@ -4595,13 +4614,13 @@
         return "mode=shop&task=markup&cost=" + P.cost + (P.mk ? "&mk=" + P.mk : P.mg ? "&mg=" + P.mg : "&price=" + P.price);
       },
       text: function(P) {
-        if (P.task === "inv") return tx("automotive.shop.tInv", { h: P.hrs, r: P.rate }) + (P.parts.length ? tx("automotive.shop.tParts", { p: "$" + P.parts.join(" + $") }) : "") + (+P.mk ? tx("automotive.shop.tMk", { v: P.mk }) : "") + (+P.tax ? tx("automotive.shop.tTax", { v: P.tax }) + (P.taxon === "all" ? tx("automotive.shop.tLaborToo") : "") : "");
-        return tx(P.mk ? "automotive.shop.tPartMk" : P.mg ? "automotive.shop.tPartMg" : "automotive.shop.tPartSold", { c: P.cost, v: P.mk || P.mg || P.price });
+        if (P.task === "inv") return tx("automotive.shop.tInv", { h: P.hrs, r: c2(P.rate) }) + (P.parts.length ? tx("automotive.shop.tParts", { p: "$" + P.parts.map(c2).join(" + $") }) : "") + (+P.mk ? tx("automotive.shop.tMk", { v: P.mk }) : "") + (+P.tax ? tx("automotive.shop.tTax", { v: P.tax }) + (P.taxon === "all" ? tx("automotive.shop.tLaborToo") : "") : "");
+        return tx(P.mk ? "automotive.shop.tPartMk" : P.mg ? "automotive.shop.tPartMg" : "automotive.shop.tPartSold", { c: c2(P.cost), v: P.mk || P.mg || c2(P.price) });
       },
       reads: function(P) {
         var dot = ' <span class="nm">·</span> ';
-        if (P.task === "inv") return esc(gT(P.hrs)) + " h × $" + esc(P.rate) + dot + (P.parts.length ? tx("automotive.shop.rdParts", { p: "$" + P.parts.map(esc).join(" + $") }) : tx("automotive.shop.rdNoParts")) + (+P.mk ? dot + tx("automotive.shop.rdMk", { v: esc(gT(P.mk)) }) : "") + dot + (+P.tax ? tx(P.taxon === "all" ? "automotive.shop.rdTaxAll" : "automotive.shop.rdTaxParts", { v: esc(gT(P.tax)) }) : tx("automotive.shop.rdNoTax"));
-        return tx("automotive.shop.rdCost", { v: esc(P.cost) }) + dot + (P.mk ? tx("automotive.shop.rdMk", { v: esc(gT(P.mk)) }) : P.mg ? tx("automotive.shop.rdMg", { v: esc(gT(P.mg)) }) : tx("automotive.shop.rdPrice", { v: esc(P.price) }));
+        if (P.task === "inv") return esc(gT(P.hrs)) + " h × $" + esc(c2(P.rate)) + dot + (P.parts.length ? tx("automotive.shop.rdParts", { p: "$" + P.parts.map(c2).map(esc).join(" + $") }) : tx("automotive.shop.rdNoParts")) + (+P.mk ? dot + tx("automotive.shop.rdMk", { v: esc(gT(P.mk)) }) : "") + dot + (+P.tax ? tx(P.taxon === "all" ? "automotive.shop.rdTaxAll" : "automotive.shop.rdTaxParts", { v: esc(gT(P.tax)) }) : tx("automotive.shop.rdNoTax"));
+        return tx("automotive.shop.rdCost", { v: esc(c2(P.cost)) }) + dot + (P.mk ? tx("automotive.shop.rdMk", { v: esc(gT(P.mk)) }) : P.mg ? tx("automotive.shop.rdMg", { v: esc(gT(P.mg)) }) : tx("automotive.shop.rdPrice", { v: esc(c2(P.price)) }));
       },
       compute: function(P) {
         var R = {};
@@ -4651,25 +4670,25 @@
         var W = new Work();
         if (P.task === "inv") {
           W.add(tx(P.taxon === "all" ? "automotive.shop.haveAll" : P.taxon === "none" ? "automotive.shop.haveNone" : "automotive.shop.haveParts"), "", [
-            ["p", tx("automotive.tag.read"), tx("automotive.shop.sayHrs", { h: gT(P.hrs), r: P.rate }) + (P.parts.length ? tx("automotive.shop.sayParts", { p: "$" + P.parts.join(" + $") }) : "") + (+P.mk ? tx("automotive.shop.sayMk", { v: gT(P.mk) }) : "") + (+P.tax ? tx("automotive.shop.sayTax", { v: gT(P.tax) }) : "") + "."]
+            ["p", tx("automotive.tag.read"), tx("automotive.shop.sayHrs", { h: gT(P.hrs), r: c2(P.rate) }) + (P.parts.length ? tx("automotive.shop.sayParts", { p: "$" + P.parts.map(c2).join(" + $") }) : "") + (+P.mk ? tx("automotive.shop.sayMk", { v: gT(P.mk) }) : "") + (+P.tax ? tx("automotive.shop.sayTax", { v: gT(P.tax) }) : "") + "."]
           ]);
-          W.add(tx("automotive.shop.laborCap"), eqL(gT(P.hrs) + " × $" + P.rate + " = " + res(mT(R.labor))), [
-            ["m", "×", B(gT(P.hrs) + " × $" + P.rate) + " = " + B(mT(R.labor)) + "."]
+          W.add(tx("automotive.shop.laborCap"), eqL(gT(P.hrs) + " × $" + c2(P.rate) + " = " + res(mT(R.labor))), [
+            ["m", "×", B(gT(P.hrs) + " × $" + c2(P.rate)) + " = " + B(mT(R.labor)) + "."]
           ]);
           if (P.parts.length) {
             var raw = qm(R.pc, qa(Q(1), qdv(R.mk, Q(100))));
             W.add(tx("automotive.shop.partsCap" + (P.parts.length > 1 ? "N" : "1") + (+P.mk ? "Mk" : "No"), { v: gT(P.mk) }),
-              (P.parts.length > 1 ? eqL("$" + P.parts.join(" + $") + " = " + mT(R.pc)) : "") + (+P.mk ? eqL(mT(R.pc) + " × " + nf(1 + qv(R.mk) / 100, 4) + " = " + (qeq(raw, R.parts) ? "" : "$" + nf(qv(raw), 4) + opS("≈")) + res(mT(R.parts))) : eqL(res(mT(R.parts)))),
+              (P.parts.length > 1 ? eqL("$" + P.parts.map(c2).join(" + $") + " = " + mT(R.pc)) : "") + (+P.mk ? eqL(mT(R.pc) + " × " + nf(1 + qv(R.mk) / 100, 4) + " = " + (qeq(raw, R.parts) ? "" : usdK(qv(raw), 4) + opS("≈")) + res(mT(R.parts))) : eqL(res(mT(R.parts)))),
               [
                 ["m", "×", (P.parts.length > 1 ? tx("automotive.shop.sayCost", { v: mT(R.pc) }) : "") + (+P.mk ? tx("automotive.shop.sayCustomer", { x: B(mT(R.pc) + " × " + nf(1 + qv(R.mk) / 100, 4)), v: mT(R.parts) }) : B(mT(R.parts)) + ".")]
               ], +P.mk ? tx("automotive.shop.asideMk", { c: mT(R.pc), mk: gT(P.mk), p: mT(qs(R.parts, R.pc)) }) : "");
           }
           if (+P.tax) W.add(tx(P.taxon === "all" ? "automotive.shop.taxCapAll" : "automotive.shop.taxCapParts", { v: gT(P.tax) }),
-            eqL(mT(R.taxable) + " × " + gT(P.tax) + "% = " + mT(R.taxable) + " × " + nf(qv(R.tx) / 100, 5) + " = " + (qeq(cents(qdv(qm(R.taxable, R.tx), Q(100))), qdv(qm(R.taxable, R.tx), Q(100))) ? "" : "$" + nf(qv(qdv(qm(R.taxable, R.tx), Q(100))), 4) + opS("≈")) + res(mT(R.tax))),
+            eqL(mT(R.taxable) + " × " + gT(P.tax) + "% = " + mT(R.taxable) + " × " + nf(qv(R.tx) / 100, 5) + " = " + (qeq(cents(qdv(qm(R.taxable, R.tx), Q(100))), qdv(qm(R.taxable, R.tx), Q(100))) ? "" : usdK(qv(qdv(qm(R.taxable, R.tx), Q(100))), 4) + opS("≈")) + res(mT(R.tax))),
             [
               ["e", "%", B(mT(R.taxable) + " × " + gT(P.tax) + "%") + " = " + B(mT(R.tax)) + "."]
             ]);
-          var rows = [{ c: [tx("automotive.shop.rowLabor", { h: gT(P.hrs), r: P.rate }), mT(R.labor)] }];
+          var rows = [{ c: [tx("automotive.shop.rowLabor", { h: gT(P.hrs), r: c2(P.rate) }), mT(R.labor)] }];
           if (P.parts.length) rows.push({ c: [tx("automotive.shop.lblParts") + (+P.mk ? " (" + mT(R.pc) + " + " + gT(P.mk) + "%)" : ""), mT(R.parts)] });
           if (+P.tax) rows.push({ c: [tx(P.taxon === "all" ? "automotive.shop.rowTaxAll" : "automotive.shop.rowTaxParts", { v: gT(P.tax) }), mT(R.tax)] });
           rows.push({ c: [tx("automotive.shop.lblTotal"), mT(R.total)], cls: "sum" });
@@ -4678,7 +4697,7 @@
               ["v", "+", B(mT(R.labor) + (P.parts.length ? " + " + mT(R.parts) : "") + (+P.tax ? " + " + mT(R.tax) : "")) + " = " + B(mT(R.total)) + "."]
             ]);
           W.add(tx(P.taxon === "all" ? "automotive.shop.chkAll" : "automotive.shop.chkParts"),
-            eqL(P.taxon === "all" ? "(" + mT(R.labor) + " + " + mT(R.parts) + ") × " + nf(1 + qv(R.tx) / 100, 5) + " = $" + nf(qv(qa(R.labor, R.parts)) * (1 + qv(R.tx) / 100), 2) + OKM : mT(R.labor) + " + " + mT(R.parts) + " × " + nf(1 + qv(R.tx) / 100, 5) + " = $" + nf(qv(R.labor) + qv(R.parts) * (1 + qv(R.tx) / 100), 2) + OKM),
+            eqL(P.taxon === "all" ? "(" + mT(R.labor) + " + " + mT(R.parts) + ") × " + nf(1 + qv(R.tx) / 100, 5) + " = " + usdK(qv(qa(R.labor, R.parts)) * (1 + qv(R.tx) / 100), 2) + OKM : mT(R.labor) + " + " + mT(R.parts) + " × " + nf(1 + qv(R.tx) / 100, 5) + " = " + usdK(qv(R.labor) + qv(R.parts) * (1 + qv(R.tx) / 100), 2) + OKM),
             [
               ["a", tx("automotive.tag.check"), tx("automotive.shop.sayAgain", { v: mT(R.total) })]
             ]);
@@ -4691,11 +4710,11 @@
         }
         if (P.mk) {
           var rw = qm(R.c, qa(Q(1), qdv(R.k, Q(100))));
-          W.add(tx("automotive.shop.mkCap"), eqL(mT(R.c) + " × (1 + " + gT(P.mk) + "%) = " + mT(R.c) + " × " + nf(1 + qv(R.k) / 100, 4) + " = " + (qeq(rw, R.price) ? "" : "$" + nf(qv(rw), 4) + opS("≈")) + res(mT(R.price))), [
+          W.add(tx("automotive.shop.mkCap"), eqL(mT(R.c) + " × (1 + " + gT(P.mk) + "%) = " + mT(R.c) + " × " + nf(1 + qv(R.k) / 100, 4) + " = " + (qeq(rw, R.price) ? "" : usdK(qv(rw), 4) + opS("≈")) + res(mT(R.price))), [
             ["m", "×", B(mT(R.c) + " × " + nf(1 + qv(R.k) / 100, 4)) + " = " + B(mT(R.price)) + "."]
           ]);
         } else if (P.mg) {
-          W.add(tx("automotive.shop.mgCap"), eqL(mT(R.c) + " ÷ (1 − " + gT(P.mg) + "%) = " + mT(R.c) + " ÷ " + nf(1 - qv(R.g) / 100, 4) + " = " + (qeq(R.exact, R.price) ? "" : "$" + nf(qv(R.exact), 4) + opS("≈")) + res(mT(R.price))), [
+          W.add(tx("automotive.shop.mgCap"), eqL(mT(R.c) + " ÷ (1 − " + gT(P.mg) + "%) = " + mT(R.c) + " ÷ " + nf(1 - qv(R.g) / 100, 4) + " = " + (qeq(R.exact, R.price) ? "" : usdK(qv(R.exact), 4) + opS("≈")) + res(mT(R.price))), [
             ["v", "÷", B(mT(R.c) + " ÷ " + nf(1 - qv(R.g) / 100, 4)) + " = " + B(mT(R.price)) + "."]
           ], tx("automotive.shop.asideMg", { mg: gT(P.mg), c: mT(R.c), f: nf(1 + qv(R.g) / 100, 4), m: money(rnd(qv(R.c) * (1 + qv(R.g) / 100), 2)) }));
         } else W.add(tx("automotive.shop.haveCp"), "", [
@@ -4716,13 +4735,13 @@
       record: function(P, R) {
         var q, a;
         if (P.task === "inv") {
-          q = tx("automotive.shop.recInv", { h: gT(P.hrs), r: P.rate, parts: P.parts.length ? tx("automotive.shop.recParts", { p: "$" + P.parts.join(" + $"), mk: +P.mk ? tx("automotive.shop.recMk", { v: gT(P.mk) }) : "" }) : "", tax: +P.tax ? tx(P.taxon === "all" ? "automotive.shop.recTaxAll" : "automotive.shop.recTaxParts", { v: gT(P.tax) }) : "" });
+          q = tx("automotive.shop.recInv", { h: gT(P.hrs), r: c2(P.rate), parts: P.parts.length ? tx("automotive.shop.recParts", { p: "$" + P.parts.map(c2).join(" + $"), mk: +P.mk ? tx("automotive.shop.recMk", { v: gT(P.mk) }) : "" }) : "", tax: +P.tax ? tx(P.taxon === "all" ? "automotive.shop.recTaxAll" : "automotive.shop.recTaxParts", { v: gT(P.tax) }) : "" });
           a = tx("automotive.shop.ansLabor", { v: mT(R.labor) }) + (P.parts.length ? tx("automotive.shop.ansParts", { v: mT(R.parts) }) : "") + (+P.tax ? tx("automotive.shop.ansTax", { v: mT(R.tax) }) : "") + tx("automotive.shop.ansTotal", { v: mT(R.total) });
         } else if (P.price) {
-          q = tx("automotive.shop.recSold", { c: P.cost, p: P.price });
+          q = tx("automotive.shop.recSold", { c: c2(P.cost), p: c2(P.price) });
           a = tx("automotive.shop.ansBoth", { a: nf(R.mkp, 2), b: nf(R.mgp, 2) });
         } else {
-          q = tx(P.mk ? "automotive.shop.recMkQ" : "automotive.shop.recMgQ", { c: P.cost, v: gT(P.mk || P.mg) });
+          q = tx(P.mk ? "automotive.shop.recMkQ" : "automotive.shop.recMgQ", { c: c2(P.cost), v: gT(P.mk || P.mg) });
           a = mT(R.price);
         }
         return { text: q, html: esc(q), short: M.shop.text(P), answer: a, answerHtml: "<b>" + esc(a) + "</b>" };

@@ -2083,7 +2083,22 @@
     "use strict";
     var $ = function(id) { return document.getElementById(id); };
     if (window.HelperI18n) HelperI18n.apply();
-    var tx = function(k, v) { return window.HelperI18n ? HelperI18n.t(k, v) : k; };
+    var tx = function(k, v) { return window.HelperI18n ? anFix(HelperI18n.t(k, v), k) : k; };
+
+    // English "an" before a number or word said with a vowel sound, when a {placeholder} put it after "a": an 8, an 11,
+    // an 18, an 80, an 800, an 8,000, an 11,000, an inch, an hour. An amp after a number ("16 A 80%") is left alone.
+    function anFix(s, k) {
+      if (HelperI18n.lang !== "en" && HelperI18n.has(k)) return s;
+      return String(s).replace(/(^|[^\w])([Aa]) ((?:<[^>]+>)*\$?)(\d[\d,]*|(?:inch|hour|ounce|acre|ohm|eighth|electric)(?![a-z]))/g, function(all, pre, a, mid, n, at, str) {
+        var g = n.split(",")[0];
+        if (/^\d/.test(n)) {
+          if (n.indexOf(",") < 0 && g.length > 3) g = g.slice(0, (g.length - 1) % 3 + 1); // 18000 → eighteen thousand
+          if (!/^8/.test(g) && g !== "11" && g !== "18") return all;
+        }
+        if (pre === " " && /\d/.test(str.charAt(at - 1))) return all;
+        return pre + a + "n " + mid + n;
+      });
+    }
     var txr = function(k) { return window.HelperI18n ? HelperI18n.raw(k) : undefined; };
     var ES = !!(window.HelperI18n && HelperI18n.lang !== "en");
     var txs = tx; // the same, for the drawings whose own "tx" is an x position
@@ -3751,7 +3766,7 @@
             ["a", tx("hvac-plumbing.tag.picture"), tx("hvac-plumbing.loss.moreR")]
           ]);
         bandCells([{ k: tx("hvac-plumbing.loss.lbl"), v: qT + " BTU/hr" }], [tx("hvac-plumbing.loss.uFact", { u: B(qD(R.uq, 4)), r: qD(R.rt, 2) }), tx("hvac-plumbing.loss.dayFact", { w: nf(qv(R.q) / 3.412, 0), d: nf(qv(R.q) * 24, 0) })]);
-        return finish(W, '<div class="ck">' + tx("hvac-plumbing.loss.closer", { q: qT, what: esc(whatT(P.what, "the")) }) + "</div>");
+        return finish(W, '<div class="ck">' + delAl(tx("hvac-plumbing.loss.closer", { q: qT, what: esc(whatT(P.what, "the")) })) + "</div>");
       },
       record: function(P, R) {
         var q = ES ? lossDesc(P) : M.loss.text(P).replace(/ heat loss$/, ""),
@@ -3800,6 +3815,8 @@
 
     // a wall, window … in the page's language: "a" (a wall / una pared), "the" (the wall / la pared), or the bare word
     function whatT(w, form) { return tx("hvac-plumbing.what." + form + "." + w); }
+
+    function delAl(s) { return s.replace(/\b(de|a) el\b/g, function(m, w) { return w === "de" ? "del" : "al"; }); } // Spanish: "a través de el piso" → "del piso"
 
     // the problem in words, for the Spanish made problems (the English ones use the typed form, M.loss.text)
     function lossDesc(P) {

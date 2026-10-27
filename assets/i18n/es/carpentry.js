@@ -122,7 +122,7 @@ HelperI18n.add("es", {
   "carpentry.tape.recDecInH": "Escribe <b>{x} in</b> al 1/{d} de pulgada más cercano.",
   "carpentry.tape.recFrac": "Escribe {q} como un número decimal de pulgadas.",
   "carpentry.tape.altBottoms": "Al sumar fracciones no se suman los denominadores. Primero dales el mismo denominador ({a} + {b}) y luego suma los numeradores.",
-  "carpentry.tape.altFoot": "No pierdas el pie que llevas: {s} pulgadas son {f} pie {i} pulgadas.",
+  "carpentry.tape.altFoot": "No pierdas el pie que llevas: {s} pulgadas son {f} {f|pie|pies} {i} {i|pulgada|pulgadas}.",
   "carpentry.tape.altBorrow": "Cuando el número que quitas es mayor, pide prestado en vez de voltear la resta: 1 pulgada = 16/16, y 1 pie = 12 pulgadas.",
   "carpentry.tape.altOddFoot": "La mitad de {f} pies no es {h} pies: el pie que sobra son 12 pulgadas. Júntalo primero con las pulgadas (12 + {i}) y luego saca la mitad.",
   "carpentry.tape.altRoundUp": "Redondea al 1/{d} más cercano, no hacia abajo: {s} está más cerca de {c} que de {f}.",

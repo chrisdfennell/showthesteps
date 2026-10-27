@@ -285,6 +285,8 @@ HelperI18n.add("en", {
   "money-math.tag.payment": "payment",
   "money-math.l.l.payment": "The payment is {v} a month.",
   "money-math.l.total": "Total paid is the payment times the number of payments. The <b>interest</b> is that total minus what was borrowed — don’t forget to take the principal off.",
+  "money-math.l.totalAdj": "Total paid is every payment added up: {n} payments of {m} and the last one, adjusted to {v} (see the schedule). The <b>interest</b> is that total minus what was borrowed — don’t forget to take the principal off.",
+  "money-math.l.lastWhy": "Why the last payment is {v}, not {m}: the payment was rounded to the cent ({x}… → {m}), and so is each month’s interest, so the last payment is adjusted to land the balance on exactly $0. That’s why the interest is {i}, not {m} × {N} − {L} = {t}.",
   "money-math.l.zeroBack": "at 0% you pay back exactly {v} (the last payment absorbs the rounding)",
   "money-math.l.totalEq": "total paid = {eq}",
   "money-math.l.intEq": "interest = {eq}",
@@ -321,8 +323,9 @@ HelperI18n.add("en", {
   "money-math.l.f.paid": "Total paid {p} for {L} borrowed",
   "money-math.l.f.last": "The schedule’s last payment is {v}",
   "money-math.l.ck": "Check: {m} × {N} − {L} = {i} of interest",
+  "money-math.l.ckAdj": "Check: {m} × {n} + {v} − {L} = {i} of interest",
   "money-math.l.g.m": "M = L · i(1 + i)<sup>N</sup> ÷ ((1 + i)<sup>N</sup> − 1), with i = APR ÷ 12 and N = 12t.",
-  "money-math.l.n.sched": "(That’s the schedule’s total, with the last payment adjusted — right too.)",
+  "money-math.l.n.flat": "(That’s {m} × {N} − {L}, counting the last payment as {m} too — right too.)",
   "money-math.l.m.paid": "That’s everything you pay. The interest is that minus the {L} you borrowed.",
   "money-math.l.m.simple2": "That’s simple interest on the whole loan for the whole time — but the balance goes down every month.",
   "money-math.l.g.i": "Total interest = M × N − L.",
@@ -1051,5 +1054,5 @@ HelperI18n.add("en", {
   "money-math.about.canTitle": "Problems you can type",
   "money-math.about.can": "<li><a href=\"money-math.html?q=%245000%20at%204%25%20compounded%20monthly%20for%2010%20years\">$5000 at 4% compounded monthly for 10 years</a> or <a href=\"money-math.html?q=save%20%24200%20a%20month%20at%205%25%20for%2020%20years\">save $200 a month at 5% for 20 years</a></li> <li><a href=\"money-math.html?q=%2420000%20car%20loan%206%25%205%20years%20monthly%20payment\">$20000 car loan 6% 5 years monthly payment</a> or <a href=\"money-math.html?q=credit%20card%20%243000%20at%2022%25%20APR%20paying%20%24100%20a%20month\">credit card $3000 at 22% APR paying $100 a month</a></li> <li><a href=\"money-math.html?q=45%20hours%20at%20%2418%20an%20hour\">45 hours at $18 an hour</a> (a paycheck) or <a href=\"money-math.html?q=50%2F30%2F20%20budget%20on%20%244000%20a%20month\">50/30/20 budget on $4000 a month</a></li> <li><a href=\"money-math.html?q=20%25%20off%20then%2015%25%20off%20%2480\">20% off then 15% off $80</a> or <a href=\"money-math.html?q=12%20oz%20for%20%243.99%20vs%2018%20oz%20for%20%245.49\">12 oz for $3.99 vs 18 oz for $5.49</a> (shopping)</li>",
   "money-math.about.qTitle": "Common questions",
-  "money-math.about.qs": "<p class=\"ht-q\">What is the difference between simple and compound interest?</p> <p>Simple interest is paid only on the money you put in; compound interest is also paid on the interest already earned. $5,000 at 4% for 10 years grows to $7,000.00 with simple interest, but to $7,454.16 compounded monthly: $454.16 more.</p> <p class=\"ht-q\">How is a monthly car payment worked out?</p> <p>The payment formula spreads the loan and its interest over equal monthly payments. A $20,000 loan at 6% for 5 years costs $386.66 a month; 60 payments come to $23,199.60, so $3,199.60 of that is interest.</p> <p class=\"ht-q\">Is 20% off and then 15% off the same as 35% off?</p> <p>No. The second discount is taken from the lower price: $80 becomes $64, then $54.40. That is 32% off in all, not 35%.</p>"
+  "money-math.about.qs": "<p class=\"ht-q\">What is the difference between simple and compound interest?</p> <p>Simple interest is paid only on the money you put in; compound interest is also paid on the interest already earned. $5,000 at 4% for 10 years grows to $7,000.00 with simple interest, but to $7,454.16 compounded monthly: $454.16 more.</p> <p class=\"ht-q\">How is a monthly car payment worked out?</p> <p>The payment formula spreads the loan and its interest over equal monthly payments. A $20,000 loan at 6% for 5 years costs $386.66 a month; 59 payments of $386.66 and a last one of $386.41 come to $23,199.35, so $3,199.35 of that is interest.</p> <p class=\"ht-q\">Is 20% off and then 15% off the same as 35% off?</p> <p>No. The second discount is taken from the lower price: $80 becomes $64, then $54.40. That is 32% off in all, not 35%.</p>"
 });

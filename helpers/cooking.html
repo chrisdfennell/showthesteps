@@ -2029,7 +2029,22 @@
   (function() {
     "use strict";
     if (window.HelperI18n) HelperI18n.apply();
-    var tx = function(k, v) { return window.HelperI18n ? HelperI18n.t(k, v) : k; };
+    var tx = function(k, v) { return window.HelperI18n ? anFix(HelperI18n.t(k, v), k) : k; };
+
+    // English "an" before a number or word said with a vowel sound, when a {placeholder} put it after "a": an 8, an 11,
+    // an 18, an 80, an 800, an 8,000, an 11,000, an inch, an hour. An amp after a number ("16 A 80%") is left alone.
+    function anFix(s, k) {
+      if (HelperI18n.lang !== "en" && HelperI18n.has(k)) return s;
+      return String(s).replace(/(^|[^\w])([Aa]) ((?:<[^>]+>)*\$?)(\d[\d,]*|(?:inch|hour|ounce|acre|ohm|eighth|electric)(?![a-z]))/g, function(all, pre, a, mid, n, at, str) {
+        var g = n.split(",")[0];
+        if (/^\d/.test(n)) {
+          if (n.indexOf(",") < 0 && g.length > 3) g = g.slice(0, (g.length - 1) % 3 + 1); // 18000 → eighteen thousand
+          if (!/^8/.test(g) && g !== "11" && g !== "18") return all;
+        }
+        if (pre === " " && /\d/.test(str.charAt(at - 1))) return all;
+        return pre + a + "n " + mid + n;
+      });
+    }
     var txr = function(k) { return window.HelperI18n ? HelperI18n.raw(k) : undefined; };
     var ES = !!window.HelperI18n && HelperI18n.lang !== "en";
     // a word from one of the language's own tables (cooking.unitWords, nameWords, tagWords: Spanish only); English
@@ -2116,6 +2131,10 @@
     function isWhole(x) { return Math.abs(x - Math.round(x)) < 1e-9; }
 
     function money(x) { return (x < 0 ? "−$" : "$") + commas(Math.abs(rnd(x, 2)).toFixed(2)); }
+
+    function usdK(x, k) { return "$" + c2(nf(x, k)); } // worked out to k places, but never just one: $0.70, $1.2345
+
+    function c2(s) { return /\.\d$/.test(s) ? s + "0" : s; } // money with its cents: 0.7 → 0.70
 
     function toNum(s) { return Number(String(s).replace(/,/g, "").replace(/[−–]/g, "-")); }
 
@@ -3985,8 +4004,8 @@
         W.add(tx("cooking.cost.have"), tbl([tx("cooking.th.ingredient"), tx("cooking.cost.th.price"), tx("cooking.cost.th.buys"), tx("cooking.cost.th.uses")], R.rows.map(function(r) { var x = r.x; return { c: [esc(nm(x.name)), money(x.price), gv(x.pq) + " " + esc(cuD(x.pu, x.pq > 1)), qH(x.uq) + " " + esc(cuD(x.uu, qV(x.uq) > 1))] }; })), [
           ["p", "read", tx(P.serv ? "cooking.cost.say.nServ" : "cooking.cost.say.n", { n: tx(R.rows.length === 1 ? "cooking.oneIngredient" : "cooking.nIngredients", { n: R.rows.length }), s: B(tx("cooking.nServings", { n: gv(P.serv) })) })]
         ]);
-        W.add(tx("cooking.cost.unitRule"), tbl([tx("cooking.th.ingredient"), tx("cooking.cost.th.priceSize"), tx("cooking.cost.th.unitPrice")], R.rows.map(function(r) { var x = r.x; return { c: [esc(nm(x.name)), money(x.price) + " ÷ " + gv(x.pq) + (x.pu === "dozen" ? " " + esc(cuD("dozen")) : ""), { h: tx("cooking.cost.per", { x: "$" + nf(r.unitP, 4), u: esc(cuD(x.pu)) }), cls: "k" }] }; })), [
-          ["v", "÷", R.rows.slice(0, 3).map(function(r) { return tx("cooking.cost.say.unit", { n: esc(nm(r.x.name)), x: B(money(r.x.price) + " ÷ " + gv(r.x.pq) + " = $" + nf(r.unitP, 4)), u: esc(cuD(r.x.pu)) }); }).join("; ") + "."]
+        W.add(tx("cooking.cost.unitRule"), tbl([tx("cooking.th.ingredient"), tx("cooking.cost.th.priceSize"), tx("cooking.cost.th.unitPrice")], R.rows.map(function(r) { var x = r.x; return { c: [esc(nm(x.name)), money(x.price) + " ÷ " + gv(x.pq) + (x.pu === "dozen" ? " " + esc(cuD("dozen")) : ""), { h: tx("cooking.cost.per", { x: usdK(r.unitP, 4), u: esc(cuD(x.pu)) }), cls: "k" }] }; })), [
+          ["v", "÷", R.rows.slice(0, 3).map(function(r) { return tx("cooking.cost.say.unit", { n: esc(nm(r.x.name)), x: B(money(r.x.price) + " ÷ " + gv(r.x.pq) + " = " + usdK(r.unitP, 4)), u: esc(cuD(r.x.pu)) }); }).join("; ") + "."]
         ]);
         var conv = R.rows.filter(function(r) { return r.x.pu !== r.x.uu; });
         if (conv.length) W.add(R.rows.some(function(r) { return r.I; }) ? tx("cooking.cost.convIng") : tx("cooking.cost.conv"),
@@ -3997,23 +4016,23 @@
           [
             ["u", "units", conv.slice(0, 3).map(function(r) { return esc(nm(r.x.name)) + ": " + B(qT(r.x.uq) + " " + esc(cuD(r.x.uu, qV(r.x.uq) > 1)) + " = " + nf(r.inPkg, 4) + " " + esc(cuD(r.x.pu, r.inPkg > 1))); }).join("; ") + "."]
           ], R.rows.some(function(r) { return r.I; }) ? tx("cooking.cost.estimateAside") : "");
-        W.add(tx("cooking.cost.eachRule"), tbl([tx("cooking.th.ingredient"), tx("cooking.cost.th.amtTimes"), tx("cooking.cost.th.cost")], R.rows.map(function(r) { return { c: [esc(nm(r.x.name)), nf(r.inPkg, 4) + " × $" + nf(r.unitP, 4), "$" + nf(r.cost, 4)] }; }).concat([{ cls: "sum", c: [tx("cooking.cost.recipe"), "", money(R.total)] }])), [
-          ["m", "× +", tx(R.rows.length > 1 ? "cooking.cost.say.together" : "cooking.cost.say.one", { list: R.rows.slice(0, 3).map(function(r) { return esc(nm(r.x.name)) + " " + B("$" + nf(r.cost, 4)); }).join(", "), t: B(money(R.total)) })],
+        W.add(tx("cooking.cost.eachRule"), tbl([tx("cooking.th.ingredient"), tx("cooking.cost.th.amtTimes"), tx("cooking.cost.th.cost")], R.rows.map(function(r) { return { c: [esc(nm(r.x.name)), nf(r.inPkg, 4) + " × " + usdK(r.unitP, 4), usdK(r.cost, 4)] }; }).concat([{ cls: "sum", c: [tx("cooking.cost.recipe"), "", money(R.total)] }])), [
+          ["m", "× +", tx(R.rows.length > 1 ? "cooking.cost.say.together" : "cooking.cost.say.one", { list: R.rows.slice(0, 3).map(function(r) { return esc(nm(r.x.name)) + " " + B(usdK(r.cost, 4)); }).join(", "), t: B(money(R.total)) })],
           ["r", "round", tx("cooking.cost.toCentEnd")]
         ]);
-        if (P.serv) W.add(tx("cooking.cost.perServ2"), eqL("$" + nf(R.total, 4) + " ÷ " + gv(P.serv) + " = " + nf(R.per, 4) + opS("≈") + res(money(R.per))), [
-          ["v", "÷", tx("cooking.cost.aServing", { x: B("$" + nf(R.total, 4) + " ÷ " + gv(P.serv) + " ≈ " + money(R.per)) }) + "."]
+        if (P.serv) W.add(tx("cooking.cost.perServ2"), eqL(usdK(R.total, 4) + " ÷ " + gv(P.serv) + " = " + nf(R.per, 4) + opS("≈") + res(money(R.per))), [
+          ["v", "÷", tx("cooking.cost.aServing", { x: B(usdK(R.total, 4) + " ÷ " + gv(P.serv) + " ≈ " + money(R.per)) }) + "."]
         ]);
         if (P.price) W.add(P.serv ? tx("cooking.cost.fcServ") : tx("cooking.cost.fcRecipe"), eqL(frH(nf(P.serv ? R.per : R.total, 4), money(P.price)) + " × 100 = " + res(nf(R.fc, 1) + "%")), [
           ["v", "%", tx("cooking.cost.say.fcPays", { x: B(nf(R.fc, 1) + "%") })]
         ], tx("cooking.cost.aim"));
-        W.add(tx("cooking.cost.estimate", { list: R.rows.slice(0, 2).map(function(r) { return tx("cooking.cost.est", { n: esc(nm(r.x.name)), a: nf(r.inPkg, 2), u: esc(cuD(r.x.pu)), p: nf(r.unitP, 2) }); }).join("; ") }), eqL(R.rows.map(function(r) { return "$" + nf(r.cost, 2); }).join(" + ") + " ≈ " + money(R.total) + OKM), [
+        W.add(tx("cooking.cost.estimate", { list: R.rows.slice(0, 2).map(function(r) { return tx("cooking.cost.est", { n: esc(nm(r.x.name)), a: nf(r.inPkg, 2), u: esc(cuD(r.x.pu)), p: c2(nf(r.unitP, 2)) }); }).join("; ") }), eqL(R.rows.map(function(r) { return usdK(r.cost, 2); }).join(" + ") + " ≈ " + money(R.total) + OKM), [
           ["a", "check", tx("cooking.cost.say.inAll", { x: B(money(R.total)) })]
         ]);
         var cells = [{ k: tx("cooking.cost.recipeCost"), v: money(R.total) }];
         if (P.serv) cells.push({ k: tx("cooking.cost.perServCap"), v: money(R.per) });
         if (P.price) cells.push({ k: tx("cooking.cost.foodCost"), v: nf(R.fc, 1) + "%" });
-        bandCells(cells, R.rows.length > 1 ? R.rows.slice(0, 4).map(function(r) { return esc(cap(nm(r.x.name))) + " " + B(money(r.cost)); }) : [tx("cooking.cost.unitPriceFact", { x: B("$" + nf(R.rows[0].unitP, 4)), u: esc(cuD(R.rows[0].x.pu)) })]);
+        bandCells(cells, R.rows.length > 1 ? R.rows.slice(0, 4).map(function(r) { return esc(cap(nm(r.x.name))) + " " + B(money(r.cost)); }) : [tx("cooking.cost.unitPriceFact", { x: B(usdK(R.rows[0].unitP, 4)), u: esc(cuD(R.rows[0].x.pu)) })]);
         return finish(W, '<div class="ck">' + tx("cooking.cost.ck.recipe", { t: "<b>" + money(R.total) + "</b>", s: P.serv ? tx("cooking.cost.ck.servPart", { x: "<b>" + money(R.per) + "</b>" }) : "", f: P.price ? tx("cooking.cost.ck.fcPart", { x: "<b>" + nf(R.fc, 1) + "%</b>" }) : "" }) + "</div>");
       },
       record: function(P, R) {

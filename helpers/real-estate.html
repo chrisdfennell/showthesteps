@@ -2135,7 +2135,22 @@
   (function() {
     "use strict";
     if (window.HelperI18n) HelperI18n.apply();
-    var tx = function(k, v) { return window.HelperI18n ? HelperI18n.t(k, v) : k; };
+    var tx = function(k, v) { return window.HelperI18n ? anFix(HelperI18n.t(k, v), k) : k; };
+
+    // English "an" before a number or word said with a vowel sound, when a {placeholder} put it after "a": an 8, an 11,
+    // an 18, an 80, an 800, an 8,000, an 11,000, an inch, an hour. An amp after a number ("16 A 80%") is left alone.
+    function anFix(s, k) {
+      if (HelperI18n.lang !== "en" && HelperI18n.has(k)) return s;
+      return String(s).replace(/(^|[^\w])([Aa]) ((?:<[^>]+>)*\$?)(\d[\d,]*|(?:inch|hour|ounce|acre|ohm|eighth|electric)(?![a-z]))/g, function(all, pre, a, mid, n, at, str) {
+        var g = n.split(",")[0];
+        if (/^\d/.test(n)) {
+          if (n.indexOf(",") < 0 && g.length > 3) g = g.slice(0, (g.length - 1) % 3 + 1); // 18000 → eighteen thousand
+          if (!/^8/.test(g) && g !== "11" && g !== "18") return all;
+        }
+        if (pre === " " && /\d/.test(str.charAt(at - 1))) return all;
+        return pre + a + "n " + mid + n;
+      });
+    }
     var txr = function(k) { return window.HelperI18n ? HelperI18n.raw(k) : undefined; };
     var ES = !!(window.HelperI18n && HelperI18n.lang !== "en");
     var $ = function(id) { return document.getElementById(id); };
@@ -2324,7 +2339,11 @@
     // = or ≈ before a money amount that may have been rounded to the cent
     function eqM(q) { return qeq(cents(q), q) ? " = " : " ≈ "; }
     // the exact amount when it is whole cents, else a few more places: for daily rates
-    function mExact(q) { return qeq(cents(q), q) ? mT(q) : "$" + nf(qv(q), 4); }
+    function mExact(q) { return qeq(cents(q), q) ? mT(q) : "$" + c2(nf(qv(q), 4)); }
+
+    function c2(s) { return /\.\d$/.test(s) ? s + "0" : s; } // money with its cents: 2.5 → 2.50
+
+    function perC(q) { var s = nq(q, 4); return "$" + (s.indexOf(".") < 0 ? s + ".00" : c2(s)); } // a rate per $100, like rateT: $2.50, $3.00, $2.125
     // a percent number (6.5 means 6.5%) as text
     function pT(q, k) { return nq(q, k === undefined ? 4 : k) + "%"; }
 
@@ -4588,8 +4607,10 @@
         var how = P.kind === "mills" ? tx("real-estate.tax.howMills", { rt: rateT(P.kind, P.rate), r: nq(P.rate, 4), f: nq(R.frac, 7) }) :
           P.kind === "per100" ? tx("real-estate.tax.howPer100", { rt: rateT(P.kind, P.rate), f: nq(R.frac, 7) }) :
           P.kind === "per1000" ? tx("real-estate.tax.howPer1000", { rt: rateT(P.kind, P.rate), f: nq(R.frac, 7) }) : tx("real-estate.tax.howPct", { rt: pT(P.rate), f: nq(R.frac, 7) });
-        W.add(tx("real-estate.tax.rateCap") + " " + how, eqL(rateT(P.kind, P.rate) + " = " + nq(R.mills, 4) + " " + MILLS_W + " = " + pT(qdv(R.mills, Q(10))) + " = $" + nq(qdv(R.mills, Q(10)), 4) + " " + PER_W + " $100"), [
-          ["e", tx("real-estate.tag.rate"), tx("real-estate.tax.sayRate", { rt: B(rateT(P.kind, P.rate)), m: B(nq(R.mills, 4) + " " + MILLS_W), p: B(pT(qdv(R.mills, Q(10)))), h: B("$" + nq(qdv(R.mills, Q(10)), 4) + " " + PER_W + " $100") })]
+        var skip = { mills: 0, pct: 1, per100: 2 } [P.kind], // the form the rate was given in is said once, first
+          forms = [nq(R.mills, 4) + " " + MILLS_W, pT(qdv(R.mills, Q(10))), perC(qdv(R.mills, Q(10))) + " " + PER_W + " $100"].filter(function(f, i) { return i !== skip; });
+        W.add(tx("real-estate.tax.rateCap") + " " + how, eqL(rateT(P.kind, P.rate) + " = " + forms.join(" = ")), [
+          ["e", tx("real-estate.tag.rate"), forms.length > 2 ? tx("real-estate.tax.sayRate", { rt: B(rateT(P.kind, P.rate)), m: B(forms[0]), p: B(forms[1]), h: B(forms[2]) }) : tx("real-estate.tax.sayRate2", { rt: B(rateT(P.kind, P.rate)), a: B(forms[0]), b: B(forms[1]) })]
         ]);
         var calc = P.kind === "mills" || P.kind === "per1000" ? mT(R.taxable) + " ÷ 1,000 × " + nq(P.rate, 4) + " = " + nq(qdv(R.taxable, Q(1000)), 4) + " × " + nq(P.rate, 4) :
           P.kind === "per100" ? mT(R.taxable) + " ÷ 100 × " + nq(P.rate, 4) + " = " + nq(qdv(R.taxable, Q(100)), 4) + " × " + nq(P.rate, 4) : mT(R.taxable) + " × " + nq(R.frac, 7);
@@ -4657,8 +4678,8 @@
         W.add(tx("real-estate.tax.rateIsCap"), eqL(mT(P.tax) + " ÷ " + mT(R.taxable) + eqS(R.frac, 7) + nq(R.frac, 7)), [
           ["v", "÷", B(mT(P.tax) + " ÷ " + mT(R.taxable)) + " = " + B(nq(R.frac, 7)) + "."]
         ]);
-        W.add(tx("real-estate.tax.millsCap"), eqL(nq(R.frac, 7) + " × 1,000" + eqS(R.mills, 3) + res(nq(R.mills, 3) + " " + MILLS_W)) + eqL(nq(R.frac, 7) + " × 100" + eqS(R.pct, 4) + pT(R.pct, 4) + opS("·") + "$" + nq(R.pct, 4) + " " + PER_W + " $100"), [
-          ["m", "× 1,000", B(nq(R.mills, 3) + " " + MILLS_W) + " = " + B(pT(R.pct, 4)) + " = " + B("$" + nq(R.pct, 4) + " " + PER_W + " $100") + "."]
+        W.add(tx("real-estate.tax.millsCap"), eqL(nq(R.frac, 7) + " × 1,000" + eqS(R.mills, 3) + res(nq(R.mills, 3) + " " + MILLS_W)) + eqL(nq(R.frac, 7) + " × 100" + eqS(R.pct, 4) + pT(R.pct, 4) + opS("·") + perC(R.pct) + " " + PER_W + " $100"), [
+          ["m", "× 1,000", B(nq(R.mills, 3) + " " + MILLS_W) + " = " + B(pT(R.pct, 4)) + " = " + B(perC(R.pct) + " " + PER_W + " $100") + "."]
         ]);
         W.add(tx("real-estate.tax.chkCap"), eqL(mT(R.taxable) + " × " + nq(R.mills, 3) + " ÷ 1,000 ≈ " + mT(qm(R.taxable, qdv(qnear(qv(R.mills), 3), Q(1000)))) + OKM), [
           ["a", tx("real-estate.tag.check"), tx("real-estate.tax.sayBack")]
