@@ -497,5 +497,13 @@ HelperI18n.add("es", {
   "percents.mkr.sample": "Hace problemas como: <b>{t}</b>",
   "percents.mkr.noSample": "Esas opciones no forman un problema — prueba otras.",
   "percents.mkr.cant": "No pude hacer uno con esas opciones — prueba otras.",
-  "percents.mkr.bent": "No pude cumplir todas las opciones, así que este se salta una regla. Prueba números más grandes o menos extras."
+  "percents.mkr.bent": "No pude cumplir todas las opciones, así que este se salta una regla. Prueba números más grandes o menos extras.",
+  "percents.about.title": "Acerca de The Hundred Grid",
+  "percents.about.intro": "The Hundred Grid resuelve problemas de porcentajes paso a paso, como lo harías en papel: el porcentaje de un número, qué porcentaje es un número de otro, el total cuando conoces una parte, aumentos y disminuciones porcentuales, y problemas de dinero como descuentos, recargos, impuesto sobre la venta, propinas e interés simple. Cada paso dice qué hacer y por qué, con una cuadrícula de cien o un diagrama de cinta para mostrarlo.",
+  "percents.about.exTitle": "Un ejemplo resuelto: 15% de 80",
+  "percents.about.exSteps": "<li>Por ciento significa “de cada 100”, así que 15% es 15/100, o 0.15 en decimal.</li> <li>“De” significa multiplicar: 0.15 × 80 = 12.</li> <li>Compruébalo de otra forma: el 10% de 80 es 8 y el 5% es la mitad de eso, 4. Así que el 15% es 8 + 4 = 12.</li>",
+  "percents.about.canTitle": "Problemas que puedes escribir",
+  "percents.about.can": "<li><a href=\"percents.html?q=15%25%20de%2080\">15% de 80</a> o <a href=\"percents.html?q=18%20es%20qu%C3%A9%20%25%20de%2072\">18 es qué % de 72</a></li> <li><a href=\"percents.html?q=15%20es%20el%2020%25%20de%20qu%C3%A9%20n%C3%BAmero\">15 es el 20% de qué número</a> (encontrar el total)</li> <li><a href=\"percents.html?q=de%2080%20a%2092\">de 80 a 92</a> (cambio porcentual)</li> <li><a href=\"percents.html?q=20%25%20de%20descuento%20en%2045\">20% de descuento en 45</a>, <a href=\"percents.html?q=propina%20de%2018%25%20en%2060\">propina de 18% en 60</a>, <a href=\"percents.html?q=inter%C3%A9s%20de%20500%20al%204%25%20por%203%20a%C3%B1os\">interés de 500 al 4% por 3 años</a></li>",
+  "percents.about.qTitle": "Preguntas frecuentes",
+  "percents.about.qs": "<p class=\"ht-q\">¿Cómo encuentro qué porcentaje es un número de otro?</p> <p>Divide la parte entre el total y multiplica por 100. 18 de 72 es 18 ÷ 72 = 0.25, que es 25%.</p> <p class=\"ht-q\">¿Cómo calculo el cambio porcentual?</p> <p>Encuentra el cambio, divídelo entre la cantidad inicial y multiplica por 100. De 80 a 92 el cambio es 12, y 12 ÷ 80 = 0.15: un aumento del 15%.</p> <p class=\"ht-q\">¿Cuál es la diferencia entre un descuento y un recargo?</p> <p>Un descuento le quita un porcentaje al precio; un recargo se lo suma. 20% de descuento en $45 son $9 menos, así que pagas $36. Un recargo del 30% sobre $12 suma $3.60, así que el precio queda en $15.60.</p>"
 });

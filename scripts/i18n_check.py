@@ -36,6 +36,16 @@ class Reader:
             elif s.startswith("/*", self.i): self.i = s.index("*/", self.i) + 2
             else: break
 
+    def comma(self, close):
+        """after an entry: a comma, or the closing bracket. A browser stops at anything else (a comma lost inside a
+        // comment), and the whole file's strings are gone"""
+        self.ws()
+        c = self.s[self.i]
+        if c == ",": self.i += 1
+        elif c != close:
+            line = self.s.count("\n", 0, self.i) + 1
+            raise ValueError("line %d: a comma is missing before %r (the file wouldn't load)" % (line, self.s[self.i:self.i + 30]))
+
     def string(self):
         q = self.s[self.i]
         self.i += 1
@@ -71,8 +81,7 @@ class Reader:
                     self.i += 1
                     return arr
                 arr.append(self.value())
-                self.ws()
-                if self.s[self.i] == ",": self.i += 1
+                self.comma("]")
         m = re.compile(r"-?\d+(?:\.\d+)?(?:e-?\d+)?|true|false|null").match(self.s, self.i)
         if m:
             self.i = m.end()
@@ -97,8 +106,7 @@ class Reader:
             assert self.s[self.i] == ":", "expected : at %d" % self.i
             self.i += 1
             out[k] = self.value()
-            self.ws()
-            if self.s[self.i] == ",": self.i += 1
+            self.comma("}")
 
 
 def strings_of(path):
@@ -108,7 +116,10 @@ def strings_of(path):
     for m in re.finditer(r"HelperI18n\.add\(\s*[\"'](\w+)[\"']\s*,", s):
         r = Reader(s, m.end())
         r.ws()
-        out.update(r.obj())
+        try:
+            out.update(r.obj())
+        except (ValueError, AssertionError, IndexError) as e:
+            raise SystemExit("%s: %s" % (os.path.relpath(path, ROOT).replace("\\", "/"), e))
     return out
 
 

@@ -88,6 +88,17 @@
     "p.learn-line a:last-child{background:none;border-style:dashed}" +
     "p.learn-line .ht-ll{font-family:var(--f-mono,monospace);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-right:4px}" +
     "@media print{p.learn-line{display:none !important}}" +
+    // a helper's "About" section under the footnote: what it does, a worked example, questions (plain text for readers
+    // and search engines; not in print, embeds or Big screen)
+    "section.ht-about{max-width:46rem;margin:36px 0 8px;padding-top:22px;border-top:1px solid var(--rule);color:var(--ink-2);font-size:15px;line-height:1.6}" +
+    "section.ht-about h2{font-family:var(--f-display,inherit);font-size:20px;font-weight:600;color:var(--ink);margin:0 0 8px}" +
+    "section.ht-about h3{font-family:var(--f-body,inherit);font-size:15.5px;font-weight:600;color:var(--ink);margin:20px 0 6px}" +
+    "section.ht-about p,section.ht-about ol,section.ht-about ul{margin:0 0 10px}" +
+    "section.ht-about ol,section.ht-about ul{padding-left:1.3em}section.ht-about li{margin:3px 0}" +
+    "section.ht-about a{color:var(--key,var(--ink));text-underline-offset:2px}" +
+    "section.ht-about .ht-q{margin:12px 0 2px;font-weight:600;color:var(--ink)}" +
+    "@media print{section.ht-about{display:none !important}}" +
+    "html.embed section.ht-about,html.ht-site section.ht-about,html.ht-big section.ht-about{display:none !important}" +
     ".ht-sendbox{margin-top:10px;font-size:14px;color:var(--ink-2)}" +
     ".ht-sendbox small{font-size:13px;color:var(--ink-3)}" +
     ".ht-send{font:inherit;font-size:14px;font-weight:600;color:var(--key,var(--ink));background:var(--surface,#fff);" +

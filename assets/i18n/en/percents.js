@@ -494,5 +494,13 @@ HelperI18n.add("en", {
   "percents.mkr.sample": "Makes problems like: <b>{t}</b>",
   "percents.mkr.noSample": "Those choices don’t make a problem — try different ones.",
   "percents.mkr.cant": "Couldn’t make one with those settings — try different choices.",
-  "percents.mkr.bent": "Couldn’t match every setting, so this one bends a rule. Try bigger numbers or fewer extras."
+  "percents.mkr.bent": "Couldn’t match every setting, so this one bends a rule. Try bigger numbers or fewer extras.",
+  "percents.about.title": "About the Hundred Grid",
+  "percents.about.intro": "The Hundred Grid works out percent problems step by step, the way you would on paper: a percent of a number, what percent one number is of another, the whole when you know a part, percent increase and decrease, and money problems such as discounts, markups, sales tax, tips and simple interest. Each step says what to do and why, with a hundred grid or a tape diagram to show it.",
+  "percents.about.exTitle": "A worked example: 15% of 80",
+  "percents.about.exSteps": "<li>Percent means “out of 100”, so 15% is 15/100, or 0.15 as a decimal.</li> <li>“Of” means multiply: 0.15 × 80 = 12.</li> <li>Check it another way: 10% of 80 is 8 and 5% is half of that, 4. So 15% is 8 + 4 = 12.</li>",
+  "percents.about.canTitle": "Problems you can type",
+  "percents.about.can": "<li><a href=\"percents.html?q=15%25%20of%2080\">15% of 80</a> or <a href=\"percents.html?q=18%20is%20what%20%25%20of%2072\">18 is what % of 72</a></li> <li><a href=\"percents.html?q=15%20is%2020%25%20of%20what\">15 is 20% of what</a> (finding the whole)</li> <li><a href=\"percents.html?q=80%20to%2092\">80 to 92</a> (percent change)</li> <li><a href=\"percents.html?q=20%25%20off%2045\">20% off 45</a>, <a href=\"percents.html?q=tip%2018%25%20on%2060\">tip 18% on 60</a>, <a href=\"percents.html?q=interest%20500%20at%204%25%20for%203%20years\">interest 500 at 4% for 3 years</a></li>",
+  "percents.about.qTitle": "Common questions",
+  "percents.about.qs": "<p class=\"ht-q\">How do I find what percent one number is of another?</p> <p>Divide the part by the whole, then multiply by 100. 18 out of 72 is 18 ÷ 72 = 0.25, which is 25%.</p> <p class=\"ht-q\">How do I work out percent change?</p> <p>Find the change, divide it by the starting amount, and multiply by 100. From 80 to 92 the change is 12, and 12 ÷ 80 = 0.15: a 15% increase.</p> <p class=\"ht-q\">What is the difference between a discount and a markup?</p> <p>A discount takes a percent off the price; a markup adds a percent on. 20% off $45 is $9 off, so you pay $36. A 30% markup on $12 adds $3.60, so the price becomes $15.60.</p>"
 });

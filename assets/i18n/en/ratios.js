@@ -696,5 +696,13 @@ HelperI18n.add("en", {
   "ratios.lab.rate": "Your rate or offers",
   "ratios.lab.prop": "Your proportion",
   "ratios.lab.share": "What to share",
-  "ratios.lab.scale": "Your scale problem"
+  "ratios.lab.scale": "Your scale problem",
+  "ratios.about.title": "About the Ratio Table",
+  "ratios.about.intro": "The Ratio Table works out ratio problems step by step, the way you would on paper: simplifying ratios and finding equivalent ratios, unit rates and the better buy, solving proportions, sharing an amount in a ratio, and map scales and recipes. Type the problem with numbers, like 12:18 or 3/4 = x/20, or in words, like “6 apples for $4.50”. Each step says what to do and why, with a ratio table, a double number line or a bar model to show it.",
+  "ratios.about.exTitle": "A worked example: share 60 in the ratio 2:3",
+  "ratios.about.exSteps": "<li>The ratio 2:3 means that for every 2 that go to the first part, 3 go to the second. Picture equal boxes (units): the first part gets 2 boxes and the second part gets 3.</li> <li>Count all the boxes: 2 + 3 = 5 units, and together they make the whole 60.</li> <li>Share it out equally: 60 ÷ 5 = 12, so each unit is worth 12.</li> <li>The first part is 2 × 12 = 24 and the second part is 3 × 12 = 36. They add back up to 60.</li>",
+  "ratios.about.canTitle": "Problems you can type",
+  "ratios.about.can": "<li><a href=\"ratios.html?q=12:18\">12:18</a> or <a href=\"ratios.html?q=3:4%20%3D%20%3F:20\">3:4 = ?:20</a> (simplify and equal ratios)</li> <li><a href=\"ratios.html?q=6%20apples%20for%20%244.50\">6 apples for $4.50</a> or <a href=\"ratios.html?q=12%20oz%20for%20%243.60%20vs%2016%20oz%20for%20%244.40\">12 oz for $3.60 vs 16 oz for $4.40</a> (rates and better buys)</li> <li><a href=\"ratios.html?q=3/4%20%3D%20x/20\">3/4 = x/20</a> (proportions)</li> <li><a href=\"ratios.html?q=share%2060%20in%202:3\">share 60 in 2:3</a> (share in a ratio)</li> <li><a href=\"ratios.html?q=1:50000%204%20cm\">1:50000 4 cm</a> or <a href=\"ratios.html?q=3%20cups%20for%202%20batches,%205%20batches\">3 cups for 2 batches, 5 batches</a> (scale and recipes)</li>",
+  "ratios.about.qTitle": "Common questions",
+  "ratios.about.qs": "<p class=\"ht-q\">How do you find a unit rate?</p> <p>Divide both amounts by the number of units, so you get the amount for one. 6 apples for $4.50 is $4.50 ÷ 6 = $0.75 per apple.</p> <p class=\"ht-q\">How do you work out the better buy?</p> <p>Find the unit price of each offer and pick the lower one. 12 oz for $3.60 is $0.30 per oz, and 16 oz for $4.40 is $0.275, about $0.28, per oz. So the 16 oz offer is the better buy, even though it costs more in all.</p> <p class=\"ht-q\">How do you solve a proportion?</p> <p>Cross-multiply, then divide. For 3/4 = x/20: 3 × 20 = 4 × x, so 60 = 4x and x = 60 ÷ 4 = 15. A ratio table shows the same thing: 4 × 5 = 20, so 3 × 5 = 15.</p>"
 });

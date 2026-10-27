@@ -2031,6 +2031,41 @@
     </span>
     <span id="footLinks">Every number is kept exact (fractions and square roots); only angles are rounded.</span>
   </div>
+  <section class="ht-about" aria-labelledby="aboutTitle">
+    <h2 id="aboutTitle" data-i18n="matrices-and-vectors.about.title">About the Matrix Grid</h2>
+    <p data-i18n="matrices-and-vectors.about.intro">The Matrix Grid works out matrix and vector problems step by step: adding,
+      subtracting and scaling matrices, multiplying them row by column, determinants, inverses, systems of equations solved by row
+      reduction, and vectors, with magnitude, unit vectors, dot and cross products, angles and projections. Each step says what to
+      do and why, and every number stays exact, as fractions and square roots.</p>
+    <h3 data-i18n="matrices-and-vectors.about.exTitle">A worked example: the inverse of [[2, 1], [5, 3]]</h3>
+    <ol data-i18n="matrices-and-vectors.about.exSteps">
+      <li>Find the determinant: 2 × 3 − 1 × 5 = 1. It isn’t 0, so the inverse exists.</li>
+      <li>Swap the 2 and the 3, and change the signs of the other two: 1 becomes −1 and 5 becomes −5.</li>
+      <li>Multiply by 1 over the determinant, 1/1: the inverse is [[3, −1], [−5, 2]].</li>
+      <li>Check: the matrix times its inverse gives the identity matrix I.</li>
+    </ol>
+    <h3 data-i18n="matrices-and-vectors.about.canTitle">Problems you can type</h3>
+    <ul data-i18n="matrices-and-vectors.about.can">
+      <li><a href="matrices-and-vectors.html?q=%5B%5B1%2C2%5D%2C%5B3%2C4%5D%5D%20%2B%20%5B%5B5%2C6%5D%2C%5B7%2C8%5D%5D">[[1,2],[3,4]] + [[5,6],[7,8]]</a> or <a href="matrices-and-vectors.html?q=A%20%3D%20%5B%5B1%2C2%5D%2C%5B3%2C4%5D%5D%2C%20B%20%3D%20%5B%5B0%2C1%5D%2C%5B5%2C2%5D%5D%2C%202A%20-%203B">A = [[1,2],[3,4]], B = [[0,1],[5,2]], 2A - 3B</a></li>
+      <li><a href="matrices-and-vectors.html?q=%5B%5B1%2C2%5D%2C%5B3%2C4%5D%5D%20%5B%5B5%2C6%5D%2C%5B7%2C8%5D%5D">[[1,2],[3,4]] [[5,6],[7,8]]</a> (multiplying)</li>
+      <li><a href="matrices-and-vectors.html?q=det%20%5B%5B2%2C-1%5D%2C%5B3%2C4%5D%5D">det [[2,-1],[3,4]]</a> or <a href="matrices-and-vectors.html?q=inverse%20of%20%5B%5B2%2C1%5D%2C%5B5%2C3%5D%5D">inverse of [[2,1],[5,3]]</a></li>
+      <li><a href="matrices-and-vectors.html?q=2x%20%2B%20y%20%3D%205%3B%20x%20-%20y%20%3D%201">2x + y = 5; x - y = 1</a> (a system of equations)</li>
+      <li><a href="matrices-and-vectors.html?q=magnitude%20of%20%3C3%2C%204%3E">magnitude of &lt;3, 4&gt;</a>, <a href="matrices-and-vectors.html?q=dot%20product%20of%20%3C1%2C%202%3E%20and%20%3C3%2C%204%3E">dot product of &lt;1, 2&gt; and &lt;3, 4&gt;</a> or <a href="matrices-and-vectors.html?q=angle%20between%20%3C1%2C%200%3E%20and%20%3C1%2C%201%3E">angle between &lt;1, 0&gt; and &lt;1, 1&gt;</a></li>
+    </ul>
+    <h3 data-i18n="matrices-and-vectors.about.qTitle">Common questions</h3>
+    <div data-i18n="matrices-and-vectors.about.qs">
+      <p class="ht-q">How do I multiply two matrices?</p>
+      <p>Multiply each row of the first by each column of the second, and add the products. For [[1, 2], [3, 4]] times [[5, 6],
+        [7, 8]], row 1 times column 1 is 1 × 5 + 2 × 7 = 19, and the whole product is [[19, 22], [43, 50]]. The first matrix needs
+        as many columns as the second has rows.</p>
+      <p class="ht-q">How do I find the determinant of a 2 × 2 matrix?</p>
+      <p>Multiply down the main diagonal and subtract the other diagonal: ad − bc. For [[2, −1], [3, 4]] that is 2 × 4 − (−1) × 3
+        = 8 + 3 = 11. A determinant that isn’t 0 means the matrix has an inverse.</p>
+      <p class="ht-q">How do I find the angle between two vectors?</p>
+      <p>Divide the dot product by the two lengths multiplied together to get cos θ. For ⟨1, 0⟩ and ⟨1, 1⟩ the dot product is 1
+        and the lengths are 1 and √2, so cos θ = √2/2 ≈ 0.7071 and θ = 45°.</p>
+    </div>
+  </section>
 </div>
 
 <script>

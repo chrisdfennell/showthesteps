@@ -1897,6 +1897,45 @@
     </span>
     <span id="footLinks" data-i18n="electrical.footShort">Wire resistance from the NEC, Chapter 9, Table 8. Guidelines are named where they are used.</span>
   </div>
+
+  <section class="ht-about" aria-labelledby="aboutTitle">
+    <h2 id="aboutTitle" data-i18n="electrical.about.title">About the Circuit Board</h2>
+    <p data-i18n="electrical.about.intro">The Circuit Board works electrical math step by step: Ohm’s law, power in watts, series and parallel
+      resistors, voltage drop in a wire, circuit loads and the 80% rule for a breaker, the cost of running an appliance, the
+      resistor color code, capacitors and RC time constants, and AC and three-phase power. Each step says what to do and
+      why, with the Ohm’s law triangle, the circuit and the resistor network drawn out. It is for learning and checking
+      coursework: electrical work can kill, so follow your local electrical code and have a licensed electrician do or
+      inspect real wiring.</p>
+    <h3 data-i18n="electrical.about.exTitle">A worked example: voltage drop on 100 ft of 12 AWG copper at 16 A, 120 V</h3>
+    <ol data-i18n="electrical.about.exSteps">
+      <li>Look up the wire: 12 AWG copper has 1.98 Ω per 1,000 ft (NEC Chapter 9, Table 8).</li>
+      <li>Count the wire out and back: 200 ft, so 0.396 Ω. Forgetting the return wire halves the answer.</li>
+      <li>Voltage drop = current × resistance: 16 × 0.396 = 6.336 V lost in the wire.</li>
+      <li>As a percent: 6.336 ÷ 120 × 100 ≈ 5.28%, over the common 3% guideline, so the load gets 113.664 V.</li>
+    </ol>
+    <h3 data-i18n="electrical.about.canTitle">Problems you can type</h3>
+    <ul data-i18n="electrical.about.can">
+      <li><a href="electrical.html?q=12%20V%20across%204%20ohms">12 V across 4 ohms</a>, <a href="electrical.html?q=100%20W%20bulb%20on%20120%20V">100 W bulb on 120 V</a></li>
+      <li><a href="electrical.html?q=resistors%20100%20220%20470%20in%20parallel">resistors 100 220 470 in parallel</a></li>
+      <li><a href="electrical.html?q=voltage%20drop%2012%20AWG%20copper%20100%20ft%2016%20A%20120%20V">voltage drop 12 AWG copper 100 ft 16 A 120 V</a></li>
+      <li><a href="electrical.html?q=1500%20W%20heater%20and%20800%20W%20microwave%20on%20a%2020%20A%20120%20V%20circuit">1500 W heater and 800 W microwave on a 20 A 120 V circuit</a>, <a href="electrical.html?q=1500%20W%20heater%208%20hours%20a%20day%20at%20%240.15%20per%20kWh">1500 W heater 8 hours a day at $0.15 per kWh</a></li>
+      <li><a href="electrical.html?q=brown%20black%20red%20gold">brown black red gold</a>, <a href="electrical.html?q=RC%20time%20constant%2010k%20100%20uF">RC time constant 10k 100 uF</a></li>
+      <li><a href="electrical.html?q=three-phase%20480%20V%2050%20A%20pf%200.85">three-phase 480 V 50 A pf 0.85</a></li>
+    </ul>
+    <h3 data-i18n="electrical.about.qTitle">Common questions</h3>
+    <div data-i18n="electrical.about.qs">
+      <p class="ht-q">How do I use Ohm’s law to find the current?</p>
+      <p>Divide the voltage by the resistance: I = V ÷ R. With 12 V across 4 Ω, the current is 12 ÷ 4 = 3 A, and the power is
+        12 V × 3 A = 36 W.</p>
+      <p class="ht-q">How much load can I put on a 20 amp circuit?</p>
+      <p>A common rule of practice keeps a continuous load (3 hours or more) to 80% of the breaker: 16 A, or 1,920 W at 120 V. A
+        1,500 W heater and an 800 W microwave are 2,300 W, and 2,300 ÷ 120 ≈ 19.17 A, over the 80% limit. The rule is not
+        your local code: follow the code where you live.</p>
+      <p class="ht-q">How do I work out what an appliance costs to run?</p>
+      <p>Change the watts to kilowatts, multiply by the hours to get kWh, then multiply by the price. A 1,500 W heater 8 hours a
+        day is 1.5 × 8 = 12 kWh, and at $0.15 per kWh that is $1.80 a day, $54.00 a month or $657.00 a year.</p>
+    </div>
+  </section>
 </div>
 
 <script>

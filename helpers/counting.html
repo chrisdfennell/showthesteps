@@ -1834,6 +1834,43 @@
       <a data-page="fractions" href="fractions.html">the Fraction Bar</a>; powers like 2<sup>10</sup> are on
       <a data-page="exponents" href="exponents.html">the Power Tower</a>.</span>
   </div>
+
+  <section class="ht-about" aria-labelledby="aboutTitle">
+    <h2 id="aboutTitle" data-i18n="counting.about.title">About the Counting Tree</h2>
+    <p data-i18n="counting.about.intro">The Counting Tree counts the ways things can happen: multiplying the choices (outfits,
+      menus, PINs, codes and license plates), arrangements where order matters (nPr, officers, lining up, the letters of a word),
+      choosing groups where it doesn’t (nCr, committees with at least or at most so many from one group), handshakes, games and
+      diagonals, factorials, and probability by counting. Each step says why you multiply, divide or subtract, and the page draws
+      a tree diagram, the places to fill, or the points and lines being counted.</p>
+    <h3 data-i18n="counting.about.exTitle">A worked example: C(10, 3), choosing a group of 3 from 10</h3>
+    <ol data-i18n="counting.about.exSteps">
+      <li>Order doesn’t matter: a group is just who’s in it.</li>
+      <li>If order did matter, there would be 10 × 9 × 8 = 720 ways.</li>
+      <li>Every group of 3 shows up 3! = 6 times in that count, once for each order.</li>
+      <li>Divide: 720 ÷ 6 = 120. The shortcut is C(10, 3) = 10!/(3!·7!).</li>
+    </ol>
+    <h3 data-i18n="counting.about.canTitle">Problems you can type</h3>
+    <ul data-i18n="counting.about.can">
+      <li><a href="counting.html?q=3%20shirts,%204%20pants%20and%202%20pairs%20of%20shoes,%20how%20many%20outfits">3 shirts, 4 pants and 2 pairs of shoes, how many outfits</a>, <a href="counting.html?q=how%20many%204-digit%20PINs%20if%20no%20digit%20can%20be%20repeated">how many 4-digit PINs if no digit can be repeated</a> (multiply the choices)</li>
+      <li><a href="counting.html?q=P(8,3)">P(8,3)</a>, <a href="counting.html?q=president,%20vice-president%20and%20secretary%20from%2010%20candidates">president, vice-president and secretary from 10 candidates</a>, <a href="counting.html?q=the%20letters%20of%20MISSISSIPPI">the letters of MISSISSIPPI</a> (order matters)</li>
+      <li><a href="counting.html?q=C(10,3)">C(10,3)</a>, <a href="counting.html?q=a%20committee%20of%203%20from%206%20boys%20and%204%20girls%20with%20at%20least%20one%20girl">a committee of 3 from 6 boys and 4 girls with at least one girl</a> (choosing groups)</li>
+      <li><a href="counting.html?q=how%20many%20handshakes%20among%2012%20people">how many handshakes among 12 people</a>, <a href="counting.html?q=diagonals%20of%20an%20octagon">diagonals of an octagon</a> (handshakes and diagonals)</li>
+      <li><a href="counting.html?q=10%21%2F(3%217%21)">10!/(3!7!)</a> (factorials)</li>
+    </ul>
+    <h3 data-i18n="counting.about.qTitle">Common questions</h3>
+    <div data-i18n="counting.about.qs">
+      <p class="ht-q">What is the difference between a permutation and a combination?</p>
+      <p>In a permutation order matters; in a combination it doesn’t. Filling president, vice-president and secretary from 10
+        people is P(10, 3) = 10 × 9 × 8 = 720, but choosing a group of 3 is C(10, 3) = 720 ÷ 6 = 120, because each group can be
+        put in order 3! = 6 ways.</p>
+      <p class="ht-q">How many handshakes are there among 12 people?</p>
+      <p>Each of the 12 people shakes hands with the other 11, which gives 12 × 11 = 132, but that counts every handshake twice,
+        once from each side. So there are 132 ÷ 2 = 66.</p>
+      <p class="ht-q">How do I count the arrangements of a word with repeated letters?</p>
+      <p>Arrange all the letters as if they were different, then divide by the ways to swap each repeated letter. MISSISSIPPI has
+        11 letters, with 4 I’s, 4 S’s and 2 P’s: 11!/(4!·4!·2!) = 39,916,800 ÷ 1152 = 34,650.</p>
+    </div>
+  </section>
 </div>
 
 <script>

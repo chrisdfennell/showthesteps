@@ -626,5 +626,13 @@ HelperI18n.add("en", {
   "statistics.tag.fenceK": "1.5 × IQR",
   "statistics.cell.iqr": "IQR",
   "statistics.eq.mad": "MAD = ",
-  "statistics.tag.mad": "MAD"
+  "statistics.tag.mad": "MAD",
+  "statistics.about.title": "About the Dot Plot",
+  "statistics.about.intro": "The Dot Plot finds the mean, median, mode and range of a list of numbers, draws a box plot with the quartiles and the interquartile range, reads frequency tables, measures spread with the mean absolute deviation and the standard deviation, and finds the missing number you need to reach a target mean. Each step says what to do and why, and the numbers are drawn to scale on a dot plot, a box plot or a histogram as you go.",
+  "statistics.about.exTitle": "A worked example: the mean, median, mode and range of 4, 8, 6, 5, 7",
+  "statistics.about.exSteps": "<li>Put the numbers in order: 4, 5, 6, 7, 8.</li> <li>Mean: add them up, 4 + 5 + 6 + 7 + 8 = 30, and share the total out evenly: 30 ÷ 5 = 6.</li> <li>Median: cross off the smallest and the largest, then the next pair in. The one left in the middle is 6.</li> <li>Mode: every number shows up just once, so there is no mode. Range: 8 − 4 = 4.</li>",
+  "statistics.about.canTitle": "Problems you can type",
+  "statistics.about.can": "<li><a href=\"statistics.html?q=4,%208,%206,%205,%207\">4, 8, 6, 5, 7</a>, <a href=\"statistics.html?q=median%203%209%204%207\">median 3 9 4 7</a> (mean, median, mode and range)</li> <li><a href=\"statistics.html?q=box%20plot%203,7,8,5,12,14,21,13,18\">box plot 3,7,8,5,12,14,21,13,18</a> (box plot and quartiles)</li> <li><a href=\"statistics.html?q=frequency%201%3A3,%202%3A5,%203%3A2\">frequency 1:3, 2:5, 3:2</a> (frequency table)</li> <li><a href=\"statistics.html?q=mean%20absolute%20deviation%202%204%206%208\">mean absolute deviation 2 4 6 8</a>, <a href=\"statistics.html?q=standard%20deviation%202%204%204%204%205%205%207%209\">standard deviation 2 4 4 4 5 5 7 9</a> (spread)</li> <li><a href=\"statistics.html?q=need%20average%2085%20scores%2078%2092%2081\">need average 85 scores 78 92 81</a> (the score you need for a target mean)</li>",
+  "statistics.about.qTitle": "Common questions",
+  "statistics.about.qs": "<p class=\"ht-q\">How do I find the median when there is an even number of values?</p> <p>Put them in order and take the number halfway between the two in the middle. For 3, 9, 4, 7 the order is 3, 4, 7, 9, so the median is (4 + 7) ÷ 2 = 5.5.</p> <p class=\"ht-q\">What score do I need on the next test to get an average of 85?</p> <p>Multiply the average by the number of tests to get the total you need, then take away what you have. With 78, 92 and 81 so far: 85 × 4 = 340, the three scores add up to 251, so you need 340 − 251 = 89.</p> <p class=\"ht-q\">What is the mean absolute deviation?</p> <p>It is the average distance of the numbers from their mean. For 2, 4, 6, 8 the mean is 5, the distances are 3, 1, 1 and 3, and 8 ÷ 4 = 2, so the MAD is 2.</p>"
 });

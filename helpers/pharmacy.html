@@ -1805,6 +1805,45 @@
     </span>
     <span id="footLinks">Every rounding rule is named in the step where it is used.</span>
   </div>
+
+  <section class="ht-about" aria-labelledby="aboutTitle">
+    <h2 id="aboutTitle" data-i18n="pharmacy.about.title">About the Pill Counter</h2>
+    <p data-i18n="pharmacy.about.intro">The Pill Counter works pharmacy technician math step by step: reading a sig, days’ supply, the quantity to
+      dispense, alligation, percent and ratio strengths, dilutions, compounding a formula to a new amount, conversions and
+      Roman numerals, pricing with AWP and dispensing fees, and storage temperatures. Each step gives the reason and the
+      rounding rule, and an alligation problem is drawn on the alligation grid. It is for learning and certification-exam
+      practice: at work, always follow the prescription and your pharmacy’s procedures, and have the pharmacist check your
+      work.</p>
+    <h3 data-i18n="pharmacy.about.exTitle">A worked example: mix 10% and 2% to make 500 g of 5%</h3>
+    <ol data-i18n="pharmacy.about.exSteps">
+      <li>Set up the grid: the stronger 10% top left, the weaker 2% bottom left, and the 5% you want in the middle.</li>
+      <li>Subtract along the diagonals: 5% − 2% = 3 parts of the 10%, and 10% − 5% = 5 parts of the 2%. That is 8 parts in all.</li>
+      <li>Share the 500 g by the parts: 3/8 × 500 = 187.5 g of the 10%, and 5/8 × 500 = 312.5 g of the 2%.</li>
+      <li>Check it: 10% of 187.5 g is 18.75 g and 2% of 312.5 g is 6.25 g, so the mix holds 25 g of drug, which is 5% of 500 g.</li>
+    </ol>
+    <h3 data-i18n="pharmacy.about.canTitle">Problems you can type</h3>
+    <ul data-i18n="pharmacy.about.can">
+      <li><a href="pharmacy.html?q=1%20tab%20PO%20BID%20x%2010%20days%20quantity">1 tab PO BID x 10 days quantity</a> or <a href="pharmacy.html?q=90%20tablets%201%20tab%20TID%20days%20supply">90 tablets 1 tab TID days supply</a></li>
+      <li><a href="pharmacy.html?q=amoxicillin%20250%20mg/5%20mL%201%20tsp%20TID%20x%2010%20days%20how%20many%20mL">amoxicillin 250 mg/5 mL 1 tsp TID x 10 days how many mL</a></li>
+      <li><a href="pharmacy.html?q=mix%2010%25%20and%202%25%20to%20make%205%25,%20500%20g">mix 10% and 2% to make 5%, 500 g</a> (alligation)</li>
+      <li><a href="pharmacy.html?q=how%20many%20grams%20of%20drug%20in%20250%20mL%20of%202%25%20solution">how many grams of drug in 250 mL of 2% solution</a>, <a href="pharmacy.html?q=dilute%2030%20mL%20of%2050%25%20to%2010%25">dilute 30 mL of 50% to 10%</a></li>
+      <li><a href="pharmacy.html?q=XIV%20tablets">XIV tablets</a>, <a href="pharmacy.html?q=AWP%20%24120%20minus%2015%25%20plus%20%242.50%20dispensing%20fee">AWP $120 minus 15% plus $2.50 dispensing fee</a></li>
+      <li><a href="pharmacy.html?q=the%20fridge%20reads%2040%20%C2%B0F,%20is%20it%20in%20the%202-8%20%C2%B0C%20range%3F">the fridge reads 40 °F, is it in the 2-8 °C range?</a></li>
+    </ul>
+    <h3 data-i18n="pharmacy.about.qTitle">Common questions</h3>
+    <div data-i18n="pharmacy.about.qs">
+      <p class="ht-q">How do I calculate days’ supply?</p>
+      <p>Find how much is used in a day from the sig, then divide the quantity dispensed by it. 90 tablets at 1 tab TID is 3
+        tablets a day, so 90 ÷ 3 = 30 days. Some insurance plans and pharmacy systems have their own rules for days’ supply;
+        follow yours.</p>
+      <p class="ht-q">How many mL do I dispense for a liquid prescription?</p>
+      <p>Work out the mL a day, then multiply by the days. For 1 tsp TID for 10 days: 1 tsp is 5 mL, three times a day is 15 mL
+        a day, and 15 mL × 10 = 150 mL.</p>
+      <p class="ht-q">What does a percent strength like 2% mean?</p>
+      <p>For a solution (w/v), 2% means 2 g of drug in every 100 mL. So 250 mL of a 2% solution holds 250 × 2 ÷ 100 = 5 g.
+        Creams and ointments are w/w (grams in 100 g), and a liquid in a liquid, like alcohol, is v/v.</p>
+    </div>
+  </section>
 </div>
 
 <script>

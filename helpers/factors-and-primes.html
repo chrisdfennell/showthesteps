@@ -1666,6 +1666,42 @@
     <span data-i18n="factors-and-primes.footnote">Whole numbers up to 1,000,000, every step written out. Need a division done out in full? Work it on
       <a href="division.html">&divide;</a>, or check a product on <a href="multiplication.html">&times;</a>.</span>
   </div>
+
+  <section class="ht-about" aria-labelledby="aboutTitle">
+    <h2 id="aboutTitle" data-i18n="factors-and-primes.about.title">About the Factor Tree</h2>
+    <p data-i18n="factors-and-primes.about.intro">The Factor Tree works with factors and primes step by step: listing all the factors of a
+      number in pairs, testing whether a number is prime, finding the prime factorization, finding the greatest common factor
+      (GCF) and least common multiple (LCM), and using the divisibility rules. It takes whole numbers up to 1,000,000. Each step
+      says what to try next and why, with a factor tree, the ladder (upside-down division) or a Venn diagram to show it.</p>
+    <h3 data-i18n="factors-and-primes.about.exTitle">A worked example: the prime factorization of 360</h3>
+    <ol data-i18n="factors-and-primes.about.exSteps">
+      <li>Start with the smallest prime, 2. 360 is even, so 360 = 2 × 180.</li>
+      <li>Keep splitting by 2 while the number is even: 180 = 2 × 90 and 90 = 2 × 45.</li>
+      <li>45 is odd, so try 3. Its digits add to 9, a multiple of 3, so 45 = 3 × 15, and then 15 = 3 × 5.</li>
+      <li>Every branch now ends in a prime. Gather them, smallest first: 360 = 2 × 2 × 2 × 3 × 3 × 5, or
+        2<sup>3</sup> × 3<sup>2</sup> × 5.</li>
+    </ol>
+    <h3 data-i18n="factors-and-primes.about.canTitle">Problems you can type</h3>
+    <ul data-i18n="factors-and-primes.about.can">
+      <li><a href="factors-and-primes.html?q=factors%20of%2036">factors of 36</a></li>
+      <li><a href="factors-and-primes.html?q=is%2091%20prime">is 91 prime</a></li>
+      <li><a href="factors-and-primes.html?q=prime%20factorization%20360">prime factorization 360</a> or <a href="factors-and-primes.html?q=factor%20tree%2084">factor tree 84</a></li>
+      <li><a href="factors-and-primes.html?q=gcf%2012%2018">gcf 12 18</a> or <a href="factors-and-primes.html?q=lcm%20of%204%20and%206">lcm of 4 and 6</a></li>
+      <li><a href="factors-and-primes.html?q=is%202340%20divisible%20by%209">is 2340 divisible by 9</a></li>
+    </ul>
+    <h3 data-i18n="factors-and-primes.about.qTitle">Common questions</h3>
+    <div data-i18n="factors-and-primes.about.qs">
+      <p class="ht-q">How do you find the GCF and LCM of two numbers?</p>
+      <p>List the factors of each number: the greatest one on both lists is the GCF. Count up in multiples of each number: the
+        first one on both lists is the LCM. For 12 and 18 the GCF is 6 and the LCM is 36.</p>
+      <p class="ht-q">How can you tell if a number is prime?</p>
+      <p>Divide it by the primes 2, 3, 5, 7 and so on, up to its square root. If none of them goes in evenly, it is prime. 91 looks
+        prime, but 91 ÷ 7 = 13, so 91 = 7 × 13 is composite.</p>
+      <p class="ht-q">What are the divisibility rules for 3 and 9?</p>
+      <p>Add the digits. If the sum is a multiple of 3, the number divides by 3; if it is a multiple of 9, it divides by 9. The
+        digits of 2,340 add to 2 + 3 + 4 + 0 = 9, so 2,340 divides by both 3 and 9.</p>
+    </div>
+  </section>
 </div>
 
 <script>

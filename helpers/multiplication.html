@@ -1771,6 +1771,42 @@
     <button class="print" type="button" id="copyBtn" data-i18n="common.copyLink">Copy link</button>
     <span data-i18n="multiplication.footnote">The decimal point goes in last &mdash; and it never changes which digits you get, only where the point lands.</span>
   </div>
+
+  <section class="ht-about" aria-labelledby="aboutTitle">
+    <h2 id="aboutTitle" data-i18n="multiplication.about.title">About the Product Ladder</h2>
+    <p data-i18n="multiplication.about.intro">The Product Ladder works out multiplication step by step, the way you would on paper: long
+      multiplication of whole numbers and decimals, with one rung (a partial product) for each digit, and multiplying fractions
+      and mixed numbers straight across. Type the problem with ×, x or *, or in words, like “3 groups of 4”. Each step says what
+      to multiply, what gets carried and where the decimal point goes, with a tape diagram and an area model to show it, and
+      the answer is checked by dividing back.</p>
+    <h3 data-i18n="multiplication.about.exTitle">A worked example: 2.4 × 1.3</h3>
+    <ol data-i18n="multiplication.about.exSteps">
+      <li>Set the decimal points aside for now: 2.4 × 1.3 becomes 24 × 13.</li>
+      <li>First rung, the 3: 3 × 4 = 12, so write 2 and carry 1; 3 × 2 = 6, plus the 1 carried makes 7. That gives 72.</li>
+      <li>Second rung, the 1: it is in the tens place, so 1 × 24 = 24 gets a zero on the end: 240.</li>
+      <li>Add the rungs: 72 + 240 = 312.</li>
+      <li>2.4 and 1.3 have 1 decimal place each, 2 in all, so count 2 places in from the right of 312: the product is 3.12.</li>
+    </ol>
+    <h3 data-i18n="multiplication.about.canTitle">Problems you can type</h3>
+    <ul data-i18n="multiplication.about.can">
+      <li><a href="multiplication.html?q=47%20%C3%97%2038">47 × 38</a> or <a href="multiplication.html?q=12%20%C3%97%2015">12 × 15</a> (whole numbers)</li>
+      <li><a href="multiplication.html?q=2.4%20%C3%97%201.3">2.4 × 1.3</a> or <a href="multiplication.html?q=0.25%20%C3%97%200.4">0.25 × 0.4</a> (decimals)</li>
+      <li><a href="multiplication.html?q=2%201/2%20%C3%97%203/4">2 1/2 × 3/4</a> or <a href="multiplication.html?q=3%20%C3%97%202/5">3 × 2/5</a> (fractions and mixed numbers)</li>
+      <li><a href="multiplication.html?q=3%20groups%20of%204">3 groups of 4</a> or <a href="multiplication.html?q=what%20is%20forty-seven%20times%20thirty-eight%3F">what is forty-seven times thirty-eight?</a> (in words)</li>
+    </ul>
+    <h3 data-i18n="multiplication.about.qTitle">Common questions</h3>
+    <div data-i18n="multiplication.about.qs">
+      <p class="ht-q">How do you multiply two-digit numbers?</p>
+      <p>Multiply the top number by each digit of the bottom number, one row at a time, and put a zero on the end of the row for
+        the tens digit. For 47 × 38: 8 × 47 = 376 and 30 × 47 = 1,410, and 376 + 1,410 = 1,786.</p>
+      <p class="ht-q">Where does the decimal point go when you multiply decimals?</p>
+      <p>Multiply as if there were no points, then count the decimal places in both numbers together and give the answer that
+        many. For 0.25 × 0.4, 25 × 4 = 100, and there are 3 decimal places in all, so the answer is 0.100, which is 0.1.</p>
+      <p class="ht-q">How do you multiply fractions and mixed numbers?</p>
+      <p>Multiply the tops, then multiply the bottoms; you don’t need a common denominator. Turn any mixed number into an
+        improper fraction first: 2 1/2 × 3/4 = 5/2 × 3/4 = 15/8, which is 1 7/8.</p>
+    </div>
+  </section>
 </div>
 
 <script>

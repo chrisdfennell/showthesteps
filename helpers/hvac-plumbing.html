@@ -1955,6 +1955,44 @@
     </span>
     <span id="footLinks" data-i18n="hvac-plumbing.footShort">Given numbers are kept exact, as fractions, until a step rounds; every step that rounds says so.</span>
   </div>
+
+  <section class="ht-about" aria-labelledby="aboutTitle">
+    <h2 id="aboutTitle" data-i18n="hvac-plumbing.about.title">About the Pipe Wrench</h2>
+    <p data-i18n="hvac-plumbing.about.intro">The Pipe Wrench works HVAC and plumbing math step by step for trade students: BTU, watts and tons of
+      cooling, airflow and sensible heat (1.08 × CFM × ΔT), duct velocity and size, heat loss through a wall or window,
+      gallons in a pipe or tank, fill time and gpm, water pressure and feet of head, drain slope, and how long a water heater
+      takes. Each step says what to do and why, and says where its constant comes from, with a drawing of the duct, the pipe
+      or the drain. These are textbook formulas at standard conditions, not a design: sizing a real system needs a full load
+      calculation and your local code.</p>
+    <h3 data-i18n="hvac-plumbing.about.exTitle">A worked example: heating 50 gallons from 50 °F to 120 °F with a 4,500 W element</h3>
+    <ol data-i18n="hvac-plumbing.about.exSteps">
+      <li>The temperature rise: 120 − 50 = 70°F.</li>
+      <li>Heat needed: a gallon of water weighs 8.33 lb, so 50 gallons is 416.5 lb, and 416.5 × 70 = 29,155 BTU.</li>
+      <li>The element: 4,500 W × 3.412 = 15,354 BTU/hr, and an electric element puts nearly all of it into the water.</li>
+      <li>Time: 29,155 ÷ 15,354 ≈ 1.9 hours, about 1 hr 54 min.</li>
+    </ol>
+    <h3 data-i18n="hvac-plumbing.about.canTitle">Problems you can type</h3>
+    <ul data-i18n="hvac-plumbing.about.can">
+      <li><a href="hvac-plumbing.html?q=36000%20BTU%20to%20tons">36000 BTU to tons</a>, <a href="hvac-plumbing.html?q=1200%20CFM%2020%20degree%20rise%20BTU">1200 CFM 20 degree rise BTU</a></li>
+      <li><a href="hvac-plumbing.html?q=800%20CFM%2012%20inch%20round%20duct%20velocity">800 CFM 12 inch round duct velocity</a></li>
+      <li><a href="hvac-plumbing.html?q=R-13%20wall%20120%20sq%20ft%2040%20degree%20difference%20heat%20loss">R-13 wall 120 sq ft 40 degree difference heat loss</a></li>
+      <li><a href="hvac-plumbing.html?q=100%20ft%20of%203/4%20inch%20pipe%20gallons">100 ft of 3/4 inch pipe gallons</a>, <a href="hvac-plumbing.html?q=40%20gallon%20tank%205%20gpm%20fill%20time">40 gallon tank 5 gpm fill time</a></li>
+      <li><a href="hvac-plumbing.html?q=60%20feet%20of%20head%20psi">60 feet of head psi</a>, <a href="hvac-plumbing.html?q=80%20psi%20at%20the%20main,%20fixture%2030%20feet%20up">80 psi at the main, fixture 30 feet up</a></li>
+      <li><a href="hvac-plumbing.html?q=drain%2030%20feet%20at%201/4%20inch%20per%20foot">drain 30 feet at 1/4 inch per foot</a>, <a href="hvac-plumbing.html?q=50%20gallons%2050%20to%20120%20degrees%204500%20watt%20element%20how%20long">50 gallons 50 to 120 degrees 4500 watt element how long</a></li>
+    </ul>
+    <h3 data-i18n="hvac-plumbing.about.qTitle">Common questions</h3>
+    <div data-i18n="hvac-plumbing.about.qs">
+      <p class="ht-q">How many BTUs is a ton of cooling?</p>
+      <p>One ton of cooling is 12,000 BTU per hour, so divide BTU/hr by 12,000 to get tons. A 36,000 BTU air conditioner is
+        36,000 ÷ 12,000 = 3 tons.</p>
+      <p class="ht-q">What is the 1.08 formula for airflow?</p>
+      <p>Sensible heat in BTU/hr = 1.08 × CFM × the temperature change in °F. The 1.08 is 0.075 lb per cubic foot of air × 0.24 BTU
+        per pound per degree × 60 minutes. So 1,200 CFM with a 20 degree rise carries 1.08 × 1,200 × 20 = 25,920 BTU/hr.</p>
+      <p class="ht-q">How do I convert feet of head to psi?</p>
+      <p>Multiply the feet by 0.433, or go the other way with 2.31 feet per psi. 60 feet of water is 0.433 × 60 = 25.98 psi. That
+        is static pressure: moving water loses more to friction in the pipe.</p>
+    </div>
+  </section>
 </div>
 
 <script>

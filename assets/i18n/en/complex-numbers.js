@@ -824,5 +824,13 @@ HelperI18n.add("en", {
   // ---- more that can't be read ----
   "complex-numbers.err.pow15": "That power is too long for this page — up to 15 digits.",
   // ---- left over ----
-  "complex-numbers.arg.soRef": ", so θ<sub>ref</sub> = "
+  "complex-numbers.arg.soRef": ", so θ<sub>ref</sub> = ",
+  "complex-numbers.about.title": "About the Complex Plane",
+  "complex-numbers.about.intro": "The Complex Plane works out problems with imaginary and complex numbers step by step: powers of i, square roots of negative numbers, adding, subtracting, multiplying and dividing complex numbers, the modulus and angle of a point on the plane, polar form, powers and roots with De Moivre’s theorem, and quadratic equations with complex solutions. Each step says what to do and why, and the complex plane shows the numbers as points and arrows.",
+  "complex-numbers.about.exTitle": "A worked example: (3 + 2i)(1 − 4i)",
+  "complex-numbers.about.exSteps": "<li>Multiply each part by each part: 3 · 1 = 3, 3 · (−4i) = −12i, 2i · 1 = 2i and 2i · (−4i) = −8i².</li> <li>Add them all: 3 − 12i + 2i − 8i².</li> <li>Since i² = −1, −8i² becomes +8.</li> <li>Combine the real parts, 3 + 8 = 11, and the imaginary parts, −12i + 2i = −10i: the answer is 11 − 10i.</li>",
+  "complex-numbers.about.canTitle": "Problems you can type",
+  "complex-numbers.about.can": "<li><a href=\"complex-numbers.html?q=i%5E23\">i^23</a> or <a href=\"complex-numbers.html?q=sqrt(-48)\">sqrt(-48)</a> (powers of i, square roots of negatives)</li> <li><a href=\"complex-numbers.html?q=(3%2B2i)%2B(1-4i)\">(3+2i)+(1-4i)</a>, <a href=\"complex-numbers.html?q=(3%2B2i)(1-4i)\">(3+2i)(1-4i)</a> or <a href=\"complex-numbers.html?q=(3%2B2i)%2F(1-4i)\">(3+2i)/(1-4i)</a></li> <li><a href=\"complex-numbers.html?q=modulus%20of%205%2B12i\">modulus of 5+12i</a> or <a href=\"complex-numbers.html?q=1%2Bi*sqrt(3)%20in%20polar%20form\">1+i*sqrt(3) in polar form</a></li> <li><a href=\"complex-numbers.html?q=cube%20roots%20of%208i\">cube roots of 8i</a> (De Moivre)</li> <li><a href=\"complex-numbers.html?q=x%5E2%20%2B%204x%20%2B%2013%20%3D%200\">x^2 + 4x + 13 = 0</a> (complex solutions)</li>",
+  "complex-numbers.about.qTitle": "Common questions",
+  "complex-numbers.about.qs": "<p class=\"ht-q\">What is i to the 23rd power?</p> <p>Powers of i repeat every four steps: i, −1, −i, 1. Divide the exponent by 4: 23 ÷ 4 = 5 remainder 3, so i²³ = i³ = −i.</p> <p class=\"ht-q\">How do I divide complex numbers?</p> <p>Multiply the top and the bottom by the conjugate of the bottom, so no i is left in the bottom. For (3 + 2i) ÷ (1 − 4i), multiply by 1 + 4i: the bottom becomes 1 + 16 = 17 and the top −5 + 14i, so the answer is −5/17 + (14/17)i.</p> <p class=\"ht-q\">How do I solve a quadratic equation that has no real solutions?</p> <p>Use the quadratic formula and write the square root of the negative number with i. For x² + 4x + 13 = 0, b² − 4ac = −36 and √(−36) = 6i, so x = (−4 ± 6i) ÷ 2 = −2 ± 3i.</p>"
 });

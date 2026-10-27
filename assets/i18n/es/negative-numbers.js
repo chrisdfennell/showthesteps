@@ -550,5 +550,13 @@ HelperI18n.add("es", {
         " plus "
       ]
     ]
-  }
+  },
+  "negative-numbers.about.title": "Acerca de The Number Line",
+  "negative-numbers.about.intro": "The Number Line resuelve problemas con números negativos (números enteros) paso a paso: sumarlos y restarlos, multiplicarlos y dividirlos, el valor absoluto, ordenar números, y cadenas cortas resueltas de izquierda a derecha. Cada problema se muestra en una recta numérica y con fichas, y cada paso da la razón del signo de la respuesta.",
+  "negative-numbers.about.exTitle": "Un ejemplo resuelto: −7 − (−2)",
+  "negative-numbers.about.exSteps": "<li>Restar es lo mismo que sumar el opuesto. El opuesto de −2 es 2, así que −7 − (−2) se convierte en −7 + 2.</li> <li>Empieza en −7 en la recta numérica. Sumar un positivo te mueve a la derecha, así que salta 2 a la derecha y caes en −5.</li> <li>Con fichas: 7 negativas y 2 positivas forman 2 pares cero, que se cancelan. Es lo mismo que restar los valores absolutos: 7 − 2 = 5.</li> <li>Las 5 fichas que sobran son negativas, porque 7 es mayor que 2 y es el de −7. Así que la respuesta es −5.</li>",
+  "negative-numbers.about.canTitle": "Problemas que puedes escribir",
+  "negative-numbers.about.can": "<li><a href=\"negative-numbers.html?q=-5%20%2B%203\">−5 + 3</a> o <a href=\"negative-numbers.html?q=-7%20-%20(-2)\">−7 − (−2)</a> (sumar y restar)</li> <li><a href=\"negative-numbers.html?q=-4%20*%203\">−4 × 3</a> o <a href=\"negative-numbers.html?q=-12%20/%20(-3)\">−12 ÷ (−3)</a> (multiplicar y dividir)</li> <li><a href=\"negative-numbers.html?q=%7C-7%7C\">|−7|</a> (valor absoluto)</li> <li><a href=\"negative-numbers.html?q=-3,%205,%20-8,%200\">−3, 5, −8, 0</a> o <a href=\"negative-numbers.html?q=-8%20%3C%20-3\">−8 &lt; −3</a> (ordenar)</li> <li><a href=\"negative-numbers.html?q=-3%20%2B%208%20-%2010\">−3 + 8 − 10</a> (una cadena, de izquierda a derecha)</li> <li><a href=\"negative-numbers.html?q=negativo%205%20m%C3%A1s%203\">negativo 5 más 3</a> (con palabras)</li>",
+  "negative-numbers.about.qTitle": "Preguntas frecuentes",
+  "negative-numbers.about.qs": "<p class=\"ht-q\">¿Cómo se suman un número negativo y uno positivo?</p> <p>Resta los valores absolutos y ponle a la respuesta el signo del número con mayor valor absoluto. Para −5 + 3: 5 − 3 = 2, y el 5 es el de −5, así que la respuesta es −2.</p> <p class=\"ht-q\">¿Por qué negativo por negativo da positivo?</p> <p>Mira un patrón: 2 × (−4) = −8, 1 × (−4) = −4, 0 × (−4) = 0. Cada vez que el primer número baja 1, la respuesta sube 4, así que el patrón sigue por encima del 0: −1 × (−4) = 4, y −6 × (−4) = 24.</p> <p class=\"ht-q\">¿−8 es mayor o menor que −3?</p> <p>Menor. En la recta numérica −8 está más a la izquierda, más abajo del 0, como cuando 8° bajo cero es más frío que 3° bajo cero. Así que −8 &lt; −3, aunque 8 sea más que 3.</p>"
 });

@@ -1888,6 +1888,42 @@
       simplifying the fraction? Use <a href="fractions.html">the Fraction Bar</a>; turning it into a percent is on
       <a href="percents.html">the Hundred Grid</a>.</span>
   </div>
+
+  <section class="ht-about" aria-labelledby="aboutTitle">
+    <h2 id="aboutTitle" data-i18n="probability.about.title">About the Chance Spinner</h2>
+    <p data-i18n="probability.about.intro">The Chance Spinner works out probability with dice, coins, cards, spinners and bags of
+      marbles: the chance of one event, the chance of it not happening, two or more steps (“and”, “or”, with and without putting
+      back), lists of all the outcomes, and the expected results from many tries. Each step says what to count and why, and the
+      page draws the dice, cards or marbles, a tree diagram or a table of outcomes, and where the answer sits between impossible
+      and certain.</p>
+    <h3 data-i18n="probability.about.exTitle">A worked example: drawing 2 marbles without replacement from 4 red and 6 blue, both red</h3>
+    <ol data-i18n="probability.about.exSteps">
+      <li>First pick: 4 of the 10 marbles are red, so P(red) = 4/10, which simplifies to 2/5.</li>
+      <li>Without replacement, the bag has one fewer marble and one fewer red: 3 red out of 9, so 3/9 = 1/3.</li>
+      <li>“And” means multiply, using the second chance after the first: 2/5 × 1/3 = 2/15.</li>
+      <li>As a decimal that’s about 0.133, or 13.3%: unlikely, since it’s less than 1/2.</li>
+    </ol>
+    <h3 data-i18n="probability.about.canTitle">Problems you can type</h3>
+    <ul data-i18n="probability.about.can">
+      <li><a href="probability.html?q=P(rolling%20a%204)">P(rolling a 4)</a>, <a href="probability.html?q=probability%20of%20red%20from%203%20red%205%20blue%202%20green">probability of red from 3 red 5 blue 2 green</a>, <a href="probability.html?q=pick%20a%20heart%20from%20a%20deck%20of%20cards">pick a heart from a deck of cards</a> (one event)</li>
+      <li><a href="probability.html?q=P(not%206)">P(not 6)</a> (not happening)</li>
+      <li><a href="probability.html?q=two%20coins%20both%20heads">two coins both heads</a>, <a href="probability.html?q=draw%202%20without%20replacement%20from%204%20red%206%20blue,%20both%20red">draw 2 without replacement from 4 red 6 blue, both red</a> (two events)</li>
+      <li><a href="probability.html?q=two%20dice%20sum%20of%207">two dice sum of 7</a> (all the outcomes)</li>
+      <li><a href="probability.html?q=roll%20a%20die%2060%20times%20how%20many%203s">roll a die 60 times how many 3s</a> (expected results)</li>
+    </ul>
+    <h3 data-i18n="probability.about.qTitle">Common questions</h3>
+    <div data-i18n="probability.about.qs">
+      <p class="ht-q">What is the probability of rolling a sum of 7 with two dice?</p>
+      <p>There are 6 × 6 = 36 outcomes, and 6 of them add up to 7: (1, 6), (2, 5), (3, 4), (4, 3), (5, 2) and (6, 1). So the
+        probability is 6/36 = 1/6.</p>
+      <p class="ht-q">When do I multiply probabilities?</p>
+      <p>For “and”, multiply the chances. Two coins both landing heads is 1/2 × 1/2 = 1/4. When the first pick changes the second,
+        as it does without replacement, use the chance for the second pick after the first.</p>
+      <p class="ht-q">What is the difference between probability and odds?</p>
+      <p>A probability divides the ways it can happen by everything that can happen; odds compare the ways it happens with the
+        ways it doesn’t. Rolling a 4 on a die has a probability of 1/6, but odds of 1 to 5.</p>
+    </div>
+  </section>
 </div>
 
 <script>

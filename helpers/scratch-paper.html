@@ -1800,6 +1800,41 @@
     <button class="print" type="button" id="copyBtn" data-i18n="common.copyLink">Copy link</button>
     <span data-i18n="scratch-paper.foot">Squared paper: tap a square, then type a digit; to borrow, tap the digit you borrow from. Line by line: write one step on each line and press Enter.</span>
   </div>
+  <section class="ht-about" aria-labelledby="aboutTitle">
+    <h2 id="aboutTitle" data-i18n="scratch-paper.about.title">About the Scratch Paper</h2>
+    <p data-i18n="scratch-paper.about.intro">The Scratch Paper is a practice sheet for doing math by hand. Type a problem, then
+      work it out yourself: adding, subtracting, multiplying and dividing on squared paper, one digit to a square, with carrying,
+      borrowing and long division, or expressions, equations, inequalities, systems and story problems line by line. It checks
+      your work as you go or at the end, and when you are stuck it says what to do next or shows the next step.</p>
+    <h3 data-i18n="scratch-paper.about.exTitle">A worked example: 478 + 356 on squared paper</h3>
+    <ol data-i18n="scratch-paper.about.exSteps">
+      <li>Type 478 + 356 and press Start: the numbers go on the squared paper, one digit to a square, ones under ones.</li>
+      <li>Add the ones column: 8 + 6 = 14. Write the 4 under the ones and carry the 1 above the tens column.</li>
+      <li>Add the tens column, with the 1 you carried: 1 + 7 + 5 = 13. Write the 3 and carry the 1 above the hundreds.</li>
+      <li>Add the hundreds column: 1 + 4 + 3 = 8. The answer is 834, and with Check as you go each square is marked as you fill it in.</li>
+    </ol>
+    <h3 data-i18n="scratch-paper.about.canTitle">Problems you can type</h3>
+    <ul data-i18n="scratch-paper.about.can">
+      <li><a href="scratch-paper.html?q=478%2B356">478 + 356</a> or <a href="scratch-paper.html?q=5003-1278">5003 − 1278</a> (carrying and borrowing)</li>
+      <li><a href="scratch-paper.html?q=47*23">47 × 23</a> (long multiplication)</li>
+      <li><a href="scratch-paper.html?q=847%2F12">847 ÷ 12</a> (long division)</li>
+      <li><a href="scratch-paper.html?q=3(x%20%E2%88%92%202)%20%2B%204x">3(x − 2) + 4x</a> or <a href="scratch-paper.html?q=2x%20%2B%205%20%3D%2017">2x + 5 = 17</a> (line by line)</li>
+      <li><a href="scratch-paper.html?q=x%20%2B%20y%20%3D%2010%3B%20x%20%E2%88%92%20y%20%3D%204">x + y = 10; x − y = 4</a> (a system, line by line)</li>
+    </ul>
+    <h3 data-i18n="scratch-paper.about.qTitle">Common questions</h3>
+    <div data-i18n="scratch-paper.about.qs">
+      <p class="ht-q">How do I subtract across zeros, like 5003 − 1278?</p>
+      <p>The ones column, 3 − 8, won’t go, and the next two digits are zeros, so borrow from the 5: it becomes 4, each 0 becomes
+        10 and then 9 as you keep borrowing, and the 3 becomes 13. Then 13 − 8 = 5, 9 − 7 = 2, 9 − 2 = 7 and 4 − 1 = 3: the answer
+        is 3,725.</p>
+      <p class="ht-q">How do I do long division, like 847 ÷ 12?</p>
+      <p>Ask how many 12s fit into 84: 7, and 7 × 12 = 84 leaves 0. Bring down the 7: 12 fits into 7 zero times, so write 0 on
+        top. Nothing is left to bring down, so the answer is 70 R 7.</p>
+      <p class="ht-q">How do I check my answer to an equation?</p>
+      <p>Put it back into the equation you started with. For 2x + 5 = 17, subtract 5 from both sides to get 2x = 12, then divide
+        both sides by 2: x = 6. Check: 2 × 6 + 5 = 17, so it is right.</p>
+    </div>
+  </section>
 </div>
 
 <script>

@@ -259,5 +259,13 @@ HelperI18n.add("es", {
   "division.sample": "Hace problemas como: <b>{p}</b>",
   "division.sampleNone": "Con esas opciones no sale ningún problema — prueba otras.",
   "division.genFail": "No se pudo hacer uno con esas opciones — prueba otras.",
-  "division.genBend": "No cupo todo lo que elegiste en un solo problema, así que este se salta una regla. Prueba otras opciones."
+  "division.genBend": "No cupo todo lo que elegiste en un solo problema, así que este se salta una regla. Prueba otras opciones.",
+  "division.about.title": "Acerca de The Division House",
+  "division.about.intro": "The Division House resuelve divisiones largas paso a paso, como se escriben en papel: divide, multiplica, resta y baja, y luego otra vez. Divide números enteros y decimales, con la respuesta como cociente y residuo, como fracción o como decimal, y divide fracciones y números mixtos con deja, cambia, voltea. Cada paso queda escrito, con un diagrama de cinta y un modelo de área para mostrarlo, y la respuesta se comprueba multiplicando de vuelta.",
+  "division.about.exTitle": "Un ejemplo resuelto: 847 ÷ 12",
+  "division.about.exSteps": "<li>¿Cuántas veces cabe 12 en 84? 7. Escribe el 7 arriba de las decenas.</li> <li>Multiplica y resta: 7 × 12 = 84, y 84 − 84 = 0.</li> <li>Baja el 7. 12 no cabe en 7 ni una vez, así que escribe 0 arriba de las unidades.</li> <li>No queda nada que bajar, así que 7 es el residuo: 847 ÷ 12 = 70 R 7. Comprueba: 70 × 12 = 840, y 840 + 7 = 847.</li>",
+  "division.about.canTitle": "Problemas que puedes escribir",
+  "division.about.can": "<li><a href=\"division.html?q=847%20%C3%B7%2012\">847 ÷ 12</a> (división larga con residuo)</li> <li><a href=\"division.html?q=12.5%20%C3%B7%200.4\">12.5 ÷ 0.4</a> (dividir entre un decimal)</li> <li><a href=\"division.html?q=3/4%20%C3%B7%201/2\">3/4 ÷ 1/2</a> o <a href=\"division.html?q=2%201/2%20%C3%B7%203/4\">2 1/2 ÷ 3/4</a> (fracciones y números mixtos)</li> <li><a href=\"division.html?q=divide%2012%20entre%203\">divide 12 entre 3</a> o <a href=\"division.html?q=%C2%BFcu%C3%A1ntas%20veces%20cabe%203%20en%2012%3F\">¿cuántas veces cabe 3 en 12?</a> (con palabras)</li>",
+  "division.about.qTitle": "Preguntas frecuentes",
+  "division.about.qs": "<p class=\"ht-q\">¿Cómo se escribe el residuo como fracción o como decimal?</p> <p>Para una fracción, pon el residuo sobre el divisor: 847 ÷ 12 = 70 R 7, que es 70 7/12. Para un decimal, sigue dividiendo después del punto decimal bajando ceros: 847 ÷ 12 es aproximadamente 70.583.</p> <p class=\"ht-q\">¿Cómo se divide entre un decimal?</p> <p>Mueve el punto decimal del divisor hasta que sea un número entero, y mueve el punto del dividendo la misma cantidad de lugares. 12.5 ÷ 0.4 se convierte en 125 ÷ 4, que es 31.25.</p> <p class=\"ht-q\">¿Cómo se dividen fracciones?</p> <p>Deja la primera fracción igual, cambia el ÷ por un × y voltea la segunda fracción. 3/4 ÷ 1/2 se convierte en 3/4 × 2/1 = 6/4, que es 1 1/2.</p>"
 });
