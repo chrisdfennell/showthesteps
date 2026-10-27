@@ -3156,8 +3156,11 @@
     var UNORDEREDRE = /\border (?:does ?n.?t|does not|do not|dont|doesnt|is ?n.?t|is not|isnt|wont|will not|doesn t) (?:matter|count|important|make a difference)\b|\bin any order\b|\bnot in (?:any )?order\b|\border is not important\b|\border is unimportant\b|\bunordered\b|\bregardless of order\b|\bwithout regard to order\b/;
     var ORDEREXPLRE = /\border\b[^.?]{0,40}?\b(?:matters|is important|counts|does matter|is relevant|makes a difference)\b|\bin (?:that|a specific|a certain|a particular) order\b/;
     var PROBRE = /\bprobabilit(?:y|ies)\b|\bchances?\b|\blikel(?:y|ihood)\b|\bodds\b|\bat random\b|\brandomly\b|\bwhat fraction\b/;
-    var NOREPRE = /\b(?:no|not|cannot|can not|cant|may not|must not|without|never|doesnt|dont|do not|does not)\b[^.?]{0,30}?\b(?:repeat\w*|repetition|reus\w+|used (?:more than once|twice|again)|be used twice|appear (?:more than once|twice))|\b(?:all )?different (?:digits|letters|characters|symbols|numbers)\b|\bdistinct (?:digits|letters|characters|symbols)\b|\bwithout (?:repetition|repeats|repeating)\b|\bnon-?repeating\b|\beach (?:digit|letter|symbol|character|number) (?:is |can be |may be )?(?:only )?used (?:only )?once\b|\bused (?:only )?once\b|\bno repeats?\b|\b(?:repetitions?|repeats?|repeating|replacement) (?:is |are )?(?:not|never) (?:allowed|permitted|ok)\b|\b(?:repetitions?|repeats?) (?:is |are )?(?:prohibited|forbidden|disallowed)\b/;
-    var YESREPRE = /\b(?:can|may|could|are allowed to|is allowed to) (?:be )?(?:repeat\w*|used (?:again|more than once|twice|over))\b|\bwith repetition\b|\brepetitions? (?:is |are )?allowed\b|\brepeats? (?:are |is )?allowed\b|\brepeating (?:is |are )?allowed\b|\bwith replacement\b|\breplacement allowed\b|\bmore than once\b/;
+    var NOREPRE = /\b(?:no|not|none|cannot|can not|cant|may not|must not|mustnt|without|never|doesnt|dont|do not|does not|wont|will not|should not|shouldnt)\b[^.?]{0,30}?\b(?:repeat\w*|repetition|reus\w+|used (?:more than once|twice|again)|be used twice|appears? (?:more than once|twice))|\b(?:all )?different (?:digits|letters|characters|symbols|numbers)\b|\b(?:distinct|unique) (?:digits|letters|characters|symbols)\b|\b(?:digits|letters|characters|symbols) (?:are|must be|have to be|should be|will be|need to be) (?:all )?(?:different|distinct|unique)\b(?! from)|\b(?:each|every) (?:digit|letter|character|symbol) (?:is |must be |has to be |should be |will be |needs to be )?(?:different|distinct|unique)\b(?! from)|\bno 2 (?:digits|letters|characters|symbols) (?:are|is|can be|may be|will be) (?:the )?(?:same|alike|identical|equal)\b|\bwithout (?:repetition|repeats|repeating)\b|\bnon-?repeating\b|\beach (?:digit|letter|symbol|character|number) (?:is |can be |may be )?(?:only )?used (?:only |at most |no more than )?once\b|\bused (?:only |at most |no more than )?once\b|\bno repeats?\b|\b(?:repetitions?|repeats?|repeating|replacement) (?:is |are )?(?:not|never) (?:allowed|permitted|ok)\b|\b(?:repetitions?|repeats?) (?:is |are )?(?:prohibited|forbidden|disallowed)\b/;
+    var YESREPRE = /\b(?:can|may|could|are allowed to|is allowed to) (?:be )?(?:repeat\w*|used (?:again|more than once|twice|over))\b|\bwith repetition\b|\brepetitions? (?:is |are )?allowed\b|\brepeats? (?:are |is )?allowed\b|\brepeating (?:is |are )?allowed\b|\bwith replacement\b|\breplacement allowed\b|\bmore than once\b|\bif (?:the )?(?:digits|letters|symbols|characters) repeat\b/;
+    // words about repeating that neither of those can read ("each digit different from the one before", or the visitor's
+    // own language): a code's count then asks, rather than guessing that repeats are allowed
+    var REPWORDRE = /\brepeat\w*|\brepetition\w*|\breus\w+|\btwice\b|\bonce\b|\bsame\b|\balike\b|\bidentical\b|\bunique\b|\bdistinct\b|\bdifferent\b|\brepet\w*|\brepit\w*|\bdistint[oa]s?\b|\bdiferentes?\b|\bmism[oa]s?\b|\bunic[oa]s?\b|\biguales?\b|\bveces\b/;
     var TWICERE = /\btwice\b|\b2 times\b|\bhome and away\b|\bhome (?:game|match) and (?:an |1 )?away\b|\bbefore and after\b|\bbefore (?:the|a|it|each|every)\b[^.]{0,60}?\band (?:again )?after\b|\bat the (?:start|beginning) and (?:again )?(?:at )?the end\b|\barrive and (?:again )?(?:when they )?leave\b|\b(?:arrive|come in|get there) and (?:again )?(?:when they |as they )?(?:leave|go)\b|\bwhen they (?:arrive|come in|get there) and (?:again )?when they (?:leave|go)\b|\bonce (?:at|before)\b[^.]{0,60}?\band (?:again )?once (?:at|after)\b|\bagain (?:at the end|after|when they leave)\b/;
 
     // a condition on a named person: "If Anna must be on the committee", "Ben and Cal refuse to serve together"
@@ -3476,6 +3479,10 @@
           mm, note = [];
         var noRep = NOREPRE.test(s),
           yesRep = YESREPRE.test(s) && !noRep;
+        // "no two digits are the same": the 2 isn't a count of digits
+        if (noRep && (mm = oneFree(/\bno (2) (?:digits|letters|characters|symbols) (?:are|is|can be|may be|will be) (?:the )?(?:same|alike|identical|equal)\b/))) useG(mm, 1);
+        // "how many different PINs" says nothing about repeats
+        function repUnclear() { return !noRep && !yesRep && REPWORDRE.test(s.replace(/\bhow many (?:different|distinct|unique) |\b(?:different|distinct|unique) (?=(?:\d+[- ](?:digit|letter|character|symbol) )?(?:pins?|codes?|passwords?|plates?|license plates?|numbers?|combinations?|ways|outcomes|arrangements|words|sequences|possibilities)\b)/g, " ")); }
         // license plates and patterns: 3 letters followed by 3 digits
         var runs = [],
           re = /\b(\d+) (letters?|digits?|numbers?|numerals?|characters?)\b/g;
@@ -3494,6 +3501,7 @@
             if (pat.length > 12) throw new UserErr(tx("counting.err.upTo12p"));
             P.pat = pat;
             P.places = pat.split("").map(function(c) { return { t: c, n: PLACE[c] }; });
+            if (repUnclear()) throw new UserErr(tx("counting.err.repQ"));
             P.rep = !noRep;
             P.what = /\bplates?\b/.test(s) ? "plates" : /\bpasswords?\b/.test(s) ? "passwords" : /\bpins?\b/.test(s) ? "pins" : "codes";
             if (!P.rep && /A/.test(pat) && /[LD]/.test(pat)) throw new UserErr(tx("counting.err.mixChars"));
@@ -3553,6 +3561,7 @@
         if (nsym === null) { nsym = isL && !isD ? 26 : isD ? 10 : null; if (nsym === 26) { if ((mm = oneFree(/\b(26)\b/))) useG(mm, 1); } if (nsym === 10) { if ((mm = oneFree(/\b(10)\b/))) useG(mm, 1); } }
         if (nsym === null) return null;
         var arrange = /\barrang\w*|\bpermutations?\b/.test(s);
+        if (repUnclear()) throw new UserErr(tx("counting.err.repQ"));
         P.rep = noRep ? false : yesRep ? true : !arrange;
         var numberish = /\bnumbers?\b/.test(s) && !/\bpins?\b|\bcodes?\b|\bpasswords?\b|\blocks?\b|\bcombinations?\b|\bplates?\b|\bphone\b|\bid\b|\btickets?\b/.test(s) && /\b\d+[- ]digit (?:numbers?|integers?|whole numbers?|positive)\b|\b\d+[- ]digit\b/.test(s);
         if (syms) {
@@ -5032,14 +5041,14 @@
       var exNote = sym ? ' <span class="nm">' + tx("counting.pr.drawn5") + "</span>" : "";
       var val = function(x) { return sym ? "" : " = " + vH(x); };
       if (P.kind === "diag") {
-        html += sect(lead(tx("counting.pr.leadCorner")) + " " + tx("counting.pr.diag0", { x: B(sym ? "n − 3" : (n - 3)) }) + exNote, pic, 0);
-        html += sect(lead(tx("counting.pr.leadEvery")) + " " + tx("counting.pr.diag1", { nn: nn, x: sym ? "(n − 3)" : n - 3 }), big(nn + " × " + nm3 + (sym ? " = n(n − 3)" : " = " + '<span class="eqm">' + grp(BigInt(n) * BigInt(n - 3)) + "</span>")), 1);
+        html += sect(lead(tx("counting.pr.leadCorner")) + " " + tx("counting.pr.diag0", { x: B(sym ? "n − 3" : (n - 3)), c: sym ? 2 : n - 3 }) + exNote, pic, 0);
+        html += sect(lead(tx("counting.pr.leadEvery")) + " " + tx("counting.pr.diag1", { nn: nn, x: sym ? "(n − 3)" : n - 3, c: sym ? 2 : n - 3 }), big(nn + " × " + nm3 + (sym ? " = n(n − 3)" : " = " + '<span class="eqm">' + grp(BigInt(n) * BigInt(n - 3)) + "</span>")), 1);
         html += sect(lead(tx("counting.pr.leadDiagTwice")) + " " + tx("counting.pr.diag2"), big(sym ? fH("n(n − 3)", 2) : fH(grp(BigInt(n) * BigInt(n - 3)), 2) + val(s.v)), 2);
         $("workHost").innerHTML = html;
         items.push({
           step: 0,
           lines: [
-            ["e", tx("counting.tag.oneCorner"), tx("counting.pr.dlog0", { x: sym ? "n − 3" : n - 3 })]
+            ["e", tx("counting.tag.oneCorner"), tx("counting.pr.dlog0", { x: sym ? "n − 3" : n - 3, c: sym ? 2 : n - 3 })]
           ]
         });
         items.push({

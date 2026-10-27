@@ -115,8 +115,14 @@ HelperI18n.add("es", {
   "subtraction.tag.simplify": "Simplifica",
   "subtraction.tag.mixed": "Número mixto",
   "subtraction.look": "Solo puedes quitar partes del mismo tamaño, es decir, con el mismo denominador. Aquí los denominadores son <b>{a}</b> y <b>{b}</b>.",
+  // pieceNames[d]: the name of 1/d pieces, in the plural; past the list, subtraction.pieceN (36avos)
+  "subtraction.pieceNames": ["", "enteros", "medios", "tercios", "cuartos", "quintos", "sextos", "séptimos", "octavos", "novenos", "décimos",
+    "onceavos", "doceavos", "treceavos", "catorceavos", "quinceavos", "dieciseisavos", "diecisieteavos", "dieciochoavos", "diecinueveavos", "veinteavos"
+  ],
+  "subtraction.pieceN": "{d}avos",
   "subtraction.lookSame": "Ya son iguales, así que puedes restar directamente.",
   "subtraction.convert": "<b>{w} {n}/{d}</b> es <b>{w} × {d} + {n} = {pieces}</b> partes, así que <b>{f1}</b>. El otro se convierte en <b>{f2}</b>.",
+  "subtraction.convertWhole": "<b>{w}</b> {w|es|son} <b>{w}</b> {w|entero|enteros}, así que <b>{f1}</b>. El otro se convierte en <b>{f2}</b>.",
   "subtraction.convertAside": "Convertir los números mixtos en fracciones impropias te ahorra tener que pedir prestado un entero más adelante.",
   "subtraction.lcd": "Múltiplos de <b>{a}</b>: {ma}. Múltiplos de <b>{b}</b>: {mb}. El menor que tienen en común es <b>{L}</b>.",
   "subtraction.rename": "{x} y {y}.",

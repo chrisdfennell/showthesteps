@@ -2273,10 +2273,14 @@
         ],
         T("multiplication.lookAside"));
 
+      // the term to turn into an improper fraction is the one with a whole part (2 3/4, or a whole number: 3 is 3/1)
+      var convM = m1[0] !== 0 ? m1 : m2,
+        convF = convM === m1 ? a : b,
+        otherF = convM === m1 ? b : a;
       if (mixedIn) {
         step(fracHTML(a.n, a.d) + '<span class="op-s">×</span>' + fracHTML(b.n, b.d), "=",
           [
-            ["m", T("multiplication.tagConvert"), T("multiplication.convert", { w: m1[0], n: m1[1], d: m1[2], an: a.n, ad: a.d, bn: b.n, bd: b.d })]
+            ["m", T("multiplication.tagConvert"), T(convM[1] === 0 ? "multiplication.convertWhole" : "multiplication.convert", { w: convM[0], n: convM[1], d: convM[2], an: convF.n, ad: convF.d, bn: otherF.n, bd: otherF.d })]
           ],
           T("multiplication.convertAside"));
       }

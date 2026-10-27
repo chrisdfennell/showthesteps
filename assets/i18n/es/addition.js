@@ -109,8 +109,14 @@ HelperI18n.add("es", {
   "addition.tag.simplify": "Simplifica",
   "addition.tag.mixed": "Número mixto",
   "addition.look": "Solo puedes sumar fracciones cuando las partes son del mismo tamaño: el mismo denominador. Aquí los denominadores son <b>{a}</b> y <b>{b}</b>.",
+  // pieceNames[d]: the name of 1/d pieces, in the plural; past the list, addition.pieceN (36avos)
+  "addition.pieceNames": ["", "enteros", "medios", "tercios", "cuartos", "quintos", "sextos", "séptimos", "octavos", "novenos", "décimos",
+    "onceavos", "doceavos", "treceavos", "catorceavos", "quinceavos", "dieciseisavos", "diecisieteavos", "dieciochoavos", "diecinueveavos", "veinteavos"
+  ],
+  "addition.pieceN": "{d}avos",
   "addition.lookSame": "Ya coinciden, así que puedes sumarlas de inmediato.",
   "addition.convert": "<b>{w} {n}/{d}</b> quiere decir <b>{w} × {d} + {n} = {an}</b> partes, o sea <b>{an}/{ad}</b>. El otro se convierte en <b>{bn}/{bd}</b>.",
+  "addition.convertWhole": "<b>{w}</b> {w|es|son} <b>{w}</b> {w|entero|enteros}, o sea <b>{an}/{ad}</b>. El otro se convierte en <b>{bn}/{bd}</b>.",
   "addition.convertAside": "Las fracciones impropias son más fáciles de sumar que los números mixtos. Al final lo vuelves a convertir.",
   "addition.lcd": "Múltiplos de <b>{a}</b>: {ma}. Múltiplos de <b>{b}</b>: {mb}. El más pequeño que tienen en común es <b>{L}</b>.",
   "addition.rename": "<b>{an}/{ad}</b> × <b>{fa}/{fa}</b> = <b>{ra}/{L}</b>, y <b>{bn}/{bd}</b> × <b>{fb}/{fb}</b> = <b>{rb}/{L}</b>.",

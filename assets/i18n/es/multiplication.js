@@ -118,6 +118,7 @@ HelperI18n.add("es", {
   "multiplication.look": "Multiplicar fracciones es lo fácil — <em>no</em> necesitas un denominador común. Solo multiplicas en línea recta.",
   "multiplication.lookAside": "Esa es la gran diferencia con la suma. Para <b>+</b> los pedazos tienen que ser del mismo tamaño; para <b>×</b>, no.",
   "multiplication.convert": "<b>{w} {n}/{d}</b> son <b>{w} × {d} + {n} = {an}</b> pedazos, así que <b>{an}/{ad}</b>. El otro es <b>{bn}/{bd}</b>.",
+  "multiplication.convertWhole": "<b>{w}</b> {w|es|son} <b>{w}</b> {w|entero|enteros}, así que <b>{an}/{ad}</b>. El otro es <b>{bn}/{bd}</b>.",
   "multiplication.convertAside": "Nunca multipliques los enteros y las fracciones por separado — esa es la trampa clásica. Primero convierte.",
   "multiplication.cancelPart": "<b>{x}</b> y <b>{y}</b> se pueden dividir entre <b>{g}</b> → <b>{x2}</b> y <b>{y2}</b>",
   "multiplication.cancelOne": "Mira en diagonal, el de arriba de una contra el de abajo de la otra: {p}.",

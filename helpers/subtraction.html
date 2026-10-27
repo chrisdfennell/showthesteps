@@ -1814,6 +1814,14 @@
     "use strict";
     if (window.HelperI18n) HelperI18n.apply();
     var T = function(k, v) { return window.HelperI18n ? HelperI18n.t(k, v) : k; };
+    // the name of 1/d pieces, in the plural ("fourths", "halves"): the locale's table (subtraction.pieceNames), else subtraction.pieceN ("24ths")
+    function pieceWord(d) {
+      var P = window.HelperI18n ? HelperI18n.raw("subtraction.pieceNames") : null,
+        t = d % 100,
+        u = d % 10;
+      if (P && d < P.length && P[d]) return P[d];
+      return T("subtraction.pieceN", { d: d, sfx: t >= 11 && t <= 13 ? "th" : u === 1 ? "st" : u === 2 ? "nd" : u === 3 ? "rd" : "th" });
+    }
     var $ = function(id) { return document.getElementById(id); };
     var lastDec = null;
     var S = {
@@ -1924,10 +1932,12 @@
             j--;
           }
           if (j >= 0) {
+            var was = work[k];
             work[j] -= 1;
             through.forEach(function(t) { work[t] = 9; });
             work[k] += 10;
-            borrowed = { from: j, through: through };
+            // left, was: the lender and this column as they are now (a later borrow can still change them)
+            borrowed = { from: j, through: through, left: work[j], was: was };
           }
         }
         out[k] = String(work[k] - need);
@@ -2146,13 +2156,13 @@
         ];
         var aside = null;
         if (s.borrowed) {
-          var origTop = A.orig[s.k];
+          var origTop = s.borrowed.was;
           if (s.borrowed.through.length === 0) {
             lines.push(["b", T("subtraction.tag.borrow"), T("subtraction.borrowNext", {
               bot: s.bot,
               top: origTop,
               from: placeThe(s.exp + 1),
-              left: A.work[s.borrowed.from],
+              left: s.borrowed.left,
               now: s.top
             })]);
           } else {
@@ -2163,7 +2173,7 @@
               names: andList(names),
               n: names.length,
               from: placeThe(A.maxI - 1 - s.borrowed.from),
-              left: A.work[s.borrowed.from],
+              left: s.borrowed.left,
               now: s.top
             })]);
             aside = T("subtraction.zeroAside");
@@ -2290,20 +2300,24 @@
 
       step(termHTML(m1) + '<span class="op-s">&minus;</span>' + termHTML(m2), "",
         [
-          ["p", T("subtraction.tag.look"), T("subtraction.look", { a: a.d, b: b.d })]
+          ["p", T("subtraction.tag.look"), T("subtraction.look", { a: a.d, b: b.d, pa: pieceWord(a.d), pb: pieceWord(b.d) })]
         ],
         a.d === b.d ? T("subtraction.lookSame") : null);
 
+      // the term to turn into an improper fraction is the one with a whole part (2 3/4, or a whole number: 3 is 3/1)
+      var convM = m1[0] !== 0 ? m1 : m2,
+        convF = convM === m1 ? a : b,
+        otherF = convM === m1 ? b : a;
       if (mixedIn) {
         step(fracHTML(a.n, a.d) + '<span class="op-s">&minus;</span>' + fracHTML(b.n, b.d), "=",
           [
-            ["b", T("subtraction.tag.convert"), T("subtraction.convert", {
-              w: m1[0],
-              n: m1[1],
-              d: m1[2],
-              pieces: a.n,
-              f1: a.n + "/" + a.d,
-              f2: b.n + "/" + b.d
+            ["b", T("subtraction.tag.convert"), T(convM[1] === 0 ? "subtraction.convertWhole" : "subtraction.convert", {
+              w: convM[0],
+              n: convM[1],
+              d: convM[2],
+              pieces: convF.n,
+              f1: convF.n + "/" + convF.d,
+              f2: otherF.n + "/" + otherF.d
             })]
           ],
           T("subtraction.convertAside"));
@@ -2317,7 +2331,7 @@
               y: "<b>" + b.n + "/" + b.d + "</b> × <b>" + fb + "/" + fb + "</b> = <b>" + bn + "/" + L + "</b>"
             })]
           ],
-          T("subtraction.renameAside", { L: L }));
+          T("subtraction.renameAside", { L: L, pl: pieceWord(L) }));
       }
       step(signedFrac(diff.n, L), "=",
         [

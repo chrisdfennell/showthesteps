@@ -1817,6 +1817,14 @@
     "use strict";
     if (window.HelperI18n) HelperI18n.apply();
     var T = function(k, v) { return window.HelperI18n ? HelperI18n.t(k, v) : k; };
+    // the name of 1/d pieces, in the plural ("fourths", "halves"): the locale's table (addition.pieceNames), else addition.pieceN ("24ths")
+    function pieceWord(d) {
+      var P = window.HelperI18n ? HelperI18n.raw("addition.pieceNames") : null,
+        t = d % 100,
+        u = d % 10;
+      if (P && d < P.length && P[d]) return P[d];
+      return T("addition.pieceN", { d: d, sfx: t >= 11 && t <= 13 ? "th" : u === 1 ? "st" : u === 2 ? "nd" : u === 3 ? "rd" : "th" });
+    }
     var $ = function(id) { return document.getElementById(id); };
     var lastDec = null;
     var S = {
@@ -1919,6 +1927,8 @@
         });
         carry = cOut;
       }
+      // the spare column only gets a step when a carry lands in it
+      if (!steps[steps.length - 1].carryIn) steps.pop();
       return { rows: rows, out: out, steps: steps, intCols: intCols, maxF: maxF, L: L };
     }
 
@@ -2220,21 +2230,25 @@
 
       step(termHTML(m1) + '<span class="op-s">+</span>' + termHTML(m2), "",
         [
-          ["p", T("addition.tag.look"), T("addition.look", { a: a.d, b: b.d })]
+          ["p", T("addition.tag.look"), T("addition.look", { a: a.d, b: b.d, pa: pieceWord(a.d), pb: pieceWord(b.d) })]
         ],
         a.d === b.d ? T("addition.lookSame") : null);
 
+      // the term to turn into an improper fraction is the one with a whole part (2 3/4, or a whole number: 3 is 3/1)
+      var convM = m1[0] !== 0 ? m1 : m2,
+        convF = convM === m1 ? a : b,
+        otherF = convM === m1 ? b : a;
       if (mixedIn) {
         step(fracHTML(a.n, a.d) + '<span class="op-s">+</span>' + fracHTML(b.n, b.d), "=",
           [
-            ["a", T("addition.tag.convert"), T("addition.convert", {
-              w: m1[0],
-              n: m1[1],
-              d: m1[2],
-              an: a.n,
-              ad: a.d,
-              bn: b.n,
-              bd: b.d
+            ["a", T("addition.tag.convert"), T(convM[1] === 0 ? "addition.convertWhole" : "addition.convert", {
+              w: convM[0],
+              n: convM[1],
+              d: convM[2],
+              an: convF.n,
+              ad: convF.d,
+              bn: otherF.n,
+              bd: otherF.d
             })]
           ],
           T("addition.convertAside"));

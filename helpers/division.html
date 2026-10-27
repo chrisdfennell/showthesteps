@@ -2338,6 +2338,13 @@
 
     /* ============================== the plain-English log ============================== */
 
+    // the dividend as written with its first len digits ("619", or "619.0" once a zero is added)
+    function dendText(r, len) {
+      var s = r.dg.slice(0, len).join("");
+      if (r.pointIdx < len) s = s.slice(0, r.pointIdx) + "." + s.slice(r.pointIdx);
+      return s.replace(/^0+(?=\d)/, "");
+    }
+
     function words(r, mode, D) {
       var out = [];
       for (var t = 0; t < r.steps.length; t++) {
@@ -2360,7 +2367,7 @@
             n: st.rem * 10 + Number(r.dg[nx])
           })]);
           if (nx === r.pointIdx && r.hasPoint) aside = T("division.crossPoint");
-          if (added && nx === r.origLen) aside = (aside ? aside + " " : "") + T("division.addZero");
+          if (added && nx === r.origLen) aside = (aside ? aside + " " : "") + T("division.addZero", { a: dendText(r, r.origLen), b: dendText(r, r.origLen + 1) });
         } else {
           lines.push(["b", T("division.tagBring"), st.rem === 0 ? T("division.doneNoRem") : T("division.doneRem", { rem: st.rem })]);
         }
@@ -2472,7 +2479,7 @@
 
       step(termHTML(m1) + '<span class="op-s">÷</span>' + termHTML(m2), "",
         [
-          ["d", T("division.tagAsk"), T("division.askLine")]
+          ["d", T("division.tagAsk"), T("division.askLine", { a: esc(fracText(m1)), b: esc(fracText(m2)) })]
         ],
         T("division.askAside"));
 
@@ -2788,8 +2795,10 @@
             sn: r.rem / gF,
             sd: D / gF
           }));
+          // the digits, not the bar: a bar over one digit reads as "0.3" when copied or read aloud (Decimal mode shows the bar,
+          // with what it means)
           var decF = divide(digits.slice(), pointIdx, D, "decimal", 6);
-          facts.push(T("division.asDecimal", { x: barNotation(decF) || esc(quotientText(decF).text) + (decF.capped ? "…" : "") }));
+          facts.push(T("division.asDecimal", { x: esc(quotientText(decF).text) + (decF.capped || decF.repeat ? "…" : "") }));
         } else {
           facts.push(T("division.evenNoFrac"));
         }
@@ -2807,8 +2816,7 @@
             T("division.asFraction", { x: frac }) :
             T("division.asMixed", { x: esc(commas(qInt)) + " " + frac }));
           var dec = divide(digits.slice(), pointIdx, D, "decimal", 6);
-          var db = barNotation(dec);
-          facts.push(T("division.asDecimal", { x: db || esc(quotientText(dec).text) + (dec.capped ? "…" : "") }));
+          facts.push(T("division.asDecimal", { x: esc(quotientText(dec).text) + (dec.capped || dec.repeat ? "…" : "") }));
         }
       } else {
         value = '<span class="v">' + esc(qt.text) + (r.capped ? "…" : "") + "</span>";
