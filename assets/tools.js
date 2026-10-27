@@ -458,11 +458,11 @@
         if (big) s = (d || "0") + (c ? "." + c : "") + " " + big + " dollars";
         else if (c && c.length !== 2) s = (d || "0") + "." + c + " dollars";
         else if (c && dn === 0) s = Number(c) + (Number(c) === 1 ? " cent" : " cents");
-        else s = (d || "0") + (dn === 1 && !(c && Number(c)) ? " dollar" : " dollars") + (c && Number(c) ? " and " + Number(c) + (Number(c) === 1 ? " cent" : " cents") : "");
+        else s = (d || "0") + (dn === 1 ? " dollar" : " dollars") + (c && Number(c) ? " and " + Number(c) + (Number(c) === 1 ? " cent" : " cents") : ""); // $1.49: 1 dollar and 49 cents
         per = per && per.replace(/^\s?\/\s?/, "");
         if (per) s += " per " + (PER[per] || per.replace("sq ft", "square foot"));
         return (neg ? "negative " : "") + s;
-      }).replace(/(\d)\s?¢/g, "$1 cents").replace(/(\d)\s?€/g, "$1 euros").replace(/€\s?(\d[\d,.]*)/g, "$1 euros").replace(/£\s?(\d[\d,.]*)/g, "$1 pounds");
+      }).replace(/(\d[\d,.]*)\s?¢/g, function(m, n) { return n + (n === "1" ? " cent" : " cents"); }).replace(/(\d)\s?€/g, "$1 euros").replace(/€\s?(\d[\d,.]*)/g, "$1 euros").replace(/£\s?(\d[\d,.]*)/g, "$1 pounds");
     }
 
     /* ---- clock times and ratios ---- */
@@ -505,9 +505,9 @@
         return a !== undefined ? " the sum from " + a + " to " + b + " of " : " the sum of ";
       });
       // lim x→2, lim_(x→2), the limit as x approaches 2
-      t = t.replace(new RegExp("\\blim\\s?" + BO + "?\\s?([a-zθ])\\s?(?:→|->)\\s?([−-]?[\\d.]+|[−-]?∞|[a-z])" + BC + "?", "g"), " the limit as $1 approaches $2 of ");
+      t = t.replace(new RegExp("\\blim\\s?" + BO + "?\\s?([a-zθ])\\s?(?:→|->)\\s?([−-]?[\\d.]+|[−-]?∞|[a-z])" + BC + "?(?:\\s+of\\b)?", "g"), " the limit as $1 approaches $2 of "); // "lim x→3 of f": one "of"
       t = t.replace(/\b([a-zθ])\s?(?:→|->)\s?([−-]?∞|[−-]?\d+(?:\.\d+)?)(?![\d.])/g, "$1 approaches $2");
-      t = t.replace(/\bd\/d([a-z])\b/g, " the derivative with respect to $1 of ").replace(/\bd([a-z])\/d([a-z])\b/g, "d $1 by d $2").replace(/\bd([xyt])\b/g, "d $1");
+      t = t.replace(/\bd\/d([a-z])\b(?:\s+of\b)?/g, " the derivative with respect to $1 of ").replace(/\bd([a-z])\/d([a-z])\b/g, "d $1 by d $2").replace(/\bd([xyt])\b/g, "d $1");
       // n choose r
       t = t.replace(new RegExp(BO + "(\\d+|n)" + BC + "\\s?C\\s?" + BO + "(\\d+|r|k)" + BC, "g"), "$1 choose $2").replace(/\b(\d+|n)C(\d+|r|k)\b/g, "$1 choose $2");
       t = t.replace(/\bC\(\s?(\d+|n)\s?,\s?(\d+|r|k)\s?\)/g, "$1 choose $2");
@@ -742,7 +742,8 @@
       return s.replace(new RegExp(G, "g"), function(m, id, at, all) {
         var before = all.slice(0, at);
         if (/[A-Za-z]$/.test(before) || /[\d%]\s+$/.test(before) || /^\s*[≈~=]/.test(raw[Number(id)])) return "(" + inner(id) + ")";
-        return quantity(id);
+        var q = quantity(id);
+        return /\bthe\s+$/.test(before) ? q.replace(/^the /, "") : q; // "to the (n − k)": "to the quantity n minus k"
       });
     }
 
@@ -850,6 +851,8 @@
       s = s.replace(/(\s)−(?=\.?\d|[√π∞])/g, "$1negative ");
       s = s.replace(/−/g, " minus ").replace(/–/g, " minus ");
       for (var i = 0; i < SYM.length; i++) s = s.replace(SYM[i][0], SYM[i][1]);
+      // "the sign is <", "the area is ≈ 9": one "is"
+      s = s.replace(/\bis\s+(?=is (?:less|greater|not|about|congruent|equivalent|proportional|perpendicular|parallel|in|a subset)\b)/g, "");
       // 3xy: "3x y", read as letters
       s = s.replace(/\b(\d*)([a-z])([a-z]{1,2})\b/g, function(m, d, a, b) {
         if (!d && !/^(xy|xz|yz|ab|bc|ac|mn|xyz|abc|ax|bx|cx|mx|kx)$/.test(a + b)) return m;
@@ -962,11 +965,40 @@
           coef = "";
         }
         var k = idx || ROOT[sign],
-          name = R[k] || fillIn(R.n, { n: k }),
+          name = (k !== "n" && k !== "times" && R[k]) || fillIn(R.n, { n: k }), // "n" and "times" are the templates, not indexes
           what = rin !== undefined ? rin : rad || "",
           r = !what ? name : rin !== undefined && !simple(rin.replace(new RegExp("[" + PO + PC + "]", "g"), "")) ? name + " " + L.quantity + " " + what + END : name + " " + what;
         return pre + (coef ? fillIn(R.times, { c: coef, r: r }) : r) + " ";
       });
+    }
+
+    // a symbol said in words. Where its words meet the text, two words can become one: L.joins (es.js) says which.
+    // "x es ≈ 9" says "es" once; "x = el lado" is "x es igual al lado" (a lowercase "el" only: "de El Paso" stays)
+    function symL(L, s, k, v) {
+      var parts = s.split(k);
+      if (parts.length < 2) return s;
+      var J = L.joins || {},
+        out = parts[0];
+      for (var i = 1; i < parts.length; i++) {
+        var p = parts[i],
+          say = v,
+          a = /([A-Za-zÀ-ÿ]+)\s*$/.exec(out),
+          b = /^[A-Za-zÀ-ÿ]+/.exec(v),
+          j = a && b && J.hasOwnProperty(a[1] + " " + b[0]) ? J[a[1] + " " + b[0]] : null;
+        if (j !== null) { // the word before the symbol and the symbol's first word
+          out = out.slice(0, a.index);
+          say = j + v.slice(b[0].length);
+        }
+        a = /[A-Za-zÀ-ÿ]+$/.exec(say);
+        b = /^\s*([A-Za-zÀ-ÿ]+)/.exec(p);
+        j = a && b && J.hasOwnProperty(a[0] + " " + b[1]) ? J[a[0] + " " + b[1]] : null;
+        if (j !== null) { // the symbol's last word and the word after it
+          say = say.slice(0, a.index) + j;
+          p = p.slice(b[0].length);
+        }
+        out += " " + say + " " + p;
+      }
+      return out;
     }
 
     function wordsL(L, t) {
@@ -1020,7 +1052,7 @@
       s = s.replace(/(^|[(,:;]\s*)[≈~]\s?(?=\d)/g, "$1" + L.about + " ").replace(/#(?=\d)/g, L.number + " ").replace(/✓/g, " ");
       if (L.blank) s = s.replace(/(^|[\s(=×÷+−])\?(?=\s*(?:$|[=×÷+−),]))/g, "$1 " + L.blank + " "); // 0.2 × ? = 15: the number to find
       for (var k in L.sym)
-        if (L.sym.hasOwnProperty(k)) s = s.split(k).join(" " + L.sym[k] + " ");
+        if (L.sym.hasOwnProperty(k)) s = symL(L, s, k, L.sym[k]);
       // decimals: 25.4 is "25 point 4"
       s = s.replace(/(\d)\.(?=\d)/g, "$1 " + L.point + " ").replace(/(^|[^\w])\.(?=\d)/g, "$1" + L.point + " ");
       return tidy(s);

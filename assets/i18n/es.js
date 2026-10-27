@@ -600,7 +600,9 @@ HelperI18n.add("es", {
        fractions: over (a over b), mixed (2 3/4), names: each denominator [one, many] ({n} = the numerator; past 20,
          a numerator more than 3 times the denominator says "over" instead)
        powers: x², x³, n: any other power, negative: x⁻²    roots: √ ∛ ∜, n: any other index, times: 6√2
-       money: dollar / cent [one, many], both ($12.50), euro, pound    steps: the arrow between two fractions (÷6 over ÷6) */
+       money: dollar / cent [one, many], both ($12.50), euro, pound    steps: the arrow between two fractions (÷6 over ÷6)
+       joins: where a symbol's words meet the words next to it, two words said as one ("x = el lado": "es igual al lado";
+         "es ≈ 9": "es aproximadamente 9"). Only these exact words: a capitalised name ("de El Paso") stays. */
   "tools.speech": {
     sym: {
       "≤": "es menor o igual que",
@@ -696,7 +698,8 @@ HelperI18n.add("es", {
     marks: { bar: "barra", hat: "gorro", star: "estrella", vector: "el vector", to: "a" },
     roots: { "2": "la raíz cuadrada de", "3": "la raíz cúbica de", "4": "la raíz cuarta de", n: "la raíz de índice {n} de", times: "{c} por {r}" },
     money: { dollar: ["un dólar", "{n} dólares"], cent: ["un centavo", "{n} centavos"], both: "{d} con {c}", euro: "{n} euros", pound: "{n} libras" },
-    steps: { div: "divide el numerador y el denominador entre {n}, y queda", mul: "multiplica el numerador y el denominador por {n}, y queda" }
+    steps: { div: "divide el numerador y el denominador entre {n}, y queda", mul: "multiplica el numerador y el denominador por {n}, y queda" },
+    joins: { "a el": "al", "de el": "del", "es es": "es" }
   },
   // Next problem, the math keys
   "tools.next": "Problema siguiente →",
