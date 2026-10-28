@@ -1015,7 +1015,7 @@ HelperI18n.add("es", {
   "story-problems.fraction.ofMeansSplitIt": "“{fT} de {A}” quiere decir: repártelo en {fd} partes iguales (<strong>divide</strong> entre {fd}){x}{x2}",
   "story-problems.fraction.andTakeOneOf": " y toma una de ellas.",
   "story-problems.fraction.thenTakeOfThose": ", luego toma {fn} de esas partes (<strong>multiplica</strong> por {fn}).",
-  "story-problems.fraction.theQuestionAsksFor": " La pregunta pide el resto, así que al final quita esa parte del total (<strong>resta</strong>), o cuenta las otras {x} partes.",
+  "story-problems.fraction.theQuestionAsksFor": " La pregunta pide el resto, así que al final quita esa parte del total (<strong>resta</strong>), o cuenta {x|la otra|las otras} {x} {x|parte|partes}.",
   "story-problems.fraction.part": "(parte ÷ {fn}) × {fd} = {QM}",
   "story-problems.fraction.wholeOfTheWhole": "total − {fT} del total = {QM}",
   "story-problems.fraction.whole": "(total ÷ {fd}) × {fn} = {QM}",

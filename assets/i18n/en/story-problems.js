@@ -1014,7 +1014,7 @@ HelperI18n.add("en", {
   "story-problems.fraction.ofMeansSplitIt": "“{fT} of {A}” means: split it into {fd} equal parts (<strong>divide</strong> by {fd}){x}{x2}",
   "story-problems.fraction.andTakeOneOf": " and take one of them.",
   "story-problems.fraction.thenTakeOfThose": ", then take {fn} of those parts (<strong>multiply</strong> by {fn}).",
-  "story-problems.fraction.theQuestionAsksFor": " The question asks for the rest, so finally take that part away from the whole (<strong>subtract</strong>) — or count the other {x} parts.",
+  "story-problems.fraction.theQuestionAsksFor": " The question asks for the rest, so finally take that part away from the whole (<strong>subtract</strong>) — or count the other {x} {x|part|parts}.",
   "story-problems.fraction.part": "(part ÷ {fn}) × {fd} = {QM}",
   "story-problems.fraction.wholeOfTheWhole": "whole − {fT} of the whole = {QM}",
   "story-problems.fraction.whole": "(whole ÷ {fd}) × {fn} = {QM}",

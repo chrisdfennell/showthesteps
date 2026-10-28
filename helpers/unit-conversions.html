@@ -2359,6 +2359,8 @@
     defU("ha", "area", "metric", R(10000), "hectare", "hectares", "ha");
     defU("usd", "money", "money", R(1), "dollar", "dollars", "$");
     defU("cent", "money", "money", R(1, 100), "cent", "cents", "¢");
+    U.ton.ab1 = "ton"; // a word for an abbreviation: "1 ton", "1 acre" after a 1 (not "1 tons")
+    U.acre.ab1 = "acre";
     var TEMPS = {
       degF: { key: "degF", one: "degree Fahrenheit", many: "degrees Fahrenheit", ab: "°F", name: "Fahrenheit" },
       degC: { key: "degC", one: "degree Celsius", many: "degrees Celsius", ab: "°C", name: "Celsius" },
@@ -2467,6 +2469,12 @@
     function atomAbT(a) { return U[a.u].ab + supT(a.p); }
 
     function atomAbH(a, cx) { return '<span class="ux' + (cx ? " cx" : "") + '">' + esc(U[a.u].ab) + "</span>" + supH(a.p); }
+    // the abbreviation after a 1: the singular where the abbreviation is a word (1 acre, 1 ton)
+    function atomAb1T(a) { return a.p === 1 && U[a.u].ab1 ? U[a.u].ab1 : atomAbT(a); }
+
+    function atomAb1H(a, cx) { return a.p === 1 && U[a.u].ab1 ? '<span class="ux' + (cx ? " cx" : "") + '">' + esc(U[a.u].ab1) + "</span>" : atomAbH(a, cx); }
+
+    function cuAb1T(cu) { return simple(cu) ? atomAb1T(cu.n[0]) : cuAbT(cu); }
 
     function cuAbT(cu) {
       if (cu.temp) return TEMPS[cu.temp].ab;
@@ -2508,12 +2516,12 @@
         return cu.d.length ? m + "/" + cu.d.map(atomAbT).join("·") : m;
       }
       if (!cu.temp && cu.n[0].u === "cent" && cu.n.length === 1) return numT(v) + "¢" + (cu.d.length ? "/" + cu.d.map(atomAbT).join("·") : "");
-      return numT(v) + " " + cuAbT(cu);
+      return numT(v) + " " + (manyV(v) ? cuAbT(cu) : cuAb1T(cu));
     }
 
     function qH(v, cu) {
       if (!cu.temp && cu.n.length === 1 && (cu.n[0].u === "usd" || cu.n[0].u === "cent")) return esc(qT(v, cu)).replace(/²/g, "<sup>2</sup>").replace(/³/g, "<sup>3</sup>");
-      return numH(v) + "&nbsp;" + cuAbH(cu);
+      return numH(v) + "&nbsp;" + (!manyV(v) && simple(cu) && U[cu.n[0].u].ab1 ? esc(U[cu.n[0].u].ab1) : cuAbH(cu));
     }
 
     function qW(v, cu) { return numT(v) + " " + cuW(cu, manyV(v)); }
@@ -2644,9 +2652,9 @@
 
     function atomOfKey(k) { var m = /^(.+)\^([23])$/.exec(k); return m ? atom(m[1], Number(m[2])) : atom(k, 1); }
     // a fact as words: "1 ft = 12 in"
-    function factT(e) { return "1 " + atomAbT(atomOfKey(e.b)) + " = " + numT(e.k) + " " + atomAbT(atomOfKey(e.a)); }
+    function factT(e) { return "1 " + atomAb1T(atomOfKey(e.b)) + " = " + numT(e.k) + " " + atomAbT(atomOfKey(e.a)); }
 
-    function factH(e) { return "1&nbsp;" + atomAbH(atomOfKey(e.b)) + " = " + numH(e.k) + "&nbsp;" + atomAbH(atomOfKey(e.a)); }
+    function factH(e) { return "1&nbsp;" + atomAb1H(atomOfKey(e.b)) + " = " + numH(e.k) + "&nbsp;" + atomAbH(atomOfKey(e.a)); }
 
     function bridgeOf(e) {
       for (var i = 0; i < BRIDGE.length; i++)
@@ -4184,7 +4192,7 @@
     function amtH(nh, a, cx) {
       if (a.u === "usd") return '<span class="ux' + (cx ? " cx" : "") + '">$</span>' + nh;
       if (a.u === "cent") return nh + '<span class="ux' + (cx ? " cx" : "") + '">¢</span>';
-      return nh + "&nbsp;" + atomAbH(a, cx);
+      return nh + "&nbsp;" + (nh === "1" ? atomAb1H(a, cx) : atomAbH(a, cx));
     }
 
     function amtNumH(v, a) { return a.u === "usd" && !isInt(v) && isTermD(v.d) && decPlaces(v.d) <= 2 ? esc(fixed(v, 2)) : numH(v); } // dollars show their cents: $3.20, like qT
@@ -4602,7 +4610,7 @@
         var r = dvd(cuF(tg[i]), cuF(sm)),
           q = parts[i].v,
           left = sub(rest, mul(q, r));
-        var fact = "1 " + cuAbT(tg[i]) + " = " + numT(r) + " " + cuAbT(sm);
+        var fact = "1 " + cuAb1T(tg[i]) + " = " + numT(r) + " " + cuAbT(sm);
         lines.push(eqL(numH(rest) + opS("÷") + numH(r) + opS("=") + B(bs(q.n)) + ' <span class="nm">R</span> ' + numH(left), "(" + esc(fact) + ")"));
         says.push(tx("unit-conversions.tm.with", { a: B(numT(rest) + " ÷ " + numT(r) + " = " + bs(q.n) + " R " + numT(left)), b: B(bs(q.n) + " " + cuAbT(tg[i])), n: numT(left), us: manyW(sm) }));
         rest = left;
@@ -4651,7 +4659,7 @@
         col = A.map(function(x, i) { return add(x, Bv[i]); });
         W.add(tx("unit-conversions.as.addCol"), xs(colTable(U0, [{ cells: cellsOf(A) }, { op: "+", cells: cellsOf(Bv) }], 1, col.map(numH))),
           [
-            ["a", tx("unit-conversions.tag.add"), U0.map(function(c, i) { return B(numT(A[i]) + " + " + numT(Bv[i]) + " = " + numT(col[i])) + " " + manyW(c); }).join(", ") + "."]
+            ["a", tx("unit-conversions.tag.add"), U0.map(function(c, i) { return B(numT(A[i]) + " + " + numT(Bv[i]) + " = " + numT(col[i])) + " " + cuW(c, manyV(col[i])); }).join(", ") + "."]
           ]);
       } else {
         var Aw = A.slice(),
@@ -4677,7 +4685,7 @@
         col = Aw.map(function(x, k) { return sub(x, Bv[k]); });
         W.add(tx("unit-conversions.as.subCol"), xs(colTable(U0, [{ cells: cellsOf(Aw) }, { op: "−", cells: cellsOf(Bv) }], 1, col.map(numH))),
           [
-            ["v", tx("unit-conversions.tag.subtract"), U0.map(function(c, k) { return B(numT(Aw[k]) + " − " + numT(Bv[k]) + " = " + numT(col[k])) + " " + manyW(c); }).join(", ") + "."]
+            ["v", tx("unit-conversions.tag.subtract"), U0.map(function(c, k) { return B(numT(Aw[k]) + " − " + numT(Bv[k]) + " = " + numT(col[k])) + " " + cuW(c, manyV(col[k])); }).join(", ") + "."]
           ]);
         A = Aw;
       }
@@ -5313,7 +5321,7 @@
         var sm = P.units[P.units.length - 1],
           up = P.units[P.units.length - 2];
         var r = dvd(cuF(up), cuF(sm));
-        return P.op === "add" ? tx("unit-conversions.h.addCols", { a: B(numT(r) + " " + cuAbT(sm)), b: B("1 " + cuAbT(up)) }) : tx("unit-conversions.h.subCols", { u: esc(manyW(sm)), tu: esc(thePl(sm)), b: B("1 " + cuAbT(up) + " = " + numT(r) + " " + cuAbT(sm)) });
+        return P.op === "add" ? tx("unit-conversions.h.addCols", { a: B(numT(r) + " " + cuAbT(sm)), b: B("1 " + cuAb1T(up)) }) : tx("unit-conversions.h.subCols", { u: esc(manyW(sm)), tu: esc(thePl(sm)), b: B("1 " + cuAb1T(up) + " = " + numT(r) + " " + cuAbT(sm)) });
       }
       if (P.kind === "rate") return tx("unit-conversions.h.rate", { a: B(numT(P.top.v)), b: B(numT(P.per.v)), u: esc(oneW(cuOf(P.per.cu.n[0].u))) }) + (P.to ? tx("unit-conversions.h.rateThen") : "");
       var tg = P.tgt[0];

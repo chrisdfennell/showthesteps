@@ -1633,7 +1633,7 @@ HelperI18n.add("es", {
 
   // ---- the page's markup (80_markup.py) ----
   "aviation.eyebrow": "Matemáticas en el trabajo &middot; aviación, paso a paso",
-  "aviation.tagline": "Las cuentas de la computadora de vuelo E6B de un piloto, paso a paso: corrección de viento y velocidad respecto al suelo,\n        componentes del viento cruzado, tiempo, distancia y combustible, altitud de presión y de densidad, velocidad verdadera, de rumbo verdadero a magnético y de brújula,\n        inicio del descenso, peso y balance, virajes y planeo, reportes meteorológicos METAR y TAF decodificados, y vientos en altura. La trigonometría del triángulo de viento está en\n        <a href=\"trigonometry.html\">the Unit Circle</a>, y los cambios de unidades comunes en <a href=\"unit-conversions.html\">the Measuring Tape</a>.",
+  "aviation.tagline": "Las cuentas de la computadora de vuelo E6B de un piloto, paso a paso: corrección de viento y velocidad respecto al suelo,\n        componentes del viento cruzado, tiempo, distancia y combustible, altitud de presión y de densidad, velocidad verdadera, de rumbo verdadero a magnético y de brújula,\n        inicio del descenso, peso y balance, virajes y planeo, reportes meteorológicos METAR y TAF decodificados, y vientos en altura. La trigonometría del triángulo de viento está en\n        <a href=\"trigonometry.html\">The Unit Circle</a>, y los cambios de unidades comunes en <a href=\"unit-conversions.html\">The Measuring Tape</a>.",
   "aviation.safety": "<b>Solo para aprender.</b> Esta página es para estudiar y para revisar tareas y trabajos de\n    escuela de vuelo &mdash; no para planear un vuelo real. Usa la información meteorológica, las cartas y las herramientas de planeación de vuelo oficiales, y\n    los datos del POH (manual de operación del piloto) de tu aeronave. Las pestañas Clima y Vientos en altura son para\n    aprender a leer reportes y pronósticos: antes de un vuelo real, obtén un briefing meteorológico oficial (en EE. UU., de Flight Service en 1800wxbrief.com).",
   "aviation.learn": "<span class=\"ht-ll\">Lecciones</span> <a href=\"../learn/wind-correction-angle.html\">ángulo de corrección de viento</a> <a href=\"../learn/crosswind-component.html\">componente de viento cruzado</a> <a href=\"../learn/density-altitude.html\">altitud de densidad</a> <a href=\"../learn/weight-and-balance.html\">peso y balance</a> <a href=\"../learn/index.html#work\">todas las lecciones de Matemáticas en el trabajo</a>",
   "aviation.modesAria": "Qué tipo de problema",
@@ -2033,7 +2033,7 @@ HelperI18n.add("es", {
 
   // ---- the footnote, copy link ----
   "aviation.linkCopied": "Enlace copiado ✓",
-  "aviation.foot": "Las reglas prácticas se nombran donde se usan, con la fórmula exacta al lado. Los senos y cosenos: <a href=\"{trig}\">the Unit Circle</a>. Las unidades de todos los días: <a href=\"{units}\">the Measuring Tape</a>. Velocidad, distancia y tiempo como razones: <a href=\"{ratios}\">the Ratio Table</a>.",
+  "aviation.foot": "Las reglas prácticas se nombran donde se usan, con la fórmula exacta al lado. Los senos y cosenos: <a href=\"{trig}\">The Unit Circle</a>. Las unidades de todos los días: <a href=\"{units}\">The Measuring Tape</a>. Velocidad, distancia y tiempo como razones: <a href=\"{ratios}\">The Ratio Table</a>.",
 
   // ---- the latest METAR ----
   "aviation.wxf.note": "El código del aeropuerto se envía al National Weather Service de EE. UU. (api.weather.gov) para obtener su reporte más reciente.",

@@ -13,7 +13,7 @@ HelperI18n.add("es", {
   "probability.tab.space": "Todos los resultados",
   "probability.tab.expected": "Esperado y experimentos",
   "probability.numLab": "Tu problema",
-  "probability.footnote": "Cada probabilidad se calcula exactamente y se muestra de tres maneras: como fracción, como decimal y como porcentaje. ¿Necesitas ayuda para simplificar la fracción? Usa <a href=\"fractions.html\">the Fraction Bar</a>; para convertirla en porcentaje, está <a href=\"percents.html\">the Hundred Grid</a>.",
+  "probability.footnote": "Cada probabilidad se calcula exactamente y se muestra de tres maneras: como fracción, como decimal y como porcentaje. ¿Necesitas ayuda para simplificar la fracción? Usa <a href=\"fractions.html\">The Fraction Bar</a>; para convertirla en porcentaje, está <a href=\"percents.html\">The Hundred Grid</a>.",
   // ---- the problems the tabs start with (typed problems: they are read back, so a translation must be one the page reads) ----
   "probability.def.simple": "P(sacar un 4)",
   "probability.def.complement": "P(no 6)",

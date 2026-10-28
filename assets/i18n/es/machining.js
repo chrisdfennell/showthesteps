@@ -2,7 +2,7 @@
 HelperI18n.add("es", {
   // ---- the page's markup ----
   "machining.eyebrow": "Matemáticas en el trabajo &middot; maquinado y soldadura, paso a paso",
-  "machining.tagline": "Las matemáticas del torno, la fresadora y la cabina de soldar, un paso a la vez: velocidad del husillo y avance, brocas para machuelo y roscas, conos, círculos de pernos, barras de senos, cuánto pesa una pieza de acero, aporte de calor y metal de aporte en la soldadura, y tolerancias y ajustes. Los triángulos rectángulos por sí solos están en <a href=\"trigonometry.html\">the Unit Circle</a>, y los cambios de unidades sencillos en <a href=\"unit-conversions.html\">the Measuring Tape</a>.",
+  "machining.tagline": "Las matemáticas del torno, la fresadora y la cabina de soldar, un paso a la vez: velocidad del husillo y avance, brocas para machuelo y roscas, conos, círculos de pernos, barras de senos, cuánto pesa una pieza de acero, aporte de calor y metal de aporte en la soldadura, y tolerancias y ajustes. Los triángulos rectángulos por sí solos están en <a href=\"trigonometry.html\">The Unit Circle</a>, y los cambios de unidades sencillos en <a href=\"unit-conversions.html\">The Measuring Tape</a>.",
   "machining.safety": "<b>Para aprender y practicar en el taller.</b> Las velocidades, los avances y las densidades de aquí son valores típicos para practicar las cuentas. En un trabajo real, sigue las velocidades y avances del fabricante de la herramienta, las tolerancias del plano y tu especificación del procedimiento de soldadura (WPS), y usa tus lentes de seguridad.",
   "machining.modesAria": "Qué tipo de problema",
   "machining.tab.rpm": "Velocidad del husillo",
@@ -1011,7 +1011,7 @@ HelperI18n.add("es", {
   "machining.errRead": "Algo salió mal al leer ese problema. Intenta escribirlo como uno de los ejemplos.",
   "machining.errWork": "Algo salió mal al resolver ese problema.",
   "machining.linkCopied": "Enlace copiado ✓",
-  "machining.foot": "Los decimales que escribes se mantienen exactos; donde un número se redondea (las RPM a un número entero, las medidas a 0.0001 pulgadas), el paso lo dice. Triángulos rectángulos y ángulos: <a href=\"{tr}\">the Unit Circle</a>. Círculos, áreas y volúmenes: <a href=\"{geo}\">the Shape Shop</a>. De pulgadas a mm y otras unidades: <a href=\"{uc}\">the Measuring Tape</a>. Ley de Ohm y potencia: <a href=\"{el}\">the Circuit Board</a>.",
+  "machining.foot": "Los decimales que escribes se mantienen exactos; donde un número se redondea (las RPM a un número entero, las medidas a 0.0001 pulgadas), el paso lo dice. Triángulos rectángulos y ángulos: <a href=\"{tr}\">The Unit Circle</a>. Círculos, áreas y volúmenes: <a href=\"{geo}\">The Shape Shop</a>. De pulgadas a mm y otras unidades: <a href=\"{uc}\">The Measuring Tape</a>. Ley de Ohm y potencia: <a href=\"{el}\">The Circuit Board</a>.",
 
   // ---- check my answer ----
   "machining.ck.drillType": "Escribe una broca como <b>27/64</b>, <b>#7</b> o <b>F</b> (o su tamaño, como <b>0.4219</b>).",

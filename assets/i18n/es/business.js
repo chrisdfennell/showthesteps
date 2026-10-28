@@ -282,7 +282,7 @@ HelperI18n.add("es", {
   "business.till.reads.change": "total {t}{dot}pagó {p} → el cambio",
   "business.till.reads.change5": "total {t}{dot}pagó {p}{dot}efectivo a los 5¢ más cercanos → el cambio",
   "business.till.reads.drawer": "{x} → el conteo",
-  "business.till.reads.drawerOS": "{x} → el conteo y el sobrante/faltante",
+  "business.till.reads.drawerOS": "{x} → el conteo y si hay sobrante o faltante",
   "business.till.nPieces": "{n} billetes y monedas",
   "business.till.countedX": "contado {x}",
   "business.till.startX": "inicio {x}",

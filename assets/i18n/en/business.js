@@ -282,7 +282,7 @@ HelperI18n.add("en", {
   "business.till.reads.change": "total {t}{dot}paid {p} → the change",
   "business.till.reads.change5": "total {t}{dot}paid {p}{dot}cash to the nearest 5¢ → the change",
   "business.till.reads.drawer": "{x} → the count",
-  "business.till.reads.drawerOS": "{x} → the count and the over/short",
+  "business.till.reads.drawerOS": "{x} → the count and whether it’s over or short",
   "business.till.nPieces": "{n} bills and coins",
   "business.till.countedX": "counted {x}",
   "business.till.startX": "start {x}",

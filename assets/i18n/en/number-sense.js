@@ -310,7 +310,7 @@ HelperI18n.add("en", {
   "number-sense.pl.inWords": "In words: {w}",
   "number-sense.pl.partsTag": "Parts",
   "number-sense.pl.parts": "Each part tells you one digit and its place:",
-  "number-sense.pl.partLine": "<b>{v}</b> is {cnt}, so write a <b>{d}</b> in the {p} place.",
+  "number-sense.pl.partLine": "<b>{v}</b> is {cnt}, so write {d|=8:an|other:a} <b>{d}</b> in the {p} place.",
   "number-sense.pl.zerosTag": "Zeros",
   "number-sense.pl.gaps": "There is no part for the <b>{list}</b>, so write a <b>0</b> there.",
   "number-sense.pl.gapsOr": "</b> or <b>",

@@ -2,7 +2,7 @@
 HelperI18n.add("es", {
   // ---- the page's markup ----
   "carpentry.eyebrow": "Matemáticas en el trabajo &middot; carpintería, paso a paso",
-  "carpentry.tagline": "Las matemáticas de la obra, un paso a la vez: pies, pulgadas y dieciseisavos, pies tablares, contrahuellas y zancas de escalera, pendiente del techo y cabios, sacar una esquina a escuadra, montantes a centro, materiales con desperdicio, concreto por yarda y ángulos de inglete. Las fracciones por sí solas están en <a href=\"fractions.html\">the Fraction Bar</a>, y los cambios de unidades sencillos en <a href=\"unit-conversions.html\">the Measuring Tape</a>.",
+  "carpentry.tagline": "Las matemáticas de la obra, un paso a la vez: pies, pulgadas y dieciseisavos, pies tablares, contrahuellas y zancas de escalera, pendiente del techo y cabios, sacar una esquina a escuadra, montantes a centro, materiales con desperdicio, concreto por yarda y ángulos de inglete. Las fracciones por sí solas están en <a href=\"fractions.html\">The Fraction Bar</a>, y los cambios de unidades sencillos en <a href=\"unit-conversions.html\">The Measuring Tape</a>.",
   "carpentry.safety": "<b>Para aprender y practicar la planeación.</b> Revisa los códigos de construcción de tu localidad y los datos del fabricante (rendimiento, cobertura, claros) antes de construir. Los valores de código de esta página son valores típicos, no la ley donde vives.",
   "carpentry.learn": "<span class=\"ht-ll\">Lecciones</span> <a href=\"../learn/board-feet.html\">pies tablares</a> <a href=\"../learn/stair-rise-and-run.html\">altura y huella de escaleras</a> <a href=\"../learn/rafter-length.html\">largo del cabio</a> <a href=\"../learn/how-much-concrete.html\">cuánto concreto</a> <a href=\"../learn/index.html#work\">todas las lecciones de Matemáticas en el trabajo</a>",
   "carpentry.modesAria": "Qué tipo de problema",
@@ -1074,7 +1074,7 @@ HelperI18n.add("es", {
   "carpentry.errRead": "Algo salió mal al leer ese problema. Intenta escribirlo como uno de los ejemplos.",
   "carpentry.errWork": "Algo salió mal al resolver ese problema.",
   "carpentry.linkCopied": "Enlace copiado ✓",
-  "carpentry.foot": "Cada número de la cinta métrica se mantiene exacto, como fracción; donde una longitud se redondea al 1/16 de pulgada más cercano, el paso lo dice. Fracciones solas: <a href=\"{fractions}\">the Fraction Bar</a>. Triángulos rectángulos y ángulos: <a href=\"{trigonometry}\">the Unit Circle</a>. Área y volumen de figuras: <a href=\"{geometry}\">the Shape Shop</a>. De pies a pulgadas y otras unidades: <a href=\"{unitconversions}\">the Measuring Tape</a>.",
+  "carpentry.foot": "Cada número de la cinta métrica se mantiene exacto, como fracción; donde una longitud se redondea al 1/16 de pulgada más cercano, el paso lo dice. Fracciones solas: <a href=\"{fractions}\">The Fraction Bar</a>. Triángulos rectángulos y ángulos: <a href=\"{trigonometry}\">The Unit Circle</a>. Área y volumen de figuras: <a href=\"{geometry}\">The Shape Shop</a>. De pies a pulgadas y otras unidades: <a href=\"{unitconversions}\">The Measuring Tape</a>.",
 
   // ---- check my answer ----
   "carpentry.ck.typeYN": "Escribe <b>sí</b> o <b>no</b>.",

@@ -3778,7 +3778,7 @@
             ]);
         } else {
           W.add(tx("machining.taper.perInchFoot"),
-            eqL(decOf(R.diff, 6) + " ÷ " + esc(gT(P.L)) + " = " + tx("machining.taper.inPerInch", { v: qT(R.tpi, 5) }) + opS("·") + "× 12 = " + res(tx("machining.taper.inPerFoot", { v: qT(R.tpf, 4) }))),
+            eqL(decOf(R.diff, 6) + " ÷ " + esc(gT(P.L)) + " = " + tx("machining.taper.inPerInch", { v: qT(R.tpi, 5) }) + " × 12 = " + res(tx("machining.taper.inPerFoot", { v: qT(R.tpf, 4) }))),
             [
               ["v", "÷ L", tx("machining.taper.tpiRead", { v: B(qT(R.tpi, 5)) })],
               ["m", "× 12", tx("machining.taper.tpfRead", { v: B(qT(R.tpf, 4) + " in") })]

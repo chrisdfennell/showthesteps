@@ -2146,6 +2146,8 @@
     function edgeD(e) { return EDGE_D[e || "river"] || e; } // "from the river", "along the river"
 
     function edgeA(e) { return EDGE_A[e || "river"] || e; } // "along a river"
+    // Spanish: the edge's article after "a" / "de" ("junto a el río" → "junto al río", "a lo largo de el río" → "del río")
+    function deAl(s) { return window.HelperI18n && HelperI18n.lang !== "en" ? String(s).replace(/\b(de|a) el\b/g, function(m, w) { return w === "de" ? "del" : "al"; }) : s; }
 
     function plural(n, w, ws) { return n + " " + (n === 1 ? w : (ws || w + "s")); }
     var WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
@@ -6806,8 +6808,8 @@
     function fenceWords(v) { // how the pieces are named
       var river = v.sides === 3;
       return {
-        x: river ? tr("calculus.fenceWords.eachSideThatRuns", { edge: edgeD(v.edge) }) : v.pens > 1 ? tr("calculus.fenceWords.eachShortSideAnd") : tr("calculus.fenceWords.theWidth"),
-        y: river ? tr("calculus.fenceWords.theSideAlongThe", { edge: edgeD(v.edge) }) : tr("calculus.fenceWords.theLength")
+        x: river ? deAl(tr("calculus.fenceWords.eachSideThatRuns", { edge: edgeD(v.edge) })) : v.pens > 1 ? tr("calculus.fenceWords.eachShortSideAnd") : tr("calculus.fenceWords.theWidth"),
+        y: river ? deAl(tr("calculus.fenceWords.theSideAlongThe", { edge: edgeD(v.edge) })) : tr("calculus.fenceWords.theLength")
       };
     }
 
@@ -6829,7 +6831,7 @@
           (v.pens > 1 ? ", divided into " + v.pens + " equal pens by fences parallel to the " + (v.sides === 3 ? "sides that run away from the " + (v.edge || "river") : "short sides") : "") + ". What dimensions give the largest area?";
       },
       shown: function(v) {
-        return tr("calculus.OPT_fence.aFarmerHasOf", { L: sN(v.L), u: uH(v.u), x: v.sides === 3 ? tr("calculus.OPT_fence.alongANoFence", { edge: edgeA(v.edge), edge2: edgeD(v.edge) }) : "", x2: v.pens > 1 ? tr("calculus.OPT_fence.dividedIntoEqualPens", { pens: v.pens, x: v.sides === 3 ? tr("calculus.OPT_fence.sidesThatRunAway", { edge: edgeD(v.edge) }) : tr("calculus.OPT_fence.shortSides") }) : "" });
+        return tr("calculus.OPT_fence.aFarmerHasOf", { L: sN(v.L), u: uH(v.u), x: v.sides === 3 ? deAl(tr("calculus.OPT_fence.alongANoFence", { edge: edgeA(v.edge), edge2: edgeD(v.edge) })) : "", x2: v.pens > 1 ? tr("calculus.OPT_fence.dividedIntoEqualPens", { pens: v.pens, x: v.sides === 3 ? deAl(tr("calculus.OPT_fence.sidesThatRunAway", { edge: edgeD(v.edge) })) : tr("calculus.OPT_fence.shortSides") }) : "" });
       },
       check: function(v) { if (sgnR(v.L) <= 0) throw new UserErr(tr("calculus.OPT_fence.theFenceNeedsA")); if (toF(v.L) > 1e7) throw new UserErr(tr("calculus.OPT_fence.thatTooMuchFence")); },
       model: function(P) {
@@ -6854,7 +6856,7 @@
         var x = M.b.q,
           y = qE(exE("(" + rStr(L) + "-" + a + "*" + eA(x.e) + ")/" + b));
         M.y = y;
-        M.ans = [{ k: v.sides === 3 ? tr("calculus.OPT_fence.awayFromThe", { edge: edgeD(v.edge) }) : v.pens > 1 ? tr("calculus.OPT_fence.shortSides2") : tr("calculus.OPT_fence.width"), q: x, u: u, key: "x" }, { k: v.sides === 3 ? tr("calculus.OPT_fence.alongThe", { edge: edgeD(v.edge) }) : tr("calculus.OPT_fence.length"), q: y, u: u, key: "y" }, { k: tr("calculus.OPT_fence.largestArea"), q: M.b.fq, u: sq(u), key: "A" }];
+        M.ans = [{ k: v.sides === 3 ? deAl(tr("calculus.OPT_fence.awayFromThe", { edge: edgeD(v.edge) })) : v.pens > 1 ? tr("calculus.OPT_fence.shortSides2") : tr("calculus.OPT_fence.width"), q: x, u: u, key: "x" }, { k: v.sides === 3 ? deAl(tr("calculus.OPT_fence.alongThe", { edge: edgeD(v.edge) })) : tr("calculus.OPT_fence.length"), q: y, u: u, key: "y" }, { k: tr("calculus.OPT_fence.largestArea"), q: M.b.fq, u: sq(u), key: "A" }];
         M.say = { h: tr("calculus.OPT_fence.makeAndTheLargest", { x: W.x, x2: B(withU(x, u)), y: W.y, y2: B(withU(y, u)), fq: B(withU(M.b.fq, sq(u))) }), t: tr("calculus.OPT_fence.makeAndTheLargest", { x: W.x, x2: withUT(x, u), y: W.y, y2: withUT(y, u), fq: withUT(M.b.fq, sq(u)) }) };
         M.answer = tr("calculus.OPT_fence.areaA", { x: withUT(x, u), y: withUT(y, u), fq: withUT(M.b.fq, sq(u)) });
         M.pic = picFence(v, x, y);
@@ -6864,7 +6866,7 @@
         var v = P.v,
           L = toF(v.L),
           mi = [];
-        if (v.sides === 3) mi.push({ v: [L / 4, L / 4], msg: tr("calculus.OPT_fence.thatWouldBeRight", { edge: edgeD(v.edge) }) });
+        if (v.sides === 3) mi.push({ v: [L / 4, L / 4], msg: deAl(tr("calculus.OPT_fence.thatWouldBeRight", { edge: edgeD(v.edge) })) });
         return [{ k: "d", label: tr("calculus.OPT_fence.dimensionsBothSides", { x: M.u ? " (" + M.u + ")" : "" }), type: "nums", want: [M.b.q, M.y], mist: mi },
           { k: "A", label: tr("calculus.OPT_fence.largestArea2", { x: M.u ? " (" + sq(M.u) + ")" : "" }), want: M.b.fq, mist: [{ v: M.b.q.v, msg: tr("calculus.OPT_fence.thatOneSideThe") }, { v: M.y.v, msg: tr("calculus.OPT_fence.thatOneSideThe2") }] }
         ];
@@ -6901,7 +6903,7 @@
           (v.pens > 1 ? " and divided into " + v.pens + " equal parts by fences parallel to the " + (v.sides === 3 ? "sides that run away from the " + (v.edge || "river") : "short sides") : "") + ". What dimensions use the least fencing?";
       },
       shown: function(v) {
-        return tr("calculus.OPT_fencemin.aRectangularGardenWith", { A: sN(v.A), replace: sq(v.u || "").replace(/^square units$/, "square units"), x: v.sides === 3 ? tr("calculus.OPT_fence.alongANoFence", { edge: edgeA(v.edge), edge2: edgeD(v.edge) }) : "", x2: v.pens > 1 ? tr("calculus.OPT_fencemin.andDividedIntoEqual", { pens: v.pens, x: v.sides === 3 ? tr("calculus.OPT_fence.sidesThatRunAway", { edge: edgeD(v.edge) }) : tr("calculus.OPT_fence.shortSides") }) : "" });
+        return tr("calculus.OPT_fencemin.aRectangularGardenWith", { A: sN(v.A), replace: sq(v.u || "").replace(/^square units$/, "square units"), x: v.sides === 3 ? deAl(tr("calculus.OPT_fence.alongANoFence", { edge: edgeA(v.edge), edge2: edgeD(v.edge) })) : "", x2: v.pens > 1 ? tr("calculus.OPT_fencemin.andDividedIntoEqual", { pens: v.pens, x: v.sides === 3 ? deAl(tr("calculus.OPT_fence.sidesThatRunAway", { edge: edgeD(v.edge) })) : tr("calculus.OPT_fence.shortSides") }) : "" });
       },
       check: function(v) { if (sgnR(v.A) <= 0) throw new UserErr(tr("calculus.OPT_fencemin.theAreaNeedsTo")); if (toF(v.A) > 1e10) throw new UserErr(tr("calculus.OPT_fencemin.thatAreaIsToo")); },
       model: function(P) {
@@ -6937,7 +6939,7 @@
         var x = M.b.q,
           y = qE(exE(rStr(Ar) + "/" + eA(x.e)));
         M.y = y;
-        M.ans = [{ k: v.sides === 3 ? tr("calculus.OPT_fence.awayFromThe", { edge: edgeD(v.edge) }) : tr("calculus.OPT_fence.width"), q: x, u: u, key: "x" }, { k: v.sides === 3 ? tr("calculus.OPT_fence.alongThe", { edge: edgeD(v.edge) }) : tr("calculus.OPT_fence.length"), q: y, u: u, key: "y" }, { k: tr("calculus.OPT_fencemin.leastFence"), q: M.b.fq, u: u, key: "F" }];
+        M.ans = [{ k: v.sides === 3 ? deAl(tr("calculus.OPT_fence.awayFromThe", { edge: edgeD(v.edge) })) : tr("calculus.OPT_fence.width"), q: x, u: u, key: "x" }, { k: v.sides === 3 ? deAl(tr("calculus.OPT_fence.alongThe", { edge: edgeD(v.edge) })) : tr("calculus.OPT_fence.length"), q: y, u: u, key: "y" }, { k: tr("calculus.OPT_fencemin.leastFence"), q: M.b.fq, u: u, key: "F" }];
         M.say = { h: tr("calculus.OPT_fencemin.makeAndThatTakes", { x: W.x, x2: B(withU(x, u)), y: W.y, y2: B(withU(y, u)), fq: B(withU(M.b.fq, u)) }), t: tr("calculus.OPT_fencemin.makeAndThatTakes2", { x: W.x, x2: withUT(x, u), y: W.y, y2: withUT(y, u), fq: withUT(M.b.fq, u) }) };
         M.answer = tr("calculus.OPT_fencemin.leastFence2", { x: withUT(x, u), y: withUT(y, u), fq: withUT(M.b.fq, u) });
         M.pic = picFence(v, x, y);
@@ -6947,7 +6949,7 @@
         var v = P.v,
           s0 = Math.sqrt(toF(v.A)),
           mi = [];
-        if (v.sides === 3) mi.push({ v: [s0, s0], msg: tr("calculus.OPT_fencemin.aSquareIsBest", { edge: edgeD(v.edge) }) });
+        if (v.sides === 3) mi.push({ v: [s0, s0], msg: deAl(tr("calculus.OPT_fencemin.aSquareIsBest", { edge: edgeD(v.edge) })) });
         return [{ k: "d", label: tr("calculus.OPT_fence.dimensionsBothSides", { x: M.u ? " (" + M.u + ")" : "" }), type: "nums", want: [M.b.q, M.y], mist: mi },
           { k: "F", label: tr("calculus.OPT_fencemin.leastFence3", { x: M.u ? " (" + M.u + ")" : "" }), want: M.b.fq, mist: [{ v: toF(v.A), msg: tr("calculus.OPT_fencemin.thatTheAreaThe") }, { v: M.b.q.v, msg: tr("calculus.OPT_fencemin.thatOneSidePut") }] }
         ];
