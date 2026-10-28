@@ -247,6 +247,11 @@
     var FO = "\uE001",
       FM = "\uE002",
       FC = "\uE003", // a stacked fraction: FO top FM bottom FC
+      UO = "\uE005",
+      UM = "\uE006",
+      UP = "\uE007",
+      UC = "\uE008", // a unit fraction (.uf): UO amount UM amount UC, "12 in over 1 ft"; UP for a rate, "$3.20 per 1 lb"
+      PCT = "\uE009", // a % on its own after a times or divide sign: the percent
       PO = "\uE010",
       PC = "\uE011", // a power (superscript)
       BO = "\uE012",
@@ -462,7 +467,9 @@
         per = per && per.replace(/^\s?\/\s?/, "");
         if (per) s += " per " + (PER[per] || per.replace("sq ft", "square foot"));
         return (neg ? "negative " : "") + s;
-      }).replace(/(\d[\d,.]*)\s?¢/g, function(m, n) { return n + (n === "1" ? " cent" : " cents"); }).replace(/(\d)\s?€/g, "$1 euros").replace(/€\s?(\d[\d,.]*)/g, "$1 euros").replace(/£\s?(\d[\d,.]*)/g, "$1 pounds");
+      }).replace(/(\d[\d,.]*)\s?¢(?:\s?\/\s?(hour|hr|h|day|week|wk|month|mo|year|yr|minute|min|mile|mi|gal|lb|oz|kg|item|each|ea|unit|person|page|sq ft|ft)\b)?/g, function(m, n, per) { // 20¢/oz: 20 cents per ounce
+        return n + (n === "1" ? " cent" : " cents") + (per ? " per " + (PER[per] || per.replace("sq ft", "square foot")) : "");
+      }).replace(/(\d)\s?€/g, "$1 euros").replace(/€\s?(\d[\d,.]*)/g, "$1 euros").replace(/£\s?(\d[\d,.]*)/g, "$1 pounds");
     }
 
     /* ---- clock times and ratios ---- */
@@ -886,6 +893,9 @@
         .replace(/([a-zA-Z])[\u0305\u0304]/g, "$1 bar").replace(/([a-zA-Z])\u0302/g, "$1 hat").replace(/([a-zA-Z])\u20d7/g, "vector $1").replace(/ȳ/g, "y bar");
       t = t.replace(/ȳ/g, "y bar").replace(/ŷ/g, "y hat").replace(/\b([tz]|df)\*/g, "$1 star"); // t*, the critical value
       t = t.replace(/\b(401|403|457|529)\(([a-z])\)/g, "$1 $2"); // a 401(k)
+      // a range from a negative number, before degrees: "−25–−10 °C", "-25--10 °C" is −25 to −10
+      t = t.replace(/(^|[\s(\[=,:;])([−-]\d[\d.,]*)[–-]([−-]?\d[\d.,]*)(?=\s?°)/g, "$1$2 to $3");
+      t = t.replace(/(^|[\s(])([×·÷])\s?%(?=$|[\s.,;:)])/g, "$1$2 " + PCT); // "× %": times the percent
       // dashes: a pause between words; numbers in a row (the 68–95–99.7 rule), a range (pages 3–5); else a minus
       t = t.replace(/\s*—\s*/g, ", ").replace(/([A-Za-z]{2,}[.,;]?)\s+–\s+(?=[A-Za-z]{2,})/g, "$1, ")
         .replace(/(\d)–(\d[\d.]*)–(?=\d)/g, "$1, $2, ").replace(/([A-Za-z]{3,}\s\d+)–(\d+)\b/g, "$1 to $2").replace(/–/g, "−");
@@ -1008,7 +1018,7 @@
       var M = L.marks || {};
       s = s.replace(/\b([a-zA-Z]|df) (bar|hat|star)\b/g, function(m, x, k) { return x + " " + (M[k] || k); })
         .replace(/\bvector ([a-zA-Z])\b/g, function(m, x) { return (M.vector || "vector") + " " + x; })
-        .replace(/(\d) to (?=\d)/g, "$1 " + (M.to || "to") + " ");
+        .replace(/(\d) to (?=[−-]?\d)/g, "$1 " + (M.to || "to") + " ").replace(new RegExp(PCT, "g"), M.percent || "%");
       s = moneyL(L, s);
       s = s.replace(/(^|[^\d.,])(\d{1,3}(?:,\d{3})+)(?!\d|,\d)/g, function(m, pre, n) { return pre + n.replace(/,/g, ""); }); // 1,200 is one number
       // repeating digits: 0.(3), 0.1(6), and the page's marked ones
@@ -1055,7 +1065,7 @@
         if (L.sym.hasOwnProperty(k)) s = symL(L, s, k, L.sym[k]);
       // decimals: 25.4 is "25 point 4"
       s = s.replace(/(\d)\.(?=\d)/g, "$1 " + L.point + " ").replace(/(^|[^\w])\.(?=\d)/g, "$1" + L.point + " ");
-      return tidy(s);
+      return tidy(unitFracs(s, F.per || F.over, F.over));
     }
 
     function words(t) {
@@ -1064,13 +1074,19 @@
       raw = [];
       done = [];
       plain = [];
-      var s = prep(t);
+      var s = prep(t).replace(new RegExp(PCT, "g"), "the percent");
       s = money(s);
       s = clock(s);
       s = repeat(s);
       s = units(s);
       s = special(s);
-      return tidy(expr(s));
+      return tidy(unitFracs(expr(s), "{a} per {b}", "{a} over {b}"));
+    }
+
+    // the unit fractions, once their amounts are words: "12 inches over 1 foot"; a rate, "3 dollars per pound"
+    function unitFracs(s, per, over) {
+      return s.replace(new RegExp(UO + "([^" + UO + UC + "]*)" + UP + "\\s*(?:1|un|una)\\s+([^" + UO + UC + "]*)" + UC, "g"), function(m, a, b) { return " " + fillIn(per, { a: a.trim(), b: b.trim() }) + " "; })
+        .replace(new RegExp(UO + "([^" + UO + UC + "]*)[" + UM + UP + "]([^" + UO + UC + "]*)" + UC, "g"), function(m, a, b) { return " " + fillIn(over, { a: a.trim(), b: b.trim() }) + " "; });
     }
 
     /* the page's markup, said: a copy of el with its math turned into marks words() reads */
@@ -1137,6 +1153,15 @@
           }
         }
         if (nu && de) fr.textContent = (/[\w)]/.test(lastChar(fr)) ? " " : "") + FO + nu.textContent.trim() + FM + de.textContent.trim() + FC + " ";
+      });
+      // unit fractions (unit-conversions): a factor, "12 in over 1 ft"; the amount itself, over 1 unit, is a rate: "per lb"
+      q(".uf").reverse().forEach(function(u) {
+        var nu = u.querySelector(".nu"),
+          de = u.querySelector(".de");
+        if (!nu || !de) return;
+        var b = de.textContent.trim(),
+          rate = !/\bfact\b/.test(u.className) && /^(?:\$\s?)?1(?:\s|¢|$)/.test(b);
+        u.textContent = " " + UO + nu.textContent.trim() + (rate ? UP : UM) + b + UC + " ";
       });
       q(".mx").reverse().forEach(function(mx) {
         if (L && !mx.children.length) return; // the helpers' whole number in a mixed number, not a matrix (English still says "the column" here)

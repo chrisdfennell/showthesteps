@@ -597,7 +597,7 @@ HelperI18n.add("es", {
        about: ≈ at the start ("≈ 8.5")    number: # before a digit    point: the decimal point (25.4: 25 punto 4)
        ratio: 3:2    sub: a subscript (x₁)    quantity: before a group that is more than one number    and: a list
        blank: a ? standing for the number to find (0.2 × ? = 15)    remainder: 55 ÷ 12 = 4 R 7    repeat: repeating digits (all: 0.(3), part: 0.1(6))
-       fractions: over (a over b), mixed (2 3/4), names: each denominator [one, many] ({n} = the numerator; past 20,
+       fractions: over (a over b), per (a rate: $3.20 over 1 lb, "por lb"), mixed (2 3/4), names: each denominator [one, many] ({n} = the numerator; past 20,
          a numerator more than 3 times the denominator says "over" instead)
        powers: x², x³, n: any other power, negative: x⁻²    roots: √ ∛ ∜, n: any other index, times: 6√2
        money: dollar / cent [one, many], both ($12.50), euro, pound    steps: the arrow between two fractions (÷6 over ÷6)
@@ -653,6 +653,7 @@ HelperI18n.add("es", {
     repeat: { all: "{n} periódico", part: "{a} con {r} periódico" },
     fractions: {
       over: "{a} sobre {b}",
+      per: "{a} por {b}",
       mixed: "{w} y {f}",
       names: {
         "2": ["un medio", "{n} medios"],
@@ -695,7 +696,7 @@ HelperI18n.add("es", {
       }
     },
     powers: { "2": "al cuadrado", "3": "al cubo", n: "a la {n}", negative: "a la menos {n}" },
-    marks: { bar: "barra", hat: "gorro", star: "estrella", vector: "el vector", to: "a" },
+    marks: { bar: "barra", hat: "gorro", star: "estrella", vector: "el vector", to: "a", percent: "el porcentaje" },
     roots: { "2": "la raíz cuadrada de", "3": "la raíz cúbica de", "4": "la raíz cuarta de", n: "la raíz de índice {n} de", times: "{c} por {r}" },
     money: { dollar: ["un dólar", "{n} dólares"], cent: ["un centavo", "{n} centavos"], both: "{d} con {c}", euro: "{n} euros", pound: "{n} libras" },
     steps: { div: "divide el numerador y el denominador entre {n}, y queda", mul: "multiplica el numerador y el denominador por {n}, y queda" },
