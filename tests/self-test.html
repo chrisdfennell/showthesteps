@@ -2095,7 +2095,12 @@
         // a comparison with no subject, and the Spanish "él" (he), which isn't "el" (the)
         ["q=" + encodeURIComponent("Mateo has 18 marbles. Has 7 fewer marbles than Aisha. How many marbles does Aisha have?"), ["25"]],
         ["q=" + encodeURIComponent("Mateo tiene 18 canicas. Él tiene 7 canicas menos que Aisha. ¿Cuántas canicas tiene Aisha?") + "&lang=es", ["25"]],
-        ["q=" + encodeURIComponent("Una libreta cuesta $2.75. Andrés compra 4 libretas. ¿Cuánto paga en total?") + "&lang=es", ["11"]]
+        ["q=" + encodeURIComponent("Una libreta cuesta $2.75. Andrés compra 4 libretas. ¿Cuánto paga en total?") + "&lang=es", ["11"]],
+        // amounts in different units, changed to one unit first (a user's story, 2026-10-28); an answer in feet and inches
+        ["q=" + encodeURIComponent("Kayla has 13 gallons 1 quart of gas in her gas storage tank. She uses 38 quarts of gas to fill the tank of her snowmobile. How many quarts of gas remain in the storage tank?"), ["15"]],
+        ["q=" + encodeURIComponent("A ribbon is 3 ft 4 in long. Mia cuts off 2 in. How long is the ribbon now, in feet and inches?"), ["3", "2", "~feet"]],
+        ["q=" + encodeURIComponent("Ann worked 2 hours 15 minutes on Monday and 1 hour 50 minutes on Tuesday. How many minutes did she work in all?"), ["245"]],
+        ["q=" + encodeURIComponent("Una bolsa de harina pesa 5 libras 3 onzas. Mamá usa 20 onzas. ¿Cuántas onzas de harina quedan?") + "&lang=es", ["63"]]
       ]
     };
 

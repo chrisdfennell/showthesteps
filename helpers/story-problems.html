@@ -10425,6 +10425,7 @@
     }
     // the answer as plain words: 38 shells · $4.50 · 5:35 p.m. · 1 hour 50 minutes · 24 square meters
     function ansText(A) {
+      if (A.cm) return uAmt(A.cm);
       if (A.k === "list") return listText(A.list);
       if (A.k === "q") return qText(A.v, A.w);
       if (A.k === "qr" && A.grp) return tr("story-problems.work.groupsLeftOver", { qty: qty(A.v, A.w), r: A.grp === "$" ? usd(A.r) : qty(A.r, A.grp) });
@@ -10436,6 +10437,7 @@
     }
 
     function ansHtml(A) {
+      if (A.cm) return A.cm.map(function(p) { return "<span>" + nh(p.v) + '</span><span class="word">' + esc(uName(p.k, p.v)) + "</span>"; }).join("");
       if (A.k === "list") return A.list.map(function(it, i) { return (i ? '<span class="word">' + (i === A.list.length - 1 ? (A.list.length > 2 ? tr("story-problems.work.and") : tr("story-problems.work.and2")) : ",") + "</span>" : "") + "<span>" + esc(it.t) + "</span>"; }).join("");
       if (A.k === "q") {
         if (isInt(A.v)) return "<span>" + nh(A.v) + "</span>" + (A.w ? '<span class="word">' + esc(noun(A.v, A.w)) + "</span>" : "");
@@ -10675,7 +10677,7 @@
       }
       var c = new Ctx(),
         A = M.ans,
-        story = sents ? storyHtml(sents) : typedHtml(P.rd, false);
+        story = sents ? storyHtml(sents) : typedHtml(P.rdo || P.rd, false);
       // 1. read it
       c.add([
           ["p", tr("story-problems.work.read"), tr("story-problems.work.readTheWholeStory")]
@@ -10683,6 +10685,8 @@
         [
           [tr("story-problems.work.readIt"), "p", '<div class="story">' + story + "</div>", true]
         ]);
+      // 1½. amounts in different units: change them to one unit first
+      if (P.uc && P.text) unitStep(c, P);
       // 2. what's being asked
       c.add([
           ["p", tr("story-problems.work.asked"), tr("story-problems.work.inAFewWords", { ask: esc(M.ask), whatKind: esc(whatKind(A, M)) })]
@@ -10699,7 +10703,7 @@
       ];
       extras.forEach(function(x) { knowLines.push(["u", tr("story-problems.work.extra"), tr("story-problems.work.theIsntNeededIt", { raw: Be(x.raw), what: esc(x.what) })]); });
       c.add(knowLines, null, [
-        [tr("story-problems.work.know"), "u", kn + (P.text && extras.length ? '<div class="story">' + typedHtml(P.rd, true) + "</div>" : "")]
+        [tr("story-problems.work.know"), "u", kn + (P.text && extras.length ? '<div class="story">' + typedHtml(P.rdo || P.rd, true) + "</div>" : "")]
       ]);
       // 4. pick the operation, and why
       c.add([
@@ -10732,6 +10736,8 @@
       // 6. solve, one operation per line
       c.add(M.calc.map(function(x) { return ["m", x.o || (x.h ? "=" : "="), calcSay(x)]; }), null,
         M.calc.map(function(x, i) { return [i === 0 ? tr("story-problems.work.solve") : tr("story-problems.work.then"), "m", calcRow(x), false, i < M.calc.length - 1]; }));
+      // 6½. an answer asked in a bigger unit, or in feet and inches: change it back
+      if (P.uc && P.uc.back) unitBack(c, P, M);
       // 7. answer in a sentence, and check it makes sense; when the problem also asks to write the equation (or the
       // expressions), they're part of the answer too
       var askEq = !!(P.text && M.eqn) && /\b(?:write|give|find|set up|show|create)\s+(?:an?|the)\s+(?:equation|inequality|system)s?\b|\bmodels?\s+(?:this|the)\s+(?:situation|problem|story)\b|\b(?:equation|inequality)\s+(?:that|to)\s+(?:represents?|models?|shows?)\b|\bwrite\s+and\s+solve\b|\bwrite\s+an?\s+equation\s+and\s+solve\b/i.test(P.text);
@@ -10765,8 +10771,9 @@
       var fieldKind = M.field && M.field.kind ? M.field.kind : A.k === "list" ? "list" : A.k === "$" ? "money" : A.k === "t" ? "clock" : A.k === "dur" ? "dur" : "num";
       if (A.list) M.diag = (M.diag || []).filter(function(dg) { return !A.list.some(function(it) { return eqR(it.v, dg.v); }); });
       var field = { key: "ans", kind: fieldKind, label: tr("story-problems.work.yourAnswer"), v: A.v, w: A.w || "", sq: !!A.sq, diag: M.diag || [], rem: M.field && M.field.rem, both: A.k === "qr", grp: A.k === "qr" && A.grp ? A.w : "", other: M.other || [], type: P.type, list: A.list || null };
+      if (A.vW) field.cm = unitField(P, A);
       var ph = { list: A.list ? "e.g. " + A.list.map(function(it, i) { return String(i + 3) + (it.lab && it.lab[0] && it.lab[0].length > 1 ? " " + it.lab[0] : ""); }).join(", ") : "", money: "e.g. 4.50", clock: tr("story-problems.work.pm"), dur: tr("story-problems.work.min"), num: A.k === "q" ? tr("story-problems.work.or") : A.k === "qr" ? "e.g. 6 R 1" : A.w ? "e.g. 24 " + (A.sq ? tr("story-problems.work.square", { x: (W.uw || tr("story-problems.work.units")) }) : A.w) : "e.g. 24" } [fieldKind];
-      field.ph = ph;
+      field.ph = A.cm ? tr("story-problems.units.ph", { x: P.uc.back.map(function(k) { return "2 " + uAb(k); }).join(" ") }) : ph;
       var opWord = M.idea.tag === "Add" ? tr("story-problems.work.add2") : M.idea.tag === "Subtract" ? tr("story-problems.work.subtract2") : M.idea.tag === "Multiply" ? tr("story-problems.work.multiply2") : M.idea.tag === "Divide" ? tr("story-problems.work.divide2") : esc(M.idea.tag) + " (" + esc(M.idea.sym) + ")";
       return {
         ctx: c,
@@ -10780,7 +10787,7 @@
         },
         closer: tr("story-problems.work.answer2", {
           say: M.ans.say,
-          x: (M.eqn ? tr("story-problems.work.theSameStepsAs") :
+          x: (M.eqn ? tr("story-problems.work.theSameStepsAs") : P.uc && P.text ? tr("story-problems.units.steps") :
             tr("story-problems.work.theSameSevenSteps"))
         }),
         fields: [field],
@@ -10844,8 +10851,8 @@
       "cost costs costing spent spend spends gave give gives got get gets found find finds bought buy buys sold sell sells used use uses ate eat eats lost lose loses " +
       "long wide tall high deep need needs needed hold holds holding seat seats fit fits shared share shares split splits make makes made away again same equally altogether rest").split(" ");
     var CONT = /^(bags?|boxes|box|packs?|packets?|groups?|teams?|plates?|baskets?|jars?|rows?|shelves|shelf|cartons?|trays?|cases?|packages?|bundles?|sets?|bunches|bunch|piles?|stacks?|vases?|cups?|tables?|cars?|vans?|buses|bus|tanks?|bowls?|buckets?|bins?|crates?|sheets?|tins?|cans?|bottles?|classes|class|friends?|students?|people|kids?|children|players?|pots?|tents?|rooms?|boats?|cabins?|bows?|necklaces?|bracelets?)$/;
-    var PLUSV = /\b(got|gets|get|found|finds|find|bought|buys|buy|received|receives|won|wins|picked|picks|collected|collects|earned|earns|saved|saves|made|makes|added|adds|came|come|comes|joined|joins|arrived|arrive|arrives|brought|brings|baked|bakes|caught|catches|planted|plants|grew|grows|more|another|was given|were given|is given|gave (?:her|him|them|me|us)\b|gives (?:her|him|them|me|us)\b|got on|get on)\b/;
-    var MINUSV = /\b(gave|gives|give|ate|eats|eat|lost|loses|lose|spent|spends|spend|sold|sells|sell|used|uses|use|took away|takes away|took|takes|broke|breaks|popped|pops|donated|donates|threw away|flew away|left|leave|leaves|got off|get off|went home|drank|drinks|mailed|sent|sends|traded|trades|returned|returns|removed|removes|shared|gave away|gives away|fell|fall|falls|melted|ran away|swam away|cut off)\b/;
+    var PLUSV = /\b(got|gets|get|found|finds|find|bought|buys|buy|received|receives|won|wins|picked|picks|collected|collects|earned|earns|saved|saves|made|makes|added|adds|came|come|comes|joined|joins|arrived|arrive|arrives|brought|brings|baked|bakes|caught|catches|planted|plants|grew|grows|gained|gains|more|another|was given|were given|is given|gave (?:her|him|them|me|us)\b|gives (?:her|him|them|me|us)\b|got on|get on)\b/;
+    var MINUSV = /\b(gave|gives|give|ate|eats|eat|lost|loses|lose|spent|spends|spend|sold|sells|sell|used|uses|use|took away|takes away|took|takes|broke|breaks|popped|pops|donated|donates|threw away|flew away|left|leave|leaves|got off|get off|went home|drank|drinks|drink|mailed|sent|sends|traded|trades|returned|returns|removed|removes|shared|gave away|gives away|fell|fall|falls|melted|ran away|swam away|cut off)\b/;
     var NAMESTOP = /^(The|A|An|There|Then|How|What|When|Where|Which|Who|Why|Each|Every|After|Before|If|She|He|They|It|Her|His|Their|This|That|These|Those|In|On|At|For|From|With|By|Now|Later|Next|Last|First|Some|All|One|Two|Three|Mr|Mrs|Ms|Dr|Miss|Today|Yesterday|Tomorrow|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday|January|February|March|April|May|June|July|August|September|October|November|December|Altogether|Together|Also|But|And|So|Is|Are|Was|Were|Do|Does|Did|Can|Could|Will|Would|Find|Use|Write|Show|Round|About|Her|Its|Our|We|You|I|Him|Them|Both|Half|Twice|If|Only|Still|Than|To|Of)$/;
 
     // "28 books were donated", "his grandmother sends him 18 more": something arrives — read it as received
@@ -10961,7 +10968,7 @@
       return out;
     }
 
-    function tokensOf(D) {
+    function tokensOf(D, keep) {
       var toks = [],
         m, L = D.toLowerCase();
       TOKRE.lastIndex = 0;
@@ -11020,7 +11027,7 @@
             if (lw === "one") {
               var pre = L.slice(Math.max(0, t.i - 12), t.i),
                 post = L.slice(t.end, t.end + 10);
-              if (/\b(each|every|no|any|which|this|that|the|some|another|only)\s$/.test(pre) || /^\s(of|another|more than|by one)\b/.test(post) || /^\s?'s/.test(post) || /\bat\s$/.test(pre) && /^\s(time|go)\b/.test(post)) continue;
+              if (/\b(each|every|no|any|which|this|that|the|some|another|only)\s$/.test(pre) || /^\s(of|another|more than|by one|that|who|which)\b/.test(post) || /^\s?'s/.test(post) || /\bat\s$/.test(pre) && /^\s(time|go)\b/.test(post)) continue;
             }
             var wv = wordNum(lw);
             if (wv === undefined) continue;
@@ -11058,7 +11065,7 @@
           out.push(tk);
           continue;
         }
-        if (tk.k === "n" && !tk.twice) {
+        if (tk.k === "n" && !tk.twice && !(keep && keep.some(function(x) { return tk.i >= x.j0 && tk.i < x.j1; }))) {
           var aft = D.slice(tk.end),
             dm = /^\s*(hours?|hrs?|h)\b(?:,?\s*(?:and\s*)?(\d+)\s*(minutes?|mins?)\b)?/i.exec(aft),
             mm = /^\s*(minutes?|mins?)\b/i.exec(aft);
@@ -11168,13 +11175,637 @@
       return sents.length - 1;
     }
 
-    function analyze(raw) {
+    /* ===================== stories with amounts in different units ===================== */
+    // "Kayla has 13 gallons 1 quart of gas … She uses 38 quarts … How many quarts remain?": when a story's amounts are
+    // in different units of one kind (or its question asks for another unit), every amount of that kind is changed to
+    // one unit first — the smallest one there, so the amounts stay whole — and the reader reads the story with the
+    // changed amounts (A.D). The page still shows the story as it was typed (A.U.D0); the change of units is a step of
+    // its own, with its facts, and an answer asked in a bigger unit ("in feet and inches") is changed back at the end.
+    // The facts are the ones Unit Conversions uses (its EDGES: 1 ft = 12 in, 1 gal = 4 qt, 1 h = 60 min …), all exact.
+    // Units of two kinds (gallons and feet), customary with metric, months with days, "ounces" that could be either,
+    // or a question that doesn't say its unit: it asks instead of guessing. A story whose amounts need no change, or
+    // that has rates, areas or clock times in it, is read exactly as before.
+    var UNITS = {}, // key → { k, f: its kind, s: how many of the kind's smallest unit it is, one, many (the reader's English) }
+      UKIND = {}; // kind → its units, smallest first
+    [
+      ["len", [
+        ["in", 1, "inch", "inches"],
+        ["ft", 12, "foot", "feet"],
+        ["yd", 36, "yard", "yards"],
+        ["mi", 63360, "mile", "miles"]
+      ]],
+      ["mlen", [
+        ["mm", 1, "millimeter", "millimeters"],
+        ["cm", 10, "centimeter", "centimeters"],
+        ["m", 1000, "meter", "meters"],
+        ["km", 1000000, "kilometer", "kilometers"]
+      ]],
+      ["vol", [
+        ["tsp", 1, "teaspoon", "teaspoons"],
+        ["tbsp", 3, "tablespoon", "tablespoons"],
+        ["floz", 6, "fluid ounce", "fluid ounces"],
+        ["cup", 48, "cup", "cups"],
+        ["pt", 96, "pint", "pints"],
+        ["qt", 192, "quart", "quarts"],
+        ["gal", 768, "gallon", "gallons"]
+      ]],
+      ["mvol", [
+        ["mL", 1, "milliliter", "milliliters"],
+        ["L", 1000, "liter", "liters"]
+      ]],
+      ["mass", [
+        ["oz", 1, "ounce", "ounces"],
+        ["lb", 16, "pound", "pounds"],
+        ["ton", 32000, "ton", "tons"]
+      ]],
+      ["mmass", [
+        ["mg", 1, "milligram", "milligrams"],
+        ["g", 1000, "gram", "grams"],
+        ["kg", 1000000, "kilogram", "kilograms"]
+      ]],
+      ["time", [
+        ["s", 1, "second", "seconds"],
+        ["min", 60, "minute", "minutes"],
+        ["h", 3600, "hour", "hours"],
+        ["d", 86400, "day", "days"],
+        ["wk", 604800, "week", "weeks"]
+      ]],
+      ["cal", [
+        ["mo", 1, "month", "months"],
+        ["yr", 12, "year", "years"]
+      ]]
+    ].forEach(function(f) {
+      UKIND[f[0]] = f[1].map(function(u) {
+        UNITS[u[0]] = { k: u[0], f: f[0], s: BigInt(u[1]), one: u[2], many: u[3] };
+        return u[0];
+      });
+    });
+    // the facts, as Unit Conversions has them: [small, big, k] is 1 big = k small
+    var UEDGES = [
+      ["in", "ft", 12],
+      ["ft", "yd", 3],
+      ["in", "yd", 36],
+      ["ft", "mi", 5280],
+      ["yd", "mi", 1760],
+      ["mm", "cm", 10],
+      ["cm", "m", 100],
+      ["mm", "m", 1000],
+      ["m", "km", 1000],
+      ["cm", "km", 100000],
+      ["mm", "km", 1000000],
+      ["floz", "cup", 8],
+      ["cup", "pt", 2],
+      ["pt", "qt", 2],
+      ["qt", "gal", 4],
+      ["cup", "qt", 4],
+      ["pt", "gal", 8],
+      ["cup", "gal", 16],
+      ["floz", "pt", 16],
+      ["floz", "qt", 32],
+      ["floz", "gal", 128],
+      ["tsp", "tbsp", 3],
+      ["tbsp", "floz", 2],
+      ["tbsp", "cup", 16],
+      ["mL", "L", 1000],
+      ["oz", "lb", 16],
+      ["lb", "ton", 2000],
+      ["mg", "g", 1000],
+      ["g", "kg", 1000],
+      ["mg", "kg", 1000000],
+      ["s", "min", 60],
+      ["min", "h", 60],
+      ["h", "d", 24],
+      ["d", "wk", 7],
+      ["s", "h", 3600],
+      ["mo", "yr", 12]
+    ];
+    // the words a story writes each unit with ("in", "m", "l", "g" and "h" are words too: see USHORT)
+    var UWORDS = [
+      ["in", "inches|inch|in"],
+      ["ft", "feet|foot|ft"],
+      ["yd", "yards|yard|yds|yd"],
+      ["mi", "miles|mile|mi"],
+      ["mm", "millimeters|millimetres|millimeter|millimetre|mm"],
+      ["cm", "centimeters|centimetres|centimeter|centimetre|cm"],
+      ["km", "kilometers|kilometres|kilometer|kilometre|km"],
+      ["m", "meters|metres|meter|metre|m"],
+      ["tsp", "teaspoons|teaspoon|tsp"],
+      ["tbsp", "tablespoons|tablespoon|tbsp|tbs"],
+      ["floz", "fluid ounces|fluid ounce|fl oz|fl. oz"],
+      ["cup", "cups|cup"],
+      ["pt", "pints|pint|pt"],
+      ["qt", "quarts|quart|qts|qt"],
+      ["gal", "gallons|gallon|gals|gal"],
+      ["mL", "milliliters|millilitres|milliliter|millilitre|ml"],
+      ["L", "liters|litres|liter|litre|l"],
+      ["oz", "ounces|ounce|oz"],
+      ["lb", "pounds|pound|lbs|lb"],
+      ["ton", "tons|ton"],
+      ["mg", "milligrams|milligram|mg"],
+      ["kg", "kilograms|kilogram|kilos|kilo|kg"],
+      ["g", "grams|gram|g"],
+      ["s", "seconds|second|secs|sec"],
+      ["min", "minutes|minute|mins|min"],
+      ["h", "hours|hour|hrs|hr|h"],
+      ["d", "days|day"],
+      ["wk", "weeks|week|wks|wk"],
+      ["mo", "months|month"],
+      ["yr", "years|year|yrs"]
+    ];
+    var USHORT = { "in": 1, m: 1, l: 1, g: 1, h: 1 };
+    var UW2K = {};
+    UWORDS.forEach(function(u) { u[1].split("|").forEach(function(w) { UW2K[w] = u[0]; }); });
+
+    function uAlt(all) { // the unit words as a pattern, longest first ("all": with the one-letter ones)
+      return Object.keys(UW2K).filter(function(w) { return all || !USHORT[w]; }).sort(function(a, b) { return b.length - a.length; })
+        .map(function(w) { return w.replace(/\./g, "\\.").replace(/ /g, "\\s"); }).join("|");
+    }
+    var UALL = uAlt(true),
+      UFULL = uAlt(false),
+      UMRE = new RegExp("\\b(\\d+(?:\\.\\d+)?\\s\\d+\\/\\d+|\\d+\\/\\d+|\\d+(?:\\.\\d+)?|(?:" + NW10 + ")(?:[\\s-](?:one|two|three|four|five|six|seven|eight|nine))?|" + NW1 + "|half an?|an?)(-|\\s?)(" + UALL + ")(?![a-z])", "g"),
+      UANY = new RegExp("\\b(?:" + UFULL + ")\\b"),
+      URATE = new RegExp("^\\s*(?:\\/|an?\\s+(?:" + UFULL + ")\\b|each\\s+(?:" + UFULL + ")\\b|every\\b|for (?:each|every)\\b)"),
+      UCONT = new RegExp("\\b(?:each|every)\\s+(?:" + UFULL + ")\\b|\\b(?:" + UFULL + ")\\s+(?:that\\s+|which\\s+)?(?:holds?|contains?|can hold)\\b|\\bof an?\\s+(?:" + UFULL + ")\\b"),
+      UNUMW = "(\\d+(?:\\.\\d+)?|" + NW1 + "|" + NW10 + ")",
+      UFACT = [ // "There are 4 quarts in a gallon.", "1 gallon = 4 quarts", "12 inches make a foot"
+        [new RegExp("\\b" + UNUMW + "\\s(" + UFULL + ")\\s(?:in|to)\\s(?:a|an|one|1|each|every)\\s(" + UFULL + ")\\b"), 1, 2, 3],
+        [new RegExp("\\b(?:a|an|one|1)\\s(" + UFULL + ")\\s*(?:is|equals|=|is equal to|makes)\\s*" + UNUMW + "\\s(" + UFULL + ")\\b"), 2, 3, 1],
+        [new RegExp("\\b" + UNUMW + "\\s(" + UFULL + ")\\s*(?:make|makes|equal|equals|=|is|are)\\s*(?:a|an|one|1)\\s(" + UFULL + ")\\b"), 1, 2, 3]
+      ];
+
+    function uNum(w) {
+      if (/^an?$/.test(w)) return ONE;
+      if (/^half/.test(w)) return R(1, 2);
+      if (/^\d/.test(w)) { var p = parseNum(w); return p && !p.zero ? p.v : null; }
+      var n = wordNum(w);
+      return n ? R(n) : null;
+    }
+    // 1 big = how many small (both of one kind, big the bigger one)
+    function uRatio(big, small) { return UNITS[big].s / UNITS[small].s; }
+
+    function uKindOfOz(ks) { // "ounces": a weight, or fluid ounces when everything else is a liquid's
+      var v = ks.some(function(k) { return k !== "oz" && UNITS[k].f === "vol"; }),
+        w = ks.some(function(k) { return k !== "oz" && UNITS[k].f === "mass"; });
+      return v && w ? null : v ? "floz" : "oz";
+    }
+
+    function unitsOf(D) {
+      var L = D.toLowerCase();
+      if (!UANY.test(L)) return null;
+      var sents = sentencesOf(D),
+        qi = -1;
+      sents.forEach(function(s, i) { if (D.slice(s.i, s.end).indexOf("?") >= 0) qi = i; });
+      if (qi < 0) sents.forEach(function(s, i) { if (qi < 0 && /^(how|what|when|find|which|about how|calculate)\b/i.test(D.slice(s.i, s.end))) qi = i; });
+      if (qi < 0) qi = sents.length - 1;
+      var QS = sents[qi] || { i: 0, end: D.length },
+        Q = L.slice(QS.i, QS.end);
+      // the facts the story states itself
+      var facts = [];
+      for (var fi = 0; fi < UFACT.length; fi++) {
+        var fre = new RegExp(UFACT[fi][0].source, "g"),
+          fm;
+        while ((fm = fre.exec(L))) {
+          var fn = uNum(fm[UFACT[fi][1]]),
+            fsm = UW2K[fm[UFACT[fi][2]].replace(/\s+/g, " ")],
+            fbg = UW2K[fm[UFACT[fi][3]].replace(/\s+/g, " ")];
+          if (fsm === "oz" && UNITS[fbg].f === "vol") fsm = "floz";
+          if (fbg === "oz" && UNITS[fsm].f === "vol") fbg = "floz";
+          if (!fn || UNITS[fsm].f !== UNITS[fbg].f || UNITS[fsm].s >= UNITS[fbg].s || !/^\s*(?:[.,;:!?)]|and\b|$)/.test(L.slice(fm.index + fm[0].length))) continue;
+          var want = R(uRatio(fbg, fsm));
+          if (!eqR(fn, want)) return { fail: "fact", big: fbg, small: fsm, said: fn, want: want };
+          facts.push({ i: fm.index, end: fm.index + fm[0].length, raw: D.slice(fm.index, fm.index + fm[0].length), big: fbg, small: fsm });
+        }
+      }
+      var inFact = function(i) { return facts.some(function(f) { return i >= f.i && i < f.end; }); };
+      // every number with a unit after it
+      var ps = [],
+        m;
+      UMRE.lastIndex = 0;
+      while ((m = UMRE.exec(L))) {
+        var i = m.index,
+          end = i + m[0].length,
+          nw = m[1],
+          w = m[3].replace(/\s+/g, " "),
+          k = UW2K[w],
+          art = /^(?:an?|half an?)$/.test(nw);
+        if (i && /[\w$.\/,-]/.test(L.charAt(i - 1))) continue;
+        if (art && m[2] !== " ") continue;
+        if (!art && /^[a-z]/.test(nw) && m[2] === "") continue;
+        if (w === "l" && D.charAt(end - 1) !== "L") continue; // a lower-case l isn't liters
+        if (art && /^(?:second|seconds|ton|tons)$/.test(w)) continue; // "a second bag", "a ton of homework"
+        if (/^seconds?$/.test(w) && /^\s+grade/.test(L.slice(end))) continue;
+        if (inFact(i)) continue;
+        var v = uNum(nw);
+        if (!v) continue;
+        var before = L.slice(Math.max(0, i - 40), i);
+        if (art && /\b(?:in|into|at|on|to|from|the|across|around|through|per|each|every|than)\s+$/.test(before)) continue; // "in a day", "to a yard"
+        ps.push({ i: i, end: end, ni: i, ne: art ? end : i + nw.length, k: k, w: w, v: v, art: art, hy: m[2] === "-", raw: D.slice(i, end) });
+      }
+      if (!ps.length && !facts.length) return null;
+      // things this pass leaves alone: rates, prices ("paid $100 for 2 months"), scales, areas and volumes, clock times,
+      // ages, amounts that vary with others
+      if (/\$|\d\s?¢|\b(?:dollars?|cents?|paid|pays?|costs?|price|charges?|fees?)\b|\bvar(?:y|ies)\b|\bproportional\b/.test(L)) return null;
+      if (/\band a half\b|\bmph\b|\bkph\b|\b(?:km|mi)\/h\b|\bper\b|\bsquare\b|\bsq\b|\bcubic\b|\barea\b|\bperimeter\b|[²³]|\^\s?[23]|\bspeed\b|\bhow fast\b|\brepresents?\b|\bstands? for\b|\bscale\b|\bmaps?\b|\bratio\b/.test(L) || UCONT.test(L)) return null;
+      // "6 months 2 weeks": months next to weeks or days can't be put in one unit exactly
+      for (var ci = 1; ci < ps.length; ci++)
+        if ((UNITS[ps[ci - 1].k].f === "cal") !== (UNITS[ps[ci].k].f === "cal") && /^(?:cal|time)$/.test(UNITS[ps[ci - 1].k].f) && /^(?:cal|time)$/.test(UNITS[ps[ci].k].f) && /^\s*,?\s*(?:and\s+)?$/.test(L.slice(ps[ci - 1].end, ps[ci].i))) return { fail: "months" };
+      ps = ps.filter(function(p) { return !(UNITS[p.k].f === "cal" && /^\s*(?:-|\s)?old\b|^\s+(?:older|younger)\b/.test(L.slice(p.end))) && !/\baged?\s+$/.test(L.slice(0, p.i)); });
+      // pieces next to each other, each in a smaller unit of the same kind: one amount ("13 gallons 1 quart", "1 yd 2 ft 3 in")
+      var ms = [];
+      ps.forEach(function(p) {
+        var last = ms[ms.length - 1],
+          lp = last && last.parts[last.parts.length - 1];
+        var pk = p.k === "oz" && lp && UNITS[lp.k].f === "vol" ? "floz" : p.k; // "1 cup 3 ounces"
+        if (lp && !p.art && !p.hy && !lp.hy && UNITS[pk].f === UNITS[lp.k].f && UNITS[pk].s < UNITS[lp.k].s && /^\s*,?\s*(?:and\s+)?$/.test(L.slice(lp.end, p.i))) {
+          p.k = pk;
+          last.parts.push(p);
+          last.end = p.end;
+        } else ms.push({ i: p.i, end: p.end, parts: [p] });
+      });
+      // a one-letter unit only counts in an amount of two units, or before "long", "of" …: "1 in 4" isn't inches
+      ms = ms.filter(function(x) {
+        var p = x.parts[0];
+        if (x.parts.length > 1 || !USHORT[p.w]) return true;
+        // ("cuts off 2 in." too, at the end of a sentence, when the story writes other amounts of that kind)
+        return /^\s*[.,;!?]/.test(L.slice(x.end)) && ps.some(function(o) { return o !== p && UNITS[o.k].f === UNITS[p.k].f && !USHORT[o.w]; }) ||
+          p.w !== "h" && /^\.?\s+(?:long|wide|tall|high|deep|thick|away|of)\b/.test(L.slice(x.end));
+      });
+      if (!ms.length && !facts.length) return null;
+      for (var mi = 0; mi < ms.length; mi++) {
+        var x = ms[mi],
+          aft = L.slice(x.end, x.end + 40),
+          bef = L.slice(Math.max(0, x.i - 40), x.i);
+        if (URATE.test(aft) || /\b(?:per|every|each|once|twice|times)\s+$/.test(bef)) return null; // "2 cups a day", "every 3 minutes"
+        if (x.parts[0].art && /(?:\d|\$)\S*(?:\s+[a-z'-]+){0,2}\s+$/.test(bef) && !/\b(?:and|plus|or|with)\s+$/.test(bef)) return null; // "$3 a gallon"
+        if (/^\s*by\s+(?:\d|an?\s)/.test(aft)) return null; // "3 ft by 4 ft"
+      }
+      var timeK = ms.some(function(x) { return UNITS[x.parts[0].k].f === "time"; });
+      if (timeK && /\b\d{1,2}:\d{2}\b|\b\d{1,2}\s?[ap]\.?\s?m\b|\bo'clock\b|\bnoon\b|\bmidnight\b/.test(L)) return null;
+      // the unit the question asks for: "How many quarts …", "… in inches?", "… in feet and inches?"
+      var q = null,
+        qm = new RegExp("\\b(?:in|into|as|using)\\s+(" + UFULL + ")(?:\\s*,\\s*(" + UFULL + "))?\\s*,?\\s+and\\s+(" + UFULL + ")\\b").exec(Q) ||
+        new RegExp("\\bhow many\\s+(" + UFULL + ")(?:\\s*,\\s*(" + UFULL + "))?\\s*,?\\s+and\\s+(" + UFULL + ")\\b").exec(Q);
+      var allK = [];
+      ms.forEach(function(x) { x.parts.forEach(function(p) { allK.push(p.k); }); });
+      var qk = function(w) {
+        var k = UW2K[w.replace(/\s+/g, " ")];
+        if (k === "oz") k = uKindOfOz(allK);
+        return k;
+      };
+      if (qm) {
+        var us = [qm[1], qm[2], qm[3]].filter(Boolean).map(qk);
+        if (us.some(function(k) { return !k; })) return { fail: "oz" };
+        var sorted0 = us.slice().sort(function(a, b) { return UNITS[a].s > UNITS[b].s ? -1 : 1; });
+        if (us.some(function(k) { return UNITS[k].f !== UNITS[us[0]].f; }) || us.join() !== sorted0.join() || us.length !== Object.keys(us.reduce(function(o, k) { o[k] = 1; return o; }, {})).length) return null;
+        q = { f: UNITS[us[0]].f, us: us, i: QS.i + qm.index + qm[0].indexOf(qm[1]), end: QS.i + qm.index + qm[0].length };
+      } else {
+        var q1 = new RegExp("\\bhow (?:many|much)\\s+(?:more\\s+|fewer\\s+|less\\s+|extra\\s+|whole\\s+|total\\s+|full\\s+)?(" + UFULL + ")\\b").exec(Q),
+          q2 = new RegExp("\\b(?:in|into|in terms of|measured in|in units of)\\s+(" + UFULL + ")\\b(?!\\s+(?:long|wide|tall|of)\\b)").exec(Q);
+        var qa = q1 && qk(q1[1]),
+          qb = q2 && qk(q2[1]);
+        if ((q1 && !qa) || (q2 && !qb)) return { fail: "oz" };
+        if (qa && qb && qa !== qb) return null;
+        var qq = q1 || q2;
+        if (qq) q = { f: UNITS[qa || qb].f, us: [qa || qb], i: QS.i + qq.index + qq[0].lastIndexOf(qq[1]), end: QS.i + qq.index + qq[0].length };
+      }
+      // "ounces" in the story: a weight, or fluid ounces when everything else is a liquid's
+      var ozK = uKindOfOz(allK.concat(q ? q.us : []));
+      var ozBad = false;
+      ms.forEach(function(x) {
+        x.parts.forEach(function(p) {
+          if (p.k === "oz" && p.w !== "fl oz") {
+            if (!ozK) ozBad = true;
+            else p.k = ozK;
+          }
+        });
+      });
+      if (ozBad) return { fail: "oz" };
+      // what each kind of amount needs
+      var fams = {};
+      ms.forEach(function(x) {
+        var f = UNITS[x.parts[0].k].f;
+        if (!fams[f]) fams[f] = { us: {}, comp: null, ms: [] };
+        fams[f].ms.push(x);
+        x.parts.forEach(function(p) { fams[f].us[p.k] = 1; });
+        if (x.parts.length > 1 && (!fams[f].comp || x.parts.length > fams[f].comp.length)) fams[f].comp = x.parts.map(function(p) { return p.k; });
+      });
+      var needs = Object.keys(fams).filter(function(f) {
+        var u = Object.keys(fams[f].us);
+        return !!fams[f].comp || u.length > 1 || (q && q.f === f && u.some(function(k) { return k !== q.us[q.us.length - 1] || q.us.length > 1; }));
+      });
+      if (!needs.length && !(facts.length && q)) return null;
+      var F;
+      if (q) {
+        if (needs.indexOf(q.f) < 0) return null; // the kind the question asks for needs no change: read as before
+        F = q.f;
+      } else {
+        if (needs.length !== 1) return needs.length ? { fail: "mix", a: Object.keys(fams[needs[0]].us)[0], b: Object.keys(fams[needs[1]].us)[0] } : null;
+        F = needs[0];
+      }
+      var others = Object.keys(fams).filter(function(f) { return f !== F; });
+      if (others.length) {
+        if ((F === "time" && fams.cal) || (F === "cal" && fams.time)) return { fail: "months" };
+        return { fail: "mix", a: Object.keys(fams[F].us)[0], b: Object.keys(fams[others[0]].us)[0] };
+      }
+      // how the answer is given: in the unit asked ("same"), changed back to a bigger one ("up") or to an amount of
+      // two or three units ("comp"); or the question counts something else ("count")
+      var Wk = UKIND[F].filter(function(k) { return fams[F].us[k] || (q && q.us.indexOf(k) >= 0); })[0],
+        mode, back = null;
+      if (q) {
+        if (q.us.length > 1) {
+          mode = "comp";
+          back = q.us;
+        } else if (q.us[0] === Wk) mode = "same";
+        else {
+          mode = "up";
+          back = q.us;
+        }
+      } else {
+        var cu = fams[F].comp,
+          fit = cu && Object.keys(fams[F].us).every(function(k) { return cu.indexOf(k) >= 0; });
+        var hm = /\bhow many\s+(?:more\s+|fewer\s+|less\s+|extra\s+)?(?:\d+(?:\.\d+)?-[a-z]+\s+)?([a-z]+)/.exec(Q);
+        if (fit && !(hm && !/^(?:do|does|did|are|is|were|was|will|can|could|would|should|has|have|had)$/.test(hm[1]))) {
+          mode = "comp";
+          back = cu;
+        } else if (hm && !/^(?:do|does|did|are|is|were|was|will|can|could|would|should|has|have|had|of)$/.test(hm[1])) mode = "count";
+        else return { fail: "which", us: Object.keys(fams[F].us) };
+      }
+      // the story with the amounts changed (and the question asking for the unit worked in)
+      var reps = [];
+      fams[F].ms.forEach(function(x) {
+        var tot = ZERO;
+        x.parts.forEach(function(p) { tot = add(tot, mul(p.v, R(uRatio(p.k, Wk)))); });
+        x.v = tot;
+        var nm = eqR(tot, ONE) || x.parts[0].hy ? UNITS[Wk].one : UNITS[Wk].many;
+        reps.push({ i: x.i, end: x.end, t: plainN(tot) + (x.parts[0].hy ? "-" : " ") + nm, m: x });
+      });
+      if (q && mode !== "same") reps.push({ i: q.i, end: q.end, t: UNITS[Wk].many, q: true });
+      facts.forEach(function(f) {
+        // a fact on its own (a sentence, or in brackets) is left out of what the reader reads: it's used here
+        var s = sents.filter(function(s) { return f.i >= s.i && f.i < s.end; })[0],
+          st = s ? L.slice(s.i, s.end) : "",
+          pb = /\(\s*$/.test(L.slice(0, f.i)) && /^\s*\)/.test(L.slice(f.end));
+        if (pb) {
+          var a0 = L.lastIndexOf("(", f.i),
+            a1 = L.indexOf(")", f.end) + 1;
+          while (a0 > 0 && L.charAt(a0 - 1) === " ") a0--;
+          reps.push({ i: a0, end: a1, t: "", f: f });
+        } else if (s && /^(?:(?:remember|note|hint)(?: that)?[:,]?\s+)?(?:there (?:are|is)\s+)?$/.test(st.slice(0, f.i - s.i)) && /^\s*[.!]?\s*$/.test(st.slice(f.end - s.i))) {
+          var e1 = s.end;
+          while (D.charAt(e1) === " ") e1++;
+          reps.push({ i: s.i, end: e1, t: "", f: f });
+        } else f.bad = true;
+      });
+      if (facts.some(function(f) { return f.bad; })) return null;
+      reps.sort(function(a, b) { return a.i - b.i; });
+      for (var ri = 1; ri < reps.length; ri++)
+        if (reps[ri].i < reps[ri - 1].end) return null;
+      var out = "",
+        pos = 0,
+        map = [];
+      reps.forEach(function(r) {
+        out += D.slice(pos, r.i);
+        var j0 = out.length;
+        out += r.t;
+        map.push({ i0: r.i, i1: r.end, j0: j0, j1: out.length });
+        if (r.m) {
+          r.m.j0 = j0;
+          r.m.j1 = out.length;
+        }
+        pos = r.end;
+      });
+      out += D.slice(pos);
+      out = out.replace(/\s+$/, "");
+      if (cleanStory(out) !== out) return null;
+      return { D0: D, D: out, F: F, W: Wk, q: q, mode: mode, back: back, ms: fams[F].ms, facts: facts, map: map };
+    }
+
+    // a reading that adds, takes away or compares amounts that were changed into one unit must use only them: an
+    // amount in quarts and a count of something else don't add up
+    function unitsUsed(U, P) {
+      if (!/^(?:join|separate|parts|compare)$/.test(P.type) && !(P.type === "twostep" && P.kind === "addsub")) return true;
+      return ["a", "b", "c", "d"].every(function(k) { return !P[k] || U.ms.some(function(m) { return eqR(m.v, P[k]); }); });
+    }
+
+    function umap(U, p, isEnd) { // a place in the story the reader read → the same place in the story as typed
+      var d = 0;
+      for (var i = 0; i < U.map.length; i++) {
+        var r = U.map[i];
+        if (p < r.j0 || (p === r.j0 && !isEnd)) break;
+        if (p < r.j1 || (p === r.j1 && isEnd && r.j1 > r.j0)) return isEnd ? r.i1 : r.i0;
+        d = r.i1 - r.j1;
+      }
+      return p + d;
+    }
+    // the reading of the changed story, put back on the story as typed: its numbers highlighted where they were typed
+    function unitRd(A, P) {
+      var U = A.U,
+        toks = [];
+      A.toks.forEach(function(t) {
+        var x = U.ms.filter(function(m) { return t.i >= m.j0 && t.i < m.j1; })[0];
+        if (x) x.parts.forEach(function(p) { toks.push({ i: p.ni, end: p.ne, extra: t.extra, raw: p.raw }); });
+        else toks.push({ i: umap(U, t.i), end: umap(U, t.end, true), extra: t.extra, raw: t.raw });
+      });
+      toks.sort(function(a, b) { return a.i - b.i; });
+      P.rdo = { D: U.D0, toks: toks, q: [umap(U, A.q[0]), umap(U, A.q[1], true)] };
+      P.text = U.D0;
+      P.uc = U;
+    }
+    // unit names and facts, in the language in use
+    function uName(k, v) { return tr("story-problems.units.n." + k, { n: v && eqR(v, ONE) ? 1 : 2 }); }
+
+    function uAb(k) { return tr("story-problems.units.ab." + k); }
+
+    function uAmt(parts) { return parts.map(function(p) { return nt(p.v) + " " + uName(p.k, p.v); }).join(" "); }
+
+    function uAmtAb(parts) { return parts.map(function(p) { return nt(p.v) + " " + uAb(p.k); }).join(" "); }
+
+    function uPath(from, to) { // the facts from a bigger unit down to a smaller one (the fewest)
+      if (from === to) return [];
+      var prev = {},
+        queue = [from];
+      prev[from] = null;
+      while (queue.length) {
+        var cur = queue.shift();
+        for (var i = 0; i < UEDGES.length; i++) {
+          var e = UEDGES[i];
+          if (e[1] !== cur || has(prev, e[0]) || UNITS[e[0]].s < UNITS[to].s) continue;
+          prev[e[0]] = { from: cur, e: e };
+          if (e[0] === to) {
+            var path = [],
+              k = to;
+            while (k !== from) {
+              path.unshift(prev[k].e);
+              k = prev[k].from;
+            }
+            return path;
+          }
+          queue.push(e[0]);
+        }
+      }
+      return [];
+    }
+
+    function uFact(big, small, k) { return "1 " + uAb(big) + " = " + bs(BigInt(k)) + " " + uAb(small); }
+
+    function uFacts(U, units) { // the facts used, in order, each once: "1 gal = 4 qt"; a path of two: "so 1 d = 1,440 min"
+      var seen = {},
+        out = [];
+      units.forEach(function(k) {
+        var p = uPath(k, U.W);
+        p.forEach(function(e) {
+          var key = e[1] + ">" + e[0];
+          if (seen[key]) return;
+          seen[key] = 1;
+          out.push(uFact(e[1], e[0], e[2]));
+        });
+        if (p.length > 1 && !seen[k + ">>"]) {
+          seen[k + ">>"] = 1;
+          out.push(tr("story-problems.units.so", { f: uFact(k, U.W, uRatio(k, U.W)) }));
+        }
+      });
+      return out;
+    }
+    // step 2 of a story with mixed units: change every amount to one unit
+    function unitStep(c, P) {
+      var U = P.uc,
+        W = U.W,
+        lines = [],
+        rows = [],
+        same = [];
+      var units = [];
+      U.ms.forEach(function(x) { x.parts.forEach(function(p) { if (p.k !== W && units.indexOf(p.k) < 0) units.push(p.k); }); });
+      units.sort(function(a, b) { return UNITS[a].s > UNITS[b].s ? -1 : 1; });
+      var facts = uFacts(U, units),
+        wn = uName(W),
+        lead = U.mode === "same" ? tr("story-problems.units.leadSame", { w: esc(wn) }) : U.mode === "count" ? tr("story-problems.units.leadCount", { w: esc(wn) }) :
+        tr("story-problems.units.leadBack", { w: esc(wn), u: esc(U.mode === "comp" ? andList(U.back.map(function(k) { return uName(k); })) : uName(U.back[0])) });
+      lines.push(["u", tr("story-problems.units.tag"), lead + (facts.length ? " " + tr("story-problems.units.facts", { list: andList(facts.map(Be)) }) : "") +
+        (U.facts.length ? " " + tr("story-problems.units.storySays", { x: andList(U.facts.map(function(f) { return Be(f.raw); })) }) : "")
+      ]);
+      U.ms.forEach(function(x) {
+        var one = x.parts.length === 1 && x.parts[0].k === W;
+        if (one) { if (same.indexOf(nt(x.v)) < 0) same.push(nt(x.v)); return; }
+        var calc = x.parts.map(function(p) { return p.k === W ? nt(p.v) : nt(p.v) + " × " + bs(uRatio(p.k, W)); }).join(" + ");
+        lines.push(["u", "=", tr("story-problems.units.change", { from: Be(uAmt(x.parts)), calc: Be(calc), to: Be(nt(x.v) + " " + uName(W, x.v)) })]);
+        rows.push('<div class="weq">' + esc(uAmtAb(x.parts) + " = " + calc + " = " + nt(x.v) + " " + uAb(W)) + "</div>");
+      });
+      if (same.length) lines.push(["u", "=", tr("story-problems.units.already", { n: same.length, x: andList(same.map(function(s) { return Be(s + " " + uName(W, s === "1" ? ONE : R(2))); })), w: esc(wn) })]);
+      var kn = facts.length ? '<div class="kn">' + facts.map(function(f) { return '<span class="q">' + esc(f.replace(/<[^>]+>/g, "")) + '</span><span class="w">' + esc(tr("story-problems.units.aFact")) + "</span>"; }).join("") + "</div>" : "";
+      c.add(lines, null, [
+        [tr("story-problems.units.row"), "u", kn + rows.join("") + '<div class="wtext">' + lead + "</div>"]
+      ]);
+    }
+    // an answer asked in a bigger unit, or in two or three units: changed back from the unit worked in
+    function unitBack(c, P, M) {
+      var U = P.uc,
+        W = U.W,
+        A = M.ans,
+        names = [UNITS[W].one, UNITS[W].many, W.toLowerCase(), uName(W, ONE).toLowerCase(), uName(W).toLowerCase(), uAb(W).toLowerCase()];
+      UWORDS.forEach(function(u) { if (u[0] === W) names = names.concat(u[1].split("|")); });
+      var aw = String(A.w || "").toLowerCase(),
+        isW = names.some(function(n) { return aw === n || aw.indexOf(n + " ") === 0; }),
+        // "How much gas remains?" (no unit asked, the story's own two units): the answer is the noun asked about, in W
+        noun = !U.q && aw && !UW2K[aw.split(" ")[0]] && !/^(?:times|percent|%)/.test(aw);
+      // (adding or taking away amounts that are all in W gives W, whatever word the reading took from the question:
+      // "How much weighs now?")
+      var bare = /^(?:join|separate|parts|compare)$/.test(P.type) && !(aw && UW2K[aw.split(" ")[0]]) && !/^(?:times|percent|%)/.test(aw);
+      if (!(A.k === "n" || A.k === "q") || !A.v || sgn(A.v) < 0 || !(isW || noun || bare))
+        throw new UserErr(tr("story-problems.units.cantBack", { u: esc(U.back.map(function(k) { return uName(k); }).join(" + ")) }));
+      var v = A.v,
+        from = nt(v) + " " + uName(W, v),
+        lines = [],
+        calcs = [];
+      A.vW = v;
+      if (U.mode === "up") {
+        var r = R(uRatio(U.back[0], W)),
+          nv = dvd(v, r);
+        calcs.push(nt(v) + " ÷ " + nt(r) + " = " + nt(nv));
+        A.v = nv;
+        A.w = uName(U.back[0], nv);
+        A.k = isInt(nv) ? "n" : "q";
+        A.cm = null;
+      } else {
+        var rest = v,
+          parts = [];
+        U.back.forEach(function(k, i) {
+          if (i === U.back.length - 1) {
+            parts.push({ k: k, v: dvd(rest, R(uRatio(k, W))) });
+            return;
+          }
+          var rk = R(uRatio(k, W)),
+            whole = R(rest.n / (rest.d * rk.n)),
+            left = sub(rest, mul(whole, rk));
+          calcs.push(tr("story-problems.units.divR", { a: nt(rest), b: nt(rk), q: nt(whole), r: nt(left) }));
+          parts.push({ k: k, v: whole });
+          rest = left;
+        });
+        var shown = parts.filter(function(p) { return sgn(p.v) > 0; });
+        A.cm = shown.length ? shown : [parts[parts.length - 1]];
+      }
+      var to = A.cm ? uAmt(A.cm) : nt(A.v) + " " + A.w;
+      lines.push(["u", tr("story-problems.units.tag"), tr("story-problems.units.back", { u: esc(U.mode === "comp" ? andList(U.back.map(function(k) { return uName(k); })) : uName(U.back[0])), calc: calcs.map(Be).join("; "), from: Be(from), to: Be(to) })]);
+      c.add(lines, null, [
+        [tr("story-problems.units.row2"), "u", '<div class="weq">' + esc(calcs.join("; ")) + '</div><div class="wtext">' + esc(from) + " = " + Be(to) + "</div>"]
+      ]);
+      A.say = tr("story-problems.units.thatIs", { say: A.say, x: Be(to) });
+      M.diag = [];
+    }
+
+    function unitFailMsg(U) {
+      if (U.fail === "fact") return tr("story-problems.units.failFact", { said: Be("1 " + uName(U.big, ONE) + " = " + nt(U.said) + " " + uName(U.small, U.said)), want: Be("1 " + uName(U.big, ONE) + " = " + nt(U.want) + " " + uName(U.small, U.want)) });
+      if (U.fail === "oz") return tr("story-problems.units.failOz");
+      if (U.fail === "months") return tr("story-problems.units.failMonths");
+      if (U.fail === "mix") return tr("story-problems.units.failMix", { a: esc(uName(U.a)), b: esc(uName(U.b)) });
+      return tr("story-problems.units.failWhich", { list: esc(andList(U.us.map(function(k) { return uName(k); }))), w: esc(uName(U.us.sort(function(a, b) { return UNITS[a].s > UNITS[b].s ? 1 : -1; })[0])) });
+    }
+    // the field Check my answer uses for an answer changed back: the amount in W, the units asked, the answer's parts
+    function unitField(P, A) {
+      var U = P.uc;
+      return {
+        W: U.W,
+        v: A.vW,
+        us: U.back,
+        parts: A.cm || [{ k: U.back[0], v: A.v }],
+        u: andList(U.back.map(function(k) { return uName(k); })),
+        ans: ansText(A),
+        eg: U.back.map(function(k, i) { return (i ? "5" : "2") + " " + uName(k); }).join(" ")
+      };
+    }
+    // an answer in the units asked, typed in Check my answer: "3 ft 2 in", "3 feet 2 inches"; "38 inches" is the right
+    // amount in another form; a bare number is the asked unit when only one was asked ("4.5" feet)
+    function judgeCm(f, raw) {
+      var s = ansClean(raw),
+        re = new RegExp("(\\d+(?:\\.\\d+)?\\s\\d+\\/\\d+|\\d+\\/\\d+|\\d+(?:\\.\\d+)?)\\s*(" + UALL + ")(?![a-z])", "g"),
+        m, tot = ZERO,
+        got = [],
+        give = { st: "bad", msg: tr("story-problems.ck.unitsGive", { eg: esc(f.cm.eg) }) };
+      while ((m = re.exec(s))) {
+        var k = UW2K[m[2].replace(/\s+/g, " ")];
+        if (k === "oz" && UNITS[f.cm.W].f === "vol") k = "floz";
+        var p = parseNum(m[1]);
+        if (!k || !p || p.zero || UNITS[k].f !== UNITS[f.cm.W].f) return give;
+        tot = add(tot, mul(p.v, R(uRatio(k, f.cm.W))));
+        got.push({ k: k, v: p.v });
+      }
+      var bareN = numsIn(s.replace(re, " "));
+      if (!got.length && bareN.length === 1 && f.cm.us.length === 1) {
+        tot = mul(bareN[0].p.v, R(uRatio(f.cm.us[0], f.cm.W)));
+        got.push({ k: f.cm.us[0], v: bareN[0].p.v });
+      } else if (!got.length || bareN.length) return give;
+      if (!eqR(tot, f.cm.v)) return { st: "bad" };
+      var same = got.length === f.cm.parts.length && got.every(function(g, i) { return g.k === f.cm.parts[i].k && eqR(g.v, f.cm.parts[i].v); });
+      if (!same) return { st: "part", msg: tr("story-problems.ck.unitsRight", { u: esc(f.cm.u), x: esc(f.cm.ans) }) };
+      return { st: "ok" };
+    }
+
+    function analyze(raw, U) {
       // words in brackets with no numbers ("Sophia (Marketing Lead)") are blanked out for reading (same length, so
       // positions still line up); the story is still shown as it was typed
       var D0 = cleanStory(raw),
         D = D0.replace(/\(([^()]*)\)/g, function(m, x) { return /\d/.test(x) ? m : new Array(m.length + 1).join(" "); });
       D = D.replace(/\bmi\/h(?![a-z])/gi, "mph "); // "mi/h" reads as mph (the same length, so positions still line up)
-      var A = { D: D, D0: D0, L: D.toLowerCase(), sents: sentencesOf(D), toks: tokensOf(D), names: namesIn(D) };
+      var A = { D: D, D0: D0, L: D.toLowerCase(), sents: sentencesOf(D), toks: tokensOf(D, U && U.ms), names: namesIn(D) };
       var qi = -1;
       A.sents.forEach(function(s, i) { if (D.slice(s.i, s.end).indexOf("?") >= 0) qi = i; });
       if (qi < 0) A.sents.forEach(function(s, i) { if (/^(how|what|when|find|which|who|about how|work out|calculate)\b/i.test(D.slice(s.i, s.end))) qi = i; });
@@ -11237,6 +11868,15 @@
         if (!A.toks.some(function(u) { return u !== t && u.k === "n" && !u.x0 && !u.inQ && u.unit && u.unit.split(" ").some(function(w) { return singular(w) === singular(m[1]); }); })) return;
         t.x0 = true;
         t.what0 = tr("story-problems.read.thePriceOfOne");
+      });
+      // "How long are the two ropes together?": "two" counts the things the story already gave (one number each), it isn't
+      // an amount of its own
+      A.toks.forEach(function(t) {
+        if (t.k !== "n" || t.x0 || !t.inQ || !isInt(t.v) || !/\b(?:the|these|those|both|all)\s+$/.test(t.before) || !/^\s+[a-z]+s\b/.test(t.after)) return;
+        var rest = A.toks.filter(function(u) { return u !== t && !u.x0 && !u.inQ; });
+        if (BigInt(rest.length) !== t.v.n || rest.some(function(u) { return eqR(u.v, t.v); })) return;
+        t.x0 = true;
+        t.what0 = tr("story-problems.read.howManyThingsThe");
       });
       A.use = A.toks.filter(function(t) { return !t.x0; });
       // a sentence that only holds numbers the story doesn't need says nothing about what happens: blank it out
@@ -11470,7 +12110,8 @@
         var mz = measureOf(A, ns),
           it = mz ? "" : itemOf(A, ns),
           rw = { it: it, measure: !!mz, u: mz ? UNIT_SHORT[mz.u] || mz.u : "" };
-        if (!total && (/\bhow (many|much) (more|fewer|less|taller|shorter|longer|older|younger|heavier|lighter|farther|further|higher|lower|bigger|smaller|greater)\b/.test(A.Q) || /\bdifference\b/.test(A.Q))) {
+        if (!total && (/\bhow (many|much) (more|fewer|less|taller|shorter|longer|older|younger|heavier|lighter|farther|further|higher|lower|bigger|smaller|greater)\b/.test(A.Q) || /\bdifference\b/.test(A.Q) ||
+            /\bhow many [a-z]+ (more|fewer|less|taller|shorter|longer|older|younger|heavier|lighter|farther|further|higher|lower|bigger|smaller|greater)\b/.test(A.Q))) {
           // "Mateo has 18. He has 7 fewer than Aisha. How many more does Aisha have than Mateo?": the 7 is already the
           // difference, not one of the two amounts — ask, don't take 7 from 18
           if (ns.slice(0, 2).some(function(t) { return relWord(A, t); })) {
@@ -11483,7 +12124,7 @@
             o2 = ownerBefore(A.D, A.sents, two[1], A.names);
           if (o1) P0.name = o1;
           if (o2 && o2 !== o1) P0.name2 = o2;
-          if (/\bhow (many|much) (fewer|less|shorter|younger|lighter|lower|smaller)\b/.test(A.Q)) P0.v = 1;
+          if (/\bhow (many|much) (fewer|less|shorter|younger|lighter|lower|smaller)\b|\bhow many [a-z]+ (fewer|less|shorter|younger|lighter|lower|smaller)\b/.test(A.Q)) P0.v = 1;
           return P0;
         }
         var rel = ns.filter(function(t) { return relWord(A, t); })[0];
@@ -11740,7 +12381,7 @@
           if (P1.rw.it && !/s$/.test(P1.rw.it.split(" ")[0]) && !/ of /.test(P1.rw.it)) P1.rw.it = plural(P1.rw.it);
           return P1;
         }
-        var contT = ns.filter(function(t) { return CONT.test(t.head) || /^(days?|weeks?|months?|years?)$/.test(t.head) && /\b(for|in|over)\s*$/.test(t.before); })[0];
+        var contT = ns.filter(function(t) { return CONT.test(t.head) && !(/^cups?$/.test(t.head) && /^\s*cups?\s+of\b/.test(t.after) && ns.some(function(o) { return o !== t && CONT.test(o.head); })) || /^(days?|weeks?|months?|years?)$/.test(t.head) && /\b(for|in|over)\s*$/.test(t.before); })[0];
         // the size of each group, strongest cue first ("9 in each box" beats "a baker has 72")
         var eachCues = [function(t) { return /^\s*(?:[a-z]+\s+){0,2}(in|on|per|for)\s+(each|every|a|one)\b/.test(t.after) || /^\s*(?:[a-z]+\s+){0,2}(each|apiece|a day|a week|per day|every day|each day)\b/.test(t.after); },
           function(t) { return /\b(each|every)\s+(?:[a-z]+\s+){0,2}(has|holds|had|held|gets|got|contains|with|of|is|needs|seats|fits|carries|takes|can hold|can seat)\s*$/.test(t.before) || /\b(groups?|teams?|bags?|boxes|packs?|rows?|sets?|piles?|stacks?|bundles?|bunches|cartons?|trays?|plates?|jars?) of\s*$/.test(t.before); },
@@ -11901,7 +12542,7 @@
             /\b(?:some|a few|several)(?: more)?\b[^.?!]*,\s*(?:[a-z]+\s+){0,2}?(?:has|have|had|is|are|was|were)\s*$/.test(pre); // "After a friend gave him some more, he has 51"
         })[0];
         var startQ = /\b(at first|to start( with)?|at the start|in the beginning|at the beginning|before|originally|to begin with|start(ed)? (out )?with|in the first place|had at first)\b/.test(A.Q);
-        var NQ = plusPassive(A.NQ);
+        var NQ = plusPassive(A.NQ).replace(/\b(?:took|takes|take)\s+(?:(?:him|her|them|me|us|it)\s+)?(?:about\s+|only\s+|just\s+)?(?=\d+(?:\.\d+)?\s+(?:hours?|minutes?|seconds?|days?|weeks?)\b)/g, "lasted ");
         var sep = MINUSV.test(NQ) || /\b(left|remain|remaining)\b/.test(A.Q) && !PLUSV.test(NQ);
         var moreJoin = (/\b(some|a few|several)\s+more\b/.test(NQ) || ns.some(function(t) { return !t.inQ && /^\s*more\b/.test(t.after); })) && !/\bmore\s+(?:[a-z]+\s+)?than\b/.test(NQ);
         if (moreJoin) sep = false;
@@ -12775,6 +13416,16 @@
 
     // which kind of story this is, from the cue phrases
     // "A notebook costs $2.75. Andres buys 4 notebooks.": the price of one, and how many of the same thing — the price of each
+    function oneHolds(A) {
+      var ns = A.use.filter(function(t) { return t.k === "n"; });
+      if (ns.length !== 2 || A.use.length !== 2) return false;
+      return ns.some(function(t) {
+        var m = /\b(?:a|an|one|1)\s+([a-z]+)(?:\s+of\s+[a-z]+)?\s+(?:weighs|holds|contains|measures|lasts|is|has)\s*$/.exec(t.before),
+          o = ns.filter(function(x) { return x !== t; })[0];
+        return !!m && !!o.unit && o.unit.split(" ").some(function(w) { return singular(w) === singular(m[1]); });
+      });
+    }
+
     function oneCost(A) {
       var ms = A.use.filter(function(t) { return t.k === "$"; }),
         ns = A.use.filter(function(t) { return t.k === "n"; });
@@ -12801,7 +13452,8 @@
       if (/\bchange\b/.test(Q) && cnt("$") >= 2) tries.push("money");
       var timesCue = u.some(function(t) { return t.twice || /^\s*times\s+(as|more)\b/.test(t.after); }) || /\b(double|triple)\b/.test(L) || /\bhow many times\b/.test(Q);
       if (timesCue) tries.push(ALLQ.test(Q) && !/\bhow many times\b/.test(Q) ? "timestotal" : "times");
-      var cmpCue = u.some(function(t) { return relWord(A, t); }) || /\bhow (many|much) (more|fewer|less|taller|shorter|longer|older|younger|heavier|lighter|farther|further|higher|bigger|smaller|greater)\b/.test(Q) || /\bdifference\b/.test(Q);
+      var cmpCue = u.some(function(t) { return relWord(A, t); }) || /\bhow (many|much) (more|fewer|less|taller|shorter|longer|older|younger|heavier|lighter|farther|further|higher|bigger|smaller|greater)\b/.test(Q) || /\bdifference\b/.test(Q) ||
+        /\bhow many [a-z]+ (more|fewer|less|taller|shorter|longer|older|younger|heavier|lighter|farther|further|higher|bigger|smaller|greater)\b/.test(Q);
       if (cmpCue) tries.push(ALLQ.test(Q) && !/\bhow (many|much) (more|fewer|less)\b/.test(Q) ? "comparetotal" : "compare");
       if (/\barea\b/.test(L) || (/\blong\b/.test(L) && /\bwide\b/.test(L)) || (/\brows?\b/.test(L) && /\b(in each row|each row|per row|rows of|rows with|equal rows|in rows|columns?)\b/.test(L))) tries.push("array");
       if (nums >= 3 || (nums === 3 && /\bshare/.test(L))) tries.push("twostep");
@@ -12813,7 +13465,9 @@
           sm = sorted(two)[0].v,
           smT = sorted(two)[0];
         // "4 eggs for each cake — how many eggs for 6 cakes?" asks about the size of a group: that's multiplying, not a remainder
-        var asksSize = A.qn && smT.unit && smT.unit.split(" ").pop() === A.qn.split(" ").pop() && !/\bleft ?over\b|\bremain/.test(Q);
+        var asksSize = A.qn && smT.unit && smT.unit.split(" ").pop() === A.qn.split(" ").pop() && !/\bleft ?over\b|\bremain/.test(Q),
+          bigT = sorted(two)[1];
+        if (A.qn && bigT.unit && singular(bigT.unit.split(" ")[0]) === singular(A.qn.split(" ")[0]) && singular(smT.unit.split(" ")[0] || "") !== singular(A.qn.split(" ")[0]) && !/\bleft ?over\b|\bremain|\bleft\b/.test(Q)) asksSize = true;
         if (sm.n > 0n && (big.n % sm.n !== 0n || BOTHQ.test(Q)) && !asksSize) tries.push("remainder");
       }
       var unitAsk = /\bunit (?:rate|price|cost)\b|\b(?:price|cost|rate)\s+(?:per|for each|for one|of one)\b|\bhow much (does|do|would|will|did|is) (one|1|each|a|an|it)\b|\b(cost|price) of (one|1|each|a|an)\b|\bfor (one|1)\b|\bin (one|1|an?) (hour|minute)\b|\bper (hour|minute)\b|\beach (hour|minute)\b|\bat (the|that|this) same (price|rate|speed)|\bsteady\b|\bsame rate\b/.test(Q + " " + L);
@@ -12821,7 +13475,7 @@
       var priceN = cnt("$") === 1 && nums === 3 && u.filter(function(t) { return t.k === "$" && !t.inQ; }).length === 1 && u.filter(function(t) { return t.k === "n" && t.inQ; }).length === 1 && /\bhow much\b/.test(Q);
       if (unitAsk || priceN || (cnt("dur") && /\bhow (far|many|much)\b/.test(Q))) tries.push("rate");
       if (/\beach\b|\bevery\b|\bequal(ly)?\b|\bshare[sd]?\b|\bsplit\b|\bdivide[sd]?\b|\bper\b|\bapiece\b|\b(bags|boxes|packs|groups|teams|plates|baskets|jars|shelves|cartons|trays|cases|packages|bundles|sets|bunches|piles|stacks|vases) of (?!the\b|an?\b|this\b|that\b|their\b|his\b|her\b)/.test(L) ||
-        u.some(function(t) { return t.dz; }) || oneCost(A) || ((/\b\d+\s+[a-z]+\s+(in|on)\s+(a|one|each|every)\s+[a-z]+/.test(A.NQ) || /\b(a|one)\s+[a-z]+\s+(holds|has|contains|fits|carries)\s+\d+/.test(A.NQ)) && /\b(in|on|for)\s+\d+\s+[a-z]+/.test(Q)) || /\b\d+\s+[a-z]+\s+(a|per|each|every) (day|week|month)\b/.test(L)) tries.push("groups");
+        u.some(function(t) { return t.dz; }) || oneCost(A) || oneHolds(A) || ((/\b\d+\s+[a-z]+\s+(in|on)\s+(a|one|each|every)\s+[a-z]+/.test(A.NQ) || /\b(a|one)\s+[a-z]+\s+(holds|has|contains|fits|carries)\s+\d+/.test(A.NQ)) && /\b(in|on|for)\s+\d+\s+[a-z]+/.test(Q)) || /\b\d+\s+[a-z]+\s+(a|per|each|every) (day|week|month)\b/.test(L)) tries.push("groups");
       if (remCue && tries.indexOf("remainder") < 0 && two.length === 2) tries.push("groups");
       tries.push("additive");
       // an equation story that can't be read as one, or two speeds and a time to find: ask, don't guess
@@ -12920,7 +13574,17 @@
       if (!A.toks.length && !eqRead(A)) return { fail: "nonum", A: A };
       if (!A.hasQ && !eqRead(A)) return { fail: "noq", A: A };
       if (!asksAmount(A) && !eqRead(A)) return { fail: "noamount", A: A };
+      // amounts in different units: changed to one unit, then read (see unitsOf)
+      var U = unitsOf(A.D0 || A.D);
+      if (U && U.fail) return { fail: "units", A: A, U: U };
+      if (U) {
+        var A0 = A;
+        A = analyze(U.D, U);
+        A.U = U;
+        A.A0 = A0;
+      }
       var P = classify(A);
+      if (P && U && (/^(?:time|motion|array)$/.test(P.type) || !unitsUsed(U, P))) P = null;
       if (!P) return { fail: A.way ? "way" : "kind", A: A };
       // a plain joining/taking-away reading can't answer "what fraction is left?" or "how much money are 3 quarters and
       // 4 dimes?": say so rather than answer in slices or coins
@@ -12945,6 +13609,7 @@
       });
       P.extras = A.toks.filter(function(t) { return t.extra; }).map(function(t) { return { raw: t.raw, what: t.what }; });
       P.rd = { D: A.D0 || A.D, toks: A.toks, q: A.q };
+      if (A.U) unitRd(A, P);
     }
     // numbers in the order they appear, for when someone picks a different kind than the one read
     function orderAssign(A, type, kind) {
@@ -13013,6 +13678,7 @@
     }
 
     function judgeNum(f, raw) {
+      if (f.cm) return judgeCm(f, raw);
       var s = ansClean(raw),
         rm = /(\d+)\s*(?:r|rem|remainder)\s*(\d+)/.exec(s);
       if (f.both && f.rem) {
@@ -14172,6 +14838,7 @@
         if (lt) {
           P.rd.es = S.text;
           P.rd.back = lt.back;
+          if (P.rdo) P.rdo.es = S.text;
         }
         return P;
       }
@@ -14261,9 +14928,10 @@
 
     function failMsg() {
       if (!RD) return tr("story-problems.draw.somethingWentWrongWith");
-      var A = RD.A,
+      var A = RD.A && RD.A.A0 || RD.A,
         nums = A ? A.toks.filter(function(t) { return !t.x0; }).map(function(t) { return Be(t.raw); }) : [];
       if (RD.fail === "empty") return tr("story-problems.draw.typeOrPasteA");
+      if (RD.fail === "units") return unitFailMsg(RD.U);
       if (RD.fail === "lang") return tr("story-problems.draw.cantReadYet", { words: esc(RD.lt.left.slice(0, 4).join(", ")) });
       if (RD.fail === "elsewhere") {
         var ew = RD.ew,
@@ -14287,7 +14955,7 @@
         P = curP();
         if (!P) {
           msg = failMsg();
-          picks = RD && RD.fail !== "empty" && RD.fail !== "elsewhere" && RD.fail !== "lang";
+          picks = RD && RD.fail !== "empty" && RD.fail !== "elsewhere" && RD.fail !== "lang" && RD.fail !== "units";
         } else sol = solve(P);
       } catch (e) {
         if (e && e.user) msg = e.user === "zero" ? tr("story-problems.draw.somethingInThereDivides") : e.user;
