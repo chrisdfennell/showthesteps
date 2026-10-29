@@ -2388,6 +2388,8 @@
                                                 kind=per:   a=how long  b=how much is done in that time
                                                 n=another number of them (optional: then find the amount for n)
            money       change                   kind=one: a=price pay=paid · kind=two: a, b, pay · kind=many: n=how many, a=price each, pay
+                                                kind=each2: n, a=how many and the price of one of the first thing, c, b=the
+                                                second, d, p=a third (optional), pay (optional: then the change is asked)
            time        elapsed time             a=start  b=how long (minutes)  c=end   leave out the one to find;
                                                 times as 3:45pm, 3:45 p.m. or 15:45
            fraction    a fraction of an amount  f=2/5 and a=the whole (kind=part|rest), or f and c=the part (kind=whole)
@@ -3790,15 +3792,96 @@
     };
 
     /* ---- money and change ---- */
+    // several of each of two (or three) things, each at its own price: each one's cost is how many × the price of one,
+    // the costs are added, and when the story pays, the change is what's left ("2.5 pounds of apples at $1.80 a pound and
+    // 1.25 pounds of bananas at $0.60 a pound")
+    function buyModel(P, W) {
+      var N = W.N,
+        Nc = cap1(N),
+        its = [{ n: P.n, a: P.a, w: W.p1, u: W.u1, cls: "k" }, { n: P.c, a: P.b, w: W.p2, u: W.u2, cls: "b" }];
+      if (P.d || P.p) its.push({ n: P.d, a: P.p, w: W.p3, u: W.u3, cls: "x" });
+      var need = { n: tr("story-problems.money.e2.theFirstCount"), a: tr("story-problems.money.e2.theFirstPrice"), c: tr("story-problems.money.e2.theSecondCount"), b: tr("story-problems.money.e2.theSecondPrice"), d: tr("story-problems.money.e2.theThirdCount"), p: tr("story-problems.money.e2.theThirdPrice") };
+      needAll(P, ["n", "a", "c", "b"].concat(its.length > 2 ? ["d", "p"] : []), need);
+      its.forEach(function(t, i) {
+        t.w = t.w || tr(["story-problems.money.e2.item1", "story-problems.money.e2.item2", "story-problems.money.e2.item3"][i]);
+        t.cost = mul(t.n, t.a);
+        // "2.5 pounds of apples" and "$1.80 per pound", or "3 pens" and "$2 each"
+        t.q = t.u ? tr("story-problems.money.e2.uOf", { n: nt(t.n), u: noun(t.n, t.u), it: t.w }) : qty(t.n, t.w);
+        t.per = usd(t.a) + " " + (t.u ? tr("story-problems.money.e2.per", { u: singular(t.u) }) : tr("story-problems.money.e2.each"));
+        t.one = t.u ? singular(t.u) : singular(t.w);
+      });
+      var tot = its.reduce(function(s, t) { return add(s, t.cost); }, ZERO),
+        pay = P.pay,
+        ch = pay ? sub(pay, tot) : null;
+      if (pay && sgn(ch) < 0) throw new UserErr(tr("story-problems.money.paysButTheCost", { Nc: Nc, usd: Be(usd(pay)), usd2: Be(usd(tot)) }));
+      var M = { unit: tr("story-problems.money.dollars") };
+      M.known = [];
+      its.forEach(function(t) {
+        M.known.push({ q: t.q, w: tr("story-problems.money.e2.howManyBuys", { N: N, it: t.u ? tr("story-problems.money.e2.uOfW", { u: t.u, it: t.w }) : t.w }) });
+        M.known.push({ q: t.per, w: tr("story-problems.money.e2.thePriceOfOne", { one: t.one }) });
+      });
+      if (pay) M.known.push(KN(pay, "$", "", tr("story-problems.money.whatPaysWith", { N: N })));
+      M.ask = pay ? tr("story-problems.money.howMuchChangeGets", { N: N }) : tr("story-problems.money.e2.howMuchSpends", { N: N });
+      var nSteps = its.length + 1 + (pay ? 1 : 0);
+      M.idea = {
+        tag: tr("story-problems.money.e2.steps", { n: nSteps }),
+        sym: pay ? "× + −" : "× +",
+        h: tr("story-problems.money.e2.idea") + (pay ? " " + tr("story-problems.money.e2.ideaChange") : ""),
+        eq: its.map(function(t) { return esc(nt(t.n)) + " × " + esc(usd(t.a)); }).join(" + ") + " = " + (pay ? tr("story-problems.money.cost") + ", " + tr("story-problems.money.paidCost", { x: "", QM: QM }) : QM),
+        trap: tr("story-problems.money.e2.trap")
+      };
+      var segs = its.map(function(t) { return sg(t.cost, usd(t.cost), t.cls, t.w); });
+      if (pay) segs.push(sg(ch, "?", "q", tr("story-problems.money.change")));
+      M.fig = {
+        svg: barsSVG({
+          rows: [{ segs: segs }],
+          tops: [pay ? { row: 0, from: 0, to: segs.length - 1, lab: tr("story-problems.money.paid", { usd: usd(pay) }), cls: "k" } : { row: 0, from: 0, to: segs.length - 1, lab: tr("story-problems.money.e2.totalQ"), cls: "k" }],
+          bots: pay ? [{ row: 0, from: 0, to: its.length - 1, lab: tr("story-problems.money.cost"), cls: "u" }] : []
+        }, tr("story-problems.money.e2.barModel")),
+        lead: tr(pay ? "story-problems.money.e2.leadChange" : "story-problems.money.e2.lead", { N: N })
+      };
+      M.calc = its.map(function(t) { return cl(t.n, "×", t.a, t.cost, "n", "$", "$"); });
+      var run = its[0].cost;
+      for (var i = 1; i < its.length; i++) {
+        M.calc.push(cl(run, "+", its[i].cost, add(run, its[i].cost), "$"));
+        run = add(run, its[i].cost);
+      }
+      if (pay) M.calc.push(cl(pay, "−", tot, ch, "$"));
+      M.ans = pay ? { v: ch, k: "$", w: "", say: tr("story-problems.money.getsInChange", { Nc: Nc, usd: Be(usd(ch)) }) } : { v: tot, k: "$", w: "", say: tr("story-problems.money.e2.spends", { Nc: Nc, usd: Be(usd(tot)) }) };
+      M.sense = tr("story-problems.money.e2.sense", { x: Be(its.map(function(t) { return usd(t.cost) + " ÷ " + nt(t.n) + " = " + usd(t.a); }).join(", ")) }) +
+        (pay ? " " + tr("story-problems.money.workBackwardsTheCost", { x: Be(usd(tot) + " + " + usd(ch) + " = " + usd(pay)) }) : "");
+      var priceSum = its.reduce(function(s, t) { return add(s, t.a); }, ZERO);
+      M.diag = [{ v: priceSum, msg: tr("story-problems.money.e2.addedPrices") }];
+      if (its.length === 2) M.diag.push({ v: mul(add(its[0].n, its[1].n), priceSum), msg: tr("story-problems.money.e2.mixedUp") });
+      its.forEach(function(t) { M.diag.push({ v: t.cost, msg: tr("story-problems.money.e2.onlyOne", { it: esc(t.w) }) }); });
+      if (pay) M.diag.push({ v: tot, msg: tr("story-problems.money.thatsTheCostOf", { N: N }) }, { v: sub(pay, priceSum), msg: tr("story-problems.money.e2.addedPrices") });
+      M.hint = tr("story-problems.money.e2.hint") + (pay ? " " + tr("story-problems.money.e2.hintChange") : "");
+      return M;
+    }
+
     TY.money = {
       label: tr("story-problems.money.moneyAndChange"),
       group: "money",
       kinds: [
         ["one", tr("story-problems.money.oneItem")],
         ["two", tr("story-problems.money.twoItems")],
-        ["many", tr("story-problems.money.severalOfOneItem")]
+        ["many", tr("story-problems.money.severalOfOneItem")],
+        ["each2", tr("story-problems.money.e2.label")]
       ],
       fields: function(P) {
+        // several of each of two (or three) things, each at its own price: the paid box only when the story pays
+        if (P.kind === "each2")
+          return [
+            ["n", tr("story-problems.money.e2.howMany1"), "n"],
+            ["a", tr("story-problems.money.e2.price1"), "$"],
+            ["c", tr("story-problems.money.e2.howMany2"), "n"],
+            ["b", tr("story-problems.money.e2.price2"), "$"]
+          ].concat(P.d || P.p ? [
+            ["d", tr("story-problems.money.e2.howMany3"), "n"],
+            ["p", tr("story-problems.money.e2.price3"), "$"]
+          ] : []).concat(P.pay ? [
+            ["pay", tr("story-problems.money.paidWith"), "$"]
+          ] : []);
         return P.kind === "two" ? [
             ["a", tr("story-problems.money.firstPrice"), "$"],
             ["b", tr("story-problems.money.secondPrice"), "$"],
@@ -3814,19 +3897,21 @@
           ];
       },
       ctxs: [
-        { id: "lunch", i1: tr("story-problems.money.ctx.lunch.sandwich"), i2: tr("story-problems.money.ctx.lunch.juice"), it: tr("story-problems.money.ctx.lunch.sandwiches") }, { id: "school", i1: tr("story-problems.money.ctx.school.notebook"), i2: tr("story-problems.money.ctx.school.pen"), it: tr("story-problems.money.ctx.school.notebooks") },
-        { id: "books", i1: tr("story-problems.money.ctx.books.book"), i2: tr("story-problems.money.ctx.books.bookmark"), it: tr("story-problems.money.ctx.books.comicBooks") }, { id: "movie", i1: tr("story-problems.money.ctx.movie.movieTicket"), i2: tr("story-problems.money.ctx.movie.popcorn"), it: tr("story-problems.money.ctx.movie.busTickets") },
-        { id: "clothes", i1: tr("story-problems.money.ctx.clothes.shirt"), i2: tr("story-problems.money.ctx.clothes.hat"), it: tr("story-problems.money.ctx.clothes.pairsOfSocks") }, { id: "garden", i1: tr("story-problems.money.ctx.garden.plant"), i2: tr("story-problems.money.ctx.garden.flowerPot"), it: tr("story-problems.money.ctx.garden.seedPackets") },
-        { id: "toys", i1: tr("story-problems.money.ctx.toys.kite"), i2: tr("story-problems.money.ctx.toys.ball"), it: tr("story-problems.money.ctx.toys.muffins") }
+        { id: "lunch", i1: tr("story-problems.money.ctx.lunch.sandwich"), i2: tr("story-problems.money.ctx.lunch.juice"), it: tr("story-problems.money.ctx.lunch.sandwiches"), p1: tr("story-problems.money.ctx.lunch.p1"), p2: tr("story-problems.money.ctx.lunch.p2") }, { id: "school", i1: tr("story-problems.money.ctx.school.notebook"), i2: tr("story-problems.money.ctx.school.pen"), it: tr("story-problems.money.ctx.school.notebooks"), p1: tr("story-problems.money.ctx.school.p1"), p2: tr("story-problems.money.ctx.school.p2") },
+        { id: "books", i1: tr("story-problems.money.ctx.books.book"), i2: tr("story-problems.money.ctx.books.bookmark"), it: tr("story-problems.money.ctx.books.comicBooks"), p1: tr("story-problems.money.ctx.books.p1"), p2: tr("story-problems.money.ctx.books.p2") }, { id: "movie", i1: tr("story-problems.money.ctx.movie.movieTicket"), i2: tr("story-problems.money.ctx.movie.popcorn"), it: tr("story-problems.money.ctx.movie.busTickets"), p1: tr("story-problems.money.ctx.movie.p1"), p2: tr("story-problems.money.ctx.movie.p2") },
+        { id: "clothes", i1: tr("story-problems.money.ctx.clothes.shirt"), i2: tr("story-problems.money.ctx.clothes.hat"), it: tr("story-problems.money.ctx.clothes.pairsOfSocks"), p1: tr("story-problems.money.ctx.clothes.p1"), p2: tr("story-problems.money.ctx.clothes.p2") }, { id: "garden", i1: tr("story-problems.money.ctx.garden.plant"), i2: tr("story-problems.money.ctx.garden.flowerPot"), it: tr("story-problems.money.ctx.garden.seedPackets"), p1: tr("story-problems.money.ctx.garden.p1"), p2: tr("story-problems.money.ctx.garden.p2") },
+        { id: "toys", i1: tr("story-problems.money.ctx.toys.kite"), i2: tr("story-problems.money.ctx.toys.ball"), it: tr("story-problems.money.ctx.toys.muffins"), p1: tr("story-problems.money.ctx.toys.p1"), p2: tr("story-problems.money.ctx.toys.p2") }
       ],
       typed: { i1: tr("story-problems.money.firstItem"), i2: tr("story-problems.money.secondItem"), it: tr("story-problems.money.items") },
       story: function(P, W) {
         var last = [tr("story-problems.money.paysWith"), tr("story-problems.money.howMuchChangeDoes")];
+        if (P.kind === "each2") return [tr("story-problems.money.e2.buys")].concat(P.pay ? last : [tr("story-problems.money.e2.howMuchSpend")]);
         if (P.kind === "two") return [tr("story-problems.money.buysForAndFor")].concat(last);
         if (P.kind === "many") return [tr("story-problems.money.buysForEach")].concat(last);
         return [tr("story-problems.money.buysFor")].concat(last);
       },
       model: function(P, W) {
+        if (P.kind === "each2") return buyModel(P, W);
         var k = P.kind,
           N = W.N,
           Nc = cap1(N),
@@ -11946,6 +12031,8 @@
       return mu ? { u: mu[1] } : null;
     }
     var UNIT_SHORT = { inches: "in", inch: "in", feet: "ft", foot: "ft", yards: "yd", yard: "yd", meters: "m", meter: "m", metres: "m", metre: "m", centimeters: "cm", centimeter: "cm", miles: "mi", mile: "mi", kilograms: "kg", kilogram: "kg", grams: "g", gram: "g", pounds: "lb", pound: "lb", lbs: "lb", liters: "L", liter: "L", l: "L" };
+    // the money handed over: "pays with $20", "gave the cashier a $10 bill", "with $5"
+    var PAYX = /\b(pays?|paid|paying)\s*(with\s*)?(a\s*)?$|\bgives?\s+(the\s+\w+\s+)?(a\s*)?$|\bgave\s+(the\s+\w+\s+)?(a\s*)?$|\bhands?\s+(the\s+\w+\s+)?(a\s*)?$|\bwith\s+(a\s*)?$/;
     var ASSIGN = {
       time: function(A) {
         var cs = A.use.filter(function(t) { return t.k === "t"; }),
@@ -12012,11 +12099,79 @@
         P.rw = { it: o.k === "$" ? "" : mu ? "" : qnoun || (o.unit && !/^of\b/.test(o.unit) ? o.unit : itemOf(A)), money: o.k === "$", u: mu ? UNIT_SHORT[mu.u] || mu.u : "" };
         return P;
       },
+      // several of each of two (or three) things, each at its own price: "2.5 pounds of apples for $1.80 per pound and
+      // 1.25 pounds of bananas for $0.60 per pound", "3 pens for $2 each and 4 pencils at $1 each", or the prices first
+      // ("Apples cost $1.80 per pound … bought 2.5 pounds of apples and …"); the total is asked, or the change from what
+      // was paid. Every number must be one of the counts, one of the prices or the money paid.
+      buy: function(A) {
+        var L = A.L,
+          ms = A.use.filter(function(t) { return t.k === "$"; }),
+          ns = A.use.filter(function(t) { return t.k === "n"; });
+        if (ms.length < 2 || ns.length < 2 || ns.length > 3 || A.use.length !== ms.length + ns.length) return null;
+        var payT = ms.filter(function(t) { return PAYX.test(t.before) || /^\s*(bill|note)\b/.test(t.after); })[0],
+          prices = ms.filter(function(t) { return t !== payT; });
+        if (prices.length !== ns.length || A.use.some(function(t) { return t.inQ; })) return null;
+        if (payT ? !/\bchange\b/.test(A.Q) : !/\b(spend|spent|spends|pay|pays|paid|cost|costs|total|in all|altogether|all together|together|owe|owes|bill)\b/.test(A.Q)) return null;
+        // the price of one: "$1.80 per pound", "$2 each", "$3 a box"
+        var per = prices.map(function(t) { var m = /^\s*(?:each|apiece|a piece|for each(?: one)?|for one|per\s+([a-z]+)|an?\s+([a-z]+))\b/.exec(t.after); return m ? (m[1] || m[2] || "") : null; });
+        if (per.some(function(w) { return w === null; })) return null;
+        // the count just before each price, in the same sentence: "2.5 pounds of apples for $1.80"
+        var its = [],
+          from = 0;
+        prices.forEach(function(p) {
+          var q = ns.filter(function(t) { return t.i >= from && t.i < p.i && t.s === p.s; }).pop(),
+            m = q && /^\s+((?:[a-z'-]+\s+){0,4}?[a-z'-]+)\s+(?:for|at|costing|that costs?|which costs?|priced at)\s*$/.exec(L.slice(q.end, p.i));
+          its.push(m ? { q: q, w: m[1] } : null);
+          from = p.end;
+        });
+        if (its.some(function(x) { return !x; })) {
+          // the prices first: "apples cost $1.80 per pound", then the counts name the same things: "2.5 pounds of apples"
+          var taken = [];
+          its = prices.map(function(p) {
+            var m = /([a-z'-]+)\s+(?:costs?|are|is|sells? for|sold for|were|was|priced at)\s+(?:only\s+|just\s+)?$/.exec(p.before);
+            if (!m || /^(?:it|they|that|this|each|one|price|total|cost)$/.test(m[1])) return null;
+            var nm = singular(m[1]),
+              q = ns.filter(function(t) {
+                if (taken.indexOf(t) >= 0 || t.i < prices[0].i) return false;
+                return t.after.split(/[^a-z'-]+/).filter(Boolean).slice(0, 4).some(function(w) { return singular(w) === nm; });
+              })[0];
+            if (!q) return null;
+            taken.push(q);
+            var ws = q.after.split(/[^a-z'-]+/).filter(Boolean),
+              k = 0;
+            while (k < 4 && singular(ws[k]) !== nm) k++;
+            return { q: q, w: ws.slice(0, k + 1).join(" ") };
+          });
+          if (its.some(function(x) { return !x; })) return null;
+        }
+        // "pounds of apples" → so many pounds, the price per pound; "pens" → so many pens, the price of one pen
+        var ABBR = { lb: "pound", lbs: "pound", oz: "ounce", kg: "kilogram", g: "gram", ft: "foot", yd: "yard", gal: "gallon", qt: "quart" };
+        var one = function(w) { w = singular(w); return ABBR[w] || w; };
+        var rw = {},
+          ok = its.every(function(it, i) {
+            var m = /^(.+?)\s+of\s+(.+)$/.exec(it.w),
+              u = m ? m[1] : "",
+              w = m ? m[2] : it.w;
+            if (per[i] && !/^(?:one|piece|item)$/.test(per[i]) && one(per[i]) !== one(u ? u.split(" ").pop() : w.split(" ").pop())) return false;
+            rw["p" + (i + 1)] = w;
+            rw["u" + (i + 1)] = u;
+            return true;
+          });
+        if (!ok) return null;
+        var P = base("money", A, { kind: "each2", n: its[0].q.v, a: prices[0].v, c: its[1].q.v, b: prices[1].v });
+        if (its[2]) {
+          P.d = its[2].q.v;
+          P.p = prices[2].v;
+        }
+        if (payT) P.pay = payT.v;
+        P.rw = rw;
+        return P;
+      },
       money: function(A) {
         var ms = A.use.filter(function(t) { return t.k === "$"; }),
           ns = A.use.filter(function(t) { return t.k === "n"; });
         if (ms.length < 2 && !(ms.length === 1 && ns.length)) return null;
-        var payT = ms.filter(function(t) { return /\b(pays?|paid|paying)\s*(with\s*)?(a\s*)?$|\bgives?\s+(the\s+\w+\s+)?(a\s*)?$|\bgave\s+(the\s+\w+\s+)?(a\s*)?$|\bhands?\s+(the\s+\w+\s+)?(a\s*)?$|\bwith\s+(a\s*)?$/.test(t.before) || /^\s*(bill|note)\b/.test(t.after); })[0];
+        var payT = ms.filter(function(t) { return PAYX.test(t.before) || /^\s*(bill|note)\b/.test(t.after); })[0];
         if (!payT) payT = sorted(ms)[ms.length - 1];
         var prices = ms.filter(function(t) { return t !== payT; });
         var itemBefore = function(t) { var m = /\b(?:an?|the|one)\s+((?:[a-z-]+\s){0,2}?[a-z-]+)\s+(?:for|that costs?|costing|at|which costs?)\s*$/.exec(t.before) || /\b(?:an?|one)\s+((?:[a-z-]+\s){0,2}?[a-z-]+)\s+(?:costs?|is)\s*$/.exec(t.before); return m ? m[1] : ""; };
@@ -13444,6 +13599,8 @@
       var Q = A.Q,
         L = A.L,
         tries = [];
+      // several things at a price each ("3 pens for $2 each and 4 pencils for $1 each"): its reader reads only that
+      if (cnt("$") >= 2 && cnt("n") >= 2) tries.push("buy");
       var alg = algCue(A);
       if (alg) tries.push("algebra");
       if (cnt("t") >= 1 && cnt("t") + cnt("dur") >= 2 && /\b(what time|when|how long|how many (minutes|hours)|how much time|(?:latest|earliest) time)\b/.test(Q)) tries.push("time");
@@ -13483,6 +13640,7 @@
       for (var i = 0; i < tries.length; i++) {
         var t = tries[i],
           P = null;
+        if (strong && t === "buy") continue; // an equation story: the algebra reading comes first
         if (strong && t !== "algebra") break;
         try {
           if (t === "timestotal") P = ASSIGN.times(A, true);
@@ -13969,7 +14127,7 @@
         return { type: "rate", kind: kind, a: RN(a), b: mul(RN(a), unit), n: n ? RN(n) : null, ctx: ctxPick("rate", kind).id };
       },
       money: function(o) {
-        var kind = mixOf(o.moneyKind, ["one", "two", "many"]),
+        var kind = mixOf(o.moneyKind, ["one", "two", "many", "each2"]),
           cc = o.moneyCents !== false,
           pr = function(lo, hi) { return cc ? cents(lo * 100, hi * 100, pickOf([5, 25, 1, 10])) : RN(rint(lo, hi)); };
         var a, b = null,
@@ -13982,6 +14140,13 @@
           a = pr(2, 15);
           b = pr(1, 9);
           cost = add(a, b);
+        } else if (kind === "each2") { // several of each of two things: the total spent (no change asked)
+          var n1 = rint(2, 6),
+            n2 = rint(2, 6);
+          a = pr(1, 6);
+          b = pr(1, 4);
+          if (eqR(a, b)) a = add(a, ONE);
+          return { type: "money", kind: kind, n: RN(n1), a: a, c: RN(n2), b: b, ctx: ctxPick("money").id };
         } else {
           n = rint(2, 6);
           a = pr(1, 6);
@@ -14537,6 +14702,7 @@
           ["one", tr("story-problems.api.oneThing")],
           ["two", tr("story-problems.api.twoThings")],
           ["many", tr("story-problems.api.severalOfTheSame")],
+          ["each2", tr("story-problems.api.severalOfTwo")],
           ["mix", tr("story-problems.api.anyOfThem")]
         ])
       },
