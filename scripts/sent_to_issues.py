@@ -98,8 +98,11 @@ def main():
     try:
         hits = all_hits(token, START, end.strftime("%Y-%m-%dT%H:%M:%SZ"))
     except urllib.error.HTTPError as e:
+        said = e.read().decode("utf-8", "replace")[:300]
+        if said.lstrip().startswith("<"): said = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", said)).strip()[:200]
         print("::error::" + {401: "GoatCounter didn't accept the key (401): check the GOATCOUNTER_TOKEN secret.",
-                             403: "The key can't read statistics (403): give it the \"Read statistics\" permission."}.get(e.code, "GoatCounter said %s" % e))
+                             403: "The key can't read statistics (403): give it the \"Read statistics\" permission."}.get(e.code, "GoatCounter said %s" % e)
+              + " " + said + " (" + e.url.split("?")[0] + ")")
         return 1
     paths = page_paths()
     seen = known_issues()

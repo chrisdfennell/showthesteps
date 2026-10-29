@@ -32,8 +32,11 @@ def api(path, params, token):
 def all_hits(token, start, end):
     hits, seen = [], []
     while True:
-        # GoatCounter reads a list as one comma-separated value ("1,2,3"), not as the parameter repeated
-        b = api("stats/hits", {"start": start, "end": end, "limit": 100, "exclude_paths": ",".join(map(str, seen))}, token)
+        # GoatCounter reads a list as one comma-separated value ("1,2,3"), not as the parameter repeated; the first
+        # request has none
+        params = {"start": start, "end": end, "limit": 100}
+        if seen: params["exclude_paths"] = ",".join(map(str, seen))
+        b = api("stats/hits", params, token)
         hits += b.get("hits") or []
         seen = [h["path_id"] for h in hits]
         if not b.get("more"): return hits
