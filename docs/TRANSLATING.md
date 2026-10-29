@@ -155,7 +155,8 @@ Latin American / US school Spanish, informal *tú*. Keep these the same everywhe
 ## Not translated yet
 
 The lessons, reference sheets, practice pages, the standards' own wording (the Common Core line's tooltips) and the
-definitions in the pop-ups (their "More →" link is translated). The QR and Embed dialogs, Add to assignment, the Common
+definitions in the pop-ups (their "More →" link is translated; a word whose `glossary.w.<id>.term`, `.short` and
+`.example` are in the language's file shows them, as the Figures tab's words do). The QR and Embed dialogs, Add to assignment, the Common
 Core line, Your practice (`assign.*`, `qr.*`, `embed.*`, `standards.*`, `glossary.*`, `progress.*`) and the
 screen-reader names of the math (from the speech table) follow the language. Page titles (`<title>`) and the helpers'
 names stay English. A new helper: add `data-strings="<page>"` to its `i18n.js` tag, put its strings in

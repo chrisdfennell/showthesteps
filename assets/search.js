@@ -481,6 +481,17 @@
       /\b(?:at\s+most|at\s+least|no\s+more\s+than|up\s+to|available|there\s+(?:are|is)|has|have|only|needs?)\b/.test(low) && (low.match(/\d+(?:\.\d+)?/g) || []).length >= 4)
       return go("graphing.html", "mode=optimize&" + qp(s), "optimization (linear programming)");
     if (/\bheron'?s?\b/.test(low) && /\d/.test(low)) return go("geometry.html", qp(s), "Heron’s formula");
+    // points, segments, rays and lines named by their letters ("line AB, ray BC, segment AC", "is BC a ray or a segment",
+    // "name the rays", "recta AB, semirrecta BC") go to the Shape Shop's Figures tab; letters with places (A(0,0)) may
+    // come along, other numbers mean another kind of problem (a slope, a distance, the sides of a triangle)
+    var figS = s.replace(/\b[A-Z]\s*\(\s*[−-]?\d+(?:\.\d+)?\s*,\s*[−-]?\d+(?:\.\d+)?\s*\)/g, " ");
+    if (!/\d|=/.test(figS) && !/\b(?:slopes?|equations?|graph\w*|distance|midpoint|length|intercepts?|area|perimeter|pendiente|ecuaci[oó]n|distancia|longitud)\b/i.test(s) &&
+      (/\b(?:line\s+segments?|segments?|rays?|lines?|segmentos?|semirrectas?|rayos?|rectas?|l[ií]neas?)\s+[A-Z]{2}\b/.test(s) ||
+        /\bis\s+[A-Z]{2}\s+an?\s+(?:ray|segment|line)\b|\b(?:ray|segment|line)s?\s*,?\s*(?:an?\s+)?(?:ray|segment|line)s?\s*,?\s*or\s+(?:an?\s+)?(?:ray|segment|line)\b/i.test(s) ||
+        /\bname\s+(?:the|all|every|each|an?)?\s*(?:points?|rays?|lines?|line\s+segments?|segments?|figures?)\b|\bexample\s+of\s+each\s+figure\b/i.test(s) ||
+        /\b[A-Z]{2}\b[^.;]*\b(?:arrows?\s+(?:at|on)\s+both\s+ends|no\s+arrows?|starts?\s+at\s+[A-Z]\b|tiene\s+flechas|sin\s+flechas|no\s+tiene\s+flechas|empieza\s+en\s+[A-Z]\b)/.test(s) ||
+        /\b(?:es\s+)?[A-Z]{2}\s+(?:es\s+)?una?\s+(?:semirrecta|rayo|segmento|recta)\b|\bnombra\s+(?:a\s+)?(?:los|las|todos\s+los|todas\s+las|cada)?\s*(?:puntos|semirrectas|rayos|rectas|segmentos|figuras)\b|\bejemplo\s+de\s+cada\s+figura\b/i.test(s)))
+      return go("geometry.html", "mode=figures&" + qp(s), "points, lines and rays");
 
     // a weather report, pasted: a METAR, SPECI or TAF goes to the Flight Computer's Weather tab ("KSEA 241753Z 18012KT 10SM
     // FEW040 BKN250 14/08 A3012"). It starts with METAR, SPECI or TAF, or has a station and a DDHHMMZ time, or three kinds of

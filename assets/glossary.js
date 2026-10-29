@@ -20,6 +20,11 @@
                       (they are matched like aliases, but glossary.html does not list them as "also called")
               strict  true for everyday words with a math meaning (run, rise, mode, tip, scale…): they are only
                       linked on the pages in `pages`, where they are sure to mean the math thing.
+              manual  true for words that mean too many things to link on their own (point, line, plane, vertex…):
+                      they are never linked automatically; a page links them itself where it means them, with
+                      <a class="gl-term" data-gl="ray" href="…">ray</a> (the Shape Shop's Figures tab does)
+   In another language the popup shows glossary.w.<id>.term / .short / .example when the locale file has them
+   (en.js repeats the English for translators); without them it shows the English.
 
    window.HelperGlossary = { terms, byId(id), find(word), link(root[, {all:true}]), scan(text) }
      link(root)  links the first use of each word inside the explanations under root (default: the whole page),
@@ -89,6 +94,7 @@
       if (see && see.length) t.see = see;
       if (opts === true || (opts && opts.strict)) t.strict = true;
       if (opts && opts.forms) t.forms = opts.forms;
+      if (opts && opts.manual) t.manual = true;
       TERMS.push(t);
     }
 
@@ -656,6 +662,56 @@
       "The angle between one side of a shape and the next side stretched outward. A polygon’s exterior angles add up to 360°.",
       "Each exterior angle of a regular hexagon is 360° ÷ 6 = 60°.",
       "geo", ["interior-angle", "polygon"]);
+    // the figures of the Shape Shop's Figures tab: words like point, line and plane mean many things, so the page links
+    // them itself (manual); the angle kinds and intersecting lines are phrases that only ever mean the math thing
+    E("point", "Point", ["points"], M,
+      "An exact spot. It has no size: it is drawn as a dot and named with a capital letter.",
+      "Point A is drawn as a dot with the letter A next to it.",
+      "geo", ["line", "line-segment", "ray"], { manual: true });
+    E("line", "Line", ["lines"], M,
+      "A straight path that goes on forever in both directions. It is drawn with an arrow at each end and named by any two of its points.",
+      "Line AB (written AB with a two-headed arrow over it) is the same line as line BA.",
+      "geo", ["line-segment", "ray", "point"], { manual: true });
+    E("line-segment", "Line segment", ["line segments", "segment", "segments"], M,
+      "Part of a line between two endpoints. It is drawn with a dot at each end and no arrows, and named by its endpoints.",
+      "Segment AC (written AC with a bar over it) is the same as segment CA.",
+      "geo", ["endpoint", "line", "ray"], { manual: true });
+    E("ray", "Ray", ["rays"], M,
+      "Part of a line that starts at one endpoint and goes on forever in one direction. It is named with its endpoint first.",
+      "Ray BC starts at B and goes through C; ray CB would start at C and go the other way.",
+      "geo", ["endpoint", "line", "line-segment"], { manual: true });
+    E("endpoint", "Endpoint", ["endpoints", "end point", "end points"], M,
+      "A point where a segment or a ray stops. A segment has two endpoints, a ray has one, a line has none.",
+      "Segment AC has endpoints A and C.",
+      "geo", ["line-segment", "ray"], { manual: true });
+    E("plane", "Plane", ["planes"], M,
+      "A flat surface that goes on forever in every direction, like a sheet of paper that never ends.",
+      "Points, lines and angles drawn on a page are all in one plane.",
+      "geo", ["point", "line"], { manual: true });
+    E("collinear", "Collinear", ["collinear points"], M,
+      "Points that lie on the same straight line.",
+      "If B is on line AC, then A, B and C are collinear.",
+      "geo", ["line", "point"], { manual: true });
+    E("vertex", "Vertex", ["vertices", "vertexes"], M,
+      "The point where the two sides of an angle meet, or a corner of a shape. (On a parabola, its turning point.)",
+      "In ∠ABC the vertex is B, the letter in the middle.",
+      "geo", ["angle", "ray"], { manual: true });
+    E("acute-angle", "Acute angle", ["acute angles"], M,
+      "An angle smaller than a right angle: less than 90°.",
+      "A 45° angle is acute.",
+      "geo", ["right-angle", "obtuse-angle"]);
+    E("obtuse-angle", "Obtuse angle", ["obtuse angles"], M,
+      "An angle bigger than a right angle but smaller than a straight angle: between 90° and 180°.",
+      "A 120° angle is obtuse.",
+      "geo", ["right-angle", "acute-angle", "straight-angle"]);
+    E("straight-angle", "Straight angle", ["straight angles"], M,
+      "An angle whose two sides point in opposite directions along one line: exactly 180°.",
+      "If B is between A and C on a line, ∠ABC is a straight angle.",
+      "geo", ["obtuse-angle", "supplementary"]);
+    E("intersecting-lines", "Intersecting lines", ["intersecting line"], M,
+      "Lines that cross each other at one point. If they cross at a right angle, they are perpendicular.",
+      "The two lines of an X are intersecting lines.",
+      "geo", ["perpendicular", "parallel", "vertical-angles"]);
 
     /* ============================== Statistics ============================== */
     E("mean", "Mean", ["average", "averages", "arithmetic mean"], S,
@@ -839,7 +895,7 @@
             pick = [];
           found.forEach(function(f) {
             var t = BY_ID[f.id];
-            if (!t || seen[f.id]) return;
+            if (!t || seen[f.id] || t.manual) return;
             if (t.strict && t.pages.indexOf(page) < 0) return;
             seen[f.id] = 1;
             pick.push(f);
@@ -956,13 +1012,14 @@
         p.appendChild(e);
         return e;
       }
-      bit("b", "gl-t", t.term);
-      bit("span", "gl-d", t.short);
-      if (t.example) bit("span", "gl-x", t.example);
+      var w = "glossary.w." + t.id + ".";
+      bit("b", "gl-t", tr(w + "term", t.term));
+      bit("span", "gl-d", tr(w + "short", t.short));
+      if (t.example) bit("span", "gl-x", tr(w + "example", t.example));
       var more = bit("a", "gl-more", tr("glossary.more", "More \u2192"));
       more.href = wordList("#" + t.id);
       more.tabIndex = -1;
-      more.setAttribute("aria-label", tr("glossary.moreAbout", "More about {t}", { t: t.term.replace(/\s*\([^)]*\)\s*$/, "") }));
+      more.setAttribute("aria-label", tr("glossary.moreAbout", "More about {t}", { t: tr(w + "term", t.term).replace(/\s*\([^)]*\)\s*$/, "") }));
       if (isEmbed()) {
         more.target = "_blank";
         more.rel = "noopener";

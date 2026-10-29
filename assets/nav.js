@@ -279,7 +279,8 @@
       ["mode=area", "Area & perimeter"],
       ["mode=vol", "Volume & surface area"],
       ["mode=right", "Right triangles"],
-      ["mode=angle", "Angles"]
+      ["mode=angle", "Angles"],
+      ["mode=figures", "Figures"]
     ],
     "stats.html": [
       ["mode=center", "Mean, median, mode"],

@@ -319,6 +319,10 @@
   .fld.wide .num-in {
     width: 13ch
   }
+  .fld.wide .num-in[data-k="xy"] {
+    width: 19ch;
+    max-width: 100%
+  }
   .num-in:focus {
     border-bottom-color: var(--focus)
   }
@@ -942,6 +946,103 @@
   .fig [data-step].veil,
   .fig [data-until].veil {
     opacity: 0
+  }
+
+  /* ---- figures: the letters at the points, the colors a figure gets once it's named, angle marks ---- */
+  .fig text.pt {
+    font-size: 16px;
+    font-weight: 700
+  }
+  .fig .fhl {
+    stroke-width: 3.6;
+    stroke-linecap: round;
+    fill: none
+  }
+  .fig .fhl.fa {
+    stroke: var(--a)
+  }
+  .fig .fhl.fm {
+    stroke: var(--m)
+  }
+  .fig .fhl.fe {
+    stroke: var(--e)
+  }
+  .fig .fha.fa {
+    fill: var(--a)
+  }
+  .fig .fha.fm {
+    fill: var(--m)
+  }
+  .fig .fha.fe {
+    fill: var(--e)
+  }
+  .fig .fsec {
+    fill: var(--key-bg);
+    stroke: none
+  }
+  .fig .farc,
+  .fig .fsq {
+    fill: none;
+    stroke: var(--key);
+    stroke-width: 2.2
+  }
+  .fig .fchev {
+    fill: none;
+    stroke: var(--key);
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round
+  }
+  .figcap .fk-a,
+  .figcap .fk-m,
+  .figcap .fk-e {
+    font-weight: 600
+  }
+  .figcap .fk-a {
+    color: var(--a)
+  }
+  .figcap .fk-m {
+    color: var(--m)
+  }
+  .figcap .fk-e {
+    color: var(--e)
+  }
+
+  /* AC with a bar over it (a segment), BC with an arrow (a ray), AB with a double arrow (a line) */
+  .nt {
+    display: inline-block;
+    position: relative;
+    padding: .5em .06em 0;
+    line-height: 1;
+    white-space: nowrap;
+    background: linear-gradient(currentColor, currentColor) no-repeat;
+    background-size: calc(100% - .12em) .085em;
+    background-position: .06em .2em
+  }
+  .nt.nray {
+    background-size: calc(100% - .36em) .085em
+  }
+  .nt.nline {
+    background-size: calc(100% - .48em) .085em;
+    background-position: .24em .2em
+  }
+  .nt.nray::after,
+  .nt.nline::after,
+  .nt.nline::before {
+    content: "";
+    position: absolute;
+    top: .075em;
+    border-top: .165em solid transparent;
+    border-bottom: .165em solid transparent
+  }
+  .nt.nray::after,
+  .nt.nline::after {
+    right: -.02em;
+    border-left: .34em solid currentColor
+  }
+  .nt.nline::before {
+    left: -.02em;
+    border-right: .34em solid currentColor
   }
 
   /* ---- the chain of rewrites ---- */
@@ -1760,6 +1861,7 @@
       <button type="button" data-m="vol" data-i18n="geometry.tab.vol">Volume &amp; surface area</button>
       <button type="button" data-m="right" data-i18n="geometry.tab.right">Right triangles</button>
       <button type="button" data-m="angle" data-i18n="geometry.tab.angle">Angles</button>
+      <button type="button" data-m="figures" data-i18n="geometry.tab.figures">Figures</button>
     </div>
     <div class="pick">
       <span class="lbl" id="pickLbl">Shape</span>
@@ -1854,7 +1956,9 @@
       parallelograms, trapezoids, circles, L-shapes, and a triangle from its three sides with Heron’s formula), volume and surface
       area (boxes, cubes, cylinders, cones, spheres, triangular prisms and square pyramids), right triangles with the Pythagorean
       theorem, and angle rules, from complementary angles to the angles of a polygon. Each step gives the formula and why it
-      works, puts the numbers in, and does the arithmetic one operation at a time, next to a drawing of the shape to scale.</p>
+      works, puts the numbers in, and does the arithmetic one operation at a time, next to a drawing of the shape to scale.
+      The Figures tab names the points, segments, rays, lines and angles in a drawing, and sorts angles into acute, right,
+      obtuse and straight.</p>
     <h3 data-i18n="geometry.about.exTitle">A worked example: the hypotenuse of a right triangle with legs 3 and 4</h3>
     <ol data-i18n="geometry.about.exSteps">
       <li>In a right triangle, a² + b² = c², where c is the hypotenuse, the longest side, across from the right angle.</li>
@@ -1869,6 +1973,7 @@
       <li><a href="geometry.html?q=volume%20of%20box%208%20x%203%20x%205">volume of box 8 x 3 x 5</a>, <a href="geometry.html?q=cylinder%20r%203%20h%2010">cylinder r 3 h 10</a> (volume and surface area)</li>
       <li><a href="geometry.html?q=hypotenuse%203%204">hypotenuse 3 4</a>, <a href="geometry.html?q=is%205%2012%2013%20a%20right%20triangle">is 5 12 13 a right triangle</a> (right triangles)</li>
       <li><a href="geometry.html?q=complement%20of%2035">complement of 35</a>, <a href="geometry.html?q=interior%20angles%20of%20a%207-sided%20polygon">interior angles of a 7-sided polygon</a> (angles)</li>
+      <li><a href="geometry.html?q=line%20AB%2C%20ray%20BC%2C%20segment%20AC">line AB, ray BC, segment AC</a> (points, lines and rays)</li>
     </ul>
     <h3 data-i18n="geometry.about.qTitle">Common questions</h3>
     <div data-i18n="geometry.about.qs">
@@ -1891,7 +1996,7 @@
      keeps the address bar in step with the problem on screen (history.replaceState), so a link opens
      exactly this problem. Theme is never put in the URL.
 
-     mode=area|vol|right|angle
+     mode=area|vol|right|angle|figures
      shape=<id>          area:  rect, square, tri, heron (a triangle from its three sides), para, trap, circle, lshape
                          vol:   box, cube, cyl, cone, sphere, tprism, pyr
                          right: hyp, leg, check
@@ -1904,6 +2009,19 @@
        hyp a, b · leg a, c · check a, b, c ·
        angle tri a, b · line a (a list: a=40,75) · comp a · point a (a list) · vert a · par a, pos=1..8 · poly n
        A link with mode/shape but no measurements gets that shape's example numbers.
+     mode=figures (points, segments, rays and lines, and the angles they make; no units):
+       task=name|identify|kinds   (Name the figures · Ray, segment or line? · Kinds of angles); a link with task= and no
+                                  mode is a figures one
+       pts=A,B,C        the points, one capital letter each (left out: the letters the figures use, in order)
+       seg=AC           segments, by their endpoints          ray=BC   rays, endpoint first (BC starts at B)
+       line=AB          lines, by two of their points         (several of one kind: seg=AC,BD)
+       xy=0,1;7,0;4,5   where the points are, x,y in the order of pts (left out: placed so no three are in a row);
+                        a point that lands on a figure is on it (a line through A, B and D has six names)
+       ask=BC           identify: the figure asked about (left out: the first figure)
+       Two figures overlapping along one line are refused (they'd look like one figure).
+       e.g.  ?mode=figures&task=name&pts=A,B,C&seg=AC&ray=BC&line=AB      (the worksheet: "find an example of each figure")
+             ?mode=figures&task=identify&pts=A,B,C&seg=AC&ray=BC&line=AB&ask=CB
+             ?mode=figures&task=kinds&pts=A,B,C&seg=AC&ray=BA,BC&xy=1,5;1,0;7,0
      unit=none|mm|cm|m|in|ft|yd        pi=exact|314|calc        practice=all|step|check
      e.g.  ?mode=area&shape=rect&l=8&w=5&unit=cm
            ?mode=area&shape=circle&r=9&rd=d&pi=314
@@ -1926,12 +2044,18 @@
        triangle from its legs, the diagonal of a rectangle, "use 3.14 for π" (pi=314) and "round to …" (pi=calc). Shapes and
        questions it doesn't work out (semicircles, sectors, rhombuses, "a circle with area 49π", mixed units, "3 times the
        other") get the notice rather than an answer to some other problem.
+       Figures, typed: line AB, ray BC, segment AC · name the figures: … · find an example of each figure: … · is BC a ray,
+       a segment or a line? · name the rays (no drawing given: the worksheet's) · the drawing in words ("AB has arrows at
+       both ends. BC starts at B and has an arrow past C. AC has no arrows.") · a ray from B through C · points with places,
+       A(0,0), B(4,0), C(4,3), to sort angles ("classify the angles: rays BA and BC, A(1,5), B(1,0), C(7,0)"). Spanish too:
+       recta AB, semirrecta (or rayo) BC, segmento AC (geometry.re.fig in the language's file).
      Bad values never crash the page: a number it can't use shows the usual notice under the problem.
 
      Worksheet API (postMessage, for a page that loads this one in a hidden iframe):
        {type:"helper:options", id}                → {type:"helper:optionsSchema", id, page, title, options}
        {type:"helper:make", id, count, options}   → {type:"helper:made", id, page, problems:[{text, html, params, answer, answerHtml}]}
-     Option keys: mode, shape, max, dec, nice, unit, pi, sketch (see optionsSchema below).
+     Option keys: mode, shape, max, dec, nice, unit, pi, pts (figures: 3, 4 or 5 points), sketch (see optionsSchema below).
+     mode=any stays the first four topics (its label says so); mode=figures makes figures problems.
      Making problems never touches what's on screen, the inputs, the maker settings or localStorage. */
   (function() {
     "use strict";
@@ -3888,7 +4012,7 @@
     };
 
     /* ===================== the shapes ===================== */
-    function F(k, lk, sym, o) { o = o || {}; return { k: k, lk: lk, label: tx("geometry.f." + lk), sym: sym, opt: o.opt ? tx(o.opt) : "", list: !!o.list, rd: !!o.rd, deg: !!o.deg, pos: !!o.pos, whole: !!o.whole }; }
+    function F(k, lk, sym, o) { o = o || {}; return { k: k, lk: lk, label: tx("geometry.f." + lk), sym: sym, opt: o.opt ? tx(o.opt) : "", list: !!o.list, rd: !!o.rd, deg: !!o.deg, pos: !!o.pos, whole: !!o.whole, txt: !!o.txt }; }
 
     function triApex(g, b, h, s1, s2, C, what) { // where the top corner sits, from the three sides (or a guess)
       var px = b.f * 0.36,
@@ -4827,6 +4951,1237 @@
       C.closer = tx("geometry.close.poly", { i: vH(I.v), e: vH(E.v), t: vH(tot) });
     }
 
+    /* ===================== figures: points, segments, rays, lines, and the angles they make =====================
+       A drawing is a few points (capital letters, at grid positions given with xy=, or placed automatically) and
+       figures between two of them: a segment (its two endpoints), a ray (its endpoint first, then a point it goes
+       through) or a line (any two of its points). A point that lies on a figure is on it too, so a line through A, B
+       and D can be named by any two of them. Overlapping figures on one line are refused (they'd look like one). */
+    var FGK = ["seg", "ray", "line"];
+    var FGC = { seg: "a", ray: "m", line: "e" }; // the steps' tag colors, and the drawing's: teal, purple, orange
+    var FG_SKIP = /^(?:and|or|the|an|is|it|its|of|to|on|at|in|by|as|be|are|with|from|for|not|this|that|point|points|segment|segments|seg|line|lines|ray|rays|angle|angles|figure|figures|perpendicular|parallel)$/i;
+    var FG_KW = { seg: "line-segment", ray: "ray", line: "line" }; // their Word List entries
+
+    function fgCross(u, w) { return u[0] * w[1] - u[1] * w[0]; }
+
+    function fgDot(u, w) { return u[0] * w[0] + u[1] * w[1]; }
+
+    function fgSmall(x, u, w) { return Math.abs(x) <= 1e-9 * Math.max(1, Math.sqrt(fgDot(u, u) * fgDot(w, w))); }
+
+    // a glossary word as a link (the Word List's popup); only its first use in a problem is linked
+    function gl(C, id, word) {
+      C.seen.gl = C.seen.gl || {};
+      if (C.seen.gl[id]) return word;
+      C.seen.gl[id] = 1;
+      var href = window.HelperSite && window.HelperSite.url ? window.HelperSite.url("glossary.html", "#" + id) : "../reference/definitions.html#" + id;
+      return '<a class="gl-term" href="' + esc(href) + '" data-gl="' + id + '"' + (EMBED ? ' target="_blank" rel="noopener"' : "") + ">" + word + "</a>";
+    }
+
+    // AC with a bar over it (a segment), BC with an arrow (a ray), AB with a double arrow (a line)
+    function fgNt(kind, nm) { return '<span class="nt n' + kind + '">' + esc(nm) + "</span>"; }
+
+    function fgNmT(kind, nm) { return tx("geometry.fg.nm." + kind, { n: nm }); }
+
+    function fgList(arr) { return arr.length < 2 ? arr.join("") : arr.slice(0, -1).join(", ") + tx("geometry.and") + arr[arr.length - 1]; }
+
+    function fgOr(arr) { return arr.length < 2 ? arr.join("") : arr.slice(0, -1).join(", ") + tx("geometry.fg.or") + arr[arr.length - 1]; }
+
+    // the letter groups in what was typed, without the words around them: "segment AC, ray bc" → ["AC", "BC"]
+    function fgTokens(s) {
+      var out = [],
+        raw = String(s == null ? "" : s).replace(/[̀-ͯ⃐-⃿]/g, "").replace(/<->|->|<-|[↔⟷→⟶←‾¯⊥∥∠<>()]/g, " ");
+      raw.split(/[\s,;:.&+\/|]+/).forEach(function(w) {
+        if (!w) return;
+        if (/^[A-Za-z]$/.test(w)) out.push({ t: w.toUpperCase(), low: w !== w.toUpperCase() });
+        else if (FG_SKIP.test(w)) return;
+        else if (/^[A-Z]{2,4}$/.test(w) || /^[a-z]{2,3}$/.test(w)) out.push({ t: w.toUpperCase() });
+        else if (/^[a-z]+$/i.test(w)) return; // a word
+        else out.push({ t: "?" + w });
+      });
+      // "a ray BC": a lone small a, o or y next to the letters is a word
+      if (out.length > 1) out = out.filter(function(x) { return !(x.low && /^[AOY]$/.test(x.t)); });
+      return out.map(function(x) { return x.t; });
+    }
+
+    // the drawing a figures problem describes: { P: [{n, x, y}], F: [{k, a, b, nm, d, on}], auto }
+    function fgRead(V) {
+      var names = [],
+        idx = {},
+        F = [],
+        i, j;
+
+      function addPt(n, key) {
+        if (idx[n] != null) return;
+        if (names.length >= 8) throw new FieldErr(tx("geometry.fg.err.manyPts"), key);
+        idx[n] = names.length;
+        names.push(n);
+      }
+      fgTokens(V.pts).forEach(function(t) {
+        if (t.charAt(0) === "?") throw new FieldErr(tx("geometry.fg.err.pt", { s: esc(t.slice(1, 14)) }), "pts");
+        t.split("").forEach(function(c) { addPt(c, "pts"); });
+      });
+      var given = names.length > 0;
+      FGK.forEach(function(kind) {
+        fgTokens(V[kind]).forEach(function(t) {
+          if (t.charAt(0) === "?" || t.length !== 2) throw new FieldErr(tx("geometry.fg.err.pair", { s: esc(t.replace(/^\?/, "").slice(0, 14)), w: tx("geometry.fg.w." + kind) }), kind);
+          if (t.charAt(0) === t.charAt(1)) throw new FieldErr(tx("geometry.fg.err.same", { s: t }), kind);
+          for (var q = 0; q < 2; q++) {
+            if (idx[t.charAt(q)] == null) {
+              if (given) throw new FieldErr(tx("geometry.fg.err.noPt", { p: t.charAt(q) }), kind);
+              addPt(t.charAt(q), kind);
+            }
+          }
+          var a = idx[t.charAt(0)],
+            b = idx[t.charAt(1)];
+          if (F.some(function(f) { return f.k === kind && ((f.a === a && f.b === b) || (kind !== "ray" && f.a === b && f.b === a)); })) return; // the same figure twice
+          if (F.length >= 8) throw new FieldErr(tx("geometry.fg.err.manyF"), kind);
+          F.push({ k: kind, a: a, b: b, nm: t });
+        });
+      });
+      if (names.length < 2) throw new FieldErr(tx("geometry.fg.err.fewPts"), "pts");
+      if (!F.length) throw new FieldErr(tx("geometry.fg.err.noF"), "seg");
+      var XY = null,
+        xs = String(V.xy == null ? "" : V.xy).replace(/[−–]/g, "-").replace(/[()\[\]]/g, " ").trim();
+      if (xs) {
+        var parts = xs.split(/\s*[;|]\s*/).filter(function(x) { return x.trim(); });
+        if (parts.length !== names.length) throw new FieldErr(tx("geometry.fg.err.xyCount", { n: names.length, m: parts.length }), "xy");
+        XY = parts.map(function(p) {
+          var m = /^\s*(-?\d+(?:\.\d+)?)\s*(?:,|\s)\s*(-?\d+(?:\.\d+)?)\s*$/.exec(p);
+          if (!m) throw new FieldErr(tx("geometry.fg.err.xy", { s: esc(p.slice(0, 20)) }), "xy");
+          var x = Number(m[1]),
+            y = Number(m[2]);
+          if (Math.abs(x) > 99 || Math.abs(y) > 99) throw new FieldErr(tx("geometry.fg.err.xyBig"), "xy");
+          return [x, y];
+        });
+      }
+      var pos = XY || fgAuto(names.length),
+        P = names.map(function(n, k) { return { n: n, x: pos[k][0], y: pos[k][1] }; });
+      for (i = 0; i < P.length; i++)
+        for (j = i + 1; j < P.length; j++)
+          if (Math.abs(P[i].x - P[j].x) < 1e-9 && Math.abs(P[i].y - P[j].y) < 1e-9) throw new FieldErr(tx("geometry.fg.err.samePlace", { a: P[i].n, b: P[j].n }), "xy");
+      var D = { P: P, F: F, auto: !XY };
+      // the points on each figure, in order along it (t = 0 at its first letter, 1 at its second)
+      F.forEach(function(f) {
+        var A = P[f.a],
+          B = P[f.b];
+        f.d = [B.x - A.x, B.y - A.y];
+        f.on = [];
+        P.forEach(function(X, k) {
+          var w = [X.x - A.x, X.y - A.y];
+          if (!fgSmall(fgCross(f.d, w), f.d, w)) return;
+          var t = fgDot(w, f.d) / fgDot(f.d, f.d);
+          if (fgIn(f, t)) f.on.push({ i: k, t: t });
+        });
+        f.on.sort(function(p, q) { return p.t - q.t; });
+      });
+      // two figures along one line that share more than a point look like one figure
+      for (i = 0; i < F.length; i++)
+        for (j = i + 1; j < F.length; j++) {
+          var f = F[i],
+            g = F[j],
+            A0 = P[f.a],
+            ab = [P[g.a].x - A0.x, P[g.a].y - A0.y],
+            dd = fgDot(f.d, f.d);
+          if (!fgSmall(fgCross(f.d, g.d), f.d, g.d) || !fgSmall(fgCross(f.d, ab), f.d, ab)) continue;
+          var ta = fgDot(ab, f.d) / dd,
+            tb = fgDot([P[g.b].x - A0.x, P[g.b].y - A0.y], f.d) / dd;
+          var I1 = f.k === "seg" ? [0, 1] : f.k === "ray" ? [0, Infinity] : [-Infinity, Infinity],
+            I2 = g.k === "seg" ? [Math.min(ta, tb), Math.max(ta, tb)] : g.k === "ray" ? (tb > ta ? [ta, Infinity] : [-Infinity, ta]) : [-Infinity, Infinity];
+          if (Math.min(I1[1], I2[1]) - Math.max(I1[0], I2[0]) > 1e-9) throw new FieldErr(tx("geometry.fg.err.overlap", { a: fgNmT(f.k, f.nm), b: fgNmT(g.k, g.nm) }), g.k);
+        }
+      return D;
+    }
+
+    function fgIn(f, t) { return f.k === "line" || (t > -1e-9 && (f.k === "ray" || t < 1 + 1e-9)); }
+
+    // where the points go when no positions are given: no three in a line, so nothing lies on a figure by accident
+    var FG_AUTO = {
+      2: [
+        [0, 0],
+        [7, 1]
+      ],
+      3: [
+        [0, 1],
+        [7, 0],
+        [4, 5]
+      ],
+      4: [
+        [0, 1],
+        [7, 0],
+        [8, 5],
+        [2, 6]
+      ],
+      5: [
+        [0, 2],
+        [5, 0],
+        [9, 3],
+        [7, 7],
+        [1, 6]
+      ]
+    };
+
+    function fgAuto(n) {
+      if (FG_AUTO[n]) return FG_AUTO[n];
+      var out = [];
+      for (var k = 0; k < n; k++) {
+        var a = Math.PI * 2 * k / n + (k % 2 ? 0.3 : 0);
+        out.push([Math.round(50 + 50 * Math.cos(a)) / 10, Math.round(40 + 40 * Math.sin(a)) / 10]);
+      }
+      return out;
+    }
+
+    // every right name of a figure: a segment by its endpoints, a ray endpoint first, a line by any two of its points
+    function fgNames(D, f) {
+      var P = D.P,
+        out = {};
+      if (f.k === "seg") {
+        out[P[f.a].n + P[f.b].n] = 1;
+        out[P[f.b].n + P[f.a].n] = 1;
+      } else if (f.k === "ray") f.on.forEach(function(o) { if (o.t > 1e-9) out[P[f.a].n + P[o.i].n] = 1; });
+      else f.on.forEach(function(o) { f.on.forEach(function(q) { if (o.i !== q.i) out[P[o.i].n + P[q.i].n] = 1; }); });
+      return out;
+    }
+
+    // the angles (two sides from one point, each through a named point), and which figures are perpendicular or parallel
+    function fgAn(D) {
+      var P = D.P,
+        arms = P.map(function() { return []; }),
+        angles = [],
+        pairs = [],
+        i, j;
+      D.F.forEach(function(f, fi) {
+        f.on.forEach(function(o, k) {
+          var fwd = f.on.slice(k + 1).map(function(q) { return q.i; }),
+            back = f.on.slice(0, k).reverse().map(function(q) { return q.i; });
+          if (fwd.length) arms[o.i].push({ f: fi, s: 1, pts: fwd });
+          if (back.length) arms[o.i].push({ f: fi, s: -1, pts: back });
+        });
+      });
+      P.forEach(function(Vx, vi) {
+        var A = arms[vi];
+        for (var p = 0; p < A.length; p++)
+          for (var q = p + 1; q < A.length; q++) {
+            var a1 = A[p],
+              a2 = A[q];
+            if (P[a1.pts[0]].n > P[a2.pts[0]].n) {
+              a1 = A[q];
+              a2 = A[p];
+            }
+            var x = a1.pts[0],
+              y = a2.pts[0],
+              u = [P[x].x - Vx.x, P[x].y - Vx.y],
+              w = [P[y].x - Vx.x, P[y].y - Vx.y];
+            var cr = fgCross(u, w),
+              dt = fgDot(u, w);
+            var kind = fgSmall(cr, u, w) ? (dt < 0 ? "straight" : null) : fgSmall(dt, u, w) ? "right" : dt > 0 ? "acute" : "obtuse";
+            if (!kind) continue;
+            var ok = {};
+            a1.pts.forEach(function(s1) {
+              a2.pts.forEach(function(s2) {
+                ok[P[s1].n + Vx.n + P[s2].n] = 1;
+                ok[P[s2].n + Vx.n + P[s1].n] = 1;
+              });
+            });
+            angles.push({ v: vi, a: a1, b: a2, x: x, y: y, nm: P[x].n + Vx.n + P[y].n, kind: kind, deg: Math.atan2(Math.abs(cr), dt) * 180 / Math.PI, ok: ok });
+          }
+      });
+      angles.forEach(function(an) { an.only = angles.filter(function(b) { return b.v === an.v; }).length === 1; });
+      for (i = 0; i < D.F.length; i++)
+        for (j = i + 1; j < D.F.length; j++) {
+          var f = D.F[i],
+            g = D.F[j],
+            cr2 = fgCross(f.d, g.d),
+            A0 = P[f.a],
+            ab = [P[g.a].x - A0.x, P[g.a].y - A0.y];
+          if (fgSmall(cr2, f.d, g.d)) {
+            if (!fgSmall(fgCross(f.d, ab), f.d, ab)) pairs.push({ k: "par", f: i, g: j });
+            continue;
+          }
+          var t = fgCross(ab, g.d) / cr2,
+            s = fgCross(ab, f.d) / cr2;
+          if (!fgIn(f, t) || !fgIn(g, s)) continue; // they don't meet
+          var X = [A0.x + t * f.d[0], A0.y + t * f.d[1]],
+            at = -1;
+          P.forEach(function(pp, k) { if (Math.abs(pp.x - X[0]) < 1e-7 && Math.abs(pp.y - X[1]) < 1e-7) at = k; });
+          if (fgSmall(fgDot(f.d, g.d), f.d, g.d)) pairs.push({ k: "perp", f: i, g: j, at: at, X: X, t: t, s: s });
+          else if (f.k === "line" && g.k === "line") pairs.push({ k: "cross", f: i, g: j, at: at, X: X });
+        }
+      return { arms: arms, angles: angles, pairs: pairs };
+    }
+
+    /* ---------- the drawing ---------- */
+    // o: hl {figure index: step} colors a figure from that step on; ang {angle index: step} gives an angle its arc;
+    // pair {pair index: step} marks perpendicular (a square) and parallel (matching ›) figures
+    function figFigures(D, An, o) {
+      o = o || {};
+      var P = D.P,
+        F = new Fig(P.map(function(p) { return [p.x, p.y]; }), { W: 440, H: 290, mx: 58, my: 46 }),
+        ext = 32 / F.s;
+      var strokes = D.F.map(function(f) {
+        var A = P[f.a],
+          d = f.d,
+          L = Math.sqrt(fgDot(d, d)),
+          ts = f.on.map(function(q) { return q.t; }),
+          t0 = f.k === "line" ? Math.min.apply(null, ts) - ext / L : 0,
+          t1 = f.k === "seg" ? 1 : Math.max.apply(null, ts) + ext / L;
+        return { f: f, p0: [A.x + t0 * d[0], A.y + t0 * d[1]], p1: [A.x + t1 * d[0], A.y + t1 * d[1]], a0: f.k === "line", a1: f.k !== "seg" };
+      });
+
+      function px(p) { return F.p([p.x, p.y]); }
+
+      function stroke(s, cls, acls) {
+        var A = F.p(s.p0),
+          B = F.p(s.p1),
+          dx = B[0] - A[0],
+          dy = B[1] - A[1],
+          L = Math.sqrt(dx * dx + dy * dy) || 1,
+          ux = dx / L,
+          uy = dy / L;
+        F.ext(A);
+        F.ext(B);
+        var a = s.a0 ? [A[0] + ux * 8, A[1] + uy * 8] : A,
+          b = s.a1 ? [B[0] - ux * 8, B[1] - uy * 8] : B;
+
+        function head(T, sx, sy) { // an arrowhead with its tip at T, pointing along (sx, sy)
+          var bx = T[0] - sx * 13,
+            by = T[1] - sy * 13;
+          return '<path class="' + acls + '" d="M' + f1(T[0]) + "," + f1(T[1]) + " L" + f1(bx - sy * 6) + "," + f1(by + sx * 6) + " L" + f1(bx + sy * 6) + "," + f1(by - sx * 6) + ' Z"/>';
+        }
+        return '<line class="' + cls + '" x1="' + f1(a[0]) + '" y1="' + f1(a[1]) + '" x2="' + f1(b[0]) + '" y2="' + f1(b[1]) + '"/>' +
+          (s.a1 ? head(B, ux, uy) : "") + (s.a0 ? head(A, -ux, -uy) : "");
+      }
+      var under = "",
+        over = "";
+
+      function dirTo(C, Q) { return Math.atan2(-(Q[1] - C[1]), Q[0] - C[0]) * 180 / Math.PI; }
+
+      function sq(C, u, w, size) { // a right-angle mark at C along the unit vectors u and w (pixels)
+        var p1 = [C[0] + u[0] * size, C[1] + u[1] * size],
+          p3 = [C[0] + w[0] * size, C[1] + w[1] * size],
+          p2 = [p1[0] + w[0] * size, p1[1] + w[1] * size];
+        return '<path class="fhx fsq" d="M' + f1(p1[0]) + "," + f1(p1[1]) + " L" + f1(p2[0]) + "," + f1(p2[1]) + " L" + f1(p3[0]) + "," + f1(p3[1]) + '"/>';
+      }
+
+      function unit(C, Q) {
+        var x = Q[0] - C[0],
+          y = Q[1] - C[1],
+          l = Math.sqrt(x * x + y * y) || 1;
+        return [x / l, y / l];
+      }
+      // the angles' arcs: at a vertex with several angles, the wider ones further out
+      var byV = {};
+      An.angles.forEach(function(an, i) { if (o.ang && o.ang[i] != null)(byV[an.v] = byV[an.v] || []).push(i); });
+      Object.keys(byV).forEach(function(v) {
+        var list = byV[v].slice().sort(function(p, q) { return An.angles[p].deg - An.angles[q].deg; });
+        list.forEach(function(ai, k) {
+          var an = An.angles[ai],
+            C = px(P[an.v]),
+            X = px(P[an.x]),
+            Y = px(P[an.y]),
+            room = Math.min(Math.sqrt(Math.pow(X[0] - C[0], 2) + Math.pow(X[1] - C[1], 2)), Math.sqrt(Math.pow(Y[0] - C[0], 2) + Math.pow(Y[1] - C[1], 2)));
+          var r = Math.min(20 + 9 * k, room * 0.45),
+            a1 = dirTo(C, X),
+            a2 = dirTo(C, Y),
+            s = a2 - a1,
+            h = "";
+          while (s < 0) s += 360;
+          while (s >= 360) s -= 360;
+          if (an.kind === "straight") {
+            // the half turn on the side with fewer other sides on it
+            var others = An.arms[an.v].filter(function(arm) { return arm !== an.a && arm !== an.b; }).map(function(arm) {
+              var d2 = dirTo(C, px(P[arm.pts[0]])) - a1;
+              while (d2 < 0) d2 += 360;
+              return d2 < 180 ? 1 : -1;
+            });
+            var up = others.filter(function(x) { return x > 0; }).length,
+              dn = others.length - up;
+            if (up > dn) a1 = a2;
+            s = 180;
+          } else if (s > 180) {
+            a1 = a2;
+            s = 360 - s;
+          }
+          var g0 = '<g class="fhg" data-step="' + o.ang[ai] + '">';
+          if (an.kind === "right") h = sq(C, unit(C, X), unit(C, Y), Math.min(12, r * 0.7));
+          else {
+            var p1 = arcPt(C, r, a1),
+              p2 = arcPt(C, r, a1 + s),
+              arc = " A" + f1(r) + "," + f1(r) + " 0 0 0 " + f1(p2[0]) + "," + f1(p2[1]);
+            under += g0 + '<path class="fhx fsec" d="M' + f1(C[0]) + "," + f1(C[1]) + " L" + f1(p1[0]) + "," + f1(p1[1]) + arc + ' Z"/></g>';
+            h = '<path class="fhx farc" d="M' + f1(p1[0]) + "," + f1(p1[1]) + arc + '"/>';
+            F.ext(p1);
+            F.ext(p2);
+          }
+          over += g0 + h + "</g>";
+        });
+      });
+      // perpendicular and parallel marks
+      var nPar = 0;
+      An.pairs.forEach(function(pr, i) {
+        if (!o.pair || o.pair[i] == null) return;
+        var f = D.F[pr.f],
+          g = D.F[pr.g],
+          h = "";
+        if (pr.k === "perp") {
+          var C = F.p(pr.X);
+
+          function along(fig, t) { // a direction from the crossing along the figure, toward a part that's drawn
+            var s0 = strokes[D.F.indexOf(fig)],
+              A = F.p(s0.p0),
+              B = F.p(s0.p1),
+              dA = Math.abs(A[0] - C[0]) + Math.abs(A[1] - C[1]),
+              dB = Math.abs(B[0] - C[0]) + Math.abs(B[1] - C[1]);
+            return unit(C, dB >= dA ? B : A);
+          }
+          h = sq(C, along(f, pr.t), along(g, pr.s), 12);
+        } else if (pr.k === "par") {
+          nPar++;
+          var u0 = null; // both figures' marks point the same way
+          [f, g].forEach(function(fig) {
+            var s0 = strokes[D.F.indexOf(fig)],
+              A = F.p(s0.p0),
+              B = F.p(s0.p1),
+              u = unit(A, B),
+              M = [(A[0] + B[0]) / 2, (A[1] + B[1]) / 2];
+            if (u0 && u[0] * u0[0] + u[1] * u0[1] < 0) u = [-u[0], -u[1]];
+            u0 = u;
+            for (var k = 0; k < nPar; k++) {
+              var c = [M[0] + u[0] * (k * 8 - (nPar - 1) * 4), M[1] + u[1] * (k * 8 - (nPar - 1) * 4)];
+              h += '<path class="fhx fchev" d="M' + f1(c[0] - u[0] * 5 - u[1] * 6) + "," + f1(c[1] - u[1] * 5 + u[0] * 6) + " L" + f1(c[0] + u[0] * 4) + "," + f1(c[1] + u[1] * 4) + " L" +
+                f1(c[0] - u[0] * 5 + u[1] * 6) + "," + f1(c[1] - u[1] * 5 - u[0] * 6) + '"/>';
+            }
+          });
+        }
+        if (h) over += '<g class="fhg" data-step="' + o.pair[i] + '">' + h + "</g>";
+      });
+      // the shading under the lines, then the lines, their colors once named, and the marks on top
+      F.add(under);
+      strokes.forEach(function(s) { F.add(stroke(s, "ray", "arrow")); });
+      strokes.forEach(function(s, i) {
+        if (o.hl && o.hl[i] != null) F.add('<g class="fhg" data-step="' + o.hl[i] + '">' + stroke(s, "fhl f" + FGC[s.f.k], "fha f" + FGC[s.f.k]) + "</g>");
+      });
+      F.add(over);
+      // the points: a dot each, and the letter in the widest gap between the lines through it
+      P.forEach(function(p, i) {
+        var C = px(p),
+          dirs = [];
+        strokes.forEach(function(s) {
+          var A = F.p(s.p0),
+            B = F.p(s.p1),
+            ab = [B[0] - A[0], B[1] - A[1]],
+            ac = [C[0] - A[0], C[1] - A[1]],
+            L2 = fgDot(ab, ab) || 1,
+            t = Math.max(0, Math.min(1, fgDot(ac, ab) / L2)),
+            dx = A[0] + ab[0] * t - C[0],
+            dy = A[1] + ab[1] * t - C[1];
+          if (dx * dx + dy * dy > 4) return; // not through this point
+          if (Math.abs(A[0] - C[0]) + Math.abs(A[1] - C[1]) > 3) dirs.push(dirTo(C, A));
+          if (Math.abs(B[0] - C[0]) + Math.abs(B[1] - C[1]) > 3) dirs.push(dirTo(C, B));
+        });
+        var best = 90;
+        if (dirs.length) {
+          dirs = dirs.map(function(a) { return (a + 360) % 360; }).sort(function(a, b) { return a - b; });
+          var gap = -1;
+          dirs.forEach(function(a, k) {
+            var b = k + 1 < dirs.length ? dirs[k + 1] : dirs[0] + 360;
+            if (b - a > gap) {
+              gap = b - a;
+              best = a + (b - a) / 2;
+            }
+          });
+        }
+        var L = arcPt(C, 17, best);
+        F.add('<circle class="dot" cx="' + f1(C[0]) + '" cy="' + f1(C[1]) + '" r="4.2"/>');
+        F.textPx([L[0], L[1] + 6], esc(p.n), "pt", "middle");
+      });
+      return F.svg(o.aria || "");
+    }
+
+    /* ---------- words for the steps ---------- */
+    // how a figure looks, without naming its kind: "BC starts at B and has an arrow past C"
+    function fgLook(D, f, html) {
+      var P = D.P,
+        B = function(s) { return html ? "<b>" + esc(s) + "</b>" : s; },
+        extra = f.on.filter(function(q) { return q.i !== f.a && q.i !== f.b; }).map(function(q) { return B(P[q.i].n); }),
+        last = f.on[f.on.length - 1].i;
+      var s = tx("geometry.fg.d." + f.k, { n: B(f.nm), e: B(P[f.a].n), p: B(P[last].n) });
+      if (extra.length) s += tx("geometry.fg.d.on", { list: fgList(extra), n: extra.length });
+      return s;
+    }
+
+    function fgLookAll(D) {
+      return tx("geometry.fg.d.all", { pts: fgList(D.P.map(function(p) { return p.n; })), figs: D.F.map(function(f) { return fgLook(D, f, false); }).join("; ") });
+    }
+
+    function fgAria(D) { return tx("geometry.fg.svg", { d: fgLookAll(D) }); }
+
+    function fgDeg(an) {
+      if (an.kind === "right") return "90";
+      if (an.kind === "straight") return "180";
+      var r = Math.round(an.deg);
+      return String(r === 90 || r === 0 || r === 180 ? Math.round(an.deg * 10) / 10 : r);
+    }
+
+    function fgAngNt(nm) { return "∠" + esc(nm); }
+
+    // a figure's other names, as notation: "AB↔ or BA↔"
+    function fgNameList(D, f, first) {
+      var all = Object.keys(fgNames(D, f)),
+        order = [first].concat(all.filter(function(n) { return n !== first; }));
+      return fgOr(order.map(function(n) { return fgNt(f.k, n); }));
+    }
+
+    /* ---------- the three tasks ---------- */
+    function runFig(C, g, task) {
+      var V = g.V,
+        D = fgRead(V),
+        An = fgAn(D),
+        P = D.P;
+      C.figT = [];
+      C.fgD = D;
+      if (task === "identify") return runFigIdent(C, V, D, An);
+      if (task === "kinds") return runFigKinds(C, V, D, An);
+      return runFigName(C, D, An);
+    }
+
+    function fgByKind(D) {
+      var out = { seg: [], ray: [], line: [] };
+      D.F.forEach(function(f, i) { out[f.k].push(i); });
+      return out;
+    }
+
+    function runFigName(C, D, An) {
+      var P = D.P,
+        K = fgByKind(D),
+        hl = {},
+        ang = {},
+        rows = [];
+      logItem(C, [
+        ["p", tx("geometry.fg.tag.ends"), tx("geometry.fg.s.ends", { ep: gl(C, "endpoint", tx("geometry.fg.w.endpoint")) })]
+      ], tx("geometry.fg.a.ends"));
+      var sP = logItem(C, [
+        ["p", tx("geometry.fg.tag.points"), tx("geometry.fg.s.points", { pt: gl(C, "point", tx("geometry.fg.w.point")), n: P.length, list: fgList(P.map(function(p) { return "<b>" + esc(p.n) + "</b>"; })) })]
+      ]);
+      FGK.forEach(function(kind) {
+        if (!K[kind].length) return;
+        var lines = K[kind].map(function(fi, k) {
+          var f = D.F[fi],
+            vv = {
+              d: fgLook(D, f, true),
+              w: k ? tx("geometry.fg.w." + kind) : gl(C, FG_KW[kind], tx("geometry.fg.w." + kind)),
+              nt: fgNt(kind, f.nm),
+              rev: fgNt(kind, f.nm.charAt(1) + f.nm.charAt(0)),
+              e: "<b>" + esc(P[f.a].n) + "</b>",
+              p: "<b>" + esc(P[f.b].n) + "</b>",
+              list: fgNameList(D, f, f.nm)
+            };
+          var txt = tx("geometry.fg.s." + kind, vv);
+          var extra = f.on.filter(function(q) { return q.i !== f.a && q.i !== f.b; });
+          if (kind === "seg" && extra.length) txt += tx("geometry.fg.s.segOn", { list: fgList(extra.map(function(q) { return "<b>" + esc(P[q.i].n) + "</b>"; })), n: extra.length });
+          if (kind === "ray" && Object.keys(fgNames(D, f)).length > 1) txt += tx("geometry.fg.s.rayOn", { list: fgNameList(D, f, f.nm) });
+          return [FGC[kind], tx("geometry.fg.tag." + kind), txt];
+        });
+        var st = logItem(C, lines, tx("geometry.fg.a." + kind));
+        K[kind].forEach(function(fi) {
+          var f = D.F[fi];
+          hl[fi] = st;
+          rows.push({ n: fgNt(kind, f.nm), v: tx("geometry.fg.w." + kind), r: tx("geometry.fg.r." + kind), c: "c-" + FGC[kind], step: st });
+        });
+      });
+      if (An.angles.length) {
+        var vs = [];
+        An.angles.forEach(function(an) { if (vs.indexOf(P[an.v].n) < 0) vs.push(P[an.v].n); });
+        var a0 = An.angles[0];
+        var sA = logItem(C, [
+          ["p", tx("geometry.fg.tag.angles"), tx("geometry.fg.s.angles", {
+            ang: gl(C, "angle", tx("geometry.fg.w.angle")),
+            vx: gl(C, "vertex", tx("geometry.fg.w.vertex")),
+            vs: fgList(vs.map(function(x) { return "<b>" + esc(x) + "</b>"; })),
+            n: An.angles.length,
+            list: fgList(An.angles.map(function(an) { return "<b>" + fgAngNt(an.nm) + "</b>"; }))
+          })],
+          ["p", tx("geometry.fg.tag.angles"), tx("geometry.fg.s.angMid", { nt: "<b>" + fgAngNt(a0.nm) + "</b>", v: "<b>" + esc(P[a0.v].n) + "</b>", rev: "<b>" + fgAngNt(a0.nm.split("").reverse().join("")) + "</b>" })]
+        ], tx("geometry.fg.a.angles"));
+        An.angles.forEach(function(an, i) {
+          if (an.kind !== "straight") ang[i] = sA; // a half circle at a crowded point would hide its letter
+          rows.push({ n: fgAngNt(an.nm), v: tx("geometry.fg.w.angle"), r: tx("geometry.fg.r.angle", { v: esc(P[an.v].n), x: esc(P[an.x].n), y: esc(P[an.y].n) }), c: "c-p", step: sA });
+        });
+      }
+      table(C, tx("geometry.fg.b.figs"), tx("geometry.fg.bn.figs"), rows);
+      C.lastStep = C.log.length - 1;
+      addFig(C, figFigures(D, An, { hl: hl, ang: ang, aria: fgAria(D) }), tx("geometry.fg.cap.name") + (D.auto ? tx("geometry.fg.cap.auto") : ""));
+      // the answers, and what Check my answer asks for
+      var ptsT = P.map(function(p) { return p.n; }).join(", ");
+      C.answers.push({ k: tx("geometry.fg.k.points", { n: P.length }), main: esc(ptsT), mainT: ptsT, facts: [] });
+      C.figT.push({ fig: "point", label: tx("geometry.fg.ck.point"), lab2: tx("geometry.fg.ck.point2"), ph: tx("geometry.fg.ph.point"), cands: [], alts: [], pow: 0 });
+      var alsoH = [];
+      FGK.forEach(function(kind) {
+        if (!K[kind].length) return;
+        var fs = K[kind].map(function(fi) { return D.F[fi]; });
+        C.answers.push({ k: tx("geometry.fg.k." + kind, { n: fs.length }), main: fs.map(function(f) { return fgNt(kind, f.nm); }).join(", "), mainT: fs.map(function(f) { return f.nm; }).join(", "), facts: [] });
+        C.figT.push({ fig: kind, label: tx("geometry.fg.ck." + kind), lab2: tx("geometry.fg.ck." + kind + "2"), ph: tx("geometry.fg.ph.pair"), cands: [], alts: [], pow: 0 });
+        var other = Object.keys(fgNames(D, fs[0])).filter(function(n) { return n !== fs[0].nm; })[0];
+        if (other) alsoH.push(fgNt(kind, other));
+      });
+      if (An.angles.length) {
+        C.answers.push({ k: tx("geometry.fg.k.angle", { n: An.angles.length }), main: An.angles.map(function(an) { return fgAngNt(an.nm); }).join(", "), mainT: An.angles.map(function(an) { return "∠" + an.nm; }).join(", "), facts: [] });
+        C.figT.push({ fig: "angle", label: tx("geometry.fg.ck.angle"), lab2: tx("geometry.fg.ck.angle2"), ph: tx("geometry.fg.ph.angle"), cands: [], alts: [], pow: 0 });
+        alsoH.push(fgAngNt(An.angles[0].nm.split("").reverse().join("")));
+      }
+      if (alsoH.length) C.facts.push(tx("geometry.fg.f.also", { list: fgList(alsoH) }));
+      C.closer = tx("geometry.fg.close.name");
+      C.fgAn = An;
+    }
+
+    // which drawn figure a typed name is: { f, how: "name" | "rev" (a ray written endpoint last) } or null
+    function fgFind(D, nm) {
+      for (var i = 0; i < D.F.length; i++)
+        if (fgNames(D, D.F[i])[nm]) return { f: D.F[i], i: i, how: "name" };
+      var rv = nm.charAt(1) + nm.charAt(0);
+      for (i = 0; i < D.F.length; i++)
+        if (D.F[i].k === "ray" && fgNames(D, D.F[i])[rv]) return { f: D.F[i], i: i, how: "rev" };
+      return null;
+    }
+
+    function runFigIdent(C, V, D, An) {
+      var P = D.P,
+        tk = fgTokens(V.ask).filter(function(t) { return t.charAt(0) !== "?"; }),
+        q = tk.length === 1 && tk[0].length === 2 ? tk[0] : "";
+      if (!String(V.ask == null ? "" : V.ask).trim()) q = D.F[0].nm;
+      if (!q) throw new FieldErr(tx("geometry.fg.err.ask"), "ask");
+      var hit = fgFind(D, q);
+      if (!hit) {
+        if (P.every(function(p) { return p.n !== q.charAt(0); }) || P.every(function(p) { return p.n !== q.charAt(1); }))
+          throw new FieldErr(tx("geometry.fg.err.askPt", { q: esc(q) }), "ask");
+        throw new FieldErr(tx("geometry.fg.err.askNone", { q: esc(q) }), "ask");
+      }
+      var f = hit.f,
+        kind = f.k,
+        nm = hit.how === "rev" ? f.nm.charAt(0) + q.charAt(0) : q,
+        hl = {},
+        B = function(s) { return "<b>" + esc(s) + "</b>"; };
+      if (hit.how === "rev") nm = P[f.a].n + q.charAt(0);
+      logItem(C, [
+        ["p", tx("geometry.fg.tag.find"), tx("geometry.fg.s.find", { a: B(q.charAt(0)), b: B(q.charAt(1)), d: fgLook(D, f, true) })]
+      ]);
+      var last = f.on[f.on.length - 1].i;
+      var st = logItem(C, [
+        [FGC[kind], tx("geometry.fg.tag.ends"), tx("geometry.fg.s.ends." + kind, {
+          a: B(P[f.a].n),
+          b: B(P[f.b].n),
+          e: B(P[f.a].n),
+          p: B(P[last].n),
+          ep: gl(C, "endpoint", tx(kind === "ray" ? "geometry.fg.w.endpoint" : "geometry.fg.w.endpoints")),
+          w: gl(C, FG_KW[kind], tx("geometry.fg.w." + kind))
+        })]
+      ]);
+      hl[hit.i] = st;
+      var nameTxt = hit.how === "rev" ? tx("geometry.fg.s.nameRayRev", { nt: fgNt("ray", nm), qnt: fgNt("ray", q), e: B(P[f.a].n), q0: B(q.charAt(0)) }) :
+        tx("geometry.fg.s.name." + kind, { q: B(q), nt: fgNt(kind, nm), rev: fgNt(kind, nm.charAt(1) + nm.charAt(0)), e: B(P[f.a].n), list: fgNameList(D, f, nm) });
+      logItem(C, [
+        [FGC[kind], tx("geometry.fg.tag.name"), nameTxt]
+      ], tx("geometry.fg.a." + kind));
+      C.lastStep = C.log.length - 1;
+      table(C, tx("geometry.fg.b.ident"), "", [{ n: fgNt(kind, nm), v: tx("geometry.fg.w." + kind), r: tx("geometry.fg.r." + kind), c: "c-" + FGC[kind], step: st }]);
+      addFig(C, figFigures(D, An, { hl: hl, aria: fgAria(D) }), tx("geometry.fg.cap.ident") + (D.auto ? tx("geometry.fg.cap.auto") : ""));
+      C.answers.push({
+        k: tx("geometry.fg.k.is", { q: esc(q) }),
+        main: tx("geometry.fg.a." + kind + "1"),
+        mainT: tx("geometry.fg.a." + kind + "1"),
+        facts: [hit.how === "rev" ? tx("geometry.fg.f.rev", { nt: fgNt("ray", nm), qnt: fgNt("ray", q) }) : tx("geometry.fg.f.named", { nt: fgNt(kind, nm) })]
+      });
+      C.figT.push({ fig: "kind", want: kind, q: q, f: f, label: tx("geometry.fg.ck.is", { q: q }), lab2: q, ph: tx("geometry.fg.ph.kind"), cands: [], alts: [], pow: 0 });
+      C.closer = tx("geometry.fg.close.ident");
+      C.fgAn = An;
+    }
+
+    function runFigKinds(C, V, D, An) {
+      var P = D.P,
+        ang = {},
+        pair = {},
+        rows = [],
+        hl = {},
+        KC = { acute: "a", right: "p", obtuse: "m", straight: "e" };
+      if (!An.angles.length && !An.pairs.length) throw new UserErr(tx("geometry.fg.err.noAngles"));
+      if (An.angles.length) logItem(C, [
+        ["p", tx("geometry.fg.tag.compare"), tx("geometry.fg.s.compare", {
+          ra: gl(C, "right-angle", tx("geometry.fg.w.rightAngle")),
+          ac: gl(C, "acute-angle", tx("geometry.fg.kind.acute")),
+          ob: gl(C, "obtuse-angle", tx("geometry.fg.kind.obtuse")),
+          st: gl(C, "straight-angle", tx("geometry.fg.w.straightAngle"))
+        })]
+      ], tx("geometry.fg.a.compare"));
+      An.angles.forEach(function(an, i) {
+        var vv = { nt: "<b>" + fgAngNt(an.nm) + "</b>", v: "<b>" + esc(P[an.v].n) + "</b>", x: "<b>" + esc(P[an.x].n) + "</b>", y: "<b>" + esc(P[an.y].n) + "</b>", deg: fgDeg(an) };
+        var st = logItem(C, [
+          [KC[an.kind], tx("geometry.fg.tag." + an.kind), tx("geometry.fg.s.k." + an.kind, vv)]
+        ]);
+        ang[i] = st;
+        rows.push({ n: fgAngNt(an.nm), v: tx("geometry.fg.kind." + an.kind), r: tx(an.kind === "right" || an.kind === "straight" ? "geometry.fg.r.exactly" : "geometry.fg.r.about", { deg: fgDeg(an) }), c: "c-" + KC[an.kind], step: st });
+        C.answers.push({ k: "∠" + an.nm, main: tx("geometry.fg.kind." + an.kind), mainT: tx("geometry.fg.isKind", { kind: tx("geometry.fg.kind." + an.kind) }), noEq: true, facts: [] });
+        C.figT.push({ fig: "akind", want: an.kind, an: an, label: "∠" + an.nm, lab2: "∠" + an.nm, ph: tx("geometry.fg.ph.akind"), cands: [], alts: [], pow: 0 });
+      });
+      var perp = [],
+        par = [],
+        crossed = [];
+      An.pairs.forEach(function(pr, i) {
+        var f = D.F[pr.f],
+          g = D.F[pr.g],
+          a = fgNt(f.k, f.nm),
+          b = fgNt(g.k, g.nm);
+        if (pr.k === "perp") {
+          pair[i] = logItem(C, [
+            ["p", tx("geometry.fg.tag.perp"), tx("geometry.fg.s.perp", { a: a, b: b, w: gl(C, "perpendicular", tx("geometry.fg.w.perp")) })]
+          ]);
+          perp.push(pr);
+          rows.push({ n: a + " ⊥ " + b, v: tx("geometry.fg.w.perp"), r: tx("geometry.fg.r.perp"), c: "c-p", step: pair[i] });
+        } else if (pr.k === "par") {
+          pair[i] = logItem(C, [
+            ["a", tx("geometry.fg.tag.par"), tx("geometry.fg.s.par", { a: a, b: b, w: gl(C, "parallel", tx("geometry.fg.w.par")) })]
+          ]);
+          par.push(pr);
+          rows.push({ n: a + " ∥ " + b, v: tx("geometry.fg.w.par"), r: tx("geometry.fg.r.par"), c: "c-a", step: pair[i] });
+        } else {
+          pair[i] = logItem(C, [
+            ["m", tx("geometry.fg.tag.cross"), tx("geometry.fg.s.cross", { a: a, b: b, w: gl(C, "intersecting-lines", tx("geometry.fg.w.cross")) })]
+          ]);
+          crossed.push(pr);
+          hl[pr.f] = pair[i];
+          hl[pr.g] = pair[i];
+        }
+      });
+      C.lastStep = C.log.length - 1;
+      table(C, tx("geometry.fg.b.kinds"), tx("geometry.fg.bn.kinds"), rows);
+      addFig(C, figFigures(D, An, { hl: hl, ang: ang, pair: pair, aria: fgAria(D) }), tx("geometry.fg.cap.kinds") + (D.auto ? tx("geometry.fg.cap.auto") : ""));
+
+      function pairT(list, sym) { return list.map(function(pr) { return D.F[pr.f].nm + " " + sym + " " + D.F[pr.g].nm; }).join(", "); }
+
+      function pairH(list, sym) { return list.map(function(pr) { return fgNt(D.F[pr.f].k, D.F[pr.f].nm) + " " + sym + " " + fgNt(D.F[pr.g].k, D.F[pr.g].nm); }).join(", "); }
+      if (perp.length) {
+        C.answers.push({ k: tx("geometry.fg.k.perp"), main: pairH(perp, "⊥"), mainT: pairT(perp, "⊥"), facts: [] });
+        C.figT.push({ fig: "perp", prs: perp, label: tx("geometry.fg.ck.perp"), lab2: tx("geometry.fg.ck.perp"), ph: tx("geometry.fg.ph.two"), cands: [], alts: [], pow: 0 });
+      }
+      if (par.length) {
+        C.answers.push({ k: tx("geometry.fg.k.par"), main: pairH(par, "∥"), mainT: pairT(par, "∥"), facts: [] });
+        C.figT.push({ fig: "par", prs: par, label: tx("geometry.fg.ck.par"), lab2: tx("geometry.fg.ck.par"), ph: tx("geometry.fg.ph.two"), cands: [], alts: [], pow: 0 });
+      }
+      if (crossed.length && !perp.length && !par.length) C.answers.push({ k: tx("geometry.fg.k.cross"), main: pairH(crossed, "×"), mainT: pairT(crossed, "×"), facts: [] });
+      if (An.angles.length) C.facts.push(tx("geometry.fg.f.deg", { list: An.angles.map(function(an) { return "∠" + esc(an.nm) + (an.kind === "right" || an.kind === "straight" ? " = " : " ≈ ") + fgDeg(an) + "°"; }).join(", ") }));
+      C.closer = tx("geometry.fg.close.kinds");
+      C.fgAn = An;
+    }
+
+    /* ---------- Check my answer ---------- */
+    // a typed answer in the language in use: its words in English (geometry.re.fig), the letters kept as typed
+    function fgAnsWords(s) { return fgTyped(String(s || "")).toLowerCase(); }
+
+    function gradeFig(t, raw) {
+      var D = lastC && lastC.fgD,
+        An = lastC && lastC.fgAn;
+      if (!D || !An) return { st: "no", unread: true, msg: tx("geometry.fg.ck.unread") };
+      var P = D.P,
+        words = fgAnsWords(raw),
+        toks = fgTokens(fgTyped(String(raw))).filter(function(x) { return x.charAt(0) !== "?"; }),
+        known = function(c) { return P.some(function(p) { return p.n === c; }); },
+        B = function(s) { return "<b>" + esc(s) + "</b>"; };
+      var bad = toks.join("").split("").filter(function(c) { return !known(c); })[0];
+      if (t.fig === "kind" || t.fig === "akind") {
+        var KW = t.fig === "kind" ? ["segment", "ray", "line"] : ["acute", "right", "obtuse", "straight"],
+          said = KW.filter(function(w) { return new RegExp("\\b" + w + "\\b").test(words); });
+        if (t.fig === "kind" && /\bline segment\b/.test(words)) said = ["segment"];
+        var want = t.fig === "kind" ? { seg: "segment", ray: "ray", line: "line" } [t.want] : t.want;
+        if (said.length !== 1) return { st: "no", unread: true, msg: tx(t.fig === "kind" ? "geometry.fg.ck.sayKind" : "geometry.fg.ck.sayAkind") };
+        if (said[0] === want) return { st: "ok" };
+        if (t.fig === "kind") return { st: "no", msg: tx("geometry.fg.ck.ends." + t.want, { q: B(t.q), e: B(P[t.f.a].n), p: B(P[t.f.on[t.f.on.length - 1].i].n), a: B(P[t.f.a].n), b: B(P[t.f.b].n) }) };
+        return { st: "no", msg: tx("geometry.fg.ck.ak." + t.want, { nt: "∠" + esc(t.an.nm) }) };
+      }
+      if (!toks.length) return { st: "no", unread: true, msg: tx("geometry.fg.ck.unread") };
+      if (bad) return { st: "no", unread: true, msg: tx("geometry.fg.ck.noPt", { p: B(bad) }) };
+      if (t.fig === "point") {
+        if (toks.length === 1 && toks[0].length === 1) return { st: "ok" };
+        return { st: "no", msg: tx("geometry.fg.ck.onePt") };
+      }
+      if (t.fig === "angle") {
+        var s3 = toks.length === 1 ? toks[0] : "";
+        if (s3.length === 1) {
+          var at = An.angles.filter(function(an) { return P[an.v].n === s3; });
+          if (at.length === 1) return { st: "ok" };
+          if (at.length > 1) return { st: "no", msg: tx("geometry.fg.ck.angMany", { v: B(s3), nt: B("∠" + at[0].nm) }) };
+          return { st: "no", msg: tx("geometry.fg.ck.angNoV", { v: B(s3) }) };
+        }
+        if (s3.length !== 3 || /(.).*\1/.test(s3)) return { st: "no", unread: true, msg: tx("geometry.fg.ck.ang3") };
+        if (An.angles.some(function(an) { return an.ok[s3]; })) return { st: "ok" };
+        var same = An.angles.filter(function(an) { return an.nm.split("").sort().join("") === s3.split("").sort().join(""); })[0];
+        if (same) return { st: "no", msg: tx("geometry.fg.ck.angMid", { v: B(P[same.v].n), nt: B("∠" + same.nm) }) };
+        return { st: "no", msg: tx("geometry.fg.ck.angNone", { nt: B("∠" + s3), v: B(s3.charAt(1)), x: B(s3.charAt(0)), y: B(s3.charAt(2)) }) };
+      }
+      if (t.fig === "perp" || t.fig === "par") {
+        var hits = toks.filter(function(x) { return x.length === 2; }).map(function(x) { return { nm: x, h: fgFind(D, x) }; });
+        if (hits.length < 2) return { st: "no", unread: true, msg: tx("geometry.fg.ck.two") };
+        var rev = hits.filter(function(x) { return x.h && x.h.how === "rev"; })[0];
+        if (rev) return { st: "no", msg: tx("geometry.fg.ck.rev", { q: B(rev.nm), nt: fgNt("ray", P[rev.h.f.a].n + rev.nm.charAt(0)), e: B(P[rev.h.f.a].n) }) };
+        var miss = hits.filter(function(x) { return !x.h; })[0];
+        if (miss) return { st: "no", msg: tx("geometry.fg.ck.notFig", { q: B(miss.nm) }) };
+        var i1 = hits[0].h.i,
+          i2 = hits[1].h.i;
+        if (t.prs.some(function(pr) { return (pr.f === i1 && pr.g === i2) || (pr.f === i2 && pr.g === i1); })) return { st: "ok" };
+        return { st: "no", msg: tx(t.fig === "perp" ? "geometry.fg.ck.notPerp" : "geometry.fg.ck.notPar", { a: B(hits[0].nm), b: B(hits[1].nm) }) };
+      }
+      // a segment, a ray or a line
+      if (toks.length !== 1 || toks[0].length !== 2) return { st: "no", unread: true, msg: tx("geometry.fg.ck.twoLetters", { w: tx("geometry.fg.an." + t.fig) }) };
+      var nm = toks[0],
+        h = fgFind(D, nm);
+      if (h && h.how === "name" && h.f.k === t.fig) return { st: "ok" };
+      if (h && h.how === "rev") {
+        if (t.fig === "ray") return { st: "no", msg: tx("geometry.fg.ck.rev", { q: B(nm), nt: fgNt("ray", P[h.f.a].n + nm.charAt(0)), e: B(P[h.f.a].n) }) };
+        return { st: "no", msg: tx("geometry.fg.ck.isA.ray", { q: B(nm), w: tx("geometry.fg.an." + t.fig), look: tx("geometry.fg.look." + t.fig) }) };
+      }
+      if (h) return { st: "no", msg: tx("geometry.fg.ck.isA." + h.f.k, { q: B(nm), w: tx("geometry.fg.an." + t.fig), look: tx("geometry.fg.look." + t.fig) }) };
+      if (t.fig === "seg") {
+        var inside = D.F.filter(function(f) { var on = f.on.map(function(q) { return P[q.i].n; }); return on.indexOf(nm.charAt(0)) >= 0 && on.indexOf(nm.charAt(1)) >= 0; })[0];
+        if (inside) return { st: "no", msg: tx("geometry.fg.ck.part", { q: B(nm), nt: fgNt(inside.k, inside.nm) }) };
+      }
+      return { st: "no", msg: tx("geometry.fg.ck.noFig", { a: B(nm.charAt(0)), b: B(nm.charAt(1)) }) };
+    }
+
+    /* ---------- making figures problems (pure) ---------- */
+    var FG_LETTERS = [
+      ["A", "B", "C", "D", "E"],
+      ["P", "Q", "R", "S", "T"],
+      ["J", "K", "L", "M", "N"],
+      ["V", "W", "X", "Y", "Z"],
+      ["D", "E", "F", "G", "H"]
+    ];
+
+    function fgShuffle(a) {
+      for (var i = a.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1)),
+          t = a[i];
+        a[i] = a[j];
+        a[j] = t;
+      }
+      return a;
+    }
+
+    // can the drawing be read at a glance? points apart, none just next to a figure it isn't on, no thin angles
+    function fgClear(D, An) {
+      var P = D.P,
+        i, j;
+      for (i = 0; i < P.length; i++)
+        for (j = i + 1; j < P.length; j++)
+          if (Math.pow(P[i].x - P[j].x, 2) + Math.pow(P[i].y - P[j].y, 2) < 2.2 * 2.2) return false;
+      for (i = 0; i < D.F.length; i++) {
+        var f = D.F[i],
+          A = P[f.a],
+          L = Math.sqrt(fgDot(f.d, f.d)),
+          ts = f.on.map(function(q) { return q.t; }),
+          lo = f.k === "line" ? Math.min.apply(null, ts) - 1.4 / L : 0,
+          hi = f.k === "seg" ? 1 : Math.max.apply(null, ts) + 1.4 / L;
+        for (j = 0; j < P.length; j++) {
+          if (f.on.some(function(q) { return q.i === j; })) continue;
+          var w = [P[j].x - A.x, P[j].y - A.y],
+            t = Math.max(lo, Math.min(hi, fgDot(w, f.d) / (L * L))),
+            dx = A.x + t * f.d[0] - P[j].x,
+            dy = A.y + t * f.d[1] - P[j].y;
+          if (dx * dx + dy * dy < 1.1 * 1.1) return false;
+        }
+      }
+      return An.angles.every(function(an) { return an.kind === "straight" || (an.deg >= 24 && an.deg <= 160); });
+    }
+
+    function fgV(names, pos, figs, extra) {
+      var v = { pts: names.join(", "), seg: [], ray: [], line: [], xy: pos ? pos.map(function(p) { return p[0] + "," + p[1]; }).join(";") : "", ask: "" };
+      figs.forEach(function(f) { v[f[0]].push(f[1]); });
+      FGK.forEach(function(k) { v[k] = v[k].join(", "); });
+      for (var k in extra || {}) v[k] = extra[k];
+      return v;
+    }
+
+    function genFig(G) {
+      var tasks = ["name", "identify", "kinds"],
+        task = tasks.indexOf(G.shape) >= 0 ? G.shape : pickOf(tasks),
+        n = G.pts === "3" || G.pts === "4" || G.pts === "5" ? Number(G.pts) : rint(3, 5);
+      var v = null;
+      for (var tries = 0; tries < 200 && !v; tries++) v = task === "kinds" ? fgGenKinds(n) : fgGenDraw(n, task);
+      if (!v) v = copy(defOf("figures", task).d);
+      return { id: task, v: v, msg: "", unit: null };
+    }
+
+    // a random drawing of n points with at least one segment, one ray and one line; sometimes three points in a row
+    function fgGenDraw(n, task) {
+      var L = pickOf(FG_LETTERS).slice(0, n),
+        pos = [],
+        i, j, figs = [];
+      var row = n >= 4 && Math.random() < 0.35;
+      if (row) {
+        var dir = pickOf([
+            [2, 0],
+            [3, 1],
+            [2, 1],
+            [1, 2],
+            [3, -1],
+            [2, 2],
+            [0, 2],
+            [2, -1]
+          ]),
+          k1 = rint(1, 2),
+          k2 = k1 + rint(1, 2),
+          s0 = [rint(0, 3), rint(1, 4)];
+        pos = [s0, [s0[0] + dir[0] * k1, s0[1] + dir[1] * k1],
+          [s0[0] + dir[0] * k2, s0[1] + dir[1] * k2]
+        ];
+      }
+      while (pos.length < n) {
+        var p = [rint(0, 10), rint(0, 7)];
+        if (pos.some(function(q) { return Math.pow(q[0] - p[0], 2) + Math.pow(q[1] - p[1], 2) < 6; })) continue;
+        // no three in a row by accident
+        var bad = false;
+        for (i = 0; i < pos.length && !bad; i++)
+          for (j = i + 1; j < pos.length && !bad; j++)
+            if (fgCross([pos[j][0] - pos[i][0], pos[j][1] - pos[i][1]], [p[0] - pos[i][0], p[1] - pos[i][1]]) === 0) bad = true;
+        if (!bad) pos.push(p);
+      }
+      // which letters go where: shuffled, so the row isn't always A, B, C
+      var order = fgShuffle(L.map(function(x, k) { return k; }));
+      var at = function(k) { return L[order[k]]; };
+      var kinds = fgShuffle(["seg", "ray", "line"]);
+      if (row) {
+        // one figure along the row (the middle point on it), then the others
+        var rk = kinds.shift(),
+          a = at(0),
+          mid = at(1),
+          b = at(2);
+        figs.push([rk, rk === "seg" ? a + b : rk === "ray" ? (Math.random() < 0.5 ? a + mid : a + b) : (Math.random() < 0.5 ? a + mid : mid + b)]);
+      }
+      var used = {};
+      figs.forEach(function(f) { used[f[1].split("").sort().join("")] = 1; });
+      var pairs = [];
+      for (i = 0; i < n; i++)
+        for (j = i + 1; j < n; j++) pairs.push([at(i), at(j)]);
+      fgShuffle(pairs);
+      var want = Math.min(pairs.length, rint(3, n >= 4 ? 5 : 3) - figs.length);
+      while (kinds.length < want) kinds.push(pickOf(FGK));
+      pairs.forEach(function(pr) {
+        if (!kinds.length || used[pr.slice().sort().join("")]) return;
+        if (row && [at(0), at(1), at(2)].indexOf(pr[0]) >= 0 && [at(0), at(1), at(2)].indexOf(pr[1]) >= 0) return; // along the row: one figure is enough
+        var k = kinds.shift();
+        figs.push([k, Math.random() < 0.5 ? pr[0] + pr[1] : pr[1] + pr[0]]);
+        used[pr.slice().sort().join("")] = 1;
+      });
+      if (FGK.some(function(k) { return !figs.some(function(f) { return f[0] === k; }); })) return null;
+      var names = L.slice(),
+        v = fgV(names, names.map(function(x) { return pos[order.indexOf(L.indexOf(x))]; }), figs);
+      var D, An;
+      try {
+        D = fgRead(v);
+        An = fgAn(D);
+      } catch (e) { return null; }
+      if (!An.angles.length || An.angles.length > 6 || !fgClear(D, An)) return null;
+      if (D.P.some(function(p, k) { return !D.F.some(function(f) { return f.on.some(function(q) { return q.i === k; }); }); })) return null; // every point on a figure
+      if (task === "identify") {
+        var f = pickOf(D.F),
+          nms = Object.keys(fgNames(D, f));
+        v.ask = Math.random() < 0.6 ? f.nm : pickOf(nms);
+      }
+      return v;
+    }
+
+    // a drawing made to sort angles: rays from one point, a triangle, a trapezoid, a line and a ray, or a "house"
+    function fgGenKinds(n) {
+      var V8 = [
+        [4, 0],
+        [3, 3],
+        [0, 4],
+        [-3, 3],
+        [-4, 0],
+        [-3, -3],
+        [0, -4],
+        [3, -3],
+        [4, 2],
+        [2, 4],
+        [-2, 4],
+        [-4, 2],
+        [-4, -2],
+        [-2, -4],
+        [2, -4],
+        [4, -2],
+        [4, 1],
+        [1, 4],
+        [-1, 4],
+        [-4, 1]
+      ];
+      var T = n === 3 ? ["rays", "tri"] : n === 4 ? ["rays", "lineRay", "trap"] : ["house", "rays2"],
+        kind = pickOf(T),
+        pts = [],
+        figs = [];
+      if (kind === "rays" || kind === "rays2") {
+        var m = n - 1,
+          dirs = [];
+        for (var tr = 0; tr < 40 && dirs.length < m; tr++) {
+          var d = pickOf(V8);
+          var a = Math.atan2(d[1], d[0]);
+          if (dirs.some(function(q) {
+              var b = Math.abs(Math.atan2(q[1], q[0]) - a) * 180 / Math.PI;
+              b = Math.min(b, 360 - b);
+              return b < 28;
+            })) continue;
+          dirs.push(d);
+        }
+        if (dirs.length < m) return null;
+        pts = [
+          [5, 4]
+        ].concat(dirs.map(function(d) { return [5 + d[0], 4 + d[1]]; }));
+        for (var k = 1; k < pts.length; k++) figs.push(["ray", 0, k]);
+      } else if (kind === "lineRay") {
+        var dl = pickOf([
+            [4, 0],
+            [3, 1],
+            [4, 2],
+            [3, -1]
+          ]),
+          dr = pickOf(V8);
+        if (Math.abs(fgCross(dl, dr)) < 1e-9) return null;
+        pts = [
+          [5 - dl[0], 4 - dl[1]],
+          [5, 4],
+          [5 + dl[0], 4 + dl[1]],
+          [5 + dr[0], 4 + dr[1]]
+        ];
+        figs = [
+          ["line", 0, 2],
+          ["ray", 1, 3]
+        ];
+      } else if (kind === "tri") {
+        pts = pickOf([
+          [
+            [0, 0],
+            [6, 0],
+            [0, 4]
+          ],
+          [
+            [0, 0],
+            [7, 0],
+            [3, 5]
+          ],
+          [
+            [0, 0],
+            [8, 0],
+            [-2, 4]
+          ],
+          [
+            [0, 0],
+            [5, 0],
+            [5, 5]
+          ],
+          [
+            [0, 0],
+            [8, 0],
+            [5, 3]
+          ],
+          [
+            [0, 0],
+            [6, 0],
+            [3, 6]
+          ]
+        ]);
+        figs = [
+          ["seg", 0, 1],
+          ["seg", 1, 2],
+          ["seg", 2, 0]
+        ];
+        if (Math.random() < 0.4) figs[pickOf([0, 1, 2])][0] = "ray";
+      } else if (kind === "trap") {
+        pts = pickOf([
+          [
+            [0, 0],
+            [8, 0],
+            [6, 4],
+            [2, 4]
+          ],
+          [
+            [0, 0],
+            [7, 0],
+            [4, 4],
+            [0, 4]
+          ],
+          [
+            [0, 0],
+            [8, 0],
+            [8, 4],
+            [3, 4]
+          ],
+          [
+            [0, 0],
+            [7, 0],
+            [9, 4],
+            [2, 4]
+          ]
+        ]);
+        figs = [
+          ["seg", 0, 1],
+          ["seg", 1, 2],
+          ["seg", 2, 3],
+          ["seg", 3, 0]
+        ];
+      } else {
+        pts = pickOf([
+          [
+            [0, 0],
+            [6, 0],
+            [6, 4],
+            [3, 7],
+            [0, 4]
+          ],
+          [
+            [0, 0],
+            [8, 0],
+            [8, 4],
+            [4, 6],
+            [0, 4]
+          ]
+        ]);
+        figs = [
+          ["seg", 0, 1],
+          ["seg", 1, 2],
+          ["seg", 2, 3],
+          ["seg", 3, 4],
+          ["seg", 4, 0]
+        ];
+      }
+      // turn and flip it, then name the points
+      var rot = rint(0, 3),
+        flip = Math.random() < 0.5;
+      pts = pts.map(function(p) {
+        var x = flip ? -p[0] : p[0],
+          y = p[1];
+        for (var r = 0; r < rot; r++) {
+          var t = x;
+          x = -y;
+          y = t;
+        }
+        return [x, y];
+      });
+      var mx = Math.min.apply(null, pts.map(function(p) { return p[0]; })),
+        my = Math.min.apply(null, pts.map(function(p) { return p[1]; }));
+      pts = pts.map(function(p) { return [p[0] - mx, p[1] - my]; });
+      var L = pickOf(FG_LETTERS).slice(0, pts.length),
+        nameOf = fgShuffle(L.slice());
+      if (kind === "tri" || kind === "trap" || kind === "house") nameOf = L.slice(); // around the shape in order
+      var list = figs.map(function(f) { return [f[0], nameOf[f[1]] + nameOf[f[2]]]; });
+      var order = L.slice(),
+        v = fgV(order, order.map(function(x) { return pts[nameOf.indexOf(x)]; }), list);
+      try {
+        var D = fgRead(v),
+          An = fgAn(D);
+        if (!fgClear(D, An) || An.angles.length > 6) return null;
+      } catch (e) { return null; }
+      return v;
+    }
+
+    /* ---------- typed problems: "line AB, ray BC, segment AC", "is BC a ray, a segment or a line?" ---------- */
+    // the language's words for figures, in English (geometry.re.fig in its locale file); capital letters stay as typed
+    function fgTyped(q) {
+      var Pt = own("geometry.re.fig"),
+        s = String(q);
+      if (!Pt || !Pt.length) return s;
+      s = fold(s.replace(/[¿¡]/g, " ")).replace(/[A-Za-z]+/g, function(w) { return /^[A-Z]{1,4}$/.test(w) ? w : w.toLowerCase(); });
+      Pt.forEach(function(r) { s = s.replace(new RegExp(r[0], "g"), r[1]); });
+      return s;
+    }
+
+    function fgFirst(s, c) { var m = new RegExp("(?:^|[^A-Za-z])[A-Z]*" + c).exec(s); return m ? m.index : 1e9; }
+
+    // { mode, id, v } for a drawing described in words, { note } when it's about figures but can't be read, or null
+    function fgParseQ(raw) {
+      // words in lower case, letters (A, BC, ABC) as typed
+      var s = fgTyped(String(raw).slice(0, 400)).replace(/[−–]/g, "-").replace(/\s+/g, " ").replace(/[A-Za-z]+/g, function(w) { return /^[A-Z]{1,4}$/.test(w) ? w : w.toLowerCase(); }),
+        low = s.toLowerCase();
+      if (/=/.test(s)) return null;
+      var s0 = s,
+        FW = "(line segments?|segments?|rays?|lines?)",
+        aboutFig = new RegExp("\\b" + FW + "\\s+[A-Z]{2}\\b").test(s) || /\bname\s+(?:the|all|every|each|an?)?\s*(?:points?|rays?|lines?|line segments?|segments?|figures?|angles?)\b|\bexample\s+of\s+each\s+figure\b/i.test(s) ||
+        /\bis\s+[A-Z]{2}\s+an?\s+(?:ray|segment|line)\b/.test(s) || /\b[A-Z]{2}\b[^.;]*\b(?:arrows? (?:at|on) both ends|no arrows|starts? at [A-Z])/.test(s);
+      if (!aboutFig) return null;
+      var v = { pts: "", seg: [], ray: [], line: [], xy: "", ask: "" },
+        task = "name",
+        pts = [],
+        xy = [];
+
+      function pt(c) { if (pts.indexOf(c) < 0) pts.push(c); }
+      // points with places: A(0, 0), B (4, 0)
+      s = s.replace(/\b([A-Z])\s*\(\s*(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)\s*\)/g, function(m, c, x, y) {
+        if (pts.indexOf(c) < 0) {
+          pts.push(c);
+          xy.push(x + "," + y);
+        }
+        return " " + c + " ";
+      });
+      if (/\d/.test(s)) return { note: true };
+      // the question: "is BC a ray, a segment or a line?", "BC: ray, segment or line?"
+      var ask = /\bis\s+([A-Z]{2})\s+an?\s+(?:ray|segment|line)\b[^.;?]*\??/.exec(s) || /\b([A-Z]{2})\s*[:,-]?\s*(?:an?\s+)?(?:ray|segment|line)s?\s*,\s*(?:an?\s+)?(?:ray|segment|line)s?\s*,?\s*or\s+(?:an?\s+)?(?:ray|segment|line)\b\s*\??/.exec(s) ||
+        /\bwhat\s+(?:kind\s+of\s+)?figure\s+is\s+([A-Z]{2})\b\s*\??/.exec(s);
+      if (ask) {
+        task = "identify";
+        v.ask = ask[1];
+        s = s.slice(0, ask.index) + " . " + s.slice(ask.index + ask[0].length);
+      }
+      if (/\b(?:classify|kinds? of angles?|what kind of angles?|acute|obtuse|straight angles?|right angles?|perpendicular|parallel)\b/i.test(low) && task !== "identify") task = "kinds";
+      // "segments AB and CD", "ray BC", "line AB": the word, then its letter pairs
+      var re = new RegExp("\\b" + FW + "\\s+((?:[A-Z]{2})(?:\\s*(?:,|and|&)\\s*[A-Z]{2}(?![A-Za-z]))*)", "g"),
+        m, seen = [];
+      s = s.replace(re, function(all, w, list) {
+        var k = /ray/.test(w) ? "ray" : /segment/.test(w) ? "seg" : "line";
+        (list.match(/[A-Z]{2}/g) || []).forEach(function(pq) { v[k].push(pq); });
+        return " " + list.replace(/[A-Z]{2}/g, function(x) { seen.push(x); return x; }) + " ";
+      });
+      // "a ray from B through C", "a segment from A to C", "a line through A and B"
+      s = s.replace(/\b(ray|segment|line)\s+(?:that\s+)?(?:starts?\s+at|starting\s+at|from|through|passing\s+through|joining|connecting|between)\s+([A-Z])\s*(?:,|and|to|through|thru|towards?|going\s+through|and\s+through|passing\s+through)?\s*(?:point\s+)?([A-Z])\b/g, function(all, w, a, b) {
+        var k = w === "segment" ? "seg" : w;
+        v[k].push(a + b);
+        return " ";
+      });
+      // the worksheet's words: "AB has arrows at both ends", "BC starts at B and has an arrow past C", "AC has no arrows"
+      s.split(/[.;!?]|,(?=\s*[A-Z]{2}\b)/).forEach(function(cl) {
+        var pr = /\b([A-Z])([A-Z])\b/.exec(cl);
+        if (!pr || seen.indexOf(pr[0]) >= 0 || [].concat(v.seg, v.ray, v.line).some(function(x) { return x === pr[0] || x === pr[2] + pr[1]; })) return;
+        var a = pr[1],
+          b = pr[2],
+          st = /\b(?:starts?|begins?|starting|beginning)\s+at\s+([A-Z])\b|\bendpoint\s+(?:at\s+|is\s+)?([A-Z])\b/.exec(cl),
+          arr = /\b(?:an?\s+)?arrow(?:head)?\s+(?:past|after|beyond|at|on|through|by|near)\s+([A-Z])\b/.exec(cl);
+        if (/\barrows? (?:at|on) both ends|\btwo arrows|\bboth ends have arrows|\bno endpoints?\b/.test(cl)) v.line.push(a + b);
+        else if (/\bno arrows?\b|\bwithout arrows?\b|\b(?:dots?|endpoints?) (?:at|on) (?:both|each) ends?\b|\btwo endpoints\b/.test(cl)) v.seg.push(a + b);
+        else if (st || arr || /\bone arrow\b/.test(cl)) {
+          var e = st ? (st[1] || st[2]) : arr ? (arr[1] === a ? b : a) : a;
+          v.ray.push(e === b ? b + a : a + b);
+        }
+      });
+      // the points named on their own: "points A, B and C"
+      var pl = /\bpoints?\s+((?:[A-Z])(?:\s*(?:,|and|&)?\s*[A-Z](?![A-Za-z]))*)/.exec(s);
+      var given = pl ? pl[1].match(/[A-Z]/g) : [];
+      given.forEach(pt);
+      [].concat(v.seg, v.ray, v.line, v.ask ? [v.ask] : []).forEach(function(pq) {
+        pt(pq.charAt(0));
+        pt(pq.charAt(1));
+      });
+      var nF = v.seg.length + v.ray.length + v.line.length;
+      if (!nF) {
+        // "name the rays", "is BC a ray or a segment": the worksheet's drawing
+        var W = copy(defOf("figures", task === "kinds" ? "kinds" : "name").d);
+        if (task === "identify") {
+          if (!/^[ABC]{2}$/.test(v.ask)) return { note: true };
+          W.ask = v.ask;
+        }
+        return { mode: "figures", id: task, v: W };
+      }
+      if (xy.length && xy.length !== pts.length) return { note: true };
+      if (task === "kinds" && !xy.length) return { note: "xy" };
+      // the points in the order the problem names them (those with places keep theirs)
+      if (!xy.length) pts.sort(function(p, q) { return fgFirst(s0, p) - fgFirst(s0, q); });
+      v.pts = pts.join(", ");
+      v.xy = xy.join(";");
+      FGK.forEach(function(k) { v[k] = v[k].join(", "); });
+      return { mode: "figures", id: task, v: v };
+    }
+
     var SH = {
       area: [
         { id: "rect", name: tx("geometry.sh.area.rect"), f: [F("l", "length", "l"), F("w", "width", "w")], d: { l: "8", w: "5" }, run: function(C, g) { runRect(C, g, false); } },
@@ -4860,13 +6215,26 @@
         { id: "vert", name: tx("geometry.sh.angle.vert"), f: [F("a", "a1", "", { deg: true })], d: { a: "65" }, run: runVert },
         { id: "par", name: tx("geometry.sh.angle.par"), f: [F("a", "angle", "", { deg: true }), F("pos", "which", "", { pos: true })], d: { a: "65", pos: "1" }, run: runPar },
         { id: "poly", name: tx("geometry.sh.angle.poly"), f: [F("n", "nSides", "n", { whole: true })], d: { n: "6" }, run: runPoly }
+      ],
+      // the figures fields are words and letters: read by fgRead, not as numbers
+      figures: [
+        { id: "name", name: tx("geometry.sh.figures.name"), f: fgFields(false), d: { pts: "A, B, C", seg: "AC", ray: "BC", line: "AB", xy: "" }, run: function(C, g) { runFig(C, g, "name"); } },
+        { id: "identify", name: tx("geometry.sh.figures.identify"), f: fgFields(true), d: { pts: "A, B, C", seg: "AC", ray: "BC", line: "AB", xy: "", ask: "BC" }, run: function(C, g) { runFig(C, g, "identify"); } },
+        { id: "kinds", name: tx("geometry.sh.figures.kinds"), f: fgFields(false), d: { pts: "A, B, C", seg: "AC", ray: "BA, BC", line: "", xy: "1,5;1,0;7,0" }, run: function(C, g) { runFig(C, g, "kinds"); } }
       ]
     };
+
+    function fgFields(ask) {
+      var T = { list: true, txt: true },
+        out = [F("pts", "fgPts", "", T), F("seg", "fgSeg", "", T), F("ray", "fgRay", "", T), F("line", "fgLine", "", T), F("xy", "fgXy", "", { list: true, txt: true, opt: "geometry.fg.optXy" })];
+      if (ask) out.push(F("ask", "fgAsk", "", T));
+      return out;
+    }
 
     /* ===================== state ===================== */
     var S = {
       mode: "area",
-      shape: { area: "rect", vol: "box", right: "hyp", angle: "tri" },
+      shape: { area: "rect", vol: "box", right: "hyp", angle: "tri", figures: "name" },
       vals: {},
       unit: "cm",
       pi: "exact",
@@ -4878,15 +6246,17 @@
         area: { shape: "any", max: 20, dec: "whole", units: "keep" },
         vol: { shape: "any", max: 20, dec: "whole", units: "keep" },
         right: { shape: "any", max: 20, dec: "whole", nice: "nice", units: "keep" },
-        angle: { shape: "any", dec: "whole" }
+        angle: { shape: "any", dec: "whole" },
+        figures: { shape: "any", pts: "any" }
       }
     };
-    var PICK = { area: tx("geometry.pick.area"), vol: tx("geometry.pick.vol"), right: tx("geometry.pick.right"), angle: tx("geometry.pick.angle") };
+    var PICK = { area: tx("geometry.pick.area"), vol: tx("geometry.pick.vol"), right: tx("geometry.pick.right"), angle: tx("geometry.pick.angle"), figures: tx("geometry.pick.figures") };
     var HINT = {
       area: tx("geometry.hint.area"),
       vol: tx("geometry.hint.area"),
       right: tx("geometry.hint.right"),
-      angle: tx("geometry.hint.angle")
+      angle: tx("geometry.hint.angle"),
+      figures: tx("geometry.hint.figures")
     };
 
     function defOf(m, id) {
@@ -5016,7 +6386,7 @@
         return fail(tx("geometry.err.wrong"));
       }
       lastC = C;
-      $("legend").style.display = "";
+      $("legend").style.display = S.mode === "figures" ? "none" : "";
       $("figHost").innerHTML = C.figs.map(function(f) { return '<div class="figwrap">' + f.svg + (f.cap ? '<div class="figcap">' + f.cap + "</div>" : "") + "</div>"; }).join("");
       $("workHost").innerHTML = blocksHTML(C);
       writeLog(C.log);
@@ -5084,12 +6454,12 @@
 
         function symS(s) { return ' (<span class="sym">' + esc(s) + "</span>)"; }
         var lbl = fd.rd ? (Vv.rd === "d" ? tx("geometry.f.diameter") + symS("d") : tx("geometry.f.radius") + symS("r")) : esc(fd.label) + (fd.sym ? symS(fd.sym) : "");
-        var suf = fd.deg ? "°" : fd.whole ? tx("geometry.suf.sides") : (S.unit === "none" ? "" : S.unit);
+        var suf = fd.txt ? "" : fd.deg ? "°" : fd.whole ? tx("geometry.suf.sides") : (S.unit === "none" ? "" : S.unit);
         html += '<div class="fld' + (fd.list ? " wide" : "") + '">';
         if (fd.rd) html += '<div class="modes small" role="group" aria-label="' + esc(tx("geometry.rdLabel")) + '"><button type="button" data-rd="r" aria-pressed="' + (Vv.rd !== "d") +
           '">' + tx("geometry.rd.r") + '</button><button type="button" data-rd="d" aria-pressed="' + (Vv.rd === "d") + '">' + tx("geometry.rd.d") + "</button></div>";
         html += '<label for="f_' + fd.k + '">' + lbl + (fd.opt ? " <i>" + esc(fd.opt) + "</i>" : "") + '</label><span class="inrow"><input class="num-in" id="f_' + fd.k +
-          '" data-k="' + fd.k + '" type="text" inputmode="' + (fd.list ? "text" : "decimal") + '" autocomplete="off" spellcheck="false" value="' +
+          '" data-k="' + fd.k + '" type="text" inputmode="' + (fd.list ? "text" : "decimal") + '" autocomplete="off" spellcheck="false"' + (fd.txt ? ' autocapitalize="characters"' : "") + ' value="' +
           esc(Vv[fd.k] == null ? "" : Vv[fd.k]).replace(/"/g, "&quot;") + '"><span class="suf">' + esc(suf) + "</span></span></div>";
       });
       $("fields").innerHTML = html;
@@ -5119,8 +6489,15 @@
       });
     }
 
+    var mineNote = { el: document.querySelector("#mine .mine-head > span[data-i18n]"), html: null, fg: false };
+
     function buildOpts() {
-      $("unitGrp").hidden = S.mode === "angle";
+      $("unitGrp").hidden = S.mode === "angle" || S.mode === "figures";
+      if (mineNote.el && (S.mode === "figures") !== mineNote.fg) {
+        if (mineNote.html === null) mineNote.html = mineNote.el.innerHTML;
+        mineNote.fg = S.mode === "figures";
+        mineNote.el.innerHTML = mineNote.fg ? tx("geometry.fg.mineNote") : mineNote.html;
+      }
       $("piGrp").hidden = !curDef().pi;
       var uh = $("unitT");
       uh.innerHTML = "";
@@ -5209,6 +6586,14 @@
         [tx("geometry.ex.angle.7"), "par", { a: "65", pos: "1" }],
         [tx("geometry.ex.angle.8"), "poly", { n: "6" }],
         [tx("geometry.ex.angle.9"), "poly", { n: "7" }]
+      ],
+      figures: [
+        [tx("geometry.ex.figures.0"), "name", { pts: "A, B, C", seg: "AC", ray: "BC", line: "AB", xy: "" }],
+        [tx("geometry.ex.figures.1"), "identify", { pts: "A, B, C", seg: "AC", ray: "BC", line: "AB", xy: "", ask: "BC" }],
+        [tx("geometry.ex.figures.2"), "name", { pts: "A, B, C, D", seg: "DC", ray: "DB", line: "AC", xy: "0,0;3,1;6,2;2,5" }],
+        [tx("geometry.ex.figures.3"), "kinds", { pts: "A, B, C", seg: "AB, BC, CA", ray: "", line: "", xy: "0,0;6,0;0,4" }],
+        [tx("geometry.ex.figures.4"), "kinds", { pts: "A, B, C, D", seg: "AB, BC, CD, DA", ray: "", line: "", xy: "0,0;7,0;4,4;0,4" }],
+        [tx("geometry.ex.figures.5"), "kinds", { pts: "A, B, C, D", seg: "", ray: "BA, BC, BD", line: "", xy: "0,0;4,0;8,0;6,4" }]
       ]
     };
 
@@ -5277,6 +6662,7 @@
     // pure: makes a problem for mode m with maker settings G; touches nothing on the page.
     // avoid = a shape id not to pick when the shape is "any" (the one on screen), or null
     function gen(m, G, avoid) {
+      if (m === "figures") return genFig(G);
       var list = SH[m],
         d;
       var choices = G.shape === "any" ? list.filter(function(x) { return list.length < 2 || x.id !== avoid; }) : [defOf(m, G.shape)];
@@ -5482,13 +6868,19 @@
       seg(PICK[m], "shape", [
         ["any", tx("geometry.mk.any")]
       ].concat(SH[m].map(function(d) { return [d.id, d.name]; })));
-      if (m !== "angle") seg(tx("geometry.mk.max"), "max", [
+      if (m === "figures") seg(tx("geometry.fg.mk.pts"), "pts", [
+        ["any", tx("geometry.mk.any")],
+        ["3", "3"],
+        ["4", "4"],
+        ["5", "5"]
+      ]);
+      else if (m !== "angle") seg(tx("geometry.mk.max"), "max", [
         [10, "10"],
         [20, "20"],
         [50, "50"],
         [100, "100"]
       ]);
-      seg(tx("geometry.mk.kind"), "dec", [
+      if (m !== "figures") seg(tx("geometry.mk.kind"), "dec", [
         ["whole", tx("geometry.mk.whole")],
         ["dec", m === "angle" ? tx("geometry.mk.halves") : tx("geometry.mk.dec")]
       ]);
@@ -5496,7 +6888,7 @@
         ["nice", tx("geometry.mk.whole")],
         ["any", tx("geometry.mk.anyRoots")]
       ]);
-      if (m !== "angle") seg(tx("geometry.units"), "units", [
+      if (m !== "angle" && m !== "figures") seg(tx("geometry.units"), "units", [
         ["keep", tx("geometry.mk.keep")],
         ["mix", tx("geometry.mk.mix")]
       ]);
@@ -5554,14 +6946,16 @@
     // the query string (no "?") that opens this problem
     function probQuery(mode, id, Vv, unit, pi, practice) {
       var d = defOf(mode, id),
-        p = ["mode=" + mode, "shape=" + d.id];
+        p = ["mode=" + mode, (mode === "figures" ? "task=" : "shape=") + d.id];
       d.f.forEach(function(fd) {
         var x = Vv[fd.k] == null ? "" : String(Vv[fd.k]).trim();
         if (fd.pos) { p.push("pos=" + encodeURIComponent(x || "1")); return; }
-        if (x !== "") p.push(fd.k + "=" + encodeURIComponent(x));
+        // figures: letters and positions, readable in the address (pts=A,B,C&xy=0,1;7,0;4,5)
+        if (fd.txt) x = x.replace(/\s*([,;])\s*/g, "$1").replace(/\s+/g, " ");
+        if (x !== "") p.push(fd.k + "=" + (fd.txt ? encodeURIComponent(x).replace(/%2C/g, ",").replace(/%3B/gi, ";") : encodeURIComponent(x)));
         if (fd.rd) p.push("rd=" + (Vv.rd === "d" ? "d" : "r"));
       });
-      if (mode !== "angle") p.push("unit=" + unit);
+      if (mode !== "angle" && mode !== "figures") p.push("unit=" + unit);
       if (d.pi) p.push("pi=" + pi);
       if (practice && practice !== "all") p.push("practice=" + practice);
       return p.join("&");
@@ -5576,6 +6970,13 @@
     var QEX = ["area of rectangle 8 by 5", "circle radius 5", "triangle base 6 height 4", "volume of box 8 x 3 x 5", "cylinder r 3 h 10",
       "hypotenuse 3 4", "leg 5 hypotenuse 13", "complement of 35", "hexagon"
     ];
+
+    var FGEX = ["line AB, ray BC, segment AC", "is BC a ray, a segment or a line?", "name the rays", "classify the angles: rays BA and BC, A(1,5), B(1,0), C(7,0)"];
+
+    function fgNote(q, rf) {
+      if (rf.note === "xy") return tx("geometry.fg.qNoteXy");
+      return tx("geometry.fg.qNote", { q: esc(String(q).slice(0, 80)), list: (own("geometry.fg.qexList") || FGEX).map(function(x) { return '<a href="?q=' + encodeURIComponent(x) + '">' + esc(x) + "</a>"; }).join(", ") });
+    }
 
     function qNote(q) {
       return tx("geometry.qNote", { q: esc(String(q).slice(0, 80)), list: (own("geometry.qexList") || QEX).map(function(x) { return '<a href="?q=' + encodeURIComponent(x) + '">' + esc(x) + "</a>"; }).join(", ") });
@@ -5593,18 +6994,26 @@
       function get(key) { var v = P.get(key); return v == null ? null : String(v).slice(0, 60); }
       var q = P.get("q");
       if (q != null && q.trim()) {
-        var r = parseQ(readTyped(q.slice(0, 200)));
+        var rf = fgParseQ(q),
+          r = rf && rf.mode ? rf : rf ? null : parseQ(readTyped(q.slice(0, 200)));
         if (r) {
           S.mode = r.mode;
           S.shape[r.mode] = r.id;
           S.vals[r.mode + ":" + r.id] = r.v;
           if (r.unit) S.unit = r.unit;
           if (r.pi) S.pi = r.pi;
-        } else note = qNote(q);
+        } else note = rf ? fgNote(q, rf) : qNote(q);
       } else {
         var mode = get("mode"),
           shape = get("shape"),
-          m = null;
+          m = null,
+          task = get("task");
+        // figures: task= names the task; its own fields alone make it a figures link
+        if (task != null && shape == null && (mode == null || mode === "figures")) {
+          shape = task;
+          if (mode == null) mode = "figures";
+        }
+        if (mode == null && shape == null && ["pts", "seg", "ray", "line", "xy", "ask"].some(function(x) { return P.has(x); })) mode = "figures";
         if (mode != null) {
           if (SH[mode]) m = mode;
           else bad.push("mode");
@@ -5614,7 +7023,7 @@
         var id = S.shape[m];
         if (shape != null) {
           if (hasShape(m, shape)) id = shape;
-          else bad.push("shape");
+          else bad.push(m === "figures" && task != null ? "task" : "shape");
         }
         var d = defOf(m, id),
           v = {},
@@ -5645,6 +7054,8 @@
             if (v.pos != null && v.pos !== "") bad.push("pos");
             v.pos = "1";
           }
+          // a figures link with no drawing in it (just ask=CB): the example drawing
+          if (m === "figures" && !["pts", "seg", "ray", "line"].some(function(x) { return v[x]; }))["pts", "seg", "ray", "line"].forEach(function(x) { v[x] = d.d[x]; });
           S.mode = m;
           S.shape[m] = d.id;
           S.vals[m + ":" + d.id] = v;
@@ -6021,6 +7432,7 @@
     };
     // what the answer box asks for: one target per answer, each with the right value(s) and common wrong ones (alts)
     function targetsFor(C, mode, id, Vv) {
+      if (mode === "figures") return (C.figT || []).slice();
       var d = defOf(mode, id),
         g = getter(d, Vv),
         T = [],
@@ -6417,6 +7829,7 @@
     function gradeOne(t, raw) {
       var s = String(raw || "").trim();
       if (!s) return { st: "empty" };
+      if (t.fig) return gradeFig(t, s);
       if (t.yn != null) {
         var yn = /^(?:y|yes|yep|yeah|yup|true|it is|right)\b/i.test(s) ? true : /^(?:n|no|nope|not|false|it isn|isn)/i.test(s) ? false : null;
         var yW = own("geometry.ck.yesWords"),
@@ -6567,12 +7980,12 @@
     }
 
     /* ===================== worksheet API (postMessage) ===================== */
-    var MODE_NAME = { area: tx("geometry.sch.m.area"), vol: tx("geometry.sch.m.vol"), right: tx("geometry.sch.m.right"), angle: tx("geometry.sch.m.angle") };
+    var MODE_NAME = { area: tx("geometry.sch.m.area"), vol: tx("geometry.sch.m.vol"), right: tx("geometry.sch.m.right"), angle: tx("geometry.sch.m.angle"), figures: tx("geometry.sch.m.figures") };
 
     function optionsSchema() {
       function V2(list) { return list.map(function(x) { return { v: x[0], label: x[1] }; }); }
       var shapes = [{ v: "any", label: tx("geometry.sch.anyShape") }];
-      ["area", "vol", "right", "angle"].forEach(function(m) { SH[m].forEach(function(d) { shapes.push({ v: m + ":" + d.id, label: MODE_NAME[m] + ": " + d.name, mode: m }); }); });
+      ["area", "vol", "right", "angle", "figures"].forEach(function(m) { SH[m].forEach(function(d) { shapes.push({ v: m + ":" + d.id, label: MODE_NAME[m] + ": " + d.name, mode: m }); }); });
       return [{
           key: "mode",
           label: tx("geometry.sch.topic"),
@@ -6582,7 +7995,8 @@
             ["vol", tx("geometry.sch.volS")],
             ["right", tx("geometry.sch.m.right")],
             ["angle", tx("geometry.sch.m.angle")],
-            ["any", tx("geometry.sch.mix4")]
+            ["any", tx("geometry.sch.mix4")],
+            ["figures", tx("geometry.sch.m.figures")]
           ]),
           default: "area"
         },
@@ -6640,6 +8054,18 @@
             ["calc", tx("geometry.sch.calc")]
           ]),
           default: "exact"
+        }, {
+          key: "pts",
+          label: tx("geometry.sch.fgPts"),
+          type: "choice",
+          values: V2([
+            ["any", tx("geometry.mk.any")],
+            ["3", "3"],
+            ["4", "4"],
+            ["5", "5"]
+          ]),
+          default: "any",
+          appliesTo: ["figures"]
         },
         { key: "sketch", label: tx("geometry.sch.sketch"), type: "toggle", values: [{ v: true, label: tx("geometry.yes") }, { v: false, label: tx("geometry.no") }], default: true }
       ];
@@ -6657,7 +8083,7 @@
         var v = a.mainT || h2t(a.main),
           u = a.ck && a.ck.pow ? unitT(a.ck.pow) : "";
         if (a.ck && a.ck.pi && pi === "exact") v += " (≈ " + fmtF(a.ck.c * Math.PI, 2) + (u ? " " + u : "") + ")";
-        return { k: h2t(ansK(a.k)), v: v, eq: /class="sym"|∠/.test(a.k) };
+        return { k: h2t(ansK(a.k)), v: v, eq: !a.noEq && /class="sym"|∠/.test(a.k) };
       });
     }
 
@@ -6756,9 +8182,29 @@
         case "angle:poly":
           var n = Number(v.n);
           return tx("geometry.pt.poly", { nm: (PNAME[n] || tx("geometry.poly.ngon", { n: n })), n: n });
+        case "figures:name":
+        case "figures:identify":
+        case "figures:kinds":
+          return fgProbText(id, v);
       }
       return "";
     }
+    // a figures problem in words: the drawing described by its ends (so the words don't give the kinds away)
+    function fgProbText(id, v) {
+      var D = fgRead(v),
+        An = fgAn(D);
+      if (id === "identify") return tx("geometry.pt.fgIdent", { d: fgLookAll(D), q: v.ask || D.F[0].nm });
+      if (id === "kinds") {
+        return tx("geometry.pt.fgKinds", {
+          pts: fgList(D.P.map(function(p) { return tx("geometry.pt.fgAt", { p: p.n, x: p.x, y: p.y }); })),
+          figs: fgList(D.F.map(function(f) { return fgNmT(f.k, f.nm); })),
+          extra: An.pairs.some(function(pr) { return pr.k !== "cross"; }) ? tx("geometry.pt.fgKindsX") : ""
+        });
+      }
+      var kinds = ["point"].concat(FGK.filter(function(k) { return D.F.some(function(f) { return f.k === k; }); }), An.angles.length ? ["angle"] : []);
+      return tx("geometry.pt.fgName", { d: fgLookAll(D), list: fgList(kinds.map(function(k) { return tx("geometry.fg.an." + k); })) });
+    }
+
     // the page's own drawing, made printable anywhere: inline black-and-white styles, no page classes, no answers in it
     var SKS = {
       shp: "fill:#e4e4e4;stroke:none",
@@ -6791,7 +8237,11 @@
       tfill: "fill:#fff;stroke:#000;stroke-width:2.4;stroke-linejoin:round",
       pline: "fill:none;stroke:#000;stroke-width:2.4;stroke-linecap:round",
       arrow: "fill:#000",
-      "num-c": "fill:#e6e6e6;stroke:none"
+      "num-c": "fill:#e6e6e6;stroke:none",
+      fhg: "display:none",
+      fhl: "display:none",
+      fha: "display:none",
+      fhx: "display:none"
     };
     var SKT = "font-family:Consolas,'IBM Plex Mono','Courier New',monospace;font-weight:600;font-size:14px;fill:#000;paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round";
 
@@ -6849,18 +8299,19 @@
       var n = Math.floor(Number(count));
       if (!(n >= 1)) n = 10;
       if (n > 100) n = 100;
-      var modeO = optPick(o, "mode", ["area", "vol", "right", "angle", "any"], "area"),
+      var modeO = optPick(o, "mode", ["area", "vol", "right", "angle", "any", "figures"], "area"),
         shapeO = o.shape == null ? "any" : String(o.shape),
         fixed = null,
         mm2;
       if (shapeO !== "any") {
-        if ((mm2 = /^(area|vol|right|angle):(\w+)$/.exec(shapeO)) && hasShape(mm2[1], mm2[2])) fixed = { m: mm2[1], id: mm2[2] };
+        if ((mm2 = /^(area|vol|right|angle|figures):(\w+)$/.exec(shapeO)) && hasShape(mm2[1], mm2[2])) fixed = { m: mm2[1], id: mm2[2] };
         else if (modeO !== "any" && hasShape(modeO, shapeO)) fixed = { m: modeO, id: shapeO };
         else { var hits = modesWith(shapeO); if (hits.length) fixed = { m: hits[0], id: shapeO }; }
       }
       var max = Number(optPick(o, "max", ["10", "20", "50", "100"], "20")),
         dec = optPick(o, "dec", ["whole", "dec"], "whole"),
-        nice = optPick(o, "nice", ["nice", "any"], "nice");
+        nice = optPick(o, "nice", ["nice", "any"], "nice"),
+        fgPts = optPick(o, "pts", ["any", "3", "4", "5"], "any");
       var unitO = optPick(o, "unit", UNITS.concat(["mix"]), "cm"),
         piO = optPick(o, "pi", ["exact", "314", "calc"], "exact"),
         sketch = onOff(o.sketch, true);
@@ -6870,7 +8321,7 @@
         var p = null;
         for (var tries = 0; tries < 30 && !p; tries++) {
           var m = fixed ? fixed.m : modeO === "any" ? pickOf(["area", "vol", "right", "angle"]) : modeO;
-          var r = gen(m, { shape: fixed ? fixed.id : "any", max: max, dec: dec, nice: nice, units: unitO === "mix" ? "mix" : "keep" }, null);
+          var r = gen(m, { shape: fixed ? fixed.id : "any", max: max, dec: dec, nice: nice, units: unitO === "mix" ? "mix" : "keep", pts: fgPts }, null);
           var unit = r.unit || (unitO === "mix" ? "cm" : unitO),
             q = probQuery(m, r.id, r.v, unit, piO);
           if (seen[q] && tries < 25) continue;
@@ -7051,6 +8502,7 @@
             if (src.dec === "whole" || src.dec === "dec") dst.dec = src.dec;
             if (dst.nice && (src.nice === "nice" || src.nice === "any")) dst.nice = src.nice;
             if (dst.units && (src.units === "keep" || src.units === "mix")) dst.units = src.units;
+            if (dst.pts && ["any", "3", "4", "5"].indexOf(src.pts) >= 0) dst.pts = src.pts;
           }
         if (v.maker) $("maker").open = true;
       } catch (e) {}

@@ -133,6 +133,7 @@
       ["4.MD.A.2", "Use the four operations to solve word problems involving distances, intervals of time, liquid volumes, masses of objects, and money, including problems involving simple fractions or decimals, and problems that require expressing measurements given in a larger unit in terms of a smaller unit."],
       ["4.MD.A.3", "Apply the area and perimeter formulas for rectangles in real world and mathematical problems."],
       ["4.MD.C.7", "Recognize angle measure as additive. When an angle is decomposed into non-overlapping parts, the angle measure of the whole is the sum of the angle measures of the parts. Solve addition and subtraction problems to find unknown angles on a diagram in real world and mathematical problems."],
+      ["4.G.A.1", "Draw points, lines, line segments, rays, angles (right, acute, obtuse), and perpendicular and parallel lines. Identify these in two-dimensional figures."],
       ["5.OA.A.1", "Use parentheses, brackets, or braces in numerical expressions, and evaluate expressions with these symbols."],
       ["5.OA.B.3", "Generate two numerical patterns using two given rules. Identify apparent relationships between corresponding terms. Form ordered pairs consisting of corresponding terms from the two patterns, and graph the ordered pairs on a coordinate plane."],
       ["5.NBT.A.1", "Recognize that in a multi-digit number, a digit in one place represents 10 times as much as it represents in the place to its right and 1/10 of what it represents in the place to its left."],
@@ -450,7 +451,8 @@
       ["area", "Area and perimeter", "3.MD.C.7 3.MD.D.8 4.MD.A.3 6.G.A.1 7.G.B.4 7.G.B.6"],
       ["vol", "Volume and surface area", "5.MD.C.3 5.MD.C.5 6.G.A.2 6.G.A.4 7.G.B.6 8.G.C.9 HSG-GMD.A.3"],
       ["right", "Right triangles", "8.G.B.6 8.G.B.7"],
-      ["angle", "Angles", "4.MD.C.7 7.G.B.5 8.G.A.5 HSG-CO.C.10"]
+      ["angle", "Angles", "4.MD.C.7 7.G.B.5 8.G.A.5 HSG-CO.C.10"],
+      ["figures", "Figures", "4.G.A.1"]
     ]);
     page("stats", "Statistics", "", "", [
       ["center", "Mean, median, mode, range", "6.SP.A.2 6.SP.A.3 6.SP.B.5 HSS-ID.A.2"],
