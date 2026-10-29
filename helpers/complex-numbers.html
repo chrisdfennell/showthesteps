@@ -3665,9 +3665,7 @@
       return z;
     }
 
-    function mkAdd(a, b, op) {
-      needGauss(a);
-      needGauss(b);
+    function mkAdd(a, b, op) { // parts with square roots (√2 + 3i) add like any others; only dividing needs plain parts
       return { mode: "add", a: a, b: b, op: op, res: op === "add" ? cAdd(a, b) : cSub(a, b) };
     }
 
@@ -3724,9 +3722,7 @@
     }
 
     /* ===================== tab 3: multiply ===================== */
-    function mkMul(a, b, pw) {
-      needGauss(a);
-      if (b) needGauss(b);
+    function mkMul(a, b, pw) { // square roots in the parts multiply out in the area box: √2 · √2 = 2
       if (pw) {
         if (pw < 2 || pw > 3) throw new UserErr(tr("complex-numbers.err.mulPow"));
         b = a;
@@ -3788,10 +3784,10 @@
             ["k", tr("complex-numbers.bd.picture"), tr("complex-numbers.mul.sayPlane", { d: fxs(ang(fr), 1) })]
           ]);
       }
-      var chk = tr("complex-numbers.mul.chk", { a: B(P.pow ? qT(na) + supT(P.pow) + " = " + qT(nr) : qT(na) + " × " + qT(nb) + " = " + qT(nr)), b: B("|" + cT(res) + "|² = " + qPar(res.re) + "² + " + qPar(res.im) + "² = " + qT(nr)) }) + OK;
+      var chk = tr("complex-numbers.mul.chk", { a: B(P.pow ? qPar(na) + supT(P.pow) + " = " + qT(nr) : qPar(na) + " × " + qPar(nb) + " = " + qT(nr)), b: B("|" + cT(res) + "|² = " + qPar(res.re) + "² + " + qPar(res.im) + "² = " + qT(nr)) }) + OK;
       var facts = [tr("complex-numbers.mul.factI")];
       if (P.conj) facts.push(tr("complex-numbers.mul.factConj", { e: B("a² + b² = " + qT(res.re)) }));
-      else facts.push(tr("complex-numbers.mul.factLen", { a: B(P.pow ? qT(na) + supT(P.pow) : qT(na) + " × " + qT(nb)), b: B(qT(nr)) }));
+      else facts.push(tr("complex-numbers.mul.factLen", { a: B(P.pow ? qPar(na) + supT(P.pow) : qPar(na) + " × " + qPar(nb)), b: B(qT(nr)) }));
       bandCells([{ k: tr("complex-numbers.mul.k"), v: zH(res), s: cA(res) }], facts);
       return finish(W, '<div class="ck">' + chk + "</div>", "mul");
     }

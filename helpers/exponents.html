@@ -2313,11 +2313,14 @@
       return out;
     }
 
+    var rootHref = ""; // the problem as typed, opened on The Root Cellar, for the "fraction exponent" notices
+
     function parse(src) {
       var ns = norm(src);
+      rootHref = "radicals.html?q=" + encodeURIComponent(String(src).trim());
       // x^1/2 could be x^(1/2) or (x^1)/2: ask rather than guess (x^6/x^2 and 2^3/2^2 are fine)
       if (/\^\s*[-+]?\d+\s*\/\s*\d+(?![\d.]|\s*[\^(a-zA-Z])/.test(ns))
-        throw new UserErr(tx("exponents.err.fracExp"));
+        throw new UserErr(tx("exponents.err.fracExp", { href: rootHref }));
       var T = lex(ns),
         p = 0,
         depth = 0;
@@ -2416,7 +2419,7 @@
     function expInt(n) {
       if (hasVar(n)) throw new UserErr(tx("exponents.err.expLetters"));
       var v = evalN(n);
-      if (!isInt(v)) throw new UserErr(tx("exponents.err.expWhole"));
+      if (!isInt(v)) throw new UserErr(tx("exponents.err.expWhole", { href: rootHref }));
       if (babs(v.n) > 400n) throw new UserErr(tx("exponents.err.exp400"));
       return Number(v.n);
     }
