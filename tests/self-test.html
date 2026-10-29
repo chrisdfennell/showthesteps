@@ -1883,6 +1883,13 @@
         // several of each of two things at a price each (money, kind=each2): a visitor sent the first one (issue #9)
         ["q=" + encodeURIComponent("Marcus bought 2.5 pounds of apples for $1.80 per pound and 1.25 pounds of bananas for $0.60 per pound. How much money did Marcus spend in total?"), ["5.25"]],
         ["q=" + encodeURIComponent("Lena buys 3 notebooks at $2.50 each and 2 pens at $1.25 each. She pays with a $20 bill. How much change does she get?"), ["10"]],
+        // "at each stop": how many stops divides, how many students multiplies (issue #10)
+        ["q=" + encodeURIComponent("A school bus carries 48 students.  If 6 students get off at each stop, how many stops will it take for the bus to be completely empty?"), ["8"]],
+        ["q=" + encodeURIComponent("A bus makes 8 stops. 6 students get off at each stop. How many students get off?"), ["48"]],
+        ["q=" + encodeURIComponent("There are 30 kids. 5 kids sit at each table. How many tables are there?"), ["6"]],
+        // "Each crate holds 32", "had to be thrown out" (issue #11)
+        ["q=" + encodeURIComponent("A farmer harvested 7 crates of apples. Each crate holds 32 apples. He discovered that 15 apples were bruised and had to be thrown out. How many good apples does he have?"), ["209"]],
+        ["q=" + encodeURIComponent("A store has 6 boxes. Each box holds 12 pens. The store gets 10 more pens. How many pens does it have now?"), ["82"]],
         // equation stories of many shapes (kind=eq), from a list the site's users sent (2026-10-24) and rewordings of them
         ["q=" + encodeURIComponent("A bake sale sold 12 more cookies than brownies and three times as many cupcakes as brownies. Let b represent the number of brownies sold. Write an expression for the number of cookies and an expression for the number of cupcakes. Brownies cost $2, cookies cost $1, and cupcakes cost $3. The bake sale made $192. Write an equation and solve. How many of each were sold?"), ["15", "27", "45"]],
         ["q=" + encodeURIComponent("A cell phone company charges a monthly rate of $12.95 and $0.25 a minute per call. The bill for m minutes is $21.20.\n\n1. Write an equation that models this situation.\n\n2. How many minutes were charged on this bill?"), ["33"]],

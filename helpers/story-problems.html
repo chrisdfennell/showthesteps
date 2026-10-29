@@ -12483,7 +12483,9 @@
           return Pd;
         }
         if (ns.length !== 2 || /\b(left|remain|remaining|still)\b/.test(A.Q) && !/\b(each|every|per|apiece|equally|evenly)\b/.test(A.L)) return null;
-        var em = /\b(?:each|every|per)\s+([a-z]+)/.exec(A.Q);
+        // "how many … in each box?": the "each" the question asks about, after its "how many" (not "If 6 get off at each
+        // stop, how many students …" before it)
+        var em = /\b(?:each|every|per)\s+([a-z]+)/.exec(A.Q.slice(Math.max(0, A.Q.search(/\bhow (?:many|much)\b/))));
         if (em && !ALLQ.test(A.Q)) {
           var en = singular(em[1]),
             gT = ns.filter(function(t) { return t.k === "n" && t.unit && t.unit.split(" ").some(function(w) { return singular(w) === en; }); })[0];
@@ -12554,6 +12556,39 @@
         P.rw = { g: gw, it: it || "things", pr: /\b(on)\s+(each|every)\b/.test(A.L) ? "on" : "in" };
         var qEach = /\b(in each|on each|each \w+ get|each get|per|does each|did each|will each|for each|each (friend|person|student|child|kid|team|group|bag|box|plate))\b/.test(A.Q);
         var qGroups = A.qn && (CONT.test(A.qn.split(" ").pop()) || A.qn === gw) && !(eachT.unit && singular(eachT.unit.split(" ")[0]) === singular(A.qn.split(" ").pop()));
+        // "48 students; 6 get off at each stop — how many stops?": the question counts what comes after "each", so the
+        // number told for each one is the group size: total ÷ in each
+        var hmW = /\bhow many ([a-z]+)\b/.exec(A.Q),
+          perW = hmW && singular(hmW[1]),
+          perRe = perW && new RegExp("^\\s*(?:[a-z]+\\s+){0,3}(at|in|on|per|for|from)\\s+(?:each|every)\\s+" + perW + "\\b");
+        if (perRe && !/\bin all|altogether|total\b/.test(A.Q)) {
+          // the number for each one can sit in the question's own sentence: "If 6 get off at each stop, how many stops …?"
+          var perT = ns.filter(function(t) { return t.k === "n" && perRe.test(t.after); })[0],
+            allT = perT && ns.filter(function(t) { return t !== perT && t.k === "n"; })[0];
+          if (perT && allT && !(perT.unit && singular(perT.unit.split(" ")[0]) === perW)) {
+            P.b = perT.v;
+            P.c = allT.v;
+            P.rw.g = hmW[1];
+            P.rw.pr = perRe.exec(perT.after)[1];
+            return P;
+          }
+        }
+        // the other way round: "8 stops; 6 students get off at each stop — how many students?": the number for each stop
+        // times how many stops (students, friends … can be groups too, so this comes before the "how many groups" reading)
+        var atM = null,
+          atT = ns.filter(function(t) { return t.k === "n" && (atM = /^\s*(?:[a-z]+\s+){0,3}(at|in|on|per|for|from)\s+(?:each|every)\s+([a-z]+)\b/.exec(t.after)); })[0];
+        if (atT && hmW && atT.unit && singular(atT.unit.split(" ")[0]) === perW) {
+          atM = /^\s*(?:[a-z]+\s+){0,3}(at|in|on|per|for|from)\s+(?:each|every)\s+([a-z]+)\b/.exec(atT.after);
+          var grT = ns.filter(function(t) { return t !== atT && t.k === "n" && t.unit && singular(t.unit.split(" ")[0]) === singular(atM[2]); })[0];
+          if (grT) {
+            P.a = grT.v;
+            P.b = atT.v;
+            P.rw.g = plural(singular(atM[2]));
+            P.rw.it = hmW[1];
+            P.rw.pr = atM[1];
+            return P;
+          }
+        }
         if (qEach) {
           P.a = contT.v;
           P.c = eachT.v;
@@ -12599,11 +12634,18 @@
           P0.rw = { it: it, Vm: (/\b(gave away|gives away|ate|eats|lost|loses|used|uses|sold|sells|spent|kept|keeps|gave|gives)\b/.exec(A.NQ) || ["", "gave away"])[1] };
           return P0;
         }
-        var contT = ns.filter(function(t) { return CONT.test(t.head) && /^\s*(?:[a-z]+\s+){0,2}(of|with)\b/.test(t.after); })[0];
+        var contT = ns.filter(function(t) { return CONT.test(t.head) && /^\s*(?:[a-z]+\s+){0,2}(of|with)\b/.test(t.after); })[0] ||
+          // "6 boxes. Each box holds 12 pens."
+          ns.filter(function(t) { return CONT.test(t.head) && new RegExp("\\b(?:each|every) " + singular(t.head) + "\\b").test(A.L); })[0];
         if (contT && ns.length >= 3) {
-          var eachT = ns.filter(function(t) { return t !== contT && (/\b(of|with)\s*$/.test(t.before) || /^\s*(?:[a-z]+\s+){0,2}(in|on)\s+(each|every)\b/.test(t.after)); })[0];
+          // "boxes of 32", "32 in each box", "Each crate holds 32 apples"
+          var eachT = ns.filter(function(t) { return t !== contT && (/\b(of|with)\s*$/.test(t.before) || /^\s*(?:[a-z]+\s+){0,2}(in|on)\s+(each|every)\b/.test(t.after) || /\b(?:each|every)\s+(?:[a-z]+\s+){0,2}(?:has|holds|held|had|contains|contained|carries|carried|fits|can hold)\s*$/.test(t.before)); })[0];
           var others = ns.filter(function(t) { return t !== contT && t !== eachT; });
-          if (eachT && others.length >= 1 && others.length <= 2) {
+          // "9 boxes … shared by 4 students. Each box holds 11 crayons": 4 students aren't crayons, so they're not added
+          // or taken away
+          var itH = eachT && singular(eachT.head || ""),
+            otherKind = itH && others.some(function(t) { return t.head && CONT.test(t.head) && singular(t.head) !== itH; });
+          if (eachT && !otherKind && others.length >= 1 && others.length <= 2) {
             // what happened to the other numbers, in their own sentence: "gave away 8" goes away; "her friend gave her 7 more"
             // and "5 loose pens" join in
             var clOf = function(t) { return plusPassive(A.L.slice(Math.max(0, A.sents[t.s].i, t.i - 30), t.i)); },
@@ -12611,8 +12653,8 @@
                 var cl = clOf(t),
                   mv = MINUSV.exec(cl),
                   pv = PLUSV.exec(cl);
-                // "13 plants died", "13 oranges were rotten and thrown away"
-                if (/^\s*(?:[a-z]+\s+)?(?:died|wilted|spoiled|rotted|(?:were|was|got)\s+(?:[a-z]+\s+and\s+)?(?:thrown away|thrown out|eaten|lost|sold|broken|taken away))\b/.test(t.after)) return true;
+                // "13 plants died", "13 oranges were rotten and thrown away", "15 were bruised and had to be thrown out"
+                if (/^\s*(?:[a-z]+\s+)?(?:died|wilted|spoiled|rotted|(?:were|was|got)\s+(?:[a-z]+\s+and\s+)?(?:had to be\s+|were\s+|got\s+)?(?:thrown away|thrown out|eaten|lost|sold|broken|taken away))\b/.test(t.after)) return true;
                 return !!mv && (!pv || mv.index <= pv.index) && !/\b(?:gave|gives|sent|sends) (?:her|him|them|me|us)\b/.test(cl) && !/^\s*more\b/.test(t.after);
               },
               joins = function(t) {
