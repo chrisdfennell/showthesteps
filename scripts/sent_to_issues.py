@@ -1,8 +1,10 @@
-"""Turns the problems visitors send ("Send this problem so we can teach the page") into GitHub issues.
+"""Turns the problems visitors send ("Send this problem so we can teach the page") and the problems they report
+("Report a problem") into GitHub issues.
 
-The button counts a GoatCounter event "sent/<page>/<problem>" (tools.js). This reads those events and opens one issue
-for each new problem, labeled sent-problem, with a link that opens it on the site. A problem sent again by more
-visitors gets a comment on its issue instead of a second issue. The workflow .github/workflows/sent-problems.yml
+The buttons count GoatCounter events (tools.js): "sent/<page>/<problem>" and
+"report/<page>/<wrong|confusing|unread|other>/<the page's address query> | <what the visitor wrote>". This reads those
+events and opens one issue for each new one, labeled sent-problem, with a link that opens the problem on the site. One
+sent again by more visitors gets a comment on its issue instead of a second issue. The workflow .github/workflows/sent-problems.yml
 runs it every hour.
 
     GOATCOUNTER_TOKEN=...  an API key with "Read statistics" (GoatCounter: your name in the top menu → API)
@@ -84,6 +86,31 @@ def issue(hit, short, address, text, lang):
     return title.replace("@", "(at)"), body
 
 
+KINDS = {"wrong": "The answer is wrong", "confusing": "A step is wrong or confusing", "unread": "It wouldn't read my problem",
+         "other": "Something else"}
+
+
+def report_issue(hit, address, kind, query, note, lang):
+    """a "Report a problem" event: what's wrong, the problem it was on (its link), and what the visitor wrote"""
+    q = dict(urllib.parse.parse_qsl(query)).get("q", "")
+    if lang and "lang=" not in query: query += ("&" if query else "") + "lang=" + lang
+    link = SITE_URL + address + ("?" + query if query else "")
+    what = KINDS.get(kind, kind)
+    shown = q or urllib.parse.unquote_plus(query) or "(the page as it opens)"
+    title = "Reported on %s: %s" % (address.rsplit("/", 1)[-1] or "the home page", what)
+    if q: title += " — " + (q if len(q) <= 60 else q[:59] + "…")
+    lines = ["A visitor pressed **Report a problem** on `%s`%s: **%s**." % (address or "/", " (in %s)" % LANGS.get(lang, lang) if lang else "", what),
+             "", "The problem:", "", fence(shown) + "text", shown, fence(shown), ""]
+    if note:
+        lines += ["What they wrote:", "", fence(note) + "text", note, fence(note), ""]
+    lines += ["**Try it:** " + link, "",
+              "Sent by %s so far. Opened by the hourly *Sent problems* workflow from the site's GoatCounter events; fix the "
+              "page, then close the issue." % plural(hit.get("count", 1)), "",
+              "<!-- goatcounter-path-id: %d -->" % hit["path_id"],
+              "<!-- sent-count: %d -->" % hit.get("count", 1)]
+    return title.replace("@", "(at)"), "\n".join(lines)
+
+
 def main():
     try: sys.stdout.reconfigure(encoding="utf-8", errors="replace")   # sent problems can hold any character
     except Exception: pass
@@ -106,15 +133,19 @@ def main():
         return 1
     paths = page_paths()
     seen = known_issues()
-    sent = sorted((h for h in hits if h["path"].lstrip("/").startswith("sent/")), key=lambda h: h["path_id"])
+    sent = sorted((h for h in hits if re.match(r"(?:sent|report)/", h["path"].lstrip("/"))), key=lambda h: h["path_id"])
     opened = commented = skipped = 0
     if sent and not DRY: ensure_label()
     for h in sent:
-        parts = h["path"].lstrip("/").split("/", 2)
-        if len(parts) < 3 or not parts[2].strip() or parts[1] not in paths:
+        path = h["path"].lstrip("/")
+        report = path.startswith("report/")
+        parts = path.split("/", 3 if report else 2)
+        if len(parts) < 3 or parts[1] not in paths or (report and (len(parts) < 4 or parts[2] not in KINDS)) or \
+                (not report and not parts[2].strip()):
             skipped += 1                 # not one of the site's pages: a made-up event
             continue
-        short, text, n = parts[1], parts[2].strip(), h.get("count", 1)
+        short, n = parts[1], h.get("count", 1)
+        text = (parts[3].split(" | ", 1)[0] if report else parts[2]).strip()
         lang = (re.search(r"\(([a-z]{2})\)\s*$", h.get("title") or "") or [None, None])[1]
         if h["path_id"] in seen:
             number, was, body = seen[h["path_id"]]
@@ -131,14 +162,18 @@ def main():
         if opened >= MAX_NEW:
             print("::warning::More than %d new problems in one run; the rest wait for the next run." % MAX_NEW)
             break
-        title, body = issue(h, short, paths[short], text, lang)
+        if report:
+            query, _, note = parts[3].partition(" | ")
+            title, body = report_issue(h, paths[short], parts[2], query.strip(), note.strip(), lang)
+        else:
+            title, body = issue(h, short, paths[short], text, lang)
         if DRY:
             print("would open: " + title + "\n" + body + "\n")
         else:
             i = gh("POST", "repos/%s/issues" % REPO, {"title": title, "body": body, "labels": [LABEL]})
             print("opened #%d: %s" % (i["number"], title))
         opened += 1
-    print("%d sent problems: %d new issues, %d updated, %d skipped" % (len(sent), opened, commented, skipped))
+    print("%d sent or reported problems: %d new issues, %d updated, %d skipped" % (len(sent), opened, commented, skipped))
     return 0
 
 

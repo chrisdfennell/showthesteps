@@ -105,6 +105,17 @@
     "border:1px solid currentColor;border-radius:999px;padding:4px 14px;cursor:pointer;margin-right:4px}" +
     ".ht-send:focus-visible{outline:2.5px solid var(--focus,var(--ink));outline-offset:2px}" +
     "@media print{.ht-sendbox{display:none !important}}" +
+    // Report a problem's panel, under the row of buttons
+    ".ht-reportbox{max-width:34rem;border:1px solid var(--rule);border-radius:12px;padding:12px 14px;background:var(--surface,transparent)}" +
+    ".ht-reportbox .ht-rq{font-weight:600;color:var(--ink);margin-bottom:6px}" +
+    ".ht-reportbox .ht-rkinds{display:flex;flex-wrap:wrap;gap:4px 14px;margin-bottom:8px}" +
+    ".ht-reportbox label{cursor:pointer}" +
+    ".ht-reportbox .ht-rsay{display:block;margin-bottom:8px}" +
+    ".ht-reportbox .ht-rsay input{display:block;width:100%;box-sizing:border-box;margin-top:4px;font:inherit;font-size:16px;" +
+    "padding:6px 8px;border:1px solid var(--rule);border-radius:8px;background:var(--paper,transparent);color:var(--ink)}" +
+    ".ht-reportbox .ht-ract{margin-bottom:6px}" +
+    ".ht-reportbox .ht-rclose{font:inherit;font-size:14px;color:var(--ink-2);background:none;border:0;padding:4px 8px;cursor:pointer;text-decoration:underline}" +
+    ".ht-reportbox small a{color:inherit}" +
     ".ht-bar{display:inline-flex;gap:6px;align-items:center;flex-wrap:wrap}" +
     ".ht-btn{font-family:var(--f-body,\"IBM Plex Sans\",Arial,sans-serif);font-size:12.5px;font-weight:600;line-height:1;" +
     "color:var(--ink-2);background:var(--surface);border:1px solid var(--rule);border-radius:999px;padding:6px 10px;cursor:pointer}" +
@@ -2104,9 +2115,83 @@
     a.rel = "noopener";
     a.href = reportHref();
     a.textContent = T("tools.report", "Report a problem");
-    a.title = T("tools.reportTitle", "Tell us about a wrong answer or a confusing step (opens a form on GitHub with this problem's link filled in)");
-    a.addEventListener("click", function() { a.href = reportHref(); }); // the problem showing when it's pressed
+    a.title = T("tools.reportTitle", "Tell us about a wrong answer or a confusing step (sends this problem's link and what you write; no account needed)");
+    a.setAttribute("aria-expanded", "false");
+    a.addEventListener("click", safe(function(e) {
+      a.href = reportHref(); // the problem showing when it's pressed
+      var gc = window.goatcounter;
+      if (!gc || typeof gc.count !== "function") return; // counting blocked: the GitHub form, as before
+      e.preventDefault();
+      toggleReport(a, gc);
+    }));
     copy.parentNode.insertBefore(a, copy.nextSibling);
+  }
+
+  /* Report a problem, sent like "Send this problem": the visitor picks what's wrong and may add a line; only then the
+     page's address query (the problem) and that line are counted as a GoatCounter event
+     "report/<page>/<wrong|confusing|unread|other>/<query> | <line>". Emails and phone numbers are taken out. Every hour
+     scripts/sent_to_issues.py opens a public GitHub issue for each new one. */
+  var REPORT_KINDS = [
+    ["wrong", "tools.rp.wrong", "The answer is wrong"],
+    ["confusing", "tools.rp.confusing", "A step is wrong or confusing"],
+    ["unread", "tools.rp.unread", "It wouldn't read my problem"],
+    ["other", "tools.rp.other", "Something else"]
+  ];
+
+  function scrub(s) {
+    return String(s || "").replace(/[\w.+-]+@[\w-]+\.[\w.-]+/g, "[email]")
+      .replace(/(?:\+\d{1,3}[\s.-]?)?(?:\b\d{3}[.-]\d{3}[.-]\d{4}|\(\d{3}\)\s?\d{3}[\s.-]\d{4})\b/g, "[phone]");
+  }
+
+  function toggleReport(a, gc) {
+    var box = document.getElementById("htReportBox"),
+      row = a.parentNode;
+    if (box) {
+      box.parentNode.removeChild(box);
+      a.setAttribute("aria-expanded", "false");
+      if (!/\bht-rdone\b/.test(box.className)) return; // open: close it; "Sent": a new report
+    }
+    box = document.createElement("div");
+    box.id = "htReportBox";
+    box.className = "ht-sendbox ht-reportbox";
+    box.setAttribute("role", "group");
+    box.setAttribute("aria-label", T("tools.report", "Report a problem"));
+    var pick = visibleNotice() ? "unread" : "wrong";
+    var h = '<div class="ht-rq">' + T("tools.rp.what", "What's wrong?") + "</div><div class=\"ht-rkinds\">";
+    REPORT_KINDS.forEach(function(k) {
+      h += '<label><input type="radio" name="htRKind" value="' + k[0] + '"' + (k[0] === pick ? " checked" : "") + "> " + T(k[1], k[2]) + "</label>";
+    });
+    h += '</div><label class="ht-rsay">' + T("tools.rp.say", "What should it say? (optional)") +
+      ' <input type="text" maxlength="200" autocomplete="off"></label><div class="ht-ract">' +
+      '<button type="button" class="ht-send">' + T("tools.rp.send", "Send") + "</button>" +
+      '<button type="button" class="ht-rclose">' + T("tools.rp.close", "Close") + "</button></div>" +
+      "<small>" + T("tools.rp.note", "Only this problem's link and what you write are sent, nothing else, and it's posted publicly so it can be fixed. Please leave out names or anything personal.") +
+      ' <a href="' + esc(reportHref()) + '" target="_blank" rel="noopener">' + T("tools.rp.github", "Or use the GitHub form") + "</a></small>";
+    box.innerHTML = h;
+    var close = function() {
+      if (box.parentNode) box.parentNode.removeChild(box);
+      a.setAttribute("aria-expanded", "false");
+      a.focus();
+    };
+    box.querySelector(".ht-rclose").addEventListener("click", close);
+    box.addEventListener("keydown", function(e) { if (e.key === "Escape") close(); });
+    box.querySelector(".ht-send").addEventListener("click", safe(function() {
+      var kind = (box.querySelector("input[name=htRKind]:checked") || {}).value || "other",
+        say = scrub(box.querySelector(".ht-rsay input").value).replace(/\s+/g, " ").trim().slice(0, 200),
+        query = scrub(location.search.replace(/^\?/, "")).slice(0, 380),
+        lang = window.HelperI18n && HelperI18n.lang;
+      gc.count({
+        path: "report/" + page.replace(/\.html$/, "") + "/" + kind + "/" + query + " | " + say,
+        title: "A problem a visitor reported" + (lang && lang !== "en" ? " (" + lang + ")" : ""),
+        event: true
+      });
+      box.className += " ht-rdone";
+      box.textContent = T("tools.rp.thanks", "Sent. Thank you! We'll look at this problem.");
+      a.setAttribute("aria-expanded", "false");
+    }));
+    row.parentNode.insertBefore(box, row.nextSibling);
+    a.setAttribute("aria-expanded", "true");
+    box.querySelector("input[name=htRKind]:checked").focus();
   }
   var countedNotices = {};
 

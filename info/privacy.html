@@ -246,7 +246,7 @@
 
   <div class="card">
     <p><b>The short version:</b> every problem is worked out in your own browser, and nothing you type is sent to anyone, unless you press
-      <b>Send this problem</b> on a problem a page couldn't read.
+      <b>Send this problem</b> on a problem a page couldn't read, or send a <b>Report a problem</b>.
       If you use the <b>microphone button</b> to say a problem, your browser (not this site) sends what you say to its own
       speech service to turn it into text; see <a href="#voice">Saying a problem</a>. On the Flight Computer, the
       <b>Get the latest METAR</b> and <b>Get the latest winds aloft</b> buttons fetch weather from the US National Weather
@@ -283,13 +283,16 @@
         IP address and then discards the address. When a page can't read a problem you typed, it also counts that, with
         only the page's name (not what you typed), so we can see which pages need to understand more. No cookies, and
         nothing that identifies you.</td></tr>
-    <tr><td>GoatCounter<br><span class="small">a problem you send</span></td>
+    <tr><td>GoatCounter<br><span class="small">a problem you send or report</span></td>
       <td>Only if you press <b>Send this problem so we can teach the page</b> (it appears under a "couldn't read that" message):
         that one problem, as you typed it, the page's name and the page's language, so the page can be taught to read
         problems like it. Email addresses and phone numbers are taken out and it's cut to 300 characters; nothing else is
         sent with it, and nothing is sent unless you press the button. Within the hour the problem is posted as an issue on
         the site's <a href="https://github.com/chrisdfennell/showthesteps/issues?q=label%3Asent-problem">public GitHub page</a>,
         where the fix is tracked, so anyone can read it there. Please leave out names and anything personal.
+        <b>Report a problem</b> works the same way: only if you press its <b>Send</b>, it sends what you picked as wrong, the
+        line you wrote (if any) and the problem's link (the part of the page's address after the <code>?</code>), with email
+        addresses and phone numbers taken out, and that is posted as an issue there too.
         <a href="https://www.goatcounter.com/help/privacy">GoatCounter's privacy policy</a>.</td></tr>
     <tr><td>GitHub Pages<br><span class="small">the hosting</span></td>
       <td>The site is served by GitHub, which may log visitors' IP addresses for security.
