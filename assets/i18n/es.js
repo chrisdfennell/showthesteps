@@ -730,7 +730,7 @@ HelperI18n.add("es", {
   "tools.report": "Reportar un problema",
   "tools.reportTitle": "Cuéntanos de una respuesta incorrecta o un paso confuso (abre un formulario en GitHub con el enlace de este problema ya puesto)",
   "tools.send": "Enviar este problema para que la página aprenda a leerlo",
-  "tools.sendNote": "Solo se envía el problema que escribiste, nada más. Por favor no incluyas nombres ni nada personal.",
+  "tools.sendNote": "Solo se envía el problema que escribiste, nada más, y se publica para poder arreglarlo. Por favor no incluyas nombres ni nada personal.",
   "tools.sent": "Enviado. ¡Gracias!",
   "tools.sentThanks": "Enviado. ¡Gracias! La página aprenderá a leer problemas como este.",
   // ---- end tools ----

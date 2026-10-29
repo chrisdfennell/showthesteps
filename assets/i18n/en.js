@@ -622,7 +622,7 @@ HelperI18n.add("en", {
   "tools.report": "Report a problem",
   "tools.reportTitle": "Tell us about a wrong answer or a confusing step (opens a form on GitHub with this problem's link filled in)",
   "tools.send": "Send this problem so we can teach the page",
-  "tools.sendNote": "Only the problem you typed is sent, nothing else. Please leave out names or anything personal.",
+  "tools.sendNote": "Only the problem you typed is sent, nothing else, and it's posted publicly so it can be fixed. Please leave out names or anything personal.",
   "tools.sent": "Sent. Thank you!",
   "tools.sentThanks": "Sent. Thank you! The page will learn to read problems like this one.",
   // ---- end tools ----

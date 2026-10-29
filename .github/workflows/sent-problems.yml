@@ -1,0 +1,32 @@
+# Every hour, opens a GitHub issue for each new problem a visitor sent with "Send this problem so we can teach the page"
+# (scripts/sent_to_issues.py reads them from GoatCounter). Needs the repository secret GOATCOUNTER_TOKEN: a GoatCounter
+# API key with "Read statistics". Start it by hand from the Actions tab to check right away.
+name: Sent problems
+
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: sent-problems
+  cancel-in-progress: false
+
+jobs:
+  issues:
+    if: github.repository == 'chrisdfennell/showthesteps'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Open an issue for each new sent problem
+        env:
+          GOATCOUNTER_TOKEN: ${{ secrets.GOATCOUNTER_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PYTHONIOENCODING: utf-8
+        run: python3 scripts/sent_to_issues.py

@@ -2112,7 +2112,7 @@
 
   /* "Send this problem": only when the visitor presses it, the problem they typed (and nothing else) is counted as a
      GoatCounter event "sent/<page>/<problem>", so the readers can be taught new wording. Email addresses are taken out
-     and it's cut to 300 characters. */
+     and it's cut to 300 characters. Every hour scripts/sent_to_issues.py opens a public GitHub issue for each new one. */
   var sentProblems = {};
 
   function typedProblem() {
@@ -2145,9 +2145,11 @@
     b.className = "ht-send";
     b.textContent = T("tools.send", "Send this problem so we can teach the page");
     var note = document.createElement("small");
-    note.textContent = " " + T("tools.sendNote", "Only the problem you typed is sent, nothing else. Please leave out names or anything personal.");
+    note.textContent = " " + T("tools.sendNote", "Only the problem you typed is sent, nothing else, and it's posted publicly so it can be fixed. Please leave out names or anything personal.");
     b.addEventListener("click", safe(function() {
-      gc.count({ path: "sent/" + page.replace(/\.html$/, "") + "/" + text, title: "A problem a visitor sent", event: true });
+      // the title says the language when it isn't English, so the issue's link opens the problem in it (sent_to_issues.py)
+      var lang = window.HelperI18n && HelperI18n.lang;
+      gc.count({ path: "sent/" + page.replace(/\.html$/, "") + "/" + text, title: "A problem a visitor sent" + (lang && lang !== "en" ? " (" + lang + ")" : ""), event: true });
       sentProblems[page + "|" + text] = true;
       box.textContent = T("tools.sentThanks", "Sent. Thank you! The page will learn to read problems like this one.");
     }));
