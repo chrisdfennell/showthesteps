@@ -919,6 +919,13 @@
   .log .txt {
     color: var(--ink-2)
   }
+  .log .tag.blank {
+    background: none
+  }
+  .log .txt a.more {
+    color: var(--ink-2);
+    font-size: 13px
+  }
   .log .txt b {
     font-family: var(--f-mono);
     font-weight: 600;
@@ -2357,6 +2364,85 @@
       return s;
     }
 
+    /* a step with fractions in it, worked out the way it's done by hand: a common bottom, the tops, then simplify; times
+       is top × top over bottom × bottom; dividing is times the flip. Lines for the step's words, or none (whole numbers,
+       or the page showing decimals). */
+    var OPPAGE = { "+": "addition", "−": "subtraction", "×": "multiplication", "÷": "division" };
+
+    function frRaw(n, d) { // a fraction exactly as written, not simplified: 5/15 stays 5/15
+      if (d === 1n) return esc((n < 0n ? "−" : "") + commas((n < 0n ? -n : n).toString()));
+      return (n < 0n ? "<span>−</span>" : "") + frHTML((n < 0n ? -n : n).toString(), d.toString());
+    }
+
+    function topT(n) { return n < 0n ? "(−" + commas((-n).toString()) + ")" : commas(n.toString()); }
+
+    function simpLine(n, d, v) { // n/d as worked out → the value it simplifies to
+      var g = bgcd(n, d);
+      if (g === 1n) return null;
+      return tx("order-of-operations.fr.simplify", { a: frRaw(n, d), g: commas(g.toString()), v: numParts(v).html });
+    }
+
+    function fracLines(st) {
+      var p = st.pick;
+      if (p.t === "neg" || !OPPAGE[p.op] || S.as === "dec" || HASDEC || !p.a.v || !p.b.v) return [];
+      var a = p.a.v,
+        b = p.b.v,
+        v = st.value,
+        out = [],
+        s;
+      if (a.d === 1n && b.d === 1n) { // whole numbers: only ÷ can leave a fraction to simplify
+        if (p.op === "÷" && v.d !== 1n && b.n !== 0n) { // 4 ÷ 6 is 4/6, which simplifies to 2/3
+          var fn = b.n < 0n ? -a.n : a.n,
+            fd = b.n < 0n ? -b.n : b.n;
+          s = simpLine(fn, fd, v);
+          if (s) out.push(tx("order-of-operations.fr.asFrac", { f: frRaw(fn, fd) }) + " " + s);
+        }
+        return out;
+      }
+      if (p.op === "+" || p.op === "−") {
+        var add = p.op === "+",
+          L = a.d / bgcd(a.d, b.d) * b.d,
+          ta = a.n * (L / a.d),
+          tb = b.n * (L / b.d),
+          t = add ? ta + tb : ta - tb;
+        if (a.d === b.d) {
+          out.push(tx(add ? "order-of-operations.fr.sameAdd" : "order-of-operations.fr.sameSub", { d: commas(L.toString()), x: topT(a.n) + " " + p.op + " " + topT(b.n) + " = " + commas(t.toString()).replace(/^-/, "−"), f: frRaw(t, L) }));
+        } else {
+          var whole = a.d === 1n ? a : b.d === 1n ? b : null;
+          out.push(whole ? tx("order-of-operations.fr.wholeOver", { w: frRaw(whole.n, 1n), d: commas(L.toString()), f: frRaw(whole.n * L, L) }) :
+            tx("order-of-operations.fr.lcd", { a: commas(a.d.toString()), b: commas(b.d.toString()), L: commas(L.toString()) }));
+          var re = [];
+          [
+            [a, ta],
+            [b, tb]
+          ].forEach(function(x) {
+            if (x[0].d !== L && x[0].d !== 1n) re.push(tx("order-of-operations.fr.rewrite", { f: frRaw(x[0].n, x[0].d), k: commas((L / x[0].d).toString()), g: frRaw(x[1], L) }));
+          });
+          if (re.length) out.push(tx("order-of-operations.fr.over", { L: commas(L.toString()), list: re.join(tx("order-of-operations.fr.and")) }));
+          out.push(tx(add ? "order-of-operations.fr.addTops" : "order-of-operations.fr.subTops", { x: topT(ta) + " " + p.op + " " + topT(tb) + " = " + commas(t.toString()).replace(/^-/, "−"), f: frRaw(t, L) }));
+        }
+        s = simpLine(t, L, v);
+        if (s) out.push(s);
+      } else {
+        var m = b;
+        if (p.op === "÷") {
+          if (b.n === 0n) return [];
+          m = { n: b.n < 0n ? -b.d : b.d, d: b.n < 0n ? -b.n : b.n };
+          out.push(tx("order-of-operations.fr.flip", { b: frRaw(b.n, b.d), f: frRaw(m.n, m.d), a: frRaw(a.n, a.d) }));
+        }
+        var tn = a.n * m.n,
+          td = a.d * m.d,
+          wh = a.d === 1n ? a : m.d === 1n ? m : null;
+        if (wh) out.push(tx("order-of-operations.fr.overOne", { w: frRaw(wh.n, 1n), f: (wh.n < 0n ? "<span>−</span>" : "") + frHTML((wh.n < 0n ? -wh.n : wh.n).toString(), "1") }));
+        out.push(tx("order-of-operations.fr.times", { tops: topT(a.n) + " × " + topT(m.n) + " = " + commas(tn.toString()).replace(/^-/, "−"), bots: commas(a.d.toString()) + " × " + commas(m.d.toString()) + " = " + commas(td.toString()), f: frRaw(tn, td) }));
+        s = simpLine(tn, td, v);
+        if (s) out.push(s);
+      }
+      var q = numText(a).replace(/−/g, "-") + " " + p.op + " " + numText(b).replace(/−/g, "-");
+      out.push('<a class="more" href="' + OPPAGE[p.op] + ".html?q=" + encodeURIComponent(q) + '">' + tx("order-of-operations.fr.link") + "</a>");
+      return out;
+    }
+
     function whyText(st, isFirstInGroup) {
       var c = st.counts,
         inPar = !!st.group,
@@ -2471,6 +2557,7 @@
         lines.push([st.cls, tagWord, (why ? why + " " : "") + doText(st) +
           (st.dropped ? tx("order-of-operations.par.drop") : "")
         ]);
+        fracLines(st).forEach(function(t) { lines.push(/^<a /.test(t) ? [st.cls + " blank", "", t] : [st.cls, tx("order-of-operations.fr.tag"), t]); });
 
         var p = st.pick;
         if (!seen.md && p.op === "÷" && st.ops.some(function(o) { return o.op === "×" && !o.imp; })) {
