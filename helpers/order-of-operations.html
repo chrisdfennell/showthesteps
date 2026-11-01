@@ -2612,7 +2612,7 @@
         closer = tx(by.m + by.a > 1 ? "order-of-operations.close.same" : "order-of-operations.close.one", { v: esc(fin.text) });
       }
       $("closer").innerHTML = closer;
-      CUR = { value: sol.value, ltr: ltr, tree: parsed.tree, text: fin.text };
+      CUR = { value: sol.value, ltr: ltr, tree: parsed.tree, text: fin.text, steps: steps };
       return n;
     }
 
@@ -2860,6 +2860,170 @@
       return out;
     }
 
+    /* ===================== the mistake finder ===================== */
+    /* A wrong answer, traced back to one slip: each step is worked again with a common slip in it (fractions added
+       straight across, a top not multiplied when the bottom was, dividing without flipping, the wrong operation, a
+       carrying slip …) and everything else done right. When that gives the answer typed, it says which step and what
+       happened. A chain of + and − with fractions is also tried the way it's often done by hand: everything over one
+       common bottom at once (1/3 + 4/5 + 1/4 with 1/3 written as 1/60 gives 64/60). */
+    function evalWith(n, over) {
+      if (n.id !== undefined && over[n.id]) return over[n.id];
+      if (n.t === "num") return n.v;
+      if (n.t === "par") return evalWith(n.a, over);
+      if (n.t === "neg") return apply("neg", evalWith(n.a, over));
+      return apply(n.op, evalWith(n.a, over), evalWith(n.b, over));
+    }
+
+    function lcmB(a, b) { return a / bgcd(a, b) * b; }
+
+    function vH(v) { return numParts(v).html; }
+
+    function frR(n, d) { // a fraction as written by hand, not simplified (1/60, 5/8)
+      return d === 1n || d === -1n ? frRaw(d < 0n ? -n : n, 1n) : frRaw(d < 0n ? -n : n, d < 0n ? -d : d);
+    }
+
+    // the slips one step can have: [{ v, html }], the value it would give and what happened
+    function stepSlips(op, a, b, k) {
+      var out = [],
+        fr = a.d !== 1n || b.d !== 1n,
+        ex = function(key, o) { o.k = k; return tx("order-of-operations.mf." + key, o); },
+        tier = fr ? 1 : 2, // fraction slips are tried before slips any step can have
+        add = function(v, html) { if (v && v.d !== 0n) out.push({ v: R(v.n, v.d), html: html, p: tier }); },
+        A = vH(a),
+        Bh = vH(b),
+        right = function() { return vH(apply(op, a, b)); };
+      if ((op === "+" || op === "−") && fr) {
+        var sg = op === "+" ? 1n : -1n;
+        if (a.d !== b.d) {
+          var tn = a.n + sg * b.n,
+            td = a.d + sg * b.d;
+          if (td !== 0n) add({ n: tn, d: td }, ex(op === "+" ? "across" : "acrossSub", { a: A, b: Bh, w: frR(tn, td), r: right() }));
+          var Ls = [lcmB(a.d, b.d)];
+          if (a.d * b.d !== Ls[0]) Ls.push(a.d * b.d);
+          Ls.forEach(function(L) {
+            // the bottoms made the same, but neither top multiplied: 1/2 + 1/3 = 2/6
+            add({ n: a.n + sg * b.n, d: L }, ex("bothKept", { a: A, b: Bh, L: commas(L.toString()), w: frR(a.n + sg * b.n, L), r: right() }));
+            [
+              [a, b, true],
+              [b, a, false]
+            ].forEach(function(x) {
+              var f = x[0],
+                o = x[1];
+              if (f.d === L) return;
+              var oT = o.n * (L / o.d),
+                top = x[2] ? f.n + sg * oT : oT + sg * f.n;
+              add({ n: top, d: L }, ex("topKept", { f: vH(f), L: commas(L.toString()), bad: frR(f.n, L), m: commas((L / f.d).toString()), good: frR(f.n * (L / f.d), L) }));
+            });
+          });
+          // tops added, one bottom kept
+          add({ n: a.n + sg * b.n, d: a.d > b.d ? a.d : b.d }, ex("oneBottom", { a: A, b: Bh, w: frR(a.n + sg * b.n, a.d > b.d ? a.d : b.d), r: right() }));
+        }
+      }
+      if (op === "×" && fr) {
+        if (b.n !== 0n) add({ n: a.n * b.d, d: a.d * b.n }, ex("flipTimes", { a: A, b: Bh, r: right() }));
+      }
+      if (op === "÷" && b.n !== 0n) {
+        if (fr) {
+          add({ n: a.n * b.n, d: a.d * b.d }, ex("noFlip", { a: A, b: Bh, f: frR(b.d, b.n), r: right() }));
+          if (a.n !== 0n) add({ n: a.d * b.n, d: a.n * b.d }, ex("flipFirst", { a: A, b: Bh, f: frR(b.d, b.n), r: right() }));
+        } else if (a.n !== 0n) add({ n: b.n, d: a.n }, ex("swapDiv", { a: A, b: Bh, r: right() }));
+      }
+      tier = 2;
+      if (op === "^" && b.d === 1n && a.d === 1n) add({ n: a.n * b.n, d: 1n }, ex("powTimes", { a: A, b: Bh, r: right() }));
+      if (op !== "^") {
+        var WRONG = { "+": ["×", "−"], "−": ["+"], "×": ["+", "÷"], "÷": ["×", "−"] };
+        (WRONG[op] || []).forEach(function(o2) {
+          var w;
+          try { w = apply(o2, a, b); } catch (e) { w = null; }
+          if (w) add(w, ex("wrongOp", { a: A, b: Bh, o1: op, o2: o2, r: right() }));
+        });
+      }
+      var rv = apply(op, a, b);
+      if (rv.d === 1n && a.d === 1n && b.d === 1n && (op === "+" || op === "−" || op === "×")) {
+        [1n, 10n, 100n].forEach(function(d) {
+          [d, -d].forEach(function(dd) { add({ n: rv.n + dd, d: 1n }, ex("arith", { a: A, b: Bh, o: op, r: vH(rv), w: commas((rv.n + dd).toString()).replace(/^-/, "−") })); });
+        });
+      }
+      if (rv.n !== 0n) add({ n: -rv.n, d: rv.d }, ex("sign", { a: A, b: Bh, o: op, r: vH(rv) }));
+      return out;
+    }
+
+    // chains of + and −: their terms with signs, for the "all over one common bottom" slips
+    function chains(n, inAS, out) {
+      if (!n || n.t === "num") return out;
+      var as = n.t === "bin" && (n.op === "+" || n.op === "−");
+      if (as && !inAS) out.push(n);
+      if (n.t === "par") chains(n.a, false, out);
+      else if (n.t === "neg") chains(n.a, false, out);
+      else {
+        chains(n.a, as, out);
+        chains(n.b, as, out);
+      }
+      return out;
+    }
+
+    function termsOf(n, s, out) {
+      if (n.t === "bin" && (n.op === "+" || n.op === "−")) {
+        termsOf(n.a, s, out);
+        termsOf(n.b, n.op === "−" ? -s : s, out);
+      } else out.push({ v: evalTree(n), s: s });
+      return out;
+    }
+
+    function chainSlips(root) {
+      var T = termsOf(root, 1, []),
+        out = [];
+      if (T.length < 3 || !T.some(function(t) { return t.v.d !== 1n; })) return out; // two terms: the step slips cover it
+      var L = T.reduce(function(l, t) { return lcmB(l, t.v.d); }, 1n),
+        tops = T.map(function(t) { return BigInt(t.s) * t.v.n * (L / t.v.d); });
+      T.forEach(function(t, j) {
+        if (t.v.d === L) return;
+        var sum = tops.reduce(function(acc, x, i) { return acc + (i === j ? BigInt(t.s) * t.v.n : x); }, 0n);
+        out.push({ v: R(sum, L), html: tx("order-of-operations.mf.allKept", { f: vH(t.v), L: commas(L.toString()), bad: frR(t.v.n, L), m: commas((L / t.v.d).toString()), good: frR(t.v.n * (L / t.v.d), L) }) });
+      });
+      out.push({ v: R(T.reduce(function(acc, t) { return acc + BigInt(t.s) * t.v.n; }, 0n), L), html: tx("order-of-operations.mf.allBothKept", { L: commas(L.toString()) }) });
+      if (T.every(function(t) { return t.s > 0; })) {
+        var sn = 0n,
+          sd = 0n;
+        T.forEach(function(t) {
+          sn += t.v.n;
+          sd += t.v.d;
+        });
+        out.push({ v: R(sn, sd), html: tx("order-of-operations.mf.allAcross", { w: frR(sn, sd) }) });
+      }
+      return out;
+    }
+
+    function findSlip(t, raw) {
+      if (!CUR || !CUR.steps) return "";
+      var tree = CUR.tree,
+        cands = [];
+      chains(tree, false, []).forEach(function(root) {
+        chainSlips(root).forEach(function(c) {
+          var o = {};
+          o[root.id] = c.v;
+          cands.push({ over: o, html: c.html, p: 0 });
+        });
+      });
+      CUR.steps.forEach(function(st, i) {
+        var p = st.pick;
+        if (p.t === "neg" || !p.b) return;
+        stepSlips(p.op, p.a.v, p.b.v, i + 1).forEach(function(c) {
+          var o = {};
+          o[p.id] = c.v;
+          cands.push({ over: o, html: c.html, p: c.p });
+        });
+      });
+      cands = [0, 1, 2].reduce(function(acc, p) { return acc.concat(cands.filter(function(c) { return c.p === p; })); }, []);
+      for (var i = 0; i < cands.length; i++) {
+        var v;
+        try { v = evalWith(tree, cands[i].over); } catch (e) { continue; }
+        if (v.n === CUR.value.n && v.d === CUR.value.d) continue;
+        if (numMatch(t, v)) return tx("order-of-operations.mf.head") + " " + cands[i].html + " " + tx("order-of-operations.mf.rest", { t: esc(String(raw).trim()) });
+      }
+      return "";
+    }
+
     function checkAnswer() {
       if (!CUR) return;
       var raw = $("ckIn").value,
@@ -2885,6 +3049,7 @@
         ms = mistakes();
       for (var i = 0; i < ms.length; i++)
         if (numMatch(t, ms[i].v)) { why = ms[i].html; break; }
+      if (!why) why = findSlip(t, raw);
       msg.innerHTML = '<span class="no">' + tx("common.notQuite") + "</span>" + (why ? '<span class="why">' + why + "</span>" : "");
       report("wrong");
       applyCheck(lastSteps);
