@@ -1887,6 +1887,11 @@
         ["q=" + encodeURIComponent("A school bus carries 48 students.  If 6 students get off at each stop, how many stops will it take for the bus to be completely empty?"), ["8"]],
         ["q=" + encodeURIComponent("A bus makes 8 stops. 6 students get off at each stop. How many students get off?"), ["48"]],
         ["q=" + encodeURIComponent("There are 30 kids. 5 kids sit at each table. How many tables are there?"), ["6"]],
+        // fractions of a measure, and "takes a break" isn't taking away (issue #13)
+        ["q=" + encodeURIComponent("ryan walks 2/3 miles. then he takes a break before he walks another 1/6 mile. How far does Ryan walk altogether?"), ["5/6"]],
+        ["q=" + encodeURIComponent("Maya had 3/4 cup of flour. She used 1/2 cup. How much flour is left?"), ["1/4"]],
+        ["q=" + encodeURIComponent("Ryan walks 1 1/2 miles and then 2 3/4 miles. How far does he walk in all?"), ["17/4"]],
+        ["q=" + encodeURIComponent("Ryan walks 2 miles. Then he takes a break before he walks another 3 miles. How far does Ryan walk altogether?"), ["5"]],
         // "Each crate holds 32", "had to be thrown out" (issue #11)
         ["q=" + encodeURIComponent("A farmer harvested 7 crates of apples. Each crate holds 32 apples. He discovered that 15 apples were bruised and had to be thrown out. How many good apples does he have?"), ["209"]],
         ["q=" + encodeURIComponent("A store has 6 boxes. Each box holds 12 pens. The store gets 10 more pens. How many pens does it have now?"), ["82"]],

@@ -2743,6 +2743,9 @@
       return mixT(v) + " " + (eqR(v, ONE) ? singular(w) : w);
     }
 
+    // an amount in an answer: a fraction story (W.frac) keeps its fractions, "5/6 of a mile"
+    function qtyF(v, w, W) { return W && W.frac && !isInt(v) ? qPart(v, w) : qty(v, w); }
+
     function qText(v, w) { return isInt(v) ? qty(v, w) : qPart(v, w) + " (" + decT(v) + ")"; }
 
     /* ===================== clocks and lengths of time ===================== */
@@ -3209,7 +3212,7 @@
           lead: tr("story-problems.join.oneBarForThe")
         };
         M.calc = [s.calc];
-        M.ans = { v: V[u], k: "n", w: it, say: u === "c" ? tr("story-problems.join.now3", { Nc: Nc, hv: hv, qty: B(esc(qty(V.c, it))) }) : u === "b" ? Nc + " " + W.V + " " + B(esc(qty(V.b, it))) + "." : tr("story-problems.join.hadAtTheStart", { Nc: Nc, qty: B(esc(qty(V.a, it))) }) };
+        M.ans = { v: V[u], k: W.frac && !isInt(V[u]) ? "q" : "n", w: it, say: u === "c" ? tr("story-problems.join.now3", { Nc: Nc, hv: hv, qty: B(esc(qtyF(V.c, it, W))) }) : u === "b" ? Nc + " " + W.V + " " + B(esc(qtyF(V.b, it, W))) + "." : tr("story-problems.join.hadAtTheStart", { Nc: Nc, qty: B(esc(qtyF(V.a, it, W))) }) };
         M.sense = back3(s) + (u === "c" ? tr("story-problems.join.andIsMoreThan", { c: esc(nt(V.c)), a: esc(nt(V.a)), N: N }) : tr("story-problems.join.theAmountsWentUp"));
         M.diag = u === "c" ? [{ v: sub(V.a, V.b), msg: tr("story-problems.join.youSubtractedGotMore", { N: cap1(N) }) }, { v: mul(V.a, V.b), msg: tr("story-problems.join.thatsMultiplyingThereAre") }] :
           u === "b" ? [{ v: add(V.a, V.c), msg: tr("story-problems.join.youAddedBecauseOf") }] : [{ v: add(V.b, V.c), msg: tr("story-problems.join.youAddedTheEnd", { c: esc(nt(V.c)) }) }];
@@ -3265,7 +3268,7 @@
           lead: tr("story-problems.separate.theWholeBarIs", { N: N })
         };
         M.calc = [s.calc];
-        M.ans = { v: V[u], k: "n", w: it, say: u === "c" ? tr("story-problems.separate.left3", { Nc: Nc, hv: hv, qty: B(esc(qty(V.c, it))) }) : u === "b" ? Nc + " " + W.V + " " + B(esc(qty(V.b, it))) + "." : tr("story-problems.separate.hadAtFirst", { Nc: Nc, qty: B(esc(qty(V.a, it))) }) };
+        M.ans = { v: V[u], k: W.frac && !isInt(V[u]) ? "q" : "n", w: it, say: u === "c" ? tr("story-problems.separate.left3", { Nc: Nc, hv: hv, qty: B(esc(qtyF(V.c, it, W))) }) : u === "b" ? Nc + " " + W.V + " " + B(esc(qtyF(V.b, it, W))) + "." : tr("story-problems.separate.hadAtFirst", { Nc: Nc, qty: B(esc(qtyF(V.a, it, W))) }) };
         M.sense = back3(s) + (u === "a" ? tr("story-problems.separate.theStartIsThe") : tr("story-problems.separate.whatsLeftIsLess"));
         M.diag = u === "c" ? [{ v: add(V.a, V.b), msg: tr("story-problems.separate.youAddedSomeWent", { it: it }) }] :
           u === "b" ? [{ v: add(V.a, V.c), msg: tr("story-problems.separate.youAddedTheOnes", { a: esc(nt(V.a)) }) }] : [{ v: sub(V.c, V.b), msg: tr("story-problems.separate.youSubtractedBecauseOf") },
@@ -3326,9 +3329,9 @@
         M.calc = [s.calc];
         M.ans = {
           v: V[u],
-          k: "n",
+          k: W.frac && !isInt(V[u]) ? "q" : "n",
           w: it,
-          say: u === "c" ? tr("story-problems.parts.thereAreAltogether", { qty: B(esc(qty(V.c, it))) }) : u === "b" ? (W.k2 ? tr("story-problems.parts.thereAre2", { qty: B(esc(qty(V.b, k2))) }) : tr("story-problems.parts.theOtherPartIs", { qty: B(esc(qty(V.b, it))) })) : (W.k1 ? tr("story-problems.parts.thereAre2", { qty: B(esc(qty(V.a, k1))) }) : tr("story-problems.parts.theOtherPartIs", { qty: B(esc(qty(V.a, it))) }))
+          say: u === "c" ? tr("story-problems.parts.thereAreAltogether", { qty: B(esc(qtyF(V.c, it, W))) }) : u === "b" ? (W.k2 ? tr("story-problems.parts.thereAre2", { qty: B(esc(qtyF(V.b, k2, W))) }) : tr("story-problems.parts.theOtherPartIs", { qty: B(esc(qtyF(V.b, it, W))) })) : (W.k1 ? tr("story-problems.parts.thereAre2", { qty: B(esc(qtyF(V.a, k1, W))) }) : tr("story-problems.parts.theOtherPartIs", { qty: B(esc(qtyF(V.a, it, W))) }))
         };
         M.sense = back3(s) + (u === "c" ? tr("story-problems.parts.theWholeIsBigger") : tr("story-problems.parts.thePartIsSmaller"));
         M.diag = u === "c" ? [{ v: absR(sub(V.a, V.b)), msg: tr("story-problems.parts.youSubtractedBothParts") }] : [{ v: add(V.c, V[s.other]), msg: tr("story-problems.parts.youAddedTheIs", { c: esc(nt(V.c)) }) }];
@@ -12730,7 +12733,8 @@
         return P2;
       },
       additive: function(A) {
-        var ns = A.use.filter(function(t) { return t.k === "n" || t.k === "$"; });
+        // amounts of something: whole numbers, money, and fractions of a measure ("2/3 mile", not "2/3 of the class")
+        var ns = A.use.filter(function(t) { return t.k === "n" || t.k === "$" || t.k === "f" && t.unit && !/^\s*of\b/.test(t.after); });
         if (ns.length !== 2) return null;
         var resT = ns.filter(function(t) {
           var s = A.sents[t.s],
@@ -12739,7 +12743,9 @@
             /\b(?:some|a few|several)(?: more)?\b[^.?!]*,\s*(?:[a-z]+\s+){0,2}?(?:has|have|had|is|are|was|were)\s*$/.test(pre); // "After a friend gave him some more, he has 51"
         })[0];
         var startQ = /\b(at first|to start( with)?|at the start|in the beginning|at the beginning|before|originally|to begin with|start(ed)? (out )?with|in the first place|had at first)\b/.test(A.Q);
-        var NQ = plusPassive(A.NQ).replace(/\b(?:took|takes|take)\s+(?:(?:him|her|them|me|us|it)\s+)?(?:about\s+|only\s+|just\s+)?(?=\d+(?:\.\d+)?\s+(?:hours?|minutes?|seconds?|days?|weeks?)\b)/g, "lasted ");
+        var NQ = plusPassive(A.NQ).replace(/\b(?:took|takes|take)\s+(?:(?:him|her|them|me|us|it)\s+)?(?:about\s+|only\s+|just\s+)?(?=\d+(?:\.\d+)?\s+(?:hours?|minutes?|seconds?|days?|weeks?)\b)/g, "lasted ")
+          // "takes a break before he walks another 1/6 mile": a rest, nothing taken away
+          .replace(/\b(?:took|takes|take|taking)\s+(?:a|an)\s+(?:short\s+|quick\s+|little\s+|long\s+)?(?:break|rest|nap|breather|breath|seat|pause)\b/g, "rested");
         var sep = MINUSV.test(NQ) || /\b(left|remain|remaining)\b/.test(A.Q) && !PLUSV.test(NQ);
         var moreJoin = (/\b(some|a few|several)\s+more\b/.test(NQ) || ns.some(function(t) { return !t.inQ && /^\s*more\b/.test(t.after); })) && !/\bmore\s+(?:[a-z]+\s+)?than\b/.test(NQ);
         if (moreJoin) sep = false;
@@ -12822,6 +12828,21 @@
         return P;
       }
     };
+    // a story told in fractions of a measure ("2/3 mile … another 1/6 mile"): its answer is a fraction of that measure too,
+    // "5/6 of a mile", not 0.83333
+    var additive0 = ASSIGN.additive;
+    ASSIGN.additive = function(A) {
+      var P = additive0(A);
+      if (!P || !P.rw) return P;
+      // fractions of a measure, and mixed numbers written with a fraction bar ("1 1/2 miles")
+      var ts = A.use.filter(function(t) { return t.k === "f" && t.unit && !/^\s*of\b/.test(t.after) || t.k === "n" && !isInt(t.v) && /\//.test(A.L.slice(t.i, t.end)); });
+      if (!ts.length) return P;
+      P.rw.frac = true;
+      var hs = A.use.filter(function(t) { return (t.k === "n" || t.k === "f") && t.head; }).map(function(t) { return singular(t.head); });
+      if (hs.length && SPLITW.test(hs[0]) && hs.every(function(h) { return h === hs[0]; })) P.rw.it = plural(hs[0]);
+      return P;
+    };
+
     /* ---- reading algebra stories ---- */
     // number words to digits, inside a number puzzle ("five more than twice a number is twenty-three")
     function numify(s) {
