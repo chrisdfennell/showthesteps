@@ -501,6 +501,7 @@ HelperI18n.add("es", {
   "statistics.ck.orderSplit": "Primero ordena los números y luego divídelos.",
   "statistics.ck.medNotQ1": "Esa es la mediana de todos los números. Q₁ es el centro de la mitad inferior.",
   "statistics.ck.orderOnly": "Primero ordena los números.",
+  "statistics.ck.iqrNotRange": "Ese es el RIC (Q₃ − Q₁). El rango es máx − mín: abarca todos los números.",
   "statistics.ck.rangeNotIqr": "Ese es el rango (máx − mín). El RIC es Q₃ − Q₁.",
   "statistics.ck.altIqr": "Ese RIC sale de cuartiles calculados {alt}.",
   "statistics.ck.iqrPos": "Q₃ menos Q₁, así que el RIC sale positivo.",

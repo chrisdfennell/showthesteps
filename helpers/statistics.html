@@ -3393,7 +3393,8 @@
       var facts = [st.outs.length ? tx(st.outs.length > 1 ? "statistics.b.f.outMany" : "statistics.b.f.outOne", { list: B(listT(st.outs)), lo: vT(st.lf), hi: vT(st.uf) }) : tx("statistics.b.f.noOut", { lo: vT(st.lf), hi: vT(st.uf) }),
         tx(odd ? (incl ? "statistics.b.f.incl" : "statistics.b.f.excl") : "statistics.b.f.even"), tx("statistics.f.n", { n: B(n) })
       ];
-      bandCells([{ k: tx("statistics.th.min"), v: vH(st.min) }, { k: "Q₁", v: fullH(st.q1) }, { k: tx("statistics.cell.median"), v: fullH(st.med) }, { k: "Q₃", v: fullH(st.q3) }, { k: tx("statistics.th.max"), v: vH(st.max) }, { k: tx("statistics.cell.iqr"), v: fullH(st.iqr) }], facts);
+      // the range too: box-plot worksheets ask for "the range, quartiles and interquartile range"
+      bandCells([{ k: tx("statistics.th.min"), v: vH(st.min) }, { k: "Q₁", v: fullH(st.q1) }, { k: tx("statistics.cell.median"), v: fullH(st.med) }, { k: "Q₃", v: fullH(st.q3) }, { k: tx("statistics.th.max"), v: vH(st.max) }, { k: tx("statistics.cell.range"), v: vH(sub(st.max, st.min)) }, { k: tx("statistics.cell.iqr"), v: fullH(st.iqr) }], facts);
       $("closer").innerHTML = '<div class="ck">' + tx("statistics.ck.b1", { e: [st.min, st.q1, st.med, st.q3, st.max].map(vT).join(" ≤ ") }) + "</div>" +
         '<div class="ck">' + tx("statistics.ck.b2", { e: vT(st.q1) + " + " + pT(st.iqr, 1) + " = " + vT(st.q3) }) + "</div>";
       return items.length;
@@ -4121,6 +4122,15 @@
             ])
           },
           { k: "max", label: tx("statistics.th.max"), type: "num", want: st.max, mist: [] }, {
+            k: "range",
+            label: tx("statistics.cell.range"),
+            type: "num",
+            want: sub(st.max, st.min),
+            pos: true,
+            mist: mists(sub(st.max, st.min), [{ v: st.iqr, msg: tx("statistics.ck.iqrNotRange") }, { v: st.max, msg: tx("statistics.ck.biggest") },
+              { v: add(st.max, st.min), msg: tx("statistics.ck.subtract") }, { v: sub(st.min, st.max), msg: tx("statistics.ck.positive") }
+            ])
+          }, {
             k: "iqr",
             label: tx("statistics.cell.iqr"),
             type: "num",

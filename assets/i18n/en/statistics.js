@@ -502,6 +502,7 @@ HelperI18n.add("en", {
   "statistics.ck.orderSplit": "Put the numbers in order first, then split them.",
   "statistics.ck.medNotQ1": "That’s the median of all the numbers. Q₁ is the middle of the lower half.",
   "statistics.ck.orderOnly": "Put the numbers in order first.",
+  "statistics.ck.iqrNotRange": "That’s the IQR (Q₃ − Q₁). The range is max − min: it spans all the numbers.",
   "statistics.ck.rangeNotIqr": "That’s the range (max − min). The IQR is Q₃ − Q₁.",
   "statistics.ck.altIqr": "That IQR comes from quartiles found {alt}.",
   "statistics.ck.iqrPos": "Q₃ minus Q₁, so the IQR comes out positive.",
