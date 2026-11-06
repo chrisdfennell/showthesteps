@@ -18,12 +18,24 @@ def arg(name, default):
     return sys.argv[sys.argv.index(name) + 1] if name in sys.argv else default
 
 
-def api(path, params, token):
+def api(path, params, token, tries=3):
     url = SITE + "/api/v0/" + path + "?" + urllib.parse.urlencode(params, doseq=True)
     req = urllib.request.Request(url, headers={"Authorization": "Bearer " + token, "Content-Type": "application/json"})
-    with urllib.request.urlopen(req, timeout=30) as r:
-        left = r.headers.get("X-Rate-Limit-Remaining")
-        body = json.load(r)
+    # GoatCounter now and then answers a good request with 404 "not found" or a 5xx, and the same request works a moment
+    # later: try again a couple of times before giving up (a wrong key, 401/403, isn't tried again)
+    for n in range(tries):
+        try:
+            with urllib.request.urlopen(req, timeout=30) as r:
+                left = r.headers.get("X-Rate-Limit-Remaining")
+                body = json.load(r)
+            break
+        except urllib.error.HTTPError as e:
+            if n == tries - 1 or e.code not in (404, 429, 500, 502, 503, 504): raise
+            print("GoatCounter said %d; trying again" % e.code)
+        except urllib.error.URLError:
+            if n == tries - 1: raise
+            print("GoatCounter didn't answer; trying again")
+        time.sleep(5 * (n + 1))
     if left is not None and int(left) < 2: time.sleep(1.1)        # GoatCounter allows 4 requests a second
     else: time.sleep(0.3)
     return body
